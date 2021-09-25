@@ -27,15 +27,19 @@
 />
 
 <style lang="scss">
-  @keyframes openingLg {
-    0% {
-      transform: scale(1.5);
-    }
+  @mixin animation($name, $tx) {
+    @keyframes #{$name} {
+      0% {
+        width: 200px;
+        transform: scale(3) translateX($tx);
+      }
 
-    100% {
-      transform: scale(1);
+      100% {
+        transform: scale(1) translateX(0px);
+      }
     }
   }
+
   @keyframes openingSm {
     0% {
       opacity: 0;
@@ -47,11 +51,9 @@
       opacity: 100%;
     }
   }
-  .lg {
-    animation: openingLg 2s ease-in-out;
-  }
+
   .sm {
-    animation: openingSm 4s;
+    animation: openingSm 8s;
     animation-timing-function: cubic-bezier(0.5, 0.5, 1, 1);
   }
   .hovered {
@@ -86,6 +88,8 @@
       top: 13.8%;
       height: 62%;
       width: 2.7%;
+      @include animation(opening-4, 90px);
+      animation: opening-4 10s ease-in-out;
     }
 
     &:nth-child(5) {
@@ -93,6 +97,8 @@
       top: 13.8%;
       height: 62%;
       width: 2.7%;
+      @include animation(opening-5, 130px);
+      animation: opening-5 10s ease-in-out;
     }
     &:nth-child(6) {
       left: 17.8%;
@@ -244,6 +250,8 @@
       top: 13.8%;
       height: 62%;
       width: 1.7%;
+      @include animation(opening-30, -130px);
+      animation: opening-30 10s ease-in-out;
     }
   }
   .full-screen {
