@@ -41,17 +41,18 @@
       opacity: 0;
     }
     50% {
-      opacity: 0;
+      opacity: 50%;
     }
     100% {
       opacity: 100%;
     }
   }
   .lg {
-    animation: openingLg 2s ease-in;
+    animation: openingLg 2s ease-in-out;
   }
   .sm {
-    animation: openingSm 4s ease-in;
+    animation: openingSm 4s;
+    animation-timing-function: cubic-bezier(0.5, 0.5, 1, 1);
   }
   .hovered {
     transform: translateY(-20px) scale(1.3);
