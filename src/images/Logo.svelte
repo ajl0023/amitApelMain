@@ -3,6 +3,8 @@
   import Bar from "../components/Bar.svelte";
   import { spring, tweened } from "svelte/motion";
   import { cubicOut } from "svelte/easing";
+  import { Motion } from "svelte-motion";
+
   import "../global.scss";
   import Logo from "../images/Logo.svelte";
 

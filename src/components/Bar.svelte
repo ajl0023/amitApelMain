@@ -3,16 +3,18 @@
 
   import { spring, tweened } from "svelte/motion";
   import { cubicOut } from "svelte/easing";
-
-  let bar;
-  let shouldExpand = false;
-  const delay = [];
-
-  const initialLarge = [3, 28];
+  import { Motion } from "svelte-motion";
   export let index;
   export let offset;
+  let bar;
+  let shouldExpand = false;
+  let largeAnimation = { width: 100, left: 0, scale: 10 };
+
+  const initialLarge = [3, 28];
+
+  let animationRunning = false;
   let hovered = false;
-  let hoveredOut = false;
+  let hoveredOut = 2;
   const expand = (e) => {
     shouldExpand = !shouldExpand;
 
@@ -24,7 +26,7 @@
       easing: cubicOut,
     }
   );
-  const progress = tweened(
+  const largeInitialAnimation = tweened(
     { width: 100, left: 0, scale: 10 },
 
     {
@@ -36,68 +38,61 @@
     duration: 4000,
     easing: cubicOut,
   });
-  onMount(() => {});
-  setTimeout(() => {
-    progress.set({
-      width: 2,
-      left: 6.9,
-      scale: 1,
-    });
-    offset.set({
-      rotate: 0,
-    });
-    alpha.set(1);
-  }, 1000);
+  onMount(() => {
+    // largeInitialAnimation.set({
+    //   width: 2,
+    //   left: 6.9,
+    //   scale: 1,
+    // });
+    // offset.set({
+    //   rotate: 0,
+    // });
+    // alpha.set(1);
+  });
 </script>
 
-<div
-  bind:this={bar}
-  class:sm={index !== 3 && index !== 4 && index !== 17 && index !== 30}
-  class:lg={index === 3 || index === 4 || index === 17 || index === 30}
-  style="
-  
-  {initialLarge.includes(index)
-    ? `transform:scale(${$progress.scale});`
-    : `transform:rotateX(${$offset.rotate}deg)`}; opacity:{$alpha};
- 
-  {hovered || hoveredOut
-    ? `transform: translateY(${$hoverSpring.translateY}px) scale(${$hoverSpring.scale});`
-    : ''}; 
-"
-  class:hovered
-  class:full-screen={shouldExpand}
-  class="bar"
-  on:mouseenter={(e) => {
-    hoverSpring.set({
-      scale: 1.3,
-      translateY: -20,
-    });
-    if (!shouldExpand) {
-      hovered = true;
-    }
-  }}
-  on:mouseleave={(e) => {
-    hovered = false;
-    hoveredOut = true;
-    hoverSpring.set({
-      scale: 1,
-      translateY: 0,
-    });
-  }}
-  on:click={expand}
-/>
+{#if initialLarge.includes(index)}
+  <Motion
+    whileHover={{ scale: 1.2 }}
+    variants={{
+      scale1: {
+        scale: 1.8,
+      },
+      scale2: {
+        scale: 1,
+        transition: { duration: hoveredOut, repeat: 0 },
+      },
+    }}
+    initial="scale1"
+    onHoverStart={() => {
+      hoveredOut = 0.2;
+    }}
+    animate="scale2"
+    let:motion
+  >
+    <div use:motion class="bar" on:click={expand} />
+  </Motion>
+{:else}
+  <Motion
+    variants={{
+      1: {
+        rotateX: index + 50 * (index + 1),
+      },
+      2: {
+        rotateX: 0,
+        transition: { duration: hoveredOut, repeat: 0 },
+      },
+    }}
+    initial="1"
+    animate="2"
+    whileHover={{ scale: 1.2, transition: { duration: 0.2 } }}
+    let:motion
+  >
+    <div use:motion class="bar" />
+  </Motion>
+{/if}
 
 <style lang="scss">
-  $largeAnimation: 8s;
-  $largeAnimationTimingFunc: cubic-bezier(0.4, 0, 1, 1);
-  @mixin animation($name, $tx) {
-    @keyframes #{$name} {
-    }
-  }
-
-  @keyframes openingSm {
-  }
-
   .sm {
     animation: openingSm 8s;
   }
@@ -130,8 +125,7 @@
       top: 13.8%;
       height: 62%;
       width: 2.7%;
-      @include animation(opening-4, 90px);
-      animation: opening-4 $largeAnimation $largeAnimationTimingFunc;
+      transform: scale(1.8);
     }
 
     &:nth-child(5) {
@@ -139,8 +133,6 @@
       top: 13.8%;
       height: 62%;
       width: 2.7%;
-      @include animation(opening-5, 130px);
-      animation: opening-5 $largeAnimation $largeAnimationTimingFunc;
     }
     &:nth-child(6) {
       left: 17.8%;
@@ -219,8 +211,6 @@
       top: 13.8%;
       height: 62%;
       width: 2.5%;
-      @include animation(opening-18, -90px);
-      animation: opening-18 $largeAnimation $largeAnimationTimingFunc;
     }
     &:nth-child(19) {
       left: 91.3%;
@@ -294,16 +284,11 @@
       top: 13.8%;
       height: 62%;
       width: 1.7%;
-      @include animation(opening-30, -130px);
-      animation: opening-30 $largeAnimation $largeAnimationTimingFunc;
     }
   }
   .full-screen {
     position: fixed !important;
     left: 0 !important;
     width: 100vw !important;
-    &:hover {
-      content: none !important;
-    }
   }
 </style>
