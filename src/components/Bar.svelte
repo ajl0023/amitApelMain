@@ -1,17 +1,59 @@
 <script>
+  import { onMount } from "svelte";
+
+  import { spring, tweened } from "svelte/motion";
+  import { cubicOut } from "svelte/easing";
+
+  let bar;
   let shouldExpand = false;
+  const delay = [];
+
+  const initialLarge = [3, 28];
   export let index;
+  export let offset;
   let hovered = false;
+
   const expand = (e) => {
     shouldExpand = !shouldExpand;
     hovered = false;
-    e.target.onHover = "";
   };
+
+  const progress = tweened(
+    { width: 100, left: 0, scale: 10 },
+
+    {
+      duration: 4000,
+      easing: cubicOut,
+    }
+  );
+  let alpha = tweened(0, {
+    duration: 4000,
+    easing: cubicOut,
+  });
+  onMount(() => {});
+  setTimeout(() => {
+    progress.set({
+      width: 2,
+      left: 6.9,
+      scale: 1,
+    });
+    offset.set({
+      rotate: 0,
+    });
+    alpha.set(1);
+  }, 1000);
 </script>
 
 <div
+  bind:this={bar}
   class:sm={index !== 3 && index !== 4 && index !== 17 && index !== 30}
   class:lg={index === 3 || index === 4 || index === 17 || index === 30}
+  style="
+  {initialLarge.includes(index)
+    ? `transform:scale(${$progress.scale});`
+    : `transform:rotateX(${$offset.rotate}deg)`};
+  opacity:{!initialLarge.includes(index) ? $alpha : 1}; 
+"
   class:hovered
   class:full-screen={shouldExpand}
   class="bar"
@@ -27,29 +69,14 @@
 />
 
 <style lang="scss">
+  $largeAnimation: 8s;
+  $largeAnimationTimingFunc: cubic-bezier(0.4, 0, 1, 1);
   @mixin animation($name, $tx) {
     @keyframes #{$name} {
-      0% {
-        width: 200px;
-        transform: scale(3) translateX($tx);
-      }
-
-      100% {
-        transform: scale(1) translateX(0px);
-      }
     }
   }
 
   @keyframes openingSm {
-    0% {
-      opacity: 0;
-    }
-    50% {
-      opacity: 50%;
-    }
-    100% {
-      opacity: 100%;
-    }
   }
 
   .sm {
@@ -61,7 +88,7 @@
   }
   .bar {
     z-index: 5;
-    background-color: black;
+    background-color: white;
     position: absolute;
     transition: cubic-bezier(0.075, 0.82, 0.165, 1) 1s;
 
@@ -89,7 +116,7 @@
       height: 62%;
       width: 2.7%;
       @include animation(opening-4, 90px);
-      animation: opening-4 10s ease-in-out;
+      animation: opening-4 $largeAnimation $largeAnimationTimingFunc;
     }
 
     &:nth-child(5) {
@@ -98,7 +125,7 @@
       height: 62%;
       width: 2.7%;
       @include animation(opening-5, 130px);
-      animation: opening-5 10s ease-in-out;
+      animation: opening-5 $largeAnimation $largeAnimationTimingFunc;
     }
     &:nth-child(6) {
       left: 17.8%;
@@ -177,6 +204,8 @@
       top: 13.8%;
       height: 62%;
       width: 2.5%;
+      @include animation(opening-18, -90px);
+      animation: opening-18 $largeAnimation $largeAnimationTimingFunc;
     }
     &:nth-child(19) {
       left: 91.3%;
@@ -251,7 +280,7 @@
       height: 62%;
       width: 1.7%;
       @include animation(opening-30, -130px);
-      animation: opening-30 10s ease-in-out;
+      animation: opening-30 $largeAnimation $largeAnimationTimingFunc;
     }
   }
   .full-screen {

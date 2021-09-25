@@ -1,5 +1,6 @@
 <script>
   import Logo from "../images/Logo.svelte";
+
 </script>
 
 <div class="container">
@@ -12,5 +13,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background-color: black;
+    overflow: hidden;
   }
 </style>
