@@ -1,21 +1,66 @@
 <script>
   let shouldExpand = false;
+  export let index;
+  let hovered = false;
   const expand = (e) => {
     shouldExpand = !shouldExpand;
+    hovered = false;
+    e.target.onHover = "";
   };
 </script>
 
-<div class:full-screen={shouldExpand} class="bar" on:click={expand} />
+<div
+  class:sm={index !== 3 && index !== 4 && index !== 17 && index !== 30}
+  class:lg={index === 3 || index === 4 || index === 17 || index === 30}
+  class:hovered
+  class:full-screen={shouldExpand}
+  class="bar"
+  on:mouseenter={(e) => {
+    if (!shouldExpand) {
+      hovered = true;
+    }
+  }}
+  on:mouseleave={(e) => {
+    hovered = false;
+  }}
+  on:click={expand}
+/>
 
 <style lang="scss">
+  @keyframes openingLg {
+    0% {
+      transform: scale(1.5);
+    }
+
+    100% {
+      transform: scale(1);
+    }
+  }
+  @keyframes openingSm {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 100%;
+    }
+  }
+  .lg {
+    animation: openingLg 2s ease-in;
+  }
+  .sm {
+    animation: openingSm 4s ease-in;
+  }
+  .hovered {
+    transform: translateY(-20px) scale(1.3);
+  }
   .bar {
     z-index: 5;
     background-color: black;
     position: absolute;
     transition: cubic-bezier(0.075, 0.82, 0.165, 1) 1s;
-    &:hover {
-      transform: translateY(-20px);
-    }
 
     &:nth-child(1) {
       left: 2%;
@@ -204,5 +249,8 @@
     position: fixed !important;
     left: 0 !important;
     width: 100vw !important;
+    &:hover {
+      content: none !important;
+    }
   }
 </style>

@@ -10,23 +10,15 @@
   onMount(() => {});
   onDestroy(() => {});
   const bars = Array.from(" ".repeat(30));
-  const expand = (e) => {
-    shouldExpand = !shouldExpand;
-  };
 </script>
 
 <div class="bar-container">
-  {#each bars as bar}
-    <Bar />
+  {#each bars as bar, i}
+    <Bar index={i} />
   {/each}
 </div>
 
 <style lang="scss">
-  .full-screen {
-    position: fixed !important;
-    left: 0;
-    width: 100vw;
-  }
   .bar-container {
     top: 0;
     z-index: 1;
