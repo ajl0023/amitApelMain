@@ -12,13 +12,18 @@
   export let index;
   export let offset;
   let hovered = false;
-
+  let hoveredOut = false;
   const expand = (e) => {
     shouldExpand = !shouldExpand;
 
     hovered = false;
   };
-
+  const hoverSpring = spring(
+    { scale: 1, translateY: 0 },
+    {
+      easing: cubicOut,
+    }
+  );
   const progress = tweened(
     { width: 100, left: 0, scale: 10 },
 
@@ -55,18 +60,29 @@
     ? `transform:scale(${$progress.scale});`
     : `transform:rotateX(${$offset.rotate}deg)`}; opacity:{$alpha};
  
-  {hovered ? 'transform: translateY(-20px) scale(1.3);' : ''}; 
+  {hovered || hoveredOut
+    ? `transform: translateY(${$hoverSpring.translateY}px) scale(${$hoverSpring.scale});`
+    : ''}; 
 "
   class:hovered
   class:full-screen={shouldExpand}
   class="bar"
   on:mouseenter={(e) => {
+    hoverSpring.set({
+      scale: 1.3,
+      translateY: -20,
+    });
     if (!shouldExpand) {
       hovered = true;
     }
   }}
   on:mouseleave={(e) => {
     hovered = false;
+    hoveredOut = true;
+    hoverSpring.set({
+      scale: 1,
+      translateY: 0,
+    });
   }}
   on:click={expand}
 />
