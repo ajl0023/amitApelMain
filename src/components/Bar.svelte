@@ -15,6 +15,7 @@
 
   const expand = (e) => {
     shouldExpand = !shouldExpand;
+
     hovered = false;
   };
 
@@ -49,10 +50,12 @@
   class:sm={index !== 3 && index !== 4 && index !== 17 && index !== 30}
   class:lg={index === 3 || index === 4 || index === 17 || index === 30}
   style="
+  
   {initialLarge.includes(index)
     ? `transform:scale(${$progress.scale});`
-    : `transform:rotateX(${$offset.rotate}deg)`};
-  opacity:{!initialLarge.includes(index) ? $alpha : 1}; 
+    : `transform:rotateX(${$offset.rotate}deg)`}; opacity:{$alpha};
+ 
+  {hovered ? 'transform: translateY(-20px) scale(1.3);' : ''}; 
 "
   class:hovered
   class:full-screen={shouldExpand}
@@ -81,16 +84,12 @@
 
   .sm {
     animation: openingSm 8s;
-    animation-timing-function: cubic-bezier(0.5, 0.5, 1, 1);
   }
-  .hovered {
-    transform: translateY(-20px) scale(1.3);
-  }
+
   .bar {
     z-index: 5;
     background-color: white;
     position: absolute;
-    transition: cubic-bezier(0.075, 0.82, 0.165, 1) 1s;
 
     &:nth-child(1) {
       left: 2%;

@@ -41,6 +41,6 @@
     z-index: 1;
     position: relative;
     width: 90%;
-    height: 400px;
+    height: 600px;
   }
 </style>
