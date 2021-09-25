@@ -1478,9 +1478,9 @@ function init(settings = default_settings) {
     amp: false,
     dev: false,
     entry: {
-      file: assets + "/_app/start-0ab99ac1.js",
+      file: assets + "/_app/start-53507122.js",
       css: [assets + "/_app/assets/start-61d1577b.css"],
-      js: [assets + "/_app/start-0ab99ac1.js", assets + "/_app/chunks/vendor-12a695dd.js"]
+      js: [assets + "/_app/start-53507122.js", assets + "/_app/chunks/vendor-12a695dd.js"]
     },
     fetched: void 0,
     floc: false,
@@ -1539,7 +1539,7 @@ const module_lookup = {
     return index;
   })
 };
-const metadata_lookup = { ".svelte-kit/build/components/layout.svelte": { "entry": "layout.svelte-e959ee51.js", "css": [], "js": ["layout.svelte-e959ee51.js", "chunks/vendor-12a695dd.js"], "styles": [] }, ".svelte-kit/build/components/error.svelte": { "entry": "error.svelte-ac87dcb2.js", "css": [], "js": ["error.svelte-ac87dcb2.js", "chunks/vendor-12a695dd.js"], "styles": [] }, "src/routes/index.svelte": { "entry": "pages/index.svelte-15e56cab.js", "css": ["assets/pages/index.svelte-935516c5.css"], "js": ["pages/index.svelte-15e56cab.js", "chunks/vendor-12a695dd.js"], "styles": [] } };
+const metadata_lookup = { ".svelte-kit/build/components/layout.svelte": { "entry": "layout.svelte-e959ee51.js", "css": [], "js": ["layout.svelte-e959ee51.js", "chunks/vendor-12a695dd.js"], "styles": [] }, ".svelte-kit/build/components/error.svelte": { "entry": "error.svelte-ac87dcb2.js", "css": [], "js": ["error.svelte-ac87dcb2.js", "chunks/vendor-12a695dd.js"], "styles": [] }, "src/routes/index.svelte": { "entry": "pages/index.svelte-75ead13a.js", "css": ["assets/pages/index.svelte-935516c5.css"], "js": ["pages/index.svelte-75ead13a.js", "chunks/vendor-12a695dd.js"], "styles": [] } };
 async function load_component(file) {
   const { entry, css: css2, js, styles } = metadata_lookup[file];
   return {
@@ -1771,7 +1771,7 @@ var global = "* {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n}";
 var Logo_svelte_svelte_type_style_lang = ".bar-container.svelte-1f90e8a{top:0;z-index:1;position:relative;width:90%;height:400px}";
 const css$1 = {
   code: ".bar-container.svelte-1f90e8a{top:0;z-index:1;position:relative;width:90%;height:400px}",
-  map: '{"version":3,"file":"Logo.svelte","sources":["Logo.svelte"],"sourcesContent":["<script>\\r\\n  import { onDestroy, onMount } from \\"svelte\\";\\r\\n  import Bar from \\"../components/Bar.svelte\\";\\r\\n  import { spring, tweened } from \\"svelte/motion\\";\\r\\n  import { cubicOut } from \\"svelte/easing\\";\\r\\n  import \\"../global.scss\\";\\r\\n  import Logo from \\"../images/Logo.svelte\\";\\r\\n\\r\\n  let windowThreshHold = false;\\r\\n\\r\\n  onMount(() => {});\\r\\n  onDestroy(() => {});\\r\\n  const bars = Array.from(\\" \\".repeat(30));\\r\\n\\r\\n  const offset = [];\\r\\n  for (let i = 0; i < 30; i++) {\\r\\n    offset.push(\\r\\n      tweened(\\r\\n        { rotate: 100 - (5 * i + i) / 10 },\\r\\n\\r\\n        {\\r\\n          duration: 4000,\\r\\n          easing: cubicOut,\\r\\n        }\\r\\n      )\\r\\n    );\\r\\n  }\\r\\n  console.log(offset[0]);\\r\\n<\/script>\\r\\n\\r\\n<div class=\\"bar-container\\">\\r\\n  {#each bars as bar, i}\\r\\n    <Bar index={i} offset={offset[i]} />\\r\\n  {/each}\\r\\n</div>\\r\\n\\r\\n<style lang=\\"scss\\">.bar-container {\\n  top: 0;\\n  z-index: 1;\\n  position: relative;\\n  width: 90%;\\n  height: 400px;\\n}</style>\\r\\n"],"names":[],"mappings":"AAoCmB,cAAc,eAAC,CAAC,AACjC,GAAG,CAAE,CAAC,CACN,OAAO,CAAE,CAAC,CACV,QAAQ,CAAE,QAAQ,CAClB,KAAK,CAAE,GAAG,CACV,MAAM,CAAE,KAAK,AACf,CAAC"}'
+  map: '{"version":3,"file":"Logo.svelte","sources":["Logo.svelte"],"sourcesContent":["<script>\\r\\n  import { onDestroy, onMount } from \\"svelte\\";\\r\\n  import Bar from \\"../components/Bar.svelte\\";\\r\\n  import { spring, tweened } from \\"svelte/motion\\";\\r\\n  import { cubicOut } from \\"svelte/easing\\";\\r\\n  import \\"../global.scss\\";\\r\\n  import Logo from \\"../images/Logo.svelte\\";\\r\\n\\r\\n  let windowThreshHold = false;\\r\\n\\r\\n  onMount(() => {});\\r\\n  onDestroy(() => {});\\r\\n  const bars = Array.from(\\" \\".repeat(30));\\r\\n\\r\\n  const offset = [];\\r\\n  for (let i = 0; i < 30; i++) {\\r\\n    offset.push(\\r\\n      tweened(\\r\\n        { rotate: 80 },\\r\\n\\r\\n        {\\r\\n          delay: i * 100,\\r\\n          duration: 4000,\\r\\n          easing: cubicOut,\\r\\n        }\\r\\n      )\\r\\n    );\\r\\n  }\\r\\n  console.log(offset[0]);\\r\\n<\/script>\\r\\n\\r\\n<div class=\\"bar-container\\">\\r\\n  {#each bars as bar, i}\\r\\n    <Bar index={i} offset={offset[i]} />\\r\\n  {/each}\\r\\n</div>\\r\\n\\r\\n<style lang=\\"scss\\">.bar-container {\\n  top: 0;\\n  z-index: 1;\\n  position: relative;\\n  width: 90%;\\n  height: 400px;\\n}</style>\\r\\n"],"names":[],"mappings":"AAqCmB,cAAc,eAAC,CAAC,AACjC,GAAG,CAAE,CAAC,CACN,OAAO,CAAE,CAAC,CACV,QAAQ,CAAE,QAAQ,CAClB,KAAK,CAAE,GAAG,CACV,MAAM,CAAE,KAAK,AACf,CAAC"}'
 };
 const Logo_1 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   onDestroy(() => {
@@ -1779,7 +1779,11 @@ const Logo_1 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   const bars = Array.from(" ".repeat(30));
   const offset = [];
   for (let i = 0; i < 30; i++) {
-    offset.push(tweened({ rotate: 100 - (5 * i + i) / 10 }, { duration: 4e3, easing: cubicOut }));
+    offset.push(tweened({ rotate: 80 }, {
+      delay: i * 100,
+      duration: 4e3,
+      easing: cubicOut
+    }));
   }
   console.log(offset[0]);
   $$result.css.add(css$1);

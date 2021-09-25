@@ -16,9 +16,10 @@
   for (let i = 0; i < 30; i++) {
     offset.push(
       tweened(
-        { rotate: 100 - (5 * i + i) / 10 },
+        { rotate: 80 },
 
         {
+          delay: i * 100,
           duration: 4000,
           easing: cubicOut,
         }
