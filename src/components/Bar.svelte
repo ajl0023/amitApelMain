@@ -3,101 +3,95 @@
 
   import { spring, tweened } from "svelte/motion";
   import { cubicOut } from "svelte/easing";
-  import { Motion } from "svelte-motion";
+  import { Motion, useMotionValue } from "svelte-motion";
   export let index;
-  export let offset;
-  let bar;
-  let shouldExpand = false;
-  let largeAnimation = { width: 100, left: 0, scale: 10 };
 
+  let shouldExpand = true;
+  let shouldShowLabels = false;
   const initialLarge = [3, 28];
 
-  let animationRunning = false;
-  let hovered = false;
   let hoveredOut = 2;
+  let animationArr = ["2"];
+  const expandWidth = useMotionValue(0);
   const expand = (e) => {
-    shouldExpand = !shouldExpand;
-
-    hovered = false;
+    expandWidth.set(100);
+    animationArr.push("fullScreen");
+    console.log(animationArr);
+    shouldExpand = false;
   };
-  const hoverSpring = spring(
-    { scale: 1, translateY: 0 },
-    {
-      easing: cubicOut,
-    }
-  );
-  const largeInitialAnimation = tweened(
-    { width: 100, left: 0, scale: 10 },
-
-    {
-      duration: 4000,
-      easing: cubicOut,
-    }
-  );
-  let alpha = tweened(0, {
-    duration: 4000,
-    easing: cubicOut,
-  });
-  onMount(() => {
-    // largeInitialAnimation.set({
-    //   width: 2,
-    //   left: 6.9,
-    //   scale: 1,
-    // });
-    // offset.set({
-    //   rotate: 0,
-    // });
-    // alpha.set(1);
-  });
 </script>
 
-{#if initialLarge.includes(index)}
-  <Motion
-    whileHover={{ scale: 1.2 }}
-    variants={{
-      scale1: {
-        scale: 1.8,
-      },
-      scale2: {
-        scale: 1,
-        transition: { duration: hoveredOut, repeat: 0 },
-      },
-    }}
-    initial="scale1"
-    onHoverStart={() => {
-      hoveredOut = 0.2;
-    }}
-    animate="scale2"
-    let:motion
-  >
-    <div use:motion class="bar" on:click={expand} />
-  </Motion>
-{:else}
-  <Motion
-    variants={{
-      1: {
-        rotateX: index + 50 * (index + 1),
-      },
-      2: {
-        rotateX: 0,
-        transition: { duration: hoveredOut, repeat: 0 },
-      },
-    }}
-    initial="1"
-    animate="2"
-    whileHover={{ scale: 1.2, transition: { duration: 0.2 } }}
-    let:motion
-  >
-    <div use:motion class="bar" />
-  </Motion>
-{/if}
+<Motion
+  whileHover={shouldExpand ? { scale: 1.2 } : null}
+  onAnimationComplete={(name) => {
+    if (name === "2") {
+      shouldShowLabels = true;
+    }
+  }}
+  variants={initialLarge.includes(index)
+    ? {
+        1: {
+          scale: 1.8,
+        },
+        2: {
+          scale: 1,
+          transition: { duration: hoveredOut, repeat: 0 },
+        },
+        fullScreen: {
+          width: "100vw",
+          height: "70vh",
+          left: 0,
+
+          position: "fixed",
+        },
+      }
+    : {
+        1: {
+          rotateX: index + 50 * (index + 1),
+        },
+        2: {
+          rotateX: 0,
+          transition: { duration: hoveredOut, repeat: 0 },
+        },
+        fullScreen: {
+          width: "100vw",
+          height: "70vh",
+          left: 0,
+          right: 0,
+
+          position: "fixed",
+        },
+      }}
+  initial="1"
+  onHoverStart={() => {
+    hoveredOut = 0.2;
+  }}
+  animate={animationArr}
+  let:motion
+  ><div use:motion class="single-bar-container">
+    <div on:click={expand} class="bar">1</div>
+    <li style="display:{shouldShowLabels ? 'block' : 'none'}" class="nav-label">
+      asdfasdfdf
+    </li>
+  </div>
+</Motion>
 
 <style lang="scss">
-  .sm {
-    animation: openingSm 8s;
+  .single-bar-container {
+    width: 100%;
   }
+  .nav-label {
+    display: none;
+    position: absolute;
+    bottom: -20px;
+    color: white;
+    transform: rotateZ(90deg) translateY(-50%);
+    transform-origin: 0 50%;
+    left: 0;
 
-  .bar {
+    list-style: none;
+  }
+  .single-bar-container {
     z-index: 5;
     background-color: white;
     position: absolute;

@@ -1619,9 +1619,9 @@ function init(settings = default_settings) {
     amp: false,
     dev: false,
     entry: {
-      file: assets + "/_app/start-e18e21df.js",
+      file: assets + "/_app/start-19ca1c65.js",
       css: [assets + "/_app/assets/start-61d1577b.css"],
-      js: [assets + "/_app/start-e18e21df.js", assets + "/_app/chunks/vendor-820dad8e.js"]
+      js: [assets + "/_app/start-19ca1c65.js", assets + "/_app/chunks/vendor-ff171fbd.js"]
     },
     fetched: void 0,
     floc: false,
@@ -1680,7 +1680,7 @@ const module_lookup = {
     return index;
   })
 };
-const metadata_lookup = { ".svelte-kit/build/components/layout.svelte": { "entry": "layout.svelte-09b20b26.js", "css": [], "js": ["layout.svelte-09b20b26.js", "chunks/vendor-820dad8e.js"], "styles": [] }, ".svelte-kit/build/components/error.svelte": { "entry": "error.svelte-b20283e8.js", "css": [], "js": ["error.svelte-b20283e8.js", "chunks/vendor-820dad8e.js"], "styles": [] }, "src/routes/index.svelte": { "entry": "pages/index.svelte-499c43ac.js", "css": ["assets/pages/index.svelte-c6ae467f.css"], "js": ["pages/index.svelte-499c43ac.js", "chunks/vendor-820dad8e.js"], "styles": [] } };
+const metadata_lookup = { ".svelte-kit/build/components/layout.svelte": { "entry": "layout.svelte-71e52fe5.js", "css": [], "js": ["layout.svelte-71e52fe5.js", "chunks/vendor-ff171fbd.js"], "styles": [] }, ".svelte-kit/build/components/error.svelte": { "entry": "error.svelte-e1af85b5.js", "css": [], "js": ["error.svelte-e1af85b5.js", "chunks/vendor-ff171fbd.js"], "styles": [] }, "src/routes/index.svelte": { "entry": "pages/index.svelte-10931e9e.js", "css": ["assets/pages/index.svelte-2f311e9e.css"], "js": ["pages/index.svelte-10931e9e.js", "chunks/vendor-ff171fbd.js"], "styles": [] } };
 async function load_component(file) {
   const { entry, css: css2, js, styles } = metadata_lookup[file];
   return {
@@ -1821,100 +1821,6 @@ function cubicOut(t) {
 }
 function is_date(obj) {
   return Object.prototype.toString.call(obj) === "[object Date]";
-}
-function tick_spring(ctx, last_value, current_value, target_value) {
-  if (typeof current_value === "number" || is_date(current_value)) {
-    const delta2 = target_value - current_value;
-    const velocity = (current_value - last_value) / (ctx.dt || 1 / 60);
-    const spring2 = ctx.opts.stiffness * delta2;
-    const damper = ctx.opts.damping * velocity;
-    const acceleration = (spring2 - damper) * ctx.inv_mass;
-    const d = (velocity + acceleration) * ctx.dt;
-    if (Math.abs(d) < ctx.opts.precision && Math.abs(delta2) < ctx.opts.precision) {
-      return target_value;
-    } else {
-      ctx.settled = false;
-      return is_date(current_value) ? new Date(current_value.getTime() + d) : current_value + d;
-    }
-  } else if (Array.isArray(current_value)) {
-    return current_value.map((_, i) => tick_spring(ctx, last_value[i], current_value[i], target_value[i]));
-  } else if (typeof current_value === "object") {
-    const next_value = {};
-    for (const k in current_value) {
-      next_value[k] = tick_spring(ctx, last_value[k], current_value[k], target_value[k]);
-    }
-    return next_value;
-  } else {
-    throw new Error(`Cannot spring ${typeof current_value} values`);
-  }
-}
-function spring$1(value, opts = {}) {
-  const store = writable(value);
-  const { stiffness = 0.15, damping = 0.8, precision = 0.01 } = opts;
-  let last_time;
-  let task;
-  let current_token;
-  let last_value = value;
-  let target_value = value;
-  let inv_mass = 1;
-  let inv_mass_recovery_rate = 0;
-  let cancel_task = false;
-  function set(new_value, opts2 = {}) {
-    target_value = new_value;
-    const token = current_token = {};
-    if (value == null || opts2.hard || spring2.stiffness >= 1 && spring2.damping >= 1) {
-      cancel_task = true;
-      last_time = now();
-      last_value = new_value;
-      store.set(value = target_value);
-      return Promise.resolve();
-    } else if (opts2.soft) {
-      const rate = opts2.soft === true ? 0.5 : +opts2.soft;
-      inv_mass_recovery_rate = 1 / (rate * 60);
-      inv_mass = 0;
-    }
-    if (!task) {
-      last_time = now();
-      cancel_task = false;
-      task = loop((now2) => {
-        if (cancel_task) {
-          cancel_task = false;
-          task = null;
-          return false;
-        }
-        inv_mass = Math.min(inv_mass + inv_mass_recovery_rate, 1);
-        const ctx = {
-          inv_mass,
-          opts: spring2,
-          settled: true,
-          dt: (now2 - last_time) * 60 / 1e3
-        };
-        const next_value = tick_spring(ctx, last_value, value, target_value);
-        last_time = now2;
-        last_value = value;
-        store.set(value = next_value);
-        if (ctx.settled) {
-          task = null;
-        }
-        return !ctx.settled;
-      });
-    }
-    return new Promise((fulfil) => {
-      task.promise.then(() => {
-        if (token === current_token)
-          fulfil();
-      });
-    });
-  }
-  const spring2 = {
-    set,
-    update: (fn, opts2) => set(fn(target_value, value), opts2),
-    subscribe: store.subscribe,
-    stiffness,
-    damping,
-    precision
-  };
-  return spring2;
 }
 function get_interpolator(a2, b2) {
   if (a2 === b2 || a2 !== a2)
@@ -7725,57 +7631,64 @@ function createMotionProxy(defaultFeatures) {
   });
 }
 createMotionProxy();
-var Bar_svelte_svelte_type_style_lang = ".bar.svelte-q8f65k{z-index:5;background-color:white;position:absolute}.bar.svelte-q8f65k:nth-child(1){left:2%;top:13.8%;height:62%;width:1%}.bar.svelte-q8f65k:nth-child(2){left:3.6%;top:13.8%;height:62%;width:0.9%}.bar.svelte-q8f65k:nth-child(3){left:6.9%;top:13.9%;height:62%;width:2%}.bar.svelte-q8f65k:nth-child(4){left:10.9%;top:13.8%;height:62%;width:2.7%;transform:scale(1.8)}.bar.svelte-q8f65k:nth-child(5){left:14.3%;top:13.8%;height:62%;width:2.7%}.bar.svelte-q8f65k:nth-child(6){left:17.8%;top:13.8%;height:62%;width:1.5%}.bar.svelte-q8f65k:nth-child(7){left:20%;top:13.8%;height:62%;width:1.1%}.bar.svelte-q8f65k:nth-child(8){left:23.1%;top:13.8%;height:62%;width:1.9%}.bar.svelte-q8f65k:nth-child(9){left:25.7%;top:13.8%;height:62%;width:1%}.bar.svelte-q8f65k:nth-child(10){left:28.8%;top:13.8%;height:62%;width:1%}.bar.svelte-q8f65k:nth-child(11){left:32%;top:13.8%;height:62%;width:1.9%}.bar.svelte-q8f65k:nth-child(12){left:34.6%;top:13.8%;height:62%;width:2.5%}.bar.svelte-q8f65k:nth-child(13){left:46.6%;top:13.8%;height:62%;width:1%}.bar.svelte-q8f65k:nth-child(14){left:49.8%;top:13.8%;height:62%;width:1.9%}.bar.svelte-q8f65k:nth-child(15){left:54%;top:13.8%;height:62%;width:0.9%}.bar.svelte-q8f65k:nth-child(16){left:55.6%;top:13.8%;height:62%;width:1.8%}.bar.svelte-q8f65k:nth-child(17){left:59.5%;top:13.8%;height:62%;width:1.1%}.bar.svelte-q8f65k:nth-child(18){left:61.3%;top:13.8%;height:62%;width:2.5%}.bar.svelte-q8f65k:nth-child(19){left:91.3%;top:13.8%;height:62%;width:1.1%}.bar.svelte-q8f65k:nth-child(20){left:64.5%;top:13.8%;height:62%;width:1%}.bar.svelte-q8f65k:nth-child(21){left:66.4%;top:13.8%;height:62%;width:0.9%}.bar.svelte-q8f65k:nth-child(22){left:69.4%;top:13.8%;height:62%;width:1.9%}.bar.svelte-q8f65k:nth-child(23){left:73.5%;top:13.8%;height:62%;width:0.9%}.bar.svelte-q8f65k:nth-child(24){left:75.1%;top:13.8%;height:62%;width:2.7%}.bar.svelte-q8f65k:nth-child(25){left:79.9%;top:13.8%;height:62%;width:1.7%}.bar.svelte-q8f65k:nth-child(26){left:82.5%;top:13.8%;height:62%;width:0.8%}.bar.svelte-q8f65k:nth-child(27){left:85.5%;top:13.8%;height:62%;width:1.2%}.bar.svelte-q8f65k:nth-child(28){left:88.9%;top:13.8%;height:62%;width:1.7%}.bar.svelte-q8f65k:nth-child(29){left:94.4%;top:13.8%;height:62%;width:2.9%}.bar.svelte-q8f65k:nth-child(30){left:97.9%;top:13.8%;height:62%;width:1.7%}";
+var Bar_svelte_svelte_type_style_lang = ".single-bar-container.svelte-1axwlf0{width:100%}.nav-label.svelte-1axwlf0{display:none;position:absolute;bottom:-20px;color:white;transform:rotateZ(90deg) translateY(-50%);transform-origin:0 50%;left:0;list-style:none}.single-bar-container.svelte-1axwlf0{z-index:5;background-color:white;position:absolute}.single-bar-container.svelte-1axwlf0:nth-child(1){left:2%;top:13.8%;height:62%;width:1%}.single-bar-container.svelte-1axwlf0:nth-child(2){left:3.6%;top:13.8%;height:62%;width:0.9%}.single-bar-container.svelte-1axwlf0:nth-child(3){left:6.9%;top:13.9%;height:62%;width:2%}.single-bar-container.svelte-1axwlf0:nth-child(4){left:10.9%;top:13.8%;height:62%;width:2.7%;transform:scale(1.8)}.single-bar-container.svelte-1axwlf0:nth-child(5){left:14.3%;top:13.8%;height:62%;width:2.7%}.single-bar-container.svelte-1axwlf0:nth-child(6){left:17.8%;top:13.8%;height:62%;width:1.5%}.single-bar-container.svelte-1axwlf0:nth-child(7){left:20%;top:13.8%;height:62%;width:1.1%}.single-bar-container.svelte-1axwlf0:nth-child(8){left:23.1%;top:13.8%;height:62%;width:1.9%}.single-bar-container.svelte-1axwlf0:nth-child(9){left:25.7%;top:13.8%;height:62%;width:1%}.single-bar-container.svelte-1axwlf0:nth-child(10){left:28.8%;top:13.8%;height:62%;width:1%}.single-bar-container.svelte-1axwlf0:nth-child(11){left:32%;top:13.8%;height:62%;width:1.9%}.single-bar-container.svelte-1axwlf0:nth-child(12){left:34.6%;top:13.8%;height:62%;width:2.5%}.single-bar-container.svelte-1axwlf0:nth-child(13){left:46.6%;top:13.8%;height:62%;width:1%}.single-bar-container.svelte-1axwlf0:nth-child(14){left:49.8%;top:13.8%;height:62%;width:1.9%}.single-bar-container.svelte-1axwlf0:nth-child(15){left:54%;top:13.8%;height:62%;width:0.9%}.single-bar-container.svelte-1axwlf0:nth-child(16){left:55.6%;top:13.8%;height:62%;width:1.8%}.single-bar-container.svelte-1axwlf0:nth-child(17){left:59.5%;top:13.8%;height:62%;width:1.1%}.single-bar-container.svelte-1axwlf0:nth-child(18){left:61.3%;top:13.8%;height:62%;width:2.5%}.single-bar-container.svelte-1axwlf0:nth-child(19){left:91.3%;top:13.8%;height:62%;width:1.1%}.single-bar-container.svelte-1axwlf0:nth-child(20){left:64.5%;top:13.8%;height:62%;width:1%}.single-bar-container.svelte-1axwlf0:nth-child(21){left:66.4%;top:13.8%;height:62%;width:0.9%}.single-bar-container.svelte-1axwlf0:nth-child(22){left:69.4%;top:13.8%;height:62%;width:1.9%}.single-bar-container.svelte-1axwlf0:nth-child(23){left:73.5%;top:13.8%;height:62%;width:0.9%}.single-bar-container.svelte-1axwlf0:nth-child(24){left:75.1%;top:13.8%;height:62%;width:2.7%}.single-bar-container.svelte-1axwlf0:nth-child(25){left:79.9%;top:13.8%;height:62%;width:1.7%}.single-bar-container.svelte-1axwlf0:nth-child(26){left:82.5%;top:13.8%;height:62%;width:0.8%}.single-bar-container.svelte-1axwlf0:nth-child(27){left:85.5%;top:13.8%;height:62%;width:1.2%}.single-bar-container.svelte-1axwlf0:nth-child(28){left:88.9%;top:13.8%;height:62%;width:1.7%}.single-bar-container.svelte-1axwlf0:nth-child(29){left:94.4%;top:13.8%;height:62%;width:2.9%}.single-bar-container.svelte-1axwlf0:nth-child(30){left:97.9%;top:13.8%;height:62%;width:1.7%}";
 const css$2 = {
-  code: ".bar.svelte-q8f65k{z-index:5;background-color:white;position:absolute}.bar.svelte-q8f65k:nth-child(1){left:2%;top:13.8%;height:62%;width:1%}.bar.svelte-q8f65k:nth-child(2){left:3.6%;top:13.8%;height:62%;width:0.9%}.bar.svelte-q8f65k:nth-child(3){left:6.9%;top:13.9%;height:62%;width:2%}.bar.svelte-q8f65k:nth-child(4){left:10.9%;top:13.8%;height:62%;width:2.7%;transform:scale(1.8)}.bar.svelte-q8f65k:nth-child(5){left:14.3%;top:13.8%;height:62%;width:2.7%}.bar.svelte-q8f65k:nth-child(6){left:17.8%;top:13.8%;height:62%;width:1.5%}.bar.svelte-q8f65k:nth-child(7){left:20%;top:13.8%;height:62%;width:1.1%}.bar.svelte-q8f65k:nth-child(8){left:23.1%;top:13.8%;height:62%;width:1.9%}.bar.svelte-q8f65k:nth-child(9){left:25.7%;top:13.8%;height:62%;width:1%}.bar.svelte-q8f65k:nth-child(10){left:28.8%;top:13.8%;height:62%;width:1%}.bar.svelte-q8f65k:nth-child(11){left:32%;top:13.8%;height:62%;width:1.9%}.bar.svelte-q8f65k:nth-child(12){left:34.6%;top:13.8%;height:62%;width:2.5%}.bar.svelte-q8f65k:nth-child(13){left:46.6%;top:13.8%;height:62%;width:1%}.bar.svelte-q8f65k:nth-child(14){left:49.8%;top:13.8%;height:62%;width:1.9%}.bar.svelte-q8f65k:nth-child(15){left:54%;top:13.8%;height:62%;width:0.9%}.bar.svelte-q8f65k:nth-child(16){left:55.6%;top:13.8%;height:62%;width:1.8%}.bar.svelte-q8f65k:nth-child(17){left:59.5%;top:13.8%;height:62%;width:1.1%}.bar.svelte-q8f65k:nth-child(18){left:61.3%;top:13.8%;height:62%;width:2.5%}.bar.svelte-q8f65k:nth-child(19){left:91.3%;top:13.8%;height:62%;width:1.1%}.bar.svelte-q8f65k:nth-child(20){left:64.5%;top:13.8%;height:62%;width:1%}.bar.svelte-q8f65k:nth-child(21){left:66.4%;top:13.8%;height:62%;width:0.9%}.bar.svelte-q8f65k:nth-child(22){left:69.4%;top:13.8%;height:62%;width:1.9%}.bar.svelte-q8f65k:nth-child(23){left:73.5%;top:13.8%;height:62%;width:0.9%}.bar.svelte-q8f65k:nth-child(24){left:75.1%;top:13.8%;height:62%;width:2.7%}.bar.svelte-q8f65k:nth-child(25){left:79.9%;top:13.8%;height:62%;width:1.7%}.bar.svelte-q8f65k:nth-child(26){left:82.5%;top:13.8%;height:62%;width:0.8%}.bar.svelte-q8f65k:nth-child(27){left:85.5%;top:13.8%;height:62%;width:1.2%}.bar.svelte-q8f65k:nth-child(28){left:88.9%;top:13.8%;height:62%;width:1.7%}.bar.svelte-q8f65k:nth-child(29){left:94.4%;top:13.8%;height:62%;width:2.9%}.bar.svelte-q8f65k:nth-child(30){left:97.9%;top:13.8%;height:62%;width:1.7%}",
-  map: '{"version":3,"file":"Bar.svelte","sources":["Bar.svelte"],"sourcesContent":["<script>\\r\\n  import { onMount } from \\"svelte\\";\\r\\n\\r\\n  import { spring, tweened } from \\"svelte/motion\\";\\r\\n  import { cubicOut } from \\"svelte/easing\\";\\r\\n  import { Motion } from \\"svelte-motion\\";\\r\\n  export let index;\\r\\n  export let offset;\\r\\n  let bar;\\r\\n  let shouldExpand = false;\\r\\n  let largeAnimation = { width: 100, left: 0, scale: 10 };\\r\\n\\r\\n  const initialLarge = [3, 28];\\r\\n\\r\\n  let animationRunning = false;\\r\\n  let hovered = false;\\r\\n  let hoveredOut = 2;\\r\\n  const expand = (e) => {\\r\\n    shouldExpand = !shouldExpand;\\r\\n\\r\\n    hovered = false;\\r\\n  };\\r\\n  const hoverSpring = spring(\\r\\n    { scale: 1, translateY: 0 },\\r\\n    {\\r\\n      easing: cubicOut,\\r\\n    }\\r\\n  );\\r\\n  const largeInitialAnimation = tweened(\\r\\n    { width: 100, left: 0, scale: 10 },\\r\\n\\r\\n    {\\r\\n      duration: 4000,\\r\\n      easing: cubicOut,\\r\\n    }\\r\\n  );\\r\\n  let alpha = tweened(0, {\\r\\n    duration: 4000,\\r\\n    easing: cubicOut,\\r\\n  });\\r\\n  onMount(() => {\\r\\n    // largeInitialAnimation.set({\\r\\n    //   width: 2,\\r\\n    //   left: 6.9,\\r\\n    //   scale: 1,\\r\\n    // });\\r\\n    // offset.set({\\r\\n    //   rotate: 0,\\r\\n    // });\\r\\n    // alpha.set(1);\\r\\n  });\\r\\n<\/script>\\r\\n\\r\\n{#if initialLarge.includes(index)}\\r\\n  <Motion\\r\\n    whileHover={{ scale: 1.2 }}\\r\\n    variants={{\\r\\n      scale1: {\\r\\n        scale: 1.8,\\r\\n      },\\r\\n      scale2: {\\r\\n        scale: 1,\\r\\n        transition: { duration: hoveredOut, repeat: 0 },\\r\\n      },\\r\\n    }}\\r\\n    initial=\\"scale1\\"\\r\\n    onHoverStart={() => {\\r\\n      hoveredOut = 0.2;\\r\\n    }}\\r\\n    animate=\\"scale2\\"\\r\\n    let:motion\\r\\n  >\\r\\n    <div use:motion class=\\"bar\\" on:click={expand} />\\r\\n  </Motion>\\r\\n{:else}\\r\\n  <Motion\\r\\n    variants={{\\r\\n      1: {\\r\\n        rotateX: index + 50 * (index + 1),\\r\\n      },\\r\\n      2: {\\r\\n        rotateX: 0,\\r\\n        transition: { duration: hoveredOut, repeat: 0 },\\r\\n      },\\r\\n    }}\\r\\n    initial=\\"1\\"\\r\\n    animate=\\"2\\"\\r\\n    whileHover={{ scale: 1.2, transition: { duration: 0.2 } }}\\r\\n    let:motion\\r\\n  >\\r\\n    <div use:motion class=\\"bar\\" />\\r\\n  </Motion>\\r\\n{/if}\\r\\n\\r\\n<style lang=\\"scss\\">.sm {\\n  animation: openingSm 8s;\\n}\\n\\n.bar {\\n  z-index: 5;\\n  background-color: white;\\n  position: absolute;\\n}\\n.bar:nth-child(1) {\\n  left: 2%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1%;\\n}\\n.bar:nth-child(2) {\\n  left: 3.6%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 0.9%;\\n}\\n.bar:nth-child(3) {\\n  left: 6.9%;\\n  top: 13.9%;\\n  height: 62%;\\n  width: 2%;\\n}\\n.bar:nth-child(4) {\\n  left: 10.9%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 2.7%;\\n  transform: scale(1.8);\\n}\\n.bar:nth-child(5) {\\n  left: 14.3%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 2.7%;\\n}\\n.bar:nth-child(6) {\\n  left: 17.8%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.5%;\\n}\\n.bar:nth-child(7) {\\n  left: 20%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.1%;\\n}\\n.bar:nth-child(8) {\\n  left: 23.1%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.9%;\\n}\\n.bar:nth-child(9) {\\n  left: 25.7%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1%;\\n}\\n.bar:nth-child(10) {\\n  left: 28.8%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1%;\\n}\\n.bar:nth-child(11) {\\n  left: 32%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.9%;\\n}\\n.bar:nth-child(12) {\\n  left: 34.6%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 2.5%;\\n}\\n.bar:nth-child(13) {\\n  left: 46.6%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1%;\\n}\\n.bar:nth-child(14) {\\n  left: 49.8%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.9%;\\n}\\n.bar:nth-child(15) {\\n  left: 54%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 0.9%;\\n}\\n.bar:nth-child(16) {\\n  left: 55.6%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.8%;\\n}\\n.bar:nth-child(17) {\\n  left: 59.5%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.1%;\\n}\\n.bar:nth-child(18) {\\n  left: 61.3%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 2.5%;\\n}\\n.bar:nth-child(19) {\\n  left: 91.3%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.1%;\\n}\\n.bar:nth-child(20) {\\n  left: 64.5%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1%;\\n}\\n.bar:nth-child(21) {\\n  left: 66.4%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 0.9%;\\n}\\n.bar:nth-child(22) {\\n  left: 69.4%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.9%;\\n}\\n.bar:nth-child(23) {\\n  left: 73.5%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 0.9%;\\n}\\n.bar:nth-child(24) {\\n  left: 75.1%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 2.7%;\\n}\\n.bar:nth-child(25) {\\n  left: 79.9%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.7%;\\n}\\n.bar:nth-child(26) {\\n  left: 82.5%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 0.8%;\\n}\\n.bar:nth-child(27) {\\n  left: 85.5%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.2%;\\n}\\n.bar:nth-child(28) {\\n  left: 88.9%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.7%;\\n}\\n.bar:nth-child(29) {\\n  left: 94.4%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 2.9%;\\n}\\n.bar:nth-child(30) {\\n  left: 97.9%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.7%;\\n}\\n\\n.full-screen {\\n  position: fixed !important;\\n  left: 0 !important;\\n  width: 100vw !important;\\n}</style>\\r\\n"],"names":[],"mappings":"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"}'
+  code: ".single-bar-container.svelte-1axwlf0{width:100%}.nav-label.svelte-1axwlf0{display:none;position:absolute;bottom:-20px;color:white;transform:rotateZ(90deg) translateY(-50%);transform-origin:0 50%;left:0;list-style:none}.single-bar-container.svelte-1axwlf0{z-index:5;background-color:white;position:absolute}.single-bar-container.svelte-1axwlf0:nth-child(1){left:2%;top:13.8%;height:62%;width:1%}.single-bar-container.svelte-1axwlf0:nth-child(2){left:3.6%;top:13.8%;height:62%;width:0.9%}.single-bar-container.svelte-1axwlf0:nth-child(3){left:6.9%;top:13.9%;height:62%;width:2%}.single-bar-container.svelte-1axwlf0:nth-child(4){left:10.9%;top:13.8%;height:62%;width:2.7%;transform:scale(1.8)}.single-bar-container.svelte-1axwlf0:nth-child(5){left:14.3%;top:13.8%;height:62%;width:2.7%}.single-bar-container.svelte-1axwlf0:nth-child(6){left:17.8%;top:13.8%;height:62%;width:1.5%}.single-bar-container.svelte-1axwlf0:nth-child(7){left:20%;top:13.8%;height:62%;width:1.1%}.single-bar-container.svelte-1axwlf0:nth-child(8){left:23.1%;top:13.8%;height:62%;width:1.9%}.single-bar-container.svelte-1axwlf0:nth-child(9){left:25.7%;top:13.8%;height:62%;width:1%}.single-bar-container.svelte-1axwlf0:nth-child(10){left:28.8%;top:13.8%;height:62%;width:1%}.single-bar-container.svelte-1axwlf0:nth-child(11){left:32%;top:13.8%;height:62%;width:1.9%}.single-bar-container.svelte-1axwlf0:nth-child(12){left:34.6%;top:13.8%;height:62%;width:2.5%}.single-bar-container.svelte-1axwlf0:nth-child(13){left:46.6%;top:13.8%;height:62%;width:1%}.single-bar-container.svelte-1axwlf0:nth-child(14){left:49.8%;top:13.8%;height:62%;width:1.9%}.single-bar-container.svelte-1axwlf0:nth-child(15){left:54%;top:13.8%;height:62%;width:0.9%}.single-bar-container.svelte-1axwlf0:nth-child(16){left:55.6%;top:13.8%;height:62%;width:1.8%}.single-bar-container.svelte-1axwlf0:nth-child(17){left:59.5%;top:13.8%;height:62%;width:1.1%}.single-bar-container.svelte-1axwlf0:nth-child(18){left:61.3%;top:13.8%;height:62%;width:2.5%}.single-bar-container.svelte-1axwlf0:nth-child(19){left:91.3%;top:13.8%;height:62%;width:1.1%}.single-bar-container.svelte-1axwlf0:nth-child(20){left:64.5%;top:13.8%;height:62%;width:1%}.single-bar-container.svelte-1axwlf0:nth-child(21){left:66.4%;top:13.8%;height:62%;width:0.9%}.single-bar-container.svelte-1axwlf0:nth-child(22){left:69.4%;top:13.8%;height:62%;width:1.9%}.single-bar-container.svelte-1axwlf0:nth-child(23){left:73.5%;top:13.8%;height:62%;width:0.9%}.single-bar-container.svelte-1axwlf0:nth-child(24){left:75.1%;top:13.8%;height:62%;width:2.7%}.single-bar-container.svelte-1axwlf0:nth-child(25){left:79.9%;top:13.8%;height:62%;width:1.7%}.single-bar-container.svelte-1axwlf0:nth-child(26){left:82.5%;top:13.8%;height:62%;width:0.8%}.single-bar-container.svelte-1axwlf0:nth-child(27){left:85.5%;top:13.8%;height:62%;width:1.2%}.single-bar-container.svelte-1axwlf0:nth-child(28){left:88.9%;top:13.8%;height:62%;width:1.7%}.single-bar-container.svelte-1axwlf0:nth-child(29){left:94.4%;top:13.8%;height:62%;width:2.9%}.single-bar-container.svelte-1axwlf0:nth-child(30){left:97.9%;top:13.8%;height:62%;width:1.7%}",
+  map: `{"version":3,"file":"Bar.svelte","sources":["Bar.svelte"],"sourcesContent":["<script>\\r\\n  import { onMount } from \\"svelte\\";\\r\\n\\r\\n  import { spring, tweened } from \\"svelte/motion\\";\\r\\n  import { cubicOut } from \\"svelte/easing\\";\\r\\n  import { Motion, useMotionValue } from \\"svelte-motion\\";\\r\\n  export let index;\\r\\n\\r\\n  let shouldExpand = true;\\r\\n  let shouldShowLabels = false;\\r\\n  const initialLarge = [3, 28];\\r\\n\\r\\n  let hoveredOut = 2;\\r\\n  let animationArr = [\\"2\\"];\\r\\n  const expandWidth = useMotionValue(0);\\r\\n  const expand = (e) => {\\r\\n    expandWidth.set(100);\\r\\n    animationArr.push(\\"fullScreen\\");\\r\\n    console.log(animationArr);\\r\\n    shouldExpand = false;\\r\\n  };\\r\\n<\/script>\\r\\n\\r\\n<Motion\\r\\n  whileHover={shouldExpand ? { scale: 1.2 } : null}\\r\\n  onAnimationComplete={(name) => {\\r\\n    if (name === \\"2\\") {\\r\\n      shouldShowLabels = true;\\r\\n    }\\r\\n  }}\\r\\n  variants={initialLarge.includes(index)\\r\\n    ? {\\r\\n        1: {\\r\\n          scale: 1.8,\\r\\n        },\\r\\n        2: {\\r\\n          scale: 1,\\r\\n          transition: { duration: hoveredOut, repeat: 0 },\\r\\n        },\\r\\n        fullScreen: {\\r\\n          width: \\"100vw\\",\\r\\n          height: \\"70vh\\",\\r\\n          left: 0,\\r\\n\\r\\n          position: \\"fixed\\",\\r\\n        },\\r\\n      }\\r\\n    : {\\r\\n        1: {\\r\\n          rotateX: index + 50 * (index + 1),\\r\\n        },\\r\\n        2: {\\r\\n          rotateX: 0,\\r\\n          transition: { duration: hoveredOut, repeat: 0 },\\r\\n        },\\r\\n        fullScreen: {\\r\\n          width: \\"100vw\\",\\r\\n          height: \\"70vh\\",\\r\\n          left: 0,\\r\\n          right: 0,\\r\\n\\r\\n          position: \\"fixed\\",\\r\\n        },\\r\\n      }}\\r\\n  initial=\\"1\\"\\r\\n  onHoverStart={() => {\\r\\n    hoveredOut = 0.2;\\r\\n  }}\\r\\n  animate={animationArr}\\r\\n  let:motion\\r\\n  ><div use:motion class=\\"single-bar-container\\">\\r\\n    <div on:click={expand} class=\\"bar\\">1</div>\\r\\n    <li style=\\"display:{shouldShowLabels ? 'block' : 'none'}\\" class=\\"nav-label\\">\\r\\n      asdfasdfdf\\r\\n    </li>\\r\\n  </div>\\r\\n</Motion>\\r\\n\\r\\n<style lang=\\"scss\\">.single-bar-container {\\n  width: 100%;\\n}\\n\\n.nav-label {\\n  display: none;\\n  position: absolute;\\n  bottom: -20px;\\n  color: white;\\n  transform: rotateZ(90deg) translateY(-50%);\\n  transform-origin: 0 50%;\\n  left: 0;\\n  list-style: none;\\n}\\n\\n.single-bar-container {\\n  z-index: 5;\\n  background-color: white;\\n  position: absolute;\\n}\\n.single-bar-container:nth-child(1) {\\n  left: 2%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1%;\\n}\\n.single-bar-container:nth-child(2) {\\n  left: 3.6%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 0.9%;\\n}\\n.single-bar-container:nth-child(3) {\\n  left: 6.9%;\\n  top: 13.9%;\\n  height: 62%;\\n  width: 2%;\\n}\\n.single-bar-container:nth-child(4) {\\n  left: 10.9%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 2.7%;\\n  transform: scale(1.8);\\n}\\n.single-bar-container:nth-child(5) {\\n  left: 14.3%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 2.7%;\\n}\\n.single-bar-container:nth-child(6) {\\n  left: 17.8%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.5%;\\n}\\n.single-bar-container:nth-child(7) {\\n  left: 20%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.1%;\\n}\\n.single-bar-container:nth-child(8) {\\n  left: 23.1%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.9%;\\n}\\n.single-bar-container:nth-child(9) {\\n  left: 25.7%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1%;\\n}\\n.single-bar-container:nth-child(10) {\\n  left: 28.8%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1%;\\n}\\n.single-bar-container:nth-child(11) {\\n  left: 32%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.9%;\\n}\\n.single-bar-container:nth-child(12) {\\n  left: 34.6%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 2.5%;\\n}\\n.single-bar-container:nth-child(13) {\\n  left: 46.6%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1%;\\n}\\n.single-bar-container:nth-child(14) {\\n  left: 49.8%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.9%;\\n}\\n.single-bar-container:nth-child(15) {\\n  left: 54%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 0.9%;\\n}\\n.single-bar-container:nth-child(16) {\\n  left: 55.6%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.8%;\\n}\\n.single-bar-container:nth-child(17) {\\n  left: 59.5%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.1%;\\n}\\n.single-bar-container:nth-child(18) {\\n  left: 61.3%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 2.5%;\\n}\\n.single-bar-container:nth-child(19) {\\n  left: 91.3%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.1%;\\n}\\n.single-bar-container:nth-child(20) {\\n  left: 64.5%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1%;\\n}\\n.single-bar-container:nth-child(21) {\\n  left: 66.4%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 0.9%;\\n}\\n.single-bar-container:nth-child(22) {\\n  left: 69.4%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.9%;\\n}\\n.single-bar-container:nth-child(23) {\\n  left: 73.5%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 0.9%;\\n}\\n.single-bar-container:nth-child(24) {\\n  left: 75.1%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 2.7%;\\n}\\n.single-bar-container:nth-child(25) {\\n  left: 79.9%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.7%;\\n}\\n.single-bar-container:nth-child(26) {\\n  left: 82.5%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 0.8%;\\n}\\n.single-bar-container:nth-child(27) {\\n  left: 85.5%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.2%;\\n}\\n.single-bar-container:nth-child(28) {\\n  left: 88.9%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.7%;\\n}\\n.single-bar-container:nth-child(29) {\\n  left: 94.4%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 2.9%;\\n}\\n.single-bar-container:nth-child(30) {\\n  left: 97.9%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.7%;\\n}\\n\\n.full-screen {\\n  position: fixed !important;\\n  left: 0 !important;\\n  width: 100vw !important;\\n}</style>\\r\\n"],"names":[],"mappings":"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"}`
 };
 const Bar = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { index: index2 } = $$props;
-  let { offset } = $$props;
+  let shouldShowLabels = false;
   const initialLarge = [3, 28];
   let hoveredOut = 2;
-  spring$1({ scale: 1, translateY: 0 }, { easing: cubicOut });
-  tweened({ width: 100, left: 0, scale: 10 }, { duration: 4e3, easing: cubicOut });
-  tweened(0, { duration: 4e3, easing: cubicOut });
+  let animationArr = ["2"];
+  motionValue(0);
   if ($$props.index === void 0 && $$bindings.index && index2 !== void 0)
     $$bindings.index(index2);
-  if ($$props.offset === void 0 && $$bindings.offset && offset !== void 0)
-    $$bindings.offset(offset);
   $$result.css.add(css$2);
-  return `${initialLarge.includes(index2) ? `${validate_component(motion, "Motion").$$render($$result, {
+  return `${validate_component(motion, "Motion").$$render($$result, {
     whileHover: { scale: 1.2 },
-    variants: {
-      scale1: { scale: 1.8 },
-      scale2: {
-        scale: 1,
-        transition: { duration: hoveredOut, repeat: 0 }
+    onAnimationComplete: (name) => {
+      if (name === "2") {
+        shouldShowLabels = true;
       }
     },
-    initial: "scale1",
-    onHoverStart: () => {
-      hoveredOut = 0.2;
-    },
-    animate: "scale2"
-  }, {}, {
-    default: ({ motion: motion2 }) => `<div class="${"bar svelte-q8f65k"}"></div>`
-  })}` : `${validate_component(motion, "Motion").$$render($$result, {
-    variants: {
+    variants: initialLarge.includes(index2) ? {
+      1: { scale: 1.8 },
+      2: {
+        scale: 1,
+        transition: { duration: hoveredOut, repeat: 0 }
+      },
+      fullScreen: {
+        width: "100vw",
+        height: "70vh",
+        left: 0,
+        position: "fixed"
+      }
+    } : {
       1: { rotateX: index2 + 50 * (index2 + 1) },
       2: {
         rotateX: 0,
         transition: { duration: hoveredOut, repeat: 0 }
+      },
+      fullScreen: {
+        width: "100vw",
+        height: "70vh",
+        left: 0,
+        right: 0,
+        position: "fixed"
       }
     },
     initial: "1",
-    animate: "2",
-    whileHover: {
-      scale: 1.2,
-      transition: { duration: 0.2 }
-    }
+    onHoverStart: () => {
+      hoveredOut = 0.2;
+    },
+    animate: animationArr
   }, {}, {
-    default: ({ motion: motion2 }) => `<div class="${"bar svelte-q8f65k"}"></div>`
-  })}`}`;
+    default: ({ motion: motion2 }) => `<div class="${"single-bar-container svelte-1axwlf0"}"><div class="${"bar"}">1</div>
+    <li style="${"display:" + escape(shouldShowLabels ? "block" : "none")}" class="${"nav-label svelte-1axwlf0"}">asdfasdfdf
+    </li></div>`
+  })}`;
 });
 var global = "* {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n}";
 var Logo_svelte_svelte_type_style_lang = ".bar-container.svelte-q18h1c{top:0;z-index:1;position:relative;width:90%;height:600px}";
