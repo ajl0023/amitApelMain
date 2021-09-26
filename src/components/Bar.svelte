@@ -135,6 +135,7 @@
     width: 100%;
     background-color: white;
     position: absolute;
+    overflow-x: hiddens;
     
 
     &:nth-child(1) {
