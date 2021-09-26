@@ -1619,9 +1619,9 @@ function init(settings = default_settings) {
     amp: false,
     dev: false,
     entry: {
-      file: assets + "/_app/start-61ec5bc2.js",
+      file: assets + "/_app/start-4f4eba69.js",
       css: [assets + "/_app/assets/start-61d1577b.css"],
-      js: [assets + "/_app/start-61ec5bc2.js", assets + "/_app/chunks/vendor-ff171fbd.js"]
+      js: [assets + "/_app/start-4f4eba69.js", assets + "/_app/chunks/vendor-666ae99e.js"]
     },
     fetched: void 0,
     floc: false,
@@ -1680,7 +1680,7 @@ const module_lookup = {
     return index;
   })
 };
-const metadata_lookup = { ".svelte-kit/build/components/layout.svelte": { "entry": "layout.svelte-71e52fe5.js", "css": [], "js": ["layout.svelte-71e52fe5.js", "chunks/vendor-ff171fbd.js"], "styles": [] }, ".svelte-kit/build/components/error.svelte": { "entry": "error.svelte-e1af85b5.js", "css": [], "js": ["error.svelte-e1af85b5.js", "chunks/vendor-ff171fbd.js"], "styles": [] }, "src/routes/index.svelte": { "entry": "pages/index.svelte-20866c51.js", "css": ["assets/pages/index.svelte-2f311e9e.css"], "js": ["pages/index.svelte-20866c51.js", "chunks/vendor-ff171fbd.js"], "styles": [] } };
+const metadata_lookup = { ".svelte-kit/build/components/layout.svelte": { "entry": "layout.svelte-b17ea1fa.js", "css": [], "js": ["layout.svelte-b17ea1fa.js", "chunks/vendor-666ae99e.js"], "styles": [] }, ".svelte-kit/build/components/error.svelte": { "entry": "error.svelte-b9bfdfa7.js", "css": [], "js": ["error.svelte-b9bfdfa7.js", "chunks/vendor-666ae99e.js"], "styles": [] }, "src/routes/index.svelte": { "entry": "pages/index.svelte-4317f73a.js", "css": ["assets/pages/index.svelte-f4e99b9a.css"], "js": ["pages/index.svelte-4317f73a.js", "chunks/vendor-666ae99e.js"], "styles": [] } };
 async function load_component(file) {
   const { entry, css: css2, js, styles } = metadata_lookup[file];
   return {
@@ -1730,191 +1730,6 @@ var error = /* @__PURE__ */ Object.freeze({
   "default": Error$1,
   load
 });
-const subscriber_queue = [];
-function readable(value, start) {
-  return {
-    subscribe: writable(value, start).subscribe
-  };
-}
-function writable(value, start = noop$1) {
-  let stop;
-  const subscribers = new Set();
-  function set(new_value) {
-    if (safe_not_equal(value, new_value)) {
-      value = new_value;
-      if (stop) {
-        const run_queue = !subscriber_queue.length;
-        for (const subscriber of subscribers) {
-          subscriber[1]();
-          subscriber_queue.push(subscriber, value);
-        }
-        if (run_queue) {
-          for (let i = 0; i < subscriber_queue.length; i += 2) {
-            subscriber_queue[i][0](subscriber_queue[i + 1]);
-          }
-          subscriber_queue.length = 0;
-        }
-      }
-    }
-  }
-  function update2(fn) {
-    set(fn(value));
-  }
-  function subscribe2(run2, invalidate = noop$1) {
-    const subscriber = [run2, invalidate];
-    subscribers.add(subscriber);
-    if (subscribers.size === 1) {
-      stop = start(set) || noop$1;
-    }
-    run2(value);
-    return () => {
-      subscribers.delete(subscriber);
-      if (subscribers.size === 0) {
-        stop();
-        stop = null;
-      }
-    };
-  }
-  return { set, update: update2, subscribe: subscribe2 };
-}
-function derived(stores, fn, initial_value) {
-  const single = !Array.isArray(stores);
-  const stores_array = single ? [stores] : stores;
-  const auto2 = fn.length < 2;
-  return readable(initial_value, (set) => {
-    let inited = false;
-    const values = [];
-    let pending = 0;
-    let cleanup = noop$1;
-    const sync2 = () => {
-      if (pending) {
-        return;
-      }
-      cleanup();
-      const result = fn(single ? values[0] : values, set);
-      if (auto2) {
-        set(result);
-      } else {
-        cleanup = is_function(result) ? result : noop$1;
-      }
-    };
-    const unsubscribers = stores_array.map((store, i) => subscribe(store, (value) => {
-      values[i] = value;
-      pending &= ~(1 << i);
-      if (inited) {
-        sync2();
-      }
-    }, () => {
-      pending |= 1 << i;
-    }));
-    inited = true;
-    sync2();
-    return function stop() {
-      run_all(unsubscribers);
-      cleanup();
-    };
-  });
-}
-function cubicOut(t) {
-  const f = t - 1;
-  return f * f * f + 1;
-}
-function is_date(obj) {
-  return Object.prototype.toString.call(obj) === "[object Date]";
-}
-function get_interpolator(a2, b2) {
-  if (a2 === b2 || a2 !== a2)
-    return () => a2;
-  const type = typeof a2;
-  if (type !== typeof b2 || Array.isArray(a2) !== Array.isArray(b2)) {
-    throw new Error("Cannot interpolate values of different type");
-  }
-  if (Array.isArray(a2)) {
-    const arr = b2.map((bi, i) => {
-      return get_interpolator(a2[i], bi);
-    });
-    return (t) => arr.map((fn) => fn(t));
-  }
-  if (type === "object") {
-    if (!a2 || !b2)
-      throw new Error("Object cannot be null");
-    if (is_date(a2) && is_date(b2)) {
-      a2 = a2.getTime();
-      b2 = b2.getTime();
-      const delta2 = b2 - a2;
-      return (t) => new Date(a2 + t * delta2);
-    }
-    const keys = Object.keys(b2);
-    const interpolators = {};
-    keys.forEach((key) => {
-      interpolators[key] = get_interpolator(a2[key], b2[key]);
-    });
-    return (t) => {
-      const result = {};
-      keys.forEach((key) => {
-        result[key] = interpolators[key](t);
-      });
-      return result;
-    };
-  }
-  if (type === "number") {
-    const delta2 = b2 - a2;
-    return (t) => a2 + t * delta2;
-  }
-  throw new Error(`Cannot interpolate ${type} values`);
-}
-function tweened(value, defaults = {}) {
-  const store = writable(value);
-  let task;
-  let target_value = value;
-  function set(new_value, opts) {
-    if (value == null) {
-      store.set(value = new_value);
-      return Promise.resolve();
-    }
-    target_value = new_value;
-    let previous_task = task;
-    let started = false;
-    let { delay = 0, duration = 400, easing = identity, interpolate: interpolate2 = get_interpolator } = assign(assign({}, defaults), opts);
-    if (duration === 0) {
-      if (previous_task) {
-        previous_task.abort();
-        previous_task = null;
-      }
-      store.set(value = target_value);
-      return Promise.resolve();
-    }
-    const start = now() + delay;
-    let fn;
-    task = loop((now2) => {
-      if (now2 < start)
-        return true;
-      if (!started) {
-        fn = interpolate2(value, new_value);
-        if (typeof duration === "function")
-          duration = duration(value, new_value);
-        started = true;
-      }
-      if (previous_task) {
-        previous_task.abort();
-        previous_task = null;
-      }
-      const elapsed = now2 - start;
-      if (elapsed > duration) {
-        store.set(value = new_value);
-        return false;
-      }
-      store.set(value = fn(easing(elapsed / duration)));
-      return true;
-    });
-    return task.promise;
-  }
-  return {
-    set,
-    update: (fn, opts) => set(fn(target_value, value), opts),
-    subscribe: store.subscribe
-  };
-}
 var Presence;
 (function(Presence2) {
   Presence2[Presence2["Entering"] = 0] = "Entering";
@@ -3275,6 +3090,91 @@ var MotionValue = function() {
 }();
 function motionValue(init2, startStopNotifier) {
   return new MotionValue(init2, startStopNotifier);
+}
+const subscriber_queue = [];
+function readable(value, start) {
+  return {
+    subscribe: writable(value, start).subscribe
+  };
+}
+function writable(value, start = noop$1) {
+  let stop;
+  const subscribers = new Set();
+  function set(new_value) {
+    if (safe_not_equal(value, new_value)) {
+      value = new_value;
+      if (stop) {
+        const run_queue = !subscriber_queue.length;
+        for (const subscriber of subscribers) {
+          subscriber[1]();
+          subscriber_queue.push(subscriber, value);
+        }
+        if (run_queue) {
+          for (let i = 0; i < subscriber_queue.length; i += 2) {
+            subscriber_queue[i][0](subscriber_queue[i + 1]);
+          }
+          subscriber_queue.length = 0;
+        }
+      }
+    }
+  }
+  function update2(fn) {
+    set(fn(value));
+  }
+  function subscribe2(run2, invalidate = noop$1) {
+    const subscriber = [run2, invalidate];
+    subscribers.add(subscriber);
+    if (subscribers.size === 1) {
+      stop = start(set) || noop$1;
+    }
+    run2(value);
+    return () => {
+      subscribers.delete(subscriber);
+      if (subscribers.size === 0) {
+        stop();
+        stop = null;
+      }
+    };
+  }
+  return { set, update: update2, subscribe: subscribe2 };
+}
+function derived(stores, fn, initial_value) {
+  const single = !Array.isArray(stores);
+  const stores_array = single ? [stores] : stores;
+  const auto2 = fn.length < 2;
+  return readable(initial_value, (set) => {
+    let inited = false;
+    const values = [];
+    let pending = 0;
+    let cleanup = noop$1;
+    const sync2 = () => {
+      if (pending) {
+        return;
+      }
+      cleanup();
+      const result = fn(single ? values[0] : values, set);
+      if (auto2) {
+        set(result);
+      } else {
+        cleanup = is_function(result) ? result : noop$1;
+      }
+    };
+    const unsubscribers = stores_array.map((store, i) => subscribe(store, (value) => {
+      values[i] = value;
+      pending &= ~(1 << i);
+      if (inited) {
+        sync2();
+      }
+    }, () => {
+      pending |= 1 << i;
+    }));
+    inited = true;
+    sync2();
+    return function stop() {
+      run_all(unsubscribers);
+      cleanup();
+    };
+  });
 }
 const getDomContext = (name, el) => {
   if (!el || !window) {
@@ -7631,18 +7531,52 @@ function createMotionProxy(defaultFeatures) {
   });
 }
 createMotionProxy();
-var Bar_svelte_svelte_type_style_lang = ".single-bar-container.svelte-1axwlf0{width:100%}.nav-label.svelte-1axwlf0{display:none;position:absolute;bottom:-20px;color:white;transform:rotateZ(90deg) translateY(-50%);transform-origin:0 50%;left:0;list-style:none}.single-bar-container.svelte-1axwlf0{z-index:5;background-color:white;position:absolute}.single-bar-container.svelte-1axwlf0:nth-child(1){left:2%;top:13.8%;height:62%;width:1%}.single-bar-container.svelte-1axwlf0:nth-child(2){left:3.6%;top:13.8%;height:62%;width:0.9%}.single-bar-container.svelte-1axwlf0:nth-child(3){left:6.9%;top:13.9%;height:62%;width:2%}.single-bar-container.svelte-1axwlf0:nth-child(4){left:10.9%;top:13.8%;height:62%;width:2.7%;transform:scale(1.8)}.single-bar-container.svelte-1axwlf0:nth-child(5){left:14.3%;top:13.8%;height:62%;width:2.7%}.single-bar-container.svelte-1axwlf0:nth-child(6){left:17.8%;top:13.8%;height:62%;width:1.5%}.single-bar-container.svelte-1axwlf0:nth-child(7){left:20%;top:13.8%;height:62%;width:1.1%}.single-bar-container.svelte-1axwlf0:nth-child(8){left:23.1%;top:13.8%;height:62%;width:1.9%}.single-bar-container.svelte-1axwlf0:nth-child(9){left:25.7%;top:13.8%;height:62%;width:1%}.single-bar-container.svelte-1axwlf0:nth-child(10){left:28.8%;top:13.8%;height:62%;width:1%}.single-bar-container.svelte-1axwlf0:nth-child(11){left:32%;top:13.8%;height:62%;width:1.9%}.single-bar-container.svelte-1axwlf0:nth-child(12){left:34.6%;top:13.8%;height:62%;width:2.5%}.single-bar-container.svelte-1axwlf0:nth-child(13){left:46.6%;top:13.8%;height:62%;width:1%}.single-bar-container.svelte-1axwlf0:nth-child(14){left:49.8%;top:13.8%;height:62%;width:1.9%}.single-bar-container.svelte-1axwlf0:nth-child(15){left:54%;top:13.8%;height:62%;width:0.9%}.single-bar-container.svelte-1axwlf0:nth-child(16){left:55.6%;top:13.8%;height:62%;width:1.8%}.single-bar-container.svelte-1axwlf0:nth-child(17){left:59.5%;top:13.8%;height:62%;width:1.1%}.single-bar-container.svelte-1axwlf0:nth-child(18){left:61.3%;top:13.8%;height:62%;width:2.5%}.single-bar-container.svelte-1axwlf0:nth-child(19){left:91.3%;top:13.8%;height:62%;width:1.1%}.single-bar-container.svelte-1axwlf0:nth-child(20){left:64.5%;top:13.8%;height:62%;width:1%}.single-bar-container.svelte-1axwlf0:nth-child(21){left:66.4%;top:13.8%;height:62%;width:0.9%}.single-bar-container.svelte-1axwlf0:nth-child(22){left:69.4%;top:13.8%;height:62%;width:1.9%}.single-bar-container.svelte-1axwlf0:nth-child(23){left:73.5%;top:13.8%;height:62%;width:0.9%}.single-bar-container.svelte-1axwlf0:nth-child(24){left:75.1%;top:13.8%;height:62%;width:2.7%}.single-bar-container.svelte-1axwlf0:nth-child(25){left:79.9%;top:13.8%;height:62%;width:1.7%}.single-bar-container.svelte-1axwlf0:nth-child(26){left:82.5%;top:13.8%;height:62%;width:0.8%}.single-bar-container.svelte-1axwlf0:nth-child(27){left:85.5%;top:13.8%;height:62%;width:1.2%}.single-bar-container.svelte-1axwlf0:nth-child(28){left:88.9%;top:13.8%;height:62%;width:1.7%}.single-bar-container.svelte-1axwlf0:nth-child(29){left:94.4%;top:13.8%;height:62%;width:2.9%}.single-bar-container.svelte-1axwlf0:nth-child(30){left:97.9%;top:13.8%;height:62%;width:1.7%}";
+var Bar_svelte_svelte_type_style_lang = '.close-main.svelte-1160lk9{height:32px;max-height:32px;max-width:32px;min-height:32px;min-width:32px;position:absolute;right:0;width:32px}.close-main.svelte-1160lk9:after{background-color:black;content:"";display:block;right:0;position:absolute;top:50%;height:2px;width:50%;transform:translate(-50%) translateY(-50%) rotate(45deg);transform-origin:center center}.close-main.svelte-1160lk9::before{background-color:black;content:"";height:50%;width:2px;display:block;left:50%;position:absolute;top:50%;transform:translate(-50%) translateY(-50%) rotate(45deg);transform-origin:center center}.nav-label.svelte-1160lk9{display:none;position:absolute;bottom:-20px;color:white;transform:rotateZ(90deg) translateY(-50%);transform-origin:0 50%;left:0;list-style:none}.single-bar-container.svelte-1160lk9{z-index:1;width:100%;background-color:white;position:absolute}.single-bar-container.svelte-1160lk9:nth-child(1){left:2%;top:13.8%;height:62%;width:1%}.single-bar-container.svelte-1160lk9:nth-child(2){left:3.6%;top:13.8%;height:62%;width:0.9%}.single-bar-container.svelte-1160lk9:nth-child(3){left:6.9%;top:13.9%;height:62%;width:2%}.single-bar-container.svelte-1160lk9:nth-child(4){left:10.9%;top:13.8%;height:62%;width:2.7%;transform:scale(1.8)}.single-bar-container.svelte-1160lk9:nth-child(5){left:14.3%;top:13.8%;height:62%;width:2.7%}.single-bar-container.svelte-1160lk9:nth-child(6){left:17.8%;top:13.8%;height:62%;width:1.5%}.single-bar-container.svelte-1160lk9:nth-child(7){left:20%;top:13.8%;height:62%;width:1.1%}.single-bar-container.svelte-1160lk9:nth-child(8){left:23.1%;top:13.8%;height:62%;width:1.9%}.single-bar-container.svelte-1160lk9:nth-child(9){left:25.7%;top:13.8%;height:62%;width:1%}.single-bar-container.svelte-1160lk9:nth-child(10){left:28.8%;top:13.8%;height:62%;width:1%}.single-bar-container.svelte-1160lk9:nth-child(11){left:32%;top:13.8%;height:62%;width:1.9%}.single-bar-container.svelte-1160lk9:nth-child(12){left:34.6%;top:13.8%;height:62%;width:2.5%}.single-bar-container.svelte-1160lk9:nth-child(13){left:46.6%;top:13.8%;height:62%;width:1%}.single-bar-container.svelte-1160lk9:nth-child(14){left:49.8%;top:13.8%;height:62%;width:1.9%}.single-bar-container.svelte-1160lk9:nth-child(15){left:54%;top:13.8%;height:62%;width:0.9%}.single-bar-container.svelte-1160lk9:nth-child(16){left:55.6%;top:13.8%;height:62%;width:1.8%}.single-bar-container.svelte-1160lk9:nth-child(17){left:59.5%;top:13.8%;height:62%;width:1.1%}.single-bar-container.svelte-1160lk9:nth-child(18){left:61.3%;top:13.8%;height:62%;width:2.5%}.single-bar-container.svelte-1160lk9:nth-child(19){left:91.3%;top:13.8%;height:62%;width:1.1%}.single-bar-container.svelte-1160lk9:nth-child(20){left:64.5%;top:13.8%;height:62%;width:1%}.single-bar-container.svelte-1160lk9:nth-child(21){left:66.4%;top:13.8%;height:62%;width:0.9%}.single-bar-container.svelte-1160lk9:nth-child(22){left:69.4%;top:13.8%;height:62%;width:1.9%}.single-bar-container.svelte-1160lk9:nth-child(23){left:73.5%;top:13.8%;height:62%;width:0.9%}.single-bar-container.svelte-1160lk9:nth-child(24){left:75.1%;top:13.8%;height:62%;width:2.7%}.single-bar-container.svelte-1160lk9:nth-child(25){left:79.9%;top:13.8%;height:62%;width:1.7%}.single-bar-container.svelte-1160lk9:nth-child(26){left:82.5%;top:13.8%;height:62%;width:0.8%}.single-bar-container.svelte-1160lk9:nth-child(27){left:85.5%;top:13.8%;height:62%;width:1.2%}.single-bar-container.svelte-1160lk9:nth-child(28){left:88.9%;top:13.8%;height:62%;width:1.7%}.single-bar-container.svelte-1160lk9:nth-child(29){left:94.4%;top:13.8%;height:62%;width:2.9%}.single-bar-container.svelte-1160lk9:nth-child(30){left:97.9%;top:13.8%;height:62%;width:1.7%}';
 const css$2 = {
-  code: ".single-bar-container.svelte-1axwlf0{width:100%}.nav-label.svelte-1axwlf0{display:none;position:absolute;bottom:-20px;color:white;transform:rotateZ(90deg) translateY(-50%);transform-origin:0 50%;left:0;list-style:none}.single-bar-container.svelte-1axwlf0{z-index:5;background-color:white;position:absolute}.single-bar-container.svelte-1axwlf0:nth-child(1){left:2%;top:13.8%;height:62%;width:1%}.single-bar-container.svelte-1axwlf0:nth-child(2){left:3.6%;top:13.8%;height:62%;width:0.9%}.single-bar-container.svelte-1axwlf0:nth-child(3){left:6.9%;top:13.9%;height:62%;width:2%}.single-bar-container.svelte-1axwlf0:nth-child(4){left:10.9%;top:13.8%;height:62%;width:2.7%;transform:scale(1.8)}.single-bar-container.svelte-1axwlf0:nth-child(5){left:14.3%;top:13.8%;height:62%;width:2.7%}.single-bar-container.svelte-1axwlf0:nth-child(6){left:17.8%;top:13.8%;height:62%;width:1.5%}.single-bar-container.svelte-1axwlf0:nth-child(7){left:20%;top:13.8%;height:62%;width:1.1%}.single-bar-container.svelte-1axwlf0:nth-child(8){left:23.1%;top:13.8%;height:62%;width:1.9%}.single-bar-container.svelte-1axwlf0:nth-child(9){left:25.7%;top:13.8%;height:62%;width:1%}.single-bar-container.svelte-1axwlf0:nth-child(10){left:28.8%;top:13.8%;height:62%;width:1%}.single-bar-container.svelte-1axwlf0:nth-child(11){left:32%;top:13.8%;height:62%;width:1.9%}.single-bar-container.svelte-1axwlf0:nth-child(12){left:34.6%;top:13.8%;height:62%;width:2.5%}.single-bar-container.svelte-1axwlf0:nth-child(13){left:46.6%;top:13.8%;height:62%;width:1%}.single-bar-container.svelte-1axwlf0:nth-child(14){left:49.8%;top:13.8%;height:62%;width:1.9%}.single-bar-container.svelte-1axwlf0:nth-child(15){left:54%;top:13.8%;height:62%;width:0.9%}.single-bar-container.svelte-1axwlf0:nth-child(16){left:55.6%;top:13.8%;height:62%;width:1.8%}.single-bar-container.svelte-1axwlf0:nth-child(17){left:59.5%;top:13.8%;height:62%;width:1.1%}.single-bar-container.svelte-1axwlf0:nth-child(18){left:61.3%;top:13.8%;height:62%;width:2.5%}.single-bar-container.svelte-1axwlf0:nth-child(19){left:91.3%;top:13.8%;height:62%;width:1.1%}.single-bar-container.svelte-1axwlf0:nth-child(20){left:64.5%;top:13.8%;height:62%;width:1%}.single-bar-container.svelte-1axwlf0:nth-child(21){left:66.4%;top:13.8%;height:62%;width:0.9%}.single-bar-container.svelte-1axwlf0:nth-child(22){left:69.4%;top:13.8%;height:62%;width:1.9%}.single-bar-container.svelte-1axwlf0:nth-child(23){left:73.5%;top:13.8%;height:62%;width:0.9%}.single-bar-container.svelte-1axwlf0:nth-child(24){left:75.1%;top:13.8%;height:62%;width:2.7%}.single-bar-container.svelte-1axwlf0:nth-child(25){left:79.9%;top:13.8%;height:62%;width:1.7%}.single-bar-container.svelte-1axwlf0:nth-child(26){left:82.5%;top:13.8%;height:62%;width:0.8%}.single-bar-container.svelte-1axwlf0:nth-child(27){left:85.5%;top:13.8%;height:62%;width:1.2%}.single-bar-container.svelte-1axwlf0:nth-child(28){left:88.9%;top:13.8%;height:62%;width:1.7%}.single-bar-container.svelte-1axwlf0:nth-child(29){left:94.4%;top:13.8%;height:62%;width:2.9%}.single-bar-container.svelte-1axwlf0:nth-child(30){left:97.9%;top:13.8%;height:62%;width:1.7%}",
-  map: `{"version":3,"file":"Bar.svelte","sources":["Bar.svelte"],"sourcesContent":["<script>\\r\\n  import { onMount } from \\"svelte\\";\\r\\n\\r\\n  import { spring, tweened } from \\"svelte/motion\\";\\r\\n  import { cubicOut } from \\"svelte/easing\\";\\r\\n  import { Motion, useMotionValue } from \\"svelte-motion\\";\\r\\n  export let index;\\r\\n\\r\\n  let shouldExpand = true;\\r\\n  let shouldShowLabels = false;\\r\\n  const initialLarge = [3, 28];\\r\\n\\r\\n  let hoveredOut = 2;\\r\\n  let animationArr = [\\"2\\"];\\r\\n  const expandWidth = useMotionValue(0);\\r\\n  const expand = (e) => {\\r\\n    expandWidth.set(100);\\r\\n    animationArr.push(\\"fullScreen\\");\\r\\n    console.log(animationArr);\\r\\n    shouldExpand = false;\\r\\n  };\\r\\n<\/script>\\r\\n\\r\\n<Motion\\r\\n  whileHover={shouldExpand ? { scale: 1.2 } : null}\\r\\n  onAnimationComplete={(name) => {\\r\\n    if (name === \\"2\\") {\\r\\n      shouldShowLabels = true;\\r\\n    }\\r\\n  }}\\r\\n  variants={initialLarge.includes(index)\\r\\n    ? {\\r\\n        1: {\\r\\n          scale: 1.8,\\r\\n        },\\r\\n        2: {\\r\\n          scale: 1,\\r\\n          transition: { duration: hoveredOut, repeat: 0 },\\r\\n        },\\r\\n        fullScreen: {\\r\\n          width: \\"100vw\\",\\r\\n          height: \\"70vh\\",\\r\\n          left: 0,\\r\\n\\r\\n          position: \\"fixed\\",\\r\\n        },\\r\\n      }\\r\\n    : {\\r\\n        1: {\\r\\n          rotateX: index + 50 * (index + 1),\\r\\n        },\\r\\n        2: {\\r\\n          rotateX: 0,\\r\\n          transition: { duration: hoveredOut, repeat: 0 },\\r\\n        },\\r\\n        fullScreen: {\\r\\n          width: \\"100vw\\",\\r\\n          height: \\"70vh\\",\\r\\n          left: 0,\\r\\n          right: 0,\\r\\n\\r\\n          position: \\"fixed\\",\\r\\n        },\\r\\n      }}\\r\\n  initial=\\"1\\"\\r\\n  onHoverStart={() => {\\r\\n    hoveredOut = 0.2;\\r\\n  }}\\r\\n  animate={animationArr}\\r\\n  let:motion\\r\\n  ><div on:click={expand} use:motion class=\\"single-bar-container\\">\\r\\n    <div class=\\"bar\\" />\\r\\n    <li style=\\"display:{shouldShowLabels ? 'block' : 'none'}\\" class=\\"nav-label\\">\\r\\n      asdfasdfdf\\r\\n    </li>\\r\\n  </div>\\r\\n</Motion>\\r\\n\\r\\n<style lang=\\"scss\\">.single-bar-container {\\n  width: 100%;\\n}\\n\\n.nav-label {\\n  display: none;\\n  position: absolute;\\n  bottom: -20px;\\n  color: white;\\n  transform: rotateZ(90deg) translateY(-50%);\\n  transform-origin: 0 50%;\\n  left: 0;\\n  list-style: none;\\n}\\n\\n.single-bar-container {\\n  z-index: 5;\\n  background-color: white;\\n  position: absolute;\\n}\\n.single-bar-container:nth-child(1) {\\n  left: 2%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1%;\\n}\\n.single-bar-container:nth-child(2) {\\n  left: 3.6%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 0.9%;\\n}\\n.single-bar-container:nth-child(3) {\\n  left: 6.9%;\\n  top: 13.9%;\\n  height: 62%;\\n  width: 2%;\\n}\\n.single-bar-container:nth-child(4) {\\n  left: 10.9%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 2.7%;\\n  transform: scale(1.8);\\n}\\n.single-bar-container:nth-child(5) {\\n  left: 14.3%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 2.7%;\\n}\\n.single-bar-container:nth-child(6) {\\n  left: 17.8%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.5%;\\n}\\n.single-bar-container:nth-child(7) {\\n  left: 20%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.1%;\\n}\\n.single-bar-container:nth-child(8) {\\n  left: 23.1%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.9%;\\n}\\n.single-bar-container:nth-child(9) {\\n  left: 25.7%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1%;\\n}\\n.single-bar-container:nth-child(10) {\\n  left: 28.8%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1%;\\n}\\n.single-bar-container:nth-child(11) {\\n  left: 32%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.9%;\\n}\\n.single-bar-container:nth-child(12) {\\n  left: 34.6%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 2.5%;\\n}\\n.single-bar-container:nth-child(13) {\\n  left: 46.6%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1%;\\n}\\n.single-bar-container:nth-child(14) {\\n  left: 49.8%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.9%;\\n}\\n.single-bar-container:nth-child(15) {\\n  left: 54%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 0.9%;\\n}\\n.single-bar-container:nth-child(16) {\\n  left: 55.6%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.8%;\\n}\\n.single-bar-container:nth-child(17) {\\n  left: 59.5%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.1%;\\n}\\n.single-bar-container:nth-child(18) {\\n  left: 61.3%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 2.5%;\\n}\\n.single-bar-container:nth-child(19) {\\n  left: 91.3%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.1%;\\n}\\n.single-bar-container:nth-child(20) {\\n  left: 64.5%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1%;\\n}\\n.single-bar-container:nth-child(21) {\\n  left: 66.4%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 0.9%;\\n}\\n.single-bar-container:nth-child(22) {\\n  left: 69.4%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.9%;\\n}\\n.single-bar-container:nth-child(23) {\\n  left: 73.5%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 0.9%;\\n}\\n.single-bar-container:nth-child(24) {\\n  left: 75.1%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 2.7%;\\n}\\n.single-bar-container:nth-child(25) {\\n  left: 79.9%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.7%;\\n}\\n.single-bar-container:nth-child(26) {\\n  left: 82.5%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 0.8%;\\n}\\n.single-bar-container:nth-child(27) {\\n  left: 85.5%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.2%;\\n}\\n.single-bar-container:nth-child(28) {\\n  left: 88.9%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.7%;\\n}\\n.single-bar-container:nth-child(29) {\\n  left: 94.4%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 2.9%;\\n}\\n.single-bar-container:nth-child(30) {\\n  left: 97.9%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.7%;\\n}\\n\\n.full-screen {\\n  position: fixed !important;\\n  left: 0 !important;\\n  width: 100vw !important;\\n}</style>\\r\\n"],"names":[],"mappings":"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"}`
+  code: '.close-main.svelte-1160lk9{height:32px;max-height:32px;max-width:32px;min-height:32px;min-width:32px;position:absolute;right:0;width:32px}.close-main.svelte-1160lk9:after{background-color:black;content:"";display:block;right:0;position:absolute;top:50%;height:2px;width:50%;transform:translate(-50%) translateY(-50%) rotate(45deg);transform-origin:center center}.close-main.svelte-1160lk9::before{background-color:black;content:"";height:50%;width:2px;display:block;left:50%;position:absolute;top:50%;transform:translate(-50%) translateY(-50%) rotate(45deg);transform-origin:center center}.nav-label.svelte-1160lk9{display:none;position:absolute;bottom:-20px;color:white;transform:rotateZ(90deg) translateY(-50%);transform-origin:0 50%;left:0;list-style:none}.single-bar-container.svelte-1160lk9{z-index:1;width:100%;background-color:white;position:absolute}.single-bar-container.svelte-1160lk9:nth-child(1){left:2%;top:13.8%;height:62%;width:1%}.single-bar-container.svelte-1160lk9:nth-child(2){left:3.6%;top:13.8%;height:62%;width:0.9%}.single-bar-container.svelte-1160lk9:nth-child(3){left:6.9%;top:13.9%;height:62%;width:2%}.single-bar-container.svelte-1160lk9:nth-child(4){left:10.9%;top:13.8%;height:62%;width:2.7%;transform:scale(1.8)}.single-bar-container.svelte-1160lk9:nth-child(5){left:14.3%;top:13.8%;height:62%;width:2.7%}.single-bar-container.svelte-1160lk9:nth-child(6){left:17.8%;top:13.8%;height:62%;width:1.5%}.single-bar-container.svelte-1160lk9:nth-child(7){left:20%;top:13.8%;height:62%;width:1.1%}.single-bar-container.svelte-1160lk9:nth-child(8){left:23.1%;top:13.8%;height:62%;width:1.9%}.single-bar-container.svelte-1160lk9:nth-child(9){left:25.7%;top:13.8%;height:62%;width:1%}.single-bar-container.svelte-1160lk9:nth-child(10){left:28.8%;top:13.8%;height:62%;width:1%}.single-bar-container.svelte-1160lk9:nth-child(11){left:32%;top:13.8%;height:62%;width:1.9%}.single-bar-container.svelte-1160lk9:nth-child(12){left:34.6%;top:13.8%;height:62%;width:2.5%}.single-bar-container.svelte-1160lk9:nth-child(13){left:46.6%;top:13.8%;height:62%;width:1%}.single-bar-container.svelte-1160lk9:nth-child(14){left:49.8%;top:13.8%;height:62%;width:1.9%}.single-bar-container.svelte-1160lk9:nth-child(15){left:54%;top:13.8%;height:62%;width:0.9%}.single-bar-container.svelte-1160lk9:nth-child(16){left:55.6%;top:13.8%;height:62%;width:1.8%}.single-bar-container.svelte-1160lk9:nth-child(17){left:59.5%;top:13.8%;height:62%;width:1.1%}.single-bar-container.svelte-1160lk9:nth-child(18){left:61.3%;top:13.8%;height:62%;width:2.5%}.single-bar-container.svelte-1160lk9:nth-child(19){left:91.3%;top:13.8%;height:62%;width:1.1%}.single-bar-container.svelte-1160lk9:nth-child(20){left:64.5%;top:13.8%;height:62%;width:1%}.single-bar-container.svelte-1160lk9:nth-child(21){left:66.4%;top:13.8%;height:62%;width:0.9%}.single-bar-container.svelte-1160lk9:nth-child(22){left:69.4%;top:13.8%;height:62%;width:1.9%}.single-bar-container.svelte-1160lk9:nth-child(23){left:73.5%;top:13.8%;height:62%;width:0.9%}.single-bar-container.svelte-1160lk9:nth-child(24){left:75.1%;top:13.8%;height:62%;width:2.7%}.single-bar-container.svelte-1160lk9:nth-child(25){left:79.9%;top:13.8%;height:62%;width:1.7%}.single-bar-container.svelte-1160lk9:nth-child(26){left:82.5%;top:13.8%;height:62%;width:0.8%}.single-bar-container.svelte-1160lk9:nth-child(27){left:85.5%;top:13.8%;height:62%;width:1.2%}.single-bar-container.svelte-1160lk9:nth-child(28){left:88.9%;top:13.8%;height:62%;width:1.7%}.single-bar-container.svelte-1160lk9:nth-child(29){left:94.4%;top:13.8%;height:62%;width:2.9%}.single-bar-container.svelte-1160lk9:nth-child(30){left:97.9%;top:13.8%;height:62%;width:1.7%}',
+  map: `{"version":3,"file":"Bar.svelte","sources":["Bar.svelte"],"sourcesContent":["<script>\\r\\n  import { Motion } from \\"svelte-motion\\";\\r\\n  export let index;\\r\\n\\r\\n  let shouldExpand = true;\\r\\n  let shouldShowLabels = false;\\r\\n\\r\\n  const initialLarge = [3, 28];\\r\\n  let large = initialLarge.includes(index);\\r\\n  let initial = \\"1\\";\\r\\n  let hoveredOut = 2;\\r\\n  let currAnimation = \\"2\\";\\r\\n  let variantSmall = {\\r\\n    1: {\\r\\n      rotateX: index + 50 * (index + 1),\\r\\n    },\\r\\n    2: {\\r\\n      rotateX: 0,\\r\\n      transition: { duration: hoveredOut, repeat: 0 },\\r\\n    },\\r\\n    fullScreen: {\\r\\n      width: \\"100vw\\",\\r\\n      height: \\"70vh\\",\\r\\n      left: 0,\\r\\n      right: 0,\\r\\n      scale: 1,\\r\\n      rotateX: 0,\\r\\n      zIndex: 2,\\r\\n      position: \\"fixed\\",\\r\\n    },\\r\\n  };\\r\\n  let variantLarge = {\\r\\n    1: {\\r\\n      scale: 1.8,\\r\\n    },\\r\\n    2: () => ({\\r\\n      scale: 1,\\r\\n      transition: { duration: hoveredOut, repeat: 0 },\\r\\n    }),\\r\\n    fullScreen: {\\r\\n      width: \\"100vw\\",\\r\\n      height: \\"70vh\\",\\r\\n      left: 0,\\r\\n      right: 0,\\r\\n      scale: 1,\\r\\n      rotateX: 0,\\r\\n      zIndex: 2,\\r\\n      position: \\"fixed\\",\\r\\n    },\\r\\n  };\\r\\n\\r\\n  const expand = (e) => {\\r\\n    initial = \\"2\\";\\r\\n    currAnimation = \\"fullScreen\\";\\r\\n\\r\\n    shouldExpand = false;\\r\\n  };\\r\\n<\/script>\\r\\n\\r\\n<Motion\\r\\n  whileHover={shouldExpand ? { scale: 1.2 } : null}\\r\\n  onAnimationComplete={(name) => {\\r\\n    if (name === \\"2\\") {\\r\\n      shouldShowLabels = true;\\r\\n    }\\r\\n  }}\\r\\n  variants={large ? variantLarge : variantSmall}\\r\\n  style={{\\r\\n    rotateX: !large ? index + 50 * (index + 1) : 0,\\r\\n    scale: large ? 1.8 : 1,\\r\\n  }}\\r\\n  onHoverStart={() => {\\r\\n    hoveredOut = 0.2;\\r\\n  }}\\r\\n  animate={currAnimation}\\r\\n  let:motion\\r\\n  ><div on:click={expand} use:motion class=\\"single-bar-container\\">\\r\\n    <div class=\\"close-main\\" />\\r\\n    <li style=\\"display:{shouldShowLabels ? 'block' : 'none'}\\" class=\\"nav-label\\">\\r\\n      {index}\\r\\n    </li>\\r\\n  </div>\\r\\n</Motion>\\r\\n\\r\\n<style lang=\\"scss\\">.close-main {\\n  height: 32px;\\n  max-height: 32px;\\n  max-width: 32px;\\n  min-height: 32px;\\n  min-width: 32px;\\n  position: absolute;\\n  right: 0;\\n  width: 32px;\\n}\\n.close-main:after {\\n  background-color: black;\\n  content: \\"\\";\\n  display: block;\\n  right: 0;\\n  position: absolute;\\n  top: 50%;\\n  height: 2px;\\n  width: 50%;\\n  transform: translate(-50%) translateY(-50%) rotate(45deg);\\n  transform-origin: center center;\\n}\\n.close-main::before {\\n  background-color: black;\\n  content: \\"\\";\\n  height: 50%;\\n  width: 2px;\\n  display: block;\\n  left: 50%;\\n  position: absolute;\\n  top: 50%;\\n  transform: translate(-50%) translateY(-50%) rotate(45deg);\\n  transform-origin: center center;\\n}\\n\\n.nav-label {\\n  display: none;\\n  position: absolute;\\n  bottom: -20px;\\n  color: white;\\n  transform: rotateZ(90deg) translateY(-50%);\\n  transform-origin: 0 50%;\\n  left: 0;\\n  list-style: none;\\n}\\n\\n.single-bar-container {\\n  z-index: 1;\\n  width: 100%;\\n  background-color: white;\\n  position: absolute;\\n}\\n.single-bar-container:nth-child(1) {\\n  left: 2%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1%;\\n}\\n.single-bar-container:nth-child(2) {\\n  left: 3.6%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 0.9%;\\n}\\n.single-bar-container:nth-child(3) {\\n  left: 6.9%;\\n  top: 13.9%;\\n  height: 62%;\\n  width: 2%;\\n}\\n.single-bar-container:nth-child(4) {\\n  left: 10.9%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 2.7%;\\n  transform: scale(1.8);\\n}\\n.single-bar-container:nth-child(5) {\\n  left: 14.3%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 2.7%;\\n}\\n.single-bar-container:nth-child(6) {\\n  left: 17.8%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.5%;\\n}\\n.single-bar-container:nth-child(7) {\\n  left: 20%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.1%;\\n}\\n.single-bar-container:nth-child(8) {\\n  left: 23.1%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.9%;\\n}\\n.single-bar-container:nth-child(9) {\\n  left: 25.7%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1%;\\n}\\n.single-bar-container:nth-child(10) {\\n  left: 28.8%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1%;\\n}\\n.single-bar-container:nth-child(11) {\\n  left: 32%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.9%;\\n}\\n.single-bar-container:nth-child(12) {\\n  left: 34.6%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 2.5%;\\n}\\n.single-bar-container:nth-child(13) {\\n  left: 46.6%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1%;\\n}\\n.single-bar-container:nth-child(14) {\\n  left: 49.8%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.9%;\\n}\\n.single-bar-container:nth-child(15) {\\n  left: 54%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 0.9%;\\n}\\n.single-bar-container:nth-child(16) {\\n  left: 55.6%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.8%;\\n}\\n.single-bar-container:nth-child(17) {\\n  left: 59.5%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.1%;\\n}\\n.single-bar-container:nth-child(18) {\\n  left: 61.3%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 2.5%;\\n}\\n.single-bar-container:nth-child(19) {\\n  left: 91.3%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.1%;\\n}\\n.single-bar-container:nth-child(20) {\\n  left: 64.5%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1%;\\n}\\n.single-bar-container:nth-child(21) {\\n  left: 66.4%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 0.9%;\\n}\\n.single-bar-container:nth-child(22) {\\n  left: 69.4%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.9%;\\n}\\n.single-bar-container:nth-child(23) {\\n  left: 73.5%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 0.9%;\\n}\\n.single-bar-container:nth-child(24) {\\n  left: 75.1%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 2.7%;\\n}\\n.single-bar-container:nth-child(25) {\\n  left: 79.9%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.7%;\\n}\\n.single-bar-container:nth-child(26) {\\n  left: 82.5%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 0.8%;\\n}\\n.single-bar-container:nth-child(27) {\\n  left: 85.5%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.2%;\\n}\\n.single-bar-container:nth-child(28) {\\n  left: 88.9%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.7%;\\n}\\n.single-bar-container:nth-child(29) {\\n  left: 94.4%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 2.9%;\\n}\\n.single-bar-container:nth-child(30) {\\n  left: 97.9%;\\n  top: 13.8%;\\n  height: 62%;\\n  width: 1.7%;\\n}</style>\\r\\n"],"names":[],"mappings":"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"}`
 };
 const Bar = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { index: index2 } = $$props;
   let shouldShowLabels = false;
   const initialLarge = [3, 28];
+  let large = initialLarge.includes(index2);
   let hoveredOut = 2;
-  let animationArr = ["2"];
-  motionValue(0);
+  let currAnimation = "2";
+  let variantSmall = {
+    1: { rotateX: index2 + 50 * (index2 + 1) },
+    2: {
+      rotateX: 0,
+      transition: { duration: hoveredOut, repeat: 0 }
+    },
+    fullScreen: {
+      width: "100vw",
+      height: "70vh",
+      left: 0,
+      right: 0,
+      scale: 1,
+      rotateX: 0,
+      zIndex: 2,
+      position: "fixed"
+    }
+  };
+  let variantLarge = {
+    1: { scale: 1.8 },
+    2: () => ({
+      scale: 1,
+      transition: { duration: hoveredOut, repeat: 0 }
+    }),
+    fullScreen: {
+      width: "100vw",
+      height: "70vh",
+      left: 0,
+      right: 0,
+      scale: 1,
+      rotateX: 0,
+      zIndex: 2,
+      position: "fixed"
+    }
+  };
   if ($$props.index === void 0 && $$bindings.index && index2 !== void 0)
     $$bindings.index(index2);
   $$result.css.add(css$2);
@@ -7653,43 +7587,120 @@ const Bar = create_ssr_component(($$result, $$props, $$bindings, slots) => {
         shouldShowLabels = true;
       }
     },
-    variants: initialLarge.includes(index2) ? {
-      1: { scale: 1.8 },
-      2: {
-        scale: 1,
-        transition: { duration: hoveredOut, repeat: 0 }
-      },
-      fullScreen: {
-        width: "100vw",
-        height: "70vh",
-        left: 0,
-        position: "fixed"
-      }
-    } : {
-      1: { rotateX: index2 + 50 * (index2 + 1) },
-      2: {
-        rotateX: 0,
-        transition: { duration: hoveredOut, repeat: 0 }
-      },
-      fullScreen: {
-        width: "100vw",
-        height: "70vh",
-        left: 0,
-        right: 0,
-        position: "fixed"
-      }
+    variants: large ? variantLarge : variantSmall,
+    style: {
+      rotateX: !large ? index2 + 50 * (index2 + 1) : 0,
+      scale: large ? 1.8 : 1
     },
-    initial: "1",
     onHoverStart: () => {
       hoveredOut = 0.2;
     },
-    animate: animationArr
+    animate: currAnimation
   }, {}, {
-    default: ({ motion: motion2 }) => `<div class="${"single-bar-container svelte-1axwlf0"}"><div class="${"bar"}"></div>
-    <li style="${"display:" + escape(shouldShowLabels ? "block" : "none")}" class="${"nav-label svelte-1axwlf0"}">asdfasdfdf
-    </li></div>`
+    default: ({ motion: motion2 }) => `<div class="${"single-bar-container svelte-1160lk9"}"><div class="${"close-main svelte-1160lk9"}"></div>
+    <li style="${"display:" + escape(shouldShowLabels ? "block" : "none")}" class="${"nav-label svelte-1160lk9"}">${escape(index2)}</li></div>`
   })}`;
 });
+function cubicOut(t) {
+  const f = t - 1;
+  return f * f * f + 1;
+}
+function is_date(obj) {
+  return Object.prototype.toString.call(obj) === "[object Date]";
+}
+function get_interpolator(a2, b2) {
+  if (a2 === b2 || a2 !== a2)
+    return () => a2;
+  const type = typeof a2;
+  if (type !== typeof b2 || Array.isArray(a2) !== Array.isArray(b2)) {
+    throw new Error("Cannot interpolate values of different type");
+  }
+  if (Array.isArray(a2)) {
+    const arr = b2.map((bi, i) => {
+      return get_interpolator(a2[i], bi);
+    });
+    return (t) => arr.map((fn) => fn(t));
+  }
+  if (type === "object") {
+    if (!a2 || !b2)
+      throw new Error("Object cannot be null");
+    if (is_date(a2) && is_date(b2)) {
+      a2 = a2.getTime();
+      b2 = b2.getTime();
+      const delta2 = b2 - a2;
+      return (t) => new Date(a2 + t * delta2);
+    }
+    const keys = Object.keys(b2);
+    const interpolators = {};
+    keys.forEach((key) => {
+      interpolators[key] = get_interpolator(a2[key], b2[key]);
+    });
+    return (t) => {
+      const result = {};
+      keys.forEach((key) => {
+        result[key] = interpolators[key](t);
+      });
+      return result;
+    };
+  }
+  if (type === "number") {
+    const delta2 = b2 - a2;
+    return (t) => a2 + t * delta2;
+  }
+  throw new Error(`Cannot interpolate ${type} values`);
+}
+function tweened(value, defaults = {}) {
+  const store = writable(value);
+  let task;
+  let target_value = value;
+  function set(new_value, opts) {
+    if (value == null) {
+      store.set(value = new_value);
+      return Promise.resolve();
+    }
+    target_value = new_value;
+    let previous_task = task;
+    let started = false;
+    let { delay = 0, duration = 400, easing = identity, interpolate: interpolate2 = get_interpolator } = assign(assign({}, defaults), opts);
+    if (duration === 0) {
+      if (previous_task) {
+        previous_task.abort();
+        previous_task = null;
+      }
+      store.set(value = target_value);
+      return Promise.resolve();
+    }
+    const start = now() + delay;
+    let fn;
+    task = loop((now2) => {
+      if (now2 < start)
+        return true;
+      if (!started) {
+        fn = interpolate2(value, new_value);
+        if (typeof duration === "function")
+          duration = duration(value, new_value);
+        started = true;
+      }
+      if (previous_task) {
+        previous_task.abort();
+        previous_task = null;
+      }
+      const elapsed = now2 - start;
+      if (elapsed > duration) {
+        store.set(value = new_value);
+        return false;
+      }
+      store.set(value = fn(easing(elapsed / duration)));
+      return true;
+    });
+    return task.promise;
+  }
+  return {
+    set,
+    update: (fn, opts) => set(fn(target_value, value), opts),
+    subscribe: store.subscribe
+  };
+}
 var global = "* {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n}";
 var Logo_svelte_svelte_type_style_lang = ".bar-container.svelte-q18h1c{top:0;z-index:1;position:relative;width:90%;height:600px}";
 const css$1 = {

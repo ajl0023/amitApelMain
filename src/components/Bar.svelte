@@ -1,22 +1,58 @@
 <script>
-  import { onMount } from "svelte";
-
-  import { spring, tweened } from "svelte/motion";
-  import { cubicOut } from "svelte/easing";
-  import { Motion, useMotionValue } from "svelte-motion";
+  import { Motion } from "svelte-motion";
   export let index;
 
   let shouldExpand = true;
   let shouldShowLabels = false;
-  const initialLarge = [3, 28];
 
+  const initialLarge = [3, 28];
+  let large = initialLarge.includes(index);
+  let initial = "1";
   let hoveredOut = 2;
-  let animationArr = ["2"];
-  const expandWidth = useMotionValue(0);
+  let currAnimation = "2";
+  let variantSmall = {
+    1: {
+      rotateX: index + 50 * (index + 1),
+    },
+    2: {
+      rotateX: 0,
+      transition: { duration: hoveredOut, repeat: 0 },
+    },
+    fullScreen: {
+      width: "100vw",
+      height: "70vh",
+      left: 0,
+      right: 0,
+      scale: 1,
+      rotateX: 0,
+      zIndex: 2,
+      position: "fixed",
+    },
+  };
+  let variantLarge = {
+    1: {
+      scale: 1.8,
+    },
+    2: () => ({
+      scale: 1,
+      transition: { duration: hoveredOut, repeat: 0 },
+    }),
+    fullScreen: {
+      width: "100vw",
+      height: "70vh",
+      left: 0,
+      right: 0,
+      scale: 1,
+      rotateX: 0,
+      zIndex: 2,
+      position: "fixed",
+    },
+  };
+
   const expand = (e) => {
-    expandWidth.set(100);
-    animationArr.push("fullScreen");
-    console.log(animationArr);
+    initial = "2";
+    currAnimation = "fullScreen";
+
     shouldExpand = false;
   };
 </script>
@@ -28,58 +64,61 @@
       shouldShowLabels = true;
     }
   }}
-  variants={initialLarge.includes(index)
-    ? {
-        1: {
-          scale: 1.8,
-        },
-        2: {
-          scale: 1,
-          transition: { duration: hoveredOut, repeat: 0 },
-        },
-        fullScreen: {
-          width: "100vw",
-          height: "70vh",
-          left: 0,
-
-          position: "fixed",
-        },
-      }
-    : {
-        1: {
-          rotateX: index + 50 * (index + 1),
-        },
-        2: {
-          rotateX: 0,
-          transition: { duration: hoveredOut, repeat: 0 },
-        },
-        fullScreen: {
-          width: "100vw",
-          height: "70vh",
-          left: 0,
-          right: 0,
-
-          position: "fixed",
-        },
-      }}
-  initial="1"
+  variants={large ? variantLarge : variantSmall}
+  style={{
+    rotateX: !large ? index + 50 * (index + 1) : 0,
+    scale: large ? 1.8 : 1,
+  }}
   onHoverStart={() => {
     hoveredOut = 0.2;
   }}
-  animate={animationArr}
+  animate={currAnimation}
   let:motion
   ><div on:click={expand} use:motion class="single-bar-container">
-    <div class="bar" />
+    <div class="close-main" />
     <li style="display:{shouldShowLabels ? 'block' : 'none'}" class="nav-label">
-      asdfasdfdf
+      {index}
     </li>
   </div>
 </Motion>
 
 <style lang="scss">
-  .single-bar-container {
-    width: 100%;
+  .close-main {
+    height: 32px;
+    max-height: 32px;
+    max-width: 32px;
+    min-height: 32px;
+    min-width: 32px;
+    position: absolute;
+    right: 0;
+    width: 32px;
+    &:after {
+      background-color: black;
+      content: "";
+      display: block;
+      right: 0;
+      position: absolute;
+      top: 50%;
+      height: 2px;
+      width: 50%;
+      transform: translate(-50%) translateY(-50%) rotate(45deg);
+      transform-origin: center center;
+    }
+    &::before {
+      background-color: black;
+      content: "";
+      height: 50%;
+      width: 2px;
+      display: block;
+
+      left: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%) translateY(-50%) rotate(45deg);
+      transform-origin: center center;
+    }
   }
+
   .nav-label {
     display: none;
     position: absolute;
@@ -92,9 +131,11 @@
     list-style: none;
   }
   .single-bar-container {
-    z-index: 5;
+    z-index: 1;
+    width: 100%;
     background-color: white;
     position: absolute;
+    
 
     &:nth-child(1) {
       left: 2%;
@@ -279,10 +320,5 @@
       height: 62%;
       width: 1.7%;
     }
-  }
-  .full-screen {
-    position: fixed !important;
-    left: 0 !important;
-    width: 100vw !important;
   }
 </style>
