@@ -68,8 +68,8 @@
   }}
   animate={animationArr}
   let:motion
-  ><div use:motion class="single-bar-container">
-    <div on:click={expand} class="bar"></div>
+  ><div on:click={expand} use:motion class="single-bar-container">
+    <div class="bar" />
     <li style="display:{shouldShowLabels ? 'block' : 'none'}" class="nav-label">
       asdfasdfdf
     </li>
