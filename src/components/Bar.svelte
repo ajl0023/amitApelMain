@@ -28,7 +28,7 @@
         height: Math.floor(ele.getBoundingClientRect().height * 0.62) + "px",
 
         transition: {
-          ease:'linear',
+
      
           duration: 6,
     
