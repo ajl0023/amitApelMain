@@ -174,7 +174,7 @@
     object-position:${initialLarge[index]["imagePos"][0]} ${initialLarge[index]["imagePos"][1]};
   `}
           class="cover-image"
-          src={initialLarge[index].img}
+   
           alt=""
         />
       </Motion>
