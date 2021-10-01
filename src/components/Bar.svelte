@@ -165,6 +165,8 @@
         }}
         let:motion
         ><img
+          width="100%"
+          height="100%"
           src={initialLarge[index].img}
           use:motion
           style={`opacity:1`}
