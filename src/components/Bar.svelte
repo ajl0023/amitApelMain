@@ -168,13 +168,13 @@
         }}
         let:motion
         ><img
+          src={initialLarge[index].img}
           use:motion
           style={`
     opacity:1;
     object-position:${initialLarge[index]["imagePos"][0]} ${initialLarge[index]["imagePos"][1]};
   `}
           class="cover-image"
-   
           alt=""
         />
       </Motion>
@@ -239,6 +239,7 @@
 
   .single-bar-container {
     z-index: 1;
+    overflow: hidden;
     position: absolute;
     background-color: white;
 
