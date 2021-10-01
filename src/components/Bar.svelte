@@ -81,7 +81,7 @@
   };
   let large = initialLarge[index];
   let initial = "1";
-  let hoveredOut = 2;
+  let hoveredOut = 6;
   let currAnimation = "2";
   let variantSmall = {
     2: {
@@ -110,7 +110,7 @@
 
       height: "62%",
 
-      transition: { duration: hoveredOut, delay: 2.4 },
+      transition: { duration: hoveredOut },
     }),
     fullScreen: {
       width: "100vw",
