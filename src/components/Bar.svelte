@@ -6,44 +6,46 @@
   import main2 from "../images/home/2.png";
   import main3 from "../images/home/3.jpg";
   import main4 from "../images/home/4.png";
+  import PageContent from "./PageContent.svelte";
 
   export let index;
   export let ele;
   let shouldExpand = true;
   let shouldShowLabels = false;
+  let pointerEvents = false;
+  let initialDuration = 6;
+
   let imageVisible = true;
   let variantLarge;
+  let pageOpened = false;
   onMount(() => {
     ele = document.querySelector("div.bar-container");
 
     variantLarge = {
       2: () => ({
+        scale: 1,
         opacity: 1,
         left: initialLarge[index].position.left,
         right: initialLarge[index].position.right,
-
+        
         top: initialLarge[index].position.top,
         width: initialLarge[index].position.width,
-
-        height: Math.floor(ele.getBoundingClientRect().height * 0.62) + "px",
-
+        position: "absolute",
         transition: {
-
-     
-          duration: 6,
-    
-        
+          duration: initialDuration,
         },
       }),
       fullScreen: {
         width: "100vw",
-        height: "70vh",
+        height: "100vh",
         left: 0,
         right: 0,
         scale: 1,
         rotateX: 0,
-        zIndex: 2,
+        zIndex: 5,
         position: "fixed",
+        opacity: 1,
+        top: 0,
       },
     };
   });
@@ -60,7 +62,7 @@
       position: {
         left: "10.9%",
 
-        top: "13.8%",
+        top: "0%",
 
         width: "2.7%",
       },
@@ -77,7 +79,7 @@
       position: {
         left: "59.5%",
 
-        top: "13.8%",
+        top: "0%",
 
         width: "1.1%",
       },
@@ -93,7 +95,7 @@
       },
       position: {
         left: "75.1%",
-        top: "13.8%",
+        top: "0%",
 
         width: "2.7%",
       },
@@ -110,15 +112,20 @@
       },
       position: {
         left: "94.4%",
-        top: "13.8%",
+        top: "0%",
 
         width: "2.9%",
       },
     },
   };
+  const closePage = () => {
+    pageOpened = false;
+  };
+  let shouldShowCover = true;
   let large = initialLarge[index];
   let initial = "1";
   let hoveredOut = 6;
+
   let currAnimation = "2";
   let variantSmall = {
     2: {
@@ -128,43 +135,59 @@
     },
     fullScreen: {
       width: "100vw",
-      height: "70vh",
+      height: "100vh",
       left: 0,
       right: 0,
-      scale: 1,
-      rotateX: 0,
-      zIndex: 2,
+      opacity: 1,
+      top: 0,
+      zIndex: 5,
       position: "fixed",
     },
   };
 
   const expand = (e) => {
-    initial = "2";
+    if (pageOpened === false) {
+      console.log(pageOpened);
+    }
+    shouldShowCover = false;
     currAnimation = "fullScreen";
 
     shouldExpand = false;
   };
+  $: {
+    console.log(pageOpened, "234234234");
+  }
 </script>
 
 <Motion
+  initial={{ scale: large ? 1.5 : 1 }}
   onAnimationComplete={(name) => {
     if (name === "2") {
       imageVisible = false;
+      pointerEvents = true;
       shouldShowLabels = true;
     }
   }}
+  onHoverStart={() => {
+    initialDuration = 0.2;
+  }}
+  whileHover={{ scale: shouldExpand ? 1.2 : 1, transition: { duration: 0.2 } }}
   animate={currAnimation}
   variants={large ? variantLarge : variantSmall}
   let:motion
   ><div
     use:motion
     style={large
-      ? `top:0;height:100%;left:${initialLarge[index].defaultPos.left}; opacity:0; width:10%; height:800px`
-      : "opacity:0"}
+      ? `
+    top:0; left:${initialLarge[index].defaultPos.left}; opacity:1; width:10%;`
+      : "opacity:0;"}
     on:click={expand}
     class="{large ? 'large-bar' : 'small-bar'} single-bar-container"
   >
-    {#if large}
+    {#if pageOpened}
+      <PageContent />
+    {/if}
+    {#if large && shouldShowCover}
       <Motion
         transition={{
           duration: 2,
@@ -185,11 +208,17 @@
         />
       </Motion>
     {/if}
-    <!-- <div class="close-main" /> -->
-    <!-- <li
+    <div
+      class="close-main"
+      on:click={() => {
+        pageOpened = false;
+        console.log(pageOpened);
+      }}
+    />
+    <li
       style=" display:{shouldShowLabels ? 'block' : 'none'}"
       class="nav-label"
-    /> -->
+    />
   </div>
 </Motion>
 
@@ -212,7 +241,10 @@
     min-width: 32px;
     position: absolute;
     right: 0;
+    top: 0;
+    cursor: pointer;
     width: 32px;
+
     &:after {
       background-color: black;
       content: "";
@@ -242,193 +274,195 @@
 
   .single-bar-container {
     z-index: 1;
+
     overflow: hidden;
     position: absolute;
     background-color: white;
+    height: 100%;
 
     &:nth-child(1) {
       left: 2%;
-      top: 13.8%;
-      height: 62%;
+      top: 0%;
+
       width: 1%;
     }
     &:nth-child(2) {
       left: 3.6%;
-      top: 13.8%;
-      height: 62%;
+      top: 0%;
+
       width: 0.9%;
     }
     &:nth-child(3) {
       left: 6.9%;
-      top: 13.9%;
-      height: 62%;
+      top: 0%;
+
       width: 2%;
     }
     &:nth-child(4) {
       // left: 10.9%;
 
-      top: 13.8%;
-      height: 62%;
+      top: 0%;
+
       width: 2.7%;
     }
 
     &:nth-child(5) {
       left: 14.3%;
-      top: 13.8%;
-      height: 62%;
+      top: 0%;
+
       // width: 2.7%;
     }
     &:nth-child(6) {
       left: 17.8%;
-      top: 13.8%;
-      height: 62%;
+      top: 0%;
+
       width: 1.5%;
     }
     &:nth-child(7) {
       left: 20%;
-      top: 13.8%;
-      height: 62%;
+      top: 0%;
+
       width: 1.1%;
     }
     &:nth-child(8) {
       left: 23.1%;
-      top: 13.8%;
-      height: 62%;
+      top: 0%;
+
       width: 1.9%;
     }
     &:nth-child(9) {
       left: 25.7%;
-      top: 13.8%;
-      height: 62%;
+      top: 0%;
+
       width: 1%;
     }
     &:nth-child(10) {
       left: 28.8%;
-      top: 13.8%;
-      height: 62%;
+      top: 0%;
+
       width: 1%;
     }
     &:nth-child(11) {
       left: 32%;
-      top: 13.8%;
-      height: 62%;
+      top: 0%;
+
       width: 1.9%;
     }
     &:nth-child(12) {
       left: 34.6%;
-      top: 13.8%;
-      height: 62%;
+      top: 0%;
+
       width: 2.5%;
     }
     &:nth-child(13) {
       left: 46.6%;
-      top: 13.8%;
-      height: 62%;
+      top: 0%;
+
       width: 1%;
     }
     &:nth-child(14) {
       left: 49.8%;
-      top: 13.8%;
-      height: 62%;
+      top: 0%;
+
       width: 1.9%;
     }
     &:nth-child(15) {
       left: 54%;
-      top: 13.8%;
-      height: 62%;
+      top: 0%;
+
       width: 0.9%;
     }
     &:nth-child(16) {
       left: 55.6%;
-      top: 13.8%;
-      height: 62%;
+      top: 0%;
+
       width: 1.8%;
     }
     &:nth-child(17) {
       // left: 59.5%;
 
-      top: 13.8%;
-      height: 62%;
+      top: 0%;
+
       width: 1.1%;
     }
     &:nth-child(18) {
       // left: 61.3%;
-      top: 13.8%;
-      height: 62%;
+      top: 0%;
+
       left: 20%;
       width: 2.5%;
     }
     &:nth-child(19) {
       left: 91.3%;
-      top: 13.8%;
-      height: 62%;
+      top: 0%;
+
       width: 1.1%;
     }
 
     &:nth-child(20) {
       left: 64.5%;
-      top: 13.8%;
-      height: 62%;
+      top: 0%;
+
       width: 1%;
     }
     &:nth-child(21) {
       left: 66.4%;
-      top: 13.8%;
-      height: 62%;
+      top: 0%;
+
       width: 0.9%;
     }
     &:nth-child(22) {
       left: 69.4%;
-      top: 13.8%;
-      height: 62%;
+      top: 0%;
+
       width: 1.9%;
     }
     &:nth-child(23) {
       left: 73.5%;
-      top: 13.8%;
-      height: 62%;
+      top: 0%;
+
       width: 0.9%;
     }
     &:nth-child(24) {
       left: 75.1%;
-      top: 13.8%;
-      height: 62%;
+      top: 0%;
+
       width: 2.7%;
     }
     &:nth-child(25) {
       left: 79.9%;
-      top: 13.8%;
-      height: 62%;
+      top: 0%;
+
       width: 1.7%;
     }
     &:nth-child(26) {
       left: 82.5%;
-      top: 13.8%;
-      height: 62%;
+      top: 0%;
+
       width: 0.8%;
     }
     &:nth-child(27) {
       left: 85.5%;
-      top: 13.8%;
-      height: 62%;
+      top: 0%;
+
       width: 1.2%;
     }
     &:nth-child(28) {
       left: 88.9%;
-      top: 13.8%;
-      height: 62%;
+      top: 0%;
+
       width: 1.7%;
     }
     &:nth-child(29) {
       left: 94.4%;
-      top: 13.8%;
-      height: 62%;
+      top: 0%;
+
       width: 2.9%;
     }
     &:nth-child(30) {
       left: 97.9%;
-      top: 13.8%;
-      height: 62%;
+      top: 0%;
+
       width: 1.7%;
     }
   }

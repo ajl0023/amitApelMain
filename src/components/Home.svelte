@@ -2,12 +2,12 @@
   import { Motion } from "svelte-motion";
 
   import Logo from "../images/Logo.svelte";
-  import backgroundImage from "../images/home/Background Photo.jpg";
+  import logoText from "../images/home/logo Text.png";
 </script>
 
 <div class="container">
   <Motion
-    transition={{ duration: 1, delay: 3 }}
+    transition={{ duration: 2, delay: 4 }}
     let:motion
     animate={{ opacity: 1 }}
   >
@@ -15,7 +15,16 @@
   </Motion>
   <Logo />
   <Motion
-    transition={{ duration: 1, delay: 3 }}
+    transition={{ duration: 2, delay: 4 }}
+    let:motion
+    animate={{ opacity: 1 }}
+  >
+    <div use:motion class="logo-text-container">
+      <img class="logo-text" src={logoText} alt="" />
+    </div>
+  </Motion>
+  <Motion
+    transition={{ duration: 2, delay: 4 }}
     let:motion
     animate={{ opacity: 1 }}
   >
@@ -24,6 +33,20 @@
 </div>
 
 <style lang="scss">
+  .logo-text-container {
+    max-width: 600px;
+    width: 100%;
+    z-index: 2;
+    opacity: 0;
+    padding-top: 60px;
+    
+    .logo-text {
+      height: auto;
+      object-fit: cover;
+      width: 100%;
+    }
+  }
+
   .container {
     background-repeat: no-repeat;
     font-family: Orator;
@@ -32,7 +55,7 @@
     background-image: url("../images/home/Background Photo.jpg");
     display: flex;
     flex-direction: column;
-
+    padding: 80px;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -54,8 +77,16 @@
   h5 {
     z-index: 2;
     opacity: 0;
+    letter-spacing: 5px;
     font-weight: 100;
     font-size: 4em;
+    position: relative;
     text-transform: uppercase;
+    &:nth-child(1) {
+      padding-bottom: 6rem;
+    }
+    &:nth-child(4) {
+      padding-top: 6rem;
+    }
   }
 </style>

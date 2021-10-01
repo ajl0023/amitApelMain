@@ -29,25 +29,31 @@
     );
   }
   console.log(offset[0]);
-  console.log(ele)
+  console.log(ele);
 </script>
 
-<div bind:this={ele} class="bar-container">
-  {#each bars as bar, i}
-
-    <Bar {ele} index={i} offset={offset[i]} />
-  {/each}
-</div>
+<Motion
+  transition={{ duration: 4, delay: 0 }}
+  animate={{
+    height: "400px",
+  }}
+  let:motion
+>
+  <div style="height:80vh" use:motion bind:this={ele} class="bar-container">
+    {#each bars as bar, i}
+      <Bar {ele} index={i} offset={offset[i]} />
+    {/each}
+  </div>
+</Motion>
 
 <style lang="scss">
   .bar-container {
     top: 0;
     justify-content: space-between;
-    z-index: 1;
+    z-index: 3;
     position: relative;
-    width: 90%;
+    width: 100%;
     display: flex;
     align-items: center;
-    height: 800px;
   }
 </style>

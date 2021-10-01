@@ -1,10 +1,10 @@
 {
   ".svelte-kit/build/runtime/internal/start.js": {
-    "file": "start-562e55de.js",
+    "file": "start-75b33c3f.js",
     "src": ".svelte-kit/build/runtime/internal/start.js",
     "isEntry": true,
     "imports": [
-      "_vendor-c36717f7.js"
+      "_vendor-b02703ae.js"
     ],
     "dynamicImports": [
       ".svelte-kit/build/components/layout.svelte",
@@ -16,44 +16,48 @@
     ]
   },
   ".svelte-kit/build/components/layout.svelte": {
-    "file": "layout.svelte-e67bf651.js",
+    "file": "layout.svelte-475c3329.js",
     "src": ".svelte-kit/build/components/layout.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_vendor-c36717f7.js"
+      "_vendor-b02703ae.js"
     ]
   },
   ".svelte-kit/build/components/error.svelte": {
-    "file": "error.svelte-0f72e216.js",
+    "file": "error.svelte-08cd62cb.js",
     "src": ".svelte-kit/build/components/error.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_vendor-c36717f7.js"
+      "_vendor-b02703ae.js"
     ]
   },
   "src/routes/index.svelte": {
-    "file": "pages/index.svelte-2ac3695b.js",
+    "file": "pages/index.svelte-2b74422f.js",
     "src": "src/routes/index.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_vendor-c36717f7.js"
+      "_vendor-b02703ae.js"
     ],
     "css": [
-      "assets/pages/index.svelte-251b52f4.css"
+      "assets/pages/index.svelte-53d4949b.css"
     ],
     "assets": [
       "assets/1-52e24dec.png",
       "assets/2-779b6b5c.png",
       "assets/3-79f96e4f.jpg",
       "assets/4-c6c03fae.png",
-      "assets/Capsuula-b76fd88c.ttf",
-      "assets/Background Photo-112e1098.jpg"
+      "assets/AA-logo-black-mac (1)-2892f7ae.svg",
+      "assets/Logo Sideways-5b2a92a6.png",
+      "assets/amitapel4 (1)-07a16dc1.webp",
+      "assets/logo Text-6620b85f.png",
+      "assets/Background Photo-112e1098.jpg",
+      "assets/Capsuula-b76fd88c.ttf"
     ]
   },
-  "_vendor-c36717f7.js": {
-    "file": "chunks/vendor-c36717f7.js"
+  "_vendor-b02703ae.js": {
+    "file": "chunks/vendor-b02703ae.js"
   }
 }
