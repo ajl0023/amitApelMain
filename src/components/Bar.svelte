@@ -10,6 +10,7 @@
   let shouldExpand = true;
   let shouldShowLabels = false;
   let imageVisible = true;
+
   const initialLarge = {
     3: {
       defaultPos: {
@@ -148,11 +149,7 @@
   ><div
     use:motion
     style={large
-      ? `
-      top:0;
-      height:100%;
-
-      left:${initialLarge[index].defaultPos.left}; opacity:1; width:10%; height:100%`
+      ? `top:0;height:100%;left:${initialLarge[index].defaultPos.left}; opacity:1; width:10%; height:100%`
       : "opacity:0"}
     on:click={expand}
     class="{large ? 'large-bar' : 'small-bar'} single-bar-container"
@@ -172,7 +169,7 @@
           use:motion
           style={`
     opacity:1;
-    object-position:${initialLarge[index]["imagePos"][0]} ${initialLarge[index]["imagePos"][1]};
+
   `}
           class="cover-image"
           alt=""
