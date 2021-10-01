@@ -149,7 +149,7 @@
   ><div
     use:motion
     style={large
-      ? `top:0;height:100%;left:${initialLarge[index].defaultPos.left}; opacity:1; width:10%; height:100%`
+      ? `transform:scale(0.7);top:0;height:100%;left:${initialLarge[index].defaultPos.left}; opacity:1; width:10%; height:100%`
       : "opacity:0"}
     on:click={expand}
     class="{large ? 'large-bar' : 'small-bar'} single-bar-container"
@@ -165,8 +165,8 @@
         }}
         let:motion
         ><img
-          width="100%"
-          height="100%"
+          width="100"
+          height="100"
           src={initialLarge[index].img}
           use:motion
           style={`opacity:1`}
@@ -189,12 +189,9 @@
   }
   .cover-image {
     height: 100%;
+    object-position: center center;
     width: 100%;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+
     object-fit: cover;
   }
   .close-main {
