@@ -167,10 +167,7 @@
         ><img
           src={initialLarge[index].img}
           use:motion
-          style={`
-    opacity:1;
-
-  `}
+          style={`opacity:1`}
           class="cover-image"
           alt=""
         />
