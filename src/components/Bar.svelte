@@ -110,7 +110,7 @@
 
       height: "62%",
 
-      transition: { duration: hoveredOut },
+      transition: { duration: hoveredOut, delay: 0.5 },
     }),
     fullScreen: {
       width: "100vw",
