@@ -40,9 +40,12 @@
 <style lang="scss">
   .bar-container {
     top: 0;
+    justify-content: space-between;
     z-index: 1;
     position: relative;
     width: 90%;
-    height: 600px;
+    display: flex;
+    align-items: center;
+    height: 800px;
   }
 </style>
