@@ -27,7 +27,7 @@
         opacity: 1,
         left: initialLarge[index].position.left,
         right: initialLarge[index].position.right,
-        
+
         top: initialLarge[index].position.top,
         width: initialLarge[index].position.width,
         position: "absolute",
@@ -146,6 +146,7 @@
   };
 
   const expand = (e) => {
+    pageOpened = true;
     if (pageOpened === false) {
       console.log(pageOpened);
     }
@@ -208,19 +209,16 @@
         />
       </Motion>
     {/if}
-    <div
-      class="close-main"
-      on:click={() => {
-        pageOpened = false;
-        console.log(pageOpened);
-      }}
-    />
-    <li
-      style=" display:{shouldShowLabels ? 'block' : 'none'}"
-      class="nav-label"
-    />
-  </div>
-</Motion>
+    {#if pageOpened}
+      <div
+        class="close-main"
+        on:click={() => {
+          pageOpened = false;
+        }}
+      />
+    {/if}
+  </div></Motion
+>
 
 <style lang="scss">
   .small-bar {
