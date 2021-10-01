@@ -7,7 +7,7 @@
 
   import "../global.scss";
   import Logo from "../images/Logo.svelte";
-
+  let ele;
   let windowThreshHold = false;
 
   onMount(() => {});
@@ -29,11 +29,13 @@
     );
   }
   console.log(offset[0]);
+  console.log(ele)
 </script>
 
-<div class="bar-container">
+<div bind:this={ele} class="bar-container">
   {#each bars as bar, i}
-    <Bar index={i} offset={offset[i]} />
+
+    <Bar {ele} index={i} offset={offset[i]} />
   {/each}
 </div>
 

@@ -22,9 +22,9 @@ export function init(settings = default_settings) {
 		amp: false,
 		dev: false,
 		entry: {
-			file: assets + "/_app/start-5e69be9e.js",
+			file: assets + "/_app/start-c46db149.js",
 			css: [assets + "/_app/assets/start-61d1577b.css"],
-			js: [assets + "/_app/start-5e69be9e.js",assets + "/_app/chunks/vendor-e483c085.js"]
+			js: [assets + "/_app/start-c46db149.js",assets + "/_app/chunks/vendor-c36717f7.js"]
 		},
 		fetched: undefined,
 		floc: false,
@@ -97,7 +97,7 @@ const module_lookup = {
 	".svelte-kit/build/components/layout.svelte": () => import("./components\\layout.svelte"),".svelte-kit/build/components/error.svelte": () => import("./components\\error.svelte"),"src/routes/index.svelte": () => import("..\\..\\src\\routes\\index.svelte")
 };
 
-const metadata_lookup = {".svelte-kit/build/components/layout.svelte":{"entry":"layout.svelte-31ad3e30.js","css":[],"js":["layout.svelte-31ad3e30.js","chunks/vendor-e483c085.js"],"styles":[]},".svelte-kit/build/components/error.svelte":{"entry":"error.svelte-b767072a.js","css":[],"js":["error.svelte-b767072a.js","chunks/vendor-e483c085.js"],"styles":[]},"src/routes/index.svelte":{"entry":"pages/index.svelte-5f4ea91d.js","css":["assets/pages/index.svelte-40a93a07.css"],"js":["pages/index.svelte-5f4ea91d.js","chunks/vendor-e483c085.js"],"styles":[]}};
+const metadata_lookup = {".svelte-kit/build/components/layout.svelte":{"entry":"layout.svelte-e67bf651.js","css":[],"js":["layout.svelte-e67bf651.js","chunks/vendor-c36717f7.js"],"styles":[]},".svelte-kit/build/components/error.svelte":{"entry":"error.svelte-0f72e216.js","css":[],"js":["error.svelte-0f72e216.js","chunks/vendor-c36717f7.js"],"styles":[]},"src/routes/index.svelte":{"entry":"pages/index.svelte-8f2b9e7a.js","css":["assets/pages/index.svelte-251b52f4.css"],"js":["pages/index.svelte-8f2b9e7a.js","chunks/vendor-c36717f7.js"],"styles":[]}};
 
 async function load_component(file) {
 	const { entry, css, js, styles } = metadata_lookup[file];

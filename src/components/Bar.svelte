@@ -1,4 +1,6 @@
 <script>
+  import { onMount } from "svelte";
+
   import { Motion } from "svelte-motion";
   import main1 from "../images/home/1.png";
   import main2 from "../images/home/2.png";
@@ -6,11 +8,45 @@
   import main4 from "../images/home/4.png";
 
   export let index;
-
+  export let ele;
   let shouldExpand = true;
   let shouldShowLabels = false;
   let imageVisible = true;
+  let variantLarge;
+  onMount(() => {
+    ele = document.querySelector("div.bar-container");
 
+    variantLarge = {
+      2: () => ({
+        opacity: 1,
+        left: initialLarge[index].position.left,
+        right: initialLarge[index].position.right,
+
+        top: initialLarge[index].position.top,
+        width: initialLarge[index].position.width,
+
+        height: Math.floor(ele.getBoundingClientRect().height * 0.62) + "px",
+
+        transition: {
+          ease:'linear',
+     
+          duration: 6,
+    
+        
+        },
+      }),
+      fullScreen: {
+        width: "100vw",
+        height: "70vh",
+        left: 0,
+        right: 0,
+        scale: 1,
+        rotateX: 0,
+        zIndex: 2,
+        position: "fixed",
+      },
+    };
+  });
   const initialLarge = {
     3: {
       defaultPos: {
@@ -101,29 +137,6 @@
       position: "fixed",
     },
   };
-  let variantLarge = {
-    2: () => ({
-      left: initialLarge[index].position.left,
-      right: initialLarge[index].position.right,
-      scale: 1,
-      top: initialLarge[index].position.top,
-      width: initialLarge[index].position.width,
-
-      height: "62%",
-
-      transition: { duration: hoveredOut, delay: 0.5 },
-    }),
-    fullScreen: {
-      width: "100vw",
-      height: "70vh",
-      left: 0,
-      right: 0,
-      scale: 1,
-      rotateX: 0,
-      zIndex: 2,
-      position: "fixed",
-    },
-  };
 
   const expand = (e) => {
     initial = "2";
@@ -142,14 +155,11 @@
   }}
   animate={currAnimation}
   variants={large ? variantLarge : variantSmall}
-  onHoverStart={() => {
-    hoveredOut = 0.2;
-  }}
   let:motion
   ><div
     use:motion
     style={large
-      ? `transform:scale(0.7);top:0;height:100%;left:${initialLarge[index].defaultPos.left}; opacity:1; width:10%; height:100%`
+      ? `top:0;height:100%;left:${initialLarge[index].defaultPos.left}; opacity:0; width:10%; height:800px`
       : "opacity:0"}
     on:click={expand}
     class="{large ? 'large-bar' : 'small-bar'} single-bar-container"
