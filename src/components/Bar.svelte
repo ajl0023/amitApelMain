@@ -2,208 +2,88 @@
   import { onMount } from "svelte";
 
   import { Motion } from "svelte-motion";
-  import main1 from "../images/home/1.png";
-  import main2 from "../images/home/2.png";
-  import main3 from "../images/home/3.jpg";
-  import main4 from "../images/home/4.png";
+
   import PageContent from "./PageContent.svelte";
-
+  import { largeBarObj } from "../animationObj";
   export let index;
-  export let ele;
-  let shouldExpand = true;
-  let shouldShowLabels = false;
-  let pointerEvents = false;
-  let initialDuration = 6;
 
-  let imageVisible = true;
-  let variantLarge;
   let pageOpened = false;
-  onMount(() => {
-    ele = document.querySelector("div.bar-container");
-
-    variantLarge = {
-      2: () => ({
-        scale: 1,
-        opacity: 1,
-        left: initialLarge[index].position.left,
-        right: initialLarge[index].position.right,
-
-        top: initialLarge[index].position.top,
-        width: initialLarge[index].position.width,
-        position: "absolute",
-        transition: {
-          duration: initialDuration,
-        },
-      }),
-      fullScreen: {
-        width: "100vw",
-        height: "100vh",
-        left: 0,
-        right: 0,
-        scale: 1,
-        rotateX: 0,
-        zIndex: 5,
-        position: "fixed",
-        opacity: 1,
-        top: 0,
-      },
-    };
-  });
-  const initialLarge = {
-    3: {
-      defaultPos: {
-        left: "0px",
-      },
-      imagePos: {
-        0: "0%",
-        1: "0%",
-      },
-      img: main1,
-      position: {
-        left: "10.9%",
-
-        top: "0%",
-
-        width: "2.7%",
-      },
-    },
-    17: {
-      img: main2,
-      imagePos: {
-        0: "44%",
-        1: "20%",
-      },
-      defaultPos: {
-        left: "22.5%",
-      },
-      position: {
-        left: "59.5%",
-
-        top: "0%",
-
-        width: "1.1%",
-      },
-    },
-    23: {
-      img: main3,
-      imagePos: {
-        0: "44%",
-        1: "20%",
-      },
-      defaultPos: {
-        left: "67.5%",
-      },
-      position: {
-        left: "75.1%",
-        top: "0%",
-
-        width: "2.7%",
-      },
-    },
-    28: {
-      img: main4,
-      imagePos: {
-        0: "44%",
-        1: "20%",
-      },
-      defaultPos: {
-        left: "90%",
-        right: "0",
-      },
-      position: {
-        left: "94.4%",
-        top: "0%",
-
-        width: "2.9%",
-      },
-    },
-  };
-  const closePage = () => {
-    pageOpened = false;
-  };
+  let currAnimation = "largeBar";
   let shouldShowCover = true;
-  let large = initialLarge[index];
-  let initial = "1";
-  let hoveredOut = 6;
-
-  let currAnimation = "2";
-  let variantSmall = {
-    2: {
-      rotateX: 0,
-      opacity: 1,
-      transition: { duration: hoveredOut, delay: 2.0 },
-    },
-    fullScreen: {
-      width: "100vw",
-      height: "100vh",
-      left: 0,
-      right: 0,
-      opacity: 1,
-      top: 0,
-      zIndex: 5,
-      position: "fixed",
+  let large = largeBarObj[index];
+  const smallBarVariant = {
+    visible: () => {
+      return {
+        transition: {
+          delay: 4.85,
+        },
+        opacity: 1,
+      };
     },
   };
+  const variants = {
+    shrink: () => {
+      return {
+        scale: 1,
 
-  const expand = (e) => {
-    pageOpened = true;
-    if (pageOpened === false) {
-      console.log(pageOpened);
-    }
-    shouldShowCover = false;
-    currAnimation = "fullScreen";
+        opacity: 1,
+        left: large.position.left,
+        top: "0",
 
-    shouldExpand = false;
+        width: large.position.width,
+        transition: {
+          delay: 0.5,
+          duration: 3,
+        },
+      };
+    },
+    largeBar: () => {
+      return {
+        scale: 1,
+        opacity: 1,
+        transition: {
+          duration: 2,
+          delay: large.delay,
+
+          ease: [0.01, 0.01, 0.01, 0.01],
+        },
+      };
+    },
   };
-  $: {
-    console.log(pageOpened, "234234234");
-  }
 </script>
 
 <Motion
-  initial={{ scale: large ? 1.5 : 1 }}
+  style={{
+    scale: large ? 0.5 : 1,
+  }}
   onAnimationComplete={(name) => {
-    if (name === "2") {
-      imageVisible = false;
-      pointerEvents = true;
-      shouldShowLabels = true;
+    if (name === "largeBar") {
+      currAnimation = "shrink";
     }
   }}
-  onHoverStart={() => {
-    initialDuration = 0.2;
-  }}
-  whileHover={{ scale: shouldExpand ? 1.2 : 1, transition: { duration: 0.2 } }}
-  animate={currAnimation}
-  variants={large ? variantLarge : variantSmall}
+  animate={large ? currAnimation : "visible"}
+  variants={large ? variants : smallBarVariant}
   let:motion
-  ><div
-    use:motion
-    style={large
-      ? `
-    top:0; left:${initialLarge[index].defaultPos.left}; opacity:1; width:10%;`
-      : "opacity:0;"}
-    on:click={expand}
-    class="{large ? 'large-bar' : 'small-bar'} single-bar-container"
-  >
+  ><div use:motion class="bar-container {!large ? 'small-bar' : 'large-bar'}">
     {#if pageOpened}
       <PageContent />
     {/if}
     {#if large && shouldShowCover}
       <Motion
-        transition={{
-          duration: 2,
-          delay: 2,
-        }}
-        animate={{
-          opacity: 0,
-        }}
         let:motion
+        variants={{
+          visible: {},
+          hidden: {
+            opacity: 0,
+            transition: {
+              delay: 5,
+            },
+          },
+        }}
+        animate={"hidden"}
         ><img
-          width="100"
-          height="100"
-          src={initialLarge[index].img}
+          src={largeBarObj[index].img}
           use:motion
-          style={`opacity:1`}
           class="cover-image"
           alt=""
         />
@@ -221,9 +101,6 @@
 >
 
 <style lang="scss">
-  .small-bar {
-    position: absolute;
-  }
   .cover-image {
     height: 100%;
     object-position: center center;
@@ -270,13 +147,18 @@
     }
   }
 
-  .single-bar-container {
-    z-index: 1;
+  .large-bar {
+    width: 300px;
 
+    height: 100%;
+  }
+  .bar-container {
+    z-index: 1;
+    opacity: 0;
     overflow: hidden;
+    height: 100%;
     position: absolute;
     background-color: white;
-    height: 100%;
 
     &:nth-child(1) {
       left: 2%;
@@ -298,10 +180,8 @@
     }
     &:nth-child(4) {
       // left: 10.9%;
-
+      left: 0;
       top: 0%;
-
-      width: 2.7%;
     }
 
     &:nth-child(5) {
@@ -388,7 +268,6 @@
       top: 0%;
 
       left: 20%;
-      width: 2.5%;
     }
     &:nth-child(19) {
       left: 91.3%;
@@ -422,10 +301,8 @@
       width: 0.9%;
     }
     &:nth-child(24) {
-      left: 75.1%;
+      left: 65%;
       top: 0%;
-
-      width: 2.7%;
     }
     &:nth-child(25) {
       left: 79.9%;
@@ -452,10 +329,8 @@
       width: 1.7%;
     }
     &:nth-child(29) {
-      left: 94.4%;
+      right: 0;
       top: 0%;
-
-      width: 2.9%;
     }
     &:nth-child(30) {
       left: 97.9%;

@@ -3,43 +3,40 @@
 
   import Logo from "../images/Logo.svelte";
   import logoText from "../images/home/logo Text.png";
+  const textVariant = {
+    visible: {
+      opacity: 1,
+      transition: {
+        delay: 5,
+        duration: 0.5,
+      },
+    },
+  };
 </script>
 
 <div class="container">
-  <Motion
-    transition={{ duration: 2, delay: 4 }}
-    let:motion
-    animate={{ opacity: 1 }}
-  >
+  <Motion variants={textVariant} animate="visible" let:motion>
     <h5 use:motion>connecting people</h5>
   </Motion>
   <Logo />
-  <Motion
-    transition={{ duration: 2, delay: 4 }}
-    let:motion
-    animate={{ opacity: 1 }}
-  >
+  <Motion let:motion>
     <div use:motion class="logo-text-container">
       <img class="logo-text" src={logoText} alt="" />
     </div>
   </Motion>
-  <Motion
-    transition={{ duration: 2, delay: 4 }}
-    let:motion
-    animate={{ opacity: 1 }}
-  >
+  <Motion variants={textVariant} animate="visible" let:motion>
     <h5 use:motion>to the art of living</h5>
   </Motion>
 </div>
 
 <style lang="scss">
   .logo-text-container {
-    max-width: 600px;
+    max-width: 500px;
     width: 100%;
     z-index: 2;
     opacity: 0;
     padding-top: 60px;
-    
+
     .logo-text {
       height: auto;
       object-fit: cover;

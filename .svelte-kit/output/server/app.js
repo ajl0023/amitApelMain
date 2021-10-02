@@ -1276,12 +1276,6 @@ async function respond(incoming, options2, state = {}) {
 }
 function noop$1() {
 }
-const identity = (x) => x;
-function assign(tar, src) {
-  for (const k in src)
-    tar[k] = src[k];
-  return tar;
-}
 function run(fn) {
   return fn();
 }
@@ -1316,33 +1310,6 @@ function compute_rest_props(props, keys) {
     if (!keys.has(k) && k[0] !== "$")
       rest[k] = props[k];
   return rest;
-}
-const is_client = typeof window !== "undefined";
-let now = is_client ? () => window.performance.now() : () => Date.now();
-let raf = is_client ? (cb2) => requestAnimationFrame(cb2) : noop$1;
-const tasks = new Set();
-function run_tasks(now2) {
-  tasks.forEach((task) => {
-    if (!task.c(now2)) {
-      tasks.delete(task);
-      task.f();
-    }
-  });
-  if (tasks.size !== 0)
-    raf(run_tasks);
-}
-function loop(callback) {
-  let task;
-  if (tasks.size === 0)
-    raf(run_tasks);
-  return {
-    promise: new Promise((fulfill) => {
-      tasks.add(task = { c: callback, f: fulfill });
-    }),
-    abort() {
-      tasks.delete(task);
-    }
-  };
 }
 let current_component;
 function set_current_component(component) {
@@ -1619,9 +1586,9 @@ function init(settings = default_settings) {
     amp: false,
     dev: false,
     entry: {
-      file: assets + "/_app/start-42174913.js",
+      file: assets + "/_app/start-7c9b2681.js",
       css: [assets + "/_app/assets/start-61d1577b.css"],
-      js: [assets + "/_app/start-42174913.js", assets + "/_app/chunks/vendor-8d6670d0.js"]
+      js: [assets + "/_app/start-7c9b2681.js", assets + "/_app/chunks/vendor-0db4028e.js"]
     },
     fetched: void 0,
     floc: false,
@@ -1680,7 +1647,7 @@ const module_lookup = {
     return index;
   })
 };
-const metadata_lookup = { ".svelte-kit/build/components/layout.svelte": { "entry": "layout.svelte-50ab3b5c.js", "css": [], "js": ["layout.svelte-50ab3b5c.js", "chunks/vendor-8d6670d0.js"], "styles": [] }, ".svelte-kit/build/components/error.svelte": { "entry": "error.svelte-a19e456e.js", "css": [], "js": ["error.svelte-a19e456e.js", "chunks/vendor-8d6670d0.js"], "styles": [] }, "src/routes/index.svelte": { "entry": "pages/index.svelte-1a5d4dfb.js", "css": ["assets/pages/index.svelte-53d4949b.css"], "js": ["pages/index.svelte-1a5d4dfb.js", "chunks/vendor-8d6670d0.js"], "styles": [] } };
+const metadata_lookup = { ".svelte-kit/build/components/layout.svelte": { "entry": "layout.svelte-78c267b1.js", "css": [], "js": ["layout.svelte-78c267b1.js", "chunks/vendor-0db4028e.js"], "styles": [] }, ".svelte-kit/build/components/error.svelte": { "entry": "error.svelte-3b1590e4.js", "css": [], "js": ["error.svelte-3b1590e4.js", "chunks/vendor-0db4028e.js"], "styles": [] }, "src/routes/index.svelte": { "entry": "pages/index.svelte-8df645a2.js", "css": ["assets/pages/index.svelte-dbfb5728.css"], "js": ["pages/index.svelte-8df645a2.js", "chunks/vendor-0db4028e.js"], "styles": [] } };
 async function load_component(file) {
   const { entry, css: css2, js, styles } = metadata_lookup[file];
   return {
@@ -3418,7 +3385,7 @@ function isTransitionDefined(_a) {
   return !!Object.keys(transition).length;
 }
 function convertTransitionToAnimationOptions(_a) {
-  var ease = _a.ease, times = _a.times, yoyo = _a.yoyo, flip = _a.flip, loop2 = _a.loop, transition = __rest(_a, ["ease", "times", "yoyo", "flip", "loop"]);
+  var ease = _a.ease, times = _a.times, yoyo = _a.yoyo, flip = _a.flip, loop = _a.loop, transition = __rest(_a, ["ease", "times", "yoyo", "flip", "loop"]);
   var options2 = __assign({}, transition);
   if (times)
     options2["offset"] = times;
@@ -3431,15 +3398,15 @@ function convertTransitionToAnimationOptions(_a) {
   }
   if (transition.type === "tween")
     options2.type = "keyframes";
-  if (yoyo || loop2 || flip) {
+  if (yoyo || loop || flip) {
     if (yoyo) {
       options2.repeatType = "reverse";
-    } else if (loop2) {
+    } else if (loop) {
       options2.repeatType = "loop";
     } else if (flip) {
       options2.repeatType = "mirror";
     }
-    options2.repeat = loop2 || yoyo || flip || transition.repeat;
+    options2.repeat = loop || yoyo || flip || transition.repeat;
   }
   if (transition.type !== "spring")
     options2.type = "keyframes";
@@ -7531,258 +7498,187 @@ function createMotionProxy(defaultFeatures) {
   });
 }
 createMotionProxy();
+var BgLogo_svelte_svelte_type_style_lang = ".logo-caption.svelte-1yic624.svelte-1yic624{text-transform:uppercase;letter-spacing:10px;font-size:3em;white-space:nowrap;transform:rotateZ(-90deg);transform-origin:center left}.logo-container.svelte-1yic624.svelte-1yic624{max-width:200px;display:flex;position:absolute;left:0;width:100%}.logo-container.svelte-1yic624 img.svelte-1yic624{object-fit:cover;height:auto;width:100%}";
+var PageContent_svelte_svelte_type_style_lang = '.main-text-content.svelte-1cn1xw2.svelte-1cn1xw2{max-width:600px;color:black}.main-text-content.svelte-1cn1xw2 .main-text-header.svelte-1cn1xw2{font-size:3em;font-weight:900;letter-spacing:3px;text-align:center;text-transform:uppercase}.main-text-content.svelte-1cn1xw2 .main-text-header.svelte-1cn1xw2::after{content:"";height:2px;width:40%;margin:0 auto;margin-top:20px;margin-bottom:20px;display:block;background-color:black}.content-image-container.svelte-1cn1xw2.svelte-1cn1xw2{margin-top:4rem}.content-image-container.svelte-1cn1xw2 img.svelte-1cn1xw2{width:100%}.top-nav-container.svelte-1cn1xw2.svelte-1cn1xw2{position:absolute;top:0;left:0;right:0;display:flex;padding-top:20px;flex-direction:column;justify-content:center;align-items:center}.header-nav-container.svelte-1cn1xw2.svelte-1cn1xw2{display:flex;list-style:none;color:black;text-transform:uppercase;gap:25px;padding-top:20px;font-size:1.5em}.header-nav-container.svelte-1cn1xw2 li.svelte-1cn1xw2{cursor:pointer}.logo-container.svelte-1cn1xw2.svelte-1cn1xw2{max-width:200px}.logo-container.svelte-1cn1xw2 .logo.svelte-1cn1xw2{width:100%}.main-page-container.svelte-1cn1xw2.svelte-1cn1xw2{padding:20px;display:flex;padding-top:5rem;overflow-y:auto;height:100%;gap:25px;background-size:cover;background-image:url("__VITE_ASSET__112e1098__");flex-direction:column;align-items:center;justify-content:center}';
 var main1 = "/_app/assets/1-52e24dec.png";
 var main2 = "/_app/assets/2-779b6b5c.png";
 var main3 = "/_app/assets/3-79f96e4f.jpg";
 var main4 = "/_app/assets/4-c6c03fae.png";
-var BgLogo_svelte_svelte_type_style_lang = ".logo-caption.svelte-1yic624.svelte-1yic624{text-transform:uppercase;letter-spacing:10px;font-size:3em;white-space:nowrap;transform:rotateZ(-90deg);transform-origin:center left}.logo-container.svelte-1yic624.svelte-1yic624{max-width:200px;display:flex;position:absolute;left:0;width:100%}.logo-container.svelte-1yic624 img.svelte-1yic624{object-fit:cover;height:auto;width:100%}";
-var PageContent_svelte_svelte_type_style_lang = '.main-text-content.svelte-1cn1xw2.svelte-1cn1xw2{max-width:600px;color:black}.main-text-content.svelte-1cn1xw2 .main-text-header.svelte-1cn1xw2{font-size:3em;font-weight:900;letter-spacing:3px;text-align:center;text-transform:uppercase}.main-text-content.svelte-1cn1xw2 .main-text-header.svelte-1cn1xw2::after{content:"";height:2px;width:40%;margin:0 auto;margin-top:20px;margin-bottom:20px;display:block;background-color:black}.content-image-container.svelte-1cn1xw2.svelte-1cn1xw2{margin-top:4rem}.content-image-container.svelte-1cn1xw2 img.svelte-1cn1xw2{width:100%}.top-nav-container.svelte-1cn1xw2.svelte-1cn1xw2{position:absolute;top:0;left:0;right:0;display:flex;padding-top:20px;flex-direction:column;justify-content:center;align-items:center}.header-nav-container.svelte-1cn1xw2.svelte-1cn1xw2{display:flex;list-style:none;color:black;text-transform:uppercase;gap:25px;padding-top:20px;font-size:1.5em}.header-nav-container.svelte-1cn1xw2 li.svelte-1cn1xw2{cursor:pointer}.logo-container.svelte-1cn1xw2.svelte-1cn1xw2{max-width:200px}.logo-container.svelte-1cn1xw2 .logo.svelte-1cn1xw2{width:100%}.main-page-container.svelte-1cn1xw2.svelte-1cn1xw2{padding:20px;display:flex;padding-top:5rem;overflow-y:auto;height:100%;gap:25px;background-size:cover;background-image:url("__VITE_ASSET__112e1098__");flex-direction:column;align-items:center;justify-content:center}';
-var Bar_svelte_svelte_type_style_lang = '.small-bar.svelte-1hm631c{position:absolute}.cover-image.svelte-1hm631c{height:100%;object-position:center center;width:100%;object-fit:cover}.close-main.svelte-1hm631c{height:32px;max-height:32px;max-width:32px;min-height:32px;min-width:32px;position:absolute;right:0;top:0;cursor:pointer;width:32px}.close-main.svelte-1hm631c:after{background-color:black;content:"";display:block;right:0;position:absolute;top:50%;height:2px;width:50%;transform:translate(-50%) translateY(-50%) rotate(45deg);transform-origin:center center}.close-main.svelte-1hm631c::before{background-color:black;content:"";height:50%;width:2px;display:block;left:50%;position:absolute;top:50%;transform:translate(-50%) translateY(-50%) rotate(45deg);transform-origin:center center}.single-bar-container.svelte-1hm631c{z-index:1;overflow:hidden;position:absolute;background-color:white;height:100%}.single-bar-container.svelte-1hm631c:nth-child(1){left:2%;top:0%;width:1%}.single-bar-container.svelte-1hm631c:nth-child(2){left:3.6%;top:0%;width:0.9%}.single-bar-container.svelte-1hm631c:nth-child(3){left:6.9%;top:0%;width:2%}.single-bar-container.svelte-1hm631c:nth-child(4){top:0%;width:2.7%}.single-bar-container.svelte-1hm631c:nth-child(5){left:14.3%;top:0%}.single-bar-container.svelte-1hm631c:nth-child(6){left:17.8%;top:0%;width:1.5%}.single-bar-container.svelte-1hm631c:nth-child(7){left:20%;top:0%;width:1.1%}.single-bar-container.svelte-1hm631c:nth-child(8){left:23.1%;top:0%;width:1.9%}.single-bar-container.svelte-1hm631c:nth-child(9){left:25.7%;top:0%;width:1%}.single-bar-container.svelte-1hm631c:nth-child(10){left:28.8%;top:0%;width:1%}.single-bar-container.svelte-1hm631c:nth-child(11){left:32%;top:0%;width:1.9%}.single-bar-container.svelte-1hm631c:nth-child(12){left:34.6%;top:0%;width:2.5%}.single-bar-container.svelte-1hm631c:nth-child(13){left:46.6%;top:0%;width:1%}.single-bar-container.svelte-1hm631c:nth-child(14){left:49.8%;top:0%;width:1.9%}.single-bar-container.svelte-1hm631c:nth-child(15){left:54%;top:0%;width:0.9%}.single-bar-container.svelte-1hm631c:nth-child(16){left:55.6%;top:0%;width:1.8%}.single-bar-container.svelte-1hm631c:nth-child(17){top:0%;width:1.1%}.single-bar-container.svelte-1hm631c:nth-child(18){top:0%;left:20%;width:2.5%}.single-bar-container.svelte-1hm631c:nth-child(19){left:91.3%;top:0%;width:1.1%}.single-bar-container.svelte-1hm631c:nth-child(20){left:64.5%;top:0%;width:1%}.single-bar-container.svelte-1hm631c:nth-child(21){left:66.4%;top:0%;width:0.9%}.single-bar-container.svelte-1hm631c:nth-child(22){left:69.4%;top:0%;width:1.9%}.single-bar-container.svelte-1hm631c:nth-child(23){left:73.5%;top:0%;width:0.9%}.single-bar-container.svelte-1hm631c:nth-child(24){left:75.1%;top:0%;width:2.7%}.single-bar-container.svelte-1hm631c:nth-child(25){left:79.9%;top:0%;width:1.7%}.single-bar-container.svelte-1hm631c:nth-child(26){left:82.5%;top:0%;width:0.8%}.single-bar-container.svelte-1hm631c:nth-child(27){left:85.5%;top:0%;width:1.2%}.single-bar-container.svelte-1hm631c:nth-child(28){left:88.9%;top:0%;width:1.7%}.single-bar-container.svelte-1hm631c:nth-child(29){left:94.4%;top:0%;width:2.9%}.single-bar-container.svelte-1hm631c:nth-child(30){left:97.9%;top:0%;width:1.7%}';
-const css$2 = {
-  code: '.small-bar.svelte-1hm631c{position:absolute}.cover-image.svelte-1hm631c{height:100%;object-position:center center;width:100%;object-fit:cover}.close-main.svelte-1hm631c{height:32px;max-height:32px;max-width:32px;min-height:32px;min-width:32px;position:absolute;right:0;top:0;cursor:pointer;width:32px}.close-main.svelte-1hm631c:after{background-color:black;content:"";display:block;right:0;position:absolute;top:50%;height:2px;width:50%;transform:translate(-50%) translateY(-50%) rotate(45deg);transform-origin:center center}.close-main.svelte-1hm631c::before{background-color:black;content:"";height:50%;width:2px;display:block;left:50%;position:absolute;top:50%;transform:translate(-50%) translateY(-50%) rotate(45deg);transform-origin:center center}.single-bar-container.svelte-1hm631c{z-index:1;overflow:hidden;position:absolute;background-color:white;height:100%}.single-bar-container.svelte-1hm631c:nth-child(1){left:2%;top:0%;width:1%}.single-bar-container.svelte-1hm631c:nth-child(2){left:3.6%;top:0%;width:0.9%}.single-bar-container.svelte-1hm631c:nth-child(3){left:6.9%;top:0%;width:2%}.single-bar-container.svelte-1hm631c:nth-child(4){top:0%;width:2.7%}.single-bar-container.svelte-1hm631c:nth-child(5){left:14.3%;top:0%}.single-bar-container.svelte-1hm631c:nth-child(6){left:17.8%;top:0%;width:1.5%}.single-bar-container.svelte-1hm631c:nth-child(7){left:20%;top:0%;width:1.1%}.single-bar-container.svelte-1hm631c:nth-child(8){left:23.1%;top:0%;width:1.9%}.single-bar-container.svelte-1hm631c:nth-child(9){left:25.7%;top:0%;width:1%}.single-bar-container.svelte-1hm631c:nth-child(10){left:28.8%;top:0%;width:1%}.single-bar-container.svelte-1hm631c:nth-child(11){left:32%;top:0%;width:1.9%}.single-bar-container.svelte-1hm631c:nth-child(12){left:34.6%;top:0%;width:2.5%}.single-bar-container.svelte-1hm631c:nth-child(13){left:46.6%;top:0%;width:1%}.single-bar-container.svelte-1hm631c:nth-child(14){left:49.8%;top:0%;width:1.9%}.single-bar-container.svelte-1hm631c:nth-child(15){left:54%;top:0%;width:0.9%}.single-bar-container.svelte-1hm631c:nth-child(16){left:55.6%;top:0%;width:1.8%}.single-bar-container.svelte-1hm631c:nth-child(17){top:0%;width:1.1%}.single-bar-container.svelte-1hm631c:nth-child(18){top:0%;left:20%;width:2.5%}.single-bar-container.svelte-1hm631c:nth-child(19){left:91.3%;top:0%;width:1.1%}.single-bar-container.svelte-1hm631c:nth-child(20){left:64.5%;top:0%;width:1%}.single-bar-container.svelte-1hm631c:nth-child(21){left:66.4%;top:0%;width:0.9%}.single-bar-container.svelte-1hm631c:nth-child(22){left:69.4%;top:0%;width:1.9%}.single-bar-container.svelte-1hm631c:nth-child(23){left:73.5%;top:0%;width:0.9%}.single-bar-container.svelte-1hm631c:nth-child(24){left:75.1%;top:0%;width:2.7%}.single-bar-container.svelte-1hm631c:nth-child(25){left:79.9%;top:0%;width:1.7%}.single-bar-container.svelte-1hm631c:nth-child(26){left:82.5%;top:0%;width:0.8%}.single-bar-container.svelte-1hm631c:nth-child(27){left:85.5%;top:0%;width:1.2%}.single-bar-container.svelte-1hm631c:nth-child(28){left:88.9%;top:0%;width:1.7%}.single-bar-container.svelte-1hm631c:nth-child(29){left:94.4%;top:0%;width:2.9%}.single-bar-container.svelte-1hm631c:nth-child(30){left:97.9%;top:0%;width:1.7%}',
-  map: '{"version":3,"file":"Bar.svelte","sources":["Bar.svelte"],"sourcesContent":["<script>\\r\\n  import { onMount } from \\"svelte\\";\\r\\n\\r\\n  import { Motion } from \\"svelte-motion\\";\\r\\n  import main1 from \\"../images/home/1.png\\";\\r\\n  import main2 from \\"../images/home/2.png\\";\\r\\n  import main3 from \\"../images/home/3.jpg\\";\\r\\n  import main4 from \\"../images/home/4.png\\";\\r\\n  import PageContent from \\"./PageContent.svelte\\";\\r\\n\\r\\n  export let index;\\r\\n  export let ele;\\r\\n  let shouldExpand = true;\\r\\n  let shouldShowLabels = false;\\r\\n  let pointerEvents = false;\\r\\n  let initialDuration = 6;\\r\\n\\r\\n  let imageVisible = true;\\r\\n  let variantLarge;\\r\\n  let pageOpened = false;\\r\\n  onMount(() => {\\r\\n    ele = document.querySelector(\\"div.bar-container\\");\\r\\n\\r\\n    variantLarge = {\\r\\n      2: () => ({\\r\\n        scale: 1,\\r\\n        opacity: 1,\\r\\n        left: initialLarge[index].position.left,\\r\\n        right: initialLarge[index].position.right,\\r\\n\\r\\n        top: initialLarge[index].position.top,\\r\\n        width: initialLarge[index].position.width,\\r\\n        position: \\"absolute\\",\\r\\n        transition: {\\r\\n          duration: initialDuration,\\r\\n        },\\r\\n      }),\\r\\n      fullScreen: {\\r\\n        width: \\"100vw\\",\\r\\n        height: \\"100vh\\",\\r\\n        left: 0,\\r\\n        right: 0,\\r\\n        scale: 1,\\r\\n        rotateX: 0,\\r\\n        zIndex: 5,\\r\\n        position: \\"fixed\\",\\r\\n        opacity: 1,\\r\\n        top: 0,\\r\\n      },\\r\\n    };\\r\\n  });\\r\\n  const initialLarge = {\\r\\n    3: {\\r\\n      defaultPos: {\\r\\n        left: \\"0px\\",\\r\\n      },\\r\\n      imagePos: {\\r\\n        0: \\"0%\\",\\r\\n        1: \\"0%\\",\\r\\n      },\\r\\n      img: main1,\\r\\n      position: {\\r\\n        left: \\"10.9%\\",\\r\\n\\r\\n        top: \\"0%\\",\\r\\n\\r\\n        width: \\"2.7%\\",\\r\\n      },\\r\\n    },\\r\\n    17: {\\r\\n      img: main2,\\r\\n      imagePos: {\\r\\n        0: \\"44%\\",\\r\\n        1: \\"20%\\",\\r\\n      },\\r\\n      defaultPos: {\\r\\n        left: \\"22.5%\\",\\r\\n      },\\r\\n      position: {\\r\\n        left: \\"59.5%\\",\\r\\n\\r\\n        top: \\"0%\\",\\r\\n\\r\\n        width: \\"1.1%\\",\\r\\n      },\\r\\n    },\\r\\n    23: {\\r\\n      img: main3,\\r\\n      imagePos: {\\r\\n        0: \\"44%\\",\\r\\n        1: \\"20%\\",\\r\\n      },\\r\\n      defaultPos: {\\r\\n        left: \\"67.5%\\",\\r\\n      },\\r\\n      position: {\\r\\n        left: \\"75.1%\\",\\r\\n        top: \\"0%\\",\\r\\n\\r\\n        width: \\"2.7%\\",\\r\\n      },\\r\\n    },\\r\\n    28: {\\r\\n      img: main4,\\r\\n      imagePos: {\\r\\n        0: \\"44%\\",\\r\\n        1: \\"20%\\",\\r\\n      },\\r\\n      defaultPos: {\\r\\n        left: \\"90%\\",\\r\\n        right: \\"0\\",\\r\\n      },\\r\\n      position: {\\r\\n        left: \\"94.4%\\",\\r\\n        top: \\"0%\\",\\r\\n\\r\\n        width: \\"2.9%\\",\\r\\n      },\\r\\n    },\\r\\n  };\\r\\n  const closePage = () => {\\r\\n    pageOpened = false;\\r\\n  };\\r\\n  let shouldShowCover = true;\\r\\n  let large = initialLarge[index];\\r\\n  let initial = \\"1\\";\\r\\n  let hoveredOut = 6;\\r\\n\\r\\n  let currAnimation = \\"2\\";\\r\\n  let variantSmall = {\\r\\n    2: {\\r\\n      rotateX: 0,\\r\\n      opacity: 1,\\r\\n      transition: { duration: hoveredOut, delay: 2.0 },\\r\\n    },\\r\\n    fullScreen: {\\r\\n      width: \\"100vw\\",\\r\\n      height: \\"100vh\\",\\r\\n      left: 0,\\r\\n      right: 0,\\r\\n      opacity: 1,\\r\\n      top: 0,\\r\\n      zIndex: 5,\\r\\n      position: \\"fixed\\",\\r\\n    },\\r\\n  };\\r\\n\\r\\n  const expand = (e) => {\\r\\n    pageOpened = true;\\r\\n    if (pageOpened === false) {\\r\\n      console.log(pageOpened);\\r\\n    }\\r\\n    shouldShowCover = false;\\r\\n    currAnimation = \\"fullScreen\\";\\r\\n\\r\\n    shouldExpand = false;\\r\\n  };\\r\\n  $: {\\r\\n    console.log(pageOpened, \\"234234234\\");\\r\\n  }\\r\\n<\/script>\\r\\n\\r\\n<Motion\\r\\n  initial={{ scale: large ? 1.5 : 1 }}\\r\\n  onAnimationComplete={(name) => {\\r\\n    if (name === \\"2\\") {\\r\\n      imageVisible = false;\\r\\n      pointerEvents = true;\\r\\n      shouldShowLabels = true;\\r\\n    }\\r\\n  }}\\r\\n  onHoverStart={() => {\\r\\n    initialDuration = 0.2;\\r\\n  }}\\r\\n  whileHover={{ scale: shouldExpand ? 1.2 : 1, transition: { duration: 0.2 } }}\\r\\n  animate={currAnimation}\\r\\n  variants={large ? variantLarge : variantSmall}\\r\\n  let:motion\\r\\n  ><div\\r\\n    use:motion\\r\\n    style={large\\r\\n      ? `\\r\\n    top:0; left:${initialLarge[index].defaultPos.left}; opacity:1; width:10%;`\\r\\n      : \\"opacity:0;\\"}\\r\\n    on:click={expand}\\r\\n    class=\\"{large ? \'large-bar\' : \'small-bar\'} single-bar-container\\"\\r\\n  >\\r\\n    {#if pageOpened}\\r\\n      <PageContent />\\r\\n    {/if}\\r\\n    {#if large && shouldShowCover}\\r\\n      <Motion\\r\\n        transition={{\\r\\n          duration: 2,\\r\\n          delay: 2,\\r\\n        }}\\r\\n        animate={{\\r\\n          opacity: 0,\\r\\n        }}\\r\\n        let:motion\\r\\n        ><img\\r\\n          width=\\"100\\"\\r\\n          height=\\"100\\"\\r\\n          src={initialLarge[index].img}\\r\\n          use:motion\\r\\n          style={`opacity:1`}\\r\\n          class=\\"cover-image\\"\\r\\n          alt=\\"\\"\\r\\n        />\\r\\n      </Motion>\\r\\n    {/if}\\r\\n    {#if pageOpened}\\r\\n      <div\\r\\n        class=\\"close-main\\"\\r\\n        on:click={() => {\\r\\n          pageOpened = false;\\r\\n        }}\\r\\n      />\\r\\n    {/if}\\r\\n  </div></Motion\\r\\n>\\r\\n\\r\\n<style lang=\\"scss\\">.small-bar {\\n  position: absolute;\\n}\\n\\n.cover-image {\\n  height: 100%;\\n  object-position: center center;\\n  width: 100%;\\n  object-fit: cover;\\n}\\n\\n.close-main {\\n  height: 32px;\\n  max-height: 32px;\\n  max-width: 32px;\\n  min-height: 32px;\\n  min-width: 32px;\\n  position: absolute;\\n  right: 0;\\n  top: 0;\\n  cursor: pointer;\\n  width: 32px;\\n}\\n.close-main:after {\\n  background-color: black;\\n  content: \\"\\";\\n  display: block;\\n  right: 0;\\n  position: absolute;\\n  top: 50%;\\n  height: 2px;\\n  width: 50%;\\n  transform: translate(-50%) translateY(-50%) rotate(45deg);\\n  transform-origin: center center;\\n}\\n.close-main::before {\\n  background-color: black;\\n  content: \\"\\";\\n  height: 50%;\\n  width: 2px;\\n  display: block;\\n  left: 50%;\\n  position: absolute;\\n  top: 50%;\\n  transform: translate(-50%) translateY(-50%) rotate(45deg);\\n  transform-origin: center center;\\n}\\n\\n.single-bar-container {\\n  z-index: 1;\\n  overflow: hidden;\\n  position: absolute;\\n  background-color: white;\\n  height: 100%;\\n}\\n.single-bar-container:nth-child(1) {\\n  left: 2%;\\n  top: 0%;\\n  width: 1%;\\n}\\n.single-bar-container:nth-child(2) {\\n  left: 3.6%;\\n  top: 0%;\\n  width: 0.9%;\\n}\\n.single-bar-container:nth-child(3) {\\n  left: 6.9%;\\n  top: 0%;\\n  width: 2%;\\n}\\n.single-bar-container:nth-child(4) {\\n  top: 0%;\\n  width: 2.7%;\\n}\\n.single-bar-container:nth-child(5) {\\n  left: 14.3%;\\n  top: 0%;\\n}\\n.single-bar-container:nth-child(6) {\\n  left: 17.8%;\\n  top: 0%;\\n  width: 1.5%;\\n}\\n.single-bar-container:nth-child(7) {\\n  left: 20%;\\n  top: 0%;\\n  width: 1.1%;\\n}\\n.single-bar-container:nth-child(8) {\\n  left: 23.1%;\\n  top: 0%;\\n  width: 1.9%;\\n}\\n.single-bar-container:nth-child(9) {\\n  left: 25.7%;\\n  top: 0%;\\n  width: 1%;\\n}\\n.single-bar-container:nth-child(10) {\\n  left: 28.8%;\\n  top: 0%;\\n  width: 1%;\\n}\\n.single-bar-container:nth-child(11) {\\n  left: 32%;\\n  top: 0%;\\n  width: 1.9%;\\n}\\n.single-bar-container:nth-child(12) {\\n  left: 34.6%;\\n  top: 0%;\\n  width: 2.5%;\\n}\\n.single-bar-container:nth-child(13) {\\n  left: 46.6%;\\n  top: 0%;\\n  width: 1%;\\n}\\n.single-bar-container:nth-child(14) {\\n  left: 49.8%;\\n  top: 0%;\\n  width: 1.9%;\\n}\\n.single-bar-container:nth-child(15) {\\n  left: 54%;\\n  top: 0%;\\n  width: 0.9%;\\n}\\n.single-bar-container:nth-child(16) {\\n  left: 55.6%;\\n  top: 0%;\\n  width: 1.8%;\\n}\\n.single-bar-container:nth-child(17) {\\n  top: 0%;\\n  width: 1.1%;\\n}\\n.single-bar-container:nth-child(18) {\\n  top: 0%;\\n  left: 20%;\\n  width: 2.5%;\\n}\\n.single-bar-container:nth-child(19) {\\n  left: 91.3%;\\n  top: 0%;\\n  width: 1.1%;\\n}\\n.single-bar-container:nth-child(20) {\\n  left: 64.5%;\\n  top: 0%;\\n  width: 1%;\\n}\\n.single-bar-container:nth-child(21) {\\n  left: 66.4%;\\n  top: 0%;\\n  width: 0.9%;\\n}\\n.single-bar-container:nth-child(22) {\\n  left: 69.4%;\\n  top: 0%;\\n  width: 1.9%;\\n}\\n.single-bar-container:nth-child(23) {\\n  left: 73.5%;\\n  top: 0%;\\n  width: 0.9%;\\n}\\n.single-bar-container:nth-child(24) {\\n  left: 75.1%;\\n  top: 0%;\\n  width: 2.7%;\\n}\\n.single-bar-container:nth-child(25) {\\n  left: 79.9%;\\n  top: 0%;\\n  width: 1.7%;\\n}\\n.single-bar-container:nth-child(26) {\\n  left: 82.5%;\\n  top: 0%;\\n  width: 0.8%;\\n}\\n.single-bar-container:nth-child(27) {\\n  left: 85.5%;\\n  top: 0%;\\n  width: 1.2%;\\n}\\n.single-bar-container:nth-child(28) {\\n  left: 88.9%;\\n  top: 0%;\\n  width: 1.7%;\\n}\\n.single-bar-container:nth-child(29) {\\n  left: 94.4%;\\n  top: 0%;\\n  width: 2.9%;\\n}\\n.single-bar-container:nth-child(30) {\\n  left: 97.9%;\\n  top: 0%;\\n  width: 1.7%;\\n}</style>\\r\\n"],"names":[],"mappings":"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"}'
+const largeBarObj = {
+  3: {
+    delay: 0.1,
+    defaultPos: {
+      left: "0px"
+    },
+    imagePos: {
+      0: "0%",
+      1: "0%"
+    },
+    img: main1,
+    position: {
+      left: "10.9%",
+      top: "0%",
+      width: "2.7%"
+    }
+  },
+  17: {
+    delay: 0.2,
+    img: main2,
+    imagePos: {
+      0: "44%",
+      1: "20%"
+    },
+    defaultPos: {
+      left: "22.5%"
+    },
+    position: {
+      left: "59.5%",
+      top: "0%",
+      width: "1.1%"
+    }
+  },
+  23: {
+    delay: 0.3,
+    img: main3,
+    imagePos: {
+      0: "44%",
+      1: "20%"
+    },
+    defaultPos: {
+      left: "67.5%"
+    },
+    position: {
+      left: "75.1%",
+      top: "0%",
+      width: "2.7%"
+    }
+  },
+  28: {
+    delay: 0.4,
+    img: main4,
+    imagePos: {
+      0: "44%",
+      1: "20%"
+    },
+    defaultPos: {
+      left: "80%"
+    },
+    position: {
+      left: "94.4%",
+      top: "0%",
+      width: "2.9%"
+    }
+  }
 };
-let hoveredOut = 6;
+var Bar_svelte_svelte_type_style_lang = '.cover-image.svelte-1irui2t{height:100%;object-position:center center;width:100%;object-fit:cover}.close-main.svelte-1irui2t{height:32px;max-height:32px;max-width:32px;min-height:32px;min-width:32px;position:absolute;right:0;top:0;cursor:pointer;width:32px}.close-main.svelte-1irui2t:after{background-color:black;content:"";display:block;right:0;position:absolute;top:50%;height:2px;width:50%;transform:translate(-50%) translateY(-50%) rotate(45deg);transform-origin:center center}.close-main.svelte-1irui2t::before{background-color:black;content:"";height:50%;width:2px;display:block;left:50%;position:absolute;top:50%;transform:translate(-50%) translateY(-50%) rotate(45deg);transform-origin:center center}.large-bar.svelte-1irui2t{width:300px;height:100%}.bar-container.svelte-1irui2t{z-index:1;opacity:0;overflow:hidden;height:100%;position:absolute;background-color:white}.bar-container.svelte-1irui2t:nth-child(1){left:2%;top:0%;width:1%}.bar-container.svelte-1irui2t:nth-child(2){left:3.6%;top:0%;width:0.9%}.bar-container.svelte-1irui2t:nth-child(3){left:6.9%;top:0%;width:2%}.bar-container.svelte-1irui2t:nth-child(4){left:0;top:0%}.bar-container.svelte-1irui2t:nth-child(5){left:14.3%;top:0%}.bar-container.svelte-1irui2t:nth-child(6){left:17.8%;top:0%;width:1.5%}.bar-container.svelte-1irui2t:nth-child(7){left:20%;top:0%;width:1.1%}.bar-container.svelte-1irui2t:nth-child(8){left:23.1%;top:0%;width:1.9%}.bar-container.svelte-1irui2t:nth-child(9){left:25.7%;top:0%;width:1%}.bar-container.svelte-1irui2t:nth-child(10){left:28.8%;top:0%;width:1%}.bar-container.svelte-1irui2t:nth-child(11){left:32%;top:0%;width:1.9%}.bar-container.svelte-1irui2t:nth-child(12){left:34.6%;top:0%;width:2.5%}.bar-container.svelte-1irui2t:nth-child(13){left:46.6%;top:0%;width:1%}.bar-container.svelte-1irui2t:nth-child(14){left:49.8%;top:0%;width:1.9%}.bar-container.svelte-1irui2t:nth-child(15){left:54%;top:0%;width:0.9%}.bar-container.svelte-1irui2t:nth-child(16){left:55.6%;top:0%;width:1.8%}.bar-container.svelte-1irui2t:nth-child(17){top:0%;width:1.1%}.bar-container.svelte-1irui2t:nth-child(18){top:0%;left:20%}.bar-container.svelte-1irui2t:nth-child(19){left:91.3%;top:0%;width:1.1%}.bar-container.svelte-1irui2t:nth-child(20){left:64.5%;top:0%;width:1%}.bar-container.svelte-1irui2t:nth-child(21){left:66.4%;top:0%;width:0.9%}.bar-container.svelte-1irui2t:nth-child(22){left:69.4%;top:0%;width:1.9%}.bar-container.svelte-1irui2t:nth-child(23){left:73.5%;top:0%;width:0.9%}.bar-container.svelte-1irui2t:nth-child(24){left:65%;top:0%}.bar-container.svelte-1irui2t:nth-child(25){left:79.9%;top:0%;width:1.7%}.bar-container.svelte-1irui2t:nth-child(26){left:82.5%;top:0%;width:0.8%}.bar-container.svelte-1irui2t:nth-child(27){left:85.5%;top:0%;width:1.2%}.bar-container.svelte-1irui2t:nth-child(28){left:88.9%;top:0%;width:1.7%}.bar-container.svelte-1irui2t:nth-child(29){right:0;top:0%}.bar-container.svelte-1irui2t:nth-child(30){left:97.9%;top:0%;width:1.7%}';
+const css$2 = {
+  code: '.cover-image.svelte-1irui2t{height:100%;object-position:center center;width:100%;object-fit:cover}.close-main.svelte-1irui2t{height:32px;max-height:32px;max-width:32px;min-height:32px;min-width:32px;position:absolute;right:0;top:0;cursor:pointer;width:32px}.close-main.svelte-1irui2t:after{background-color:black;content:"";display:block;right:0;position:absolute;top:50%;height:2px;width:50%;transform:translate(-50%) translateY(-50%) rotate(45deg);transform-origin:center center}.close-main.svelte-1irui2t::before{background-color:black;content:"";height:50%;width:2px;display:block;left:50%;position:absolute;top:50%;transform:translate(-50%) translateY(-50%) rotate(45deg);transform-origin:center center}.large-bar.svelte-1irui2t{width:300px;height:100%}.bar-container.svelte-1irui2t{z-index:1;opacity:0;overflow:hidden;height:100%;position:absolute;background-color:white}.bar-container.svelte-1irui2t:nth-child(1){left:2%;top:0%;width:1%}.bar-container.svelte-1irui2t:nth-child(2){left:3.6%;top:0%;width:0.9%}.bar-container.svelte-1irui2t:nth-child(3){left:6.9%;top:0%;width:2%}.bar-container.svelte-1irui2t:nth-child(4){left:0;top:0%}.bar-container.svelte-1irui2t:nth-child(5){left:14.3%;top:0%}.bar-container.svelte-1irui2t:nth-child(6){left:17.8%;top:0%;width:1.5%}.bar-container.svelte-1irui2t:nth-child(7){left:20%;top:0%;width:1.1%}.bar-container.svelte-1irui2t:nth-child(8){left:23.1%;top:0%;width:1.9%}.bar-container.svelte-1irui2t:nth-child(9){left:25.7%;top:0%;width:1%}.bar-container.svelte-1irui2t:nth-child(10){left:28.8%;top:0%;width:1%}.bar-container.svelte-1irui2t:nth-child(11){left:32%;top:0%;width:1.9%}.bar-container.svelte-1irui2t:nth-child(12){left:34.6%;top:0%;width:2.5%}.bar-container.svelte-1irui2t:nth-child(13){left:46.6%;top:0%;width:1%}.bar-container.svelte-1irui2t:nth-child(14){left:49.8%;top:0%;width:1.9%}.bar-container.svelte-1irui2t:nth-child(15){left:54%;top:0%;width:0.9%}.bar-container.svelte-1irui2t:nth-child(16){left:55.6%;top:0%;width:1.8%}.bar-container.svelte-1irui2t:nth-child(17){top:0%;width:1.1%}.bar-container.svelte-1irui2t:nth-child(18){top:0%;left:20%}.bar-container.svelte-1irui2t:nth-child(19){left:91.3%;top:0%;width:1.1%}.bar-container.svelte-1irui2t:nth-child(20){left:64.5%;top:0%;width:1%}.bar-container.svelte-1irui2t:nth-child(21){left:66.4%;top:0%;width:0.9%}.bar-container.svelte-1irui2t:nth-child(22){left:69.4%;top:0%;width:1.9%}.bar-container.svelte-1irui2t:nth-child(23){left:73.5%;top:0%;width:0.9%}.bar-container.svelte-1irui2t:nth-child(24){left:65%;top:0%}.bar-container.svelte-1irui2t:nth-child(25){left:79.9%;top:0%;width:1.7%}.bar-container.svelte-1irui2t:nth-child(26){left:82.5%;top:0%;width:0.8%}.bar-container.svelte-1irui2t:nth-child(27){left:85.5%;top:0%;width:1.2%}.bar-container.svelte-1irui2t:nth-child(28){left:88.9%;top:0%;width:1.7%}.bar-container.svelte-1irui2t:nth-child(29){right:0;top:0%}.bar-container.svelte-1irui2t:nth-child(30){left:97.9%;top:0%;width:1.7%}',
+  map: `{"version":3,"file":"Bar.svelte","sources":["Bar.svelte"],"sourcesContent":["<script>\\r\\n  import { onMount } from \\"svelte\\";\\r\\n\\r\\n  import { Motion } from \\"svelte-motion\\";\\r\\n\\r\\n  import PageContent from \\"./PageContent.svelte\\";\\r\\n  import { largeBarObj } from \\"../animationObj\\";\\r\\n  export let index;\\r\\n\\r\\n  let pageOpened = false;\\r\\n  let currAnimation = \\"largeBar\\";\\r\\n  let shouldShowCover = true;\\r\\n  let large = largeBarObj[index];\\r\\n  const smallBarVariant = {\\r\\n    visible: () => {\\r\\n      return {\\r\\n        transition: {\\r\\n          delay: 4.85,\\r\\n        },\\r\\n        opacity: 1,\\r\\n      };\\r\\n    },\\r\\n  };\\r\\n  const variants = {\\r\\n    shrink: () => {\\r\\n      return {\\r\\n        scale: 1,\\r\\n\\r\\n        opacity: 1,\\r\\n        left: large.position.left,\\r\\n        top: \\"0\\",\\r\\n\\r\\n        width: large.position.width,\\r\\n        transition: {\\r\\n          delay: 0.5,\\r\\n          duration: 3,\\r\\n        },\\r\\n      };\\r\\n    },\\r\\n    largeBar: () => {\\r\\n      return {\\r\\n        scale: 1,\\r\\n        opacity: 1,\\r\\n        transition: {\\r\\n          duration: 2,\\r\\n          delay: large.delay,\\r\\n\\r\\n          ease: [0.01, 0.01, 0.01, 0.01],\\r\\n        },\\r\\n      };\\r\\n    },\\r\\n  };\\r\\n<\/script>\\r\\n\\r\\n<Motion\\r\\n  style={{\\r\\n    scale: large ? 0.5 : 1,\\r\\n  }}\\r\\n  onAnimationComplete={(name) => {\\r\\n    if (name === \\"largeBar\\") {\\r\\n      currAnimation = \\"shrink\\";\\r\\n    }\\r\\n  }}\\r\\n  animate={large ? currAnimation : \\"visible\\"}\\r\\n  variants={large ? variants : smallBarVariant}\\r\\n  let:motion\\r\\n  ><div use:motion class=\\"bar-container {!large ? 'small-bar' : 'large-bar'}\\">\\r\\n    {#if pageOpened}\\r\\n      <PageContent />\\r\\n    {/if}\\r\\n    {#if large && shouldShowCover}\\r\\n      <Motion\\r\\n        let:motion\\r\\n        variants={{\\r\\n          visible: {},\\r\\n          hidden: {\\r\\n            opacity: 0,\\r\\n            transition: {\\r\\n              delay: 5,\\r\\n            },\\r\\n          },\\r\\n        }}\\r\\n        animate={\\"hidden\\"}\\r\\n        ><img\\r\\n          src={largeBarObj[index].img}\\r\\n          use:motion\\r\\n          class=\\"cover-image\\"\\r\\n          alt=\\"\\"\\r\\n        />\\r\\n      </Motion>\\r\\n    {/if}\\r\\n    {#if pageOpened}\\r\\n      <div\\r\\n        class=\\"close-main\\"\\r\\n        on:click={() => {\\r\\n          pageOpened = false;\\r\\n        }}\\r\\n      />\\r\\n    {/if}\\r\\n  </div></Motion\\r\\n>\\r\\n\\r\\n<style lang=\\"scss\\">.cover-image {\\n  height: 100%;\\n  object-position: center center;\\n  width: 100%;\\n  object-fit: cover;\\n}\\n\\n.close-main {\\n  height: 32px;\\n  max-height: 32px;\\n  max-width: 32px;\\n  min-height: 32px;\\n  min-width: 32px;\\n  position: absolute;\\n  right: 0;\\n  top: 0;\\n  cursor: pointer;\\n  width: 32px;\\n}\\n.close-main:after {\\n  background-color: black;\\n  content: \\"\\";\\n  display: block;\\n  right: 0;\\n  position: absolute;\\n  top: 50%;\\n  height: 2px;\\n  width: 50%;\\n  transform: translate(-50%) translateY(-50%) rotate(45deg);\\n  transform-origin: center center;\\n}\\n.close-main::before {\\n  background-color: black;\\n  content: \\"\\";\\n  height: 50%;\\n  width: 2px;\\n  display: block;\\n  left: 50%;\\n  position: absolute;\\n  top: 50%;\\n  transform: translate(-50%) translateY(-50%) rotate(45deg);\\n  transform-origin: center center;\\n}\\n\\n.large-bar {\\n  width: 300px;\\n  height: 100%;\\n}\\n\\n.bar-container {\\n  z-index: 1;\\n  opacity: 0;\\n  overflow: hidden;\\n  height: 100%;\\n  position: absolute;\\n  background-color: white;\\n}\\n.bar-container:nth-child(1) {\\n  left: 2%;\\n  top: 0%;\\n  width: 1%;\\n}\\n.bar-container:nth-child(2) {\\n  left: 3.6%;\\n  top: 0%;\\n  width: 0.9%;\\n}\\n.bar-container:nth-child(3) {\\n  left: 6.9%;\\n  top: 0%;\\n  width: 2%;\\n}\\n.bar-container:nth-child(4) {\\n  left: 0;\\n  top: 0%;\\n}\\n.bar-container:nth-child(5) {\\n  left: 14.3%;\\n  top: 0%;\\n}\\n.bar-container:nth-child(6) {\\n  left: 17.8%;\\n  top: 0%;\\n  width: 1.5%;\\n}\\n.bar-container:nth-child(7) {\\n  left: 20%;\\n  top: 0%;\\n  width: 1.1%;\\n}\\n.bar-container:nth-child(8) {\\n  left: 23.1%;\\n  top: 0%;\\n  width: 1.9%;\\n}\\n.bar-container:nth-child(9) {\\n  left: 25.7%;\\n  top: 0%;\\n  width: 1%;\\n}\\n.bar-container:nth-child(10) {\\n  left: 28.8%;\\n  top: 0%;\\n  width: 1%;\\n}\\n.bar-container:nth-child(11) {\\n  left: 32%;\\n  top: 0%;\\n  width: 1.9%;\\n}\\n.bar-container:nth-child(12) {\\n  left: 34.6%;\\n  top: 0%;\\n  width: 2.5%;\\n}\\n.bar-container:nth-child(13) {\\n  left: 46.6%;\\n  top: 0%;\\n  width: 1%;\\n}\\n.bar-container:nth-child(14) {\\n  left: 49.8%;\\n  top: 0%;\\n  width: 1.9%;\\n}\\n.bar-container:nth-child(15) {\\n  left: 54%;\\n  top: 0%;\\n  width: 0.9%;\\n}\\n.bar-container:nth-child(16) {\\n  left: 55.6%;\\n  top: 0%;\\n  width: 1.8%;\\n}\\n.bar-container:nth-child(17) {\\n  top: 0%;\\n  width: 1.1%;\\n}\\n.bar-container:nth-child(18) {\\n  top: 0%;\\n  left: 20%;\\n}\\n.bar-container:nth-child(19) {\\n  left: 91.3%;\\n  top: 0%;\\n  width: 1.1%;\\n}\\n.bar-container:nth-child(20) {\\n  left: 64.5%;\\n  top: 0%;\\n  width: 1%;\\n}\\n.bar-container:nth-child(21) {\\n  left: 66.4%;\\n  top: 0%;\\n  width: 0.9%;\\n}\\n.bar-container:nth-child(22) {\\n  left: 69.4%;\\n  top: 0%;\\n  width: 1.9%;\\n}\\n.bar-container:nth-child(23) {\\n  left: 73.5%;\\n  top: 0%;\\n  width: 0.9%;\\n}\\n.bar-container:nth-child(24) {\\n  left: 65%;\\n  top: 0%;\\n}\\n.bar-container:nth-child(25) {\\n  left: 79.9%;\\n  top: 0%;\\n  width: 1.7%;\\n}\\n.bar-container:nth-child(26) {\\n  left: 82.5%;\\n  top: 0%;\\n  width: 0.8%;\\n}\\n.bar-container:nth-child(27) {\\n  left: 85.5%;\\n  top: 0%;\\n  width: 1.2%;\\n}\\n.bar-container:nth-child(28) {\\n  left: 88.9%;\\n  top: 0%;\\n  width: 1.7%;\\n}\\n.bar-container:nth-child(29) {\\n  right: 0;\\n  top: 0%;\\n}\\n.bar-container:nth-child(30) {\\n  left: 97.9%;\\n  top: 0%;\\n  width: 1.7%;\\n}</style>\\r\\n"],"names":[],"mappings":"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"}`
+};
+let shouldShowCover = true;
 const Bar = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { index: index2 } = $$props;
-  let { ele } = $$props;
-  let variantLarge;
-  let pageOpened = false;
-  const initialLarge = {
-    3: {
-      defaultPos: { left: "0px" },
-      imagePos: { 0: "0%", 1: "0%" },
-      img: main1,
-      position: { left: "10.9%", top: "0%", width: "2.7%" }
-    },
-    17: {
-      img: main2,
-      imagePos: { 0: "44%", 1: "20%" },
-      defaultPos: { left: "22.5%" },
-      position: { left: "59.5%", top: "0%", width: "1.1%" }
-    },
-    23: {
-      img: main3,
-      imagePos: { 0: "44%", 1: "20%" },
-      defaultPos: { left: "67.5%" },
-      position: { left: "75.1%", top: "0%", width: "2.7%" }
-    },
-    28: {
-      img: main4,
-      imagePos: { 0: "44%", 1: "20%" },
-      defaultPos: { left: "90%", right: "0" },
-      position: { left: "94.4%", top: "0%", width: "2.9%" }
+  let currAnimation = "largeBar";
+  let large = largeBarObj[index2];
+  const smallBarVariant = {
+    visible: () => {
+      return { transition: { delay: 4.85 }, opacity: 1 };
     }
   };
-  let shouldShowCover = true;
-  let large = initialLarge[index2];
-  let currAnimation = "2";
-  let variantSmall = {
-    2: {
-      rotateX: 0,
-      opacity: 1,
-      transition: { duration: hoveredOut, delay: 2 }
+  const variants = {
+    shrink: () => {
+      return {
+        scale: 1,
+        opacity: 1,
+        left: large.position.left,
+        top: "0",
+        width: large.position.width,
+        transition: { delay: 0.5, duration: 3 }
+      };
     },
-    fullScreen: {
-      width: "100vw",
-      height: "100vh",
-      left: 0,
-      right: 0,
-      opacity: 1,
-      top: 0,
-      zIndex: 5,
-      position: "fixed"
+    largeBar: () => {
+      return {
+        scale: 1,
+        opacity: 1,
+        transition: {
+          duration: 2,
+          delay: large.delay,
+          ease: [0.01, 0.01, 0.01, 0.01]
+        }
+      };
     }
   };
   if ($$props.index === void 0 && $$bindings.index && index2 !== void 0)
     $$bindings.index(index2);
-  if ($$props.ele === void 0 && $$bindings.ele && ele !== void 0)
-    $$bindings.ele(ele);
   $$result.css.add(css$2);
-  {
-    {
-      console.log(pageOpened, "234234234");
-    }
-  }
   return `${validate_component(motion, "Motion").$$render($$result, {
-    initial: { scale: large ? 1.5 : 1 },
+    style: { scale: large ? 0.5 : 1 },
     onAnimationComplete: (name) => {
+      if (name === "largeBar") {
+        currAnimation = "shrink";
+      }
     },
-    onHoverStart: () => {
-    },
-    whileHover: {
-      scale: 1.2,
-      transition: { duration: 0.2 }
-    },
-    animate: currAnimation,
-    variants: large ? variantLarge : variantSmall
+    animate: large ? currAnimation : "visible",
+    variants: large ? variants : smallBarVariant
   }, {}, {
-    default: ({ motion: motion$1 }) => `<div${add_attribute("style", large ? `
-    top:0; left:${initialLarge[index2].defaultPos.left}; opacity:1; width:10%;` : "opacity:0;", 0)} class="${escape(large ? "large-bar" : "small-bar") + " single-bar-container svelte-1hm631c"}">${``}
+    default: ({ motion: motion$1 }) => `<div class="${"bar-container " + escape(!large ? "small-bar" : "large-bar") + " svelte-1irui2t"}">${``}
     ${large && shouldShowCover ? `${validate_component(motion, "Motion").$$render($$result, {
-      transition: { duration: 2, delay: 2 },
-      animate: { opacity: 0 }
+      variants: {
+        visible: {},
+        hidden: { opacity: 0, transition: { delay: 5 } }
+      },
+      animate: "hidden"
     }, {}, {
-      default: ({ motion: motion2 }) => `<img width="${"100"}" height="${"100"}"${add_attribute("src", initialLarge[index2].img, 0)}${add_attribute("style", `opacity:1`, 0)} class="${"cover-image svelte-1hm631c"}" alt="${""}">`
+      default: ({ motion: motion2 }) => `<img${add_attribute("src", largeBarObj[index2].img, 0)} class="${"cover-image svelte-1irui2t"}" alt="${""}">`
     })}` : ``}
     ${``}</div>`
   })}`;
 });
-function cubicOut(t) {
-  const f = t - 1;
-  return f * f * f + 1;
-}
-function is_date(obj) {
-  return Object.prototype.toString.call(obj) === "[object Date]";
-}
-function get_interpolator(a2, b2) {
-  if (a2 === b2 || a2 !== a2)
-    return () => a2;
-  const type = typeof a2;
-  if (type !== typeof b2 || Array.isArray(a2) !== Array.isArray(b2)) {
-    throw new Error("Cannot interpolate values of different type");
-  }
-  if (Array.isArray(a2)) {
-    const arr = b2.map((bi, i) => {
-      return get_interpolator(a2[i], bi);
-    });
-    return (t) => arr.map((fn) => fn(t));
-  }
-  if (type === "object") {
-    if (!a2 || !b2)
-      throw new Error("Object cannot be null");
-    if (is_date(a2) && is_date(b2)) {
-      a2 = a2.getTime();
-      b2 = b2.getTime();
-      const delta2 = b2 - a2;
-      return (t) => new Date(a2 + t * delta2);
-    }
-    const keys = Object.keys(b2);
-    const interpolators = {};
-    keys.forEach((key) => {
-      interpolators[key] = get_interpolator(a2[key], b2[key]);
-    });
-    return (t) => {
-      const result = {};
-      keys.forEach((key) => {
-        result[key] = interpolators[key](t);
-      });
-      return result;
-    };
-  }
-  if (type === "number") {
-    const delta2 = b2 - a2;
-    return (t) => a2 + t * delta2;
-  }
-  throw new Error(`Cannot interpolate ${type} values`);
-}
-function tweened(value, defaults = {}) {
-  const store = writable(value);
-  let task;
-  let target_value = value;
-  function set(new_value, opts) {
-    if (value == null) {
-      store.set(value = new_value);
-      return Promise.resolve();
-    }
-    target_value = new_value;
-    let previous_task = task;
-    let started = false;
-    let { delay = 0, duration = 400, easing = identity, interpolate: interpolate2 = get_interpolator } = assign(assign({}, defaults), opts);
-    if (duration === 0) {
-      if (previous_task) {
-        previous_task.abort();
-        previous_task = null;
-      }
-      store.set(value = target_value);
-      return Promise.resolve();
-    }
-    const start = now() + delay;
-    let fn;
-    task = loop((now2) => {
-      if (now2 < start)
-        return true;
-      if (!started) {
-        fn = interpolate2(value, new_value);
-        if (typeof duration === "function")
-          duration = duration(value, new_value);
-        started = true;
-      }
-      if (previous_task) {
-        previous_task.abort();
-        previous_task = null;
-      }
-      const elapsed = now2 - start;
-      if (elapsed > duration) {
-        store.set(value = new_value);
-        return false;
-      }
-      store.set(value = fn(easing(elapsed / duration)));
-      return true;
-    });
-    return task.promise;
-  }
-  return {
-    set,
-    update: (fn, opts) => set(fn(target_value, value), opts),
-    subscribe: store.subscribe
-  };
-}
 var global = '* {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n}\n\n@font-face {\n  font-family: "Orator";\n  src: url("__VITE_ASSET__b76fd88c__") format("truetype");\n}';
-var Logo_svelte_svelte_type_style_lang = ".bar-container.svelte-oex1hi{top:0;justify-content:space-between;z-index:3;position:relative;width:100%;display:flex;align-items:center}";
+var Logo_svelte_svelte_type_style_lang = ".bar-container.svelte-1dpze4w{display:flex;width:100%;overflow:hidden;align-items:center;justify-content:center;flex-direction:column;position:relative}";
 const css$1 = {
-  code: ".bar-container.svelte-oex1hi{top:0;justify-content:space-between;z-index:3;position:relative;width:100%;display:flex;align-items:center}",
-  map: '{"version":3,"file":"Logo.svelte","sources":["Logo.svelte"],"sourcesContent":["<script>\\r\\n  import { onDestroy, onMount } from \\"svelte\\";\\r\\n  import Bar from \\"../components/Bar.svelte\\";\\r\\n  import { spring, tweened } from \\"svelte/motion\\";\\r\\n  import { cubicOut } from \\"svelte/easing\\";\\r\\n  import { Motion } from \\"svelte-motion\\";\\r\\n\\r\\n  import \\"../global.scss\\";\\r\\n  import Logo from \\"../images/Logo.svelte\\";\\r\\n  let ele;\\r\\n  let windowThreshHold = false;\\r\\n\\r\\n  onMount(() => {});\\r\\n  onDestroy(() => {});\\r\\n  const bars = Array.from(\\" \\".repeat(30));\\r\\n\\r\\n  const offset = [];\\r\\n  for (let i = 0; i < 30; i++) {\\r\\n    offset.push(\\r\\n      tweened(\\r\\n        { rotate: 80 },\\r\\n\\r\\n        {\\r\\n          delay: i * 100,\\r\\n          duration: 4000,\\r\\n          easing: cubicOut,\\r\\n        }\\r\\n      )\\r\\n    );\\r\\n  }\\r\\n  console.log(offset[0]);\\r\\n  console.log(ele);\\r\\n<\/script>\\r\\n\\r\\n<Motion\\r\\n  transition={{ duration: 4, delay: 0 }}\\r\\n  animate={{\\r\\n    height: \\"400px\\",\\r\\n  }}\\r\\n  let:motion\\r\\n>\\r\\n  <div style=\\"height:80vh\\" use:motion bind:this={ele} class=\\"bar-container\\">\\r\\n    {#each bars as bar, i}\\r\\n      <Bar {ele} index={i} offset={offset[i]} />\\r\\n    {/each}\\r\\n  </div>\\r\\n</Motion>\\r\\n\\r\\n<style lang=\\"scss\\">.bar-container {\\n  top: 0;\\n  justify-content: space-between;\\n  z-index: 3;\\n  position: relative;\\n  width: 100%;\\n  display: flex;\\n  align-items: center;\\n}</style>\\r\\n"],"names":[],"mappings":"AAgDmB,cAAc,cAAC,CAAC,AACjC,GAAG,CAAE,CAAC,CACN,eAAe,CAAE,aAAa,CAC9B,OAAO,CAAE,CAAC,CACV,QAAQ,CAAE,QAAQ,CAClB,KAAK,CAAE,IAAI,CACX,OAAO,CAAE,IAAI,CACb,WAAW,CAAE,MAAM,AACrB,CAAC"}'
+  code: ".bar-container.svelte-1dpze4w{display:flex;width:100%;overflow:hidden;align-items:center;justify-content:center;flex-direction:column;position:relative}",
+  map: '{"version":3,"file":"Logo.svelte","sources":["Logo.svelte"],"sourcesContent":["<script>\\r\\n  import { onDestroy, onMount } from \\"svelte\\";\\r\\n  import Bar from \\"../components/Bar.svelte\\";\\r\\n  import { spring, tweened } from \\"svelte/motion\\";\\r\\n  import { cubicOut } from \\"svelte/easing\\";\\r\\n  import { Motion } from \\"svelte-motion\\";\\r\\n\\r\\n  import \\"../global.scss\\";\\r\\n  import Logo from \\"../images/Logo.svelte\\";\\r\\n  import { largeBarObj } from \\"../animationObj\\";\\r\\n  let ele;\\r\\n  let windowThreshHold = false;\\r\\n  let delay = [];\\r\\n  let delayCount = 0;\\r\\n\\r\\n  onDestroy(() => {});\\r\\n  const bars = Array.from(\\" \\".repeat(30));\\r\\n<\/script>\\r\\n\\r\\n<Motion\\r\\n  animate={{\\r\\n    height: \\"400px\\",\\r\\n  }}\\r\\n  let:motion\\r\\n>\\r\\n  <div style=\\"height:80vh\\" bind:this={ele} class=\\"bar-container\\">\\r\\n    {#each bars as bar, i}\\r\\n      <Bar {ele} index={i} />\\r\\n    {/each}\\r\\n  </div>\\r\\n</Motion>\\r\\n\\r\\n<style lang=\\"scss\\">.bar-container {\\n  display: flex;\\n  width: 100%;\\n  overflow: hidden;\\n  align-items: center;\\n  justify-content: center;\\n  flex-direction: column;\\n  position: relative;\\n}</style>\\r\\n"],"names":[],"mappings":"AAgCmB,cAAc,eAAC,CAAC,AACjC,OAAO,CAAE,IAAI,CACb,KAAK,CAAE,IAAI,CACX,QAAQ,CAAE,MAAM,CAChB,WAAW,CAAE,MAAM,CACnB,eAAe,CAAE,MAAM,CACvB,cAAc,CAAE,MAAM,CACtB,QAAQ,CAAE,QAAQ,AACpB,CAAC"}'
 };
 const Logo_1 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let ele;
   onDestroy(() => {
   });
   const bars = Array.from(" ".repeat(30));
-  const offset = [];
-  for (let i = 0; i < 30; i++) {
-    offset.push(tweened({ rotate: 80 }, {
-      delay: i * 100,
-      duration: 4e3,
-      easing: cubicOut
-    }));
-  }
-  console.log(offset[0]);
-  console.log(ele);
   $$result.css.add(css$1);
-  return `${validate_component(motion, "Motion").$$render($$result, {
-    transition: { duration: 4, delay: 0 },
-    animate: { height: "400px" }
-  }, {}, {
-    default: ({ motion: motion2 }) => `<div style="${"height:80vh"}" class="${"bar-container svelte-oex1hi"}"${add_attribute("this", ele, 0)}>${each(bars, (bar, i) => `${validate_component(Bar, "Bar").$$render($$result, { ele, index: i, offset: offset[i] }, {}, {})}`)}</div>`
+  return `${validate_component(motion, "Motion").$$render($$result, { animate: { height: "400px" } }, {}, {
+    default: ({ motion: motion2 }) => `<div style="${"height:80vh"}" class="${"bar-container svelte-1dpze4w"}"${add_attribute("this", ele, 0)}>${each(bars, (bar, i) => `${validate_component(Bar, "Bar").$$render($$result, { ele, index: i }, {}, {})}`)}</div>`
   })}`;
 });
 var logoText = "/_app/assets/logo Text-6620b85f.png";
-var Home_svelte_svelte_type_style_lang = '.logo-text-container.svelte-ckqs08.svelte-ckqs08{max-width:600px;width:100%;z-index:2;opacity:0;padding-top:60px}.logo-text-container.svelte-ckqs08 .logo-text.svelte-ckqs08{height:auto;object-fit:cover;width:100%}.container.svelte-ckqs08.svelte-ckqs08{background-repeat:no-repeat;font-family:Orator;color:white;background-size:cover;background-image:url("__VITE_ASSET__112e1098__");display:flex;flex-direction:column;padding:80px;justify-content:center;align-items:center;height:100vh;background-color:black;overflow:hidden}.container.svelte-ckqs08.svelte-ckqs08::before{position:absolute;top:0;bottom:0;left:0;right:0;width:100%;height:100%;content:"";z-index:1;background-color:rgba(0, 0, 0, 0.9)}h5.svelte-ckqs08.svelte-ckqs08{z-index:2;opacity:0;letter-spacing:5px;font-weight:100;font-size:4em;position:relative;text-transform:uppercase}h5.svelte-ckqs08.svelte-ckqs08:nth-child(1){padding-bottom:6rem}h5.svelte-ckqs08.svelte-ckqs08:nth-child(4){padding-top:6rem}';
+var Home_svelte_svelte_type_style_lang = '.logo-text-container.svelte-fa0gtz.svelte-fa0gtz{max-width:500px;width:100%;z-index:2;opacity:0;padding-top:60px}.logo-text-container.svelte-fa0gtz .logo-text.svelte-fa0gtz{height:auto;object-fit:cover;width:100%}.container.svelte-fa0gtz.svelte-fa0gtz{background-repeat:no-repeat;font-family:Orator;color:white;background-size:cover;background-image:url("__VITE_ASSET__112e1098__");display:flex;flex-direction:column;padding:80px;justify-content:center;align-items:center;height:100vh;background-color:black;overflow:hidden}.container.svelte-fa0gtz.svelte-fa0gtz::before{position:absolute;top:0;bottom:0;left:0;right:0;width:100%;height:100%;content:"";z-index:1;background-color:rgba(0, 0, 0, 0.9)}h5.svelte-fa0gtz.svelte-fa0gtz{z-index:2;opacity:0;letter-spacing:5px;font-weight:100;font-size:4em;position:relative;text-transform:uppercase}h5.svelte-fa0gtz.svelte-fa0gtz:nth-child(1){padding-bottom:6rem}h5.svelte-fa0gtz.svelte-fa0gtz:nth-child(4){padding-top:6rem}';
 const css = {
-  code: '.logo-text-container.svelte-ckqs08.svelte-ckqs08{max-width:600px;width:100%;z-index:2;opacity:0;padding-top:60px}.logo-text-container.svelte-ckqs08 .logo-text.svelte-ckqs08{height:auto;object-fit:cover;width:100%}.container.svelte-ckqs08.svelte-ckqs08{background-repeat:no-repeat;font-family:Orator;color:white;background-size:cover;background-image:url("../images/home/Background Photo.jpg");display:flex;flex-direction:column;padding:80px;justify-content:center;align-items:center;height:100vh;background-color:black;overflow:hidden}.container.svelte-ckqs08.svelte-ckqs08::before{position:absolute;top:0;bottom:0;left:0;right:0;width:100%;height:100%;content:"";z-index:1;background-color:rgba(0, 0, 0, 0.9)}h5.svelte-ckqs08.svelte-ckqs08{z-index:2;opacity:0;letter-spacing:5px;font-weight:100;font-size:4em;position:relative;text-transform:uppercase}h5.svelte-ckqs08.svelte-ckqs08:nth-child(1){padding-bottom:6rem}h5.svelte-ckqs08.svelte-ckqs08:nth-child(4){padding-top:6rem}',
-  map: '{"version":3,"file":"Home.svelte","sources":["Home.svelte"],"sourcesContent":["<script>\\r\\n  import { Motion } from \\"svelte-motion\\";\\r\\n\\r\\n  import Logo from \\"../images/Logo.svelte\\";\\r\\n  import logoText from \\"../images/home/logo Text.png\\";\\r\\n<\/script>\\r\\n\\r\\n<div class=\\"container\\">\\r\\n  <Motion\\r\\n    transition={{ duration: 2, delay: 4 }}\\r\\n    let:motion\\r\\n    animate={{ opacity: 1 }}\\r\\n  >\\r\\n    <h5 use:motion>connecting people</h5>\\r\\n  </Motion>\\r\\n  <Logo />\\r\\n  <Motion\\r\\n    transition={{ duration: 2, delay: 4 }}\\r\\n    let:motion\\r\\n    animate={{ opacity: 1 }}\\r\\n  >\\r\\n    <div use:motion class=\\"logo-text-container\\">\\r\\n      <img class=\\"logo-text\\" src={logoText} alt=\\"\\" />\\r\\n    </div>\\r\\n  </Motion>\\r\\n  <Motion\\r\\n    transition={{ duration: 2, delay: 4 }}\\r\\n    let:motion\\r\\n    animate={{ opacity: 1 }}\\r\\n  >\\r\\n    <h5 use:motion>to the art of living</h5>\\r\\n  </Motion>\\r\\n</div>\\r\\n\\r\\n<style lang=\\"scss\\">.logo-text-container {\\n  max-width: 600px;\\n  width: 100%;\\n  z-index: 2;\\n  opacity: 0;\\n  padding-top: 60px;\\n}\\n.logo-text-container .logo-text {\\n  height: auto;\\n  object-fit: cover;\\n  width: 100%;\\n}\\n\\n.container {\\n  background-repeat: no-repeat;\\n  font-family: Orator;\\n  color: white;\\n  background-size: cover;\\n  background-image: url(\\"../images/home/Background Photo.jpg\\");\\n  display: flex;\\n  flex-direction: column;\\n  padding: 80px;\\n  justify-content: center;\\n  align-items: center;\\n  height: 100vh;\\n  background-color: black;\\n  overflow: hidden;\\n}\\n.container::before {\\n  position: absolute;\\n  top: 0;\\n  bottom: 0;\\n  left: 0;\\n  right: 0;\\n  width: 100%;\\n  height: 100%;\\n  content: \\"\\";\\n  z-index: 1;\\n  background-color: rgba(0, 0, 0, 0.9);\\n}\\n\\nh5 {\\n  z-index: 2;\\n  opacity: 0;\\n  letter-spacing: 5px;\\n  font-weight: 100;\\n  font-size: 4em;\\n  position: relative;\\n  text-transform: uppercase;\\n}\\nh5:nth-child(1) {\\n  padding-bottom: 6rem;\\n}\\nh5:nth-child(4) {\\n  padding-top: 6rem;\\n}</style>\\r\\n"],"names":[],"mappings":"AAkCmB,oBAAoB,4BAAC,CAAC,AACvC,SAAS,CAAE,KAAK,CAChB,KAAK,CAAE,IAAI,CACX,OAAO,CAAE,CAAC,CACV,OAAO,CAAE,CAAC,CACV,WAAW,CAAE,IAAI,AACnB,CAAC,AACD,kCAAoB,CAAC,UAAU,cAAC,CAAC,AAC/B,MAAM,CAAE,IAAI,CACZ,UAAU,CAAE,KAAK,CACjB,KAAK,CAAE,IAAI,AACb,CAAC,AAED,UAAU,4BAAC,CAAC,AACV,iBAAiB,CAAE,SAAS,CAC5B,WAAW,CAAE,MAAM,CACnB,KAAK,CAAE,KAAK,CACZ,eAAe,CAAE,KAAK,CACtB,gBAAgB,CAAE,IAAI,qCAAqC,CAAC,CAC5D,OAAO,CAAE,IAAI,CACb,cAAc,CAAE,MAAM,CACtB,OAAO,CAAE,IAAI,CACb,eAAe,CAAE,MAAM,CACvB,WAAW,CAAE,MAAM,CACnB,MAAM,CAAE,KAAK,CACb,gBAAgB,CAAE,KAAK,CACvB,QAAQ,CAAE,MAAM,AAClB,CAAC,AACD,sCAAU,QAAQ,AAAC,CAAC,AAClB,QAAQ,CAAE,QAAQ,CAClB,GAAG,CAAE,CAAC,CACN,MAAM,CAAE,CAAC,CACT,IAAI,CAAE,CAAC,CACP,KAAK,CAAE,CAAC,CACR,KAAK,CAAE,IAAI,CACX,MAAM,CAAE,IAAI,CACZ,OAAO,CAAE,EAAE,CACX,OAAO,CAAE,CAAC,CACV,gBAAgB,CAAE,KAAK,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,GAAG,CAAC,AACtC,CAAC,AAED,EAAE,4BAAC,CAAC,AACF,OAAO,CAAE,CAAC,CACV,OAAO,CAAE,CAAC,CACV,cAAc,CAAE,GAAG,CACnB,WAAW,CAAE,GAAG,CAChB,SAAS,CAAE,GAAG,CACd,QAAQ,CAAE,QAAQ,CAClB,cAAc,CAAE,SAAS,AAC3B,CAAC,AACD,8BAAE,WAAW,CAAC,CAAC,AAAC,CAAC,AACf,cAAc,CAAE,IAAI,AACtB,CAAC,AACD,8BAAE,WAAW,CAAC,CAAC,AAAC,CAAC,AACf,WAAW,CAAE,IAAI,AACnB,CAAC"}'
+  code: '.logo-text-container.svelte-fa0gtz.svelte-fa0gtz{max-width:500px;width:100%;z-index:2;opacity:0;padding-top:60px}.logo-text-container.svelte-fa0gtz .logo-text.svelte-fa0gtz{height:auto;object-fit:cover;width:100%}.container.svelte-fa0gtz.svelte-fa0gtz{background-repeat:no-repeat;font-family:Orator;color:white;background-size:cover;background-image:url("../images/home/Background Photo.jpg");display:flex;flex-direction:column;padding:80px;justify-content:center;align-items:center;height:100vh;background-color:black;overflow:hidden}.container.svelte-fa0gtz.svelte-fa0gtz::before{position:absolute;top:0;bottom:0;left:0;right:0;width:100%;height:100%;content:"";z-index:1;background-color:rgba(0, 0, 0, 0.9)}h5.svelte-fa0gtz.svelte-fa0gtz{z-index:2;opacity:0;letter-spacing:5px;font-weight:100;font-size:4em;position:relative;text-transform:uppercase}h5.svelte-fa0gtz.svelte-fa0gtz:nth-child(1){padding-bottom:6rem}h5.svelte-fa0gtz.svelte-fa0gtz:nth-child(4){padding-top:6rem}',
+  map: '{"version":3,"file":"Home.svelte","sources":["Home.svelte"],"sourcesContent":["<script>\\r\\n  import { Motion } from \\"svelte-motion\\";\\r\\n\\r\\n  import Logo from \\"../images/Logo.svelte\\";\\r\\n  import logoText from \\"../images/home/logo Text.png\\";\\r\\n  const textVariant = {\\r\\n    visible: {\\r\\n      opacity: 1,\\r\\n      transition: {\\r\\n        delay: 5,\\r\\n        duration: 0.5,\\r\\n      },\\r\\n    },\\r\\n  };\\r\\n<\/script>\\r\\n\\r\\n<div class=\\"container\\">\\r\\n  <Motion variants={textVariant} animate=\\"visible\\" let:motion>\\r\\n    <h5 use:motion>connecting people</h5>\\r\\n  </Motion>\\r\\n  <Logo />\\r\\n  <Motion let:motion>\\r\\n    <div use:motion class=\\"logo-text-container\\">\\r\\n      <img class=\\"logo-text\\" src={logoText} alt=\\"\\" />\\r\\n    </div>\\r\\n  </Motion>\\r\\n  <Motion variants={textVariant} animate=\\"visible\\" let:motion>\\r\\n    <h5 use:motion>to the art of living</h5>\\r\\n  </Motion>\\r\\n</div>\\r\\n\\r\\n<style lang=\\"scss\\">.logo-text-container {\\n  max-width: 500px;\\n  width: 100%;\\n  z-index: 2;\\n  opacity: 0;\\n  padding-top: 60px;\\n}\\n.logo-text-container .logo-text {\\n  height: auto;\\n  object-fit: cover;\\n  width: 100%;\\n}\\n\\n.container {\\n  background-repeat: no-repeat;\\n  font-family: Orator;\\n  color: white;\\n  background-size: cover;\\n  background-image: url(\\"../images/home/Background Photo.jpg\\");\\n  display: flex;\\n  flex-direction: column;\\n  padding: 80px;\\n  justify-content: center;\\n  align-items: center;\\n  height: 100vh;\\n  background-color: black;\\n  overflow: hidden;\\n}\\n.container::before {\\n  position: absolute;\\n  top: 0;\\n  bottom: 0;\\n  left: 0;\\n  right: 0;\\n  width: 100%;\\n  height: 100%;\\n  content: \\"\\";\\n  z-index: 1;\\n  background-color: rgba(0, 0, 0, 0.9);\\n}\\n\\nh5 {\\n  z-index: 2;\\n  opacity: 0;\\n  letter-spacing: 5px;\\n  font-weight: 100;\\n  font-size: 4em;\\n  position: relative;\\n  text-transform: uppercase;\\n}\\nh5:nth-child(1) {\\n  padding-bottom: 6rem;\\n}\\nh5:nth-child(4) {\\n  padding-top: 6rem;\\n}</style>\\r\\n"],"names":[],"mappings":"AA+BmB,oBAAoB,4BAAC,CAAC,AACvC,SAAS,CAAE,KAAK,CAChB,KAAK,CAAE,IAAI,CACX,OAAO,CAAE,CAAC,CACV,OAAO,CAAE,CAAC,CACV,WAAW,CAAE,IAAI,AACnB,CAAC,AACD,kCAAoB,CAAC,UAAU,cAAC,CAAC,AAC/B,MAAM,CAAE,IAAI,CACZ,UAAU,CAAE,KAAK,CACjB,KAAK,CAAE,IAAI,AACb,CAAC,AAED,UAAU,4BAAC,CAAC,AACV,iBAAiB,CAAE,SAAS,CAC5B,WAAW,CAAE,MAAM,CACnB,KAAK,CAAE,KAAK,CACZ,eAAe,CAAE,KAAK,CACtB,gBAAgB,CAAE,IAAI,qCAAqC,CAAC,CAC5D,OAAO,CAAE,IAAI,CACb,cAAc,CAAE,MAAM,CACtB,OAAO,CAAE,IAAI,CACb,eAAe,CAAE,MAAM,CACvB,WAAW,CAAE,MAAM,CACnB,MAAM,CAAE,KAAK,CACb,gBAAgB,CAAE,KAAK,CACvB,QAAQ,CAAE,MAAM,AAClB,CAAC,AACD,sCAAU,QAAQ,AAAC,CAAC,AAClB,QAAQ,CAAE,QAAQ,CAClB,GAAG,CAAE,CAAC,CACN,MAAM,CAAE,CAAC,CACT,IAAI,CAAE,CAAC,CACP,KAAK,CAAE,CAAC,CACR,KAAK,CAAE,IAAI,CACX,MAAM,CAAE,IAAI,CACZ,OAAO,CAAE,EAAE,CACX,OAAO,CAAE,CAAC,CACV,gBAAgB,CAAE,KAAK,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,GAAG,CAAC,AACtC,CAAC,AAED,EAAE,4BAAC,CAAC,AACF,OAAO,CAAE,CAAC,CACV,OAAO,CAAE,CAAC,CACV,cAAc,CAAE,GAAG,CACnB,WAAW,CAAE,GAAG,CAChB,SAAS,CAAE,GAAG,CACd,QAAQ,CAAE,QAAQ,CAClB,cAAc,CAAE,SAAS,AAC3B,CAAC,AACD,8BAAE,WAAW,CAAC,CAAC,AAAC,CAAC,AACf,cAAc,CAAE,IAAI,AACtB,CAAC,AACD,8BAAE,WAAW,CAAC,CAAC,AAAC,CAAC,AACf,WAAW,CAAE,IAAI,AACnB,CAAC"}'
 };
 const Home = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+  const textVariant = {
+    visible: {
+      opacity: 1,
+      transition: { delay: 5, duration: 0.5 }
+    }
+  };
   $$result.css.add(css);
-  return `<div class="${"container svelte-ckqs08"}">${validate_component(motion, "Motion").$$render($$result, {
-    transition: { duration: 2, delay: 4 },
-    animate: { opacity: 1 }
+  return `<div class="${"container svelte-fa0gtz"}">${validate_component(motion, "Motion").$$render($$result, {
+    variants: textVariant,
+    animate: "visible"
   }, {}, {
-    default: ({ motion: motion2 }) => `<h5 class="${"svelte-ckqs08"}">connecting people</h5>`
+    default: ({ motion: motion2 }) => `<h5 class="${"svelte-fa0gtz"}">connecting people</h5>`
   })}
   ${validate_component(Logo_1, "Logo").$$render($$result, {}, {}, {})}
-  ${validate_component(motion, "Motion").$$render($$result, {
-    transition: { duration: 2, delay: 4 },
-    animate: { opacity: 1 }
-  }, {}, {
-    default: ({ motion: motion2 }) => `<div class="${"logo-text-container svelte-ckqs08"}"><img class="${"logo-text svelte-ckqs08"}"${add_attribute("src", logoText, 0)} alt="${""}"></div>`
+  ${validate_component(motion, "Motion").$$render($$result, {}, {}, {
+    default: ({ motion: motion2 }) => `<div class="${"logo-text-container svelte-fa0gtz"}"><img class="${"logo-text svelte-fa0gtz"}"${add_attribute("src", logoText, 0)} alt="${""}"></div>`
   })}
   ${validate_component(motion, "Motion").$$render($$result, {
-    transition: { duration: 2, delay: 4 },
-    animate: { opacity: 1 }
+    variants: textVariant,
+    animate: "visible"
   }, {}, {
-    default: ({ motion: motion2 }) => `<h5 class="${"svelte-ckqs08"}">to the art of living</h5>`
+    default: ({ motion: motion2 }) => `<h5 class="${"svelte-fa0gtz"}">to the art of living</h5>`
   })}
 </div>`;
 });

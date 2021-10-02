@@ -7,53 +7,37 @@
 
   import "../global.scss";
   import Logo from "../images/Logo.svelte";
+  import { largeBarObj } from "../animationObj";
   let ele;
   let windowThreshHold = false;
+  let delay = [];
+  let delayCount = 0;
 
-  onMount(() => {});
   onDestroy(() => {});
   const bars = Array.from(" ".repeat(30));
-
-  const offset = [];
-  for (let i = 0; i < 30; i++) {
-    offset.push(
-      tweened(
-        { rotate: 80 },
-
-        {
-          delay: i * 100,
-          duration: 4000,
-          easing: cubicOut,
-        }
-      )
-    );
-  }
-  console.log(offset[0]);
-  console.log(ele);
 </script>
 
 <Motion
-  transition={{ duration: 4, delay: 0 }}
   animate={{
     height: "400px",
   }}
   let:motion
 >
-  <div style="height:80vh" use:motion bind:this={ele} class="bar-container">
+  <div style="height:80vh" bind:this={ele} class="bar-container">
     {#each bars as bar, i}
-      <Bar {ele} index={i} offset={offset[i]} />
+      <Bar {ele} index={i} />
     {/each}
   </div>
 </Motion>
 
 <style lang="scss">
   .bar-container {
-    top: 0;
-    justify-content: space-between;
-    z-index: 3;
-    position: relative;
-    width: 100%;
     display: flex;
+    width: 100%;
+    overflow: hidden;
     align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
   }
 </style>
