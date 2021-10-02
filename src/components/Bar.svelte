@@ -149,7 +149,7 @@
 
   .large-bar {
     width: 20%;
-    opacity: 0;
+    opacity:0;
     height: 100%;
   }
   .small-bar {

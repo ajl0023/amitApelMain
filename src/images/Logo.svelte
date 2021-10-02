@@ -18,7 +18,7 @@
 
 <style lang="scss">
   .bar-container {
-    height: 900px;
+    height: 40vh;
     display: flex;
     gap: 20px;
     width: 100%;

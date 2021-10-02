@@ -1586,9 +1586,9 @@ function init(settings = default_settings) {
     amp: false,
     dev: false,
     entry: {
-      file: assets + "/_app/start-07122fce.js",
+      file: assets + "/_app/start-aae6382a.js",
       css: [assets + "/_app/assets/start-61d1577b.css"],
-      js: [assets + "/_app/start-07122fce.js", assets + "/_app/chunks/vendor-75bbcd8e.js"]
+      js: [assets + "/_app/start-aae6382a.js", assets + "/_app/chunks/vendor-75bbcd8e.js"]
     },
     fetched: void 0,
     floc: false,
@@ -1647,7 +1647,7 @@ const module_lookup = {
     return index;
   })
 };
-const metadata_lookup = { ".svelte-kit/build/components/layout.svelte": { "entry": "layout.svelte-9d57dad3.js", "css": [], "js": ["layout.svelte-9d57dad3.js", "chunks/vendor-75bbcd8e.js"], "styles": [] }, ".svelte-kit/build/components/error.svelte": { "entry": "error.svelte-e0bd17ff.js", "css": [], "js": ["error.svelte-e0bd17ff.js", "chunks/vendor-75bbcd8e.js"], "styles": [] }, "src/routes/index.svelte": { "entry": "pages/index.svelte-5dbef057.js", "css": ["assets/pages/index.svelte-2169bdcf.css"], "js": ["pages/index.svelte-5dbef057.js", "chunks/vendor-75bbcd8e.js"], "styles": [] } };
+const metadata_lookup = { ".svelte-kit/build/components/layout.svelte": { "entry": "layout.svelte-9d57dad3.js", "css": [], "js": ["layout.svelte-9d57dad3.js", "chunks/vendor-75bbcd8e.js"], "styles": [] }, ".svelte-kit/build/components/error.svelte": { "entry": "error.svelte-e0bd17ff.js", "css": [], "js": ["error.svelte-e0bd17ff.js", "chunks/vendor-75bbcd8e.js"], "styles": [] }, "src/routes/index.svelte": { "entry": "pages/index.svelte-2d4dbeb8.js", "css": ["assets/pages/index.svelte-819db68e.css"], "js": ["pages/index.svelte-2d4dbeb8.js", "chunks/vendor-75bbcd8e.js"], "styles": [] } };
 async function load_component(file) {
   const { entry, css: css2, js, styles } = metadata_lookup[file];
   return {
@@ -7636,10 +7636,10 @@ const Bar = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   })}`;
 });
 var global = '* {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n}\n\n@font-face {\n  font-family: "Orator";\n  src: url("__VITE_ASSET__b76fd88c__") format("truetype");\n}';
-var Logo_svelte_svelte_type_style_lang = ".bar-container.svelte-ihkcfq{height:900px;display:flex;gap:20px;width:100%;overflow:hidden;align-items:center;justify-content:center;position:relative}";
+var Logo_svelte_svelte_type_style_lang = ".bar-container.svelte-d0536v{height:40vh;display:flex;gap:20px;width:100%;overflow:hidden;align-items:center;justify-content:center;position:relative}";
 const css$1 = {
-  code: ".bar-container.svelte-ihkcfq{height:900px;display:flex;gap:20px;width:100%;overflow:hidden;align-items:center;justify-content:center;position:relative}",
-  map: '{"version":3,"file":"Logo.svelte","sources":["Logo.svelte"],"sourcesContent":["<script>\\r\\n  import { onDestroy } from \\"svelte\\";\\r\\n  import { Motion } from \\"svelte-motion\\";\\r\\n  import Bar from \\"../components/Bar.svelte\\";\\r\\n  import \\"../global.scss\\";\\r\\n\\r\\n  onDestroy(() => {});\\r\\n  const bars = Array.from(\\" \\".repeat(30));\\r\\n<\/script>\\r\\n\\r\\n<Motion let:motion>\\r\\n  <div class=\\"bar-container\\">\\r\\n    {#each bars as bar, i}\\r\\n      <Bar index={i} />\\r\\n    {/each}\\r\\n  </div>\\r\\n</Motion>\\r\\n\\r\\n<style lang=\\"scss\\">.bar-container {\\n  height: 900px;\\n  display: flex;\\n  gap: 20px;\\n  width: 100%;\\n  overflow: hidden;\\n  align-items: center;\\n  justify-content: center;\\n  position: relative;\\n}</style>\\r\\n"],"names":[],"mappings":"AAkBmB,cAAc,cAAC,CAAC,AACjC,MAAM,CAAE,KAAK,CACb,OAAO,CAAE,IAAI,CACb,GAAG,CAAE,IAAI,CACT,KAAK,CAAE,IAAI,CACX,QAAQ,CAAE,MAAM,CAChB,WAAW,CAAE,MAAM,CACnB,eAAe,CAAE,MAAM,CACvB,QAAQ,CAAE,QAAQ,AACpB,CAAC"}'
+  code: ".bar-container.svelte-d0536v{height:40vh;display:flex;gap:20px;width:100%;overflow:hidden;align-items:center;justify-content:center;position:relative}",
+  map: '{"version":3,"file":"Logo.svelte","sources":["Logo.svelte"],"sourcesContent":["<script>\\r\\n  import { onDestroy } from \\"svelte\\";\\r\\n  import { Motion } from \\"svelte-motion\\";\\r\\n  import Bar from \\"../components/Bar.svelte\\";\\r\\n  import \\"../global.scss\\";\\r\\n\\r\\n  onDestroy(() => {});\\r\\n  const bars = Array.from(\\" \\".repeat(30));\\r\\n<\/script>\\r\\n\\r\\n<Motion let:motion>\\r\\n  <div class=\\"bar-container\\">\\r\\n    {#each bars as bar, i}\\r\\n      <Bar index={i} />\\r\\n    {/each}\\r\\n  </div>\\r\\n</Motion>\\r\\n\\r\\n<style lang=\\"scss\\">.bar-container {\\n  height: 40vh;\\n  display: flex;\\n  gap: 20px;\\n  width: 100%;\\n  overflow: hidden;\\n  align-items: center;\\n  justify-content: center;\\n  position: relative;\\n}</style>\\r\\n"],"names":[],"mappings":"AAkBmB,cAAc,cAAC,CAAC,AACjC,MAAM,CAAE,IAAI,CACZ,OAAO,CAAE,IAAI,CACb,GAAG,CAAE,IAAI,CACT,KAAK,CAAE,IAAI,CACX,QAAQ,CAAE,MAAM,CAChB,WAAW,CAAE,MAAM,CACnB,eAAe,CAAE,MAAM,CACvB,QAAQ,CAAE,QAAQ,AACpB,CAAC"}'
 };
 const Logo = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   onDestroy(() => {
@@ -7647,7 +7647,7 @@ const Logo = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   const bars = Array.from(" ".repeat(30));
   $$result.css.add(css$1);
   return `${validate_component(motion, "Motion").$$render($$result, {}, {}, {
-    default: ({ motion: motion2 }) => `<div class="${"bar-container svelte-ihkcfq"}">${each(bars, (bar, i) => `${validate_component(Bar, "Bar").$$render($$result, { index: i }, {}, {})}`)}</div>`
+    default: ({ motion: motion2 }) => `<div class="${"bar-container svelte-d0536v"}">${each(bars, (bar, i) => `${validate_component(Bar, "Bar").$$render($$result, { index: i }, {}, {})}`)}</div>`
   })}`;
 });
 var logoText = "/_app/assets/logo Text-6620b85f.png";
