@@ -58,14 +58,15 @@ export const largeBarObj = {
     },
   },
   28: {
-    delay: 0.4,
+    delay: 0.7,
     img: main4,
     imagePos: {
       0: "44%",
       1: "20%",
     },
     defaultPos: {
-      left: "80%",
+      left: "90%",
+      right: "0",
     },
     position: {
       left: "94.4%",

@@ -82,8 +82,8 @@
         }}
         animate={"hidden"}
         ><img
-          src={largeBarObj[index].img}
           use:motion
+          src={largeBarObj[index].img}
           class="cover-image"
           alt=""
         />
@@ -148,13 +148,16 @@
   }
 
   .large-bar {
-    width: 300px;
-
+    width: 20%;
+    opacity: 0;
     height: 100%;
+  }
+  .small-bar {
+    opacity: 0;
   }
   .bar-container {
     z-index: 1;
-    opacity: 0;
+
     overflow: hidden;
     height: 100%;
     position: absolute;
@@ -264,10 +267,8 @@
       width: 1.1%;
     }
     &:nth-child(18) {
-      // left: 61.3%;
+      left: 20vw;
       top: 0%;
-
-      left: 20%;
     }
     &:nth-child(19) {
       left: 91.3%;
@@ -301,7 +302,7 @@
       width: 0.9%;
     }
     &:nth-child(24) {
-      left: 65%;
+      right: 20vw;
       top: 0%;
     }
     &:nth-child(25) {

@@ -19,7 +19,7 @@
     <h5 use:motion>connecting people</h5>
   </Motion>
   <Logo />
-  <Motion let:motion>
+  <Motion variants={textVariant} animate="visible" let:motion>
     <div use:motion class="logo-text-container">
       <img class="logo-text" src={logoText} alt="" />
     </div>
@@ -35,10 +35,11 @@
     width: 100%;
     z-index: 2;
     opacity: 0;
-    padding-top: 60px;
+    padding-top: 20px;
 
     .logo-text {
       height: auto;
+
       object-fit: cover;
       width: 100%;
     }
@@ -53,6 +54,7 @@
     display: flex;
     flex-direction: column;
     padding: 80px;
+    gap: 25px;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -72,6 +74,7 @@
     }
   }
   h5 {
+
     z-index: 2;
     opacity: 0;
     letter-spacing: 5px;
@@ -80,10 +83,9 @@
     position: relative;
     text-transform: uppercase;
     &:nth-child(1) {
-      padding-bottom: 6rem;
     }
     &:nth-child(4) {
-      padding-top: 6rem;
+  
     }
   }
 </style>
