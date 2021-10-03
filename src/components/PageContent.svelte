@@ -1,73 +1,71 @@
 <script>
   import mainLogo from "../images/home/AA-logo-black-mac (1).svg";
+
+  import About from "./About.svelte";
   import BgLogo from "./BgLogo.svelte";
-  import amitPhoto from "../images/home/amitapel4 (1).webp";
+  import MalibuRebuild from "./MalibuRebuild.svelte";
+  import MeetTheTeam from "./meetTheTeam/MeetTheTeam.svelte";
+  let currentPage = "meet the team";
+  const navButtons = [
+    "about",
+    "meet the team",
+    "what we do",
+    "malibu rebuild",
+    "press",
+  ];
+  const pages = {
+    about: {
+      component: About,
+    },
+    "malibu rebuild": {
+      component: MalibuRebuild,
+    },
+    "meet the team": {
+      component: MeetTheTeam,
+    },
+  };
 </script>
 
 <div class="main-page-container">
-  <BgLogo />
+  <BgLogo text={currentPage} />
   <div class="top-nav-container">
     <div class="logo-container">
       <img class="logo" src={mainLogo} alt="" />
     </div>
     <div class="header-nav-container">
-      <li>about</li>
-      <li>meet the team</li>
-      <li>what we do</li>
-      <li>malibu rebuild</li>
-      <li>press</li>
+      {#each navButtons as nav}
+        <li
+          class={currentPage === nav ? "underlined" : ""}
+          on:click={() => {
+            if (pages[nav]) {
+              currentPage = nav;
+            }
+          }}
+        >
+          {nav}
+        </li>
+      {/each}
     </div>
   </div>
-  <div class="content-image-container">
-    <img src={amitPhoto} alt="" />
-  </div>
-  <div class="main-text-content">
-    <h5 class="main-text-header">Meet Amit Apel</h5>
-    <p>
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia, nulla.
-      Earum beatae perspiciatis quisquam ut, ipsam cum dolorem pariatur
-      praesentium accusamus, eum aspernatur. Iusto neque doloremque, assumenda
-      quod iure quae.
-    </p>
-    <p>
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia, nulla.
-      Earum beatae perspiciatis quisquam ut, ipsam cum dolorem pariatur
-      praesentium accusamus, eum aspernatur. Iusto neque doloremque, assumenda
-      quod iure quae.
-    </p>
-  </div>
+  <svelte:component this={pages[currentPage].component} />
 </div>
 
 <style lang="scss">
-  .main-text-content {
-    max-width: 600px;
-    color: black;
-    .main-text-header {
-      font-size: 3em;
-
-      font-weight: 900;
-      letter-spacing: 3px;
-      text-align: center;
-
-      text-transform: uppercase;
-      &::after {
-        content: "";
-        height: 2px;
-        width: 40%;
-
-        margin: 0 auto;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        display: block;
-        background-color: black;
-      }
-    }
+  .main-page-container {
+    padding: 20px;
+    display: flex;
+    padding-top: 5rem;
+    overflow-y: auto;
+    height: 100%;
+    gap: 25px;
+    background-size: cover;
+    background-image: url("../images/home/Background Photo.jpg");
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
-  .content-image-container {
-    margin-top: 4rem;
-    img {
-      width: 100%;
-    }
+  .underlined {
+    text-decoration: underline;
   }
   .top-nav-container {
     position: absolute;
@@ -98,18 +96,5 @@
     .logo {
       width: 100%;
     }
-  }
-  .main-page-container {
-    padding: 20px;
-    display: flex;
-    padding-top: 5rem;
-    overflow-y: auto;
-    height: 100%;
-    gap: 25px;
-    background-size: cover;
-    background-image: url("../images/home/Background Photo.jpg");
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
   }
 </style>

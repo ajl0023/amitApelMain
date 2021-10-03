@@ -6,16 +6,20 @@
   import PageContent from "./PageContent.svelte";
   import { largeBarObj } from "../animationObj";
   export let index;
-
+  let playAnimation = false;
   let pageOpened = false;
   let currAnimation = "largeBar";
+  let shouldHover = true;
+  let bar;
   let shouldShowCover = true;
   let large = largeBarObj[index];
+  let animationDur = 3;
+  let animationDelay = 0.5;
   const smallBarVariant = {
     visible: () => {
       return {
         transition: {
-          delay: 4.85,
+          delay: playAnimation ? 4.85 : 0,
         },
         opacity: 1,
       };
@@ -32,8 +36,8 @@
 
         width: large.position.width,
         transition: {
-          delay: 0.5,
-          duration: 3,
+          delay: playAnimation ? animationDelay : 0,
+          duration: playAnimation ? animationDur : 0,
         },
       };
     },
@@ -42,11 +46,26 @@
         scale: 1,
         opacity: 1,
         transition: {
-          duration: 2,
-          delay: large.delay,
+          duration: playAnimation ? 2 : 0,
+          delay: playAnimation ? large.delay : 0,
 
           ease: [0.01, 0.01, 0.01, 0.01],
         },
+      };
+    },
+    fullPage: () => {
+      return {
+        scale: 1,
+        zIndex: 3,
+        opacity: 1,
+        position: "fixed",
+
+        width: "100vw",
+        height: "100vh",
+        left: 0,
+        right: 0,
+        bottom: 0,
+        top: 0,
       };
     },
   };
@@ -56,15 +75,40 @@
   style={{
     scale: large ? 0.5 : 1,
   }}
+  onHoverEnd={() => {
+    animationDelay = 0;
+    animationDur = 0.3;
+  }}
+  whileHover={{
+    scale: shouldHover ? 1.3 : 1,
+
+    transition: {
+      duration: 0.3,
+    },
+  }}
   onAnimationComplete={(name) => {
     if (name === "largeBar") {
       currAnimation = "shrink";
+    }
+    if (name === "shrink") {
+      bar.style.pointerEvents = "auto";
     }
   }}
   animate={large ? currAnimation : "visible"}
   variants={large ? variants : smallBarVariant}
   let:motion
-  ><div use:motion class="bar-container {!large ? 'small-bar' : 'large-bar'}">
+  ><div
+    on:click={(e) => {
+      if (large) {
+        shouldHover = false;
+        pageOpened = true;
+        currAnimation = "fullPage";
+      }
+    }}
+    bind:this={bar}
+    use:motion
+    class="bar-container {!large ? 'small-bar' : 'large-bar'}"
+  >
     {#if pageOpened}
       <PageContent />
     {/if}
@@ -92,8 +136,13 @@
     {#if pageOpened}
       <div
         class="close-main"
-        on:click={() => {
+        on:click={(e) => {
+          e.stopPropagation();
+
           pageOpened = false;
+          shouldHover = true;
+
+          currAnimation = "shrink";
         }}
       />
     {/if}
@@ -149,7 +198,7 @@
 
   .large-bar {
     width: 20%;
-    opacity:0;
+    opacity: 0;
     height: 100%;
   }
   .small-bar {
@@ -157,7 +206,7 @@
   }
   .bar-container {
     z-index: 1;
-
+    pointer-events: none;
     overflow: hidden;
     height: 100%;
     position: absolute;

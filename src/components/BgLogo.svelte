@@ -1,27 +1,34 @@
 <script>
   import Logo from "../images/home/Logo Sideways.png";
+  export let text;
 </script>
 
 <div class="logo-container">
   <img src={Logo} alt="" />
-  <h1 class="logo-caption">Apel Design</h1>
+  <h1 class="logo-caption">{text}</h1>
 </div>
 
 <style lang="scss">
   .logo-caption {
-    text-transform: uppercase;
-    letter-spacing: 10px;
-    font-size: 3em;
+    display: block;
+    height: fit-content;
+  
     white-space: nowrap;
-    transform: rotateZ(-90deg);
-    transform-origin: center left;
-
+    color: #a5a5a5;
+    font-weight: 900;
+    transform: rotate(-180deg);
+    font-size: 5em;
+    writing-mode: vertical-lr;
+   
+    text-transform: uppercase;
   }
+
   .logo-container {
     max-width: 200px;
     display: flex;
     position: absolute;
     left: 0;
+    justify-content: center;
     width: 100%;
 
     img {
