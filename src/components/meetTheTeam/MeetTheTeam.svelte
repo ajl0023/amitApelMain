@@ -6,18 +6,18 @@
   import { cardStore } from "./cardStore";
   const images = {
     front: [
-      "https://res.cloudinary.com/dt4xntymn/image/upload/v1633333779/mainSite/meet%20the%20team/Cards/front/Luke_Card_cuxo3o.jpg",
-      "https://res.cloudinary.com/dt4xntymn/image/upload/v1633333779/mainSite/meet%20the%20team/Cards/front/Mike_Card_b56jkd.jpg",
-      "https://res.cloudinary.com/dt4xntymn/image/upload/v1633333779/mainSite/meet%20the%20team/Cards/front/Yak_Card_eqb303.jpg",
-      "https://res.cloudinary.com/dt4xntymn/image/upload/v1633333778/mainSite/meet%20the%20team/Cards/front/Elchin_Card_hwuron.jpg",
-      "https://res.cloudinary.com/dt4xntymn/image/upload/v1633333778/mainSite/meet%20the%20team/Cards/front/Omar_Card_lxruab.jpg",
+      "https://res.cloudinary.com/dt4xntymn/image/upload/v1633335279/mainSite/meet%20the%20team/Cards/front/Luke_Card_dgfcrg.jpg",
+      "https://res.cloudinary.com/dt4xntymn/image/upload/v1633335279/mainSite/meet%20the%20team/Cards/front/Mike_Card_yyevct.jpg",
+      "https://res.cloudinary.com/dt4xntymn/image/upload/v1633335279/mainSite/meet%20the%20team/Cards/front/Yak_Card_c55nzc.jpg",
+      "https://res.cloudinary.com/dt4xntymn/image/upload/v1633335279/mainSite/meet%20the%20team/Cards/front/Elchin_Card_hhfjc2.jpg",
+      "https://res.cloudinary.com/dt4xntymn/image/upload/v1633335279/mainSite/meet%20the%20team/Cards/front/Omar_Card_frdbxy.jpg",
     ],
     back: [
-      "https://res.cloudinary.com/dt4xntymn/image/upload/v1633333910/mainSite/meet%20the%20team/Cards/back/Luke_Card_Back_lftzp9.jpg",
-      "https://res.cloudinary.com/dt4xntymn/image/upload/v1633333910/mainSite/meet%20the%20team/Cards/back/Mike_Card_Back_ywkl6h.jpg",
-      "https://res.cloudinary.com/dt4xntymn/image/upload/v1633333910/mainSite/meet%20the%20team/Cards/back/Yak_Card_Back_ridv0l.jpg",
-      "https://res.cloudinary.com/dt4xntymn/image/upload/v1633333910/mainSite/meet%20the%20team/Cards/back/Elchin_Card_Back_tmm5mo.jpg",
-      "https://res.cloudinary.com/dt4xntymn/image/upload/v1633333910/mainSite/meet%20the%20team/Cards/back/Omar_Card_Back_zy5qsb.jpg",
+      "https://res.cloudinary.com/dt4xntymn/image/upload/v1633335260/mainSite/meet%20the%20team/Cards/back/Luke_Card_Back_j5zphk.jpg",
+      "https://res.cloudinary.com/dt4xntymn/image/upload/v1633335260/mainSite/meet%20the%20team/Cards/back/Mike_Card_Back_pwet2v.jpg",
+      "https://res.cloudinary.com/dt4xntymn/image/upload/v1633335260/mainSite/meet%20the%20team/Cards/back/Yak_Card_Back_bsvk7b.jpg",
+      "https://res.cloudinary.com/dt4xntymn/image/upload/v1633335260/mainSite/meet%20the%20team/Cards/back/Elchin_Card_Back_ii2vul.jpg",
+      "https://res.cloudinary.com/dt4xntymn/image/upload/v1633335260/mainSite/meet%20the%20team/Cards/back/Omar_Card_Back_weik5s.jpg",
     ],
   };
 
