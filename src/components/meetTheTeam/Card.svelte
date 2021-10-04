@@ -32,7 +32,7 @@
           cardTransform.set(0);
 
           if (velocity[0] > 0.4) {
-            cardTransform.set(1500 * direction[0]);
+            cardTransform.set(600 * direction[0]);
 
             exited = true;
           }
