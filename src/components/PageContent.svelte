@@ -5,6 +5,7 @@
   import BgLogo from "./BgLogo.svelte";
   import MalibuRebuild from "./MalibuRebuild.svelte";
   import MeetTheTeam from "./meetTheTeam/MeetTheTeam.svelte";
+  import Press from "./press/Press.svelte";
   let currentPage = "meet the team";
   const navButtons = [
     "about",
@@ -22,6 +23,9 @@
     },
     "meet the team": {
       component: MeetTheTeam,
+    },
+    press: {
+      component: Press,
     },
   };
 </script>

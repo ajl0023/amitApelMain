@@ -1,4 +1,6 @@
 <script>
+  import { onMount } from "svelte";
+
   import { Motion } from "svelte-motion";
 
   import Card from "./Card.svelte";
@@ -39,8 +41,6 @@
     visible: { opacity: 1, x: 0 },
   };
 
-  let ison = false;
-
   const rotatedCards = [0, 3, 2, 4];
 
   let exited = [];
@@ -48,7 +48,10 @@
     if (v.length === 5) {
       cardStore.set([]);
     }
-    console.log($cardStore);
+  });
+
+  onMount(() => {
+    cardStore.set([]);
   });
 </script>
 

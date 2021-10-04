@@ -1,18 +1,7 @@
 <script>
-  import { onMount, tick } from "svelte";
   import { DragGesture } from "@use-gesture/vanilla";
-  import {
-    Motion,
-    useDragControls,
-    useMotionValue,
-    useSpring,
-    useVelocity,
-    useAnimation,
-  } from "svelte-motion";
-  import img from "../../images/card1.jpg";
+  import { onMount } from "svelte";
   import { spring, tweened } from "svelte/motion";
-
-  import { writable } from "svelte/store";
   import { cardStore } from "./cardStore";
   export let index;
 
@@ -21,9 +10,16 @@
   let exited;
   export let rotate;
   export let image;
-  const progress = spring(0, {
+  let currCard = $cardStore.length;
+  let rotationValueZ = tweened(rotate, {
+    duration: 150,
+  });
+  const cardTransform = spring(0, {
     duration: 400,
     delay: 3,
+  });
+  const scaleHover = tweened(1, {
+    duration: 200,
   });
 
   onMount(() => {
@@ -31,12 +27,13 @@
       ele,
       ({ down, direction, active, movement: [mx, my], velocity }) => {
         if (down) {
-          progress.set(mx);
+          cardTransform.set(mx);
         } else {
-          progress.set(0);
+          cardTransform.set(0);
 
           if (velocity[0] > 0.4) {
-            progress.set(1500 * direction[0]);
+            cardTransform.set(1500 * direction[0]);
+
             exited = true;
           }
         }
@@ -49,7 +46,7 @@
   cardStore.subscribe((v) => {
     if (v.length === 5) {
       setTimeout(() => {
-        progress.set(0);
+        cardTransform.set(0);
       }, 1000 + index * 100);
     }
   });
@@ -63,9 +60,10 @@
   }
 </script>
 
+<!-- svelte-ignore a11y-mouse-events-have-key-events -->
 <div
   on:mouseup={() => {
-    if ($progress === 0) {
+    if ($cardTransform === 0) {
       if ($rotationValue === 180) {
         rotationValue.set(0);
       } else {
@@ -73,11 +71,21 @@
       }
     }
   }}
-  style={`transform:translateX(${$progress}px) rotateY(${$rotationValue}deg) rotateZ(${rotate}deg)`}
+  style={`transform: scale(${$scaleHover}) translateX(${$cardTransform}px) rotateY(${$rotationValue}deg) rotateZ(${$rotationValueZ}deg)`}
   bind:this={ele}
   class="card-container"
+  on:mouseenter={(e) => {
+    if (4 - $cardStore.length === index) {
+      scaleHover.set(1.3);
+      rotationValueZ.set(0);
+    }
+  }}
+  on:mouseleave={() => {
+    scaleHover.set(1);
+    rotationValueZ.set(rotate);
+  }}
 >
-  <div class="image-container">
+  <div draggable="false" class="image-container">
     <img draggable="false" src={image["front"]} alt="" />
   </div>
   <div draggable="false" class="image-container back-container">
@@ -103,6 +111,8 @@
   }
   .image-container {
     overflow: hidden;
+    transform: rotateY(-180deg);
+
     img {
       height: 100%;
       width: 100%;
@@ -113,7 +123,6 @@
       -moz-user-select: none;
       -ms-user-select: none;
       user-select: none;
-      touch-action: none;
     }
   }
 
