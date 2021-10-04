@@ -63,6 +63,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    overflow-x: hidden;
   }
   .underlined {
     text-decoration: underline;

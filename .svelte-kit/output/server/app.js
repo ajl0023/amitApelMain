@@ -17,6 +17,7 @@ var __privateSet = (obj, member, value, setter) => {
   return value;
 };
 var _map;
+import "@use-gesture/vanilla";
 function get_single_valued_header(headers, key) {
   const value = headers[key];
   if (Array.isArray(value)) {
@@ -1586,9 +1587,9 @@ function init(settings = default_settings) {
     amp: false,
     dev: false,
     entry: {
-      file: assets + "/_app/start-933b0a81.js",
+      file: assets + "/_app/start-3f332653.js",
       css: [assets + "/_app/assets/start-61d1577b.css"],
-      js: [assets + "/_app/start-933b0a81.js", assets + "/_app/chunks/vendor-9bc47727.js"]
+      js: [assets + "/_app/start-3f332653.js", assets + "/_app/chunks/vendor-cb86cd8d.js"]
     },
     fetched: void 0,
     floc: false,
@@ -1647,7 +1648,7 @@ const module_lookup = {
     return index;
   })
 };
-const metadata_lookup = { ".svelte-kit/build/components/layout.svelte": { "entry": "layout.svelte-6a9ed38f.js", "css": [], "js": ["layout.svelte-6a9ed38f.js", "chunks/vendor-9bc47727.js"], "styles": [] }, ".svelte-kit/build/components/error.svelte": { "entry": "error.svelte-82aeb2e7.js", "css": [], "js": ["error.svelte-82aeb2e7.js", "chunks/vendor-9bc47727.js"], "styles": [] }, "src/routes/index.svelte": { "entry": "pages/index.svelte-d69acb33.js", "css": ["assets/pages/index.svelte-708187cc.css"], "js": ["pages/index.svelte-d69acb33.js", "chunks/vendor-9bc47727.js"], "styles": [] } };
+const metadata_lookup = { ".svelte-kit/build/components/layout.svelte": { "entry": "layout.svelte-a8315054.js", "css": [], "js": ["layout.svelte-a8315054.js", "chunks/vendor-cb86cd8d.js"], "styles": [] }, ".svelte-kit/build/components/error.svelte": { "entry": "error.svelte-ed1a5d56.js", "css": [], "js": ["error.svelte-ed1a5d56.js", "chunks/vendor-cb86cd8d.js"], "styles": [] }, "src/routes/index.svelte": { "entry": "pages/index.svelte-d04e4c9c.js", "css": ["assets/pages/index.svelte-ff50d35c.css"], "js": ["pages/index.svelte-d04e4c9c.js", "chunks/vendor-cb86cd8d.js"], "styles": [] } };
 async function load_component(file) {
   const { entry, css: css2, js, styles } = metadata_lookup[file];
   return {
@@ -7501,9 +7502,9 @@ createMotionProxy();
 var BgLogo_svelte_svelte_type_style_lang = ".logo-caption.svelte-28bx64.svelte-28bx64{display:block;height:fit-content;white-space:nowrap;color:#a5a5a5;font-weight:900;transform:rotate(-180deg);font-size:5em;writing-mode:vertical-lr;text-transform:uppercase}.logo-container.svelte-28bx64.svelte-28bx64{max-width:200px;display:flex;position:absolute;left:0;justify-content:center;width:100%}.logo-container.svelte-28bx64 img.svelte-28bx64{object-fit:cover;height:auto;width:100%}";
 var About_svelte_svelte_type_style_lang = '.main-text-content.svelte-rnlv05.svelte-rnlv05{max-width:600px;color:black}.main-text-content.svelte-rnlv05 .main-text-header.svelte-rnlv05{font-size:3em;font-weight:900;letter-spacing:3px;text-align:center;text-transform:uppercase}.main-text-content.svelte-rnlv05 .main-text-header.svelte-rnlv05::after{content:"";height:2px;width:40%;margin:0 auto;margin-top:20px;margin-bottom:20px;display:block;background-color:black}.content-image-container.svelte-rnlv05.svelte-rnlv05{margin-top:4rem}.content-image-container.svelte-rnlv05 img.svelte-rnlv05{width:100%}';
 var MalibuRebuild_svelte_svelte_type_style_lang = ".container.svelte-1ui1e1i{display:flex}.text-container.svelte-1ui1e1i{text-align:center;font-size:2em;max-width:700px;color:black}";
-var Card_svelte_svelte_type_style_lang = ".card.svelte-1gzc3qk{background-color:#fff;background-size:auto 85%;background-repeat:no-repeat;background-position:50%;width:55vh;max-width:300px;height:85vh;max-height:500px;will-change:transform;border-radius:10px;box-shadow:0 12.5px 100px -10px rgba(50, 50, 73, 0.4), 0 10px 10px -10px rgba(50, 50, 73, 0.3)}.card-container.svelte-1gzc3qk{display:flex;justify-content:center;align-items:center;position:absolute;width:300px;height:500px;will-change:transform;touch-action:none}";
-var MeetTheTeam_svelte_svelte_type_style_lang = ".card-container.svelte-1j8gi0t{position:relative}";
-var PageContent_svelte_svelte_type_style_lang = '.main-page-container.svelte-efjdid.svelte-efjdid{padding:20px;display:flex;padding-top:5rem;overflow-y:auto;height:100%;gap:25px;background-size:cover;background-image:url("__VITE_ASSET__112e1098__");flex-direction:column;align-items:center;justify-content:center}.underlined.svelte-efjdid.svelte-efjdid{text-decoration:underline}.top-nav-container.svelte-efjdid.svelte-efjdid{position:absolute;top:0;left:0;right:0;display:flex;padding-top:20px;flex-direction:column;justify-content:center;align-items:center}.header-nav-container.svelte-efjdid.svelte-efjdid{display:flex;list-style:none;color:black;text-transform:uppercase;gap:25px;padding-top:20px;font-size:1.5em}.header-nav-container.svelte-efjdid li.svelte-efjdid{cursor:pointer}.logo-container.svelte-efjdid.svelte-efjdid{max-width:200px}.logo-container.svelte-efjdid .logo.svelte-efjdid{width:100%}';
+var Card_svelte_svelte_type_style_lang = '.card-container.svelte-o7ul7y.svelte-o7ul7y{transform:rotateX(0deg);transform-style:preserve-3d;display:flex;justify-content:center;align-items:center;position:absolute;width:300px;height:500px;will-change:transform;touch-action:none}.image-container.svelte-o7ul7y.svelte-o7ul7y{overflow:hidden}.image-container.svelte-o7ul7y img.svelte-o7ul7y{height:100%;width:100%;touch-action:none;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;touch-action:none}.back-container.svelte-o7ul7y.svelte-o7ul7y{content:"";top:0;z-index:-1;position:absolute;transform:rotateX(0deg) translate3d(0px, 0px, 1px);height:100%;display:block;width:100%;border-radius:10px}';
+var MeetTheTeam_svelte_svelte_type_style_lang = ".card-container.svelte-178zda3{display:flex;justify-content:center;position:relative;align-items:center}";
+var PageContent_svelte_svelte_type_style_lang = '.main-page-container.svelte-1y2hsul.svelte-1y2hsul{padding:20px;display:flex;padding-top:5rem;overflow-y:auto;height:100%;gap:25px;background-size:cover;background-image:url("__VITE_ASSET__112e1098__");flex-direction:column;align-items:center;justify-content:center;overflow-x:hidden}.underlined.svelte-1y2hsul.svelte-1y2hsul{text-decoration:underline}.top-nav-container.svelte-1y2hsul.svelte-1y2hsul{position:absolute;top:0;left:0;right:0;display:flex;padding-top:20px;flex-direction:column;justify-content:center;align-items:center}.header-nav-container.svelte-1y2hsul.svelte-1y2hsul{display:flex;list-style:none;color:black;text-transform:uppercase;gap:25px;padding-top:20px;font-size:1.5em}.header-nav-container.svelte-1y2hsul li.svelte-1y2hsul{cursor:pointer}.logo-container.svelte-1y2hsul.svelte-1y2hsul{max-width:200px}.logo-container.svelte-1y2hsul .logo.svelte-1y2hsul{width:100%}';
 var main1 = "/_app/assets/1-52e24dec.png";
 var main2 = "/_app/assets/2-779b6b5c.png";
 var main3 = "/_app/assets/3-79f96e4f.jpg";
