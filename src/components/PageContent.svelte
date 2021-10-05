@@ -1,12 +1,17 @@
 <script>
+  import { tweened } from "svelte/motion";
+
   import mainLogo from "../images/home/AA-logo-black-mac (1).svg";
 
   import About from "./About.svelte";
   import BgLogo from "./BgLogo.svelte";
   import MalibuRebuild from "./MalibuRebuild.svelte";
   import MeetTheTeam from "./meetTheTeam/MeetTheTeam.svelte";
+  import Navbutton from "./Navbutton.svelte";
   import Press from "./press/Press.svelte";
-  let currentPage = "meet the team";
+
+  let currentPage = "press";
+
   const navButtons = [
     "about",
     "meet the team",
@@ -14,6 +19,7 @@
     "malibu rebuild",
     "press",
   ];
+
   const pages = {
     about: {
       component: About,
@@ -28,26 +34,22 @@
       component: Press,
     },
   };
+  const handleNavChange = (nav) => {
+    if (pages[nav]) {
+      currentPage = nav;
+    }
+  };
 </script>
 
 <div class="main-page-container">
-  <BgLogo text={currentPage} />
+  <BgLogo text={"apel design"} />
   <div class="top-nav-container">
     <div class="logo-container">
       <img class="logo" src={mainLogo} alt="" />
     </div>
     <div class="header-nav-container">
       {#each navButtons as nav}
-        <li
-          class={currentPage === nav ? "underlined" : ""}
-          on:click={() => {
-            if (pages[nav]) {
-              currentPage = nav;
-            }
-          }}
-        >
-          {nav}
-        </li>
+        <Navbutton {handleNavChange} {currentPage} {nav} />
       {/each}
     </div>
   </div>
@@ -69,13 +71,12 @@
     justify-content: center;
     overflow-x: hidden;
   }
-  .underlined {
-    text-decoration: underline;
-  }
+
   .top-nav-container {
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 2;
     right: 0;
     display: flex;
     padding-top: 20px;
@@ -92,9 +93,6 @@
     gap: 25px;
     padding-top: 20px;
     font-size: 1.5em;
-    li {
-      cursor: pointer;
-    }
   }
   .logo-container {
     max-width: 200px;
