@@ -1,11 +1,12 @@
 <script>
-  import { onMount } from "svelte";
+  import { afterUpdate, onMount } from "svelte";
 
   import { Motion, useAnimation } from "svelte-motion";
 
   import PageContent from "./PageContent.svelte";
   import { largeBarObj } from "../animationObj";
   export let index;
+  export let animations;
   let playAnimation = true;
   let pageOpened = false;
   let currAnimation = "largeBar";
@@ -18,7 +19,7 @@
   let animationControls = useAnimation();
   let animationControlsSm = useAnimation();
   let animationDelay = 0.5;
-  export let animationRunning;
+
   onMount(async () => {
     if (large) {
       await animationControls.start({
@@ -26,7 +27,7 @@
 
         opacity: 1,
         left: large.position.left,
-        top: "0",
+        top: 0,
 
         width: large.position.width,
         transition: {
@@ -34,11 +35,18 @@
           duration: 6,
         },
       });
+     
+      animations.push(index);
       bar.style.pointerEvents = "auto";
-      console.log(bar);
-      if (index === 3) {
-        animationRunning = false;
-      }
+
+      // animationControls.start({
+      //   transition: {
+      //     repeat: "Infinity",
+      //     duration: 2,
+      //     delay: large.delay + 6,
+      //   },
+      //   opacity: [null, 0, 1],
+      // });
     }
     animationControlsSm.start({
       transition: {
@@ -47,6 +55,8 @@
       opacity: 1,
     });
   });
+
+ 
   // $: {
   //   console.log(large);
   //   if (!animationRunning && large) {
@@ -78,9 +88,7 @@
   let:motion
   ><div
     on:click={(e) => {
-      console.log(123412342342423423);
       if (large) {
-        console.log("testingfdasfsdf");
         shouldHover = false;
         pageOpened = true;
         animationControls.start({

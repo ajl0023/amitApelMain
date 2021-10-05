@@ -1,2 +1,2 @@
-npm run build && git add . && git commit -m "mostly everything is finished" && git push origin main
+npm run build && git add . && git commit -m "initial animation needs to be refactored" && git push origin main
 

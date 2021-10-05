@@ -25,7 +25,10 @@
     }
   }}
 >
-  <li on:click={() => handleNavChange(nav)}>
+  <li
+    style="color:{currentPage === nav ? '#68208e' : 'black'}"
+    on:click={() => handleNavChange(nav)}
+  >
     {nav}
   </li>
   <div style="width:{$navAnimation}%" class={"underlined"} />

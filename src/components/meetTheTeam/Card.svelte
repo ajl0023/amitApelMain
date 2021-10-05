@@ -66,9 +66,7 @@
 <!-- svelte-ignore a11y-mouse-events-have-key-events -->
 <div
   on:mousedown={() => {
-    console.log($cardTransform);
     if (offScreen && Math.abs($cardTransform) >= 150) {
-      console.log("working");
       cardStore.update((s) => {
         s.pop();
         return s;
