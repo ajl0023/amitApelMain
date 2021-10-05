@@ -7,6 +7,7 @@
   import { largeBarObj } from "../animationObj";
   export let index;
   export let animations;
+  export let shouldPulse;
   let playAnimation = true;
   let pageOpened = false;
   let currAnimation = "largeBar";
@@ -15,6 +16,7 @@
 
   let shouldShowCover = true;
   let large = largeBarObj[index];
+
   let animationDur = 3;
   let animationControls = useAnimation();
   let animationControlsSm = useAnimation();
@@ -35,18 +37,11 @@
           duration: 6,
         },
       });
-     
-      animations.push(index);
-      bar.style.pointerEvents = "auto";
+      console.log("finished");
 
-      // animationControls.start({
-      //   transition: {
-      //     repeat: "Infinity",
-      //     duration: 2,
-      //     delay: large.delay + 6,
-      //   },
-      //   opacity: [null, 0, 1],
-      // });
+      if (index === 3) {
+        animations = false;
+      }
     }
     animationControlsSm.start({
       transition: {
@@ -56,20 +51,24 @@
     });
   });
 
- 
-  // $: {
-  //   console.log(large);
-  //   if (!animationRunning && large) {
-  //     console.log("testingsgds");
-  //     animationControls.start({
-  //       transition: {
-  //         repeat: "Infinity",
-  //         duration: 2,
-  //       },
-  //       opacity: [null, 0, 1],
-  //     });
-  //   }
-  // }
+  $: {
+    if (!animations && large && shouldPulse) {
+      bar.style.pointerEvents = "auto";
+
+      console.log("testingsgds");
+      animationControls.start({
+        transition: {
+          repeat: "Infinity",
+          duration: 3,
+        },
+        opacity: [null, 0, 1],
+      });
+    } else if (!shouldPulse) {
+      animationControls.start({
+        opacity: 1,
+      });
+    }
+  }
 </script>
 
 <Motion
@@ -88,6 +87,7 @@
   let:motion
   ><div
     on:click={(e) => {
+      shouldPulse = false;
       if (large) {
         shouldHover = false;
         pageOpened = true;
@@ -134,6 +134,7 @@
       <div
         class="close-main"
         on:click={(e) => {
+          shouldPulse = true;
           e.stopPropagation();
           pageOpened = false;
           animationControls

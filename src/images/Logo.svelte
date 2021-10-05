@@ -7,6 +7,7 @@
   onDestroy(() => {});
   let playAnimation;
   let animations = [];
+  let shouldPulse = true;
   const bars = Array.from(" ".repeat(30));
 </script>
 
@@ -22,7 +23,7 @@
 >
   <div use:motion class="bar-container">
     {#each bars as bar, i}
-      <Bar bind:animations index={i} />
+      <Bar bind:shouldPulse bind:animations index={i} />
     {/each}
   </div>
 </Motion>
