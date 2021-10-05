@@ -10,7 +10,7 @@
   import Navbutton from "./Navbutton.svelte";
   import Press from "./press/Press.svelte";
 
-  let currentPage = "press";
+  let currentPage = "about";
 
   const navButtons = [
     "about",
