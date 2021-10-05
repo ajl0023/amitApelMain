@@ -1,33 +1,27 @@
 <script>
   import { onMount } from "svelte";
 
-  import { Motion } from "svelte-motion";
+  import { Motion, useAnimation } from "svelte-motion";
 
   import PageContent from "./PageContent.svelte";
   import { largeBarObj } from "../animationObj";
   export let index;
-  let playAnimation = false;
+  let playAnimation = true;
   let pageOpened = false;
   let currAnimation = "largeBar";
   let shouldHover = true;
   let bar;
+
   let shouldShowCover = true;
   let large = largeBarObj[index];
   let animationDur = 3;
+  let animationControls = useAnimation();
+  let animationControlsSm = useAnimation();
   let animationDelay = 0.5;
-  const smallBarVariant = {
-    visible: () => {
-      return {
-        transition: {
-          delay: playAnimation ? 4.85 : 0,
-        },
-        opacity: 1,
-      };
-    },
-  };
-  const variants = {
-    shrink: () => {
-      return {
+  export let animationRunning;
+  onMount(async () => {
+    if (large) {
+      await animationControls.start({
         scale: 1,
 
         opacity: 1,
@@ -36,45 +30,39 @@
 
         width: large.position.width,
         transition: {
-          delay: playAnimation ? animationDelay : 0,
-          duration: playAnimation ? animationDur : 0,
+          delay: large.delay,
+          duration: 6,
         },
-      };
-    },
-    largeBar: () => {
-      return {
-        scale: 1,
-        opacity: 1,
-        transition: {
-          duration: playAnimation ? 2 : 0,
-          delay: playAnimation ? large.delay : 0,
-
-          ease: [0.01, 0.01, 0.01, 0.01],
-        },
-      };
-    },
-    fullPage: () => {
-      return {
-        scale: 1,
-        zIndex: 3,
-        opacity: 1,
-        position: "fixed",
-
-        width: "100vw",
-        height: "100vh",
-        left: 0,
-        right: 0,
-        bottom: 0,
-        top: 0,
-      };
-    },
-  };
+      });
+      bar.style.pointerEvents = "auto";
+      console.log(bar);
+      if (index === 3) {
+        animationRunning = false;
+      }
+    }
+    animationControlsSm.start({
+      transition: {
+        delay: 4.85,
+      },
+      opacity: 1,
+    });
+  });
+  // $: {
+  //   console.log(large);
+  //   if (!animationRunning && large) {
+  //     console.log("testingsgds");
+  //     animationControls.start({
+  //       transition: {
+  //         repeat: "Infinity",
+  //         duration: 2,
+  //       },
+  //       opacity: [null, 0, 1],
+  //     });
+  //   }
+  // }
 </script>
 
 <Motion
-  style={{
-    scale: large ? 0.5 : 1,
-  }}
   onHoverEnd={() => {
     animationDelay = 0;
     animationDur = 0.3;
@@ -86,23 +74,24 @@
       duration: 0.3,
     },
   }}
-  onAnimationComplete={(name) => {
-    if (name === "largeBar") {
-      currAnimation = "shrink";
-    }
-    if (name === "shrink") {
-      bar.style.pointerEvents = "auto";
-    }
-  }}
-  animate={large ? currAnimation : "visible"}
-  variants={large ? variants : smallBarVariant}
+  animate={large ? animationControls : animationControlsSm}
   let:motion
   ><div
     on:click={(e) => {
+      console.log(123412342342423423);
       if (large) {
+        console.log("testingfdasfsdf");
         shouldHover = false;
         pageOpened = true;
-        currAnimation = "fullPage";
+        animationControls.start({
+          zIndex: 3,
+
+          width: "100vw",
+          height: "100vh",
+          left: -bar.offsetParent.offsetLeft,
+
+          top: -bar.offsetParent.offsetTop,
+        });
       }
     }}
     bind:this={bar}
@@ -138,11 +127,19 @@
         class="close-main"
         on:click={(e) => {
           e.stopPropagation();
-
           pageOpened = false;
-          shouldHover = true;
+          animationControls
+            .start({
+              height: "40vh",
 
-          currAnimation = "shrink";
+              left: large.position.left,
+              top: 0,
+              position: "absolute",
+              width: large.position.width,
+            })
+            .then(() => {
+              shouldHover = true;
+            });
         }}
       />
     {/if}
@@ -168,6 +165,7 @@
     top: 0;
     cursor: pointer;
     width: 32px;
+    z-index: 3;
 
     &:after {
       background-color: black;

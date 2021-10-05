@@ -6,7 +6,11 @@
 
   onDestroy(() => {});
   let playAnimation;
+  let animationRunning = true;
   const bars = Array.from(" ".repeat(30));
+  $: {
+    console.log(animationRunning);
+  }
 </script>
 
 <Motion
@@ -21,7 +25,7 @@
 >
   <div use:motion class="bar-container">
     {#each bars as bar, i}
-      <Bar index={i} />
+      <Bar bind:animationRunning index={i} />
     {/each}
   </div>
 </Motion>
