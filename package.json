@@ -26,6 +26,7 @@
 	"dependencies": {
 		"@glidejs/glide": "^3.4.1",
 		"@use-gesture/vanilla": "^10.0.2",
+		"gsap": "^3.8.0",
 		"node-sass": "^6.0.1",
 		"svelte-preprocess": "^4.9.2",
 		"vanilla-lazyload": "^17.4.0"

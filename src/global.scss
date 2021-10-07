@@ -7,3 +7,42 @@
   font-family: "Orator";
   src: url("./fonts/Capsuula.ttf") format("truetype");
 }
+.close-main {
+  height: 32px;
+  max-height: 32px;
+  max-width: 32px;
+  min-height: 32px;
+  min-width: 32px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+  width: 32px;
+  z-index: 3;
+
+  &:after {
+    background-color: black;
+    content: "";
+    display: block;
+    right: 0;
+    position: absolute;
+    top: 50%;
+    height: 2px;
+    width: 50%;
+    transform: translate(-50%) translateY(-50%) rotate(45deg);
+    transform-origin: center center;
+  }
+  &::before {
+    background-color: black;
+    content: "";
+    height: 50%;
+    width: 2px;
+    display: block;
+
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%) translateY(-50%) rotate(45deg);
+    transform-origin: center center;
+  }
+}

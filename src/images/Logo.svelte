@@ -1,36 +1,59 @@
 <script>
-  import { onDestroy } from "svelte";
-  import { Motion } from "svelte-motion";
+  import { onDestroy, onMount } from "svelte";
+  import { Motion, useAnimation } from "svelte-motion";
+  import { largeBarObj, largeBarsArr } from "../animationObj";
   import Bar from "../components/Bar.svelte";
+  import LargeBar from "../components/LargeBar.svelte";
   import "../global.scss";
+  import gsap from "gsap";
 
   onDestroy(() => {});
-  let playAnimation;
-  let animations = [];
-  let shouldPulse = true;
-  const bars = Array.from(" ".repeat(30));
+
+  const bars = Array.from(" ".repeat(27));
+  const animations = [];
+  let container;
+  let shouldPulse = false;
+
+  onMount(() => {
+    gsap.to(container, {
+      height: "40vh",
+      duration: 5,
+    });
+  });
 </script>
 
-<Motion
-  let:motion
-  transition={{
-    delay: playAnimation ? 4.5 : 0,
-    duration: playAnimation ? 1.5 : 0,
-  }}
-  animate={{
-    height: "40vh",
-  }}
->
-  <div use:motion class="bar-container">
-    {#each bars as bar, i}
-      <Bar bind:shouldPulse bind:animations index={i} />
-    {/each}
-  </div>
-</Motion>
+<div bind:this={container} class="bar-container">
+  {#each bars as bar, i}
+    <Bar index={i} />
+  {/each}
+
+  {#each largeBarsArr as bar, i}
+    <LargeBar
+      on:stopPulse={() => {
+        console.log("stopppped");
+        shouldPulse = false;
+      }}
+      on:startPulse={() => {
+        console.log("stopppped");
+        shouldPulse = true;
+      }}
+      on:complete={() => {
+        animations.push(i);
+        if (animations.length === 4) {
+          shouldPulse = true;
+        }
+      }}
+      {shouldPulse}
+      custom={bar.index}
+      barObj={bar}
+    />
+  {/each}
+</div>
 
 <style lang="scss">
   .bar-container {
     height: 70vh;
+    z-index: 3;
     display: flex;
     gap: 20px;
     width: 100%;

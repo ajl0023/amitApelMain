@@ -3,6 +3,11 @@
 
   import Logo from "../images/Logo.svelte";
   import logoText from "../images/home/logo Text.png";
+  import { createEventDispatcher, onMount } from "svelte";
+  import gsap from "gsap";
+
+  let fadeIn;
+
   const textVariant = {
     visible: {
       opacity: 1,
@@ -12,21 +17,26 @@
       },
     },
   };
+  onMount(() => {
+    const elesToFade = document.querySelectorAll(".fade");
+    console.log(elesToFade);
+    gsap.to(".fade", {
+      opacity: 1,
+      delay: 5,
+    });
+  });
 </script>
 
 <div class="container">
-  <Motion variants={textVariant} animate="visible" let:motion>
-    <h5 use:motion>connecting people</h5>
-  </Motion>
+  <h5 class="fade">connecting people</h5>
+
   <Logo />
-  <Motion variants={textVariant} animate="visible" let:motion>
-    <div use:motion class="logo-text-container">
-      <img class="logo-text" src={logoText} alt="" />
-    </div>
-  </Motion>
-  <Motion variants={textVariant} animate="visible" let:motion>
-    <h5 use:motion>to the art of living</h5>
-  </Motion>
+
+  <div class="logo-text-container fade">
+    <img class="logo-text" src={logoText} alt="" />
+  </div>
+
+  <h5 class="fade">to the art of living</h5>
 </div>
 
 <style lang="scss">
@@ -60,7 +70,7 @@
     height: 100vh;
     background-color: black;
     overflow: hidden;
-    &::before {
+    &::after {
       position: absolute;
       top: 0;
       bottom: 0;
@@ -69,12 +79,11 @@
       width: 100%;
       height: 100%;
       content: "";
-      z-index: 1;
+
       background-color: rgba(0, 0, 0, 0.9);
     }
   }
   h5 {
-
     z-index: 2;
     opacity: 0;
     letter-spacing: 5px;
@@ -85,7 +94,6 @@
     &:nth-child(1) {
     }
     &:nth-child(4) {
-  
     }
   }
 </style>

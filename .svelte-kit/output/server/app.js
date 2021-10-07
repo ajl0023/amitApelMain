@@ -17,6 +17,7 @@ var __privateSet = (obj, member, value, setter) => {
   return value;
 };
 var _map;
+import "gsap";
 import "@use-gesture/vanilla";
 function get_single_valued_header(headers, key) {
   const value = headers[key];
@@ -151,8 +152,8 @@ function devalue(value) {
   var names2 = new Map();
   Array.from(counts).filter(function(entry) {
     return entry[1] > 1;
-  }).sort(function(a2, b2) {
-    return b2[1] - a2[1];
+  }).sort(function(a, b) {
+    return b[1] - a[1];
   }).forEach(function(entry, i) {
     names2.set(entry[0], getName(i));
   });
@@ -275,8 +276,8 @@ function stringifyPrimitive(thing) {
 function getType(thing) {
   return Object.prototype.toString.call(thing).slice(8, -1);
 }
-function escapeUnsafeChar(c2) {
-  return escaped$1[c2] || c2;
+function escapeUnsafeChar(c) {
+  return escaped$1[c] || c;
 }
 function escapeUnsafeChars(str) {
   return str.replace(unsafeChars, escapeUnsafeChar);
@@ -312,8 +313,8 @@ function stringifyString(str) {
 }
 function noop$2() {
 }
-function safe_not_equal$1(a2, b2) {
-  return a2 != a2 ? b2 == b2 : a2 !== b2 || (a2 && typeof a2 === "object" || typeof a2 === "function");
+function safe_not_equal$1(a, b) {
+  return a != a ? b == b : a !== b || (a && typeof a === "object" || typeof a === "function");
 }
 Promise.resolve();
 const subscriber_queue$1 = [];
@@ -338,7 +339,7 @@ function writable$1(value, start = noop$2) {
       }
     }
   }
-  function update2(fn) {
+  function update(fn) {
     set(fn(value));
   }
   function subscribe2(run2, invalidate = noop$2) {
@@ -356,7 +357,7 @@ function writable$1(value, start = noop$2) {
       }
     };
   }
-  return { set, update: update2, subscribe: subscribe2 };
+  return { set, update, subscribe: subscribe2 };
 }
 function hash(value) {
   let hash2 = 5381;
@@ -1286,11 +1287,8 @@ function blank_object() {
 function run_all(fns) {
   fns.forEach(run);
 }
-function is_function(thing) {
-  return typeof thing === "function";
-}
-function safe_not_equal(a2, b2) {
-  return a2 != a2 ? b2 == b2 : a2 !== b2 || (a2 && typeof a2 === "object" || typeof a2 === "function");
+function safe_not_equal(a, b) {
+  return a != a ? b == b : a !== b || (a && typeof a === "object" || typeof a === "function");
 }
 function subscribe(store, ...callbacks) {
   if (store == null) {
@@ -1312,6 +1310,11 @@ function compute_rest_props(props, keys) {
       rest[k] = props[k];
   return rest;
 }
+function custom_event(type, detail, bubbles = false) {
+  const e = document.createEvent("CustomEvent");
+  e.initCustomEvent(type, bubbles, false, detail);
+  return e;
+}
 let current_component;
 function set_current_component(component) {
   current_component = component;
@@ -1324,73 +1327,25 @@ function get_current_component() {
 function onDestroy(fn) {
   get_current_component().$$.on_destroy.push(fn);
 }
+function createEventDispatcher() {
+  const component = get_current_component();
+  return (type, detail) => {
+    const callbacks = component.$$.callbacks[type];
+    if (callbacks) {
+      const event = custom_event(type, detail);
+      callbacks.slice().forEach((fn) => {
+        fn.call(component, event);
+      });
+    }
+  };
+}
 function setContext(key, context) {
   get_current_component().$$.context.set(key, context);
 }
 function getContext(key) {
   return get_current_component().$$.context.get(key);
 }
-const dirty_components = [];
-const binding_callbacks = [];
-const render_callbacks = [];
-const flush_callbacks = [];
-const resolved_promise = Promise.resolve();
-let update_scheduled = false;
-function schedule_update() {
-  if (!update_scheduled) {
-    update_scheduled = true;
-    resolved_promise.then(flush);
-  }
-}
-function tick() {
-  schedule_update();
-  return resolved_promise;
-}
-function add_render_callback(fn) {
-  render_callbacks.push(fn);
-}
-let flushing = false;
-const seen_callbacks = new Set();
-function flush() {
-  if (flushing)
-    return;
-  flushing = true;
-  do {
-    for (let i = 0; i < dirty_components.length; i += 1) {
-      const component = dirty_components[i];
-      set_current_component(component);
-      update(component.$$);
-    }
-    set_current_component(null);
-    dirty_components.length = 0;
-    while (binding_callbacks.length)
-      binding_callbacks.pop()();
-    for (let i = 0; i < render_callbacks.length; i += 1) {
-      const callback = render_callbacks[i];
-      if (!seen_callbacks.has(callback)) {
-        seen_callbacks.add(callback);
-        callback();
-      }
-    }
-    render_callbacks.length = 0;
-  } while (dirty_components.length);
-  while (flush_callbacks.length) {
-    flush_callbacks.pop()();
-  }
-  update_scheduled = false;
-  flushing = false;
-  seen_callbacks.clear();
-}
-function update($$) {
-  if ($$.fragment !== null) {
-    $$.update();
-    run_all($$.before_update);
-    const dirty = $$.dirty;
-    $$.dirty = [-1];
-    $$.fragment && $$.fragment.p($$.ctx, dirty);
-    $$.after_update.forEach(add_render_callback);
-  }
-}
+Promise.resolve();
 const boolean_attributes = new Set([
   "allowfullscreen",
   "allowpaymentrequest",
@@ -1524,7 +1479,7 @@ function add_attribute(name, value, boolean) {
 function afterUpdate() {
 }
 var root_svelte_svelte_type_style_lang = "#svelte-announcer.svelte-1j55zn5{position:absolute;left:0;top:0;clip:rect(0 0 0 0);clip-path:inset(50%);overflow:hidden;white-space:nowrap;width:1px;height:1px}";
-const css$3 = {
+const css$4 = {
   code: "#svelte-announcer.svelte-1j55zn5{position:absolute;left:0;top:0;clip:rect(0 0 0 0);clip-path:inset(50%);overflow:hidden;white-space:nowrap;width:1px;height:1px}",
   map: `{"version":3,"file":"root.svelte","sources":["root.svelte"],"sourcesContent":["<!-- This file is generated by @sveltejs/kit \u2014 do not edit it! -->\\n<script>\\n\\timport { setContext, afterUpdate, onMount } from 'svelte';\\n\\n\\t// stores\\n\\texport let stores;\\n\\texport let page;\\n\\n\\texport let components;\\n\\texport let props_0 = null;\\n\\texport let props_1 = null;\\n\\texport let props_2 = null;\\n\\n\\tsetContext('__svelte__', stores);\\n\\n\\t$: stores.page.set(page);\\n\\tafterUpdate(stores.page.notify);\\n\\n\\tlet mounted = false;\\n\\tlet navigated = false;\\n\\tlet title = null;\\n\\n\\tonMount(() => {\\n\\t\\tconst unsubscribe = stores.page.subscribe(() => {\\n\\t\\t\\tif (mounted) {\\n\\t\\t\\t\\tnavigated = true;\\n\\t\\t\\t\\ttitle = document.title || 'untitled page';\\n\\t\\t\\t}\\n\\t\\t});\\n\\n\\t\\tmounted = true;\\n\\t\\treturn unsubscribe;\\n\\t});\\n<\/script>\\n\\n<svelte:component this={components[0]} {...(props_0 || {})}>\\n\\t{#if components[1]}\\n\\t\\t<svelte:component this={components[1]} {...(props_1 || {})}>\\n\\t\\t\\t{#if components[2]}\\n\\t\\t\\t\\t<svelte:component this={components[2]} {...(props_2 || {})}/>\\n\\t\\t\\t{/if}\\n\\t\\t</svelte:component>\\n\\t{/if}\\n</svelte:component>\\n\\n{#if mounted}\\n\\t<div id=\\"svelte-announcer\\" aria-live=\\"assertive\\" aria-atomic=\\"true\\">\\n\\t\\t{#if navigated}\\n\\t\\t\\t{title}\\n\\t\\t{/if}\\n\\t</div>\\n{/if}\\n\\n<style>\\n\\t#svelte-announcer {\\n\\t\\tposition: absolute;\\n\\t\\tleft: 0;\\n\\t\\ttop: 0;\\n\\t\\tclip: rect(0 0 0 0);\\n\\t\\tclip-path: inset(50%);\\n\\t\\toverflow: hidden;\\n\\t\\twhite-space: nowrap;\\n\\t\\twidth: 1px;\\n\\t\\theight: 1px;\\n\\t}\\n</style>"],"names":[],"mappings":"AAsDC,iBAAiB,eAAC,CAAC,AAClB,QAAQ,CAAE,QAAQ,CAClB,IAAI,CAAE,CAAC,CACP,GAAG,CAAE,CAAC,CACN,IAAI,CAAE,KAAK,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CACnB,SAAS,CAAE,MAAM,GAAG,CAAC,CACrB,QAAQ,CAAE,MAAM,CAChB,WAAW,CAAE,MAAM,CACnB,KAAK,CAAE,GAAG,CACV,MAAM,CAAE,GAAG,AACZ,CAAC"}`
 };
@@ -1549,7 +1504,7 @@ const Root = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     $$bindings.props_1(props_1);
   if ($$props.props_2 === void 0 && $$bindings.props_2 && props_2 !== void 0)
     $$bindings.props_2(props_2);
-  $$result.css.add(css$3);
+  $$result.css.add(css$4);
   {
     stores.page.set(page);
   }
@@ -1587,9 +1542,9 @@ function init(settings = default_settings) {
     amp: false,
     dev: false,
     entry: {
-      file: assets + "/_app/start-21c103de.js",
+      file: assets + "/_app/start-e5461a1b.js",
       css: [assets + "/_app/assets/start-61d1577b.css"],
-      js: [assets + "/_app/start-21c103de.js", assets + "/_app/chunks/vendor-6893bd22.js"]
+      js: [assets + "/_app/start-e5461a1b.js", assets + "/_app/chunks/vendor-7ce70a6f.js"]
     },
     fetched: void 0,
     floc: false,
@@ -1648,7 +1603,7 @@ const module_lookup = {
     return index;
   })
 };
-const metadata_lookup = { ".svelte-kit/build/components/layout.svelte": { "entry": "layout.svelte-abe0c1f6.js", "css": [], "js": ["layout.svelte-abe0c1f6.js", "chunks/vendor-6893bd22.js"], "styles": [] }, ".svelte-kit/build/components/error.svelte": { "entry": "error.svelte-081512c7.js", "css": [], "js": ["error.svelte-081512c7.js", "chunks/vendor-6893bd22.js"], "styles": [] }, "src/routes/index.svelte": { "entry": "pages/index.svelte-5d92207e.js", "css": ["assets/pages/index.svelte-c5d726c6.css"], "js": ["pages/index.svelte-5d92207e.js", "chunks/vendor-6893bd22.js"], "styles": [] } };
+const metadata_lookup = { ".svelte-kit/build/components/layout.svelte": { "entry": "layout.svelte-4d3224c3.js", "css": [], "js": ["layout.svelte-4d3224c3.js", "chunks/vendor-7ce70a6f.js"], "styles": [] }, ".svelte-kit/build/components/error.svelte": { "entry": "error.svelte-14a7a50d.js", "css": [], "js": ["error.svelte-14a7a50d.js", "chunks/vendor-7ce70a6f.js"], "styles": [] }, "src/routes/index.svelte": { "entry": "pages/index.svelte-41dd6d50.js", "css": ["assets/pages/index.svelte-fa1576db.css"], "js": ["pages/index.svelte-41dd6d50.js", "chunks/vendor-7ce70a6f.js"], "styles": [] } };
 async function load_component(file) {
   const { entry, css: css2, js, styles } = metadata_lookup[file];
   return {
@@ -1827,12 +1782,6 @@ var cancelSync = /* @__PURE__ */ stepsOrder.reduce(function(acc, key) {
   acc[key] = steps[key].cancel;
   return acc;
 }, {});
-var flushSync = /* @__PURE__ */ stepsOrder.reduce(function(acc, key) {
-  acc[key] = function() {
-    return steps[key].process(frame);
-  };
-  return acc;
-}, {});
 var processStep = function(stepId) {
   return steps[stepId].process(frame);
 };
@@ -1927,166 +1876,8 @@ function __spreadArray(to, from, pack) {
     }
   return to.concat(ar || Array.prototype.slice.call(from));
 }
-var invariant = function() {
-};
-var clamp$1 = function(min, max, v) {
-  return Math.min(Math.max(v, min), max);
-};
-var safeMin = 1e-3;
-var minDuration = 0.01;
-var maxDuration = 10;
-var minDamping = 0.05;
-var maxDamping = 1;
-function findSpring(_a) {
-  var _b = _a.duration, duration = _b === void 0 ? 800 : _b, _c = _a.bounce, bounce = _c === void 0 ? 0.25 : _c, _d = _a.velocity, velocity = _d === void 0 ? 0 : _d, _e = _a.mass, mass = _e === void 0 ? 1 : _e;
-  var envelope;
-  var derivative;
-  var dampingRatio = 1 - bounce;
-  dampingRatio = clamp$1(minDamping, maxDamping, dampingRatio);
-  duration = clamp$1(minDuration, maxDuration, duration / 1e3);
-  if (dampingRatio < 1) {
-    envelope = function(undampedFreq2) {
-      var exponentialDecay = undampedFreq2 * dampingRatio;
-      var delta2 = exponentialDecay * duration;
-      var a2 = exponentialDecay - velocity;
-      var b2 = calcAngularFreq(undampedFreq2, dampingRatio);
-      var c2 = Math.exp(-delta2);
-      return safeMin - a2 / b2 * c2;
-    };
-    derivative = function(undampedFreq2) {
-      var exponentialDecay = undampedFreq2 * dampingRatio;
-      var delta2 = exponentialDecay * duration;
-      var d = delta2 * velocity + velocity;
-      var e = Math.pow(dampingRatio, 2) * Math.pow(undampedFreq2, 2) * duration;
-      var f = Math.exp(-delta2);
-      var g = calcAngularFreq(Math.pow(undampedFreq2, 2), dampingRatio);
-      var factor = -envelope(undampedFreq2) + safeMin > 0 ? -1 : 1;
-      return factor * ((d - e) * f) / g;
-    };
-  } else {
-    envelope = function(undampedFreq2) {
-      var a2 = Math.exp(-undampedFreq2 * duration);
-      var b2 = (undampedFreq2 - velocity) * duration + 1;
-      return -safeMin + a2 * b2;
-    };
-    derivative = function(undampedFreq2) {
-      var a2 = Math.exp(-undampedFreq2 * duration);
-      var b2 = (velocity - undampedFreq2) * (duration * duration);
-      return a2 * b2;
-    };
-  }
-  var initialGuess = 5 / duration;
-  var undampedFreq = approximateRoot(envelope, derivative, initialGuess);
-  if (isNaN(undampedFreq)) {
-    return {
-      stiffness: 100,
-      damping: 10
-    };
-  } else {
-    var stiffness = Math.pow(undampedFreq, 2) * mass;
-    return {
-      stiffness,
-      damping: dampingRatio * 2 * Math.sqrt(mass * stiffness)
-    };
-  }
-}
-var rootIterations = 12;
-function approximateRoot(envelope, derivative, initialGuess) {
-  var result = initialGuess;
-  for (var i = 1; i < rootIterations; i++) {
-    result = result - envelope(result) / derivative(result);
-  }
-  return result;
-}
-function calcAngularFreq(undampedFreq, dampingRatio) {
-  return undampedFreq * Math.sqrt(1 - dampingRatio * dampingRatio);
-}
-var durationKeys = ["duration", "bounce"];
-var physicsKeys = ["stiffness", "damping", "mass"];
-function isSpringType(options2, keys) {
-  return keys.some(function(key) {
-    return options2[key] !== void 0;
-  });
-}
-function getSpringOptions(options2) {
-  var springOptions = __assign({ velocity: 0, stiffness: 100, damping: 10, mass: 1, isResolvedFromDuration: false }, options2);
-  if (!isSpringType(options2, physicsKeys) && isSpringType(options2, durationKeys)) {
-    var derived2 = findSpring(options2);
-    springOptions = __assign(__assign(__assign({}, springOptions), derived2), { velocity: 0, mass: 1 });
-    springOptions.isResolvedFromDuration = true;
-  }
-  return springOptions;
-}
-function spring(_a) {
-  var _b = _a.from, from = _b === void 0 ? 0 : _b, _c = _a.to, to = _c === void 0 ? 1 : _c, _d = _a.restSpeed, restSpeed = _d === void 0 ? 2 : _d, restDelta = _a.restDelta, options2 = __rest(_a, ["from", "to", "restSpeed", "restDelta"]);
-  var state = { done: false, value: from };
-  var _e = getSpringOptions(options2), stiffness = _e.stiffness, damping = _e.damping, mass = _e.mass, velocity = _e.velocity, isResolvedFromDuration = _e.isResolvedFromDuration;
-  var resolveSpring = zero;
-  var resolveVelocity = zero;
-  function createSpring() {
-    var initialVelocity = velocity ? -(velocity / 1e3) : 0;
-    var initialDelta = to - from;
-    var dampingRatio = damping / (2 * Math.sqrt(stiffness * mass));
-    var undampedAngularFreq = Math.sqrt(stiffness / mass) / 1e3;
-    restDelta !== null && restDelta !== void 0 ? restDelta : restDelta = Math.abs(to - from) <= 1 ? 0.01 : 0.4;
-    if (dampingRatio < 1) {
-      var angularFreq_1 = calcAngularFreq(undampedAngularFreq, dampingRatio);
-      resolveSpring = function(t) {
-        var envelope = Math.exp(-dampingRatio * undampedAngularFreq * t);
-        return to - envelope * ((initialVelocity + dampingRatio * undampedAngularFreq * initialDelta) / angularFreq_1 * Math.sin(angularFreq_1 * t) + initialDelta * Math.cos(angularFreq_1 * t));
-      };
-      resolveVelocity = function(t) {
-        var envelope = Math.exp(-dampingRatio * undampedAngularFreq * t);
-        return dampingRatio * undampedAngularFreq * envelope * (Math.sin(angularFreq_1 * t) * (initialVelocity + dampingRatio * undampedAngularFreq * initialDelta) / angularFreq_1 + initialDelta * Math.cos(angularFreq_1 * t)) - envelope * (Math.cos(angularFreq_1 * t) * (initialVelocity + dampingRatio * undampedAngularFreq * initialDelta) - angularFreq_1 * initialDelta * Math.sin(angularFreq_1 * t));
-      };
-    } else if (dampingRatio === 1) {
-      resolveSpring = function(t) {
-        return to - Math.exp(-undampedAngularFreq * t) * (initialDelta + (initialVelocity + undampedAngularFreq * initialDelta) * t);
-      };
-    } else {
-      var dampedAngularFreq_1 = undampedAngularFreq * Math.sqrt(dampingRatio * dampingRatio - 1);
-      resolveSpring = function(t) {
-        var envelope = Math.exp(-dampingRatio * undampedAngularFreq * t);
-        var freqForT = Math.min(dampedAngularFreq_1 * t, 300);
-        return to - envelope * ((initialVelocity + dampingRatio * undampedAngularFreq * initialDelta) * Math.sinh(freqForT) + dampedAngularFreq_1 * initialDelta * Math.cosh(freqForT)) / dampedAngularFreq_1;
-      };
-    }
-  }
-  createSpring();
-  return {
-    next: function(t) {
-      var current = resolveSpring(t);
-      if (!isResolvedFromDuration) {
-        var currentVelocity = resolveVelocity(t) * 1e3;
-        var isBelowVelocityThreshold = Math.abs(currentVelocity) <= restSpeed;
-        var isBelowDisplacementThreshold = Math.abs(to - current) <= restDelta;
-        state.done = isBelowVelocityThreshold && isBelowDisplacementThreshold;
-      } else {
-        state.done = t >= options2.duration;
-      }
-      state.value = state.done ? to : current;
-      return state;
-    },
-    flipTarget: function() {
-      var _a2;
-      velocity = -velocity;
-      _a2 = [to, from], from = _a2[0], to = _a2[1];
-      createSpring();
-    }
-  };
-}
-spring.needsInterpolation = function(a2, b2) {
-  return typeof a2 === "string" || typeof b2 === "string";
-};
-var zero = function(_t) {
-  return 0;
-};
-var progress = function(from, to, value) {
-  var toFromDifference = to - from;
-  return toFromDifference === 0 ? 1 : (value - from) / toFromDifference;
-};
-var mix = function(from, to, progress2) {
-  return -progress2 * from + progress2 * to + from;
+var mix = function(from, to, progress) {
+  return -progress * from + progress * to + from;
 };
 var clamp = function(min, max) {
   return function(v) {
@@ -2144,8 +1935,8 @@ var splitColor = function(aName, bName, cName) {
     var _a;
     if (!isString(v))
       return v;
-    var _b = v.match(floatRegex), a2 = _b[0], b2 = _b[1], c2 = _b[2], alpha2 = _b[3];
-    return _a = {}, _a[aName] = parseFloat(a2), _a[bName] = parseFloat(b2), _a[cName] = parseFloat(c2), _a.alpha = alpha2 !== void 0 ? parseFloat(alpha2) : 1, _a;
+    var _b = v.match(floatRegex), a = _b[0], b = _b[1], c = _b[2], alpha2 = _b[3];
+    return _a = {}, _a[aName] = parseFloat(a), _a[bName] = parseFloat(b), _a[cName] = parseFloat(c), _a.alpha = alpha2 !== void 0 ? parseFloat(alpha2) : 1, _a;
   };
 };
 var hsla = {
@@ -2171,28 +1962,28 @@ var rgba = {
 function parseHex(v) {
   var r = "";
   var g = "";
-  var b2 = "";
-  var a2 = "";
+  var b = "";
+  var a = "";
   if (v.length > 5) {
     r = v.substr(1, 2);
     g = v.substr(3, 2);
-    b2 = v.substr(5, 2);
-    a2 = v.substr(7, 2);
+    b = v.substr(5, 2);
+    a = v.substr(7, 2);
   } else {
     r = v.substr(1, 1);
     g = v.substr(2, 1);
-    b2 = v.substr(3, 1);
-    a2 = v.substr(4, 1);
+    b = v.substr(3, 1);
+    a = v.substr(4, 1);
     r += r;
     g += g;
-    b2 += b2;
-    a2 += a2;
+    b += b;
+    a += a;
   }
   return {
     red: parseInt(r, 16),
     green: parseInt(g, 16),
-    blue: parseInt(b2, 16),
-    alpha: a2 ? parseInt(a2, 16) / 255 : 1
+    blue: parseInt(b, 16),
+    alpha: a ? parseInt(a, 16) / 255 : 1
   };
 }
 var hex = {
@@ -2223,7 +2014,7 @@ function test(v) {
   var _a, _b, _c, _d;
   return isNaN(v) && isString(v) && ((_b = (_a = v.match(floatRegex)) === null || _a === void 0 ? void 0 : _a.length) !== null && _b !== void 0 ? _b : 0) + ((_d = (_c = v.match(colorRegex)) === null || _c === void 0 ? void 0 : _c.length) !== null && _d !== void 0 ? _d : 0) > 0;
 }
-function analyse$1(v) {
+function analyse(v) {
   var values = [];
   var numColors = 0;
   var colors = v.match(colorRegex);
@@ -2240,10 +2031,10 @@ function analyse$1(v) {
   return { values, numColors, tokenised: v };
 }
 function parse(v) {
-  return analyse$1(v).values;
+  return analyse(v).values;
 }
 function createTransformer(v) {
-  var _a = analyse$1(v), values = _a.values, numColors = _a.numColors, tokenised = _a.tokenised;
+  var _a = analyse(v), values = _a.values, numColors = _a.numColors, tokenised = _a.tokenised;
   var numValues = values.length;
   return function(v2) {
     var output = tokenised;
@@ -2281,41 +2072,12 @@ var filter = __assign(__assign({}, complex), { getAnimatableNone: function(v) {
   var functions = v.match(functionRegex);
   return functions ? functions.map(applyDefaultFilter).join(" ") : v;
 } });
-var mixLinearColor = function(from, to, v) {
-  var fromExpo = from * from;
-  var toExpo = to * to;
-  return Math.sqrt(Math.max(0, v * (toExpo - fromExpo) + fromExpo));
-};
-var colorTypes = [hex, rgba, hsla];
-var getColorType = function(v) {
-  return colorTypes.find(function(type) {
-    return type.test(v);
-  });
-};
-var mixColor = function(from, to) {
-  var fromColorType = getColorType(from);
-  var toColorType = getColorType(to);
-  invariant(fromColorType.transform === toColorType.transform);
-  var fromColor = fromColorType.parse(from);
-  var toColor = toColorType.parse(to);
-  var blended = __assign({}, fromColor);
-  var mixFunc = fromColorType === hsla ? mix : mixLinearColor;
-  return function(v) {
-    for (var key in blended) {
-      if (key !== "alpha") {
-        blended[key] = mixFunc(fromColor[key], toColor[key], v);
-      }
-    }
-    blended.alpha = mix(fromColor.alpha, toColor.alpha, v);
-    return fromColorType.transform(blended);
-  };
-};
 var isNum = function(v) {
   return typeof v === "number";
 };
-var combineFunctions = function(a2, b2) {
+var combineFunctions = function(a, b) {
   return function(v) {
-    return b2(a2(v));
+    return b(a(v));
   };
 };
 var pipe = function() {
@@ -2325,449 +2087,8 @@ var pipe = function() {
   }
   return transformers.reduce(combineFunctions);
 };
-function getMixer(origin, target) {
-  if (isNum(origin)) {
-    return function(v) {
-      return mix(origin, target, v);
-    };
-  } else if (color.test(origin)) {
-    return mixColor(origin, target);
-  } else {
-    return mixComplex(origin, target);
-  }
-}
-var mixArray = function(from, to) {
-  var output = __spreadArray([], from);
-  var numValues = output.length;
-  var blendValue = from.map(function(fromThis, i) {
-    return getMixer(fromThis, to[i]);
-  });
-  return function(v) {
-    for (var i = 0; i < numValues; i++) {
-      output[i] = blendValue[i](v);
-    }
-    return output;
-  };
-};
-var mixObject = function(origin, target) {
-  var output = __assign(__assign({}, origin), target);
-  var blendValue = {};
-  for (var key in output) {
-    if (origin[key] !== void 0 && target[key] !== void 0) {
-      blendValue[key] = getMixer(origin[key], target[key]);
-    }
-  }
-  return function(v) {
-    for (var key2 in blendValue) {
-      output[key2] = blendValue[key2](v);
-    }
-    return output;
-  };
-};
-function analyse(value) {
-  var parsed = complex.parse(value);
-  var numValues = parsed.length;
-  var numNumbers = 0;
-  var numRGB = 0;
-  var numHSL = 0;
-  for (var i = 0; i < numValues; i++) {
-    if (numNumbers || typeof parsed[i] === "number") {
-      numNumbers++;
-    } else {
-      if (parsed[i].hue !== void 0) {
-        numHSL++;
-      } else {
-        numRGB++;
-      }
-    }
-  }
-  return { parsed, numNumbers, numRGB, numHSL };
-}
-var mixComplex = function(origin, target) {
-  var template2 = complex.createTransformer(target);
-  var originStats = analyse(origin);
-  var targetStats = analyse(target);
-  return pipe(mixArray(originStats.parsed, targetStats.parsed), template2);
-};
-var mixNumber = function(from, to) {
-  return function(p) {
-    return mix(from, to, p);
-  };
-};
-function detectMixerFactory(v) {
-  if (typeof v === "number") {
-    return mixNumber;
-  } else if (typeof v === "string") {
-    if (color.test(v)) {
-      return mixColor;
-    } else {
-      return mixComplex;
-    }
-  } else if (Array.isArray(v)) {
-    return mixArray;
-  } else if (typeof v === "object") {
-    return mixObject;
-  }
-}
-function createMixers(output, ease, customMixer) {
-  var mixers = [];
-  var mixerFactory = customMixer || detectMixerFactory(output[0]);
-  var numMixers = output.length - 1;
-  for (var i = 0; i < numMixers; i++) {
-    var mixer = mixerFactory(output[i], output[i + 1]);
-    if (ease) {
-      var easingFunction = Array.isArray(ease) ? ease[i] : ease;
-      mixer = pipe(easingFunction, mixer);
-    }
-    mixers.push(mixer);
-  }
-  return mixers;
-}
-function fastInterpolate(_a, _b) {
-  var from = _a[0], to = _a[1];
-  var mixer = _b[0];
-  return function(v) {
-    return mixer(progress(from, to, v));
-  };
-}
-function slowInterpolate(input, mixers) {
-  var inputLength = input.length;
-  var lastInputIndex = inputLength - 1;
-  return function(v) {
-    var mixerIndex = 0;
-    var foundMixerIndex = false;
-    if (v <= input[0]) {
-      foundMixerIndex = true;
-    } else if (v >= input[lastInputIndex]) {
-      mixerIndex = lastInputIndex - 1;
-      foundMixerIndex = true;
-    }
-    if (!foundMixerIndex) {
-      var i = 1;
-      for (; i < inputLength; i++) {
-        if (input[i] > v || i === lastInputIndex) {
-          break;
-        }
-      }
-      mixerIndex = i - 1;
-    }
-    var progressInRange = progress(input[mixerIndex], input[mixerIndex + 1], v);
-    return mixers[mixerIndex](progressInRange);
-  };
-}
-function interpolate(input, output, _a) {
-  var _b = _a === void 0 ? {} : _a, _c = _b.clamp, isClamp = _c === void 0 ? true : _c, ease = _b.ease, mixer = _b.mixer;
-  var inputLength = input.length;
-  invariant(inputLength === output.length);
-  invariant(!ease || !Array.isArray(ease) || ease.length === inputLength - 1);
-  if (input[0] > input[inputLength - 1]) {
-    input = [].concat(input);
-    output = [].concat(output);
-    input.reverse();
-    output.reverse();
-  }
-  var mixers = createMixers(output, ease, mixer);
-  var interpolator = inputLength === 2 ? fastInterpolate(input, mixers) : slowInterpolate(input, mixers);
-  return isClamp ? function(v) {
-    return interpolator(clamp$1(input[0], input[inputLength - 1], v));
-  } : interpolator;
-}
-var reverseEasing = function(easing) {
-  return function(p) {
-    return 1 - easing(1 - p);
-  };
-};
-var mirrorEasing = function(easing) {
-  return function(p) {
-    return p <= 0.5 ? easing(2 * p) / 2 : (2 - easing(2 * (1 - p))) / 2;
-  };
-};
-var createExpoIn = function(power) {
-  return function(p) {
-    return Math.pow(p, power);
-  };
-};
-var createBackIn = function(power) {
-  return function(p) {
-    return p * p * ((power + 1) * p - power);
-  };
-};
-var createAnticipate = function(power) {
-  var backEasing = createBackIn(power);
-  return function(p) {
-    return (p *= 2) < 1 ? 0.5 * backEasing(p) : 0.5 * (2 - Math.pow(2, -10 * (p - 1)));
-  };
-};
-var DEFAULT_OVERSHOOT_STRENGTH = 1.525;
-var BOUNCE_FIRST_THRESHOLD = 4 / 11;
-var BOUNCE_SECOND_THRESHOLD = 8 / 11;
-var BOUNCE_THIRD_THRESHOLD = 9 / 10;
-var linear = function(p) {
-  return p;
-};
-var easeIn = createExpoIn(2);
-var easeOut = reverseEasing(easeIn);
-var easeInOut = mirrorEasing(easeIn);
-var circIn = function(p) {
-  return 1 - Math.sin(Math.acos(p));
-};
-var circOut = reverseEasing(circIn);
-var circInOut = mirrorEasing(circOut);
-var backIn = createBackIn(DEFAULT_OVERSHOOT_STRENGTH);
-var backOut = reverseEasing(backIn);
-var backInOut = mirrorEasing(backIn);
-var anticipate = createAnticipate(DEFAULT_OVERSHOOT_STRENGTH);
-var ca = 4356 / 361;
-var cb = 35442 / 1805;
-var cc = 16061 / 1805;
-var bounceOut = function(p) {
-  if (p === 1 || p === 0)
-    return p;
-  var p2 = p * p;
-  return p < BOUNCE_FIRST_THRESHOLD ? 7.5625 * p2 : p < BOUNCE_SECOND_THRESHOLD ? 9.075 * p2 - 9.9 * p + 3.4 : p < BOUNCE_THIRD_THRESHOLD ? ca * p2 - cb * p + cc : 10.8 * p * p - 20.52 * p + 10.72;
-};
-var bounceIn = reverseEasing(bounceOut);
-var bounceInOut = function(p) {
-  return p < 0.5 ? 0.5 * (1 - bounceOut(1 - p * 2)) : 0.5 * bounceOut(p * 2 - 1) + 0.5;
-};
-function defaultEasing(values, easing) {
-  return values.map(function() {
-    return easing || easeInOut;
-  }).splice(0, values.length - 1);
-}
-function defaultOffset(values) {
-  var numValues = values.length;
-  return values.map(function(_value, i) {
-    return i !== 0 ? i / (numValues - 1) : 0;
-  });
-}
-function convertOffsetToTimes(offset, duration) {
-  return offset.map(function(o) {
-    return o * duration;
-  });
-}
-function keyframes$1(_a) {
-  var _b = _a.from, from = _b === void 0 ? 0 : _b, _c = _a.to, to = _c === void 0 ? 1 : _c, ease = _a.ease, offset = _a.offset, _d = _a.duration, duration = _d === void 0 ? 300 : _d;
-  var state = { done: false, value: from };
-  var values = Array.isArray(to) ? to : [from, to];
-  var times = convertOffsetToTimes(offset && offset.length === values.length ? offset : defaultOffset(values), duration);
-  function createInterpolator() {
-    return interpolate(times, values, {
-      ease: Array.isArray(ease) ? ease : defaultEasing(values, ease)
-    });
-  }
-  var interpolator = createInterpolator();
-  return {
-    next: function(t) {
-      state.value = interpolator(t);
-      state.done = t >= duration;
-      return state;
-    },
-    flipTarget: function() {
-      values.reverse();
-      interpolator = createInterpolator();
-    }
-  };
-}
-function decay(_a) {
-  var _b = _a.velocity, velocity = _b === void 0 ? 0 : _b, _c = _a.from, from = _c === void 0 ? 0 : _c, _d = _a.power, power = _d === void 0 ? 0.8 : _d, _e = _a.timeConstant, timeConstant = _e === void 0 ? 350 : _e, _f = _a.restDelta, restDelta = _f === void 0 ? 0.5 : _f, modifyTarget = _a.modifyTarget;
-  var state = { done: false, value: from };
-  var amplitude = power * velocity;
-  var ideal = from + amplitude;
-  var target = modifyTarget === void 0 ? ideal : modifyTarget(ideal);
-  if (target !== ideal)
-    amplitude = target - from;
-  return {
-    next: function(t) {
-      var delta2 = -amplitude * Math.exp(-t / timeConstant);
-      state.done = !(delta2 > restDelta || delta2 < -restDelta);
-      state.value = state.done ? target : target + delta2;
-      return state;
-    },
-    flipTarget: function() {
-    }
-  };
-}
-var types = { keyframes: keyframes$1, spring, decay };
-function detectAnimationFromOptions(config) {
-  if (Array.isArray(config.to)) {
-    return keyframes$1;
-  } else if (types[config.type]) {
-    return types[config.type];
-  }
-  var keys = new Set(Object.keys(config));
-  if (keys.has("ease") || keys.has("duration") && !keys.has("dampingRatio")) {
-    return keyframes$1;
-  } else if (keys.has("dampingRatio") || keys.has("stiffness") || keys.has("mass") || keys.has("damping") || keys.has("restSpeed") || keys.has("restDelta")) {
-    return spring;
-  }
-  return keyframes$1;
-}
-function loopElapsed(elapsed, duration, delay) {
-  if (delay === void 0) {
-    delay = 0;
-  }
-  return elapsed - duration - delay;
-}
-function reverseElapsed(elapsed, duration, delay, isForwardPlayback) {
-  if (delay === void 0) {
-    delay = 0;
-  }
-  if (isForwardPlayback === void 0) {
-    isForwardPlayback = true;
-  }
-  return isForwardPlayback ? loopElapsed(duration + -elapsed, duration, delay) : duration - (elapsed - duration) + delay;
-}
-function hasRepeatDelayElapsed(elapsed, duration, delay, isForwardPlayback) {
-  return isForwardPlayback ? elapsed >= duration + delay : elapsed <= -delay;
-}
-var framesync = function(update2) {
-  var passTimestamp = function(_a) {
-    var delta2 = _a.delta;
-    return update2(delta2);
-  };
-  return {
-    start: function() {
-      return sync.update(passTimestamp, true);
-    },
-    stop: function() {
-      return cancelSync.update(passTimestamp);
-    }
-  };
-};
-function animate(_a) {
-  var _b, _c;
-  var from = _a.from, _d = _a.autoplay, autoplay = _d === void 0 ? true : _d, _e = _a.driver, driver = _e === void 0 ? framesync : _e, _f = _a.elapsed, elapsed = _f === void 0 ? 0 : _f, _g = _a.repeat, repeatMax = _g === void 0 ? 0 : _g, _h = _a.repeatType, repeatType = _h === void 0 ? "loop" : _h, _j = _a.repeatDelay, repeatDelay = _j === void 0 ? 0 : _j, onPlay = _a.onPlay, onStop = _a.onStop, onComplete = _a.onComplete, onRepeat = _a.onRepeat, onUpdate = _a.onUpdate, options2 = __rest(_a, ["from", "autoplay", "driver", "elapsed", "repeat", "repeatType", "repeatDelay", "onPlay", "onStop", "onComplete", "onRepeat", "onUpdate"]);
-  var to = options2.to;
-  var driverControls;
-  var repeatCount = 0;
-  var computedDuration = options2.duration;
-  var latest;
-  var isComplete = false;
-  var isForwardPlayback = true;
-  var interpolateFromNumber;
-  var animator = detectAnimationFromOptions(options2);
-  if ((_c = (_b = animator).needsInterpolation) === null || _c === void 0 ? void 0 : _c.call(_b, from, to)) {
-    interpolateFromNumber = interpolate([0, 100], [from, to], {
-      clamp: false
-    });
-    from = 0;
-    to = 100;
-  }
-  var animation = animator(__assign(__assign({}, options2), { from, to }));
-  function repeat() {
-    repeatCount++;
-    if (repeatType === "reverse") {
-      isForwardPlayback = repeatCount % 2 === 0;
-      elapsed = reverseElapsed(elapsed, computedDuration, repeatDelay, isForwardPlayback);
-    } else {
-      elapsed = loopElapsed(elapsed, computedDuration, repeatDelay);
-      if (repeatType === "mirror")
-        animation.flipTarget();
-    }
-    isComplete = false;
-    onRepeat && onRepeat();
-  }
-  function complete() {
-    driverControls.stop();
-    onComplete && onComplete();
-  }
-  function update2(delta2) {
-    if (!isForwardPlayback)
-      delta2 = -delta2;
-    elapsed += delta2;
-    if (!isComplete) {
-      var state = animation.next(Math.max(0, elapsed));
-      latest = state.value;
-      if (interpolateFromNumber)
-        latest = interpolateFromNumber(latest);
-      isComplete = isForwardPlayback ? state.done : elapsed <= 0;
-    }
-    onUpdate === null || onUpdate === void 0 ? void 0 : onUpdate(latest);
-    if (isComplete) {
-      if (repeatCount === 0)
-        computedDuration !== null && computedDuration !== void 0 ? computedDuration : computedDuration = elapsed;
-      if (repeatCount < repeatMax) {
-        hasRepeatDelayElapsed(elapsed, computedDuration, repeatDelay, isForwardPlayback) && repeat();
-      } else {
-        complete();
-      }
-    }
-  }
-  function play() {
-    onPlay === null || onPlay === void 0 ? void 0 : onPlay();
-    driverControls = driver(update2);
-    driverControls.start();
-  }
-  autoplay && play();
-  return {
-    stop: function() {
-      onStop === null || onStop === void 0 ? void 0 : onStop();
-      driverControls.stop();
-    }
-  };
-}
 function velocityPerSecond(velocity, frameDuration) {
   return frameDuration ? velocity * (1e3 / frameDuration) : 0;
-}
-function inertia(_a) {
-  var _b = _a.from, from = _b === void 0 ? 0 : _b, _c = _a.velocity, velocity = _c === void 0 ? 0 : _c, min = _a.min, max = _a.max, _d = _a.power, power = _d === void 0 ? 0.8 : _d, _e = _a.timeConstant, timeConstant = _e === void 0 ? 750 : _e, _f = _a.bounceStiffness, bounceStiffness = _f === void 0 ? 500 : _f, _g = _a.bounceDamping, bounceDamping = _g === void 0 ? 10 : _g, _h = _a.restDelta, restDelta = _h === void 0 ? 1 : _h, modifyTarget = _a.modifyTarget, driver = _a.driver, onUpdate = _a.onUpdate, onComplete = _a.onComplete;
-  var currentAnimation;
-  function isOutOfBounds(v) {
-    return min !== void 0 && v < min || max !== void 0 && v > max;
-  }
-  function boundaryNearest(v) {
-    if (min === void 0)
-      return max;
-    if (max === void 0)
-      return min;
-    return Math.abs(min - v) < Math.abs(max - v) ? min : max;
-  }
-  function startAnimation2(options2) {
-    currentAnimation === null || currentAnimation === void 0 ? void 0 : currentAnimation.stop();
-    currentAnimation = animate(__assign(__assign({}, options2), { driver, onUpdate: function(v) {
-      var _a2;
-      onUpdate === null || onUpdate === void 0 ? void 0 : onUpdate(v);
-      (_a2 = options2.onUpdate) === null || _a2 === void 0 ? void 0 : _a2.call(options2, v);
-    }, onComplete }));
-  }
-  function startSpring(options2) {
-    startAnimation2(__assign({ type: "spring", stiffness: bounceStiffness, damping: bounceDamping, restDelta }, options2));
-  }
-  if (isOutOfBounds(from)) {
-    startSpring({ from, velocity, to: boundaryNearest(from) });
-  } else {
-    var target = power * velocity + from;
-    if (typeof modifyTarget !== "undefined")
-      target = modifyTarget(target);
-    var boundary_1 = boundaryNearest(target);
-    var heading_1 = boundary_1 === min ? -1 : 1;
-    var prev_1;
-    var current_1;
-    var checkBoundary = function(v) {
-      prev_1 = current_1;
-      current_1 = v;
-      velocity = velocityPerSecond(v - prev_1, getFrameData().delta);
-      if (heading_1 === 1 && v > boundary_1 || heading_1 === -1 && v < boundary_1) {
-        startSpring({ from: v, to: boundary_1, velocity });
-      }
-    };
-    startAnimation2({
-      type: "decay",
-      from,
-      velocity,
-      timeConstant,
-      power,
-      restDelta,
-      modifyTarget,
-      onUpdate: isOutOfBounds(target) ? checkBoundary : void 0
-    });
-  }
-  return {
-    stop: function() {
-      return currentAnimation === null || currentAnimation === void 0 ? void 0 : currentAnimation.stop();
-    }
-  };
 }
 var isPoint = function(point) {
   return point.hasOwnProperty("x") && point.hasOwnProperty("y");
@@ -2775,95 +2096,18 @@ var isPoint = function(point) {
 var isPoint3D = function(point) {
   return isPoint(point) && point.hasOwnProperty("z");
 };
-var distance1D = function(a2, b2) {
-  return Math.abs(a2 - b2);
+var distance1D = function(a, b) {
+  return Math.abs(a - b);
 };
-function distance(a2, b2) {
-  if (isNum(a2) && isNum(b2)) {
-    return distance1D(a2, b2);
-  } else if (isPoint(a2) && isPoint(b2)) {
-    var xDelta = distance1D(a2.x, b2.x);
-    var yDelta = distance1D(a2.y, b2.y);
-    var zDelta = isPoint3D(a2) && isPoint3D(b2) ? distance1D(a2.z, b2.z) : 0;
+function distance(a, b) {
+  if (isNum(a) && isNum(b)) {
+    return distance1D(a, b);
+  } else if (isPoint(a) && isPoint(b)) {
+    var xDelta = distance1D(a.x, b.x);
+    var yDelta = distance1D(a.y, b.y);
+    var zDelta = isPoint3D(a) && isPoint3D(b) ? distance1D(a.z, b.z) : 0;
     return Math.sqrt(Math.pow(xDelta, 2) + Math.pow(yDelta, 2) + Math.pow(zDelta, 2));
   }
-}
-var a = function(a1, a2) {
-  return 1 - 3 * a2 + 3 * a1;
-};
-var b = function(a1, a2) {
-  return 3 * a2 - 6 * a1;
-};
-var c = function(a1) {
-  return 3 * a1;
-};
-var calcBezier = function(t, a1, a2) {
-  return ((a(a1, a2) * t + b(a1, a2)) * t + c(a1)) * t;
-};
-var getSlope = function(t, a1, a2) {
-  return 3 * a(a1, a2) * t * t + 2 * b(a1, a2) * t + c(a1);
-};
-var subdivisionPrecision = 1e-7;
-var subdivisionMaxIterations = 10;
-function binarySubdivide(aX, aA, aB, mX1, mX2) {
-  var currentX;
-  var currentT;
-  var i = 0;
-  do {
-    currentT = aA + (aB - aA) / 2;
-    currentX = calcBezier(currentT, mX1, mX2) - aX;
-    if (currentX > 0) {
-      aB = currentT;
-    } else {
-      aA = currentT;
-    }
-  } while (Math.abs(currentX) > subdivisionPrecision && ++i < subdivisionMaxIterations);
-  return currentT;
-}
-var newtonIterations = 8;
-var newtonMinSlope = 1e-3;
-function newtonRaphsonIterate(aX, aGuessT, mX1, mX2) {
-  for (var i = 0; i < newtonIterations; ++i) {
-    var currentSlope = getSlope(aGuessT, mX1, mX2);
-    if (currentSlope === 0) {
-      return aGuessT;
-    }
-    var currentX = calcBezier(aGuessT, mX1, mX2) - aX;
-    aGuessT -= currentX / currentSlope;
-  }
-  return aGuessT;
-}
-var kSplineTableSize = 11;
-var kSampleStepSize = 1 / (kSplineTableSize - 1);
-function cubicBezier(mX1, mY1, mX2, mY2) {
-  if (mX1 === mY1 && mX2 === mY2)
-    return linear;
-  var sampleValues = new Float32Array(kSplineTableSize);
-  for (var i = 0; i < kSplineTableSize; ++i) {
-    sampleValues[i] = calcBezier(i * kSampleStepSize, mX1, mX2);
-  }
-  function getTForX(aX) {
-    var intervalStart = 0;
-    var currentSample = 1;
-    var lastSample = kSplineTableSize - 1;
-    for (; currentSample !== lastSample && sampleValues[currentSample] <= aX; ++currentSample) {
-      intervalStart += kSampleStepSize;
-    }
-    --currentSample;
-    var dist = (aX - sampleValues[currentSample]) / (sampleValues[currentSample + 1] - sampleValues[currentSample]);
-    var guessForT = intervalStart + dist * kSampleStepSize;
-    var initialSlope = getSlope(guessForT, mX1, mX2);
-    if (initialSlope >= newtonMinSlope) {
-      return newtonRaphsonIterate(aX, guessForT, mX1, mX2);
-    } else if (initialSlope === 0) {
-      return guessForT;
-    } else {
-      return binarySubdivide(aX, intervalStart, intervalStart + kSampleStepSize, mX1, mX2);
-    }
-  }
-  return function(t) {
-    return t === 0 || t === 1 ? t : calcBezier(getTForX(t), mY1, mY2);
-  };
 }
 function addUniqueItem(arr, item) {
   arr.indexOf(item) === -1 && arr.push(item);
@@ -2883,16 +2127,16 @@ var SubscriptionManager = function() {
       return removeItem(_this.subscriptions, handler);
     };
   };
-  SubscriptionManager2.prototype.notify = function(a2, b2, c2) {
+  SubscriptionManager2.prototype.notify = function(a, b, c) {
     var numSubscriptions = this.subscriptions.length;
     if (!numSubscriptions)
       return;
     if (numSubscriptions === 1) {
-      this.subscriptions[0](a2, b2, c2);
+      this.subscriptions[0](a, b, c);
     } else {
       for (var i = 0; i < numSubscriptions; i++) {
         var handler = this.subscriptions[i];
-        handler && handler(a2, b2, c2);
+        handler && handler(a, b, c);
       }
     }
   };
@@ -3086,7 +2330,7 @@ function writable(value, start = noop$1) {
       }
     }
   }
-  function update2(fn) {
+  function update(fn) {
     set(fn(value));
   }
   function subscribe2(run2, invalidate = noop$1) {
@@ -3104,45 +2348,7 @@ function writable(value, start = noop$1) {
       }
     };
   }
-  return { set, update: update2, subscribe: subscribe2 };
-}
-function derived(stores, fn, initial_value) {
-  const single = !Array.isArray(stores);
-  const stores_array = single ? [stores] : stores;
-  const auto2 = fn.length < 2;
-  return readable(initial_value, (set) => {
-    let inited = false;
-    const values = [];
-    let pending = 0;
-    let cleanup = noop$1;
-    const sync2 = () => {
-      if (pending) {
-        return;
-      }
-      cleanup();
-      const result = fn(single ? values[0] : values, set);
-      if (auto2) {
-        set(result);
-      } else {
-        cleanup = is_function(result) ? result : noop$1;
-      }
-    };
-    const unsubscribers = stores_array.map((store, i) => subscribe(store, (value) => {
-      values[i] = value;
-      pending &= ~(1 << i);
-      if (inited) {
-        sync2();
-      }
-    }, () => {
-      pending |= 1 << i;
-    }));
-    inited = true;
-    sync2();
-    return function stop() {
-      run_all(unsubscribers);
-      cleanup();
-    };
-  });
+  return { set, update, subscribe: subscribe2 };
 }
 const getDomContext = (name, el) => {
   if (!el || !window) {
@@ -3164,7 +2370,7 @@ const setDomContext = (name, el, value) => {
     el.motionDomContext.set(name, value);
   }
 };
-var MotionConfigContext = (c2) => getDomContext("MotionConfig", c2) || writable({
+var MotionConfigContext = (c) => getDomContext("MotionConfig", c) || writable({
   transformPagePoint: function(p) {
     return p;
   },
@@ -3186,106 +2392,8 @@ const ScaleCorrectionProvider = create_ssr_component(($$result, $$props, $$bindi
     $$bindings.isCustom(isCustom);
   return `${slots.default ? slots.default({}) : ``}`;
 });
-var secondsToMilliseconds = function(seconds) {
-  return seconds * 1e3;
-};
-var easingLookup = {
-  linear,
-  easeIn,
-  easeInOut,
-  easeOut,
-  circIn,
-  circInOut,
-  circOut,
-  backIn,
-  backInOut,
-  backOut,
-  anticipate,
-  bounceIn,
-  bounceInOut,
-  bounceOut
-};
-var easingDefinitionToFunction = function(definition) {
-  if (Array.isArray(definition)) {
-    var _a = __read(definition, 4), x1 = _a[0], y1 = _a[1], x2 = _a[2], y2 = _a[3];
-    return cubicBezier(x1, y1, x2, y2);
-  } else if (typeof definition === "string") {
-    return easingLookup[definition];
-  }
-  return definition;
-};
-var isEasingArray = function(ease) {
-  return Array.isArray(ease) && typeof ease[0] !== "number";
-};
-var isAnimatable = function(key, value) {
-  if (key === "zIndex")
-    return false;
-  if (typeof value === "number" || Array.isArray(value))
-    return true;
-  if (typeof value === "string" && complex.test(value) && !value.startsWith("url(")) {
-    return true;
-  }
-  return false;
-};
 var isKeyframesTarget = function(v) {
   return Array.isArray(v);
-};
-var underDampedSpring = function() {
-  return {
-    type: "spring",
-    stiffness: 500,
-    damping: 25,
-    restDelta: 0.5,
-    restSpeed: 10
-  };
-};
-var criticallyDampedSpring = function(to) {
-  return {
-    type: "spring",
-    stiffness: 550,
-    damping: to === 0 ? 2 * Math.sqrt(550) : 30,
-    restDelta: 0.01,
-    restSpeed: 10
-  };
-};
-var linearTween = function() {
-  return {
-    type: "keyframes",
-    ease: "linear",
-    duration: 0.3
-  };
-};
-var keyframes = function(values) {
-  return {
-    type: "keyframes",
-    duration: 0.8,
-    values
-  };
-};
-var defaultTransitions = {
-  x: underDampedSpring,
-  y: underDampedSpring,
-  z: underDampedSpring,
-  rotate: underDampedSpring,
-  rotateX: underDampedSpring,
-  rotateY: underDampedSpring,
-  rotateZ: underDampedSpring,
-  scaleX: criticallyDampedSpring,
-  scaleY: criticallyDampedSpring,
-  scale: criticallyDampedSpring,
-  opacity: linearTween,
-  backgroundColor: linearTween,
-  color: linearTween,
-  default: criticallyDampedSpring
-};
-var getDefaultTransition = function(valueKey, to) {
-  var transitionFactory;
-  if (isKeyframesTarget(to)) {
-    transitionFactory = keyframes;
-  } else {
-    transitionFactory = defaultTransitions[valueKey] || defaultTransitions.default;
-  }
-  return __assign({ to }, transitionFactory(to));
 };
 var int = __assign(__assign({}, number), { transform: Math.round });
 var numberValueTypes = {
@@ -3372,153 +2480,11 @@ function getAnimatableNone(key, value) {
     defaultValueType = complex;
   return (_a = defaultValueType.getAnimatableNone) === null || _a === void 0 ? void 0 : _a.call(defaultValueType, value);
 }
-function isTransitionDefined(_a) {
-  _a.when;
-  _a.delay;
-  _a.delayChildren;
-  _a.staggerChildren;
-  _a.staggerDirection;
-  _a.repeat;
-  _a.repeatType;
-  _a.repeatDelay;
-  _a.from;
-  var transition = __rest(_a, ["when", "delay", "delayChildren", "staggerChildren", "staggerDirection", "repeat", "repeatType", "repeatDelay", "from"]);
-  return !!Object.keys(transition).length;
-}
-function convertTransitionToAnimationOptions(_a) {
-  var ease = _a.ease, times = _a.times, yoyo = _a.yoyo, flip = _a.flip, loop = _a.loop, transition = __rest(_a, ["ease", "times", "yoyo", "flip", "loop"]);
-  var options2 = __assign({}, transition);
-  if (times)
-    options2["offset"] = times;
-  if (transition.duration)
-    options2["duration"] = secondsToMilliseconds(transition.duration);
-  if (transition.repeatDelay)
-    options2.repeatDelay = secondsToMilliseconds(transition.repeatDelay);
-  if (ease) {
-    options2["ease"] = isEasingArray(ease) ? ease.map(easingDefinitionToFunction) : easingDefinitionToFunction(ease);
-  }
-  if (transition.type === "tween")
-    options2.type = "keyframes";
-  if (yoyo || loop || flip) {
-    if (yoyo) {
-      options2.repeatType = "reverse";
-    } else if (loop) {
-      options2.repeatType = "loop";
-    } else if (flip) {
-      options2.repeatType = "mirror";
-    }
-    options2.repeat = loop || yoyo || flip || transition.repeat;
-  }
-  if (transition.type !== "spring")
-    options2.type = "keyframes";
-  return options2;
-}
-function getDelayFromTransition(transition, key) {
-  var _a;
-  var valueTransition = getValueTransition(transition, key) || {};
-  return (_a = valueTransition.delay) !== null && _a !== void 0 ? _a : 0;
-}
-function hydrateKeyframes(options2) {
-  if (Array.isArray(options2.to) && options2.to[0] === null) {
-    options2.to = __spreadArray([], __read(options2.to));
-    options2.to[0] = options2.from;
-  }
-  return options2;
-}
-function getPopmotionAnimationOptions(transition, options2, key) {
-  var _a;
-  if (Array.isArray(options2.to)) {
-    (_a = transition.duration) !== null && _a !== void 0 ? _a : transition.duration = 0.8;
-  }
-  hydrateKeyframes(options2);
-  if (!isTransitionDefined(transition)) {
-    transition = __assign(__assign({}, transition), getDefaultTransition(key, options2.to));
-  }
-  return __assign(__assign({}, options2), convertTransitionToAnimationOptions(transition));
-}
-function getAnimation(key, value, target, transition, onComplete) {
-  var _a;
-  var valueTransition = getValueTransition(transition, key);
-  var origin = (_a = valueTransition.from) !== null && _a !== void 0 ? _a : value.get();
-  var isTargetAnimatable = isAnimatable(key, target);
-  if (origin === "none" && isTargetAnimatable && typeof target === "string") {
-    origin = getAnimatableNone(key, target);
-  } else if (isZero(origin) && typeof target === "string") {
-    origin = getZeroUnit(target);
-  } else if (!Array.isArray(target) && isZero(target) && typeof origin === "string") {
-    target = getZeroUnit(origin);
-  }
-  var isOriginAnimatable = isAnimatable(key, origin);
-  function start() {
-    var options2 = {
-      from: origin,
-      to: target,
-      velocity: value.getVelocity(),
-      onComplete,
-      onUpdate: function(v) {
-        return value.set(v);
-      }
-    };
-    return valueTransition.type === "inertia" || valueTransition.type === "decay" ? inertia(__assign(__assign({}, options2), valueTransition)) : animate(__assign(__assign({}, getPopmotionAnimationOptions(valueTransition, options2, key)), { onUpdate: function(v) {
-      var _a2;
-      options2.onUpdate(v);
-      (_a2 = valueTransition.onUpdate) === null || _a2 === void 0 ? void 0 : _a2.call(valueTransition, v);
-    }, onComplete: function() {
-      var _a2;
-      options2.onComplete();
-      (_a2 = valueTransition.onComplete) === null || _a2 === void 0 ? void 0 : _a2.call(valueTransition);
-    } }));
-  }
-  function set() {
-    var _a2;
-    value.set(target);
-    onComplete();
-    (_a2 = valueTransition === null || valueTransition === void 0 ? void 0 : valueTransition.onComplete) === null || _a2 === void 0 ? void 0 : _a2.call(valueTransition);
-    return { stop: function() {
-    } };
-  }
-  return !isOriginAnimatable || !isTargetAnimatable || valueTransition.type === false ? set : start;
-}
-function isZero(value) {
-  return value === 0 || typeof value === "string" && parseFloat(value) === 0 && value.indexOf(" ") === -1;
-}
-function getZeroUnit(potentialUnitType) {
-  return typeof potentialUnitType === "number" ? 0 : getAnimatableNone("", potentialUnitType);
-}
-function getValueTransition(transition, key) {
-  return transition[key] || transition["default"] || transition;
-}
-function startAnimation(key, value, target, transition) {
-  if (transition === void 0) {
-    transition = {};
-  }
-  return value.start(function(onComplete) {
-    var delayTimer;
-    var controls;
-    var animation = getAnimation(key, value, target, transition, onComplete);
-    var delay = getDelayFromTransition(transition, key);
-    var start = function() {
-      return controls = animation();
-    };
-    if (delay) {
-      delayTimer = setTimeout(start, secondsToMilliseconds(delay));
-    } else {
-      start();
-    }
-    return function() {
-      clearTimeout(delayTimer);
-      controls === null || controls === void 0 ? void 0 : controls.stop();
-    };
-  });
-}
 var isNumericalString = function(v) {
   return /^\-?\d*\.?\d+$/.test(v);
 };
 var isCustomValue = function(v) {
   return Boolean(v && typeof v === "object" && v.mix && v.toValue);
-};
-var resolveFinalValueInKeyframes = function(v) {
-  return isKeyframesTarget(v) ? v[v.length - 1] || 0 : v;
 };
 var testValueType = function(v) {
   return function(type) {
@@ -3547,20 +2513,6 @@ function isVariantLabels(v) {
 function isVariantLabel(v) {
   return typeof v === "string" || isVariantLabels(v);
 }
-function getCurrent(visualElement2) {
-  var current = {};
-  visualElement2.forEachValue(function(value, key) {
-    return current[key] = value.get();
-  });
-  return current;
-}
-function getVelocity$1(visualElement2) {
-  var velocity = {};
-  visualElement2.forEachValue(function(value, key) {
-    return velocity[key] = value.getVelocity();
-  });
-  return velocity;
-}
 function resolveVariantFromProps(props, definition, custom, currentValues, currentVelocity) {
   var _a;
   if (currentValues === void 0) {
@@ -3574,54 +2526,12 @@ function resolveVariantFromProps(props, definition, custom, currentValues, curre
   }
   return typeof definition === "function" ? definition(custom !== null && custom !== void 0 ? custom : props.custom, currentValues, currentVelocity) : definition;
 }
-function resolveVariant(visualElement2, definition, custom) {
-  var props = visualElement2.getProps();
-  return resolveVariantFromProps(props, definition, custom !== null && custom !== void 0 ? custom : props.custom, getCurrent(visualElement2), getVelocity$1(visualElement2));
-}
 function checkIfControllingVariants(props) {
   var _a;
   return typeof ((_a = props.animate) === null || _a === void 0 ? void 0 : _a.start) === "function" || isVariantLabel(props.initial) || isVariantLabel(props.animate) || isVariantLabel(props.whileHover) || isVariantLabel(props.whileDrag) || isVariantLabel(props.whileTap) || isVariantLabel(props.whileFocus) || isVariantLabel(props.exit);
 }
 function checkIfVariantNode(props) {
   return Boolean(checkIfControllingVariants(props) || props.variants);
-}
-function setMotionValue(visualElement2, key, value) {
-  if (visualElement2.hasValue(key)) {
-    visualElement2.getValue(key).set(value);
-  } else {
-    visualElement2.addValue(key, motionValue(value));
-  }
-}
-function setTarget(visualElement2, definition) {
-  var resolved = resolveVariant(visualElement2, definition);
-  var _a = resolved ? visualElement2.makeTargetAnimatable(resolved, false) : {}, _b = _a.transitionEnd, transitionEnd = _b === void 0 ? {} : _b;
-  _a.transition;
-  var target = __rest(_a, ["transitionEnd", "transition"]);
-  target = __assign(__assign({}, target), transitionEnd);
-  for (var key in target) {
-    var value = resolveFinalValueInKeyframes(target[key]);
-    setMotionValue(visualElement2, key, value);
-  }
-}
-function setVariants(visualElement2, variantLabels) {
-  var reversedLabels = __spreadArray([], __read(variantLabels)).reverse();
-  reversedLabels.forEach(function(key) {
-    var _a;
-    var variant = visualElement2.getVariant(key);
-    variant && setTarget(visualElement2, variant);
-    (_a = visualElement2.variantChildren) === null || _a === void 0 ? void 0 : _a.forEach(function(child) {
-      setVariants(child, variantLabels);
-    });
-  });
-}
-function setValues(visualElement2, definition) {
-  if (Array.isArray(definition)) {
-    return setVariants(visualElement2, definition);
-  } else if (typeof definition === "string") {
-    return setVariants(visualElement2, [definition]);
-  } else {
-    setTarget(visualElement2, definition);
-  }
 }
 function checkTargetForNewValues(visualElement2, target, origin) {
   var _a, _b, _c;
@@ -3668,184 +2578,6 @@ function getOrigin(target, transition, visualElement2) {
   }
   return origin;
 }
-function animateVisualElement(visualElement2, definition, options2) {
-  if (options2 === void 0) {
-    options2 = {};
-  }
-  visualElement2.notifyAnimationStart();
-  var animation;
-  if (Array.isArray(definition)) {
-    var animations2 = definition.map(function(variant) {
-      return animateVariant(visualElement2, variant, options2);
-    });
-    animation = Promise.all(animations2);
-  } else if (typeof definition === "string") {
-    animation = animateVariant(visualElement2, definition, options2);
-  } else {
-    var resolvedDefinition = typeof definition === "function" ? resolveVariant(visualElement2, definition, options2.custom) : definition;
-    animation = animateTarget(visualElement2, resolvedDefinition, options2);
-  }
-  return animation.then(function() {
-    return visualElement2.notifyAnimationComplete(definition);
-  });
-}
-function animateVariant(visualElement2, variant, options2) {
-  var _a;
-  if (options2 === void 0) {
-    options2 = {};
-  }
-  var resolved = resolveVariant(visualElement2, variant, options2.custom);
-  var _b = (resolved || {}).transition, transition = _b === void 0 ? visualElement2.getDefaultTransition() || {} : _b;
-  if (options2.transitionOverride) {
-    transition = options2.transitionOverride;
-  }
-  var getAnimation2 = resolved ? function() {
-    return animateTarget(visualElement2, resolved, options2);
-  } : function() {
-    return Promise.resolve();
-  };
-  var getChildAnimations = ((_a = visualElement2.variantChildren) === null || _a === void 0 ? void 0 : _a.size) ? function(forwardDelay) {
-    if (forwardDelay === void 0) {
-      forwardDelay = 0;
-    }
-    var _a2 = transition.delayChildren, delayChildren = _a2 === void 0 ? 0 : _a2, staggerChildren = transition.staggerChildren, staggerDirection = transition.staggerDirection;
-    return animateChildren(visualElement2, variant, delayChildren + forwardDelay, staggerChildren, staggerDirection, options2);
-  } : function() {
-    return Promise.resolve();
-  };
-  var when = transition.when;
-  if (when) {
-    var _c = __read(when === "beforeChildren" ? [getAnimation2, getChildAnimations] : [getChildAnimations, getAnimation2], 2), first = _c[0], last = _c[1];
-    return first().then(last);
-  } else {
-    return Promise.all([getAnimation2(), getChildAnimations(options2.delay)]);
-  }
-}
-function animateTarget(visualElement2, definition, _a) {
-  var _b;
-  var _c = _a === void 0 ? {} : _a, _d = _c.delay, delay = _d === void 0 ? 0 : _d, transitionOverride = _c.transitionOverride, type = _c.type;
-  var _e = visualElement2.makeTargetAnimatable(definition), _f = _e.transition, transition = _f === void 0 ? visualElement2.getDefaultTransition() : _f, transitionEnd = _e.transitionEnd, target = __rest(_e, ["transition", "transitionEnd"]);
-  if (transitionOverride)
-    transition = transitionOverride;
-  var animations2 = [];
-  var animationTypeState = type && ((_b = visualElement2.animationState) === null || _b === void 0 ? void 0 : _b.getState()[type]);
-  for (var key in target) {
-    var value = visualElement2.getValue(key);
-    var valueTarget = target[key];
-    if (!value || valueTarget === void 0 || animationTypeState && shouldBlockAnimation(animationTypeState, key)) {
-      continue;
-    }
-    var animation = startAnimation(key, value, valueTarget, __assign({ delay }, transition));
-    animations2.push(animation);
-  }
-  return Promise.all(animations2).then(function() {
-    transitionEnd && setTarget(visualElement2, transitionEnd);
-  });
-}
-function animateChildren(visualElement2, variant, delayChildren, staggerChildren, staggerDirection, options2) {
-  if (delayChildren === void 0) {
-    delayChildren = 0;
-  }
-  if (staggerChildren === void 0) {
-    staggerChildren = 0;
-  }
-  if (staggerDirection === void 0) {
-    staggerDirection = 1;
-  }
-  var animations2 = [];
-  var maxStaggerDuration = (visualElement2.variantChildren.size - 1) * staggerChildren;
-  var generateStaggerDuration = staggerDirection === 1 ? function(i) {
-    if (i === void 0) {
-      i = 0;
-    }
-    return i * staggerChildren;
-  } : function(i) {
-    if (i === void 0) {
-      i = 0;
-    }
-    return maxStaggerDuration - i * staggerChildren;
-  };
-  Array.from(visualElement2.variantChildren).sort(sortByTreeOrder).forEach(function(child, i) {
-    animations2.push(animateVariant(child, variant, __assign(__assign({}, options2), { delay: delayChildren + generateStaggerDuration(i) })).then(function() {
-      return child.notifyAnimationComplete(variant);
-    }));
-  });
-  return Promise.all(animations2);
-}
-function stopAnimation(visualElement2) {
-  visualElement2.forEachValue(function(value) {
-    return value.stop();
-  });
-}
-function sortByTreeOrder(a2, b2) {
-  return a2.sortNodePosition(b2);
-}
-function shouldBlockAnimation(_a, key) {
-  var protectedKeys = _a.protectedKeys, needsAnimating = _a.needsAnimating;
-  var shouldBlock = protectedKeys.hasOwnProperty(key) && needsAnimating[key] !== true;
-  needsAnimating[key] = false;
-  return shouldBlock;
-}
-function animationControls(startStopNotifier) {
-  var hasMounted = false;
-  var pendingAnimations = [];
-  var subscribers = new Set();
-  var stopNotification;
-  var controls = {
-    subscribe: function(visualElement2) {
-      if (subscribers.size === 0) {
-        stopNotification = startStopNotifier == null ? void 0 : startStopNotifier();
-      }
-      subscribers.add(visualElement2);
-      return function() {
-        subscribers.delete(visualElement2);
-        if (subscribers.size === 0) {
-          stopNotification == null ? void 0 : stopNotification();
-        }
-      };
-    },
-    start: function(definition, transitionOverride) {
-      if (hasMounted) {
-        var animations_1 = [];
-        subscribers.forEach(function(visualElement2) {
-          animations_1.push(animateVisualElement(visualElement2, definition, {
-            transitionOverride
-          }));
-        });
-        return Promise.all(animations_1);
-      } else {
-        return new Promise(function(resolve2) {
-          pendingAnimations.push({
-            animation: [definition, transitionOverride],
-            resolve: resolve2
-          });
-        });
-      }
-    },
-    set: function(definition) {
-      return subscribers.forEach(function(visualElement2) {
-        setValues(visualElement2, definition);
-      });
-    },
-    stop: function() {
-      subscribers.forEach(function(visualElement2) {
-        stopAnimation(visualElement2);
-      });
-    },
-    mount: function() {
-      hasMounted = true;
-      pendingAnimations.forEach(function(_a) {
-        var animation = _a.animation, resolve2 = _a.resolve;
-        controls.start.apply(controls, __spreadArray([], __read(animation))).then(resolve2);
-      });
-      return function() {
-        hasMounted = false;
-        controls.stop();
-      };
-    }
-  };
-  return controls;
-}
 var valueScaleCorrection = {};
 function eachAxis(handler) {
   return [handler("x"), handler("y")];
@@ -3860,22 +2592,13 @@ function convertBoundingBoxToAxisBox(_a) {
     y: { min: top, max: bottom }
   };
 }
-function convertAxisBoxToBoundingBox(_a) {
-  var x = _a.x, y = _a.y;
-  return {
-    top: y.min,
-    bottom: y.max,
-    left: x.min,
-    right: x.max
-  };
-}
-function transformBoundingBox(_a, transformPoint2) {
+function transformBoundingBox(_a, transformPoint) {
   var top = _a.top, left = _a.left, bottom = _a.bottom, right = _a.right;
-  if (transformPoint2 === void 0) {
-    transformPoint2 = noop;
+  if (transformPoint === void 0) {
+    transformPoint = noop;
   }
-  var topLeft = transformPoint2({ x: left, y: top });
-  var bottomRight = transformPoint2({ x: right, y: bottom });
+  var topLeft = transformPoint({ x: left, y: top });
+  var bottomRight = transformPoint({ x: right, y: bottom });
   return {
     top: topLeft.y,
     left: topLeft.x,
@@ -3885,12 +2608,6 @@ function transformBoundingBox(_a, transformPoint2) {
 }
 function axisBox() {
   return { x: { min: 0, max: 1 }, y: { min: 0, max: 1 } };
-}
-function copyAxisBox(box) {
-  return {
-    x: __assign({}, box.x),
-    y: __assign({}, box.y)
-  };
 }
 var zeroDelta = {
   translate: 0,
@@ -3905,8 +2622,8 @@ function delta() {
   };
 }
 function isDraggable(visualElement2) {
-  var _a = visualElement2.getProps(), drag2 = _a.drag, _dragX = _a._dragX;
-  return drag2 && !_dragX;
+  var _a = visualElement2.getProps(), drag = _a.drag, _dragX = _a._dragX;
+  return drag && !_dragX;
 }
 function resetAxis(axis, originAxis) {
   axis.min = originAxis.min;
@@ -4004,9 +2721,6 @@ function applyTreeDeltas(box, treeScale, treePath) {
     }
   }
 }
-var clampProgress = function(v) {
-  return clamp$1(0, 1, v);
-};
 function isNear(value, target, maxDistance) {
   if (target === void 0) {
     target = 0;
@@ -4018,17 +2732,6 @@ function isNear(value, target, maxDistance) {
 }
 function calcLength(axis) {
   return axis.max - axis.min;
-}
-function calcOrigin$1(source, target) {
-  var origin = 0.5;
-  var sourceLength = calcLength(source);
-  var targetLength = calcLength(target);
-  if (targetLength > sourceLength) {
-    origin = progress(target.min, target.max - sourceLength, source.min);
-  } else if (sourceLength > targetLength) {
-    origin = progress(source.min, source.max - targetLength, target.min);
-  }
-  return clampProgress(origin);
 }
 function updateAxisDelta(delta2, source, target, origin) {
   if (origin === void 0) {
@@ -4106,18 +2809,6 @@ var identityProjection = buildLayoutProjectionTransform(zeroLayout.delta, zeroLa
 var isAnimationControls = function(v) {
   return typeof v === "object" && typeof v.start === "function";
 };
-function shallowCompare(next, prev) {
-  if (!Array.isArray(prev))
-    return false;
-  var prevLength = prev.length;
-  if (prevLength !== next.length)
-    return false;
-  for (var i = 0; i < prevLength; i++) {
-    if (prev[i] !== next[i])
-      return false;
-  }
-  return true;
-}
 var AnimationType;
 (function(AnimationType2) {
   AnimationType2["Animate"] = "animate";
@@ -4135,177 +2826,8 @@ var variantPriorityOrder = [
   AnimationType.Focus,
   AnimationType.Exit
 ];
-var reversePriorityOrder = __spreadArray([], __read(variantPriorityOrder)).reverse();
-var numAnimationTypes = variantPriorityOrder.length;
-function animateList(visualElement2) {
-  return function(animations2) {
-    return Promise.all(animations2.map(function(_a) {
-      var animation = _a.animation, options2 = _a.options;
-      return animateVisualElement(visualElement2, animation, options2);
-    }));
-  };
-}
-function createAnimationState(visualElement2) {
-  var animate2 = animateList(visualElement2);
-  var state = createState();
-  var allAnimatedKeys = {};
-  var isInitialRender = true;
-  var buildResolvedTypeValues = function(acc, definition) {
-    var resolved = resolveVariant(visualElement2, definition);
-    if (resolved) {
-      resolved.transition;
-      var transitionEnd = resolved.transitionEnd, target = __rest(resolved, ["transition", "transitionEnd"]);
-      acc = __assign(__assign(__assign({}, acc), target), transitionEnd);
-    }
-    return acc;
-  };
-  function isAnimated(key) {
-    return allAnimatedKeys[key] !== void 0;
-  }
-  function setAnimateFunction(makeAnimator) {
-    animate2 = makeAnimator(visualElement2);
-  }
-  function animateChanges(options2, changedActiveType) {
-    var _a;
-    var props = visualElement2.getProps();
-    var context = visualElement2.getVariantContext(true) || {};
-    var animations2 = [];
-    var removedKeys = new Set();
-    var encounteredKeys = {};
-    var removedVariantIndex = Infinity;
-    var _loop_1 = function(i2) {
-      var type = reversePriorityOrder[i2];
-      var typeState = state[type];
-      var prop = (_a = props[type]) !== null && _a !== void 0 ? _a : context[type];
-      var propIsVariant = isVariantLabel(prop);
-      var activeDelta = type === changedActiveType ? typeState.isActive : null;
-      if (activeDelta === false)
-        removedVariantIndex = i2;
-      var isInherited = prop === context[type] && prop !== props[type] && propIsVariant;
-      if (isInherited && isInitialRender && visualElement2.manuallyAnimateOnMount) {
-        isInherited = false;
-      }
-      typeState.protectedKeys = __assign({}, encounteredKeys);
-      if (!typeState.isActive && activeDelta === null || !prop && !typeState.prevProp || isAnimationControls(prop) || typeof prop === "boolean") {
-        return "continue";
-      }
-      var shouldAnimateType = variantsHaveChanged(typeState.prevProp, prop) || type === changedActiveType && typeState.isActive && !isInherited && propIsVariant || i2 > removedVariantIndex && propIsVariant;
-      var definitionList = Array.isArray(prop) ? prop : [prop];
-      var resolvedValues = definitionList.reduce(buildResolvedTypeValues, {});
-      if (activeDelta === false)
-        resolvedValues = {};
-      var _b = typeState.prevResolvedValues, prevResolvedValues = _b === void 0 ? {} : _b;
-      var allKeys = __assign(__assign({}, prevResolvedValues), resolvedValues);
-      var markToAnimate = function(key2) {
-        shouldAnimateType = true;
-        removedKeys.delete(key2);
-        typeState.needsAnimating[key2] = true;
-      };
-      for (var key in allKeys) {
-        var next = resolvedValues[key];
-        var prev = prevResolvedValues[key];
-        if (encounteredKeys.hasOwnProperty(key))
-          continue;
-        if (next !== prev) {
-          if (isKeyframesTarget(next) && isKeyframesTarget(prev)) {
-            if (!shallowCompare(next, prev)) {
-              markToAnimate(key);
-            } else {
-              typeState.protectedKeys[key] = true;
-            }
-          } else if (next !== void 0) {
-            markToAnimate(key);
-          } else {
-            removedKeys.add(key);
-          }
-        } else if (next !== void 0 && removedKeys.has(key)) {
-          markToAnimate(key);
-        } else {
-          typeState.protectedKeys[key] = true;
-        }
-      }
-      typeState.prevProp = prop;
-      typeState.prevResolvedValues = resolvedValues;
-      if (typeState.isActive) {
-        encounteredKeys = __assign(__assign({}, encounteredKeys), resolvedValues);
-      }
-      if (isInitialRender && visualElement2.blockInitialAnimation) {
-        shouldAnimateType = false;
-      }
-      if (shouldAnimateType && !isInherited) {
-        animations2.push.apply(animations2, __spreadArray([], __read(definitionList.map(function(animation) {
-          return {
-            animation,
-            options: __assign({ type }, options2)
-          };
-        }))));
-      }
-    };
-    for (var i = 0; i < numAnimationTypes; i++) {
-      _loop_1(i);
-    }
-    allAnimatedKeys = __assign({}, encounteredKeys);
-    if (removedKeys.size) {
-      var fallbackAnimation_1 = {};
-      removedKeys.forEach(function(key) {
-        var fallbackTarget = visualElement2.getBaseTarget(key);
-        if (fallbackTarget !== void 0) {
-          fallbackAnimation_1[key] = fallbackTarget;
-        }
-      });
-      animations2.push({ animation: fallbackAnimation_1 });
-    }
-    var shouldAnimate = Boolean(animations2.length);
-    if (isInitialRender && props.initial === false && !visualElement2.manuallyAnimateOnMount) {
-      shouldAnimate = false;
-    }
-    isInitialRender = false;
-    return shouldAnimate ? animate2(animations2) : Promise.resolve();
-  }
-  function setActive(type, isActive, options2) {
-    var _a;
-    if (state[type].isActive === isActive)
-      return Promise.resolve();
-    (_a = visualElement2.variantChildren) === null || _a === void 0 ? void 0 : _a.forEach(function(child) {
-      var _a2;
-      return (_a2 = child.animationState) === null || _a2 === void 0 ? void 0 : _a2.setActive(type, isActive);
-    });
-    state[type].isActive = isActive;
-    return animateChanges(options2, type);
-  }
-  return {
-    isAnimated,
-    animateChanges,
-    setActive,
-    setAnimateFunction,
-    getState: function() {
-      return state;
-    }
-  };
-}
-function variantsHaveChanged(prev, next) {
-  if (typeof next === "string") {
-    return next !== prev;
-  } else if (isVariantLabels(next)) {
-    return !shallowCompare(next, prev);
-  }
-  return false;
-}
-function createTypeState(isActive) {
-  if (isActive === void 0) {
-    isActive = false;
-  }
-  return {
-    isActive,
-    protectedKeys: {},
-    needsAnimating: {},
-    prevResolvedValues: {}
-  };
-}
-function createState() {
-  var _a;
-  return _a = {}, _a[AnimationType.Animate] = createTypeState(true), _a[AnimationType.Hover] = createTypeState(), _a[AnimationType.Tap] = createTypeState(), _a[AnimationType.Drag] = createTypeState(), _a[AnimationType.Focus] = createTypeState(), _a[AnimationType.Exit] = createTypeState(), _a;
-}
+__spreadArray([], __read(variantPriorityOrder)).reverse();
+variantPriorityOrder.length;
 var names = [
   "LayoutMeasure",
   "BeforeLayoutMeasure",
@@ -4387,8 +2909,8 @@ function updateLayoutDeltas(_a, _b, treePath, transformOrigin) {
   applyTreeDeltas(layoutCorrected, treeScale, treePath);
   updateBoxDelta(delta2, layoutCorrected, target, transformOrigin);
 }
-var compareByDepth = function(a2, b2) {
-  return a2.depth - b2.depth;
+var compareByDepth = function(a, b) {
+  return a.depth - b.depth;
 };
 var FlatTree = function() {
   function FlatTree2() {
@@ -4478,7 +3000,7 @@ var visualElement = function(_a) {
       }
       build(element, renderState, valuesToRender, leadProjection, layoutState, options2, props);
     }
-    function update2() {
+    function update() {
       lifecycles.notifyUpdate(latestValues);
     }
     function updateLayoutProjection() {
@@ -4503,7 +3025,7 @@ var visualElement = function(_a) {
     function bindToMotionValue(key2, value2) {
       var removeOnChange = value2.onChange(function(latestValue) {
         latestValues[key2] = latestValue;
-        props.onUpdate && sync.update(update2, false, true);
+        props.onUpdate && sync.update(update, false, true);
       });
       var removeOnRenderRequest = value2.onRenderRequest(element.scheduleRender);
       valueSubscriptions.set(key2, function() {
@@ -4546,7 +3068,7 @@ var visualElement = function(_a) {
         parent === null || parent === void 0 ? void 0 : parent.children.add(element);
       },
       unmount: function() {
-        cancelSync.update(update2);
+        cancelSync.update(update);
         cancelSync.render(render2);
         cancelSync.preRender(element.updateLayoutProjection);
         valueSubscriptions.forEach(function(remove) {
@@ -4722,16 +3244,16 @@ var visualElement = function(_a) {
         if (isRelative === void 0) {
           isRelative = false;
         }
-        var progress2 = element.getProjectionAnimationProgress()[axis];
+        var progress = element.getProjectionAnimationProgress()[axis];
         var _a3 = isRelative ? projection.relativeTarget[axis] : projection.target[axis], min = _a3.min, max = _a3.max;
         var length = max - min;
-        progress2.clearListeners();
-        progress2.set(min);
-        progress2.set(min);
-        progress2.onChange(function(v) {
+        progress.clearListeners();
+        progress.set(min);
+        progress.set(min);
+        progress.onChange(function(v) {
           element.setProjectionTargetAxis(axis, v, v + length, isRelative);
         });
-        return element.animateMotionValue(axis, progress2, 0, transition);
+        return element.animateMotionValue(axis, progress, 0, transition);
       },
       stopLayoutAnimation: function() {
         eachAxis(function(axis) {
@@ -4910,175 +3432,13 @@ var validMotionProps = new Set([
 function isValidMotionProp(key) {
   return validMotionProps.has(key);
 }
-const PresenceContext = (c2) => getDomContext("Presence", c2) || writable(null);
-let counter = 0;
-const incrementId = () => counter++;
+const PresenceContext = (c) => getDomContext("Presence", c) || writable(null);
 function isPresent(context) {
   return context === null ? true : context.isPresent;
 }
-const usePresence = (isCustom = false) => {
-  const context = getContext(PresenceContext) || PresenceContext(isCustom);
-  const id = get_store_value(context) === null ? void 0 : incrementId();
-  if (get_store_value(context) === null) {
-    return readable([true, null]);
-  }
-  return derived(context, ($v) => !$v.isPresent && $v.onExitComplete ? [false, () => {
-    var _a;
-    return (_a = $v.onExitComplete) == null ? void 0 : _a.call($v, id);
-  }] : [true]);
-};
-const LayoutGroupContext = (c2) => getDomContext("LayoutGroup", c2) || writable(null);
-function isProjecting(visualElement2) {
-  var isEnabled = visualElement2.projection.isEnabled;
-  return isEnabled || visualElement2.shouldResetTransform();
-}
-function collectProjectingAncestors(visualElement2, ancestors) {
-  if (ancestors === void 0) {
-    ancestors = [];
-  }
-  var parent = visualElement2.parent;
-  if (parent)
-    collectProjectingAncestors(parent, ancestors);
-  if (isProjecting(visualElement2))
-    ancestors.push(visualElement2);
-  return ancestors;
-}
-function collectProjectingChildren(visualElement2) {
-  var children = [];
-  var addChild = function(child) {
-    if (isProjecting(child))
-      children.push(child);
-    child.children.forEach(addChild);
-  };
-  visualElement2.children.forEach(addChild);
-  return children.sort(compareByDepth);
-}
-function updateLayoutMeasurement(visualElement2) {
-  if (visualElement2.shouldResetTransform())
-    return;
-  var layoutState = visualElement2.getLayoutState();
-  visualElement2.notifyBeforeLayoutMeasure(layoutState.layout);
-  layoutState.isHydrated = true;
-  layoutState.layout = visualElement2.measureViewportBox();
-  layoutState.layoutCorrected = copyAxisBox(layoutState.layout);
-  visualElement2.notifyLayoutMeasure(layoutState.layout, visualElement2.prevViewportBox || layoutState.layout);
-  sync.update(function() {
-    return visualElement2.rebaseProjectionTarget();
-  });
-}
-function snapshotViewportBox(visualElement2, nc) {
-  if (visualElement2.shouldResetTransform())
-    return;
-  if (!nc)
-    visualElement2.prevViewportBox = visualElement2.measureViewportBox(false);
-  visualElement2.rebaseProjectionTarget(false, visualElement2.prevViewportBox);
-}
-var unresolvedJobs = new Set();
-function pushJob(stack, job, pointer) {
-  if (!stack[pointer])
-    stack[pointer] = [];
-  stack[pointer].push(job);
-}
-function batchLayout(callback) {
-  unresolvedJobs.add(callback);
-  return function() {
-    return unresolvedJobs.delete(callback);
-  };
-}
-function flushLayout() {
-  if (!unresolvedJobs.size)
-    return;
-  var pointer = 0;
-  var reads = [[]];
-  var writes = [];
-  var setRead = function(job) {
-    return pushJob(reads, job, pointer);
-  };
-  var setWrite = function(job) {
-    pushJob(writes, job, pointer);
-    pointer++;
-  };
-  unresolvedJobs.forEach(function(callback) {
-    callback(setRead, setWrite);
-    pointer = 0;
-  });
-  unresolvedJobs.clear();
-  sync.postRender(function() {
-    setTimeout(function() {
-      return false;
-    }, 10);
-  });
-  var numStacks = writes.length;
-  for (var i = 0; i <= numStacks; i++) {
-    reads[i] && reads[i].forEach(executeJob);
-    writes[i] && writes[i].forEach(executeJob);
-  }
-}
-var executeJob = function(job) {
-  return job();
-};
-var defaultHandler = {
-  layoutReady: function(child) {
-    return child.notifyLayoutReady();
-  }
-};
-function createBatcher() {
-  var queue = new Set();
-  return {
-    add: function(child) {
-      return queue.add(child);
-    },
-    flush: function(_a) {
-      var _b = _a === void 0 ? defaultHandler : _a, layoutReady = _b.layoutReady, parent = _b.parent;
-      batchLayout(function(read, write) {
-        var order2 = Array.from(queue).sort(compareByDepth);
-        var ancestors = parent ? collectProjectingAncestors(parent) : [];
-        write(function() {
-          var allElements = __spreadArray(__spreadArray([], __read(ancestors)), __read(order2));
-          allElements.forEach(function(element) {
-            return element.resetTransform();
-          });
-        });
-        read(function() {
-          order2.forEach(updateLayoutMeasurement);
-        });
-        write(function() {
-          ancestors.forEach(function(element) {
-            return element.restoreTransform();
-          });
-          order2.forEach(layoutReady);
-        });
-        read(function() {
-          order2.forEach(function(child) {
-            if (child.isPresent)
-              child.presence = Presence.Present;
-          });
-        });
-        write(function() {
-          flushSync.preRender();
-          flushSync.render();
-        });
-        read(function() {
-          sync.postRender(function() {
-            return order2.forEach(assignProjectionToSnapshot);
-          });
-          queue.clear();
-        });
-      });
-      flushLayout();
-    }
-  };
-}
-function assignProjectionToSnapshot(child) {
-  child.prevViewportBox = child.projection.target;
-}
-var SharedLayoutContext = (custom) => getDomContext("SharedLayout", custom) || writable(createBatcher());
-var FramerTreeLayoutContext = () => writable(createBatcher());
-function isSharedLayout(context) {
-  return !!context.forceUpdate;
-}
-const LazyContext = (c2) => getDomContext("Lazy", c2) || writable({ strict: false });
-const MotionContext = (c2) => getDomContext("Motion", c2) || writable({});
+const LayoutGroupContext = (c) => getDomContext("LayoutGroup", c) || writable(null);
+const LazyContext = (c) => getDomContext("Lazy", c) || writable({ strict: false });
+const MotionContext = (c) => getDomContext("Motion", c) || writable({});
 const UseVisualElement = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let $presenceContext, $$unsubscribe_presenceContext;
   let $config, $$unsubscribe_config;
@@ -5178,14 +3538,6 @@ var featureDefinitions = {
   ]),
   layoutAnimation: createDefinition(["layout", "layoutId"])
 };
-function loadFeatures(features) {
-  for (var key in features) {
-    var Component = features[key];
-    if (Component !== null) {
-      featureDefinitions[key].Component = Component;
-    }
-  }
-}
 const UseFeatures = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   const featureNames = Object.keys(featureDefinitions);
   const numFeatures = featureNames.length;
@@ -5252,8 +3604,8 @@ order.forEach(function(operationKey) {
     return transformProps.push(operationKey + axesKey);
   });
 });
-function sortTransformProps(a2, b2) {
-  return transformProps.indexOf(a2) - transformProps.indexOf(b2);
+function sortTransformProps(a, b) {
+  return transformProps.indexOf(a) - transformProps.indexOf(b);
 }
 var transformPropSet = new Set(transformProps);
 function isTransformProp(key) {
@@ -5447,8 +3799,8 @@ function calcSVGTransformOrigin(dimensions, originX, originY) {
   var pxOriginY = calcOrigin(originY, dimensions.y, dimensions.height);
   return pxOriginX + " " + pxOriginY;
 }
-var progressToPixels = function(progress2, length) {
-  return px.transform(progress2 * length);
+var progressToPixels = function(progress, length) {
+  return px.transform(progress * length);
 };
 var dashKeys = {
   offset: "stroke-dashoffset",
@@ -5547,7 +3899,7 @@ function filterProps(props, isDom, forwardMotionProps) {
 const UseRender = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let filteredProps;
   let { props, visualState, Component, forwardMotionProps = false, isStatic, ref, targetEl = void 0 } = $$props;
-  const motion2 = (node) => {
+  const motion = (node) => {
     ref(node);
   };
   if ($$props.props === void 0 && $$bindings.props && props !== void 0)
@@ -5567,12 +3919,12 @@ const UseRender = create_ssr_component(($$result, $$props, $$bindings, slots) =>
   filteredProps = filterProps(props, typeof Component === "string", forwardMotionProps);
   {
     if (targetEl) {
-      motion2(targetEl);
+      motion(targetEl);
     }
   }
   return `${validate_component((Component === "SVG" ? UseSVGProps : UseHTMLProps) || missing_component, "svelte:component").$$render($$result, { visualState, isStatic, props }, {}, {
     default: ({ visualProps }) => `${slots.default ? slots.default({
-      motion: motion2,
+      motion,
       props: { ...filteredProps, ...visualProps }
     }) : ``}`
   })}`;
@@ -5866,8 +4218,8 @@ var htmlConfig = {
       return (isCSSVariable$1(key) ? computedStyle.getPropertyValue(key) : computedStyle[key]) || 0;
     }
   },
-  sortNodePosition: function(a2, b2) {
-    return a2.compareDocumentPosition(b2) & 2 ? 1 : -1;
+  sortNodePosition: function(a, b) {
+    return a.compareDocumentPosition(b) & 2 ? 1 : -1;
   },
   getBaseTarget: function(props, key) {
     var _a;
@@ -6021,10 +4373,10 @@ var htmlMotionConfig = {
 };
 function getCurrentTreeVariants(props, context) {
   if (checkIfControllingVariants(props)) {
-    var initial = props.initial, animate2 = props.animate;
+    var initial = props.initial, animate = props.animate;
     return {
       initial: initial === false || isVariantLabel(initial) ? initial : void 0,
-      animate: isVariantLabel(animate2) ? animate2 : void 0
+      animate: isVariantLabel(animate) ? animate : void 0
     };
   }
   return props.inherit !== false ? context || {} : {};
@@ -6034,12 +4386,12 @@ const UseCreateMotionContext = create_ssr_component(($$result, $$props, $$bindin
   let { props, isStatic, isCustom } = $$props;
   let mc = getContext(MotionContext) || MotionContext(isCustom);
   $$unsubscribe_mc = subscribe(mc, (value2) => $mc = value2);
-  let { initial, animate: animate2 } = getCurrentTreeVariants(props, get_store_value(mc));
+  let { initial, animate } = getCurrentTreeVariants(props, get_store_value(mc));
   const variantLabelsAsDependency = (prop) => {
     return Array.isArray(prop) ? prop.join(" ") : prop;
   };
   const memo = () => {
-    return { initial, animate: animate2 };
+    return { initial, animate };
   };
   let value = memo();
   if ($$props.props === void 0 && $$bindings.props && props !== void 0)
@@ -6048,10 +4400,10 @@ const UseCreateMotionContext = create_ssr_component(($$result, $$props, $$bindin
     $$bindings.isStatic(isStatic);
   if ($$props.isCustom === void 0 && $$bindings.isCustom && isCustom !== void 0)
     $$bindings.isCustom(isCustom);
-  ({ initial, animate: animate2 } = getCurrentTreeVariants(props, $mc));
+  ({ initial, animate } = getCurrentTreeVariants(props, $mc));
   {
     if (isStatic) {
-      value = memo(variantLabelsAsDependency(initial), variantLabelsAsDependency(animate2));
+      value = memo(variantLabelsAsDependency(initial), variantLabelsAsDependency(animate));
     }
   }
   $$unsubscribe_mc();
@@ -6078,14 +4430,14 @@ function makeLatestValues(props, context, presenceContext, scrapeMotionValues) {
   for (const key in motionValues) {
     values[key] = resolveMotionValue(motionValues[key]);
   }
-  let { initial, animate: animate2 } = props;
+  let { initial, animate } = props;
   const isControllingVariants = checkIfControllingVariants(props);
   const isVariantNode = checkIfVariantNode(props);
   if (context && isVariantNode && !isControllingVariants && props.inherit !== false) {
     initial !== null && initial !== void 0 ? initial : initial = context.initial;
-    animate2 !== null && animate2 !== void 0 ? animate2 : animate2 = context.animate;
+    animate !== null && animate !== void 0 ? animate : animate = context.animate;
   }
-  const variantToSet = blockInitialAnimation || initial === false ? animate2 : initial;
+  const variantToSet = blockInitialAnimation || initial === false ? animate : initial;
   if (variantToSet && typeof variantToSet !== "boolean" && !isAnimationControls(variantToSet)) {
     const list = Array.isArray(variantToSet) ? variantToSet : [variantToSet];
     list.forEach((definition) => {
@@ -6157,10 +4509,10 @@ const Motion = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let Component = isSVG ? "SVG" : "DOM";
   let createVisualElement = createDomVisualElement;
   let visualStateConfig = isSVG ? svgMotionConfig : htmlMotionConfig;
-  const a2 = getContext(MotionConfigContext) || MotionConfigContext(isCustom);
-  $$unsubscribe_a = subscribe(a2, (value) => $a = value);
-  const setContext2 = (c2, v) => {
-    c2.visualElement = v;
+  const a = getContext(MotionConfigContext) || MotionConfigContext(isCustom);
+  $$unsubscribe_a = subscribe(a, (value) => $a = value);
+  const setContext2 = (c, v) => {
+    c.visualElement = v;
     return v;
   };
   if ($$props.isSVG === void 0 && $$bindings.isSVG && isSVG !== void 0)
@@ -6202,7 +4554,7 @@ const Motion = create_ssr_component(($$result, $$props, $$bindings, slots) => {
                 isStatic,
                 forwardMotionProps
               }, {}, {
-                default: ({ motion: motion2, props: renderProps }) => `${slots.default ? slots.default({ motion: motion2, props: renderProps }) : ``}`
+                default: ({ motion, props: renderProps }) => `${slots.default ? slots.default({ motion, props: renderProps }) : ``}`
               })}`
             })}
 
@@ -6213,1047 +4565,6 @@ const Motion = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     })}`
   })}`;
 });
-function addDomEvent(target, eventName, handler, options2) {
-  target.addEventListener(eventName, handler, options2);
-  return function() {
-    return target.removeEventListener(eventName, handler, options2);
-  };
-}
-const UseDomEvent = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  let { ref, eventName, handler = void 0, options: options2 = void 0 } = $$props;
-  let cleanup = () => {
-  };
-  const effect = () => {
-    cleanup();
-    if (!ref) {
-      return () => {
-      };
-    }
-    const element = ref.current;
-    if (handler && element) {
-      return addDomEvent(element, eventName, handler, options2);
-    }
-    return () => {
-    };
-  };
-  onDestroy(cleanup);
-  if ($$props.ref === void 0 && $$bindings.ref && ref !== void 0)
-    $$bindings.ref(ref);
-  if ($$props.eventName === void 0 && $$bindings.eventName && eventName !== void 0)
-    $$bindings.eventName(eventName);
-  if ($$props.handler === void 0 && $$bindings.handler && handler !== void 0)
-    $$bindings.handler(handler);
-  if ($$props.options === void 0 && $$bindings.options && options2 !== void 0)
-    $$bindings.options(options2);
-  cleanup = effect();
-  return `${slots.default ? slots.default({}) : ``}`;
-});
-function isMouseEvent(event) {
-  if (typeof PointerEvent !== "undefined" && event instanceof PointerEvent) {
-    return !!(event.pointerType === "mouse");
-  }
-  return event instanceof MouseEvent;
-}
-function isTouchEvent(event) {
-  var hasTouches = !!event.touches;
-  return hasTouches;
-}
-function filterPrimaryPointer(eventHandler) {
-  return function(event) {
-    var isMouseEvent2 = event instanceof MouseEvent;
-    var isPrimaryPointer = !isMouseEvent2 || isMouseEvent2 && event.button === 0;
-    if (isPrimaryPointer) {
-      eventHandler(event);
-    }
-  };
-}
-var defaultPagePoint = { pageX: 0, pageY: 0 };
-function pointFromTouch(e, pointType) {
-  if (pointType === void 0) {
-    pointType = "page";
-  }
-  var primaryTouch = e.touches[0] || e.changedTouches[0];
-  var point = primaryTouch || defaultPagePoint;
-  return {
-    x: point[pointType + "X"],
-    y: point[pointType + "Y"]
-  };
-}
-function pointFromMouse(point, pointType) {
-  if (pointType === void 0) {
-    pointType = "page";
-  }
-  return {
-    x: point[pointType + "X"],
-    y: point[pointType + "Y"]
-  };
-}
-function extractEventInfo(event, pointType) {
-  if (pointType === void 0) {
-    pointType = "page";
-  }
-  return {
-    point: isTouchEvent(event) ? pointFromTouch(event, pointType) : pointFromMouse(event, pointType)
-  };
-}
-function getViewportPointFromEvent(event) {
-  return extractEventInfo(event, "client");
-}
-var wrapHandler = function(handler, shouldFilterPrimaryPointer) {
-  if (shouldFilterPrimaryPointer === void 0) {
-    shouldFilterPrimaryPointer = false;
-  }
-  var listener = function(event) {
-    return handler(event, extractEventInfo(event));
-  };
-  return shouldFilterPrimaryPointer ? filterPrimaryPointer(listener) : listener;
-};
-var isBrowser = typeof window !== "undefined";
-var supportsPointerEvents = function() {
-  return isBrowser && window.onpointerdown === null;
-};
-var supportsTouchEvents = function() {
-  return isBrowser && window.ontouchstart === null;
-};
-var supportsMouseEvents = function() {
-  return isBrowser && window.onmousedown === null;
-};
-const mouseEventNames = {
-  pointerdown: "mousedown",
-  pointermove: "mousemove",
-  pointerup: "mouseup",
-  pointercancel: "mousecancel",
-  pointerover: "mouseover",
-  pointerout: "mouseout",
-  pointerenter: "mouseenter",
-  pointerleave: "mouseleave"
-};
-const touchEventNames = {
-  pointerdown: "touchstart",
-  pointermove: "touchmove",
-  pointerup: "touchend",
-  pointercancel: "touchcancel"
-};
-function getPointerEventName(name) {
-  if (supportsPointerEvents()) {
-    return name;
-  } else if (supportsTouchEvents()) {
-    return touchEventNames[name];
-  } else if (supportsMouseEvents()) {
-    return mouseEventNames[name];
-  }
-  return name;
-}
-function addPointerEvent(target, eventName, handler, options2) {
-  return addDomEvent(target, getPointerEventName(eventName), wrapHandler(handler, eventName === "pointerdown"), options2);
-}
-const UsePointerEvent = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  let { ref, eventName, handler = void 0, options: options2 = void 0 } = $$props;
-  if ($$props.ref === void 0 && $$bindings.ref && ref !== void 0)
-    $$bindings.ref(ref);
-  if ($$props.eventName === void 0 && $$bindings.eventName && eventName !== void 0)
-    $$bindings.eventName(eventName);
-  if ($$props.handler === void 0 && $$bindings.handler && handler !== void 0)
-    $$bindings.handler(handler);
-  if ($$props.options === void 0 && $$bindings.options && options2 !== void 0)
-    $$bindings.options(options2);
-  return `${validate_component(UseDomEvent, "UseDomEvent").$$render($$result, {
-    ref,
-    eventName: getPointerEventName(eventName),
-    handler: handler && wrapHandler(handler, eventName === "pointerdown"),
-    options: options2
-  }, {}, {
-    default: () => `${slots.default ? slots.default({}) : ``}`
-  })}`;
-});
-var PanSession = function() {
-  function PanSession2(event, handlers, _a) {
-    var _this = this;
-    var _b = _a === void 0 ? {} : _a, transformPagePoint = _b.transformPagePoint;
-    this.startEvent = null;
-    this.lastMoveEvent = null;
-    this.lastMoveEventInfo = null;
-    this.handlers = {};
-    this.updatePoint = function() {
-      if (!(_this.lastMoveEvent && _this.lastMoveEventInfo))
-        return;
-      var info2 = getPanInfo(_this.lastMoveEventInfo, _this.history);
-      var isPanStarted = _this.startEvent !== null;
-      var isDistancePastThreshold = distance(info2.offset, { x: 0, y: 0 }) >= 3;
-      if (!isPanStarted && !isDistancePastThreshold)
-        return;
-      var point2 = info2.point;
-      var timestamp2 = getFrameData().timestamp;
-      _this.history.push(__assign(__assign({}, point2), { timestamp: timestamp2 }));
-      var _a2 = _this.handlers, onStart = _a2.onStart, onMove = _a2.onMove;
-      if (!isPanStarted) {
-        onStart && onStart(_this.lastMoveEvent, info2);
-        _this.startEvent = _this.lastMoveEvent;
-      }
-      onMove && onMove(_this.lastMoveEvent, info2);
-    };
-    this.handlePointerMove = function(event2, info2) {
-      _this.lastMoveEvent = event2;
-      _this.lastMoveEventInfo = transformPoint(info2, _this.transformPagePoint);
-      if (isMouseEvent(event2) && event2.buttons === 0) {
-        _this.handlePointerUp(event2, info2);
-        return;
-      }
-      sync.update(_this.updatePoint, true);
-    };
-    this.handlePointerUp = function(event2, info2) {
-      _this.end();
-      var _a2 = _this.handlers, onEnd = _a2.onEnd, onSessionEnd = _a2.onSessionEnd;
-      var panInfo = getPanInfo(transformPoint(info2, _this.transformPagePoint), _this.history);
-      if (_this.startEvent && onEnd) {
-        onEnd(event2, panInfo);
-      }
-      onSessionEnd && onSessionEnd(event2, panInfo);
-    };
-    if (isTouchEvent(event) && event.touches.length > 1)
-      return;
-    this.handlers = handlers;
-    this.transformPagePoint = transformPagePoint;
-    var info = extractEventInfo(event);
-    var initialInfo = transformPoint(info, this.transformPagePoint);
-    var point = initialInfo.point;
-    var timestamp = getFrameData().timestamp;
-    this.history = [__assign(__assign({}, point), { timestamp })];
-    var onSessionStart = handlers.onSessionStart;
-    onSessionStart && onSessionStart(event, getPanInfo(initialInfo, this.history));
-    this.removeListeners = pipe(addPointerEvent(window, "pointermove", this.handlePointerMove), addPointerEvent(window, "pointerup", this.handlePointerUp), addPointerEvent(window, "pointercancel", this.handlePointerUp));
-  }
-  PanSession2.prototype.updateHandlers = function(handlers) {
-    this.handlers = handlers;
-  };
-  PanSession2.prototype.end = function() {
-    this.removeListeners && this.removeListeners();
-    cancelSync.update(this.updatePoint);
-  };
-  return PanSession2;
-}();
-function transformPoint(info, transformPagePoint) {
-  return transformPagePoint ? { point: transformPagePoint(info.point) } : info;
-}
-function subtractPoint(a2, b2) {
-  return { x: a2.x - b2.x, y: a2.y - b2.y };
-}
-function getPanInfo(_a, history) {
-  var point = _a.point;
-  return {
-    point,
-    delta: subtractPoint(point, lastDevicePoint(history)),
-    offset: subtractPoint(point, startDevicePoint(history)),
-    velocity: getVelocity(history, 0.1)
-  };
-}
-function startDevicePoint(history) {
-  return history[0];
-}
-function lastDevicePoint(history) {
-  return history[history.length - 1];
-}
-function getVelocity(history, timeDelta) {
-  if (history.length < 2) {
-    return { x: 0, y: 0 };
-  }
-  var i = history.length - 1;
-  var timestampedPoint = null;
-  var lastPoint = lastDevicePoint(history);
-  while (i >= 0) {
-    timestampedPoint = history[i];
-    if (lastPoint.timestamp - timestampedPoint.timestamp > secondsToMilliseconds(timeDelta)) {
-      break;
-    }
-    i--;
-  }
-  if (!timestampedPoint) {
-    return { x: 0, y: 0 };
-  }
-  var time = (lastPoint.timestamp - timestampedPoint.timestamp) / 1e3;
-  if (time === 0) {
-    return { x: 0, y: 0 };
-  }
-  var currentVelocity = {
-    x: (lastPoint.x - timestampedPoint.x) / time,
-    y: (lastPoint.y - timestampedPoint.y) / time
-  };
-  if (currentVelocity.x === Infinity) {
-    currentVelocity.x = 0;
-  }
-  if (currentVelocity.y === Infinity) {
-    currentVelocity.y = 0;
-  }
-  return currentVelocity;
-}
-const UsePanGesture = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  let hasPanEvents;
-  let $mcc, $$unsubscribe_mcc;
-  let { props, visualElement: visualElement2, isCustom } = $$props;
-  let { onPan, onPanStart, onPanEnd, onPanSessionStart } = props;
-  let panSession = null;
-  const mcc = getContext(MotionConfigContext) || MotionConfigContext(isCustom);
-  $$unsubscribe_mcc = subscribe(mcc, (value) => $mcc = value);
-  let { transformPagePoint } = get_store_value(mcc);
-  let handlers = {
-    onSessionStart: onPanSessionStart,
-    onStart: onPanStart,
-    onMove: onPan,
-    onEnd: (event, info) => {
-      panSession = null;
-      onPanEnd && onPanEnd(event, info);
-    }
-  };
-  function onPointerDown(event) {
-    panSession = new PanSession(event, handlers, { transformPagePoint });
-  }
-  onDestroy(() => panSession && panSession.end());
-  if ($$props.props === void 0 && $$bindings.props && props !== void 0)
-    $$bindings.props(props);
-  if ($$props.visualElement === void 0 && $$bindings.visualElement && visualElement2 !== void 0)
-    $$bindings.visualElement(visualElement2);
-  if ($$props.isCustom === void 0 && $$bindings.isCustom && isCustom !== void 0)
-    $$bindings.isCustom(isCustom);
-  ({ onPan, onPanStart, onPanEnd, onPanSessionStart } = props);
-  hasPanEvents = onPan || onPanStart || onPanEnd || onPanSessionStart;
-  ({ transformPagePoint } = $mcc);
-  handlers = {
-    onSessionStart: onPanSessionStart,
-    onStart: onPanStart,
-    onMove: onPan,
-    onEnd: (event, info) => {
-      panSession = null;
-      onPanEnd && onPanEnd(event, info);
-    }
-  };
-  $$unsubscribe_mcc();
-  return `${validate_component(UsePointerEvent, "UsePointerEvent").$$render($$result, {
-    ref: visualElement2,
-    eventName: "pointerdown",
-    handler: hasPanEvents && onPointerDown
-  }, {}, {
-    default: () => `${slots.default ? slots.default({}) : ``}`
-  })}`;
-});
-var isNodeOrChild = function(parent, child) {
-  if (!child) {
-    return false;
-  } else if (parent === child) {
-    return true;
-  } else {
-    return isNodeOrChild(parent, child.parentElement);
-  }
-};
-function createLock(name) {
-  var lock = null;
-  return function() {
-    var openLock = function() {
-      lock = null;
-    };
-    if (lock === null) {
-      lock = name;
-      return openLock;
-    }
-    return false;
-  };
-}
-var globalHorizontalLock = createLock("dragHorizontal");
-var globalVerticalLock = createLock("dragVertical");
-function getGlobalLock(drag2) {
-  var lock = false;
-  if (drag2 === "y") {
-    lock = globalVerticalLock();
-  } else if (drag2 === "x") {
-    lock = globalHorizontalLock();
-  } else {
-    var openHorizontal_1 = globalHorizontalLock();
-    var openVertical_1 = globalVerticalLock();
-    if (openHorizontal_1 && openVertical_1) {
-      lock = function() {
-        openHorizontal_1();
-        openVertical_1();
-      };
-    } else {
-      if (openHorizontal_1)
-        openHorizontal_1();
-      if (openVertical_1)
-        openVertical_1();
-    }
-  }
-  return lock;
-}
-function isDragActive() {
-  var openGestureLock = getGlobalLock(true);
-  if (!openGestureLock)
-    return true;
-  openGestureLock();
-  return false;
-}
-const UseTapGesture = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  let onTap;
-  let onTapStart;
-  let onTapCancel;
-  let whileTap;
-  let hasPressListeners;
-  let { props, visualElement: visualElement2 } = $$props;
-  let isPressing = false;
-  let cancelPointerEndListeners = null;
-  function removePointerEndListener() {
-    cancelPointerEndListeners == null ? void 0 : cancelPointerEndListeners();
-    cancelPointerEndListeners = null;
-  }
-  function checkPointerEnd() {
-    var _a;
-    removePointerEndListener();
-    isPressing = false;
-    (_a = visualElement2.animationState) == null ? void 0 : _a.setActive(AnimationType.Tap, false);
-    return !isDragActive();
-  }
-  function onPointerUp(event, info) {
-    if (!checkPointerEnd())
-      return;
-    !isNodeOrChild(visualElement2.getInstance(), event.target) ? onTapCancel == null ? void 0 : onTapCancel(event, info) : onTap == null ? void 0 : onTap(event, info);
-  }
-  function onPointerCancel(event, info) {
-    if (!checkPointerEnd())
-      return;
-    onTapCancel == null ? void 0 : onTapCancel(event, info);
-  }
-  function onPointerDown(event, info) {
-    var _a;
-    if (isPressing)
-      return;
-    removePointerEndListener();
-    isPressing = true;
-    cancelPointerEndListeners = pipe(addPointerEvent(window, "pointerup", onPointerUp), addPointerEvent(window, "pointercancel", onPointerCancel));
-    onTapStart == null ? void 0 : onTapStart(event, info);
-    (_a = visualElement2.animationState) == null ? void 0 : _a.setActive(AnimationType.Tap, true);
-  }
-  onDestroy(removePointerEndListener);
-  if ($$props.props === void 0 && $$bindings.props && props !== void 0)
-    $$bindings.props(props);
-  if ($$props.visualElement === void 0 && $$bindings.visualElement && visualElement2 !== void 0)
-    $$bindings.visualElement(visualElement2);
-  ({ onTap, onTapStart, onTapCancel, whileTap } = props);
-  hasPressListeners = onTap || onTapStart || onTapCancel || whileTap;
-  return `${validate_component(UsePointerEvent, "UsePointerEvent").$$render($$result, {
-    ref: visualElement2,
-    eventName: "pointerdown",
-    handler: hasPressListeners ? onPointerDown : void 0
-  }, {}, {
-    default: () => `${slots.default ? slots.default({}) : ``}`
-  })}`;
-});
-function createHoverEvent(visualElement2, isActive, callback) {
-  return (event, info) => {
-    var _a;
-    if (!isMouseEvent(event) || isDragActive())
-      return;
-    callback == null ? void 0 : callback(event, info);
-    (_a = visualElement2.animationState) == null ? void 0 : _a.setActive(AnimationType.Hover, isActive);
-  };
-}
-const UseHoverGesture = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  let { props, visualElement: visualElement2 } = $$props;
-  let { onHoverStart, onHoverEnd, whileHover } = props;
-  if ($$props.props === void 0 && $$bindings.props && props !== void 0)
-    $$bindings.props(props);
-  if ($$props.visualElement === void 0 && $$bindings.visualElement && visualElement2 !== void 0)
-    $$bindings.visualElement(visualElement2);
-  ({ onHoverStart, onHoverEnd, whileHover } = props);
-  return `${validate_component(UsePointerEvent, "UsePointerEvent").$$render($$result, {
-    ref: visualElement2,
-    eventName: "pointerenter",
-    handler: onHoverStart || whileHover ? createHoverEvent(visualElement2, true, onHoverStart) : void 0
-  }, {}, {})}
-${validate_component(UsePointerEvent, "UsePointerEvent").$$render($$result, {
-    ref: visualElement2,
-    eventName: "pointerleave",
-    handler: onHoverEnd || whileHover ? createHoverEvent(visualElement2, false, onHoverEnd) : void 0
-  }, {}, {})}
-${slots.default ? slots.default({}) : ``}`;
-});
-const UseFocusGesture = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  let whileFocus;
-  let { props, visualElement: visualElement2 } = $$props;
-  const onFocus = () => {
-    var _a;
-    (_a = visualElement2.animationState) == null ? void 0 : _a.setActive(AnimationType.Focus, true);
-  };
-  const onBlur = () => {
-    var _a;
-    (_a = visualElement2.animationState) == null ? void 0 : _a.setActive(AnimationType.Focus, false);
-  };
-  if ($$props.props === void 0 && $$bindings.props && props !== void 0)
-    $$bindings.props(props);
-  if ($$props.visualElement === void 0 && $$bindings.visualElement && visualElement2 !== void 0)
-    $$bindings.visualElement(visualElement2);
-  ({ whileFocus } = props);
-  return `${validate_component(UseDomEvent, "UseDomEvent").$$render($$result, {
-    ref: visualElement2,
-    eventName: "focus",
-    handler: whileFocus ? onFocus : void 0
-  }, {}, {
-    default: () => `${validate_component(UseDomEvent, "UseDomEvent").$$render($$result, {
-      ref: visualElement2,
-      eventName: "blur",
-      handler: whileFocus ? onBlur : void 0
-    }, {}, {
-      default: () => `${slots.default ? slots.default({}) : ``}`
-    })}`
-  })}`;
-});
-const createMotionClass = (features) => {
-  features && loadFeatures(features);
-  return Motion;
-};
-const gestureAnimations = {
-  tap: UseTapGesture,
-  focus: UseFocusGesture,
-  hover: UseHoverGesture
-};
-function applyConstraints(point, _a, elastic) {
-  var min = _a.min, max = _a.max;
-  if (min !== void 0 && point < min) {
-    point = elastic ? mix(min, point, elastic.min) : Math.max(point, min);
-  } else if (max !== void 0 && point > max) {
-    point = elastic ? mix(max, point, elastic.max) : Math.min(point, max);
-  }
-  return point;
-}
-function calcConstrainedMinPoint(point, length, progress2, constraints, elastic) {
-  var min = point - length * progress2;
-  return constraints ? applyConstraints(min, constraints, elastic) : min;
-}
-function calcRelativeAxisConstraints(axis, min, max) {
-  return {
-    min: min !== void 0 ? axis.min + min : void 0,
-    max: max !== void 0 ? axis.max + max - (axis.max - axis.min) : void 0
-  };
-}
-function calcRelativeConstraints(layoutBox, _a) {
-  var top = _a.top, left = _a.left, bottom = _a.bottom, right = _a.right;
-  return {
-    x: calcRelativeAxisConstraints(layoutBox.x, left, right),
-    y: calcRelativeAxisConstraints(layoutBox.y, top, bottom)
-  };
-}
-function calcViewportAxisConstraints(layoutAxis, constraintsAxis) {
-  var _a;
-  var min = constraintsAxis.min - layoutAxis.min;
-  var max = constraintsAxis.max - layoutAxis.max;
-  if (constraintsAxis.max - constraintsAxis.min < layoutAxis.max - layoutAxis.min) {
-    _a = __read([max, min], 2), min = _a[0], max = _a[1];
-  }
-  return {
-    min: layoutAxis.min + min,
-    max: layoutAxis.min + max
-  };
-}
-function calcViewportConstraints(layoutBox, constraintsBox) {
-  return {
-    x: calcViewportAxisConstraints(layoutBox.x, constraintsBox.x),
-    y: calcViewportAxisConstraints(layoutBox.y, constraintsBox.y)
-  };
-}
-function calcPositionFromProgress(axis, constraints, progress2) {
-  var axisLength = axis.max - axis.min;
-  var min = mix(constraints.min, constraints.max - axisLength, progress2);
-  return { min, max: min + axisLength };
-}
-function rebaseAxisConstraints(layout2, constraints) {
-  var relativeConstraints = {};
-  if (constraints.min !== void 0) {
-    relativeConstraints.min = constraints.min - layout2.min;
-  }
-  if (constraints.max !== void 0) {
-    relativeConstraints.max = constraints.max - layout2.min;
-  }
-  return relativeConstraints;
-}
-var defaultElastic = 0.35;
-function resolveDragElastic(dragElastic) {
-  if (dragElastic === false) {
-    dragElastic = 0;
-  } else if (dragElastic === true) {
-    dragElastic = defaultElastic;
-  }
-  return {
-    x: resolveAxisElastic(dragElastic, "left", "right"),
-    y: resolveAxisElastic(dragElastic, "top", "bottom")
-  };
-}
-function resolveAxisElastic(dragElastic, minLabel, maxLabel) {
-  return {
-    min: resolvePointElastic(dragElastic, minLabel),
-    max: resolvePointElastic(dragElastic, maxLabel)
-  };
-}
-function resolvePointElastic(dragElastic, label) {
-  var _a;
-  return typeof dragElastic === "number" ? dragElastic : (_a = dragElastic[label]) !== null && _a !== void 0 ? _a : 0;
-}
-function convertToRelativeProjection(visualElement2, isLayoutDrag) {
-  if (isLayoutDrag === void 0) {
-    isLayoutDrag = true;
-  }
-  var projectionParent = visualElement2.getProjectionParent();
-  if (!projectionParent)
-    return false;
-  var offset;
-  if (isLayoutDrag) {
-    offset = calcRelativeOffset(projectionParent.projection.target, visualElement2.projection.target);
-    removeBoxTransforms(offset, projectionParent.getLatestValues());
-  } else {
-    offset = calcRelativeOffset(projectionParent.getLayoutState().layout, visualElement2.getLayoutState().layout);
-  }
-  eachAxis(function(axis) {
-    return visualElement2.setProjectionTargetAxis(axis, offset[axis].min, offset[axis].max, true);
-  });
-  return true;
-}
-var elementDragControls = new WeakMap();
-var lastPointerEvent;
-var VisualElementDragControls = function() {
-  function VisualElementDragControls2(_a) {
-    var visualElement2 = _a.visualElement;
-    this.isDragging = false;
-    this.currentDirection = null;
-    this.constraints = false;
-    this.elastic = axisBox();
-    this.props = {};
-    this.hasMutatedConstraints = false;
-    this.cursorProgress = {
-      x: 0.5,
-      y: 0.5
-    };
-    this.originPoint = {};
-    this.openGlobalLock = null;
-    this.panSession = null;
-    this.visualElement = visualElement2;
-    this.visualElement.enableLayoutProjection();
-    elementDragControls.set(visualElement2, this);
-  }
-  VisualElementDragControls2.prototype.start = function(originEvent, _a) {
-    var _this = this;
-    var _b = _a === void 0 ? {} : _a, _c = _b.snapToCursor, snapToCursor = _c === void 0 ? false : _c, cursorProgress = _b.cursorProgress;
-    var onSessionStart = function(event) {
-      var _a2;
-      _this.stopMotion();
-      var initialPoint = getViewportPointFromEvent(event).point;
-      (_a2 = _this.cancelLayout) === null || _a2 === void 0 ? void 0 : _a2.call(_this);
-      _this.cancelLayout = batchLayout(function(read, write) {
-        var ancestors = collectProjectingAncestors(_this.visualElement);
-        var children = collectProjectingChildren(_this.visualElement);
-        var tree = __spreadArray(__spreadArray([], __read(ancestors)), __read(children));
-        var hasManuallySetCursorOrigin = false;
-        _this.isLayoutDrag() && _this.visualElement.lockProjectionTarget();
-        write(function() {
-          tree.forEach(function(element) {
-            return element.resetTransform();
-          });
-        });
-        read(function() {
-          updateLayoutMeasurement(_this.visualElement);
-          children.forEach(updateLayoutMeasurement);
-        });
-        write(function() {
-          tree.forEach(function(element) {
-            return element.restoreTransform();
-          });
-          if (snapToCursor) {
-            hasManuallySetCursorOrigin = _this.snapToCursor(initialPoint);
-          }
-        });
-        read(function() {
-          var isRelativeDrag = Boolean(_this.getAxisMotionValue("x") && !_this.isExternalDrag());
-          if (!isRelativeDrag) {
-            _this.visualElement.rebaseProjectionTarget(true, _this.visualElement.measureViewportBox(false));
-          }
-          _this.visualElement.scheduleUpdateLayoutProjection();
-          var projection = _this.visualElement.projection;
-          eachAxis(function(axis) {
-            if (!hasManuallySetCursorOrigin) {
-              var _a3 = projection.target[axis], min = _a3.min, max = _a3.max;
-              _this.cursorProgress[axis] = cursorProgress ? cursorProgress[axis] : progress(min, max, initialPoint[axis]);
-            }
-            var axisValue = _this.getAxisMotionValue(axis);
-            if (axisValue) {
-              _this.originPoint[axis] = axisValue.get();
-            }
-          });
-        });
-        write(function() {
-          flushSync.update();
-          flushSync.preRender();
-          flushSync.render();
-          flushSync.postRender();
-        });
-        read(function() {
-          return _this.resolveDragConstraints();
-        });
-      });
-    };
-    var onStart = function(event, info) {
-      var _a2, _b2, _c2;
-      var _d = _this.props, drag2 = _d.drag, dragPropagation = _d.dragPropagation;
-      if (drag2 && !dragPropagation) {
-        if (_this.openGlobalLock)
-          _this.openGlobalLock();
-        _this.openGlobalLock = getGlobalLock(drag2);
-        if (!_this.openGlobalLock)
-          return;
-      }
-      flushLayout();
-      _this.isDragging = true;
-      _this.currentDirection = null;
-      (_b2 = (_a2 = _this.props).onDragStart) === null || _b2 === void 0 ? void 0 : _b2.call(_a2, event, info);
-      (_c2 = _this.visualElement.animationState) === null || _c2 === void 0 ? void 0 : _c2.setActive(AnimationType.Drag, true);
-    };
-    var onMove = function(event, info) {
-      var _a2, _b2, _c2, _d;
-      var _e = _this.props, dragPropagation = _e.dragPropagation, dragDirectionLock = _e.dragDirectionLock;
-      if (!dragPropagation && !_this.openGlobalLock)
-        return;
-      var offset = info.offset;
-      if (dragDirectionLock && _this.currentDirection === null) {
-        _this.currentDirection = getCurrentDirection(offset);
-        if (_this.currentDirection !== null) {
-          (_b2 = (_a2 = _this.props).onDirectionLock) === null || _b2 === void 0 ? void 0 : _b2.call(_a2, _this.currentDirection);
-        }
-        return;
-      }
-      _this.updateAxis("x", info.point, offset);
-      _this.updateAxis("y", info.point, offset);
-      (_d = (_c2 = _this.props).onDrag) === null || _d === void 0 ? void 0 : _d.call(_c2, event, info);
-      lastPointerEvent = event;
-    };
-    var onSessionEnd = function(event, info) {
-      return _this.stop(event, info);
-    };
-    var transformPagePoint = this.props.transformPagePoint;
-    this.panSession = new PanSession(originEvent, {
-      onSessionStart,
-      onStart,
-      onMove,
-      onSessionEnd
-    }, { transformPagePoint });
-  };
-  VisualElementDragControls2.prototype.resolveDragConstraints = function() {
-    var _this = this;
-    var _a = this.props, dragConstraints = _a.dragConstraints, dragElastic = _a.dragElastic;
-    var layout2 = this.visualElement.getLayoutState().layoutCorrected;
-    if (dragConstraints) {
-      this.constraints = isRefObject(dragConstraints) ? this.resolveRefConstraints(layout2, dragConstraints) : calcRelativeConstraints(layout2, dragConstraints);
-    } else {
-      this.constraints = false;
-    }
-    this.elastic = resolveDragElastic(dragElastic);
-    if (this.constraints && !this.hasMutatedConstraints) {
-      eachAxis(function(axis) {
-        if (_this.getAxisMotionValue(axis)) {
-          _this.constraints[axis] = rebaseAxisConstraints(layout2[axis], _this.constraints[axis]);
-        }
-      });
-    }
-  };
-  VisualElementDragControls2.prototype.resolveRefConstraints = function(layoutBox, constraints) {
-    var _a = this.props, onMeasureDragConstraints = _a.onMeasureDragConstraints, transformPagePoint = _a.transformPagePoint;
-    var constraintsElement = constraints.current;
-    this.constraintsBox = getBoundingBox(constraintsElement, transformPagePoint);
-    var measuredConstraints = calcViewportConstraints(layoutBox, this.constraintsBox);
-    if (onMeasureDragConstraints) {
-      var userConstraints = onMeasureDragConstraints(convertAxisBoxToBoundingBox(measuredConstraints));
-      this.hasMutatedConstraints = !!userConstraints;
-      if (userConstraints) {
-        measuredConstraints = convertBoundingBoxToAxisBox(userConstraints);
-      }
-    }
-    return measuredConstraints;
-  };
-  VisualElementDragControls2.prototype.cancelDrag = function() {
-    var _a, _b;
-    this.visualElement.unlockProjectionTarget();
-    (_a = this.cancelLayout) === null || _a === void 0 ? void 0 : _a.call(this);
-    this.isDragging = false;
-    this.panSession && this.panSession.end();
-    this.panSession = null;
-    if (!this.props.dragPropagation && this.openGlobalLock) {
-      this.openGlobalLock();
-      this.openGlobalLock = null;
-    }
-    (_b = this.visualElement.animationState) === null || _b === void 0 ? void 0 : _b.setActive(AnimationType.Drag, false);
-  };
-  VisualElementDragControls2.prototype.stop = function(event, info) {
-    var _a, _b, _c;
-    (_a = this.panSession) === null || _a === void 0 ? void 0 : _a.end();
-    this.panSession = null;
-    var isDragging = this.isDragging;
-    this.cancelDrag();
-    if (!isDragging)
-      return;
-    var velocity = info.velocity;
-    this.animateDragEnd(velocity);
-    (_c = (_b = this.props).onDragEnd) === null || _c === void 0 ? void 0 : _c.call(_b, event, info);
-  };
-  VisualElementDragControls2.prototype.snapToCursor = function(point) {
-    var _this = this;
-    return eachAxis(function(axis) {
-      var drag2 = _this.props.drag;
-      if (!shouldDrag(axis, drag2, _this.currentDirection))
-        return;
-      var axisValue = _this.getAxisMotionValue(axis);
-      if (axisValue) {
-        var box = _this.visualElement.getLayoutState().layout;
-        var length_1 = box[axis].max - box[axis].min;
-        var center = box[axis].min + length_1 / 2;
-        var offset = point[axis] - center;
-        _this.originPoint[axis] = point[axis];
-        axisValue.set(offset);
-      } else {
-        _this.cursorProgress[axis] = 0.5;
-        return true;
-      }
-    }).includes(true);
-  };
-  VisualElementDragControls2.prototype.updateAxis = function(axis, point, offset) {
-    var drag2 = this.props.drag;
-    if (!shouldDrag(axis, drag2, this.currentDirection))
-      return;
-    return this.getAxisMotionValue(axis) ? this.updateAxisMotionValue(axis, offset) : this.updateVisualElementAxis(axis, point);
-  };
-  VisualElementDragControls2.prototype.updateAxisMotionValue = function(axis, offset) {
-    var axisValue = this.getAxisMotionValue(axis);
-    if (!offset || !axisValue)
-      return;
-    var nextValue = this.originPoint[axis] + offset[axis];
-    var update2 = this.constraints ? applyConstraints(nextValue, this.constraints[axis], this.elastic[axis]) : nextValue;
-    axisValue.set(update2);
-  };
-  VisualElementDragControls2.prototype.updateVisualElementAxis = function(axis, point) {
-    var _a;
-    var axisLayout = this.visualElement.getLayoutState().layout[axis];
-    var axisLength = axisLayout.max - axisLayout.min;
-    var axisProgress = this.cursorProgress[axis];
-    var min = calcConstrainedMinPoint(point[axis], axisLength, axisProgress, (_a = this.constraints) === null || _a === void 0 ? void 0 : _a[axis], this.elastic[axis]);
-    this.visualElement.setProjectionTargetAxis(axis, min, min + axisLength);
-  };
-  VisualElementDragControls2.prototype.setProps = function(_a) {
-    var _b = _a.drag, drag2 = _b === void 0 ? false : _b, _c = _a.dragDirectionLock, dragDirectionLock = _c === void 0 ? false : _c, _d = _a.dragPropagation, dragPropagation = _d === void 0 ? false : _d, _e = _a.dragConstraints, dragConstraints = _e === void 0 ? false : _e, _f = _a.dragElastic, dragElastic = _f === void 0 ? defaultElastic : _f, _g = _a.dragMomentum, dragMomentum = _g === void 0 ? true : _g, remainingProps = __rest(_a, ["drag", "dragDirectionLock", "dragPropagation", "dragConstraints", "dragElastic", "dragMomentum"]);
-    this.props = __assign({
-      drag: drag2,
-      dragDirectionLock,
-      dragPropagation,
-      dragConstraints,
-      dragElastic,
-      dragMomentum
-    }, remainingProps);
-  };
-  VisualElementDragControls2.prototype.getAxisMotionValue = function(axis) {
-    var _a = this.props, layout2 = _a.layout, layoutId = _a.layoutId;
-    var dragKey = "_drag" + axis.toUpperCase();
-    if (this.props[dragKey]) {
-      return this.props[dragKey];
-    } else if (!layout2 && layoutId === void 0) {
-      return this.visualElement.getValue(axis, 0);
-    }
-  };
-  VisualElementDragControls2.prototype.isLayoutDrag = function() {
-    return !this.getAxisMotionValue("x");
-  };
-  VisualElementDragControls2.prototype.isExternalDrag = function() {
-    var _a = this.props, _dragX = _a._dragX, _dragY = _a._dragY;
-    return _dragX || _dragY;
-  };
-  VisualElementDragControls2.prototype.animateDragEnd = function(velocity) {
-    var _this = this;
-    var _a = this.props, drag2 = _a.drag, dragMomentum = _a.dragMomentum, dragElastic = _a.dragElastic, dragTransition = _a.dragTransition;
-    var isRelative = convertToRelativeProjection(this.visualElement, this.isLayoutDrag() && !this.isExternalDrag());
-    var constraints = this.constraints || {};
-    if (isRelative && Object.keys(constraints).length && this.isLayoutDrag()) {
-      var projectionParent = this.visualElement.getProjectionParent();
-      if (projectionParent) {
-        var relativeConstraints_1 = calcRelativeOffset(projectionParent.projection.targetFinal, constraints);
-        eachAxis(function(axis) {
-          var _a2 = relativeConstraints_1[axis], min = _a2.min, max = _a2.max;
-          constraints[axis] = {
-            min: isNaN(min) ? void 0 : min,
-            max: isNaN(max) ? void 0 : max
-          };
-        });
-      }
-    }
-    var momentumAnimations = eachAxis(function(axis) {
-      var _a2;
-      if (!shouldDrag(axis, drag2, _this.currentDirection)) {
-        return;
-      }
-      var transition = (_a2 = constraints === null || constraints === void 0 ? void 0 : constraints[axis]) !== null && _a2 !== void 0 ? _a2 : {};
-      var bounceStiffness = dragElastic ? 200 : 1e6;
-      var bounceDamping = dragElastic ? 40 : 1e7;
-      var inertia2 = __assign(__assign({
-        type: "inertia",
-        velocity: dragMomentum ? velocity[axis] : 0,
-        bounceStiffness,
-        bounceDamping,
-        timeConstant: 750,
-        restDelta: 1,
-        restSpeed: 10
-      }, dragTransition), transition);
-      return _this.getAxisMotionValue(axis) ? _this.startAxisValueAnimation(axis, inertia2) : _this.visualElement.startLayoutAnimation(axis, inertia2, isRelative);
-    });
-    return Promise.all(momentumAnimations).then(function() {
-      var _a2, _b;
-      (_b = (_a2 = _this.props).onDragTransitionEnd) === null || _b === void 0 ? void 0 : _b.call(_a2);
-    });
-  };
-  VisualElementDragControls2.prototype.stopMotion = function() {
-    var _this = this;
-    eachAxis(function(axis) {
-      var axisValue = _this.getAxisMotionValue(axis);
-      axisValue ? axisValue.stop() : _this.visualElement.stopLayoutAnimation();
-    });
-  };
-  VisualElementDragControls2.prototype.startAxisValueAnimation = function(axis, transition) {
-    var axisValue = this.getAxisMotionValue(axis);
-    if (!axisValue)
-      return;
-    var currentValue = axisValue.get();
-    axisValue.set(currentValue);
-    axisValue.set(currentValue);
-    return startAnimation(axis, axisValue, 0, transition);
-  };
-  VisualElementDragControls2.prototype.scalePoint = function() {
-    var _this = this;
-    var _a = this.props, drag2 = _a.drag, dragConstraints = _a.dragConstraints;
-    if (!isRefObject(dragConstraints) || !this.constraintsBox)
-      return;
-    this.stopMotion();
-    var boxProgress = { x: 0, y: 0 };
-    eachAxis(function(axis) {
-      boxProgress[axis] = calcOrigin$1(_this.visualElement.projection.target[axis], _this.constraintsBox[axis]);
-    });
-    this.updateConstraints(function() {
-      eachAxis(function(axis) {
-        if (!shouldDrag(axis, drag2, null))
-          return;
-        var _a2 = calcPositionFromProgress(_this.visualElement.projection.target[axis], _this.constraintsBox[axis], boxProgress[axis]), min = _a2.min, max = _a2.max;
-        _this.visualElement.setProjectionTargetAxis(axis, min, max);
-      });
-    });
-    setTimeout(flushLayout, 1);
-  };
-  VisualElementDragControls2.prototype.updateConstraints = function(onReady) {
-    var _this = this;
-    this.cancelLayout = batchLayout(function(read, write) {
-      var ancestors = collectProjectingAncestors(_this.visualElement);
-      write(function() {
-        return ancestors.forEach(function(element) {
-          return element.resetTransform();
-        });
-      });
-      read(function() {
-        return updateLayoutMeasurement(_this.visualElement);
-      });
-      write(function() {
-        return ancestors.forEach(function(element) {
-          return element.restoreTransform();
-        });
-      });
-      read(function() {
-        _this.resolveDragConstraints();
-      });
-      if (onReady)
-        write(onReady);
-    });
-  };
-  VisualElementDragControls2.prototype.mount = function(visualElement2) {
-    var _this = this;
-    var element = visualElement2.getInstance();
-    var stopPointerListener = addPointerEvent(element, "pointerdown", function(event) {
-      var _a = _this.props, drag2 = _a.drag, _b = _a.dragListener, dragListener = _b === void 0 ? true : _b;
-      drag2 && dragListener && _this.start(event);
-    });
-    var stopResizeListener = addDomEvent(window, "resize", function() {
-      _this.scalePoint();
-    });
-    var stopLayoutUpdateListener = visualElement2.onLayoutUpdate(function() {
-      if (_this.isDragging) {
-        _this.resolveDragConstraints();
-      }
-    });
-    var prevDragCursor = visualElement2.prevDragCursor;
-    if (prevDragCursor) {
-      this.start(lastPointerEvent, { cursorProgress: prevDragCursor });
-    }
-    return function() {
-      stopPointerListener === null || stopPointerListener === void 0 ? void 0 : stopPointerListener();
-      stopResizeListener === null || stopResizeListener === void 0 ? void 0 : stopResizeListener();
-      stopLayoutUpdateListener === null || stopLayoutUpdateListener === void 0 ? void 0 : stopLayoutUpdateListener();
-      _this.cancelDrag();
-    };
-  };
-  return VisualElementDragControls2;
-}();
-function shouldDrag(direction, drag2, currentDirection) {
-  return (drag2 === true || drag2 === direction) && (currentDirection === null || currentDirection === direction);
-}
-function getCurrentDirection(offset, lockThreshold) {
-  if (lockThreshold === void 0) {
-    lockThreshold = 10;
-  }
-  var direction = null;
-  if (Math.abs(offset.y) > lockThreshold) {
-    direction = "y";
-  } else if (Math.abs(offset.x) > lockThreshold) {
-    direction = "x";
-  }
-  return direction;
-}
-const UseDrag = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  let $mcc, $$unsubscribe_mcc;
-  let { visualElement: visualElement2, props, isCustom } = $$props;
-  const mcc = getContext(MotionConfigContext) || MotionConfigContext(isCustom);
-  $$unsubscribe_mcc = subscribe(mcc, (value) => $mcc = value);
-  let dragControls = new VisualElementDragControls({ visualElement: visualElement2 });
-  let cleanup;
-  const dragEffect = () => {
-    if (cleanup) {
-      cleanup();
-    }
-    if (groupDragControls) {
-      cleanup = groupDragControls.subscribe(dragControls);
-    }
-  };
-  let { dragControls: groupDragControls } = props;
-  let { transformPagePoint } = get_store_value(mcc);
-  dragControls.setProps({ ...props, transformPagePoint });
-  onDestroy(() => {
-    if (cleanup) {
-      cleanup();
-    }
-  });
-  if ($$props.visualElement === void 0 && $$bindings.visualElement && visualElement2 !== void 0)
-    $$bindings.visualElement(visualElement2);
-  if ($$props.props === void 0 && $$bindings.props && props !== void 0)
-    $$bindings.props(props);
-  if ($$props.isCustom === void 0 && $$bindings.isCustom && isCustom !== void 0)
-    $$bindings.isCustom(isCustom);
-  ({ dragControls: groupDragControls } = props);
-  ({ transformPagePoint } = $mcc);
-  {
-    dragControls.setProps({ ...props, transformPagePoint });
-  }
-  {
-    dragEffect();
-  }
-  $$unsubscribe_mcc();
-  return `${slots.default ? slots.default({}) : ``}`;
-});
-const drag = {
-  pan: UsePanGesture,
-  drag: UseDrag
-};
 function pixelsToPercent(pixels, axis) {
   return pixels / (axis.max - axis.min) * 100;
 }
@@ -7325,182 +4636,6 @@ var borderCorrectionDefinition = {
     process: correctBoxShadow
   }
 });
-const Animate = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  let { visualElement: visualElement2, layout: layout2 = void 0, safeToRemove } = $$props;
-  let stopAxisAnimation = { x: void 0, y: void 0 };
-  let unsubLayoutReady;
-  onDestroy(() => {
-    unsubLayoutReady();
-    eachAxis((axis) => {
-      var _a;
-      return (_a = stopAxisAnimation[axis]) == null ? void 0 : _a.call(stopAxisAnimation);
-    });
-  });
-  if ($$props.visualElement === void 0 && $$bindings.visualElement && visualElement2 !== void 0)
-    $$bindings.visualElement(visualElement2);
-  if ($$props.layout === void 0 && $$bindings.layout && layout2 !== void 0)
-    $$bindings.layout(layout2);
-  if ($$props.safeToRemove === void 0 && $$bindings.safeToRemove && safeToRemove !== void 0)
-    $$bindings.safeToRemove(safeToRemove);
-  return ``;
-});
-const AnimateLayoutContextProvider = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  let $presence, $$unsubscribe_presence;
-  let { visualElement: visualElement2, props, isCustom } = $$props;
-  let { layout: layout2 } = props;
-  const presence = usePresence(isCustom);
-  $$unsubscribe_presence = subscribe(presence, (value) => $presence = value);
-  if ($$props.visualElement === void 0 && $$bindings.visualElement && visualElement2 !== void 0)
-    $$bindings.visualElement(visualElement2);
-  if ($$props.props === void 0 && $$bindings.props && props !== void 0)
-    $$bindings.props(props);
-  if ($$props.isCustom === void 0 && $$bindings.isCustom && isCustom !== void 0)
-    $$bindings.isCustom(isCustom);
-  ({ layout: layout2 } = props);
-  $$unsubscribe_presence();
-  return `${validate_component(Animate, "Animate").$$render($$result, {
-    visualElement: visualElement2,
-    layout: layout2,
-    safeToRemove: $presence[1]
-  }, {}, {})}`;
-});
-const Measure = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  let { visualElement: visualElement2, syncLayout, framerSyncLayout, update: update2 } = $$props;
-  const scaleCorrectionContext = getContext(ScaleCorrectionContext);
-  const scaleCorrectionParentContext = getContext(ScaleCorrectionParentContext);
-  let updated = false;
-  const updater = (nc = false) => {
-    if (updated) {
-      return null;
-    }
-    updated = true;
-    get_store_value(scaleCorrectionContext).forEach((v) => {
-      var _a;
-      (_a = v.updater) == null ? void 0 : _a.call(v, true);
-    });
-    if (isSharedLayout(syncLayout)) {
-      syncLayout.syncUpdate();
-    } else {
-      snapshotViewportBox(visualElement2, nc);
-      syncLayout.add(visualElement2);
-    }
-    return null;
-  };
-  const afterU = (nc = false) => {
-    updated = false;
-    const scc = get_store_value(scaleCorrectionContext);
-    scc.forEach((v, i) => {
-      var _a;
-      (_a = v.afterU) == null ? void 0 : _a.call(v, true);
-    });
-    if (!isSharedLayout(syncLayout)) {
-      syncLayout.flush();
-    }
-  };
-  scaleCorrectionParentContext.update((v) => v.concat([{ updater, afterU }]));
-  if ($$props.visualElement === void 0 && $$bindings.visualElement && visualElement2 !== void 0)
-    $$bindings.visualElement(visualElement2);
-  if ($$props.syncLayout === void 0 && $$bindings.syncLayout && syncLayout !== void 0)
-    $$bindings.syncLayout(syncLayout);
-  if ($$props.framerSyncLayout === void 0 && $$bindings.framerSyncLayout && framerSyncLayout !== void 0)
-    $$bindings.framerSyncLayout(framerSyncLayout);
-  if ($$props.update === void 0 && $$bindings.update && update2 !== void 0)
-    $$bindings.update(update2);
-  update2 !== void 0 && updater(update2);
-  return ``;
-});
-const MeasureContextProvider = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  let update2;
-  let $syncLayout, $$unsubscribe_syncLayout;
-  let $framerSyncLayout, $$unsubscribe_framerSyncLayout;
-  let { visualElement: visualElement2, props, isCustom } = $$props;
-  const syncLayout = getContext(SharedLayoutContext) || SharedLayoutContext(isCustom);
-  $$unsubscribe_syncLayout = subscribe(syncLayout, (value) => $syncLayout = value);
-  const framerSyncLayout = getContext(FramerTreeLayoutContext) || FramerTreeLayoutContext();
-  $$unsubscribe_framerSyncLayout = subscribe(framerSyncLayout, (value) => $framerSyncLayout = value);
-  if ($$props.visualElement === void 0 && $$bindings.visualElement && visualElement2 !== void 0)
-    $$bindings.visualElement(visualElement2);
-  if ($$props.props === void 0 && $$bindings.props && props !== void 0)
-    $$bindings.props(props);
-  if ($$props.isCustom === void 0 && $$bindings.isCustom && isCustom !== void 0)
-    $$bindings.isCustom(isCustom);
-  ({ update: update2 } = props);
-  $$unsubscribe_syncLayout();
-  $$unsubscribe_framerSyncLayout();
-  return `${validate_component(Measure, "Measure").$$render($$result, {
-    syncLayout: $syncLayout,
-    framerSyncLayout: $framerSyncLayout,
-    visualElement: visualElement2,
-    update: update2
-  }, {}, {})}`;
-});
-var layoutAnimations = {
-  measureLayout: MeasureContextProvider,
-  layoutAnimation: AnimateLayoutContextProvider
-};
-const AnimationState = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  let { visualElement: visualElement2, props } = $$props;
-  let { animate: animate2 } = props;
-  if ($$props.visualElement === void 0 && $$bindings.visualElement && visualElement2 !== void 0)
-    $$bindings.visualElement(visualElement2);
-  if ($$props.props === void 0 && $$bindings.props && props !== void 0)
-    $$bindings.props(props);
-  ({ animate: animate2 } = props);
-  {
-    {
-      visualElement2.animationState = visualElement2.animationState || createAnimationState(visualElement2);
-    }
-  }
-  {
-    if (isAnimationControls(animate2)) {
-      tick().then(() => animate2.subscribe(visualElement2));
-    }
-  }
-  return ``;
-});
-const Exit = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  let custom;
-  let $presence, $$unsubscribe_presence;
-  let $presenceContext, $$unsubscribe_presenceContext;
-  let { props, visualElement: visualElement2, isCustom } = $$props;
-  const presenceContext = getContext(PresenceContext) || PresenceContext(isCustom);
-  $$unsubscribe_presenceContext = subscribe(presenceContext, (value) => $presenceContext = value);
-  const presence = usePresence(isCustom);
-  $$unsubscribe_presence = subscribe(presence, (value) => $presence = value);
-  const effect = (pres) => {
-    var _a, _b;
-    const [isPresent2, onExitComplete] = pres;
-    const animation = (_b = visualElement2.animationState) == null ? void 0 : _b.setActive(AnimationType.Exit, !isPresent2, {
-      custom: (_a = $presenceContext == null ? void 0 : $presenceContext.custom) != null ? _a : custom
-    });
-    !isPresent2 && (animation == null ? void 0 : animation.then(onExitComplete));
-    return "";
-  };
-  if ($$props.props === void 0 && $$bindings.props && props !== void 0)
-    $$bindings.props(props);
-  if ($$props.visualElement === void 0 && $$bindings.visualElement && visualElement2 !== void 0)
-    $$bindings.visualElement(visualElement2);
-  if ($$props.isCustom === void 0 && $$bindings.isCustom && isCustom !== void 0)
-    $$bindings.isCustom(isCustom);
-  ({ custom } = props);
-  {
-    effect($presence);
-  }
-  $$unsubscribe_presence();
-  $$unsubscribe_presenceContext();
-  return `${slots.default ? slots.default({}) : ``}`;
-});
-const animations = {
-  animation: AnimationState,
-  exit: Exit
-};
-const featureBundle = {
-  ...animations,
-  ...gestureAnimations,
-  ...drag,
-  ...layoutAnimations
-};
-var motion = /* @__PURE__ */ createMotionClass(featureBundle);
 var lowercaseSVGElements = [
   "animate",
   "circle",
@@ -7539,12 +4674,12 @@ function isSVGComponent(Component) {
 const Transformer = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let $$restProps = compute_rest_props($$props, ["___tag", "motion"]);
   let { ___tag = "div" } = $$props;
-  let { motion: motion2 } = $$props;
+  let { motion } = $$props;
   let container;
   if ($$props.___tag === void 0 && $$bindings.___tag && ___tag !== void 0)
     $$bindings.___tag(___tag);
-  if ($$props.motion === void 0 && $$bindings.motion && motion2 !== void 0)
-    $$bindings.motion(motion2);
+  if ($$props.motion === void 0 && $$bindings.motion && motion !== void 0)
+    $$bindings.motion(motion);
   return `<div${spread([escape_object($$restProps)])}${add_attribute("this", container, 0)}>${slots.default ? slots.default({}) : ``}</div>`;
 });
 const M = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -7553,7 +4688,7 @@ const M = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   if ($$props.___tag === void 0 && $$bindings.___tag && ___tag !== void 0)
     $$bindings.___tag(___tag);
   return `${validate_component(Motion, "Motion").$$render($$result, Object.assign($$restProps), {}, {
-    default: ({ props, motion: motion2 }) => `${validate_component(Transformer, "T").$$render($$result, Object.assign({ motion: motion2 }, { ___tag }, props), {}, {
+    default: ({ props, motion }) => `${validate_component(Transformer, "T").$$render($$result, Object.assign({ motion }, { ___tag }, props), {}, {
       default: () => `${slots.default ? slots.default({}) : ``}`
     })}`
   })}`;
@@ -7584,17 +4719,80 @@ function createMotionProxy(defaultFeatures) {
   });
 }
 createMotionProxy();
-const useAnimation = () => {
-  const controls = animationControls(() => {
-    const cleanup = {};
-    tick().then((v) => cleanup.clean = controls.mount());
-    return () => {
-      var _a;
-      (_a = cleanup.clean) == null ? void 0 : _a.call(cleanup);
-    };
-  });
-  return controls;
-};
+var main1 = "/_app/assets/1-52e24dec.png";
+var main2 = "/_app/assets/2-779b6b5c.png";
+var main3 = "/_app/assets/3-79f96e4f.jpg";
+var main4 = "/_app/assets/4-c6c03fae.png";
+const largeBarsArr = [
+  {
+    delay: 0.1,
+    defaultPos: {
+      left: "0px"
+    },
+    imagePos: {
+      0: "0%",
+      1: "0%"
+    },
+    index: 3,
+    img: main1,
+    position: {
+      left: "10.9%",
+      top: "0%",
+      width: "2.7%"
+    }
+  },
+  {
+    index: 17,
+    delay: 0.2,
+    img: main2,
+    imagePos: {
+      0: "44%",
+      1: "20%"
+    },
+    defaultPos: { left: "20vw" },
+    position: {
+      left: "15.5%",
+      top: "0%",
+      width: "1.1%"
+    }
+  },
+  {
+    index: 23,
+    delay: 0.3,
+    img: main3,
+    imagePos: {
+      0: "44%",
+      1: "20%"
+    },
+    defaultPos: {
+      left: "67.5%",
+      right: "20vw"
+    },
+    position: {
+      left: "75.1%",
+      top: "0%",
+      width: "2.7%"
+    }
+  },
+  {
+    index: 28,
+    delay: 0.7,
+    img: main4,
+    imagePos: {
+      0: "44%",
+      1: "20%"
+    },
+    defaultPos: {
+      left: "90%",
+      right: "0"
+    },
+    position: {
+      left: "94.4%",
+      top: "0%",
+      width: "2.9%"
+    }
+  }
+];
 var BgLogo_svelte_svelte_type_style_lang = ".logo-caption.svelte-28bx64.svelte-28bx64{display:block;height:fit-content;white-space:nowrap;color:#a5a5a5;font-weight:900;transform:rotate(-180deg);font-size:5em;writing-mode:vertical-lr;text-transform:uppercase}.logo-container.svelte-28bx64.svelte-28bx64{max-width:200px;display:flex;position:absolute;left:0;justify-content:center;width:100%}.logo-container.svelte-28bx64 img.svelte-28bx64{object-fit:cover;height:auto;width:100%}";
 var About_svelte_svelte_type_style_lang = '.main-text-content.svelte-rnlv05.svelte-rnlv05{max-width:600px;color:black}.main-text-content.svelte-rnlv05 .main-text-header.svelte-rnlv05{font-size:3em;font-weight:900;letter-spacing:3px;text-align:center;text-transform:uppercase}.main-text-content.svelte-rnlv05 .main-text-header.svelte-rnlv05::after{content:"";height:2px;width:40%;margin:0 auto;margin-top:20px;margin-bottom:20px;display:block;background-color:black}.content-image-container.svelte-rnlv05.svelte-rnlv05{margin-top:4rem}.content-image-container.svelte-rnlv05 img.svelte-rnlv05{width:100%}';
 var MalibuRebuild_svelte_svelte_type_style_lang = ".container.svelte-1ui1e1i{display:flex}.text-container.svelte-1ui1e1i{text-align:center;font-size:2em;max-width:700px;color:black}";
@@ -7618,206 +4816,89 @@ readable({
 });
 var PressCard_svelte_svelte_type_style_lang = ".image.svelte-1b1h626{width:100%;object-position:center center;height:100%;object-fit:cover}";
 var Press_svelte_svelte_type_style_lang = ".text-container.svelte-11jg594.svelte-11jg594{z-index:2;width:80vw;opacity:70%}.text-container.svelte-11jg594 img.svelte-11jg594{width:100%}.container.svelte-11jg594.svelte-11jg594{position:relative;width:100%;height:100%;display:flex;justify-content:center;align-items:center}.image-container.svelte-11jg594.svelte-11jg594{position:absolute}.image-container.svelte-11jg594.svelte-11jg594:nth-child(2){width:15vw}.image-container.svelte-11jg594.svelte-11jg594:nth-child(3){bottom:-12vw;left:48vw;width:15vw}.image-container.svelte-11jg594.svelte-11jg594:nth-child(4){left:8vw;top:5vh;width:15vw}.image-container.svelte-11jg594.svelte-11jg594:nth-child(5){right:8vw;bottom:-0.2vw;width:12vw}.image-container.svelte-11jg594.svelte-11jg594:nth-child(6){right:4vw;top:9vh;width:15vw;z-index:1}.image-container.svelte-11jg594.svelte-11jg594:nth-child(7){bottom:-20vh;left:9vw;width:15vw}.image-container.svelte-11jg594.svelte-11jg594:nth-child(8){top:0;right:12vw;width:11vw}";
-var PageContent_svelte_svelte_type_style_lang = '.main-page-container.svelte-1dpk2wk.svelte-1dpk2wk{padding:20px;display:flex;padding-top:5rem;overflow-y:auto;height:100%;gap:25px;background-size:cover;background-image:url("__VITE_ASSET__112e1098__");flex-direction:column;align-items:center;justify-content:center;overflow-x:hidden}.top-nav-container.svelte-1dpk2wk.svelte-1dpk2wk{position:absolute;top:0;left:0;z-index:2;right:0;display:flex;padding-top:20px;flex-direction:column;justify-content:center;align-items:center}.header-nav-container.svelte-1dpk2wk.svelte-1dpk2wk{display:flex;list-style:none;color:black;text-transform:uppercase;gap:25px;padding-top:20px;font-size:1.5em}.logo-container.svelte-1dpk2wk.svelte-1dpk2wk{max-width:200px}.logo-container.svelte-1dpk2wk .logo.svelte-1dpk2wk{width:100%}';
-var main1 = "/_app/assets/1-52e24dec.png";
-var main2 = "/_app/assets/2-779b6b5c.png";
-var main3 = "/_app/assets/3-79f96e4f.jpg";
-var main4 = "/_app/assets/4-c6c03fae.png";
-const largeBarObj = {
-  3: {
-    delay: 0.1,
-    defaultPos: {
-      left: "0px"
-    },
-    imagePos: {
-      0: "0%",
-      1: "0%"
-    },
-    img: main1,
-    position: {
-      left: "10.9%",
-      top: "0%",
-      width: "2.7%"
-    }
-  },
-  17: {
-    delay: 0.2,
-    img: main2,
-    imagePos: {
-      0: "44%",
-      1: "20%"
-    },
-    defaultPos: {
-      left: "22.5%"
-    },
-    position: {
-      left: "59.5%",
-      top: "0%",
-      width: "1.1%"
-    }
-  },
-  23: {
-    delay: 0.3,
-    img: main3,
-    imagePos: {
-      0: "44%",
-      1: "20%"
-    },
-    defaultPos: {
-      left: "67.5%"
-    },
-    position: {
-      left: "75.1%",
-      top: "0%",
-      width: "2.7%"
-    }
-  },
-  28: {
-    delay: 0.7,
-    img: main4,
-    imagePos: {
-      0: "44%",
-      1: "20%"
-    },
-    defaultPos: {
-      left: "90%",
-      right: "0"
-    },
-    position: {
-      left: "94.4%",
-      top: "0%",
-      width: "2.9%"
-    }
-  }
+var PageContent_svelte_svelte_type_style_lang = '.main-page-container.svelte-15evkse.svelte-15evkse{padding:20px;display:flex;padding-top:5rem;overflow-y:auto;height:100%;gap:25px;z-index:4;background-size:cover;background-image:url("__VITE_ASSET__112e1098__");flex-direction:column;align-items:center;justify-content:center;overflow-x:hidden}.top-nav-container.svelte-15evkse.svelte-15evkse{position:absolute;top:0;left:0;z-index:2;right:0;display:flex;padding-top:20px;flex-direction:column;justify-content:center;align-items:center}.header-nav-container.svelte-15evkse.svelte-15evkse{display:flex;list-style:none;color:black;text-transform:uppercase;gap:25px;padding-top:20px;font-size:1.5em}.logo-container.svelte-15evkse.svelte-15evkse{max-width:200px}.logo-container.svelte-15evkse .logo.svelte-15evkse{width:100%}';
+var Bar_svelte_svelte_type_style_lang = ".bar-container.svelte-a0xeke{z-index:1;opacity:0;pointer-events:none;overflow:hidden;height:100%;position:absolute;background-color:white}.bar-container.svelte-a0xeke:nth-child(1){left:2%;top:0%;width:1%}.bar-container.svelte-a0xeke:nth-child(2){left:3.6%;top:0%;width:0.9%}.bar-container.svelte-a0xeke:nth-child(3){left:6.9%;top:0%;width:2%}.bar-container.svelte-a0xeke:nth-child(4){left:0;top:0%}.bar-container.svelte-a0xeke:nth-child(5){left:14.3%;top:0%}.bar-container.svelte-a0xeke:nth-child(6){left:17.8%;top:0%;width:1.5%}.bar-container.svelte-a0xeke:nth-child(7){left:20%;top:0%;width:1.1%}.bar-container.svelte-a0xeke:nth-child(8){left:23.1%;top:0%;width:1.9%}.bar-container.svelte-a0xeke:nth-child(9){left:25.7%;top:0%;width:1%}.bar-container.svelte-a0xeke:nth-child(10){left:28.8%;top:0%;width:1%}.bar-container.svelte-a0xeke:nth-child(11){left:32%;top:0%;width:1.9%}.bar-container.svelte-a0xeke:nth-child(12){left:34.6%;top:0%;width:2.5%}.bar-container.svelte-a0xeke:nth-child(13){left:46.6%;top:0%;width:1%}.bar-container.svelte-a0xeke:nth-child(14){left:49.8%;top:0%;width:1.9%}.bar-container.svelte-a0xeke:nth-child(15){left:54%;top:0%;width:0.9%}.bar-container.svelte-a0xeke:nth-child(16){left:55.6%;top:0%;width:1.8%}.bar-container.svelte-a0xeke:nth-child(17){left:59.5%;top:0%;width:1.1%}.bar-container.svelte-a0xeke:nth-child(19){left:91.3%;top:0%;width:1.1%}.bar-container.svelte-a0xeke:nth-child(20){left:64.5%;top:0%;width:1%}.bar-container.svelte-a0xeke:nth-child(21){left:66.4%;top:0%;width:0.9%}.bar-container.svelte-a0xeke:nth-child(22){left:69.4%;top:0%;width:1.9%}.bar-container.svelte-a0xeke:nth-child(23){left:73.5%;top:0%;width:0.9%}.bar-container.svelte-a0xeke:nth-child(24){left:79.9%;top:0%;width:1.7%}.bar-container.svelte-a0xeke:nth-child(25){left:82.5%;top:0%;width:0.8%}.bar-container.svelte-a0xeke:nth-child(26){left:85.5%;top:0%;width:1.2%}.bar-container.svelte-a0xeke:nth-child(27){left:88.9%;top:0%;width:1.7%}.bar-container.svelte-a0xeke:nth-child(28){right:0;top:0%}.bar-container.svelte-a0xeke:nth-child(29){left:97.9%;top:0%;width:1.7%}";
+const css$3 = {
+  code: ".bar-container.svelte-a0xeke{z-index:1;opacity:0;pointer-events:none;overflow:hidden;height:100%;position:absolute;background-color:white}.bar-container.svelte-a0xeke:nth-child(1){left:2%;top:0%;width:1%}.bar-container.svelte-a0xeke:nth-child(2){left:3.6%;top:0%;width:0.9%}.bar-container.svelte-a0xeke:nth-child(3){left:6.9%;top:0%;width:2%}.bar-container.svelte-a0xeke:nth-child(4){left:0;top:0%}.bar-container.svelte-a0xeke:nth-child(5){left:14.3%;top:0%}.bar-container.svelte-a0xeke:nth-child(6){left:17.8%;top:0%;width:1.5%}.bar-container.svelte-a0xeke:nth-child(7){left:20%;top:0%;width:1.1%}.bar-container.svelte-a0xeke:nth-child(8){left:23.1%;top:0%;width:1.9%}.bar-container.svelte-a0xeke:nth-child(9){left:25.7%;top:0%;width:1%}.bar-container.svelte-a0xeke:nth-child(10){left:28.8%;top:0%;width:1%}.bar-container.svelte-a0xeke:nth-child(11){left:32%;top:0%;width:1.9%}.bar-container.svelte-a0xeke:nth-child(12){left:34.6%;top:0%;width:2.5%}.bar-container.svelte-a0xeke:nth-child(13){left:46.6%;top:0%;width:1%}.bar-container.svelte-a0xeke:nth-child(14){left:49.8%;top:0%;width:1.9%}.bar-container.svelte-a0xeke:nth-child(15){left:54%;top:0%;width:0.9%}.bar-container.svelte-a0xeke:nth-child(16){left:55.6%;top:0%;width:1.8%}.bar-container.svelte-a0xeke:nth-child(17){left:59.5%;top:0%;width:1.1%}.bar-container.svelte-a0xeke:nth-child(19){left:91.3%;top:0%;width:1.1%}.bar-container.svelte-a0xeke:nth-child(20){left:64.5%;top:0%;width:1%}.bar-container.svelte-a0xeke:nth-child(21){left:66.4%;top:0%;width:0.9%}.bar-container.svelte-a0xeke:nth-child(22){left:69.4%;top:0%;width:1.9%}.bar-container.svelte-a0xeke:nth-child(23){left:73.5%;top:0%;width:0.9%}.bar-container.svelte-a0xeke:nth-child(24){left:79.9%;top:0%;width:1.7%}.bar-container.svelte-a0xeke:nth-child(25){left:82.5%;top:0%;width:0.8%}.bar-container.svelte-a0xeke:nth-child(26){left:85.5%;top:0%;width:1.2%}.bar-container.svelte-a0xeke:nth-child(27){left:88.9%;top:0%;width:1.7%}.bar-container.svelte-a0xeke:nth-child(28){right:0;top:0%}.bar-container.svelte-a0xeke:nth-child(29){left:97.9%;top:0%;width:1.7%}",
+  map: '{"version":3,"file":"Bar.svelte","sources":["Bar.svelte"],"sourcesContent":["<script>\\r\\n  import { afterUpdate, onMount } from \\"svelte\\";\\r\\n\\r\\n  import { Motion, useAnimation } from \\"svelte-motion\\";\\r\\n  import gsap from \\"gsap\\";\\r\\n  import PageContent from \\"./PageContent.svelte\\";\\r\\n  import { largeBarObj } from \\"../animationObj\\";\\r\\n  export let index;\\r\\n  export let animations;\\r\\n  export let shouldPulse;\\r\\n  let bar;\\r\\n\\r\\n  onMount(() => {\\r\\n    gsap.to(bar, {\\r\\n      opacity: 1,\\r\\n      delay: 4.5,\\r\\n      duration: 5,\\r\\n    });\\r\\n  });\\r\\n<\/script>\\r\\n\\r\\n<div bind:this={bar} class=\\"bar-container\\" />\\r\\n\\r\\n<style lang=\\"scss\\">.cover-image {\\n  height: 100%;\\n  object-position: center center;\\n  width: 100%;\\n  object-fit: cover;\\n}\\n\\n.bar-container {\\n  z-index: 1;\\n  opacity: 0;\\n  pointer-events: none;\\n  overflow: hidden;\\n  height: 100%;\\n  position: absolute;\\n  background-color: white;\\n}\\n.bar-container:nth-child(1) {\\n  left: 2%;\\n  top: 0%;\\n  width: 1%;\\n}\\n.bar-container:nth-child(2) {\\n  left: 3.6%;\\n  top: 0%;\\n  width: 0.9%;\\n}\\n.bar-container:nth-child(3) {\\n  left: 6.9%;\\n  top: 0%;\\n  width: 2%;\\n}\\n.bar-container:nth-child(4) {\\n  left: 0;\\n  top: 0%;\\n}\\n.bar-container:nth-child(5) {\\n  left: 14.3%;\\n  top: 0%;\\n}\\n.bar-container:nth-child(6) {\\n  left: 17.8%;\\n  top: 0%;\\n  width: 1.5%;\\n}\\n.bar-container:nth-child(7) {\\n  left: 20%;\\n  top: 0%;\\n  width: 1.1%;\\n}\\n.bar-container:nth-child(8) {\\n  left: 23.1%;\\n  top: 0%;\\n  width: 1.9%;\\n}\\n.bar-container:nth-child(9) {\\n  left: 25.7%;\\n  top: 0%;\\n  width: 1%;\\n}\\n.bar-container:nth-child(10) {\\n  left: 28.8%;\\n  top: 0%;\\n  width: 1%;\\n}\\n.bar-container:nth-child(11) {\\n  left: 32%;\\n  top: 0%;\\n  width: 1.9%;\\n}\\n.bar-container:nth-child(12) {\\n  left: 34.6%;\\n  top: 0%;\\n  width: 2.5%;\\n}\\n.bar-container:nth-child(13) {\\n  left: 46.6%;\\n  top: 0%;\\n  width: 1%;\\n}\\n.bar-container:nth-child(14) {\\n  left: 49.8%;\\n  top: 0%;\\n  width: 1.9%;\\n}\\n.bar-container:nth-child(15) {\\n  left: 54%;\\n  top: 0%;\\n  width: 0.9%;\\n}\\n.bar-container:nth-child(16) {\\n  left: 55.6%;\\n  top: 0%;\\n  width: 1.8%;\\n}\\n.bar-container:nth-child(17) {\\n  left: 59.5%;\\n  top: 0%;\\n  width: 1.1%;\\n}\\n.bar-container:nth-child(19) {\\n  left: 91.3%;\\n  top: 0%;\\n  width: 1.1%;\\n}\\n.bar-container:nth-child(20) {\\n  left: 64.5%;\\n  top: 0%;\\n  width: 1%;\\n}\\n.bar-container:nth-child(21) {\\n  left: 66.4%;\\n  top: 0%;\\n  width: 0.9%;\\n}\\n.bar-container:nth-child(22) {\\n  left: 69.4%;\\n  top: 0%;\\n  width: 1.9%;\\n}\\n.bar-container:nth-child(23) {\\n  left: 73.5%;\\n  top: 0%;\\n  width: 0.9%;\\n}\\n.bar-container:nth-child(24) {\\n  left: 79.9%;\\n  top: 0%;\\n  width: 1.7%;\\n}\\n.bar-container:nth-child(25) {\\n  left: 82.5%;\\n  top: 0%;\\n  width: 0.8%;\\n}\\n.bar-container:nth-child(26) {\\n  left: 85.5%;\\n  top: 0%;\\n  width: 1.2%;\\n}\\n.bar-container:nth-child(27) {\\n  left: 88.9%;\\n  top: 0%;\\n  width: 1.7%;\\n}\\n.bar-container:nth-child(28) {\\n  right: 0;\\n  top: 0%;\\n}\\n.bar-container:nth-child(29) {\\n  left: 97.9%;\\n  top: 0%;\\n  width: 1.7%;\\n}</style>\\r\\n"],"names":[],"mappings":"AA8BA,cAAc,cAAC,CAAC,AACd,OAAO,CAAE,CAAC,CACV,OAAO,CAAE,CAAC,CACV,cAAc,CAAE,IAAI,CACpB,QAAQ,CAAE,MAAM,CAChB,MAAM,CAAE,IAAI,CACZ,QAAQ,CAAE,QAAQ,CAClB,gBAAgB,CAAE,KAAK,AACzB,CAAC,AACD,4BAAc,WAAW,CAAC,CAAC,AAAC,CAAC,AAC3B,IAAI,CAAE,EAAE,CACR,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,EAAE,AACX,CAAC,AACD,4BAAc,WAAW,CAAC,CAAC,AAAC,CAAC,AAC3B,IAAI,CAAE,IAAI,CACV,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,4BAAc,WAAW,CAAC,CAAC,AAAC,CAAC,AAC3B,IAAI,CAAE,IAAI,CACV,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,EAAE,AACX,CAAC,AACD,4BAAc,WAAW,CAAC,CAAC,AAAC,CAAC,AAC3B,IAAI,CAAE,CAAC,CACP,GAAG,CAAE,EAAE,AACT,CAAC,AACD,4BAAc,WAAW,CAAC,CAAC,AAAC,CAAC,AAC3B,IAAI,CAAE,KAAK,CACX,GAAG,CAAE,EAAE,AACT,CAAC,AACD,4BAAc,WAAW,CAAC,CAAC,AAAC,CAAC,AAC3B,IAAI,CAAE,KAAK,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,4BAAc,WAAW,CAAC,CAAC,AAAC,CAAC,AAC3B,IAAI,CAAE,GAAG,CACT,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,4BAAc,WAAW,CAAC,CAAC,AAAC,CAAC,AAC3B,IAAI,CAAE,KAAK,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,4BAAc,GAAG,QAAQ,CAAC,CAAC,AAAC,CAAC,AAC3B,IAAI,CAAE,KAAK,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,EAAE,AACX,CAAC,AACD,4BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,KAAK,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,EAAE,AACX,CAAC,AACD,4BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,GAAG,CACT,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,YAAY,gBAAE,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,KAAK,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,4BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,KAAK,CACX,EAAE,CAAC,CAAE,EAAE,CACP,KAAK,CAAE,EAAE,AACX,CAAC,AACD,4BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,KAAK,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,4BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,GAAG,CACT,EAAE,CAAC,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,4BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,KAAK,CACX,CAAC,EAAE,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,4BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,KAAK,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,4BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,KAAK,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,4BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,IAAI,CAAC,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,EAAE,AACX,CAAC,AACD,4BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,KAAK,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,4BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,IAAI,CAAC,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,4BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,IAAI,CAAC,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,4BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,EAAE,GAAG,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,4BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,EAAE,GAAG,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,4BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,EAAE,GAAG,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,4BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,EAAE,GAAG,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,4BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,KAAK,CAAE,CAAC,CACR,GAAG,CAAE,EAAE,AACT,CAAC,AACD,4BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,KAAK,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC"}'
 };
-var Bar_svelte_svelte_type_style_lang = '.cover-image.svelte-1p4hlcf{height:100%;object-position:center center;width:100%;object-fit:cover}.close-main.svelte-1p4hlcf{height:32px;max-height:32px;max-width:32px;min-height:32px;min-width:32px;position:absolute;right:0;top:0;cursor:pointer;width:32px;z-index:3}.close-main.svelte-1p4hlcf:after{background-color:black;content:"";display:block;right:0;position:absolute;top:50%;height:2px;width:50%;transform:translate(-50%) translateY(-50%) rotate(45deg);transform-origin:center center}.close-main.svelte-1p4hlcf::before{background-color:black;content:"";height:50%;width:2px;display:block;left:50%;position:absolute;top:50%;transform:translate(-50%) translateY(-50%) rotate(45deg);transform-origin:center center}.large-bar.svelte-1p4hlcf{width:20%;opacity:0;height:100%}.small-bar.svelte-1p4hlcf{opacity:0}.bar-container.svelte-1p4hlcf{z-index:1;pointer-events:none;overflow:hidden;height:100%;position:absolute;background-color:white}.bar-container.svelte-1p4hlcf:nth-child(1){left:2%;top:0%;width:1%}.bar-container.svelte-1p4hlcf:nth-child(2){left:3.6%;top:0%;width:0.9%}.bar-container.svelte-1p4hlcf:nth-child(3){left:6.9%;top:0%;width:2%}.bar-container.svelte-1p4hlcf:nth-child(4){left:0;top:0%}.bar-container.svelte-1p4hlcf:nth-child(5){left:14.3%;top:0%}.bar-container.svelte-1p4hlcf:nth-child(6){left:17.8%;top:0%;width:1.5%}.bar-container.svelte-1p4hlcf:nth-child(7){left:20%;top:0%;width:1.1%}.bar-container.svelte-1p4hlcf:nth-child(8){left:23.1%;top:0%;width:1.9%}.bar-container.svelte-1p4hlcf:nth-child(9){left:25.7%;top:0%;width:1%}.bar-container.svelte-1p4hlcf:nth-child(10){left:28.8%;top:0%;width:1%}.bar-container.svelte-1p4hlcf:nth-child(11){left:32%;top:0%;width:1.9%}.bar-container.svelte-1p4hlcf:nth-child(12){left:34.6%;top:0%;width:2.5%}.bar-container.svelte-1p4hlcf:nth-child(13){left:46.6%;top:0%;width:1%}.bar-container.svelte-1p4hlcf:nth-child(14){left:49.8%;top:0%;width:1.9%}.bar-container.svelte-1p4hlcf:nth-child(15){left:54%;top:0%;width:0.9%}.bar-container.svelte-1p4hlcf:nth-child(16){left:55.6%;top:0%;width:1.8%}.bar-container.svelte-1p4hlcf:nth-child(17){top:0%;width:1.1%}.bar-container.svelte-1p4hlcf:nth-child(18){left:20vw;top:0%}.bar-container.svelte-1p4hlcf:nth-child(19){left:91.3%;top:0%;width:1.1%}.bar-container.svelte-1p4hlcf:nth-child(20){left:64.5%;top:0%;width:1%}.bar-container.svelte-1p4hlcf:nth-child(21){left:66.4%;top:0%;width:0.9%}.bar-container.svelte-1p4hlcf:nth-child(22){left:69.4%;top:0%;width:1.9%}.bar-container.svelte-1p4hlcf:nth-child(23){left:73.5%;top:0%;width:0.9%}.bar-container.svelte-1p4hlcf:nth-child(24){right:20vw;top:0%}.bar-container.svelte-1p4hlcf:nth-child(25){left:79.9%;top:0%;width:1.7%}.bar-container.svelte-1p4hlcf:nth-child(26){left:82.5%;top:0%;width:0.8%}.bar-container.svelte-1p4hlcf:nth-child(27){left:85.5%;top:0%;width:1.2%}.bar-container.svelte-1p4hlcf:nth-child(28){left:88.9%;top:0%;width:1.7%}.bar-container.svelte-1p4hlcf:nth-child(29){right:0;top:0%}.bar-container.svelte-1p4hlcf:nth-child(30){left:97.9%;top:0%;width:1.7%}';
-const css$2 = {
-  code: '.cover-image.svelte-1p4hlcf{height:100%;object-position:center center;width:100%;object-fit:cover}.close-main.svelte-1p4hlcf{height:32px;max-height:32px;max-width:32px;min-height:32px;min-width:32px;position:absolute;right:0;top:0;cursor:pointer;width:32px;z-index:3}.close-main.svelte-1p4hlcf:after{background-color:black;content:"";display:block;right:0;position:absolute;top:50%;height:2px;width:50%;transform:translate(-50%) translateY(-50%) rotate(45deg);transform-origin:center center}.close-main.svelte-1p4hlcf::before{background-color:black;content:"";height:50%;width:2px;display:block;left:50%;position:absolute;top:50%;transform:translate(-50%) translateY(-50%) rotate(45deg);transform-origin:center center}.large-bar.svelte-1p4hlcf{width:20%;opacity:0;height:100%}.small-bar.svelte-1p4hlcf{opacity:0}.bar-container.svelte-1p4hlcf{z-index:1;pointer-events:none;overflow:hidden;height:100%;position:absolute;background-color:white}.bar-container.svelte-1p4hlcf:nth-child(1){left:2%;top:0%;width:1%}.bar-container.svelte-1p4hlcf:nth-child(2){left:3.6%;top:0%;width:0.9%}.bar-container.svelte-1p4hlcf:nth-child(3){left:6.9%;top:0%;width:2%}.bar-container.svelte-1p4hlcf:nth-child(4){left:0;top:0%}.bar-container.svelte-1p4hlcf:nth-child(5){left:14.3%;top:0%}.bar-container.svelte-1p4hlcf:nth-child(6){left:17.8%;top:0%;width:1.5%}.bar-container.svelte-1p4hlcf:nth-child(7){left:20%;top:0%;width:1.1%}.bar-container.svelte-1p4hlcf:nth-child(8){left:23.1%;top:0%;width:1.9%}.bar-container.svelte-1p4hlcf:nth-child(9){left:25.7%;top:0%;width:1%}.bar-container.svelte-1p4hlcf:nth-child(10){left:28.8%;top:0%;width:1%}.bar-container.svelte-1p4hlcf:nth-child(11){left:32%;top:0%;width:1.9%}.bar-container.svelte-1p4hlcf:nth-child(12){left:34.6%;top:0%;width:2.5%}.bar-container.svelte-1p4hlcf:nth-child(13){left:46.6%;top:0%;width:1%}.bar-container.svelte-1p4hlcf:nth-child(14){left:49.8%;top:0%;width:1.9%}.bar-container.svelte-1p4hlcf:nth-child(15){left:54%;top:0%;width:0.9%}.bar-container.svelte-1p4hlcf:nth-child(16){left:55.6%;top:0%;width:1.8%}.bar-container.svelte-1p4hlcf:nth-child(17){top:0%;width:1.1%}.bar-container.svelte-1p4hlcf:nth-child(18){left:20vw;top:0%}.bar-container.svelte-1p4hlcf:nth-child(19){left:91.3%;top:0%;width:1.1%}.bar-container.svelte-1p4hlcf:nth-child(20){left:64.5%;top:0%;width:1%}.bar-container.svelte-1p4hlcf:nth-child(21){left:66.4%;top:0%;width:0.9%}.bar-container.svelte-1p4hlcf:nth-child(22){left:69.4%;top:0%;width:1.9%}.bar-container.svelte-1p4hlcf:nth-child(23){left:73.5%;top:0%;width:0.9%}.bar-container.svelte-1p4hlcf:nth-child(24){right:20vw;top:0%}.bar-container.svelte-1p4hlcf:nth-child(25){left:79.9%;top:0%;width:1.7%}.bar-container.svelte-1p4hlcf:nth-child(26){left:82.5%;top:0%;width:0.8%}.bar-container.svelte-1p4hlcf:nth-child(27){left:85.5%;top:0%;width:1.2%}.bar-container.svelte-1p4hlcf:nth-child(28){left:88.9%;top:0%;width:1.7%}.bar-container.svelte-1p4hlcf:nth-child(29){right:0;top:0%}.bar-container.svelte-1p4hlcf:nth-child(30){left:97.9%;top:0%;width:1.7%}',
-  map: `{"version":3,"file":"Bar.svelte","sources":["Bar.svelte"],"sourcesContent":["<script>\\r\\n  import { afterUpdate, onMount } from \\"svelte\\";\\r\\n\\r\\n  import { Motion, useAnimation } from \\"svelte-motion\\";\\r\\n\\r\\n  import PageContent from \\"./PageContent.svelte\\";\\r\\n  import { largeBarObj } from \\"../animationObj\\";\\r\\n  export let index;\\r\\n  export let animations;\\r\\n  export let shouldPulse;\\r\\n  let playAnimation = true;\\r\\n  let pageOpened = false;\\r\\n  let currAnimation = \\"largeBar\\";\\r\\n  let shouldHover = true;\\r\\n  let bar;\\r\\n\\r\\n  let shouldShowCover = true;\\r\\n  let large = largeBarObj[index];\\r\\n\\r\\n  let animationDur = 3;\\r\\n  let animationControls = useAnimation();\\r\\n  let animationControlsSm = useAnimation();\\r\\n  let animationDelay = 0.5;\\r\\n\\r\\n  onMount(async () => {\\r\\n    if (large) {\\r\\n      await animationControls.start({\\r\\n        scale: 1,\\r\\n\\r\\n        opacity: 1,\\r\\n        left: large.position.left,\\r\\n        top: 0,\\r\\n\\r\\n        width: large.position.width,\\r\\n        transition: {\\r\\n          delay: large.delay,\\r\\n          duration: 6,\\r\\n        },\\r\\n      });\\r\\n      console.log(\\"finished\\");\\r\\n\\r\\n      if (index === 3) {\\r\\n        animations = false;\\r\\n      }\\r\\n    }\\r\\n    animationControlsSm.start({\\r\\n      transition: {\\r\\n        delay: 4.85,\\r\\n      },\\r\\n      opacity: 1,\\r\\n    });\\r\\n  });\\r\\n\\r\\n  $: {\\r\\n    if (!animations && large && shouldPulse) {\\r\\n      bar.style.pointerEvents = \\"auto\\";\\r\\n\\r\\n      console.log(\\"testingsgds\\");\\r\\n      animationControls.start({\\r\\n        transition: {\\r\\n          repeat: \\"Infinity\\",\\r\\n          duration: 3,\\r\\n        },\\r\\n        opacity: [null, 0, 1],\\r\\n      });\\r\\n    } else if (!shouldPulse) {\\r\\n      animationControls.start({\\r\\n        opacity: 1,\\r\\n      });\\r\\n    }\\r\\n  }\\r\\n<\/script>\\r\\n\\r\\n<Motion\\r\\n  onHoverEnd={() => {\\r\\n    animationDelay = 0;\\r\\n    animationDur = 0.3;\\r\\n  }}\\r\\n  whileHover={{\\r\\n    scale: shouldHover ? 1.3 : 1,\\r\\n\\r\\n    transition: {\\r\\n      duration: 0.3,\\r\\n    },\\r\\n  }}\\r\\n  animate={large ? animationControls : animationControlsSm}\\r\\n  let:motion\\r\\n  ><div\\r\\n    on:click={(e) => {\\r\\n      shouldPulse = false;\\r\\n      if (large) {\\r\\n        shouldHover = false;\\r\\n        pageOpened = true;\\r\\n        animationControls.start({\\r\\n          zIndex: 3,\\r\\n\\r\\n          width: \\"100vw\\",\\r\\n          height: \\"100vh\\",\\r\\n          left: -bar.offsetParent.offsetLeft,\\r\\n\\r\\n          top: -bar.offsetParent.offsetTop,\\r\\n        });\\r\\n      }\\r\\n    }}\\r\\n    bind:this={bar}\\r\\n    use:motion\\r\\n    class=\\"bar-container {!large ? 'small-bar' : 'large-bar'}\\"\\r\\n  >\\r\\n    {#if pageOpened}\\r\\n      <PageContent />\\r\\n    {/if}\\r\\n    {#if large && shouldShowCover}\\r\\n      <Motion\\r\\n        let:motion\\r\\n        variants={{\\r\\n          visible: {},\\r\\n          hidden: {\\r\\n            opacity: 0,\\r\\n            transition: {\\r\\n              delay: 5,\\r\\n            },\\r\\n          },\\r\\n        }}\\r\\n        animate={\\"hidden\\"}\\r\\n        ><img\\r\\n          use:motion\\r\\n          src={largeBarObj[index].img}\\r\\n          class=\\"cover-image\\"\\r\\n          alt=\\"\\"\\r\\n        />\\r\\n      </Motion>\\r\\n    {/if}\\r\\n    {#if pageOpened}\\r\\n      <div\\r\\n        class=\\"close-main\\"\\r\\n        on:click={(e) => {\\r\\n          shouldPulse = true;\\r\\n          e.stopPropagation();\\r\\n          pageOpened = false;\\r\\n          animationControls\\r\\n            .start({\\r\\n              height: \\"40vh\\",\\r\\n\\r\\n              left: large.position.left,\\r\\n              top: 0,\\r\\n              position: \\"absolute\\",\\r\\n              width: large.position.width,\\r\\n            })\\r\\n            .then(() => {\\r\\n              shouldHover = true;\\r\\n            });\\r\\n        }}\\r\\n      />\\r\\n    {/if}\\r\\n  </div></Motion\\r\\n>\\r\\n\\r\\n<style lang=\\"scss\\">.cover-image {\\n  height: 100%;\\n  object-position: center center;\\n  width: 100%;\\n  object-fit: cover;\\n}\\n\\n.close-main {\\n  height: 32px;\\n  max-height: 32px;\\n  max-width: 32px;\\n  min-height: 32px;\\n  min-width: 32px;\\n  position: absolute;\\n  right: 0;\\n  top: 0;\\n  cursor: pointer;\\n  width: 32px;\\n  z-index: 3;\\n}\\n.close-main:after {\\n  background-color: black;\\n  content: \\"\\";\\n  display: block;\\n  right: 0;\\n  position: absolute;\\n  top: 50%;\\n  height: 2px;\\n  width: 50%;\\n  transform: translate(-50%) translateY(-50%) rotate(45deg);\\n  transform-origin: center center;\\n}\\n.close-main::before {\\n  background-color: black;\\n  content: \\"\\";\\n  height: 50%;\\n  width: 2px;\\n  display: block;\\n  left: 50%;\\n  position: absolute;\\n  top: 50%;\\n  transform: translate(-50%) translateY(-50%) rotate(45deg);\\n  transform-origin: center center;\\n}\\n\\n.large-bar {\\n  width: 20%;\\n  opacity: 0;\\n  height: 100%;\\n}\\n\\n.small-bar {\\n  opacity: 0;\\n}\\n\\n.bar-container {\\n  z-index: 1;\\n  pointer-events: none;\\n  overflow: hidden;\\n  height: 100%;\\n  position: absolute;\\n  background-color: white;\\n}\\n.bar-container:nth-child(1) {\\n  left: 2%;\\n  top: 0%;\\n  width: 1%;\\n}\\n.bar-container:nth-child(2) {\\n  left: 3.6%;\\n  top: 0%;\\n  width: 0.9%;\\n}\\n.bar-container:nth-child(3) {\\n  left: 6.9%;\\n  top: 0%;\\n  width: 2%;\\n}\\n.bar-container:nth-child(4) {\\n  left: 0;\\n  top: 0%;\\n}\\n.bar-container:nth-child(5) {\\n  left: 14.3%;\\n  top: 0%;\\n}\\n.bar-container:nth-child(6) {\\n  left: 17.8%;\\n  top: 0%;\\n  width: 1.5%;\\n}\\n.bar-container:nth-child(7) {\\n  left: 20%;\\n  top: 0%;\\n  width: 1.1%;\\n}\\n.bar-container:nth-child(8) {\\n  left: 23.1%;\\n  top: 0%;\\n  width: 1.9%;\\n}\\n.bar-container:nth-child(9) {\\n  left: 25.7%;\\n  top: 0%;\\n  width: 1%;\\n}\\n.bar-container:nth-child(10) {\\n  left: 28.8%;\\n  top: 0%;\\n  width: 1%;\\n}\\n.bar-container:nth-child(11) {\\n  left: 32%;\\n  top: 0%;\\n  width: 1.9%;\\n}\\n.bar-container:nth-child(12) {\\n  left: 34.6%;\\n  top: 0%;\\n  width: 2.5%;\\n}\\n.bar-container:nth-child(13) {\\n  left: 46.6%;\\n  top: 0%;\\n  width: 1%;\\n}\\n.bar-container:nth-child(14) {\\n  left: 49.8%;\\n  top: 0%;\\n  width: 1.9%;\\n}\\n.bar-container:nth-child(15) {\\n  left: 54%;\\n  top: 0%;\\n  width: 0.9%;\\n}\\n.bar-container:nth-child(16) {\\n  left: 55.6%;\\n  top: 0%;\\n  width: 1.8%;\\n}\\n.bar-container:nth-child(17) {\\n  top: 0%;\\n  width: 1.1%;\\n}\\n.bar-container:nth-child(18) {\\n  left: 20vw;\\n  top: 0%;\\n}\\n.bar-container:nth-child(19) {\\n  left: 91.3%;\\n  top: 0%;\\n  width: 1.1%;\\n}\\n.bar-container:nth-child(20) {\\n  left: 64.5%;\\n  top: 0%;\\n  width: 1%;\\n}\\n.bar-container:nth-child(21) {\\n  left: 66.4%;\\n  top: 0%;\\n  width: 0.9%;\\n}\\n.bar-container:nth-child(22) {\\n  left: 69.4%;\\n  top: 0%;\\n  width: 1.9%;\\n}\\n.bar-container:nth-child(23) {\\n  left: 73.5%;\\n  top: 0%;\\n  width: 0.9%;\\n}\\n.bar-container:nth-child(24) {\\n  right: 20vw;\\n  top: 0%;\\n}\\n.bar-container:nth-child(25) {\\n  left: 79.9%;\\n  top: 0%;\\n  width: 1.7%;\\n}\\n.bar-container:nth-child(26) {\\n  left: 82.5%;\\n  top: 0%;\\n  width: 0.8%;\\n}\\n.bar-container:nth-child(27) {\\n  left: 85.5%;\\n  top: 0%;\\n  width: 1.2%;\\n}\\n.bar-container:nth-child(28) {\\n  left: 88.9%;\\n  top: 0%;\\n  width: 1.7%;\\n}\\n.bar-container:nth-child(29) {\\n  right: 0;\\n  top: 0%;\\n}\\n.bar-container:nth-child(30) {\\n  left: 97.9%;\\n  top: 0%;\\n  width: 1.7%;\\n}</style>\\r\\n"],"names":[],"mappings":"AA6JmB,YAAY,eAAC,CAAC,AAC/B,MAAM,CAAE,IAAI,CACZ,eAAe,CAAE,MAAM,CAAC,MAAM,CAC9B,KAAK,CAAE,IAAI,CACX,UAAU,CAAE,KAAK,AACnB,CAAC,AAED,WAAW,eAAC,CAAC,AACX,MAAM,CAAE,IAAI,CACZ,UAAU,CAAE,IAAI,CAChB,SAAS,CAAE,IAAI,CACf,UAAU,CAAE,IAAI,CAChB,SAAS,CAAE,IAAI,CACf,QAAQ,CAAE,QAAQ,CAClB,KAAK,CAAE,CAAC,CACR,GAAG,CAAE,CAAC,CACN,MAAM,CAAE,OAAO,CACf,KAAK,CAAE,IAAI,CACX,OAAO,CAAE,CAAC,AACZ,CAAC,AACD,0BAAW,MAAM,AAAC,CAAC,AACjB,gBAAgB,CAAE,KAAK,CACvB,OAAO,CAAE,EAAE,CACX,OAAO,CAAE,KAAK,CACd,KAAK,CAAE,CAAC,CACR,QAAQ,CAAE,QAAQ,CAClB,GAAG,CAAE,GAAG,CACR,MAAM,CAAE,GAAG,CACX,KAAK,CAAE,GAAG,CACV,SAAS,CAAE,UAAU,IAAI,CAAC,CAAC,WAAW,IAAI,CAAC,CAAC,OAAO,KAAK,CAAC,CACzD,gBAAgB,CAAE,MAAM,CAAC,MAAM,AACjC,CAAC,AACD,0BAAW,QAAQ,AAAC,CAAC,AACnB,gBAAgB,CAAE,KAAK,CACvB,OAAO,CAAE,EAAE,CACX,MAAM,CAAE,GAAG,CACX,KAAK,CAAE,GAAG,CACV,OAAO,CAAE,KAAK,CACd,IAAI,CAAE,GAAG,CACT,QAAQ,CAAE,QAAQ,CAClB,GAAG,CAAE,GAAG,CACR,SAAS,CAAE,UAAU,IAAI,CAAC,CAAC,WAAW,IAAI,CAAC,CAAC,OAAO,KAAK,CAAC,CACzD,gBAAgB,CAAE,MAAM,CAAC,MAAM,AACjC,CAAC,AAED,UAAU,eAAC,CAAC,AACV,KAAK,CAAE,GAAG,CACV,OAAO,CAAE,CAAC,CACV,MAAM,CAAE,IAAI,AACd,CAAC,AAED,UAAU,eAAC,CAAC,AACV,OAAO,CAAE,CAAC,AACZ,CAAC,AAED,cAAc,eAAC,CAAC,AACd,OAAO,CAAE,CAAC,CACV,cAAc,CAAE,IAAI,CACpB,QAAQ,CAAE,MAAM,CAChB,MAAM,CAAE,IAAI,CACZ,QAAQ,CAAE,QAAQ,CAClB,gBAAgB,CAAE,KAAK,AACzB,CAAC,AACD,6BAAc,WAAW,CAAC,CAAC,AAAC,CAAC,AAC3B,IAAI,CAAE,EAAE,CACR,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,EAAE,AACX,CAAC,AACD,6BAAc,WAAW,CAAC,CAAC,AAAC,CAAC,AAC3B,IAAI,CAAE,IAAI,CACV,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,6BAAc,WAAW,CAAC,CAAC,AAAC,CAAC,AAC3B,IAAI,CAAE,IAAI,CACV,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,EAAE,AACX,CAAC,AACD,6BAAc,WAAW,CAAC,CAAC,AAAC,CAAC,AAC3B,IAAI,CAAE,CAAC,CACP,GAAG,CAAE,EAAE,AACT,CAAC,AACD,6BAAc,WAAW,CAAC,CAAC,AAAC,CAAC,AAC3B,IAAI,CAAE,KAAK,CACX,GAAG,CAAE,EAAE,AACT,CAAC,AACD,6BAAc,WAAW,CAAC,CAAC,AAAC,CAAC,AAC3B,IAAI,CAAE,KAAK,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,6BAAc,WAAW,CAAC,CAAC,AAAC,CAAC,AAC3B,IAAI,CAAE,GAAG,CACT,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,6BAAc,WAAW,CAAC,CAAC,AAAC,CAAC,AAC3B,IAAI,CAAE,KAAK,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,6BAAc,WAAW,CAAC,CAAC,AAAC,CAAC,AAC3B,IAAI,CAAE,KAAK,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,EAAE,AACX,CAAC,AACD,6BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,KAAK,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,EAAE,AACX,CAAC,AACD,6BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,GAAG,CACT,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,6BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,KAAK,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,6BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,KAAK,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,EAAE,AACX,CAAC,AACD,6BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,KAAK,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,6BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,GAAG,CACT,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,6BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,KAAK,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,6BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,6BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,IAAI,CACV,GAAG,CAAE,EAAE,AACT,CAAC,AACD,6BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,KAAK,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,6BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,KAAK,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,EAAE,AACX,CAAC,AACD,6BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,KAAK,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,6BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,KAAK,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,6BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,KAAK,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,6BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,KAAK,CAAE,IAAI,CACX,GAAG,CAAE,EAAE,AACT,CAAC,AACD,6BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,KAAK,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,6BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,KAAK,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,6BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,KAAK,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,6BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,KAAK,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,6BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,KAAK,CAAE,CAAC,CACR,GAAG,CAAE,EAAE,AACT,CAAC,AACD,6BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,KAAK,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC"}`
-};
-let shouldShowCover = true;
 const Bar = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { index: index2 } = $$props;
-  let { animations: animations2 } = $$props;
+  let { animations } = $$props;
   let { shouldPulse } = $$props;
   let bar;
-  let large = largeBarObj[index2];
-  let animationControls2 = useAnimation();
-  let animationControlsSm = useAnimation();
   if ($$props.index === void 0 && $$bindings.index && index2 !== void 0)
     $$bindings.index(index2);
-  if ($$props.animations === void 0 && $$bindings.animations && animations2 !== void 0)
-    $$bindings.animations(animations2);
+  if ($$props.animations === void 0 && $$bindings.animations && animations !== void 0)
+    $$bindings.animations(animations);
   if ($$props.shouldPulse === void 0 && $$bindings.shouldPulse && shouldPulse !== void 0)
     $$bindings.shouldPulse(shouldPulse);
-  $$result.css.add(css$2);
-  {
-    {
-      if (!animations2 && large && shouldPulse) {
-        bar.style.pointerEvents = "auto";
-        console.log("testingsgds");
-        animationControls2.start({
-          transition: { repeat: "Infinity", duration: 3 },
-          opacity: [null, 0, 1]
-        });
-      } else if (!shouldPulse) {
-        animationControls2.start({ opacity: 1 });
-      }
-    }
-  }
-  return `${validate_component(motion, "Motion").$$render($$result, {
-    onHoverEnd: () => {
-    },
-    whileHover: {
-      scale: 1.3,
-      transition: { duration: 0.3 }
-    },
-    animate: large ? animationControls2 : animationControlsSm
-  }, {}, {
-    default: ({ motion: motion$1 }) => `<div class="${"bar-container " + escape(!large ? "small-bar" : "large-bar") + " svelte-1p4hlcf"}"${add_attribute("this", bar, 0)}>${``}
-    ${large && shouldShowCover ? `${validate_component(motion, "Motion").$$render($$result, {
-      variants: {
-        visible: {},
-        hidden: { opacity: 0, transition: { delay: 5 } }
-      },
-      animate: "hidden"
-    }, {}, {
-      default: ({ motion: motion2 }) => `<img${add_attribute("src", largeBarObj[index2].img, 0)} class="${"cover-image svelte-1p4hlcf"}" alt="${""}">`
-    })}` : ``}
-    ${``}</div>`
-  })}`;
+  $$result.css.add(css$3);
+  return `<div class="${"bar-container svelte-a0xeke"}"${add_attribute("this", bar, 0)}></div>`;
 });
-var global = '* {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n}\n\n@font-face {\n  font-family: "Orator";\n  src: url("__VITE_ASSET__b76fd88c__") format("truetype");\n}';
-var Logo_svelte_svelte_type_style_lang = ".bar-container.svelte-7lvvpn{height:70vh;display:flex;gap:20px;width:100%;align-items:center;justify-content:center;position:relative}";
+var LargeBar_svelte_svelte_type_style_lang = ".cover-image.svelte-rjl1is{height:100%;object-position:center center;width:100%;object-fit:cover}.bar-container.svelte-rjl1is{opacity:0;width:20%;top:0;z-index:1;pointer-events:none;overflow:hidden;height:100%;position:absolute;background-color:white}.opened.svelte-rjl1is{z-index:3}.bar-3.svelte-rjl1is{left:0}.bar-17.svelte-rjl1is{left:20vw}.bar-23.svelte-rjl1is{right:20vw}.bar-28.svelte-rjl1is{right:0}";
+const css$2 = {
+  code: ".cover-image.svelte-rjl1is{height:100%;object-position:center center;width:100%;object-fit:cover}.bar-container.svelte-rjl1is{opacity:0;width:20%;top:0;z-index:1;pointer-events:none;overflow:hidden;height:100%;position:absolute;background-color:white}.opened.svelte-rjl1is{z-index:3}.bar-3.svelte-rjl1is{left:0}.bar-17.svelte-rjl1is{left:20vw}.bar-23.svelte-rjl1is{right:20vw}.bar-28.svelte-rjl1is{right:0}",
+  map: `{"version":3,"file":"LargeBar.svelte","sources":["LargeBar.svelte"],"sourcesContent":["<script>\\r\\n  import { afterUpdate, createEventDispatcher, onMount } from \\"svelte\\";\\r\\n\\r\\n  import { Motion, useAnimation } from \\"svelte-motion\\";\\r\\n\\r\\n  import PageContent from \\"./PageContent.svelte\\";\\r\\n  import { largeBarObj } from \\"../animationObj\\";\\r\\n  import gsap from \\"gsap\\";\\r\\n  import { amp, browser, dev, mode, prerendering } from \\"$app/env\\";\\r\\n\\r\\n  export let index;\\r\\n  export let animations;\\r\\n  export let shouldPulse;\\r\\n  export let barObj;\\r\\n  let pageOpened = false;\\r\\n  let bar;\\r\\n  let img;\\r\\n  const dispatch = createEventDispatcher();\\r\\n  let tl;\\r\\n  onMount(async () => {\\r\\n    gsap\\r\\n      .to(bar, {\\r\\n        ...barObj.position,\\r\\n        duration: 6,\\r\\n        scale: 1,\\r\\n        opacity: 1,\\r\\n        delay: barObj.delay,\\r\\n        id: \\"initial\\",\\r\\n      })\\r\\n      .then(() => {\\r\\n        gsap\\r\\n          .to(img, {\\r\\n            opacity: 0,\\r\\n          })\\r\\n          .then(() => {\\r\\n            bar.style.pointerEvents = \\"auto\\";\\r\\n            dispatch(\\"complete\\", {\\r\\n              text: \\"helllo\\",\\r\\n            });\\r\\n          });\\r\\n      });\\r\\n    tl = gsap.timeline({\\r\\n      repeat: -1,\\r\\n      paused: true,\\r\\n    });\\r\\n  });\\r\\n\\r\\n  $: {\\r\\n    if (tl) {\\r\\n      if (shouldPulse && browser) {\\r\\n        tl.to(bar, {\\r\\n          opacity: 0,\\r\\n          duration: 1,\\r\\n        }).to(bar, {\\r\\n          opacity: 1,\\r\\n          duration: 1,\\r\\n        });\\r\\n        tl.play();\\r\\n      } else {\\r\\n        tl.pause();\\r\\n        gsap.to(bar, {\\r\\n          opacity: 1,\\r\\n        });\\r\\n      }\\r\\n    }\\r\\n  }\\r\\n<\/script>\\r\\n\\r\\n<div\\r\\n  on:mouseenter={() => {\\r\\n    if (!pageOpened) {\\r\\n      gsap.to(bar, {\\r\\n        scale: 1.2,\\r\\n      });\\r\\n    }\\r\\n  }}\\r\\n  on:mouseleave={() => {\\r\\n    if (!pageOpened) {\\r\\n      gsap.to(bar, {\\r\\n        scale: 1,\\r\\n      });\\r\\n    }\\r\\n  }}\\r\\n  on:click={() => {\\r\\n    pageOpened = true;\\r\\n    dispatch(\\"stopPulse\\");\\r\\n    gsap.to(bar, {\\r\\n      left: -bar.offsetParent.offsetLeft,\\r\\n      width: \\"100vw\\",\\r\\n      height: \\"100vh\\",\\r\\n      duration: 0.5,\\r\\n      scale: 1,\\r\\n      top: -bar.offsetParent.offsetTop,\\r\\n    });\\r\\n  }}\\r\\n  style=\\"transform:scale(0.6)\\"\\r\\n  bind:this={bar}\\r\\n  class=\\"{pageOpened ? 'opened' : ''} bar-container bar-{barObj.index}\\"\\r\\n>\\r\\n  {#if pageOpened}\\r\\n    <PageContent />\\r\\n    <div\\r\\n      class=\\"close-main\\"\\r\\n      on:click={(e) => {\\r\\n        e.stopPropagation();\\r\\n        dispatch(\\"startPulse\\");\\r\\n        pageOpened = false;\\r\\n        gsap.to(bar, {\\r\\n          height: \\"40vh\\",\\r\\n\\r\\n          left: barObj.position.left,\\r\\n          top: 0,\\r\\n\\r\\n          width: barObj.position.width,\\r\\n        });\\r\\n      }}\\r\\n    />\\r\\n  {/if}\\r\\n  <img bind:this={img} src={barObj.img} class=\\"cover-image\\" alt=\\"\\" />\\r\\n</div>\\r\\n\\r\\n<style lang=\\"scss\\">.cover-image {\\n  height: 100%;\\n  object-position: center center;\\n  width: 100%;\\n  object-fit: cover;\\n}\\n\\n.bar-container {\\n  opacity: 0;\\n  width: 20%;\\n  top: 0;\\n  z-index: 1;\\n  pointer-events: none;\\n  overflow: hidden;\\n  height: 100%;\\n  position: absolute;\\n  background-color: white;\\n}\\n\\n.opened {\\n  z-index: 3;\\n}\\n\\n.bar-3 {\\n  left: 0;\\n}\\n\\n.bar-17 {\\n  left: 20vw;\\n}\\n\\n.bar-23 {\\n  right: 20vw;\\n}\\n\\n.bar-28 {\\n  right: 0;\\n}</style>\\r\\n"],"names":[],"mappings":"AAyHmB,YAAY,cAAC,CAAC,AAC/B,MAAM,CAAE,IAAI,CACZ,eAAe,CAAE,MAAM,CAAC,MAAM,CAC9B,KAAK,CAAE,IAAI,CACX,UAAU,CAAE,KAAK,AACnB,CAAC,AAED,cAAc,cAAC,CAAC,AACd,OAAO,CAAE,CAAC,CACV,KAAK,CAAE,GAAG,CACV,GAAG,CAAE,CAAC,CACN,OAAO,CAAE,CAAC,CACV,cAAc,CAAE,IAAI,CACpB,QAAQ,CAAE,MAAM,CAChB,MAAM,CAAE,IAAI,CACZ,QAAQ,CAAE,QAAQ,CAClB,gBAAgB,CAAE,KAAK,AACzB,CAAC,AAED,OAAO,cAAC,CAAC,AACP,OAAO,CAAE,CAAC,AACZ,CAAC,AAED,MAAM,cAAC,CAAC,AACN,IAAI,CAAE,CAAC,AACT,CAAC,AAED,OAAO,cAAC,CAAC,AACP,IAAI,CAAE,IAAI,AACZ,CAAC,AAED,OAAO,cAAC,CAAC,AACP,KAAK,CAAE,IAAI,AACb,CAAC,AAED,OAAO,cAAC,CAAC,AACP,KAAK,CAAE,CAAC,AACV,CAAC"}`
+};
+const LargeBar = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+  let { index: index2 } = $$props;
+  let { animations } = $$props;
+  let { shouldPulse } = $$props;
+  let { barObj } = $$props;
+  let bar;
+  let img;
+  createEventDispatcher();
+  if ($$props.index === void 0 && $$bindings.index && index2 !== void 0)
+    $$bindings.index(index2);
+  if ($$props.animations === void 0 && $$bindings.animations && animations !== void 0)
+    $$bindings.animations(animations);
+  if ($$props.shouldPulse === void 0 && $$bindings.shouldPulse && shouldPulse !== void 0)
+    $$bindings.shouldPulse(shouldPulse);
+  if ($$props.barObj === void 0 && $$bindings.barObj && barObj !== void 0)
+    $$bindings.barObj(barObj);
+  $$result.css.add(css$2);
+  return `<div style="${"transform:scale(0.6)"}" class="${escape("") + " bar-container bar-" + escape(barObj.index) + " svelte-rjl1is"}"${add_attribute("this", bar, 0)}>${``}
+  <img${add_attribute("src", barObj.img, 0)} class="${"cover-image svelte-rjl1is"}" alt="${""}"${add_attribute("this", img, 0)}>
+</div>`;
+});
+var global = '* {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n}\n\n@font-face {\n  font-family: "Orator";\n  src: url("__VITE_ASSET__b76fd88c__") format("truetype");\n}\n.close-main {\n  height: 32px;\n  max-height: 32px;\n  max-width: 32px;\n  min-height: 32px;\n  min-width: 32px;\n  position: absolute;\n  right: 0;\n  top: 0;\n  cursor: pointer;\n  width: 32px;\n  z-index: 3;\n}\n.close-main:after {\n  background-color: black;\n  content: "";\n  display: block;\n  right: 0;\n  position: absolute;\n  top: 50%;\n  height: 2px;\n  width: 50%;\n  transform: translate(-50%) translateY(-50%) rotate(45deg);\n  transform-origin: center center;\n}\n.close-main::before {\n  background-color: black;\n  content: "";\n  height: 50%;\n  width: 2px;\n  display: block;\n  left: 50%;\n  position: absolute;\n  top: 50%;\n  transform: translate(-50%) translateY(-50%) rotate(45deg);\n  transform-origin: center center;\n}';
+var Logo_svelte_svelte_type_style_lang = ".bar-container.svelte-mts0d2{height:70vh;z-index:3;display:flex;gap:20px;width:100%;align-items:center;justify-content:center;position:relative}";
 const css$1 = {
-  code: ".bar-container.svelte-7lvvpn{height:70vh;display:flex;gap:20px;width:100%;align-items:center;justify-content:center;position:relative}",
-  map: '{"version":3,"file":"Logo.svelte","sources":["Logo.svelte"],"sourcesContent":["<script>\\r\\n  import { onDestroy } from \\"svelte\\";\\r\\n  import { Motion } from \\"svelte-motion\\";\\r\\n  import Bar from \\"../components/Bar.svelte\\";\\r\\n  import \\"../global.scss\\";\\r\\n\\r\\n  onDestroy(() => {});\\r\\n  let playAnimation;\\r\\n  let animations = [];\\r\\n  let shouldPulse = true;\\r\\n  const bars = Array.from(\\" \\".repeat(30));\\r\\n<\/script>\\r\\n\\r\\n<Motion\\r\\n  let:motion\\r\\n  transition={{\\r\\n    delay: playAnimation ? 4.5 : 0,\\r\\n    duration: playAnimation ? 1.5 : 0,\\r\\n  }}\\r\\n  animate={{\\r\\n    height: \\"40vh\\",\\r\\n  }}\\r\\n>\\r\\n  <div use:motion class=\\"bar-container\\">\\r\\n    {#each bars as bar, i}\\r\\n      <Bar bind:shouldPulse bind:animations index={i} />\\r\\n    {/each}\\r\\n  </div>\\r\\n</Motion>\\r\\n\\r\\n<style lang=\\"scss\\">.bar-container {\\n  height: 70vh;\\n  display: flex;\\n  gap: 20px;\\n  width: 100%;\\n  align-items: center;\\n  justify-content: center;\\n  position: relative;\\n}</style>\\r\\n"],"names":[],"mappings":"AA8BmB,cAAc,cAAC,CAAC,AACjC,MAAM,CAAE,IAAI,CACZ,OAAO,CAAE,IAAI,CACb,GAAG,CAAE,IAAI,CACT,KAAK,CAAE,IAAI,CACX,WAAW,CAAE,MAAM,CACnB,eAAe,CAAE,MAAM,CACvB,QAAQ,CAAE,QAAQ,AACpB,CAAC"}'
+  code: ".bar-container.svelte-mts0d2{height:70vh;z-index:3;display:flex;gap:20px;width:100%;align-items:center;justify-content:center;position:relative}",
+  map: '{"version":3,"file":"Logo.svelte","sources":["Logo.svelte"],"sourcesContent":["<script>\\r\\n  import { onDestroy, onMount } from \\"svelte\\";\\r\\n  import { Motion, useAnimation } from \\"svelte-motion\\";\\r\\n  import { largeBarObj, largeBarsArr } from \\"../animationObj\\";\\r\\n  import Bar from \\"../components/Bar.svelte\\";\\r\\n  import LargeBar from \\"../components/LargeBar.svelte\\";\\r\\n  import \\"../global.scss\\";\\r\\n  import gsap from \\"gsap\\";\\r\\n\\r\\n  onDestroy(() => {});\\r\\n\\r\\n  const bars = Array.from(\\" \\".repeat(27));\\r\\n  const animations = [];\\r\\n  let container;\\r\\n  let shouldPulse = false;\\r\\n\\r\\n  onMount(() => {\\r\\n    gsap.to(container, {\\r\\n      height: \\"40vh\\",\\r\\n      duration: 5,\\r\\n    });\\r\\n  });\\r\\n<\/script>\\r\\n\\r\\n<div bind:this={container} class=\\"bar-container\\">\\r\\n  {#each bars as bar, i}\\r\\n    <Bar index={i} />\\r\\n  {/each}\\r\\n\\r\\n  {#each largeBarsArr as bar, i}\\r\\n    <LargeBar\\r\\n      on:stopPulse={() => {\\r\\n        console.log(\\"stopppped\\");\\r\\n        shouldPulse = false;\\r\\n      }}\\r\\n      on:startPulse={() => {\\r\\n        console.log(\\"stopppped\\");\\r\\n        shouldPulse = true;\\r\\n      }}\\r\\n      on:complete={() => {\\r\\n        animations.push(i);\\r\\n        if (animations.length === 4) {\\r\\n          shouldPulse = true;\\r\\n        }\\r\\n      }}\\r\\n      {shouldPulse}\\r\\n      custom={bar.index}\\r\\n      barObj={bar}\\r\\n    />\\r\\n  {/each}\\r\\n</div>\\r\\n\\r\\n<style lang=\\"scss\\">.bar-container {\\n  height: 70vh;\\n  z-index: 3;\\n  display: flex;\\n  gap: 20px;\\n  width: 100%;\\n  align-items: center;\\n  justify-content: center;\\n  position: relative;\\n}</style>\\r\\n"],"names":[],"mappings":"AAoDmB,cAAc,cAAC,CAAC,AACjC,MAAM,CAAE,IAAI,CACZ,OAAO,CAAE,CAAC,CACV,OAAO,CAAE,IAAI,CACb,GAAG,CAAE,IAAI,CACT,KAAK,CAAE,IAAI,CACX,WAAW,CAAE,MAAM,CACnB,eAAe,CAAE,MAAM,CACvB,QAAQ,CAAE,QAAQ,AACpB,CAAC"}'
 };
 const Logo = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   onDestroy(() => {
   });
-  let animations2 = [];
-  let shouldPulse = true;
-  const bars = Array.from(" ".repeat(30));
+  const bars = Array.from(" ".repeat(27));
+  let container;
+  let shouldPulse = false;
   $$result.css.add(css$1);
-  let $$settled;
-  let $$rendered;
-  do {
-    $$settled = true;
-    $$rendered = `${validate_component(motion, "Motion").$$render($$result, {
-      transition: {
-        delay: 0,
-        duration: 0
-      },
-      animate: { height: "40vh" }
-    }, {}, {
-      default: ({ motion: motion2 }) => `<div class="${"bar-container svelte-7lvvpn"}">${each(bars, (bar, i) => `${validate_component(Bar, "Bar").$$render($$result, { index: i, shouldPulse, animations: animations2 }, {
-        shouldPulse: ($$value) => {
-          shouldPulse = $$value;
-          $$settled = false;
-        },
-        animations: ($$value) => {
-          animations2 = $$value;
-          $$settled = false;
-        }
-      }, {})}`)}</div>`
-    })}`;
-  } while (!$$settled);
-  return $$rendered;
+  return `<div class="${"bar-container svelte-mts0d2"}"${add_attribute("this", container, 0)}>${each(bars, (bar, i) => `${validate_component(Bar, "Bar").$$render($$result, { index: i }, {}, {})}`)}
+
+  ${each(largeBarsArr, (bar, i) => `${validate_component(LargeBar, "LargeBar").$$render($$result, {
+    shouldPulse,
+    custom: bar.index,
+    barObj: bar
+  }, {}, {})}`)}
+</div>`;
 });
 var logoText = "/_app/assets/logo Text-6620b85f.png";
-var Home_svelte_svelte_type_style_lang = '.logo-text-container.svelte-9wglc6.svelte-9wglc6{max-width:500px;width:100%;z-index:2;opacity:0;padding-top:20px}.logo-text-container.svelte-9wglc6 .logo-text.svelte-9wglc6{height:auto;object-fit:cover;width:100%}.container.svelte-9wglc6.svelte-9wglc6{background-repeat:no-repeat;font-family:Orator;color:white;background-size:cover;background-image:url("__VITE_ASSET__112e1098__");display:flex;flex-direction:column;padding:80px;gap:25px;justify-content:center;align-items:center;height:100vh;background-color:black;overflow:hidden}.container.svelte-9wglc6.svelte-9wglc6::before{position:absolute;top:0;bottom:0;left:0;right:0;width:100%;height:100%;content:"";z-index:1;background-color:rgba(0, 0, 0, 0.9)}h5.svelte-9wglc6.svelte-9wglc6{z-index:2;opacity:0;letter-spacing:5px;font-weight:100;font-size:4em;position:relative;text-transform:uppercase}';
+var Home_svelte_svelte_type_style_lang = '.logo-text-container.svelte-1u0iqmy.svelte-1u0iqmy{max-width:500px;width:100%;z-index:2;opacity:0;padding-top:20px}.logo-text-container.svelte-1u0iqmy .logo-text.svelte-1u0iqmy{height:auto;object-fit:cover;width:100%}.container.svelte-1u0iqmy.svelte-1u0iqmy{background-repeat:no-repeat;font-family:Orator;color:white;background-size:cover;background-image:url("__VITE_ASSET__112e1098__");display:flex;flex-direction:column;padding:80px;gap:25px;justify-content:center;align-items:center;height:100vh;background-color:black;overflow:hidden}.container.svelte-1u0iqmy.svelte-1u0iqmy::after{position:absolute;top:0;bottom:0;left:0;right:0;width:100%;height:100%;content:"";background-color:rgba(0, 0, 0, 0.9)}h5.svelte-1u0iqmy.svelte-1u0iqmy{z-index:2;opacity:0;letter-spacing:5px;font-weight:100;font-size:4em;position:relative;text-transform:uppercase}';
 const css = {
-  code: '.logo-text-container.svelte-9wglc6.svelte-9wglc6{max-width:500px;width:100%;z-index:2;opacity:0;padding-top:20px}.logo-text-container.svelte-9wglc6 .logo-text.svelte-9wglc6{height:auto;object-fit:cover;width:100%}.container.svelte-9wglc6.svelte-9wglc6{background-repeat:no-repeat;font-family:Orator;color:white;background-size:cover;background-image:url("../images/home/Background Photo.jpg");display:flex;flex-direction:column;padding:80px;gap:25px;justify-content:center;align-items:center;height:100vh;background-color:black;overflow:hidden}.container.svelte-9wglc6.svelte-9wglc6::before{position:absolute;top:0;bottom:0;left:0;right:0;width:100%;height:100%;content:"";z-index:1;background-color:rgba(0, 0, 0, 0.9)}h5.svelte-9wglc6.svelte-9wglc6{z-index:2;opacity:0;letter-spacing:5px;font-weight:100;font-size:4em;position:relative;text-transform:uppercase}',
-  map: '{"version":3,"file":"Home.svelte","sources":["Home.svelte"],"sourcesContent":["<script>\\r\\n  import { Motion } from \\"svelte-motion\\";\\r\\n\\r\\n  import Logo from \\"../images/Logo.svelte\\";\\r\\n  import logoText from \\"../images/home/logo Text.png\\";\\r\\n  const textVariant = {\\r\\n    visible: {\\r\\n      opacity: 1,\\r\\n      transition: {\\r\\n        delay: 5,\\r\\n        duration: 0.5,\\r\\n      },\\r\\n    },\\r\\n  };\\r\\n<\/script>\\r\\n\\r\\n<div class=\\"container\\">\\r\\n  <Motion variants={textVariant} animate=\\"visible\\" let:motion>\\r\\n    <h5 use:motion>connecting people</h5>\\r\\n  </Motion>\\r\\n  <Logo />\\r\\n  <Motion variants={textVariant} animate=\\"visible\\" let:motion>\\r\\n    <div use:motion class=\\"logo-text-container\\">\\r\\n      <img class=\\"logo-text\\" src={logoText} alt=\\"\\" />\\r\\n    </div>\\r\\n  </Motion>\\r\\n  <Motion variants={textVariant} animate=\\"visible\\" let:motion>\\r\\n    <h5 use:motion>to the art of living</h5>\\r\\n  </Motion>\\r\\n</div>\\r\\n\\r\\n<style lang=\\"scss\\">.logo-text-container {\\n  max-width: 500px;\\n  width: 100%;\\n  z-index: 2;\\n  opacity: 0;\\n  padding-top: 20px;\\n}\\n.logo-text-container .logo-text {\\n  height: auto;\\n  object-fit: cover;\\n  width: 100%;\\n}\\n\\n.container {\\n  background-repeat: no-repeat;\\n  font-family: Orator;\\n  color: white;\\n  background-size: cover;\\n  background-image: url(\\"../images/home/Background Photo.jpg\\");\\n  display: flex;\\n  flex-direction: column;\\n  padding: 80px;\\n  gap: 25px;\\n  justify-content: center;\\n  align-items: center;\\n  height: 100vh;\\n  background-color: black;\\n  overflow: hidden;\\n}\\n.container::before {\\n  position: absolute;\\n  top: 0;\\n  bottom: 0;\\n  left: 0;\\n  right: 0;\\n  width: 100%;\\n  height: 100%;\\n  content: \\"\\";\\n  z-index: 1;\\n  background-color: rgba(0, 0, 0, 0.9);\\n}\\n\\nh5 {\\n  z-index: 2;\\n  opacity: 0;\\n  letter-spacing: 5px;\\n  font-weight: 100;\\n  font-size: 4em;\\n  position: relative;\\n  text-transform: uppercase;\\n}</style>\\r\\n"],"names":[],"mappings":"AA+BmB,oBAAoB,4BAAC,CAAC,AACvC,SAAS,CAAE,KAAK,CAChB,KAAK,CAAE,IAAI,CACX,OAAO,CAAE,CAAC,CACV,OAAO,CAAE,CAAC,CACV,WAAW,CAAE,IAAI,AACnB,CAAC,AACD,kCAAoB,CAAC,UAAU,cAAC,CAAC,AAC/B,MAAM,CAAE,IAAI,CACZ,UAAU,CAAE,KAAK,CACjB,KAAK,CAAE,IAAI,AACb,CAAC,AAED,UAAU,4BAAC,CAAC,AACV,iBAAiB,CAAE,SAAS,CAC5B,WAAW,CAAE,MAAM,CACnB,KAAK,CAAE,KAAK,CACZ,eAAe,CAAE,KAAK,CACtB,gBAAgB,CAAE,IAAI,qCAAqC,CAAC,CAC5D,OAAO,CAAE,IAAI,CACb,cAAc,CAAE,MAAM,CACtB,OAAO,CAAE,IAAI,CACb,GAAG,CAAE,IAAI,CACT,eAAe,CAAE,MAAM,CACvB,WAAW,CAAE,MAAM,CACnB,MAAM,CAAE,KAAK,CACb,gBAAgB,CAAE,KAAK,CACvB,QAAQ,CAAE,MAAM,AAClB,CAAC,AACD,sCAAU,QAAQ,AAAC,CAAC,AAClB,QAAQ,CAAE,QAAQ,CAClB,GAAG,CAAE,CAAC,CACN,MAAM,CAAE,CAAC,CACT,IAAI,CAAE,CAAC,CACP,KAAK,CAAE,CAAC,CACR,KAAK,CAAE,IAAI,CACX,MAAM,CAAE,IAAI,CACZ,OAAO,CAAE,EAAE,CACX,OAAO,CAAE,CAAC,CACV,gBAAgB,CAAE,KAAK,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,GAAG,CAAC,AACtC,CAAC,AAED,EAAE,4BAAC,CAAC,AACF,OAAO,CAAE,CAAC,CACV,OAAO,CAAE,CAAC,CACV,cAAc,CAAE,GAAG,CACnB,WAAW,CAAE,GAAG,CAChB,SAAS,CAAE,GAAG,CACd,QAAQ,CAAE,QAAQ,CAClB,cAAc,CAAE,SAAS,AAC3B,CAAC"}'
+  code: '.logo-text-container.svelte-1u0iqmy.svelte-1u0iqmy{max-width:500px;width:100%;z-index:2;opacity:0;padding-top:20px}.logo-text-container.svelte-1u0iqmy .logo-text.svelte-1u0iqmy{height:auto;object-fit:cover;width:100%}.container.svelte-1u0iqmy.svelte-1u0iqmy{background-repeat:no-repeat;font-family:Orator;color:white;background-size:cover;background-image:url("../images/home/Background Photo.jpg");display:flex;flex-direction:column;padding:80px;gap:25px;justify-content:center;align-items:center;height:100vh;background-color:black;overflow:hidden}.container.svelte-1u0iqmy.svelte-1u0iqmy::after{position:absolute;top:0;bottom:0;left:0;right:0;width:100%;height:100%;content:"";background-color:rgba(0, 0, 0, 0.9)}h5.svelte-1u0iqmy.svelte-1u0iqmy{z-index:2;opacity:0;letter-spacing:5px;font-weight:100;font-size:4em;position:relative;text-transform:uppercase}',
+  map: '{"version":3,"file":"Home.svelte","sources":["Home.svelte"],"sourcesContent":["<script>\\r\\n  import { Motion } from \\"svelte-motion\\";\\r\\n\\r\\n  import Logo from \\"../images/Logo.svelte\\";\\r\\n  import logoText from \\"../images/home/logo Text.png\\";\\r\\n  import { createEventDispatcher, onMount } from \\"svelte\\";\\r\\n  import gsap from \\"gsap\\";\\r\\n\\r\\n  let fadeIn;\\r\\n\\r\\n  const textVariant = {\\r\\n    visible: {\\r\\n      opacity: 1,\\r\\n      transition: {\\r\\n        delay: 5,\\r\\n        duration: 0.5,\\r\\n      },\\r\\n    },\\r\\n  };\\r\\n  onMount(() => {\\r\\n    const elesToFade = document.querySelectorAll(\\".fade\\");\\r\\n    console.log(elesToFade);\\r\\n    gsap.to(\\".fade\\", {\\r\\n      opacity: 1,\\r\\n      delay: 5,\\r\\n    });\\r\\n  });\\r\\n<\/script>\\r\\n\\r\\n<div class=\\"container\\">\\r\\n  <h5 class=\\"fade\\">connecting people</h5>\\r\\n\\r\\n  <Logo />\\r\\n\\r\\n  <div class=\\"logo-text-container fade\\">\\r\\n    <img class=\\"logo-text\\" src={logoText} alt=\\"\\" />\\r\\n  </div>\\r\\n\\r\\n  <h5 class=\\"fade\\">to the art of living</h5>\\r\\n</div>\\r\\n\\r\\n<style lang=\\"scss\\">.logo-text-container {\\n  max-width: 500px;\\n  width: 100%;\\n  z-index: 2;\\n  opacity: 0;\\n  padding-top: 20px;\\n}\\n.logo-text-container .logo-text {\\n  height: auto;\\n  object-fit: cover;\\n  width: 100%;\\n}\\n\\n.container {\\n  background-repeat: no-repeat;\\n  font-family: Orator;\\n  color: white;\\n  background-size: cover;\\n  background-image: url(\\"../images/home/Background Photo.jpg\\");\\n  display: flex;\\n  flex-direction: column;\\n  padding: 80px;\\n  gap: 25px;\\n  justify-content: center;\\n  align-items: center;\\n  height: 100vh;\\n  background-color: black;\\n  overflow: hidden;\\n}\\n.container::after {\\n  position: absolute;\\n  top: 0;\\n  bottom: 0;\\n  left: 0;\\n  right: 0;\\n  width: 100%;\\n  height: 100%;\\n  content: \\"\\";\\n  background-color: rgba(0, 0, 0, 0.9);\\n}\\n\\nh5 {\\n  z-index: 2;\\n  opacity: 0;\\n  letter-spacing: 5px;\\n  font-weight: 100;\\n  font-size: 4em;\\n  position: relative;\\n  text-transform: uppercase;\\n}</style>\\r\\n"],"names":[],"mappings":"AAyCmB,oBAAoB,8BAAC,CAAC,AACvC,SAAS,CAAE,KAAK,CAChB,KAAK,CAAE,IAAI,CACX,OAAO,CAAE,CAAC,CACV,OAAO,CAAE,CAAC,CACV,WAAW,CAAE,IAAI,AACnB,CAAC,AACD,mCAAoB,CAAC,UAAU,eAAC,CAAC,AAC/B,MAAM,CAAE,IAAI,CACZ,UAAU,CAAE,KAAK,CACjB,KAAK,CAAE,IAAI,AACb,CAAC,AAED,UAAU,8BAAC,CAAC,AACV,iBAAiB,CAAE,SAAS,CAC5B,WAAW,CAAE,MAAM,CACnB,KAAK,CAAE,KAAK,CACZ,eAAe,CAAE,KAAK,CACtB,gBAAgB,CAAE,IAAI,qCAAqC,CAAC,CAC5D,OAAO,CAAE,IAAI,CACb,cAAc,CAAE,MAAM,CACtB,OAAO,CAAE,IAAI,CACb,GAAG,CAAE,IAAI,CACT,eAAe,CAAE,MAAM,CACvB,WAAW,CAAE,MAAM,CACnB,MAAM,CAAE,KAAK,CACb,gBAAgB,CAAE,KAAK,CACvB,QAAQ,CAAE,MAAM,AAClB,CAAC,AACD,wCAAU,OAAO,AAAC,CAAC,AACjB,QAAQ,CAAE,QAAQ,CAClB,GAAG,CAAE,CAAC,CACN,MAAM,CAAE,CAAC,CACT,IAAI,CAAE,CAAC,CACP,KAAK,CAAE,CAAC,CACR,KAAK,CAAE,IAAI,CACX,MAAM,CAAE,IAAI,CACZ,OAAO,CAAE,EAAE,CACX,gBAAgB,CAAE,KAAK,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,GAAG,CAAC,AACtC,CAAC,AAED,EAAE,8BAAC,CAAC,AACF,OAAO,CAAE,CAAC,CACV,OAAO,CAAE,CAAC,CACV,cAAc,CAAE,GAAG,CACnB,WAAW,CAAE,GAAG,CAChB,SAAS,CAAE,GAAG,CACd,QAAQ,CAAE,QAAQ,CAClB,cAAc,CAAE,SAAS,AAC3B,CAAC"}'
 };
 const Home = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  const textVariant = {
-    visible: {
-      opacity: 1,
-      transition: { delay: 5, duration: 0.5 }
-    }
-  };
   $$result.css.add(css);
-  return `<div class="${"container svelte-9wglc6"}">${validate_component(motion, "Motion").$$render($$result, {
-    variants: textVariant,
-    animate: "visible"
-  }, {}, {
-    default: ({ motion: motion2 }) => `<h5 class="${"svelte-9wglc6"}">connecting people</h5>`
-  })}
+  return `<div class="${"container svelte-1u0iqmy"}"><h5 class="${"fade svelte-1u0iqmy"}">connecting people</h5>
+
   ${validate_component(Logo, "Logo").$$render($$result, {}, {}, {})}
-  ${validate_component(motion, "Motion").$$render($$result, {
-    variants: textVariant,
-    animate: "visible"
-  }, {}, {
-    default: ({ motion: motion2 }) => `<div class="${"logo-text-container svelte-9wglc6"}"><img class="${"logo-text svelte-9wglc6"}"${add_attribute("src", logoText, 0)} alt="${""}"></div>`
-  })}
-  ${validate_component(motion, "Motion").$$render($$result, {
-    variants: textVariant,
-    animate: "visible"
-  }, {}, {
-    default: ({ motion: motion2 }) => `<h5 class="${"svelte-9wglc6"}">to the art of living</h5>`
-  })}
+
+  <div class="${"logo-text-container fade svelte-1u0iqmy"}"><img class="${"logo-text svelte-1u0iqmy"}"${add_attribute("src", logoText, 0)} alt="${""}"></div>
+
+  <h5 class="${"fade svelte-1u0iqmy"}">to the art of living</h5>
 </div>`;
 });
 const Routes = create_ssr_component(($$result, $$props, $$bindings, slots) => {

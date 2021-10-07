@@ -64,6 +64,7 @@
     overflow-y: auto;
     height: 100%;
     gap: 25px;
+    z-index: 4;
     background-size: cover;
     background-image: url("../images/home/Background Photo.jpg");
     flex-direction: column;
