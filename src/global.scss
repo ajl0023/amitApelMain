@@ -7,6 +7,9 @@
   font-family: "Orator";
   src: url("./fonts/Capsuula.ttf") format("truetype");
 }
+html {
+  overflow-x: hidden;
+}
 .close-main {
   height: 32px;
   max-height: 32px;

@@ -1,27 +1,16 @@
 <script>
-  import { tweened } from "svelte/motion";
-
+  import { onMount } from "svelte";
   import mainLogo from "../images/home/AA-logo-black-mac (1).svg";
-
   import About from "./About.svelte";
   import BgLogo from "./BgLogo.svelte";
   import MalibuRebuild from "./MalibuRebuild.svelte";
   import MeetTheTeam from "./meetTheTeam/MeetTheTeam.svelte";
-  import Navbutton from "./Navbutton.svelte";
   import Press from "./press/Press.svelte";
-
-  let currentPage = "about";
-
-  const navButtons = [
-    "about",
-    "meet the team",
-    "what we do",
-    "malibu rebuild",
-    "press",
-  ];
-
+  import gsap from "gsap";
+  export let currNav;
+  let container;
   const pages = {
-    about: {
+    "meet amit apel": {
       component: About,
     },
     "malibu rebuild": {
@@ -34,26 +23,22 @@
       component: Press,
     },
   };
-  const handleNavChange = (nav) => {
-    if (pages[nav]) {
-      currentPage = nav;
-    }
-  };
+  onMount(() => {
+    gsap.to(container, {
+      translateY: -container.offsetTop,
+    });
+  });
 </script>
 
-<div class="main-page-container">
+<div bind:this={container} class="main-page-container">
   <BgLogo text={"apel design"} />
   <div class="top-nav-container">
     <div class="logo-container">
       <img class="logo" src={mainLogo} alt="" />
     </div>
-    <div class="header-nav-container">
-      {#each navButtons as nav}
-        <Navbutton {handleNavChange} {currentPage} {nav} />
-      {/each}
-    </div>
+    <div class="header-nav-container" />
   </div>
-  <svelte:component this={pages[currentPage].component} />
+  <svelte:component this={pages[currNav].component} />
 </div>
 
 <style lang="scss">
@@ -62,15 +47,19 @@
     display: flex;
     padding-top: 5rem;
     overflow-y: auto;
+    overflow-x: hidden;
     height: 100%;
     gap: 25px;
-    z-index: 4;
+    z-index: 1;
+
     background-size: cover;
     background-image: url("../images/home/Background Photo.jpg");
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    overflow-x: hidden;
   }
 
   .top-nav-container {

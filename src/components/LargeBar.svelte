@@ -7,6 +7,7 @@
   import { largeBarObj } from "../animationObj";
   import gsap from "gsap";
   import { amp, browser, dev, mode, prerendering } from "$app/env";
+  import Marque from "./Marquee/Marque.svelte";
 
   export let index;
   export let animations;
@@ -33,7 +34,6 @@
             opacity: 0,
           })
           .then(() => {
-            bar.style.pointerEvents = "auto";
             dispatch("complete", {
               text: "helllo",
             });
@@ -57,6 +57,7 @@
         });
         tl.play();
       } else {
+        console.log("bar should stop");
         tl.pause();
         gsap.to(bar, {
           opacity: 1,
@@ -64,10 +65,15 @@
       }
     }
   }
+  $: {
+    if (shouldPulse) {
+      bar.style.pointerEvents = "auto";
+    }
+  }
 </script>
 
 <div
-  on:mouseenter={() => {
+  on:mouseenter={(e) => {
     if (!pageOpened) {
       gsap.to(bar, {
         scale: 1.2,
@@ -98,7 +104,7 @@
   class="{pageOpened ? 'opened' : ''} bar-container bar-{barObj.index}"
 >
   {#if pageOpened}
-    <PageContent />
+    <Marque />
     <div
       class="close-main"
       on:click={(e) => {

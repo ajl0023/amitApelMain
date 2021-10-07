@@ -1,2 +1,2 @@
-npm run build && git add . && git commit -m "converted to gsap" && git push origin main
+npm run build && git add . && git commit -m "animation updated" && git push origin main
 
