@@ -60,7 +60,7 @@
       </div>
     </div>
 
-    <div class="list-item-container">
+    <!-- <div class="list-item-container">
       {#each pagesArr as page}
         <div
           on:click={(e) => {
@@ -72,7 +72,7 @@
           {page.title}
         </div>
       {/each}
-    </div>
+    </div> -->
   </div>
 </div>
 
