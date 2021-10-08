@@ -30,7 +30,7 @@
 
 <div bind:this={container} class="main-page-container">
   <svelte:component this={currNav.component} />
-  <div class="categories-container">
+  <!-- <div class="categories-container">
     <div
       on:mouseenter={(e) => {
         gsap.to(".t1", {
@@ -60,7 +60,7 @@
       </div>
     </div>
 
-    <!-- <div class="list-item-container">
+    <div class="list-item-container">
       {#each pagesArr as page}
         <div
           on:click={(e) => {
@@ -72,8 +72,8 @@
           {page.title}
         </div>
       {/each}
-    </div> -->
-  </div>
+    </div>
+  </div> -->
 </div>
 
 <style lang="scss">
