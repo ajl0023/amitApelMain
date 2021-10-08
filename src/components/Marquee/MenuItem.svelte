@@ -33,7 +33,6 @@
     dispatch("navChange", title);
   }}
   bind:this={menuItem}
-  style="box-shadow:0 -1px transparent"
   class="menu__item"
 >
   <a
@@ -104,11 +103,11 @@
     overflow: hidden;
     z-index: 4;
     text-align: center;
-    box-shadow: 0 -1px var(--color-border);
+    box-shadow: 0 -1px black;
   }
 
   .menu__item:last-child {
-    box-shadow: 0 1px var(--color-border), 0 -1px var(--color-border);
+    box-shadow: 0 1px black, 0 -1px black;
   }
 
   .menu__item-link {

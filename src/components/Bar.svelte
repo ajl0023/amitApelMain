@@ -106,10 +106,6 @@
       width: 1.9%;
     }
     &:nth-child(12) {
-      left: 34.6%;
-      top: 0%;
-
-      width: 2.5%;
     }
     &:nth-child(13) {
       left: 46.6%;

@@ -13,7 +13,7 @@
   const animations = [];
   let container;
   let shouldPulse = false;
-
+  let completed = false;
   onMount(() => {
     gsap.to(container, {
       height: "40vh",
@@ -40,10 +40,12 @@
       on:complete={() => {
         animations.push(i);
         if (animations.length === 4) {
+          completed = true;
           shouldPulse = true;
         }
       }}
       {shouldPulse}
+      {completed}
       custom={bar.index}
       barObj={bar}
     />

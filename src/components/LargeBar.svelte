@@ -13,32 +13,38 @@
   export let animations;
   export let shouldPulse;
   export let barObj;
+  export let completed;
   let pageOpened = false;
   let bar;
   let img;
   const dispatch = createEventDispatcher();
   let tl;
+  let maintl;
   onMount(async () => {
-    gsap
+    console.log(barObj.delay);
+    maintl = gsap.timeline({ delay: barObj.delay });
+
+    maintl
       .to(bar, {
-        ...barObj.position,
-        duration: 6,
         scale: 1,
+        duration: 5,
         opacity: 1,
-        delay: barObj.delay,
-        id: "initial",
+        ...barObj.position,
+        ease: "power1.in",
       })
+
+      .to(
+        img,
+        {
+          opacity: 0,
+        },
+        ">-0.5"
+      )
+
       .then(() => {
-        gsap
-          .to(img, {
-            opacity: 0,
-          })
-          .then(() => {
-            dispatch("complete", {
-              text: "helllo",
-            });
-          });
+        dispatch("complete");
       });
+
     tl = gsap.timeline({
       repeat: -1,
       paused: true,
@@ -46,7 +52,7 @@
   });
 
   $: {
-    if (tl) {
+    if (tl && completed) {
       if (shouldPulse && browser) {
         tl.to(bar, {
           opacity: 0,
@@ -57,7 +63,6 @@
         });
         tl.play();
       } else {
-        console.log("bar should stop");
         tl.pause();
         gsap.to(bar, {
           opacity: 1,
@@ -99,7 +104,7 @@
       top: -bar.offsetParent.offsetTop,
     });
   }}
-  style="transform:scale(0.6)"
+  style="transform:scale(0.8)"
   bind:this={bar}
   class="{pageOpened ? 'opened' : ''} bar-container bar-{barObj.index}"
 >

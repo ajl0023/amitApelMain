@@ -1,47 +1,139 @@
 <script>
-  import { onMount } from "svelte";
-  import mainLogo from "../images/home/AA-logo-black-mac (1).svg";
-  import About from "./About.svelte";
-  import BgLogo from "./BgLogo.svelte";
-  import MalibuRebuild from "./MalibuRebuild.svelte";
-  import MeetTheTeam from "./meetTheTeam/MeetTheTeam.svelte";
-  import Press from "./press/Press.svelte";
+  import { createEventDispatcher, onMount } from "svelte";
+  import { amp, browser, dev, mode, prerendering } from "$app/env";
   import gsap from "gsap";
   export let currNav;
+  export let pagesArr;
+  let navOpen = false;
   let container;
-  const pages = {
-    "meet amit apel": {
-      component: About,
-    },
-    "malibu rebuild": {
-      component: MalibuRebuild,
-    },
-    "meet the team": {
-      component: MeetTheTeam,
-    },
-    press: {
-      component: Press,
-    },
-  };
+
   onMount(() => {
     gsap.to(container, {
       translateY: -container.offsetTop,
     });
   });
+  $: {
+    if (navOpen && browser) {
+      gsap.to(".list-item-container", {
+        height: "auto",
+        duration: 0.15,
+      });
+    } else {
+      gsap.to(".list-item-container", {
+        height: "0",
+        duration: 0.15,
+      });
+    }
+  }
+  const dispatch = createEventDispatcher();
 </script>
 
 <div bind:this={container} class="main-page-container">
-  <BgLogo text={"apel design"} />
-  <div class="top-nav-container">
-    <div class="logo-container">
-      <img class="logo" src={mainLogo} alt="" />
+  <svelte:component this={currNav.component} />
+  <div class="categories-container">
+    <div
+      on:mouseenter={(e) => {
+        gsap.to(".t1", {
+          y: -3,
+        });
+        gsap.to(".t2", {
+          y: 3,
+        });
+      }}
+      on:mouseleave={() => {
+        gsap.to(".t2", {
+          y: 0,
+        });
+        gsap.to(".t1", {
+          y: 0,
+        });
+      }}
+      on:click={() => {
+        navOpen = !navOpen;
+      }}
+      class="categories-label"
+    >
+      <h5>Categories</h5>
+      <div class="triangle-container">
+        <div class="t1" />
+        <div class="t2" />
+      </div>
     </div>
-    <div class="header-nav-container" />
+
+    <div class="list-item-container">
+      {#each pagesArr as page}
+        <div
+          on:click={(e) => {
+            e.stopPropagation();
+            dispatch("navChange", page);
+          }}
+          class="list-item"
+        >
+          {page.title}
+        </div>
+      {/each}
+    </div>
   </div>
-  <svelte:component this={pages[currNav].component} />
 </div>
 
 <style lang="scss">
+  .list-item-container {
+    height: 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+    font-size: 1.3em;
+    overflow: hidden;
+  }
+
+  .list-item {
+    top: 0;
+    z-index: 1;
+    cursor: pointer;
+    position: relative;
+    font-weight: 600;
+
+    text-transform: uppercase;
+  }
+  .categories-container {
+    position: fixed;
+    right: 0;
+    top: 30vh;
+    right: 20vw;
+    z-index: 3;
+    color: #68208e;
+
+    .categories-label {
+      font-size: 2em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      text-transform: uppercase;
+      .triangle-container {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+    }
+    .t1 {
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+
+      border-bottom: 5px solid #68208e;
+    }
+    .t2 {
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+
+      border-top: 5px solid #68208e;
+    }
+  }
   .main-page-container {
     padding: 20px;
     display: flex;
@@ -50,10 +142,8 @@
     overflow-x: hidden;
     height: 100%;
     gap: 25px;
-    z-index: 1;
+    z-index: 4;
 
-    background-size: cover;
-    background-image: url("../images/home/Background Photo.jpg");
     width: 100vw;
     height: 100vh;
     position: absolute;
@@ -83,11 +173,5 @@
     gap: 25px;
     padding-top: 20px;
     font-size: 1.5em;
-  }
-  .logo-container {
-    max-width: 200px;
-    .logo {
-      width: 100%;
-    }
   }
 </style>

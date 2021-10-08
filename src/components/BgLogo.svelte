@@ -12,14 +12,14 @@
   .logo-caption {
     display: block;
     height: fit-content;
-  
+
     white-space: nowrap;
     color: #a5a5a5;
     font-weight: 900;
     transform: rotate(-180deg);
     font-size: 5em;
     writing-mode: vertical-lr;
-   
+
     text-transform: uppercase;
   }
 
@@ -28,9 +28,12 @@
     display: flex;
     position: absolute;
     left: 0;
+    top: 0;
+    transform: translateY(20%);
     justify-content: center;
     width: 100%;
 
+    z-index: 2;
     img {
       object-fit: cover;
       height: auto;

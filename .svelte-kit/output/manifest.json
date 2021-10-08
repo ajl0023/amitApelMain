@@ -1,10 +1,10 @@
 {
   ".svelte-kit/build/runtime/internal/start.js": {
-    "file": "start-452af6c1.js",
+    "file": "start-38b403ac.js",
     "src": ".svelte-kit/build/runtime/internal/start.js",
     "isEntry": true,
     "imports": [
-      "_vendor-db31177c.js"
+      "_vendor-ea0c76e6.js"
     ],
     "dynamicImports": [
       ".svelte-kit/build/components/layout.svelte",
@@ -16,48 +16,48 @@
     ]
   },
   ".svelte-kit/build/components/layout.svelte": {
-    "file": "layout.svelte-e764271a.js",
+    "file": "layout.svelte-b056d2c2.js",
     "src": ".svelte-kit/build/components/layout.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_vendor-db31177c.js"
+      "_vendor-ea0c76e6.js"
     ]
   },
   ".svelte-kit/build/components/error.svelte": {
-    "file": "error.svelte-9acaa558.js",
+    "file": "error.svelte-0f512ce4.js",
     "src": ".svelte-kit/build/components/error.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_vendor-db31177c.js"
+      "_vendor-ea0c76e6.js"
     ]
   },
   "src/routes/index.svelte": {
-    "file": "pages/index.svelte-93a42ac6.js",
+    "file": "pages/index.svelte-428ebe7b.js",
     "src": "src/routes/index.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_vendor-db31177c.js"
+      "_vendor-ea0c76e6.js"
     ],
     "css": [
-      "assets/pages/index.svelte-c9067868.css"
+      "assets/pages/index.svelte-4d49a00e.css"
     ],
     "assets": [
       "assets/1-52e24dec.png",
       "assets/2-779b6b5c.png",
       "assets/3-79f96e4f.jpg",
       "assets/4-c6c03fae.png",
-      "assets/AA-logo-black-mac (1)-2892f7ae.svg",
       "assets/Logo Sideways-5b2a92a6.png",
+      "assets/AA-logo-black-mac (1)-2892f7ae.svg",
       "assets/amitapel4 (1)-07a16dc1.webp",
       "assets/logo Text-6620b85f.png",
       "assets/Background Photo-112e1098.jpg",
       "assets/Capsuula-b76fd88c.ttf"
     ]
   },
-  "_vendor-db31177c.js": {
-    "file": "chunks/vendor-db31177c.js"
+  "_vendor-ea0c76e6.js": {
+    "file": "chunks/vendor-ea0c76e6.js"
   }
 }

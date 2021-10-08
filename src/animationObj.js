@@ -58,7 +58,7 @@ export const largeBarObj = {
     },
   },
   28: {
-    delay: 0.7,
+    delay: 0.4,
     img: main4,
     imagePos: {
       0: "44%",
@@ -107,11 +107,10 @@ export const largeBarsArr = [
     },
     defaultPos: { left: "20vw" },
     position: {
-      left: "15.5%",
-
+      left: "34.6%",
       top: "0%",
 
-      width: "1.1%",
+      width: "2.5%",
     },
   },
 
@@ -137,7 +136,7 @@ export const largeBarsArr = [
 
   {
     index: 28,
-    delay: 0.7,
+    delay: 0.4,
     img: main4,
     imagePos: {
       0: "44%",

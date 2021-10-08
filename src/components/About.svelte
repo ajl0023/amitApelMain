@@ -4,13 +4,11 @@
 </script>
 
 <div class="container">
-  
-
+  <h5 class="main-text-header">Meet Amit Apel</h5>
   <div class="content-image-container">
     <img src={amitPhoto} alt="" />
   </div>
   <div class="main-text-content">
-    <h5 class="main-text-header">Meet Amit Apel</h5>
     <p>
       Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia, nulla.
       Earum beatae perspiciatis quisquam ut, ipsam cum dolorem pariatur
@@ -30,31 +28,28 @@
   .main-text-content {
     max-width: 600px;
     color: black;
-    .main-text-header {
-      font-size: 3em;
+    text-align: center;
+  }
+  .main-text-header {
+    font-size: 6em;
 
-      font-weight: 900;
-      letter-spacing: 3px;
-      text-align: center;
-
-      text-transform: uppercase;
-      &::after {
-        content: "";
-        height: 2px;
-        width: 40%;
-
-        margin: 0 auto;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        display: block;
-        background-color: black;
-      }
-    }
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-align: center;
+    color: #68208e;
+    text-transform: uppercase;
   }
   .content-image-container {
-    margin-top: 4rem;
+    max-width: 600px;
+    width: 100%;
     img {
       width: 100%;
     }
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    align-items: center;
   }
 </style>
