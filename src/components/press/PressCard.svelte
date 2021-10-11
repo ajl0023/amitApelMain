@@ -2,9 +2,9 @@
   import { onMount } from "svelte";
   import { mousePos, pressCard } from "./pressStore";
   export let img;
+  export let link;
 
   let ele;
-
   const store = pressCard();
 
   $: {
@@ -15,13 +15,15 @@
   });
 </script>
 
-<img
-  class="image"
-  style={`transform:translateX(${$store.tx}px) translateY(${$store.ty}px)`}
-  bind:this={ele}
-  src={img}
-  alt=""
-/>
+<a href={link}>
+  <img
+    class="image"
+    style={`transform:translateX(${$store.tx}px) translateY(${$store.ty}px)`}
+    bind:this={ele}
+    src={img}
+    alt=""
+  /></a
+>
 
 <style lang="scss">
   .image {

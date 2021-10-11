@@ -55,28 +55,47 @@
   });
 </script>
 
-<Motion initial="visible" animate={"visible"} variants={list} let:motion
-  ><ul class="card-container" use:motion>
-    {#each images.front as card, i}
-      <Card
-        shouldReturn={false}
-        variants={item}
-        index={i}
-        {exited}
-        image={{
-          front: images.front[i],
-          back: images.back[i],
-        }}
-        rotate={rotatedCards.includes(i) ? i * 2 : 0}
-      />
-    {/each}
-  </ul>
-</Motion>
+<div class="container">
+  <h5 class="main-text-header">Meet The Team</h5>
+
+  <Motion initial="visible" animate={"visible"} variants={list} let:motion
+    ><ul class="card-container" use:motion>
+      {#each images.front as card, i}
+        <Card
+          shouldReturn={false}
+          variants={item}
+          index={i}
+          {exited}
+          image={{
+            front: images.front[i],
+            back: images.back[i],
+          }}
+          rotate={rotatedCards.includes(i) ? i * 2 : 0}
+        />
+      {/each}
+    </ul>
+  </Motion>
+</div>
 
 <style lang="scss">
+  .main-text-header {
+    font-size: 6em;
+
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-align: center;
+    color: #68208e;
+    text-transform: uppercase;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
   .card-container {
     display: flex;
-
+    height: 55vh;
     justify-content: center;
     position: relative;
     align-items: center;

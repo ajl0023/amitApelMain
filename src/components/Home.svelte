@@ -4,6 +4,7 @@
   import Logo from "../images/Logo.svelte";
   import logoText from "../images/home/logo Text.png";
   import { createEventDispatcher, onMount } from "svelte";
+  import video from "../images/Render.mp4";
   import gsap from "gsap";
 
   let fadeIn;
@@ -27,6 +28,9 @@
   });
 </script>
 
+<video autoplay muted loop id="myVideo">
+  <source src={video} type="video/mp4" />
+</video>
 <div class="container">
   <h5 class="fade">connecting people</h5>
 
@@ -40,6 +44,14 @@
 </div>
 
 <style lang="scss">
+  #myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+
+    min-width: 100%;
+    min-height: 100%;
+  }
   .logo-text-container {
     max-width: 500px;
     width: 100%;
@@ -60,7 +72,7 @@
     font-family: Orator;
     color: white;
     background-size: cover;
-    background-image: url("../images/home/Background Photo.jpg");
+    // background-image: url("../images/home/Background Photo.jpg");
     display: flex;
     flex-direction: column;
     padding: 80px;
@@ -69,7 +81,6 @@
     align-items: center;
     height: 100vh;
 
-    background-color: black;
     overflow: hidden;
     &::after {
       position: absolute;
@@ -80,8 +91,6 @@
       width: 100%;
       height: 100%;
       content: "";
-
-      background-color: rgba(0, 0, 0, 0.9);
     }
   }
   h5 {

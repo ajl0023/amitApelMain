@@ -9,14 +9,49 @@
     windowHeight = window.innerHeight;
     windowWidth = window.innerWidth;
   });
+
   const images = [
-    "https://res.cloudinary.com/dt4xntymn/image/upload/v1633380455/mainSite/press/Press_2_uiz2po.jpg",
-    "https://res.cloudinary.com/dt4xntymn/image/upload/v1633380454/mainSite/press/Press_4_pl9uqy.jpg",
-    "https://res.cloudinary.com/dt4xntymn/image/upload/v1633380454/mainSite/press/Press_3_jrf0mt.jpg",
-    "https://res.cloudinary.com/dt4xntymn/image/upload/v1633380454/mainSite/press/Press_1_pt9bba.jpg",
-    "https://res.cloudinary.com/dt4xntymn/image/upload/v1633380454/mainSite/press/Press_6_idnrik.jpg",
-    "https://res.cloudinary.com/dt4xntymn/image/upload/v1633380454/mainSite/press/Press_5_e8oy37.jpg",
-    "https://res.cloudinary.com/dt4xntymn/image/upload/v1633380454/mainSite/press/Press_7_fqqhhs.jpg",
+    {
+      img:
+        "https://res.cloudinary.com/dt4xntymn/image/upload/v1633380455/mainSite/press/Press_2_uiz2po.jpg",
+      link:
+        "http://voyagela.com/interview/meet-amit-apel-apel-design-inc-malibu/",
+    },
+    {
+      img:
+        "https://res.cloudinary.com/dt4xntymn/image/upload/v1633380454/mainSite/press/Press_4_pl9uqy.jpg",
+      link: "https://www.gessi.com/it/project/design/93",
+    },
+    {
+      img:
+        "https://res.cloudinary.com/dt4xntymn/image/upload/v1633380454/mainSite/press/Press_3_jrf0mt.jpg",
+      link:
+        "https://www.archiscene.net/interior-design/moment-hotel-amit-apel-design/",
+    },
+    {
+      img:
+        "https://res.cloudinary.com/dt4xntymn/image/upload/v1633380454/mainSite/press/Press_1_pt9bba.jpg",
+      link:
+        "http://voyagela.com/interview/meet-amit-apel-apel-design-inc-malibu/",
+    },
+    {
+      img:
+        "https://res.cloudinary.com/dt4xntymn/image/upload/v1633380454/mainSite/press/Press_6_idnrik.jpg",
+      link:
+        "https://www.latimes.com/business/realestate/hot-property/la-fi-hotprop-outside-box-20160510-story.html",
+    },
+    {
+      img:
+        "https://res.cloudinary.com/dt4xntymn/image/upload/v1633380454/mainSite/press/Press_5_e8oy37.jpg",
+      link:
+        "https://www.google.com/url?q=https://www.californiahomedesign.com/property/2015/03/27/open-house-obsession-little-holmby-looker-6495m/&sa=D&source=editors&ust=1633933659385000&usg=AOvVaw0XyO2cGSBqPsV15pNuMNcM",
+    },
+    {
+      img:
+        "https://res.cloudinary.com/dt4xntymn/image/upload/v1633380454/mainSite/press/Press_7_fqqhhs.jpg",
+      link:
+        "https://www.homebuilderdigest.com/the-15-best-residential-architects-in-malibu-california/",
+    },
   ];
   let cards = [];
 </script>
@@ -34,7 +69,8 @@
         {windowHeight}
         {windowWidth}
         bind:cards
-        img={images[i]}
+        img={images[i].img}
+        link={images[i].link}
         index={i}
       />
     </div>

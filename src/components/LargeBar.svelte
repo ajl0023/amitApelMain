@@ -95,6 +95,7 @@
   on:click={() => {
     pageOpened = true;
     dispatch("stopPulse");
+    console.log(bar.offsetParent.offsetTop);
     gsap.to(bar, {
       left: -bar.offsetParent.offsetLeft,
       width: "100vw",

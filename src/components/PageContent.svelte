@@ -77,6 +77,23 @@
 </div>
 
 <style lang="scss">
+  .main-page-container {
+    padding: 20px;
+    display: flex;
+    padding-top: 5rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 100%;
+    gap: 25px;
+    z-index: 4;
+
+    width: 100vw;
+    height: 100vh;
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
   .list-item-container {
     height: 0px;
     display: flex;
@@ -133,23 +150,6 @@
 
       border-top: 5px solid #68208e;
     }
-  }
-  .main-page-container {
-    padding: 20px;
-    display: flex;
-    padding-top: 5rem;
-    overflow-y: auto;
-    overflow-x: hidden;
-    height: 100%;
-    gap: 25px;
-    z-index: 4;
-
-    width: 100vw;
-    height: 100vh;
-    position: absolute;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
   }
 
   .top-nav-container {

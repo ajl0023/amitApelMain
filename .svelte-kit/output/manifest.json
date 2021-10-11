@@ -1,10 +1,10 @@
 {
   ".svelte-kit/build/runtime/internal/start.js": {
-    "file": "start-dfe54bbe.js",
+    "file": "start-41393570.js",
     "src": ".svelte-kit/build/runtime/internal/start.js",
     "isEntry": true,
     "imports": [
-      "_vendor-fa4acc0a.js"
+      "_vendor-9b0d55d4.js"
     ],
     "dynamicImports": [
       ".svelte-kit/build/components/layout.svelte",
@@ -16,48 +16,49 @@
     ]
   },
   ".svelte-kit/build/components/layout.svelte": {
-    "file": "layout.svelte-0f365c59.js",
+    "file": "layout.svelte-3e38a81a.js",
     "src": ".svelte-kit/build/components/layout.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_vendor-fa4acc0a.js"
+      "_vendor-9b0d55d4.js"
     ]
   },
   ".svelte-kit/build/components/error.svelte": {
-    "file": "error.svelte-54c367ab.js",
+    "file": "error.svelte-4446c5e6.js",
     "src": ".svelte-kit/build/components/error.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_vendor-fa4acc0a.js"
+      "_vendor-9b0d55d4.js"
     ]
   },
   "src/routes/index.svelte": {
-    "file": "pages/index.svelte-7ebc6011.js",
+    "file": "pages/index.svelte-8afe821b.js",
     "src": "src/routes/index.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_vendor-fa4acc0a.js"
+      "_vendor-9b0d55d4.js"
     ],
     "css": [
-      "assets/pages/index.svelte-c1029104.css"
+      "assets/pages/index.svelte-7d32a84c.css"
     ],
     "assets": [
+      "assets/Logo Sideways-5b2a92a6.png",
+      "assets/amitapel4 (1)-07a16dc1.webp",
       "assets/1-52e24dec.png",
       "assets/2-779b6b5c.png",
       "assets/3-79f96e4f.jpg",
       "assets/4-c6c03fae.png",
-      "assets/Logo Sideways-5b2a92a6.png",
       "assets/AA-logo-black-mac (1)-2892f7ae.svg",
-      "assets/amitapel4 (1)-07a16dc1.webp",
       "assets/logo Text-6620b85f.png",
+      "assets/Render-4ed0516f.mp4",
       "assets/Background Photo-112e1098.jpg",
       "assets/Capsuula-b76fd88c.ttf"
     ]
   },
-  "_vendor-fa4acc0a.js": {
-    "file": "chunks/vendor-fa4acc0a.js"
+  "_vendor-9b0d55d4.js": {
+    "file": "chunks/vendor-9b0d55d4.js"
   }
 }

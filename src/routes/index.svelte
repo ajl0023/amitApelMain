@@ -1,5 +1,6 @@
 <script>
   import { onDestroy, onMount } from "svelte";
+  import About from "../components/About.svelte";
   import Home from "../components/Home.svelte";
   import Marque from "../components/Marquee/Marque.svelte";
 
