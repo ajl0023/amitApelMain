@@ -30,63 +30,18 @@
 
 <div bind:this={container} class="main-page-container">
   <svelte:component this={currNav.component} />
-  <!-- <div class="categories-container">
-    <div
-      on:mouseenter={(e) => {
-        gsap.to(".t1", {
-          y: -3,
-        });
-        gsap.to(".t2", {
-          y: 3,
-        });
-      }}
-      on:mouseleave={() => {
-        gsap.to(".t2", {
-          y: 0,
-        });
-        gsap.to(".t1", {
-          y: 0,
-        });
-      }}
-      on:click={() => {
-        navOpen = !navOpen;
-      }}
-      class="categories-label"
-    >
-      <h5>Categories</h5>
-      <div class="triangle-container">
-        <div class="t1" />
-        <div class="t2" />
-      </div>
-    </div>
-
-    <div class="list-item-container">
-      {#each pagesArr as page}
-        <div
-          on:click={(e) => {
-            e.stopPropagation();
-            dispatch("navChange", page);
-          }}
-          class="list-item"
-        >
-          {page.title}
-        </div>
-      {/each}
-    </div>
-  </div> -->
 </div>
 
 <style lang="scss">
   .main-page-container {
     padding: 20px;
     display: flex;
-    padding-top: 5rem;
     overflow-y: auto;
     overflow-x: hidden;
     height: 100%;
     gap: 25px;
     z-index: 4;
-
+    position: absolute;
     width: 100vw;
     height: 100vh;
 
@@ -150,28 +105,5 @@
 
       border-top: 5px solid #68208e;
     }
-  }
-
-  .top-nav-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 2;
-    right: 0;
-    display: flex;
-    padding-top: 20px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  .header-nav-container {
-    display: flex;
-
-    list-style: none;
-    color: black;
-    text-transform: uppercase;
-    gap: 25px;
-    padding-top: 20px;
-    font-size: 1.5em;
   }
 </style>

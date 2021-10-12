@@ -30,11 +30,9 @@
   {#each largeBarsArr as bar, i}
     <LargeBar
       on:stopPulse={() => {
-        console.log("stopppped");
         shouldPulse = false;
       }}
       on:startPulse={() => {
-        console.log("stopppped");
         shouldPulse = true;
       }}
       on:complete={() => {

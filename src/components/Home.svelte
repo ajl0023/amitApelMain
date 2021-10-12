@@ -7,20 +7,7 @@
   import video from "../images/Render.mp4";
   import gsap from "gsap";
 
-  let fadeIn;
-
-  const textVariant = {
-    visible: {
-      opacity: 1,
-      transition: {
-        delay: 5,
-        duration: 0.5,
-      },
-    },
-  };
   onMount(() => {
-    const elesToFade = document.querySelectorAll(".fade");
-    console.log(elesToFade);
     gsap.to(".fade", {
       opacity: 1,
       delay: 5,

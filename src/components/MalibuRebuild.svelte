@@ -31,6 +31,7 @@
     font-size: 0.6em;
   }
   .container {
+    font-family: unisans;
     display: flex;
   }
 
@@ -43,9 +44,12 @@
 
     max-width: 900px;
     color: #68208e;
-
+    h4 {
+      font-weight: 900;
+    }
     p {
       font-size: 0.8em;
+      font-weight: 700;
       &:last-child {
         font-size: 0.6em;
       }

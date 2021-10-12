@@ -68,24 +68,24 @@
       {/each}
     </nav>
   </div>
-  {#if pageContent}
-    <PageContent
-      on:navChange={(e) => {
-        pageContent = true;
-        console.log(e);
-        if (pages[e.detail.title]) {
-          currNav = pages[e.detail.title];
-        }
-      }}
-      {pagesArr}
-      {currNav}
-    />
-  {/if}
 </div>
+{#if pageContent}
+  <PageContent
+    on:navChange={(e) => {
+      pageContent = true;
+      console.log(e);
+      if (pages[e.detail.title]) {
+        currNav = pages[e.detail.title];
+      }
+    }}
+    {pagesArr}
+    {currNav}
+  />
+{/if}
 
 <style lang="scss">
   .logo-container {
-    max-width: 200px;
+    max-width: 150px;
 
     .logo {
       width: 100%;
@@ -119,12 +119,13 @@
     z-index: 3;
     position: relative;
     background-color: transparent;
-    font-family: reason-new, -apple-system, BlinkMacSystemFont, Segoe UI,
-      Helvetica, Arial, sans-serif;
+
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
   .menu-wrap {
+    font-family: reason-new, -apple-system, BlinkMacSystemFont, Segoe UI,
+      Helvetica, Arial, sans-serif;
     display: flex;
     background-size: cover;
     background-image: url("../../images/home/Background Photo.jpg");
@@ -133,5 +134,27 @@
     height: 100vh;
     position: relative;
     justify-content: center;
+  }
+  .top-nav-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    right: 0;
+    display: flex;
+    padding-top: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .header-nav-container {
+    display: flex;
+
+    list-style: none;
+    color: black;
+    text-transform: uppercase;
+    gap: 25px;
+    padding-top: 20px;
+    font-size: 1.5em;
   }
 </style>

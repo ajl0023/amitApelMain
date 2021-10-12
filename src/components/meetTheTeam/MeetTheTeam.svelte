@@ -80,24 +80,23 @@
 <style lang="scss">
   .main-text-header {
     font-size: 6em;
-
+    font-family: unisansB;
     font-weight: 900;
     letter-spacing: 3px;
     text-align: center;
     color: #68208e;
+   
+    position: relative;
     text-transform: uppercase;
   }
   .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
   }
   .card-container {
     display: flex;
     height: 55vh;
     justify-content: center;
     position: relative;
+    margin-top: 40px;
     align-items: center;
   }
   .card {

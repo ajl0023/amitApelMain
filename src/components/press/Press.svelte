@@ -1,5 +1,6 @@
 <script>
   import { onDestroy, onMount } from "svelte";
+  import { tweened } from "svelte/motion";
   import PressCard from "./PressCard.svelte";
   import { mousePos } from "./pressStore";
   let windowHeight = 0,
@@ -53,83 +54,150 @@
         "https://www.homebuilderdigest.com/the-15-best-residential-architects-in-malibu-california/",
     },
   ];
-  let cards = [];
+  let text = [
+    "https://res.cloudinary.com/dt4xntymn/image/upload/v1633988338/mainSite/press/text/Press_3_PNG_jnmqzk.png",
+    "https://res.cloudinary.com/dt4xntymn/image/upload/v1633988338/mainSite/press/text/Press_2_PNG_dtejy7.png",
+    "https://res.cloudinary.com/dt4xntymn/image/upload/v1633988338/mainSite/press/text/Press_4_PNG_zqtwne.png",
+    "https://res.cloudinary.com/dt4xntymn/image/upload/v1633988338/mainSite/press/text/Press_5_PNG_ysj7nx.png",
+    "https://res.cloudinary.com/dt4xntymn/image/upload/v1633988338/mainSite/press/text/Press_PNG_se76b5.png",
+  ];
 </script>
 
 <div class="container">
-  <div class="text-container">
-    <img
-      src="https://res.cloudinary.com/dt4xntymn/image/upload/v1633392260/mainSite/press/Press_Words_PNG_lpqreu.png"
-      alt=""
-    />
-  </div>
-  {#each images as card, i}
-    <div class="image-container">
-      <PressCard
-        {windowHeight}
-        {windowWidth}
-        bind:cards
-        img={images[i].img}
-        link={images[i].link}
-        index={i}
-      />
+  <div class="content-container">
+    <div class="text-image-wrapper">
+      {#each text as img, i}
+        <div class="text-image-container">
+          <img src={img} alt="" />
+        </div>
+      {/each}
     </div>
-  {/each}
+
+    {#each images as card, i}
+      <div class="image-container">
+        <PressCard
+          {windowHeight}
+          {windowWidth}
+          img={images[i].img}
+          link={images[i].link}
+          index={i}
+        />
+      </div>
+    {/each}
+  </div>
 </div>
 
 <style lang="scss">
-  .text-container {
-    z-index: 2;
-    width: 80vw;
-    opacity: 70%;
+  .text-image-wrapper {
+    max-height: 700px;
+    grid-area: 1 / 1 / 26 /26;
+    display: grid;
+    grid-template-columns: repeat(25, 4%);
+    grid-template-rows: repeat(25, 4%);
+    padding: 0 7vw;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    pointer-events: none;
+    z-index: 4;
     img {
+      height: 100%;
       width: 100%;
+      object-fit: cover;
     }
+
+    .text-image-container {
+      &:nth-child(1) {
+        grid-area: 1/21/13/28;
+        transform: rotateZ(25.8deg);
+      }
+      &:nth-child(2) {
+        grid-area: 24/3/13/9;
+        transform: rotateZ(-7.7deg);
+      }
+      &:nth-child(3) {
+        grid-area: 26/15/13/28;
+        transform: rotateZ(7.7deg);
+      }
+      &:nth-child(4) {
+        grid-area: 11/3/16/24;
+      }
+      &:nth-child(5) {
+        transform: rotateZ(-10deg);
+        grid-area: 2/3/12/11;
+      }
+    }
+  }
+
+  .content-container {
+    grid-template-columns: repeat(25, 4%);
+    grid-template-rows: repeat(25, 4%);
+    max-width: 1531px;
+    display: grid;
+    width: 100%;
+
+    height: 100%;
   }
   .container {
     position: relative;
     width: 100%;
     height: 100%;
     display: flex;
+
     justify-content: center;
     align-items: center;
   }
   .image-container {
-    position: absolute;
+    opacity: 0;
     &:nth-child(2) {
-      width: 15vw;
+      grid-area: 8/11/20/16;
+      opacity: 1;
+      width: 100%;
     }
     &:nth-child(3) {
-      bottom: -12vw;
-      left: 48vw;
-      width: 15vw;
+      grid-row-start: 22;
+      grid-row-end: 30;
+      grid-column-start: 13;
+      grid-column-end: 18;
+      opacity: 1;
     }
     &:nth-child(4) {
-      left: 8vw;
-      top: 5vh;
-      width: 15vw;
+      grid-row-start: 5;
+      grid-row-end: 14;
+      grid-column-start: 3;
+      grid-column-end: 7;
+      opacity: 1;
     }
     &:nth-child(5) {
-      right: 8vw;
-      bottom: -0.2vw;
-      width: 12vw;
+      grid-row-start: 18;
+      grid-row-end: 23;
+      grid-column-start: 21;
+      grid-column-end: 24;
+      opacity: 1;
     }
     &:nth-child(6) {
-      right: 4vw;
-      top: 9vh;
-      width: 15vw;
-      z-index: 1;
+      grid-row-start: 5;
+      grid-row-end: 16;
+      grid-column-start: 20;
+      grid-column-end: 25;
+      opacity: 1;
+      z-index: 2;
     }
     &:nth-child(7) {
-      bottom: -20vh;
-      left: 9vw;
-
-      width: 15vw;
+      grid-row-start: 18;
+      grid-row-end: 21;
+      grid-column-start: 4;
+      grid-column-end: 9;
+      opacity: 1;
     }
     &:nth-child(8) {
-      top: 0;
-      right: 12vw;
-      width: 11vw;
+      grid-row-start: 3;
+      grid-row-end: 6;
+      grid-column-start: 18;
+      grid-column-end: 22;
+      opacity: 1;
+      z-index: 1;
     }
   }
 </style>

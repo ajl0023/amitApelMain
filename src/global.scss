@@ -4,10 +4,23 @@
   box-sizing: border-box;
 }
 @font-face {
+  font-family: "unisans";
+  src: url("./fonts/unisans.otf") format("opentype");
+}
+@font-face {
+  font-family: "unisansB";
+  src: url("./fonts/unisansB.otf") format("opentype");
+}
+@font-face {
+  font-family: "Orator";
+  src: url("./fonts/Capsuula.ttf") format("truetype");
+}
+@font-face {
   font-family: "Orator";
   src: url("./fonts/Capsuula.ttf") format("truetype");
 }
 html {
+  font-family: Orator;
   overflow-x: hidden;
 }
 .close-main {
@@ -17,11 +30,11 @@ html {
   min-height: 32px;
   min-width: 32px;
   position: absolute;
-  right: 0;
+  right: 12px;
   top: 0;
   cursor: pointer;
   width: 32px;
-  z-index: 3;
+  z-index: 5;
 
   &:after {
     background-color: black;

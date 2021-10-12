@@ -21,7 +21,6 @@
   let tl;
   let maintl;
   onMount(async () => {
-    console.log(barObj.delay);
     maintl = gsap.timeline({ delay: barObj.delay });
 
     maintl
@@ -95,7 +94,7 @@
   on:click={() => {
     pageOpened = true;
     dispatch("stopPulse");
-    console.log(bar.offsetParent.offsetTop);
+
     gsap.to(bar, {
       left: -bar.offsetParent.offsetLeft,
       width: "100vw",

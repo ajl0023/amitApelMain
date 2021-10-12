@@ -12,7 +12,7 @@
   .logo-caption {
     display: block;
     height: fit-content;
-
+    font-family: unisansB;
     white-space: nowrap;
     color: #a5a5a5;
     font-weight: 900;

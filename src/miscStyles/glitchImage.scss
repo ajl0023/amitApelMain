@@ -1,0 +1,66 @@
+@use 'glitchVars' as *;
+.glitch-image-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  &:hover {
+    opacity: 1;
+  }
+  .glitch-image {
+    pointer-events: none;
+    background-size: cover;
+    background-position: 50% 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: translate3d(0, 0, 0);
+    background-image: url("../images/home/amitapel4 (1).webp");
+    &:nth-child(n + 2) {
+      opacity: 0;
+      top: calc(-1 * #{$gap-vertical});
+      left: calc(-1 * #{$gap});
+      width: calc(100% + #{$gap} * 2);
+      height: calc(100% + #{$gap-vertical} * 2);
+    }
+  }
+}
+.glitch-container {
+  .glitch-image {
+    opacity: 1 !important;
+    &:nth-child(2) {
+      transform: translate3d($gap, 0, 0);
+      animation: glitch-anim-1 $time-anim linear alternate;
+    }
+
+    &:nth-child(3) {
+      transform: translate3d(calc(-1 * #{$gap}), 0, 0);
+
+      animation: glitch-anim-2 $time-anim linear alternate;
+    }
+
+    &:nth-child(4) {
+      transform: translate3d(0, calc(-1 * #{$gap-vertical}), 0)
+        scale3d(-1, -1, 1);
+      animation: glitch-anim-3 $time-anim linear alternate;
+    }
+    &:nth-child(5) {
+      animation: glitch-anim-flash 0.5s steps(1, end);
+    }
+  }
+}
+@keyframes glitch-anim-flash {
+  0% {
+    opacity: 0.2;
+    transform: translate3d(var(--gap), var(--gap-vertical), 0);
+  }
+  33%,
+  100% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0);
+  }
+}
