@@ -90,7 +90,7 @@
 <style lang="scss">
   .text-image-wrapper {
     max-height: 700px;
-    grid-area: 1 / 1 / 26 /26;
+    grid-area: 6/ 1 / 26 /26;
     display: grid;
     grid-template-columns: repeat(25, 4%);
     grid-template-rows: repeat(25, 4%);
@@ -133,7 +133,7 @@
   .content-container {
     grid-template-columns: repeat(25, 4%);
     grid-template-rows: repeat(25, 4%);
-    max-width: 1531px;
+    max-width: 1788px;
     display: grid;
     width: 100%;
 

@@ -6,6 +6,8 @@
   export let labels;
   export let title;
   export let pageContent;
+  export let item;
+  export let index;
   export let currNav;
   let menuItem;
   let menuItemA;
@@ -21,7 +23,7 @@
   $: {
     if (pageContent) {
       gsap.to(menuItem, {
-        y: 1000,
+        y: 1500,
       });
     }
   }

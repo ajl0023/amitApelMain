@@ -18,13 +18,17 @@
 </script>
 
 <a
+  on:click={(e) => {
+    e.preventDefault();
+    window.open(link);
+  }}
   on:mouseenter={() => {
     grayscale.set(0);
   }}
   on:mouseleave={() => {
     grayscale.set(1);
   }}
-  href={link}
+  href={""}
   class="link-container"
 >
   <div class="image-mask" />

@@ -1,0 +1,17 @@
+{
+  "name": "pix",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "parcel": "parcel",
+    "start1": "npm run parcel -- index.html",
+    "start2": "npm run parcel -- step2.html",
+    "start3": "npm run parcel -- step3.html"
+  },
+  "dependencies": {
+    "pixi.js": "^6.1.3"
+  }
+}

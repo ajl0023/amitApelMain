@@ -1542,9 +1542,9 @@ function init(settings = default_settings) {
     amp: false,
     dev: false,
     entry: {
-      file: assets + "/_app/start-ef42f2c2.js",
+      file: assets + "/_app/start-66713135.js",
       css: [assets + "/_app/assets/start-61d1577b.css"],
-      js: [assets + "/_app/start-ef42f2c2.js", assets + "/_app/chunks/vendor-c25b169c.js"]
+      js: [assets + "/_app/start-66713135.js", assets + "/_app/chunks/vendor-5f6e6023.js"]
     },
     fetched: void 0,
     floc: false,
@@ -1603,7 +1603,7 @@ const module_lookup = {
     return index;
   })
 };
-const metadata_lookup = { ".svelte-kit/build/components/layout.svelte": { "entry": "layout.svelte-271e6bc6.js", "css": [], "js": ["layout.svelte-271e6bc6.js", "chunks/vendor-c25b169c.js"], "styles": [] }, ".svelte-kit/build/components/error.svelte": { "entry": "error.svelte-4028bcbe.js", "css": [], "js": ["error.svelte-4028bcbe.js", "chunks/vendor-c25b169c.js"], "styles": [] }, "src/routes/index.svelte": { "entry": "pages/index.svelte-308a4a57.js", "css": ["assets/pages/index.svelte-19d995e1.css"], "js": ["pages/index.svelte-308a4a57.js", "chunks/vendor-c25b169c.js"], "styles": [] } };
+const metadata_lookup = { ".svelte-kit/build/components/layout.svelte": { "entry": "layout.svelte-d1dc0dd4.js", "css": [], "js": ["layout.svelte-d1dc0dd4.js", "chunks/vendor-5f6e6023.js"], "styles": [] }, ".svelte-kit/build/components/error.svelte": { "entry": "error.svelte-48bd31df.js", "css": [], "js": ["error.svelte-48bd31df.js", "chunks/vendor-5f6e6023.js"], "styles": [] }, "src/routes/index.svelte": { "entry": "pages/index.svelte-3d993514.js", "css": ["assets/pages/index.svelte-ae4a10fc.css"], "js": ["pages/index.svelte-3d993514.js", "chunks/vendor-5f6e6023.js"], "styles": [] } };
 async function load_component(file) {
   const { entry, css: css2, js, styles } = metadata_lookup[file];
   return {
@@ -4741,7 +4741,8 @@ const largeBarsArr = [
       left: "10.9%",
       top: "0%",
       width: "2.7%"
-    }
+    },
+    categories: ["meet amit apel", "meet the team", "what we do", "malibu rebuild", "press"]
   },
   {
     index: 17,
@@ -4751,12 +4752,15 @@ const largeBarsArr = [
       0: "44%",
       1: "20%"
     },
-    defaultPos: { left: "20vw" },
+    defaultPos: {
+      left: "20vw"
+    },
     position: {
       left: "34.6%",
       top: "0%",
       width: "2.5%"
-    }
+    },
+    categories: ["private homes", "multi units", "concept", "render videos"]
   },
   {
     index: 23,
@@ -4774,7 +4778,8 @@ const largeBarsArr = [
       left: "75.1%",
       top: "0%",
       width: "2.7%"
-    }
+    },
+    categories: ["sculpture", "furniture", "art", "concept"]
   },
   {
     index: 28,
@@ -4792,14 +4797,14 @@ const largeBarsArr = [
       left: "94.4%",
       top: "0%",
       width: "2.9%"
-    }
+    },
+    categories: ["private homes", "multi units", "concept", "render videos"]
   }
 ];
-var PageContent_svelte_svelte_type_style_lang = ".main-page-container.svelte-kq2hmu{padding:20px;display:flex;overflow-y:auto;overflow-x:hidden;height:100%;gap:25px;z-index:4;position:absolute;width:100vw;height:100vh;flex-direction:column;align-items:center;justify-content:center}";
 var Bar_svelte_svelte_type_style_lang = ".bar-container.svelte-f7n4zg{z-index:1;opacity:0;pointer-events:none;overflow:hidden;height:100%;position:absolute;background-color:white}.bar-container.svelte-f7n4zg:nth-child(1){left:2%;top:0%;width:1%}.bar-container.svelte-f7n4zg:nth-child(2){left:3.6%;top:0%;width:0.9%}.bar-container.svelte-f7n4zg:nth-child(3){left:6.9%;top:0%;width:2%}.bar-container.svelte-f7n4zg:nth-child(4){left:0;top:0%}.bar-container.svelte-f7n4zg:nth-child(5){left:14.3%;top:0%}.bar-container.svelte-f7n4zg:nth-child(6){left:17.8%;top:0%;width:1.5%}.bar-container.svelte-f7n4zg:nth-child(7){left:20%;top:0%;width:1.1%}.bar-container.svelte-f7n4zg:nth-child(8){left:23.1%;top:0%;width:1.9%}.bar-container.svelte-f7n4zg:nth-child(9){left:25.7%;top:0%;width:1%}.bar-container.svelte-f7n4zg:nth-child(10){left:28.8%;top:0%;width:1%}.bar-container.svelte-f7n4zg:nth-child(11){left:32%;top:0%;width:1.9%}.bar-container.svelte-f7n4zg:nth-child(13){left:46.6%;top:0%;width:1%}.bar-container.svelte-f7n4zg:nth-child(14){left:49.8%;top:0%;width:1.9%}.bar-container.svelte-f7n4zg:nth-child(15){left:54%;top:0%;width:0.9%}.bar-container.svelte-f7n4zg:nth-child(16){left:55.6%;top:0%;width:1.8%}.bar-container.svelte-f7n4zg:nth-child(17){left:59.5%;top:0%;width:1.1%}.bar-container.svelte-f7n4zg:nth-child(19){left:91.3%;top:0%;width:1.1%}.bar-container.svelte-f7n4zg:nth-child(20){left:64.5%;top:0%;width:1%}.bar-container.svelte-f7n4zg:nth-child(21){left:66.4%;top:0%;width:0.9%}.bar-container.svelte-f7n4zg:nth-child(22){left:69.4%;top:0%;width:1.9%}.bar-container.svelte-f7n4zg:nth-child(23){left:73.5%;top:0%;width:0.9%}.bar-container.svelte-f7n4zg:nth-child(24){left:79.9%;top:0%;width:1.7%}.bar-container.svelte-f7n4zg:nth-child(25){left:82.5%;top:0%;width:0.8%}.bar-container.svelte-f7n4zg:nth-child(26){left:85.5%;top:0%;width:1.2%}.bar-container.svelte-f7n4zg:nth-child(27){left:88.9%;top:0%;width:1.7%}.bar-container.svelte-f7n4zg:nth-child(28){right:0;top:0%}.bar-container.svelte-f7n4zg:nth-child(29){left:97.9%;top:0%;width:1.7%}";
 const css$4 = {
   code: ".bar-container.svelte-f7n4zg{z-index:1;opacity:0;pointer-events:none;overflow:hidden;height:100%;position:absolute;background-color:white}.bar-container.svelte-f7n4zg:nth-child(1){left:2%;top:0%;width:1%}.bar-container.svelte-f7n4zg:nth-child(2){left:3.6%;top:0%;width:0.9%}.bar-container.svelte-f7n4zg:nth-child(3){left:6.9%;top:0%;width:2%}.bar-container.svelte-f7n4zg:nth-child(4){left:0;top:0%}.bar-container.svelte-f7n4zg:nth-child(5){left:14.3%;top:0%}.bar-container.svelte-f7n4zg:nth-child(6){left:17.8%;top:0%;width:1.5%}.bar-container.svelte-f7n4zg:nth-child(7){left:20%;top:0%;width:1.1%}.bar-container.svelte-f7n4zg:nth-child(8){left:23.1%;top:0%;width:1.9%}.bar-container.svelte-f7n4zg:nth-child(9){left:25.7%;top:0%;width:1%}.bar-container.svelte-f7n4zg:nth-child(10){left:28.8%;top:0%;width:1%}.bar-container.svelte-f7n4zg:nth-child(11){left:32%;top:0%;width:1.9%}.bar-container.svelte-f7n4zg:nth-child(13){left:46.6%;top:0%;width:1%}.bar-container.svelte-f7n4zg:nth-child(14){left:49.8%;top:0%;width:1.9%}.bar-container.svelte-f7n4zg:nth-child(15){left:54%;top:0%;width:0.9%}.bar-container.svelte-f7n4zg:nth-child(16){left:55.6%;top:0%;width:1.8%}.bar-container.svelte-f7n4zg:nth-child(17){left:59.5%;top:0%;width:1.1%}.bar-container.svelte-f7n4zg:nth-child(19){left:91.3%;top:0%;width:1.1%}.bar-container.svelte-f7n4zg:nth-child(20){left:64.5%;top:0%;width:1%}.bar-container.svelte-f7n4zg:nth-child(21){left:66.4%;top:0%;width:0.9%}.bar-container.svelte-f7n4zg:nth-child(22){left:69.4%;top:0%;width:1.9%}.bar-container.svelte-f7n4zg:nth-child(23){left:73.5%;top:0%;width:0.9%}.bar-container.svelte-f7n4zg:nth-child(24){left:79.9%;top:0%;width:1.7%}.bar-container.svelte-f7n4zg:nth-child(25){left:82.5%;top:0%;width:0.8%}.bar-container.svelte-f7n4zg:nth-child(26){left:85.5%;top:0%;width:1.2%}.bar-container.svelte-f7n4zg:nth-child(27){left:88.9%;top:0%;width:1.7%}.bar-container.svelte-f7n4zg:nth-child(28){right:0;top:0%}.bar-container.svelte-f7n4zg:nth-child(29){left:97.9%;top:0%;width:1.7%}",
-  map: '{"version":3,"file":"Bar.svelte","sources":["Bar.svelte"],"sourcesContent":["<script>\\r\\n  import { afterUpdate, onMount } from \\"svelte\\";\\r\\n\\r\\n  import { Motion, useAnimation } from \\"svelte-motion\\";\\r\\n  import gsap from \\"gsap\\";\\r\\n  import PageContent from \\"./PageContent.svelte\\";\\r\\n  import { largeBarObj } from \\"../animationObj\\";\\r\\n  export let index;\\r\\n  export let animations;\\r\\n  export let shouldPulse;\\r\\n  let bar;\\r\\n\\r\\n  onMount(() => {\\r\\n    gsap.to(bar, {\\r\\n      opacity: 1,\\r\\n      delay: 4.5,\\r\\n      duration: 5,\\r\\n    });\\r\\n  });\\r\\n<\/script>\\r\\n\\r\\n<div bind:this={bar} class=\\"bar-container\\" />\\r\\n\\r\\n<style lang=\\"scss\\">.cover-image {\\n  height: 100%;\\n  object-position: center center;\\n  width: 100%;\\n  object-fit: cover;\\n}\\n\\n.bar-container {\\n  z-index: 1;\\n  opacity: 0;\\n  pointer-events: none;\\n  overflow: hidden;\\n  height: 100%;\\n  position: absolute;\\n  background-color: white;\\n}\\n.bar-container:nth-child(1) {\\n  left: 2%;\\n  top: 0%;\\n  width: 1%;\\n}\\n.bar-container:nth-child(2) {\\n  left: 3.6%;\\n  top: 0%;\\n  width: 0.9%;\\n}\\n.bar-container:nth-child(3) {\\n  left: 6.9%;\\n  top: 0%;\\n  width: 2%;\\n}\\n.bar-container:nth-child(4) {\\n  left: 0;\\n  top: 0%;\\n}\\n.bar-container:nth-child(5) {\\n  left: 14.3%;\\n  top: 0%;\\n}\\n.bar-container:nth-child(6) {\\n  left: 17.8%;\\n  top: 0%;\\n  width: 1.5%;\\n}\\n.bar-container:nth-child(7) {\\n  left: 20%;\\n  top: 0%;\\n  width: 1.1%;\\n}\\n.bar-container:nth-child(8) {\\n  left: 23.1%;\\n  top: 0%;\\n  width: 1.9%;\\n}\\n.bar-container:nth-child(9) {\\n  left: 25.7%;\\n  top: 0%;\\n  width: 1%;\\n}\\n.bar-container:nth-child(10) {\\n  left: 28.8%;\\n  top: 0%;\\n  width: 1%;\\n}\\n.bar-container:nth-child(11) {\\n  left: 32%;\\n  top: 0%;\\n  width: 1.9%;\\n}\\n.bar-container:nth-child(13) {\\n  left: 46.6%;\\n  top: 0%;\\n  width: 1%;\\n}\\n.bar-container:nth-child(14) {\\n  left: 49.8%;\\n  top: 0%;\\n  width: 1.9%;\\n}\\n.bar-container:nth-child(15) {\\n  left: 54%;\\n  top: 0%;\\n  width: 0.9%;\\n}\\n.bar-container:nth-child(16) {\\n  left: 55.6%;\\n  top: 0%;\\n  width: 1.8%;\\n}\\n.bar-container:nth-child(17) {\\n  left: 59.5%;\\n  top: 0%;\\n  width: 1.1%;\\n}\\n.bar-container:nth-child(19) {\\n  left: 91.3%;\\n  top: 0%;\\n  width: 1.1%;\\n}\\n.bar-container:nth-child(20) {\\n  left: 64.5%;\\n  top: 0%;\\n  width: 1%;\\n}\\n.bar-container:nth-child(21) {\\n  left: 66.4%;\\n  top: 0%;\\n  width: 0.9%;\\n}\\n.bar-container:nth-child(22) {\\n  left: 69.4%;\\n  top: 0%;\\n  width: 1.9%;\\n}\\n.bar-container:nth-child(23) {\\n  left: 73.5%;\\n  top: 0%;\\n  width: 0.9%;\\n}\\n.bar-container:nth-child(24) {\\n  left: 79.9%;\\n  top: 0%;\\n  width: 1.7%;\\n}\\n.bar-container:nth-child(25) {\\n  left: 82.5%;\\n  top: 0%;\\n  width: 0.8%;\\n}\\n.bar-container:nth-child(26) {\\n  left: 85.5%;\\n  top: 0%;\\n  width: 1.2%;\\n}\\n.bar-container:nth-child(27) {\\n  left: 88.9%;\\n  top: 0%;\\n  width: 1.7%;\\n}\\n.bar-container:nth-child(28) {\\n  right: 0;\\n  top: 0%;\\n}\\n.bar-container:nth-child(29) {\\n  left: 97.9%;\\n  top: 0%;\\n  width: 1.7%;\\n}</style>\\r\\n"],"names":[],"mappings":"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"}'
+  map: '{"version":3,"file":"Bar.svelte","sources":["Bar.svelte"],"sourcesContent":["<script>\\r\\n  import gsap from \\"gsap\\";\\r\\n  import { onMount } from \\"svelte\\";\\r\\n  export let index;\\r\\n  export let animations;\\r\\n  export let shouldPulse;\\r\\n  let bar;\\r\\n\\r\\n  onMount(() => {\\r\\n    // gsap.to(bar, {\\r\\n    //   opacity: 1,\\r\\n    //   delay: 4.5,\\r\\n    //   duration: 5,\\r\\n    // });\\r\\n  });\\r\\n<\/script>\\r\\n\\r\\n<div bind:this={bar} class=\\"bar-container\\" />\\r\\n\\r\\n<style lang=\\"scss\\">.cover-image {\\n  height: 100%;\\n  object-position: center center;\\n  width: 100%;\\n  object-fit: cover;\\n}\\n\\n.bar-container {\\n  z-index: 1;\\n  opacity: 0;\\n  pointer-events: none;\\n  overflow: hidden;\\n  height: 100%;\\n  position: absolute;\\n  background-color: white;\\n}\\n.bar-container:nth-child(1) {\\n  left: 2%;\\n  top: 0%;\\n  width: 1%;\\n}\\n.bar-container:nth-child(2) {\\n  left: 3.6%;\\n  top: 0%;\\n  width: 0.9%;\\n}\\n.bar-container:nth-child(3) {\\n  left: 6.9%;\\n  top: 0%;\\n  width: 2%;\\n}\\n.bar-container:nth-child(4) {\\n  left: 0;\\n  top: 0%;\\n}\\n.bar-container:nth-child(5) {\\n  left: 14.3%;\\n  top: 0%;\\n}\\n.bar-container:nth-child(6) {\\n  left: 17.8%;\\n  top: 0%;\\n  width: 1.5%;\\n}\\n.bar-container:nth-child(7) {\\n  left: 20%;\\n  top: 0%;\\n  width: 1.1%;\\n}\\n.bar-container:nth-child(8) {\\n  left: 23.1%;\\n  top: 0%;\\n  width: 1.9%;\\n}\\n.bar-container:nth-child(9) {\\n  left: 25.7%;\\n  top: 0%;\\n  width: 1%;\\n}\\n.bar-container:nth-child(10) {\\n  left: 28.8%;\\n  top: 0%;\\n  width: 1%;\\n}\\n.bar-container:nth-child(11) {\\n  left: 32%;\\n  top: 0%;\\n  width: 1.9%;\\n}\\n.bar-container:nth-child(13) {\\n  left: 46.6%;\\n  top: 0%;\\n  width: 1%;\\n}\\n.bar-container:nth-child(14) {\\n  left: 49.8%;\\n  top: 0%;\\n  width: 1.9%;\\n}\\n.bar-container:nth-child(15) {\\n  left: 54%;\\n  top: 0%;\\n  width: 0.9%;\\n}\\n.bar-container:nth-child(16) {\\n  left: 55.6%;\\n  top: 0%;\\n  width: 1.8%;\\n}\\n.bar-container:nth-child(17) {\\n  left: 59.5%;\\n  top: 0%;\\n  width: 1.1%;\\n}\\n.bar-container:nth-child(19) {\\n  left: 91.3%;\\n  top: 0%;\\n  width: 1.1%;\\n}\\n.bar-container:nth-child(20) {\\n  left: 64.5%;\\n  top: 0%;\\n  width: 1%;\\n}\\n.bar-container:nth-child(21) {\\n  left: 66.4%;\\n  top: 0%;\\n  width: 0.9%;\\n}\\n.bar-container:nth-child(22) {\\n  left: 69.4%;\\n  top: 0%;\\n  width: 1.9%;\\n}\\n.bar-container:nth-child(23) {\\n  left: 73.5%;\\n  top: 0%;\\n  width: 0.9%;\\n}\\n.bar-container:nth-child(24) {\\n  left: 79.9%;\\n  top: 0%;\\n  width: 1.7%;\\n}\\n.bar-container:nth-child(25) {\\n  left: 82.5%;\\n  top: 0%;\\n  width: 0.8%;\\n}\\n.bar-container:nth-child(26) {\\n  left: 85.5%;\\n  top: 0%;\\n  width: 1.2%;\\n}\\n.bar-container:nth-child(27) {\\n  left: 88.9%;\\n  top: 0%;\\n  width: 1.7%;\\n}\\n.bar-container:nth-child(28) {\\n  right: 0;\\n  top: 0%;\\n}\\n.bar-container:nth-child(29) {\\n  left: 97.9%;\\n  top: 0%;\\n  width: 1.7%;\\n}</style>\\r\\n"],"names":[],"mappings":"AA0BA,cAAc,cAAC,CAAC,AACd,OAAO,CAAE,CAAC,CACV,OAAO,CAAE,CAAC,CACV,cAAc,CAAE,IAAI,CACpB,QAAQ,CAAE,MAAM,CAChB,MAAM,CAAE,IAAI,CACZ,QAAQ,CAAE,QAAQ,CAClB,gBAAgB,CAAE,KAAK,AACzB,CAAC,AACD,4BAAc,WAAW,CAAC,CAAC,AAAC,CAAC,AAC3B,IAAI,CAAE,EAAE,CACR,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,EAAE,AACX,CAAC,AACD,4BAAc,WAAW,CAAC,CAAC,AAAC,CAAC,AAC3B,IAAI,CAAE,IAAI,CACV,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,4BAAc,WAAW,CAAC,CAAC,AAAC,CAAC,AAC3B,IAAI,CAAE,IAAI,CACV,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,EAAE,AACX,CAAC,AACD,4BAAc,WAAW,CAAC,CAAC,AAAC,CAAC,AAC3B,IAAI,CAAE,CAAC,CACP,GAAG,CAAE,EAAE,AACT,CAAC,AACD,4BAAc,WAAW,CAAC,CAAC,AAAC,CAAC,AAC3B,IAAI,CAAE,KAAK,CACX,GAAG,CAAE,EAAE,AACT,CAAC,AACD,4BAAc,WAAW,CAAC,CAAC,AAAC,CAAC,AAC3B,IAAI,CAAE,KAAK,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,GAAG,yBAAW,WAAW,CAAC,CAAC,AAAC,CAAC,AAC3B,IAAI,CAAE,GAAG,CACT,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,4BAAc,WAAW,CAAC,CAAC,AAAC,CAAC,AAC3B,IAAI,CAAE,KAAK,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,4BAAc,WAAW,CAAC,CAAC,AAAC,CAAC,AAC3B,IAAI,CAAE,KAAK,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,EAAE,AACX,CAAC,AACD,4BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,KAAK,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,EAAE,AACX,CAAC,AACD,4BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,GAAG,CACT,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,4BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,KAAK,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,EAAE,AACX,CAAC,AACD,4BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,KAAK,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,4BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,GAAG,CACT,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,4BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,KAAK,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,4BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,EAAE,EAAE,CAAE,KAAK,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,4BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,KAAK,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,4BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,KAAK,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,EAAE,AACX,CAAC,AACD,4BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,KAAK,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,4BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,KAAK,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,4BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,KAAK,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,4BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,KAAK,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,4BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,KAAK,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,4BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,KAAK,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,4BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,KAAK,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC,AACD,4BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,KAAK,CAAE,CAAC,CACR,GAAG,CAAE,EAAE,AACT,CAAC,AACD,4BAAc,WAAW,EAAE,CAAC,AAAC,CAAC,AAC5B,IAAI,CAAE,KAAK,CACX,GAAG,CAAE,EAAE,CACP,KAAK,CAAE,IAAI,AACb,CAAC"}'
 };
 const Bar = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { index: index2 } = $$props;
@@ -4815,7 +4820,107 @@ const Bar = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   $$result.css.add(css$4);
   return `<div class="${"bar-container svelte-f7n4zg"}"${add_attribute("this", bar, 0)}></div>`;
 });
+var PageContent_svelte_svelte_type_style_lang = '.page-transition-black.svelte-1f77rs4{background-color:black;width:100vw;position:absolute;bottom:0;height:0vh;z-index:3}.main-page-container.svelte-1f77rs4{padding:20px;overflow-x:hidden;gap:25px;z-index:4;position:absolute;width:100vw;height:100%;background-image:url("../../images/home/Background Photo.jpg")}';
 var MenuItem_svelte_svelte_type_style_lang = "@keyframes svelte-uwkdd3-marquee{100%{transform:translate3d(-50%, 0, 0)}}.marquee__inner.svelte-uwkdd3.svelte-uwkdd3{animation:svelte-uwkdd3-marquee 15s linear infinite}.marquee__img.svelte-uwkdd3.svelte-uwkdd3{width:15vw;height:70%;margin:0 2vw;border-radius:5vw;background-size:cover;background-position:50% 50%}.menu__item.svelte-uwkdd3.svelte-uwkdd3{cursor:default;position:relative;overflow:hidden;z-index:4;text-align:center;box-shadow:0 -1px black}.menu__item.svelte-uwkdd3.svelte-uwkdd3:last-child{box-shadow:0 1px black, 0 -1px black}.menu__item-link.svelte-uwkdd3.svelte-uwkdd3{display:block;position:relative;cursor:pointer;color:black;text-decoration:none}a.svelte-uwkdd3.svelte-uwkdd3:active{color:black}.marquee.svelte-uwkdd3.svelte-uwkdd3{position:absolute;top:0;left:0;overflow:hidden;width:100%;height:100%;pointer-events:none;background:#68208e;transform:translate3d(0, 101%, 0)}.marquee__inner-wrap.svelte-uwkdd3.svelte-uwkdd3{height:100%;width:100%;transform:translate3d(0, -101%, 0)}.marquee__inner.svelte-uwkdd3.svelte-uwkdd3{height:100%;width:fit-content;align-items:center;display:flex;position:relative;animation:svelte-uwkdd3-marquee 15s linear infinite;will-change:transform}@keyframes svelte-uwkdd3-marquee{100%{transform:translate3d(-50%, 0, 0)}}.menu__item-link.svelte-uwkdd3.svelte-uwkdd3,.marquee.svelte-uwkdd3 span.svelte-uwkdd3{white-space:nowrap;font-size:6vw;line-height:1.2;font-weight:600;padding:1vh 1vw 0;text-transform:uppercase}.marquee.svelte-uwkdd3 span.svelte-uwkdd3{text-align:center;color:var(--marquee-text);font-weight:400}";
+({
+  3: [
+    {
+      title: "meet amit apel",
+      labels: [
+        "meet amit apel",
+        "meet amit apel",
+        "meet amit apel",
+        "meet amit apel",
+        "meet amit apel"
+      ]
+    },
+    {
+      title: "meet the team",
+      labels: [
+        "meet the team",
+        "meet the team",
+        "meet the team",
+        "meet the team",
+        "meet the team",
+        "meet the team",
+        "meet the team",
+        "meet the team"
+      ]
+    },
+    {
+      title: "what we do",
+      labels: [
+        "what we do",
+        "what we do",
+        "what we do",
+        "what we do",
+        "what we do",
+        "what we do",
+        "what we do"
+      ]
+    },
+    {
+      title: "malibu rebuild",
+      labels: [
+        "malibu rebuild",
+        "malibu rebuild",
+        "malibu rebuild",
+        "malibu rebuild",
+        "malibu rebuild",
+        "malibu rebuild"
+      ]
+    },
+    {
+      title: "press",
+      labels: [
+        "press",
+        "press",
+        "press",
+        "press",
+        "press",
+        "press",
+        "press",
+        "press"
+      ]
+    }
+  ],
+  17: [
+    {
+      title: "private homes",
+      labels: Array(8).fill("private homes")
+    },
+    {
+      title: "multi units",
+      labels: Array(8).fill("multi units")
+    },
+    {
+      title: "concept",
+      labels: Array(8).fill("concept")
+    },
+    {
+      title: "render videos",
+      labels: Array(8).fill("render videos")
+    }
+  ],
+  23: [
+    {
+      title: "sculpture",
+      labels: Array(8).fill("sculpture")
+    },
+    {
+      title: "furniture",
+      labels: Array(8).fill("multi units")
+    },
+    {
+      title: "art",
+      labels: Array(8).fill("art")
+    },
+    {
+      title: "concept",
+      labels: Array(8).fill("concept")
+    }
+  ]
+});
 var MalibuRebuild_svelte_svelte_type_style_lang = ".bottom-text-container.svelte-o8lvob.svelte-o8lvob{font-size:0.6em}.container.svelte-o8lvob.svelte-o8lvob{font-family:unisans;display:flex}.text-container.svelte-o8lvob.svelte-o8lvob{text-align:center;font-size:2em;display:flex;flex-direction:column;gap:20px;max-width:900px;color:#68208e}.text-container.svelte-o8lvob h4.svelte-o8lvob{font-weight:900}.text-container.svelte-o8lvob p.svelte-o8lvob{font-size:0.8em;font-weight:700}.text-container.svelte-o8lvob p.svelte-o8lvob:last-child{font-size:0.6em}.text-container.svelte-o8lvob .credit p.svelte-o8lvob{font-size:0.4em}";
 var Card_svelte_svelte_type_style_lang = '.card-container.svelte-1654zsx.svelte-1654zsx{transform:rotateX(0deg);transform-style:preserve-3d;display:flex;justify-content:center;align-items:center;position:absolute;width:300px;height:500px;will-change:transform;touch-action:none;box-shadow:0 12.5px 100px -10px rgba(50, 50, 73, 0.4), 0 10px 10px -10px rgba(50, 50, 73, 0.3)}.image-container.svelte-1654zsx.svelte-1654zsx{overflow:hidden;transform:rotateY(-180deg)}.image-container.svelte-1654zsx img.svelte-1654zsx{height:100%;width:100%;touch-action:none;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.back-container.svelte-1654zsx.svelte-1654zsx{content:"";top:0;z-index:-1;position:absolute;transform:rotateX(0deg) translate3d(0px, 0px, 1px);height:100%;display:block;width:100%;border-radius:10px}';
 var MeetTheTeam_svelte_svelte_type_style_lang = ".main-text-header.svelte-1d2f4jn{font-size:6em;font-family:unisansB;font-weight:900;letter-spacing:3px;text-align:center;color:#68208e;position:relative;text-transform:uppercase}.card-container.svelte-1d2f4jn{display:flex;height:55vh;justify-content:center;position:relative;margin-top:40px;align-items:center}";
@@ -4835,12 +4940,138 @@ readable({
   };
 });
 var PressCard_svelte_svelte_type_style_lang = ".link-container.svelte-1ltproh{width:100%;display:block;position:relative}.image-mask.svelte-1ltproh{position:absolute;opacity:90%;width:100%;height:100%}.image.svelte-1ltproh{cursor:pointer;width:100%;height:100%;filter:grayscale(1);object-position:center center;object-fit:cover}";
-var Press_svelte_svelte_type_style_lang = ".text-image-wrapper.svelte-k5ln1s.svelte-k5ln1s{max-height:700px;grid-area:1/1/26/26;display:grid;grid-template-columns:repeat(25, 4%);grid-template-rows:repeat(25, 4%);padding:0 7vw;align-items:center;justify-content:center;height:100%;width:100%;pointer-events:none;z-index:4}.text-image-wrapper.svelte-k5ln1s img.svelte-k5ln1s{height:100%;width:100%;object-fit:cover}.text-image-wrapper.svelte-k5ln1s .text-image-container.svelte-k5ln1s:nth-child(1){grid-area:1/21/13/28;transform:rotateZ(25.8deg)}.text-image-wrapper.svelte-k5ln1s .text-image-container.svelte-k5ln1s:nth-child(2){grid-area:24/3/13/9;transform:rotateZ(-7.7deg)}.text-image-wrapper.svelte-k5ln1s .text-image-container.svelte-k5ln1s:nth-child(3){grid-area:26/15/13/28;transform:rotateZ(7.7deg)}.text-image-wrapper.svelte-k5ln1s .text-image-container.svelte-k5ln1s:nth-child(4){grid-area:11/3/16/24}.text-image-wrapper.svelte-k5ln1s .text-image-container.svelte-k5ln1s:nth-child(5){transform:rotateZ(-10deg);grid-area:2/3/12/11}.content-container.svelte-k5ln1s.svelte-k5ln1s{grid-template-columns:repeat(25, 4%);grid-template-rows:repeat(25, 4%);max-width:1531px;display:grid;width:100%;height:100%}.container.svelte-k5ln1s.svelte-k5ln1s{position:relative;width:100%;height:100%;display:flex;justify-content:center;align-items:center}.image-container.svelte-k5ln1s.svelte-k5ln1s{opacity:0}.image-container.svelte-k5ln1s.svelte-k5ln1s:nth-child(2){grid-area:8/11/20/16;opacity:1;width:100%}.image-container.svelte-k5ln1s.svelte-k5ln1s:nth-child(3){grid-row-start:22;grid-row-end:30;grid-column-start:13;grid-column-end:18;opacity:1}.image-container.svelte-k5ln1s.svelte-k5ln1s:nth-child(4){grid-row-start:5;grid-row-end:14;grid-column-start:3;grid-column-end:7;opacity:1}.image-container.svelte-k5ln1s.svelte-k5ln1s:nth-child(5){grid-row-start:18;grid-row-end:23;grid-column-start:21;grid-column-end:24;opacity:1}.image-container.svelte-k5ln1s.svelte-k5ln1s:nth-child(6){grid-row-start:5;grid-row-end:16;grid-column-start:20;grid-column-end:25;opacity:1;z-index:2}.image-container.svelte-k5ln1s.svelte-k5ln1s:nth-child(7){grid-row-start:18;grid-row-end:21;grid-column-start:4;grid-column-end:9;opacity:1}.image-container.svelte-k5ln1s.svelte-k5ln1s:nth-child(8){grid-row-start:3;grid-row-end:6;grid-column-start:18;grid-column-end:22;opacity:1;z-index:1}";
+var Press_svelte_svelte_type_style_lang = ".text-image-wrapper.svelte-ivejkd.svelte-ivejkd{max-height:700px;grid-area:6/1/26/26;display:grid;grid-template-columns:repeat(25, 4%);grid-template-rows:repeat(25, 4%);padding:0 7vw;align-items:center;justify-content:center;height:100%;width:100%;pointer-events:none;z-index:4}.text-image-wrapper.svelte-ivejkd img.svelte-ivejkd{height:100%;width:100%;object-fit:cover}.text-image-wrapper.svelte-ivejkd .text-image-container.svelte-ivejkd:nth-child(1){grid-area:1/21/13/28;transform:rotateZ(25.8deg)}.text-image-wrapper.svelte-ivejkd .text-image-container.svelte-ivejkd:nth-child(2){grid-area:24/3/13/9;transform:rotateZ(-7.7deg)}.text-image-wrapper.svelte-ivejkd .text-image-container.svelte-ivejkd:nth-child(3){grid-area:26/15/13/28;transform:rotateZ(7.7deg)}.text-image-wrapper.svelte-ivejkd .text-image-container.svelte-ivejkd:nth-child(4){grid-area:11/3/16/24}.text-image-wrapper.svelte-ivejkd .text-image-container.svelte-ivejkd:nth-child(5){transform:rotateZ(-10deg);grid-area:2/3/12/11}.content-container.svelte-ivejkd.svelte-ivejkd{grid-template-columns:repeat(25, 4%);grid-template-rows:repeat(25, 4%);max-width:1788px;display:grid;width:100%;height:100%}.container.svelte-ivejkd.svelte-ivejkd{position:relative;width:100%;height:100%;display:flex;justify-content:center;align-items:center}.image-container.svelte-ivejkd.svelte-ivejkd{opacity:0}.image-container.svelte-ivejkd.svelte-ivejkd:nth-child(2){grid-area:8/11/20/16;opacity:1;width:100%}.image-container.svelte-ivejkd.svelte-ivejkd:nth-child(3){grid-row-start:22;grid-row-end:30;grid-column-start:13;grid-column-end:18;opacity:1}.image-container.svelte-ivejkd.svelte-ivejkd:nth-child(4){grid-row-start:5;grid-row-end:14;grid-column-start:3;grid-column-end:7;opacity:1}.image-container.svelte-ivejkd.svelte-ivejkd:nth-child(5){grid-row-start:18;grid-row-end:23;grid-column-start:21;grid-column-end:24;opacity:1}.image-container.svelte-ivejkd.svelte-ivejkd:nth-child(6){grid-row-start:5;grid-row-end:16;grid-column-start:20;grid-column-end:25;opacity:1;z-index:2}.image-container.svelte-ivejkd.svelte-ivejkd:nth-child(7){grid-row-start:18;grid-row-end:21;grid-column-start:4;grid-column-end:9;opacity:1}.image-container.svelte-ivejkd.svelte-ivejkd:nth-child(8){grid-row-start:3;grid-row-end:6;grid-column-start:18;grid-column-end:22;opacity:1;z-index:1}";
+const images = [
+  {
+    "img": "http://res.cloudinary.com/dt4xntymn/image/upload/v1634424270/mainSite/privateHomes/93._Main_8720_Rosewood_utwsh7.jpg",
+    "label": "Rosewood"
+  },
+  {
+    "img": "http://res.cloudinary.com/dt4xntymn/image/upload/v1634424273/mainSite/privateHomes/9._Main_320_N_La_Jolla_Ave_zyx7b0.jpg",
+    "label": "La Jolla Ave"
+  },
+  {
+    "img": "http://res.cloudinary.com/dt4xntymn/image/upload/v1634424269/mainSite/privateHomes/87._Main_16366Sloan_yz02jj.jpg",
+    "label": "Sloan"
+  },
+  {
+    "img": "http://res.cloudinary.com/dt4xntymn/image/upload/v1634424269/mainSite/privateHomes/80._Main_428NLaJolla_ypdbs1.jpg",
+    "label": "La Jolla"
+  },
+  {
+    "img": "http://res.cloudinary.com/dt4xntymn/image/upload/v1634424272/mainSite/privateHomes/8._Main_3142_Danny_Hill_Dr_nfxfqr.jpg",
+    "label": "Danny Hill Dr"
+  },
+  {
+    "img": "http://res.cloudinary.com/dt4xntymn/image/upload/v1634424269/mainSite/privateHomes/79.Main1845Coldwater_lwyblj.jpg",
+    "label": "Coldwater"
+  },
+  {
+    "img": "http://res.cloudinary.com/dt4xntymn/image/upload/v1634424269/mainSite/privateHomes/78._Mail_8971_W_Shoreham_uaanpf.jpg",
+    "label": "Shoreham"
+  },
+  {
+    "img": "http://res.cloudinary.com/dt4xntymn/image/upload/v1634424268/mainSite/privateHomes/77._Main_1349_N_Gardner_exvbnk.jpg",
+    "label": "Gardner"
+  },
+  {
+    "img": "http://res.cloudinary.com/dt4xntymn/image/upload/v1634424268/mainSite/privateHomes/76._Main_152_S_Laurel_y9aeus.jpg",
+    "label": "Laurel"
+  },
+  {
+    "img": "http://res.cloudinary.com/dt4xntymn/image/upload/v1634424268/mainSite/privateHomes/75._Main_527_N_Harper_vqyyag.jpg",
+    "label": "Harper"
+  },
+  {
+    "img": "http://res.cloudinary.com/dt4xntymn/image/upload/v1634424268/mainSite/privateHomes/74._Main_527_N_Harper_uuiqzq.jpg",
+    "label": "Harper"
+  },
+  {
+    "img": "http://res.cloudinary.com/dt4xntymn/image/upload/v1634424268/mainSite/privateHomes/73._Main_312_La_Peer_woyhpa.jpg",
+    "label": "La Peer"
+  },
+  {
+    "img": "http://res.cloudinary.com/dt4xntymn/image/upload/v1634424268/mainSite/privateHomes/72._Main_8381_Hollywood_Blvd_hmg9f9.jpg",
+    "label": "Hollywood Blvd"
+  },
+  {
+    "img": "http://res.cloudinary.com/dt4xntymn/image/upload/v1634424268/mainSite/privateHomes/71._Main_824_N_La_Jolla_Ave_vuyet5.jpg",
+    "label": "La Jolla Ave"
+  },
+  {
+    "img": "http://res.cloudinary.com/dt4xntymn/image/upload/v1634424268/mainSite/privateHomes/70._Main_349_S._Mansfield_Ave._y2lbg3.jpg",
+    "label": "Mansfield"
+  },
+  {
+    "img": "http://res.cloudinary.com/dt4xntymn/image/upload/v1634424272/mainSite/privateHomes/7._Main_424_La_Jolla_Ave_s2qgz3.jpg",
+    "label": "La Jolla Ave"
+  },
+  {
+    "img": "http://res.cloudinary.com/dt4xntymn/image/upload/v1634424268/mainSite/privateHomes/69._Main_12117_Greenock_Ave_zh5vgz.jpg",
+    "label": "Greenock"
+  },
+  {
+    "img": "http://res.cloudinary.com/dt4xntymn/image/upload/v1634424268/mainSite/privateHomes/68._Main_1484_Edris_Dr_zwhgr8.jpg",
+    "label": "Edris Dr"
+  },
+  {
+    "img": "http://res.cloudinary.com/dt4xntymn/image/upload/v1634424268/mainSite/privateHomes/67._Main_815_Tigertail_fvi8wa.jpg",
+    "label": "Tigertail"
+  },
+  {
+    "img": "http://res.cloudinary.com/dt4xntymn/image/upload/v1634424268/mainSite/privateHomes/65._Main_405_N_Kilkea_p2rlvs.jpg",
+    "label": "Kilkea"
+  },
+  {
+    "img": "http://res.cloudinary.com/dt4xntymn/image/upload/v1634424268/mainSite/privateHomes/64._Main_524_Ocampo_dpddrn.jpg",
+    "label": "Ocampo"
+  },
+  {
+    "img": "http://res.cloudinary.com/dt4xntymn/image/upload/v1634424268/mainSite/privateHomes/62._Main_13020_Greenleaf_webir9.jpg",
+    "label": "Greenleaf"
+  },
+  {
+    "img": "http://res.cloudinary.com/dt4xntymn/image/upload/v1634424268/mainSite/privateHomes/61._Main_9401_Sawyer_St_f8cnwr.jpg",
+    "label": "Sawyer"
+  },
+  {
+    "img": "http://res.cloudinary.com/dt4xntymn/image/upload/v1634424268/mainSite/privateHomes/60._Main_641_Mildred_Ave_y0osrj.jpg",
+    "label": "Mildred"
+  },
+  {
+    "img": "http://res.cloudinary.com/dt4xntymn/image/upload/v1634424272/mainSite/privateHomes/6._Main_535_West_Knoll_Dr._sjipdd.jpg",
+    "label": "West Knoll Dr"
+  },
+  {
+    "img": "http://res.cloudinary.com/dt4xntymn/image/upload/v1634424267/mainSite/privateHomes/58._Main_3114_Elvido_Dr_kbiacb.jpg",
+    "label": "Elvido Dr"
+  },
+  {
+    "img": "http://res.cloudinary.com/dt4xntymn/image/upload/v1634424267/mainSite/privateHomes/57._Main_23590_Park_South_St_fpavkx.jpg",
+    "label": "Park South"
+  },
+  {
+    "img": "http://res.cloudinary.com/dt4xntymn/image/upload/v1634424267/mainSite/privateHomes/56._Main_1847_Coldwater_Cyn_uqyxxf.jpg",
+    "label": "Coldwater Cyn"
+  },
+  {
+    "img": "http://res.cloudinary.com/dt4xntymn/image/upload/v1634424267/mainSite/privateHomes/54._Main_543_N_Kilkea_emafpj.jpg",
+    "label": "Kilkea"
+  },
+  {
+    "img": "http://res.cloudinary.com/dt4xntymn/image/upload/v1634424267/mainSite/privateHomes/53._Main_9814_Hythe_Ct_mpkgtz.jpg",
+    "label": "Hythe"
+  }
+];
+console.log(JSON.stringify(images));
+var PrivateHomes_svelte_svelte_type_style_lang = ".grid-item-container.svelte-13jnz9g.svelte-13jnz9g{display:flex;flex-direction:column}.grid-item-container.svelte-13jnz9g .label.svelte-13jnz9g{text-align:left;font-size:2em;line-height:0.8em;font-weight:900;letter-spacing:3px;font-family:unisansB;padding:1.2rem;color:#68208e;text-transform:uppercase}.grid-item-container.svelte-13jnz9g .image-container.svelte-13jnz9g{width:100%;height:100%}.grid-item-container.svelte-13jnz9g .image-container .grid-image.svelte-13jnz9g{object-fit:cover;width:100%;height:100%}.container.svelte-13jnz9g.svelte-13jnz9g{display:flex;flex-direction:column;align-items:center;width:100%;padding-top:10rem;justify-content:center}.gallery-container.svelte-13jnz9g.svelte-13jnz9g{margin-top:5rem;display:grid;max-width:1300px;width:100%;gap:31px;grid-template-columns:repeat(3, 1fr);grid-template-rows:repeat(3, 1fr)}.main-text-header.svelte-13jnz9g.svelte-13jnz9g{font-size:6em;line-height:0.8em;font-weight:900;letter-spacing:3px;font-family:unisansB;text-align:center;color:#68208e;text-transform:uppercase}";
+var Sculpture_svelte_svelte_type_style_lang = ".container.svelte-1un5wn.svelte-1un5wn{display:flex;flex-direction:column;justify-content:center;align-items:center;margin-top:6rem;width:100%}.main-text-header.svelte-1un5wn.svelte-1un5wn{font-size:6em;line-height:0.8em;font-weight:900;letter-spacing:3px;font-family:unisansB;text-align:center;color:#68208e;text-transform:uppercase}.grid-container.svelte-1un5wn.svelte-1un5wn{margin-top:5rem;display:grid;max-width:1862px;width:100%;gap:10px;grid-template-columns:repeat(8, 1fr);grid-template-rows:0.2fr 0.4fr 0.4fr 0.5fr}.grid-item-container.svelte-1un5wn.svelte-1un5wn{width:100%;display:flex}.grid-item-container.svelte-1un5wn.svelte-1un5wn:nth-child(5){grid-area:span 2/span 2}.grid-item-container.svelte-1un5wn:nth-child(6) img.svelte-1un5wn{object-position:-420px}.grid-item-container.svelte-1un5wn.svelte-1un5wn:nth-child(8){grid-area:span 2/span 2}.grid-item-container.svelte-1un5wn.svelte-1un5wn:nth-child(13){grid-area:span 2/span 3}.grid-item-container.svelte-1un5wn.svelte-1un5wn:nth-child(17){grid-area:span 1/span 2}.grid-item-container.svelte-1un5wn.svelte-1un5wn:nth-child(18){grid-area:span 2/span 1}.grid-item-container.svelte-1un5wn.svelte-1un5wn:nth-child(19){grid-area:span 1/span 1}.grid-item-container.svelte-1un5wn .label.svelte-1un5wn{transform:rotate(-180deg);writing-mode:vertical-lr;text-align:right;font-size:2em;line-height:0.8em;font-weight:900;letter-spacing:3px;font-family:unisansB;padding:1.2rem;color:#68208e;text-transform:uppercase}.grid-item-container.svelte-1un5wn .grid-image.svelte-1un5wn{object-fit:cover;width:100%;object-position:center center;height:100%}";
+var WhatWeDo_svelte_svelte_type_style_lang = ".content-container.svelte-1l8cbuc.svelte-1l8cbuc{max-width:900px;font-size:1.4em;color:#68208e;text-align:center;font-weight:700}.content-container.svelte-1l8cbuc .video-container.svelte-1l8cbuc{margin:1rem 0rem}.content-container.svelte-1l8cbuc .video-container .video.svelte-1l8cbuc{width:100%}.container.svelte-1l8cbuc.svelte-1l8cbuc{display:flex;flex-direction:column;justify-content:center;align-items:center;margin-top:6rem;width:100%}.main-text-header.svelte-1l8cbuc.svelte-1l8cbuc{font-size:6em;line-height:0.8em;font-weight:900;letter-spacing:3px;font-family:unisansB;text-align:center;color:#68208e;text-transform:uppercase}";
 var Marque_svelte_svelte_type_style_lang = '.logo-container.svelte-154p2jw.svelte-154p2jw{max-width:150px}.logo-container.svelte-154p2jw .logo.svelte-154p2jw{width:100%}.frame.svelte-154p2jw.svelte-154p2jw{position:fixed;text-align:left;z-index:3;top:0;left:0;display:flex;justify-content:center;width:100%;max-width:none;height:100vh;padding:1.5rem 2rem 1rem;pointer-events:none}.container.svelte-154p2jw.svelte-154p2jw{margin:0;--color-text:#111;--color-bg:white;--color-link:#000;--color-link-hover:#000;--color-border:#a7927b;--marquee-bg:#000;--marquee-text:#fff;--menu-focus:#775e41;z-index:3;position:relative;background-color:transparent;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.menu-wrap.svelte-154p2jw.svelte-154p2jw{font-family:reason-new, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;display:flex;background-size:cover;background-image:url("__VITE_ASSET__112e1098__");flex-direction:column;width:100vw;height:100vh;position:relative;justify-content:center}.top-nav-container.svelte-154p2jw.svelte-154p2jw{position:absolute;top:0;left:0;z-index:2;right:0;display:flex;padding-top:10px;flex-direction:column;justify-content:center;align-items:center}.header-nav-container.svelte-154p2jw.svelte-154p2jw{display:flex;list-style:none;color:black;text-transform:uppercase;gap:25px;padding-top:20px;font-size:1.5em}';
-var LargeBar_svelte_svelte_type_style_lang = ".cover-image.svelte-rjl1is{height:100%;object-position:center center;width:100%;object-fit:cover}.bar-container.svelte-rjl1is{opacity:0;width:20%;top:0;z-index:1;pointer-events:none;overflow:hidden;height:100%;position:absolute;background-color:white}.opened.svelte-rjl1is{z-index:3}.bar-3.svelte-rjl1is{left:0}.bar-17.svelte-rjl1is{left:20vw}.bar-23.svelte-rjl1is{right:20vw}.bar-28.svelte-rjl1is{right:0}";
+var LargeBar_svelte_svelte_type_style_lang = ".cover-image.svelte-gmud75{height:100%;object-position:center center;width:100%;object-fit:cover}.bar-container.svelte-gmud75{opacity:1;width:20%;top:0;z-index:1;overflow:hidden;height:100%;position:absolute;background-color:white}.opened.svelte-gmud75{z-index:3}.bar-3.svelte-gmud75{left:0}.bar-17.svelte-gmud75{left:20vw}.bar-23.svelte-gmud75{right:20vw}.bar-28.svelte-gmud75{right:0}";
 const css$3 = {
-  code: ".cover-image.svelte-rjl1is{height:100%;object-position:center center;width:100%;object-fit:cover}.bar-container.svelte-rjl1is{opacity:0;width:20%;top:0;z-index:1;pointer-events:none;overflow:hidden;height:100%;position:absolute;background-color:white}.opened.svelte-rjl1is{z-index:3}.bar-3.svelte-rjl1is{left:0}.bar-17.svelte-rjl1is{left:20vw}.bar-23.svelte-rjl1is{right:20vw}.bar-28.svelte-rjl1is{right:0}",
-  map: `{"version":3,"file":"LargeBar.svelte","sources":["LargeBar.svelte"],"sourcesContent":["<script>\\r\\n  import { afterUpdate, createEventDispatcher, onMount } from \\"svelte\\";\\r\\n\\r\\n  import { Motion, useAnimation } from \\"svelte-motion\\";\\r\\n\\r\\n  import PageContent from \\"./PageContent.svelte\\";\\r\\n  import { largeBarObj } from \\"../animationObj\\";\\r\\n  import gsap from \\"gsap\\";\\r\\n  import { amp, browser, dev, mode, prerendering } from \\"$app/env\\";\\r\\n  import Marque from \\"./Marquee/Marque.svelte\\";\\r\\n\\r\\n  export let index;\\r\\n  export let animations;\\r\\n  export let shouldPulse;\\r\\n  export let barObj;\\r\\n  export let completed;\\r\\n  let pageOpened = false;\\r\\n  let bar;\\r\\n  let img;\\r\\n  const dispatch = createEventDispatcher();\\r\\n  let tl;\\r\\n  let maintl;\\r\\n  onMount(async () => {\\r\\n    maintl = gsap.timeline({ delay: barObj.delay });\\r\\n\\r\\n    maintl\\r\\n      .to(bar, {\\r\\n        scale: 1,\\r\\n        duration: 5,\\r\\n        opacity: 1,\\r\\n        ...barObj.position,\\r\\n        ease: \\"power1.in\\",\\r\\n      })\\r\\n\\r\\n      .to(\\r\\n        img,\\r\\n        {\\r\\n          opacity: 0,\\r\\n        },\\r\\n        \\">-0.5\\"\\r\\n      )\\r\\n\\r\\n      .then(() => {\\r\\n        dispatch(\\"complete\\");\\r\\n      });\\r\\n\\r\\n    tl = gsap.timeline({\\r\\n      repeat: -1,\\r\\n      paused: true,\\r\\n    });\\r\\n  });\\r\\n\\r\\n  $: {\\r\\n    if (tl && completed) {\\r\\n      if (shouldPulse && browser) {\\r\\n        tl.to(bar, {\\r\\n          opacity: 0,\\r\\n          duration: 1,\\r\\n        }).to(bar, {\\r\\n          opacity: 1,\\r\\n          duration: 1,\\r\\n        });\\r\\n        tl.play();\\r\\n      } else {\\r\\n        tl.pause();\\r\\n        gsap.to(bar, {\\r\\n          opacity: 1,\\r\\n        });\\r\\n      }\\r\\n    }\\r\\n  }\\r\\n  $: {\\r\\n    if (shouldPulse) {\\r\\n      bar.style.pointerEvents = \\"auto\\";\\r\\n    }\\r\\n  }\\r\\n<\/script>\\r\\n\\r\\n<div\\r\\n  on:mouseenter={(e) => {\\r\\n    if (!pageOpened) {\\r\\n      gsap.to(bar, {\\r\\n        scale: 1.2,\\r\\n      });\\r\\n    }\\r\\n  }}\\r\\n  on:mouseleave={() => {\\r\\n    if (!pageOpened) {\\r\\n      gsap.to(bar, {\\r\\n        scale: 1,\\r\\n      });\\r\\n    }\\r\\n  }}\\r\\n  on:click={() => {\\r\\n    pageOpened = true;\\r\\n    dispatch(\\"stopPulse\\");\\r\\n\\r\\n    gsap.to(bar, {\\r\\n      left: -bar.offsetParent.offsetLeft,\\r\\n      width: \\"100vw\\",\\r\\n      height: \\"100vh\\",\\r\\n      duration: 0.5,\\r\\n      scale: 1,\\r\\n      top: -bar.offsetParent.offsetTop,\\r\\n    });\\r\\n  }}\\r\\n  style=\\"transform:scale(0.8)\\"\\r\\n  bind:this={bar}\\r\\n  class=\\"{pageOpened ? 'opened' : ''} bar-container bar-{barObj.index}\\"\\r\\n>\\r\\n  {#if pageOpened}\\r\\n    <Marque />\\r\\n    <div\\r\\n      class=\\"close-main\\"\\r\\n      on:click={(e) => {\\r\\n        e.stopPropagation();\\r\\n        dispatch(\\"startPulse\\");\\r\\n        pageOpened = false;\\r\\n        gsap.to(bar, {\\r\\n          height: \\"40vh\\",\\r\\n\\r\\n          left: barObj.position.left,\\r\\n          top: 0,\\r\\n\\r\\n          width: barObj.position.width,\\r\\n        });\\r\\n      }}\\r\\n    />\\r\\n  {/if}\\r\\n  <img bind:this={img} src={barObj.img} class=\\"cover-image\\" alt=\\"\\" />\\r\\n</div>\\r\\n\\r\\n<style lang=\\"scss\\">.cover-image {\\n  height: 100%;\\n  object-position: center center;\\n  width: 100%;\\n  object-fit: cover;\\n}\\n\\n.bar-container {\\n  opacity: 0;\\n  width: 20%;\\n  top: 0;\\n  z-index: 1;\\n  pointer-events: none;\\n  overflow: hidden;\\n  height: 100%;\\n  position: absolute;\\n  background-color: white;\\n}\\n\\n.opened {\\n  z-index: 3;\\n}\\n\\n.bar-3 {\\n  left: 0;\\n}\\n\\n.bar-17 {\\n  left: 20vw;\\n}\\n\\n.bar-23 {\\n  right: 20vw;\\n}\\n\\n.bar-28 {\\n  right: 0;\\n}</style>\\r\\n"],"names":[],"mappings":"AAoImB,YAAY,cAAC,CAAC,AAC/B,MAAM,CAAE,IAAI,CACZ,eAAe,CAAE,MAAM,CAAC,MAAM,CAC9B,KAAK,CAAE,IAAI,CACX,UAAU,CAAE,KAAK,AACnB,CAAC,AAED,cAAc,cAAC,CAAC,AACd,OAAO,CAAE,CAAC,CACV,KAAK,CAAE,GAAG,CACV,GAAG,CAAE,CAAC,CACN,OAAO,CAAE,CAAC,CACV,cAAc,CAAE,IAAI,CACpB,QAAQ,CAAE,MAAM,CAChB,MAAM,CAAE,IAAI,CACZ,QAAQ,CAAE,QAAQ,CAClB,gBAAgB,CAAE,KAAK,AACzB,CAAC,AAED,OAAO,cAAC,CAAC,AACP,OAAO,CAAE,CAAC,AACZ,CAAC,AAED,MAAM,cAAC,CAAC,AACN,IAAI,CAAE,CAAC,AACT,CAAC,AAED,OAAO,cAAC,CAAC,AACP,IAAI,CAAE,IAAI,AACZ,CAAC,AAED,OAAO,cAAC,CAAC,AACP,KAAK,CAAE,IAAI,AACb,CAAC,AAED,OAAO,cAAC,CAAC,AACP,KAAK,CAAE,CAAC,AACV,CAAC"}`
+  code: ".cover-image.svelte-gmud75{height:100%;object-position:center center;width:100%;object-fit:cover}.bar-container.svelte-gmud75{opacity:1;width:20%;top:0;z-index:1;overflow:hidden;height:100%;position:absolute;background-color:white}.opened.svelte-gmud75{z-index:3}.bar-3.svelte-gmud75{left:0}.bar-17.svelte-gmud75{left:20vw}.bar-23.svelte-gmud75{right:20vw}.bar-28.svelte-gmud75{right:0}",
+  map: `{"version":3,"file":"LargeBar.svelte","sources":["LargeBar.svelte"],"sourcesContent":["<script>\\r\\n  import { browser } from \\"$app/env\\";\\r\\n  import gsap from \\"gsap\\";\\r\\n  import { createEventDispatcher, onMount } from \\"svelte\\";\\r\\n  import Marque from \\"../Marquee/Marque.svelte\\";\\r\\n\\r\\n  export let index;\\r\\n  export let animations;\\r\\n  export let shouldPulse;\\r\\n  export let barObj;\\r\\n  export let completed;\\r\\n  let pageOpened = false;\\r\\n  let bar;\\r\\n  let img;\\r\\n  const dispatch = createEventDispatcher();\\r\\n  let tl;\\r\\n  let maintl;\\r\\n  onMount(async () => {\\r\\n    console.log(index);\\r\\n    // maintl = gsap.timeline({ delay: barObj.delay });\\r\\n\\r\\n    // maintl\\r\\n    //   .to(bar, {\\r\\n    //     scale: 1,\\r\\n    //     duration: 5,\\r\\n    //     opacity: 1,\\r\\n    //     ...barObj.position,\\r\\n    //     ease: \\"power1.in\\",\\r\\n    //   })\\r\\n\\r\\n    //   .to(\\r\\n    //     img,\\r\\n    //     {\\r\\n    //       opacity: 0,\\r\\n    //     },\\r\\n    //     \\">-0.5\\"\\r\\n    //   )\\r\\n\\r\\n    //   .then(() => {\\r\\n    //     dispatch(\\"complete\\");\\r\\n    //   });\\r\\n\\r\\n    // tl = gsap.timeline({\\r\\n    //   repeat: -1,\\r\\n    //   paused: true,\\r\\n    // });\\r\\n  });\\r\\n\\r\\n  $: {\\r\\n    if (tl && completed) {\\r\\n      if (shouldPulse && browser) {\\r\\n        tl.to(bar, {\\r\\n          opacity: 0,\\r\\n          duration: 1,\\r\\n        }).to(bar, {\\r\\n          opacity: 1,\\r\\n          duration: 1,\\r\\n        });\\r\\n        tl.play();\\r\\n      } else {\\r\\n        tl.pause();\\r\\n        gsap.to(bar, {\\r\\n          opacity: 1,\\r\\n        });\\r\\n      }\\r\\n    }\\r\\n  }\\r\\n  $: {\\r\\n    if (shouldPulse) {\\r\\n      bar.style.pointerEvents = \\"auto\\";\\r\\n    }\\r\\n  }\\r\\n<\/script>\\r\\n\\r\\n<div\\r\\n  on:mouseenter={(e) => {\\r\\n    if (!pageOpened) {\\r\\n      gsap.to(bar, {\\r\\n        scale: 1.2,\\r\\n      });\\r\\n    }\\r\\n  }}\\r\\n  on:mouseleave={() => {\\r\\n    if (!pageOpened) {\\r\\n      gsap.to(bar, {\\r\\n        scale: 1,\\r\\n      });\\r\\n    }\\r\\n  }}\\r\\n  on:click={() => {\\r\\n    pageOpened = true;\\r\\n    dispatch(\\"stopPulse\\");\\r\\n\\r\\n    gsap.to(bar, {\\r\\n      left: -bar.offsetParent.offsetLeft,\\r\\n      width: \\"100vw\\",\\r\\n      height: \\"100vh\\",\\r\\n      duration: 0.5,\\r\\n      scale: 1,\\r\\n      top: -bar.offsetParent.offsetTop,\\r\\n    });\\r\\n  }}\\r\\n  style=\\"transform:scale(0.8)\\"\\r\\n  bind:this={bar}\\r\\n  class=\\"{pageOpened ? 'opened' : ''} bar-container bar-{barObj.index}\\"\\r\\n>\\r\\n  {#if pageOpened}\\r\\n    <Marque index={barObj.index} categories={barObj.categories} />\\r\\n    <div\\r\\n      class=\\"close-main\\"\\r\\n      on:click={(e) => {\\r\\n        e.stopPropagation();\\r\\n        dispatch(\\"startPulse\\");\\r\\n        pageOpened = false;\\r\\n        gsap.to(bar, {\\r\\n          height: \\"40vh\\",\\r\\n\\r\\n          left: barObj.position.left,\\r\\n          top: 0,\\r\\n\\r\\n          width: barObj.position.width,\\r\\n        });\\r\\n      }}\\r\\n    />\\r\\n  {/if}\\r\\n  <img bind:this={img} src={barObj.img} class=\\"cover-image\\" alt=\\"\\" />\\r\\n</div>\\r\\n\\r\\n<style lang=\\"scss\\">.cover-image {\\n  height: 100%;\\n  object-position: center center;\\n  width: 100%;\\n  object-fit: cover;\\n}\\n\\n.bar-container {\\n  opacity: 1;\\n  width: 20%;\\n  top: 0;\\n  z-index: 1;\\n  overflow: hidden;\\n  height: 100%;\\n  position: absolute;\\n  background-color: white;\\n}\\n\\n.opened {\\n  z-index: 3;\\n}\\n\\n.bar-3 {\\n  left: 0;\\n}\\n\\n.bar-17 {\\n  left: 20vw;\\n}\\n\\n.bar-23 {\\n  right: 20vw;\\n}\\n\\n.bar-28 {\\n  right: 0;\\n}</style>\\r\\n"],"names":[],"mappings":"AAgImB,YAAY,cAAC,CAAC,AAC/B,MAAM,CAAE,IAAI,CACZ,eAAe,CAAE,MAAM,CAAC,MAAM,CAC9B,KAAK,CAAE,IAAI,CACX,UAAU,CAAE,KAAK,AACnB,CAAC,AAED,cAAc,cAAC,CAAC,AACd,OAAO,CAAE,CAAC,CACV,KAAK,CAAE,GAAG,CACV,GAAG,CAAE,CAAC,CACN,OAAO,CAAE,CAAC,CACV,QAAQ,CAAE,MAAM,CAChB,MAAM,CAAE,IAAI,CACZ,QAAQ,CAAE,QAAQ,CAClB,gBAAgB,CAAE,KAAK,AACzB,CAAC,AAED,OAAO,cAAC,CAAC,AACP,OAAO,CAAE,CAAC,AACZ,CAAC,AAED,MAAM,cAAC,CAAC,AACN,IAAI,CAAE,CAAC,AACT,CAAC,AAED,OAAO,cAAC,CAAC,AACP,IAAI,CAAE,IAAI,AACZ,CAAC,AAED,OAAO,cAAC,CAAC,AACP,KAAK,CAAE,IAAI,AACb,CAAC,AAED,OAAO,cAAC,CAAC,AACP,KAAK,CAAE,CAAC,AACV,CAAC"}`
 };
 const LargeBar = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { index: index2 } = $$props;
@@ -4869,15 +5100,14 @@ const LargeBar = create_ssr_component(($$result, $$props, $$bindings, slots) => 
       }
     }
   }
-  return `<div style="${"transform:scale(0.8)"}" class="${escape("") + " bar-container bar-" + escape(barObj.index) + " svelte-rjl1is"}"${add_attribute("this", bar, 0)}>${``}
-  <img${add_attribute("src", barObj.img, 0)} class="${"cover-image svelte-rjl1is"}" alt="${""}"${add_attribute("this", img, 0)}>
+  return `<div style="${"transform:scale(0.8)"}" class="${escape("") + " bar-container bar-" + escape(barObj.index) + " svelte-gmud75"}"${add_attribute("this", bar, 0)}>${``}
+  <img${add_attribute("src", barObj.img, 0)} class="${"cover-image svelte-gmud75"}" alt="${""}"${add_attribute("this", img, 0)}>
 </div>`;
 });
-var global = '* {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n}\n\n@font-face {\n  font-family: "unisans";\n  src: url("__VITE_ASSET__a2e7014c__") format("opentype");\n}\n@font-face {\n  font-family: "unisansB";\n  src: url("__VITE_ASSET__43ec5e8d__") format("opentype");\n}\n@font-face {\n  font-family: "Orator";\n  src: url("__VITE_ASSET__b76fd88c__") format("truetype");\n}\n@font-face {\n  font-family: "Orator";\n  src: url("__VITE_ASSET__b76fd88c__") format("truetype");\n}\nhtml {\n  font-family: Orator;\n  overflow-x: hidden;\n}\n\n.close-main {\n  height: 32px;\n  max-height: 32px;\n  max-width: 32px;\n  min-height: 32px;\n  min-width: 32px;\n  position: absolute;\n  right: 12px;\n  top: 0;\n  cursor: pointer;\n  width: 32px;\n  z-index: 5;\n}\n.close-main:after {\n  background-color: black;\n  content: "";\n  display: block;\n  right: 0;\n  position: absolute;\n  top: 50%;\n  height: 2px;\n  width: 50%;\n  transform: translate(-50%) translateY(-50%) rotate(45deg);\n  transform-origin: center center;\n}\n.close-main::before {\n  background-color: black;\n  content: "";\n  height: 50%;\n  width: 2px;\n  display: block;\n  left: 50%;\n  position: absolute;\n  top: 50%;\n  transform: translate(-50%) translateY(-50%) rotate(45deg);\n  transform-origin: center center;\n}';
 var Logo_svelte_svelte_type_style_lang = ".bar-container.svelte-mts0d2{height:70vh;z-index:3;display:flex;gap:20px;width:100%;align-items:center;justify-content:center;position:relative}";
 const css$2 = {
   code: ".bar-container.svelte-mts0d2{height:70vh;z-index:3;display:flex;gap:20px;width:100%;align-items:center;justify-content:center;position:relative}",
-  map: '{"version":3,"file":"Logo.svelte","sources":["Logo.svelte"],"sourcesContent":["<script>\\r\\n  import { onDestroy, onMount } from \\"svelte\\";\\r\\n  import { Motion, useAnimation } from \\"svelte-motion\\";\\r\\n  import { largeBarObj, largeBarsArr } from \\"../animationObj\\";\\r\\n  import Bar from \\"../components/Bar.svelte\\";\\r\\n  import LargeBar from \\"../components/LargeBar.svelte\\";\\r\\n  import \\"../global.scss\\";\\r\\n  import gsap from \\"gsap\\";\\r\\n\\r\\n  onDestroy(() => {});\\r\\n\\r\\n  const bars = Array.from(\\" \\".repeat(27));\\r\\n  const animations = [];\\r\\n  let container;\\r\\n  let shouldPulse = false;\\r\\n  let completed = false;\\r\\n  onMount(() => {\\r\\n    gsap.to(container, {\\r\\n      height: \\"40vh\\",\\r\\n      duration: 5,\\r\\n    });\\r\\n  });\\r\\n<\/script>\\r\\n\\r\\n<div bind:this={container} class=\\"bar-container\\">\\r\\n  {#each bars as bar, i}\\r\\n    <Bar index={i} />\\r\\n  {/each}\\r\\n\\r\\n  {#each largeBarsArr as bar, i}\\r\\n    <LargeBar\\r\\n      on:stopPulse={() => {\\r\\n        shouldPulse = false;\\r\\n      }}\\r\\n      on:startPulse={() => {\\r\\n        shouldPulse = true;\\r\\n      }}\\r\\n      on:complete={() => {\\r\\n        animations.push(i);\\r\\n        if (animations.length === 4) {\\r\\n          completed = true;\\r\\n          shouldPulse = true;\\r\\n        }\\r\\n      }}\\r\\n      {shouldPulse}\\r\\n      {completed}\\r\\n      custom={bar.index}\\r\\n      barObj={bar}\\r\\n    />\\r\\n  {/each}\\r\\n</div>\\r\\n\\r\\n<style lang=\\"scss\\">.bar-container {\\n  height: 70vh;\\n  z-index: 3;\\n  display: flex;\\n  gap: 20px;\\n  width: 100%;\\n  align-items: center;\\n  justify-content: center;\\n  position: relative;\\n}</style>\\r\\n"],"names":[],"mappings":"AAoDmB,cAAc,cAAC,CAAC,AACjC,MAAM,CAAE,IAAI,CACZ,OAAO,CAAE,CAAC,CACV,OAAO,CAAE,IAAI,CACb,GAAG,CAAE,IAAI,CACT,KAAK,CAAE,IAAI,CACX,WAAW,CAAE,MAAM,CACnB,eAAe,CAAE,MAAM,CACvB,QAAQ,CAAE,QAAQ,AACpB,CAAC"}'
+  map: '{"version":3,"file":"Logo.svelte","sources":["Logo.svelte"],"sourcesContent":["<script>\\r\\n  import { onDestroy, onMount } from \\"svelte\\";\\r\\n  import { Motion, useAnimation } from \\"svelte-motion\\";\\r\\n  import { largeBarObj, largeBarsArr } from \\"./animationObj\\";\\r\\n  import Bar from \\"./Bar.svelte\\";\\r\\n  import LargeBar from \\"./LargeBar.svelte\\";\\r\\n\\r\\n  import gsap from \\"gsap\\";\\r\\n\\r\\n  onDestroy(() => {});\\r\\n\\r\\n  const bars = Array.from(\\" \\".repeat(27));\\r\\n  const animations = [];\\r\\n  let container;\\r\\n  let shouldPulse = false;\\r\\n  let completed = false;\\r\\n  onMount(() => {\\r\\n    // gsap.to(container, {\\r\\n    //   height: \\"40vh\\",\\r\\n    //   duration: 5,\\r\\n    // });\\r\\n  });\\r\\n<\/script>\\r\\n\\r\\n<div bind:this={container} class=\\"bar-container\\">\\r\\n  {#each bars as bar, i}\\r\\n    <Bar index={i} />\\r\\n  {/each}\\r\\n\\r\\n  {#each largeBarsArr as bar, i}\\r\\n    <LargeBar\\r\\n      index={i}\\r\\n      on:stopPulse={() => {\\r\\n        shouldPulse = false;\\r\\n      }}\\r\\n      on:startPulse={() => {\\r\\n        shouldPulse = true;\\r\\n      }}\\r\\n      on:complete={() => {\\r\\n        animations.push(i);\\r\\n        if (animations.length === 4) {\\r\\n          completed = true;\\r\\n          shouldPulse = true;\\r\\n        }\\r\\n      }}\\r\\n      {shouldPulse}\\r\\n      {completed}\\r\\n      custom={bar.index}\\r\\n      barObj={bar}\\r\\n    />\\r\\n  {/each}\\r\\n</div>\\r\\n\\r\\n<style lang=\\"scss\\">.bar-container {\\n  height: 70vh;\\n  z-index: 3;\\n  display: flex;\\n  gap: 20px;\\n  width: 100%;\\n  align-items: center;\\n  justify-content: center;\\n  position: relative;\\n}</style>\\r\\n"],"names":[],"mappings":"AAqDmB,cAAc,cAAC,CAAC,AACjC,MAAM,CAAE,IAAI,CACZ,OAAO,CAAE,CAAC,CACV,OAAO,CAAE,IAAI,CACb,GAAG,CAAE,IAAI,CACT,KAAK,CAAE,IAAI,CACX,WAAW,CAAE,MAAM,CACnB,eAAe,CAAE,MAAM,CACvB,QAAQ,CAAE,QAAQ,AACpB,CAAC"}'
 };
 const Logo = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   onDestroy(() => {
@@ -4890,6 +5120,7 @@ const Logo = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   return `<div class="${"bar-container svelte-mts0d2"}"${add_attribute("this", container, 0)}>${each(bars, (bar, i) => `${validate_component(Bar, "Bar").$$render($$result, { index: i }, {}, {})}`)}
 
   ${each(largeBarsArr, (bar, i) => `${validate_component(LargeBar, "LargeBar").$$render($$result, {
+    index: i,
     shouldPulse,
     completed,
     custom: bar.index,
@@ -4902,7 +5133,7 @@ var video = "/_app/assets/Render-4ed0516f.mp4";
 var Home_svelte_svelte_type_style_lang = '#myVideo.svelte-19cfmyl.svelte-19cfmyl{position:fixed;right:0;bottom:0;min-width:100%;min-height:100%}.logo-text-container.svelte-19cfmyl.svelte-19cfmyl{max-width:500px;width:100%;z-index:2;opacity:0;padding-top:20px}.logo-text-container.svelte-19cfmyl .logo-text.svelte-19cfmyl{height:auto;object-fit:cover;width:100%}.container.svelte-19cfmyl.svelte-19cfmyl{background-repeat:no-repeat;font-family:Orator;color:white;background-size:cover;display:flex;flex-direction:column;padding:80px;gap:25px;justify-content:center;align-items:center;height:100vh;overflow:hidden}.container.svelte-19cfmyl.svelte-19cfmyl::after{position:absolute;top:0;bottom:0;left:0;right:0;width:100%;height:100%;content:""}h5.svelte-19cfmyl.svelte-19cfmyl{z-index:2;opacity:0;letter-spacing:5px;font-weight:100;font-size:4em;position:relative;text-transform:uppercase}';
 const css$1 = {
   code: '#myVideo.svelte-19cfmyl.svelte-19cfmyl{position:fixed;right:0;bottom:0;min-width:100%;min-height:100%}.logo-text-container.svelte-19cfmyl.svelte-19cfmyl{max-width:500px;width:100%;z-index:2;opacity:0;padding-top:20px}.logo-text-container.svelte-19cfmyl .logo-text.svelte-19cfmyl{height:auto;object-fit:cover;width:100%}.container.svelte-19cfmyl.svelte-19cfmyl{background-repeat:no-repeat;font-family:Orator;color:white;background-size:cover;display:flex;flex-direction:column;padding:80px;gap:25px;justify-content:center;align-items:center;height:100vh;overflow:hidden}.container.svelte-19cfmyl.svelte-19cfmyl::after{position:absolute;top:0;bottom:0;left:0;right:0;width:100%;height:100%;content:""}h5.svelte-19cfmyl.svelte-19cfmyl{z-index:2;opacity:0;letter-spacing:5px;font-weight:100;font-size:4em;position:relative;text-transform:uppercase}',
-  map: '{"version":3,"file":"Home.svelte","sources":["Home.svelte"],"sourcesContent":["<script>\\r\\n  import { Motion } from \\"svelte-motion\\";\\r\\n\\r\\n  import Logo from \\"../images/Logo.svelte\\";\\r\\n  import logoText from \\"../images/home/logo Text.png\\";\\r\\n  import { createEventDispatcher, onMount } from \\"svelte\\";\\r\\n  import video from \\"../images/Render.mp4\\";\\r\\n  import gsap from \\"gsap\\";\\r\\n\\r\\n  onMount(() => {\\r\\n    gsap.to(\\".fade\\", {\\r\\n      opacity: 1,\\r\\n      delay: 5,\\r\\n    });\\r\\n  });\\r\\n<\/script>\\r\\n\\r\\n<video autoplay muted loop id=\\"myVideo\\">\\r\\n  <source src={video} type=\\"video/mp4\\" />\\r\\n</video>\\r\\n<div class=\\"container\\">\\r\\n  <h5 class=\\"fade\\">connecting people</h5>\\r\\n\\r\\n  <Logo />\\r\\n\\r\\n  <div class=\\"logo-text-container fade\\">\\r\\n    <img class=\\"logo-text\\" src={logoText} alt=\\"\\" />\\r\\n  </div>\\r\\n\\r\\n  <h5 class=\\"fade\\">to the art of living</h5>\\r\\n</div>\\r\\n\\r\\n<style lang=\\"scss\\">#myVideo {\\n  position: fixed;\\n  right: 0;\\n  bottom: 0;\\n  min-width: 100%;\\n  min-height: 100%;\\n}\\n\\n.logo-text-container {\\n  max-width: 500px;\\n  width: 100%;\\n  z-index: 2;\\n  opacity: 0;\\n  padding-top: 20px;\\n}\\n.logo-text-container .logo-text {\\n  height: auto;\\n  object-fit: cover;\\n  width: 100%;\\n}\\n\\n.container {\\n  background-repeat: no-repeat;\\n  font-family: Orator;\\n  color: white;\\n  background-size: cover;\\n  display: flex;\\n  flex-direction: column;\\n  padding: 80px;\\n  gap: 25px;\\n  justify-content: center;\\n  align-items: center;\\n  height: 100vh;\\n  overflow: hidden;\\n}\\n.container::after {\\n  position: absolute;\\n  top: 0;\\n  bottom: 0;\\n  left: 0;\\n  right: 0;\\n  width: 100%;\\n  height: 100%;\\n  content: \\"\\";\\n}\\n\\nh5 {\\n  z-index: 2;\\n  opacity: 0;\\n  letter-spacing: 5px;\\n  font-weight: 100;\\n  font-size: 4em;\\n  position: relative;\\n  text-transform: uppercase;\\n}</style>\\r\\n"],"names":[],"mappings":"AAgCmB,QAAQ,8BAAC,CAAC,AAC3B,QAAQ,CAAE,KAAK,CACf,KAAK,CAAE,CAAC,CACR,MAAM,CAAE,CAAC,CACT,SAAS,CAAE,IAAI,CACf,UAAU,CAAE,IAAI,AAClB,CAAC,AAED,oBAAoB,8BAAC,CAAC,AACpB,SAAS,CAAE,KAAK,CAChB,KAAK,CAAE,IAAI,CACX,OAAO,CAAE,CAAC,CACV,OAAO,CAAE,CAAC,CACV,WAAW,CAAE,IAAI,AACnB,CAAC,AACD,mCAAoB,CAAC,UAAU,eAAC,CAAC,AAC/B,MAAM,CAAE,IAAI,CACZ,UAAU,CAAE,KAAK,CACjB,KAAK,CAAE,IAAI,AACb,CAAC,AAED,UAAU,8BAAC,CAAC,AACV,iBAAiB,CAAE,SAAS,CAC5B,WAAW,CAAE,MAAM,CACnB,KAAK,CAAE,KAAK,CACZ,eAAe,CAAE,KAAK,CACtB,OAAO,CAAE,IAAI,CACb,cAAc,CAAE,MAAM,CACtB,OAAO,CAAE,IAAI,CACb,GAAG,CAAE,IAAI,CACT,eAAe,CAAE,MAAM,CACvB,WAAW,CAAE,MAAM,CACnB,MAAM,CAAE,KAAK,CACb,QAAQ,CAAE,MAAM,AAClB,CAAC,AACD,wCAAU,OAAO,AAAC,CAAC,AACjB,QAAQ,CAAE,QAAQ,CAClB,GAAG,CAAE,CAAC,CACN,MAAM,CAAE,CAAC,CACT,IAAI,CAAE,CAAC,CACP,KAAK,CAAE,CAAC,CACR,KAAK,CAAE,IAAI,CACX,MAAM,CAAE,IAAI,CACZ,OAAO,CAAE,EAAE,AACb,CAAC,AAED,EAAE,8BAAC,CAAC,AACF,OAAO,CAAE,CAAC,CACV,OAAO,CAAE,CAAC,CACV,cAAc,CAAE,GAAG,CACnB,WAAW,CAAE,GAAG,CAChB,SAAS,CAAE,GAAG,CACd,QAAQ,CAAE,QAAQ,CAClB,cAAc,CAAE,SAAS,AAC3B,CAAC"}'
+  map: '{"version":3,"file":"Home.svelte","sources":["Home.svelte"],"sourcesContent":["<script>\\r\\n  import { Motion } from \\"svelte-motion\\";\\r\\n\\r\\n  import Logo from \\"./Bar/Logo.svelte\\";\\r\\n  import logoText from \\"../images/home/logo Text.png\\";\\r\\n  import { createEventDispatcher, onMount } from \\"svelte\\";\\r\\n  import video from \\"../images/Render.mp4\\";\\r\\n  import gsap from \\"gsap\\";\\r\\n\\r\\n  onMount(() => {\\r\\n    gsap.to(\\".fade\\", {\\r\\n      opacity: 1,\\r\\n      delay: 5,\\r\\n    });\\r\\n  });\\r\\n<\/script>\\r\\n\\r\\n<video autoplay muted loop id=\\"myVideo\\">\\r\\n  <source src={video} type=\\"video/mp4\\" />\\r\\n</video>\\r\\n<div class=\\"container\\">\\r\\n  <h5 class=\\"fade\\">connecting people</h5>\\r\\n\\r\\n  <Logo />\\r\\n\\r\\n  <div class=\\"logo-text-container fade\\">\\r\\n    <img class=\\"logo-text\\" src={logoText} alt=\\"\\" />\\r\\n  </div>\\r\\n\\r\\n  <h5 class=\\"fade\\">to the art of living</h5>\\r\\n</div>\\r\\n\\r\\n<style lang=\\"scss\\">#myVideo {\\n  position: fixed;\\n  right: 0;\\n  bottom: 0;\\n  min-width: 100%;\\n  min-height: 100%;\\n}\\n\\n.logo-text-container {\\n  max-width: 500px;\\n  width: 100%;\\n  z-index: 2;\\n  opacity: 0;\\n  padding-top: 20px;\\n}\\n.logo-text-container .logo-text {\\n  height: auto;\\n  object-fit: cover;\\n  width: 100%;\\n}\\n\\n.container {\\n  background-repeat: no-repeat;\\n  font-family: Orator;\\n  color: white;\\n  background-size: cover;\\n  display: flex;\\n  flex-direction: column;\\n  padding: 80px;\\n  gap: 25px;\\n  justify-content: center;\\n  align-items: center;\\n  height: 100vh;\\n  overflow: hidden;\\n}\\n.container::after {\\n  position: absolute;\\n  top: 0;\\n  bottom: 0;\\n  left: 0;\\n  right: 0;\\n  width: 100%;\\n  height: 100%;\\n  content: \\"\\";\\n}\\n\\nh5 {\\n  z-index: 2;\\n  opacity: 0;\\n  letter-spacing: 5px;\\n  font-weight: 100;\\n  font-size: 4em;\\n  position: relative;\\n  text-transform: uppercase;\\n}</style>\\r\\n"],"names":[],"mappings":"AAgCmB,QAAQ,8BAAC,CAAC,AAC3B,QAAQ,CAAE,KAAK,CACf,KAAK,CAAE,CAAC,CACR,MAAM,CAAE,CAAC,CACT,SAAS,CAAE,IAAI,CACf,UAAU,CAAE,IAAI,AAClB,CAAC,AAED,oBAAoB,8BAAC,CAAC,AACpB,SAAS,CAAE,KAAK,CAChB,KAAK,CAAE,IAAI,CACX,OAAO,CAAE,CAAC,CACV,OAAO,CAAE,CAAC,CACV,WAAW,CAAE,IAAI,AACnB,CAAC,AACD,mCAAoB,CAAC,UAAU,eAAC,CAAC,AAC/B,MAAM,CAAE,IAAI,CACZ,UAAU,CAAE,KAAK,CACjB,KAAK,CAAE,IAAI,AACb,CAAC,AAED,UAAU,8BAAC,CAAC,AACV,iBAAiB,CAAE,SAAS,CAC5B,WAAW,CAAE,MAAM,CACnB,KAAK,CAAE,KAAK,CACZ,eAAe,CAAE,KAAK,CACtB,OAAO,CAAE,IAAI,CACb,cAAc,CAAE,MAAM,CACtB,OAAO,CAAE,IAAI,CACb,GAAG,CAAE,IAAI,CACT,eAAe,CAAE,MAAM,CACvB,WAAW,CAAE,MAAM,CACnB,MAAM,CAAE,KAAK,CACb,QAAQ,CAAE,MAAM,AAClB,CAAC,AACD,wCAAU,OAAO,AAAC,CAAC,AACjB,QAAQ,CAAE,QAAQ,CAClB,GAAG,CAAE,CAAC,CACN,MAAM,CAAE,CAAC,CACT,IAAI,CAAE,CAAC,CACP,KAAK,CAAE,CAAC,CACR,KAAK,CAAE,IAAI,CACX,MAAM,CAAE,IAAI,CACZ,OAAO,CAAE,EAAE,AACb,CAAC,AAED,EAAE,8BAAC,CAAC,AACF,OAAO,CAAE,CAAC,CACV,OAAO,CAAE,CAAC,CACV,cAAc,CAAE,GAAG,CACnB,WAAW,CAAE,GAAG,CAChB,SAAS,CAAE,GAAG,CACd,QAAQ,CAAE,QAAQ,CAClB,cAAc,CAAE,SAAS,AAC3B,CAAC"}'
 };
 const Home = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   $$result.css.add(css$1);
@@ -4916,16 +5147,17 @@ const Home = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   <h5 class="${"fade svelte-19cfmyl"}">to the art of living</h5>
 </div>`;
 });
-var index_svelte_svelte_type_style_lang = ".container.svelte-ng7e6u{background:#000;width:100vw;height:100vh}";
+var global = '* {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n}\n\n@font-face {\n  font-family: "unisans";\n  src: url("__VITE_ASSET__a2e7014c__") format("opentype");\n}\n@font-face {\n  font-family: "unisansB";\n  src: url("__VITE_ASSET__43ec5e8d__") format("opentype");\n}\n@font-face {\n  font-family: "Orator";\n  src: url("__VITE_ASSET__b76fd88c__") format("truetype");\n}\n@font-face {\n  font-family: "Orator";\n  src: url("__VITE_ASSET__b76fd88c__") format("truetype");\n}\nhtml {\n  font-family: Orator;\n  overflow-x: hidden;\n}\n\n.close-main {\n  height: 32px;\n  max-height: 32px;\n  max-width: 32px;\n  min-height: 32px;\n  min-width: 32px;\n  position: absolute;\n  right: 12px;\n  top: 0;\n  cursor: pointer;\n  width: 32px;\n  z-index: 5;\n}\n.close-main:after {\n  background-color: black;\n  content: "";\n  display: block;\n  right: 0;\n  position: absolute;\n  top: 50%;\n  height: 2px;\n  width: 50%;\n  transform: translate(-50%) translateY(-50%) rotate(45deg);\n  transform-origin: center center;\n}\n.close-main::before {\n  background-color: black;\n  content: "";\n  height: 50%;\n  width: 2px;\n  display: block;\n  left: 50%;\n  position: absolute;\n  top: 50%;\n  transform: translate(-50%) translateY(-50%) rotate(45deg);\n  transform-origin: center center;\n}';
+var index_svelte_svelte_type_style_lang = ".container.svelte-ib4iq8{background:#000;width:100vw;height:100vh}";
 const css = {
-  code: ".container.svelte-ng7e6u{background:#000;width:100vw;height:100vh}",
-  map: '{"version":3,"file":"index.svelte","sources":["index.svelte"],"sourcesContent":["<script>\\r\\n  import { onDestroy, onMount } from \\"svelte\\";\\r\\n  import About from \\"../components/About.svelte\\";\\r\\n  import Home from \\"../components/Home.svelte\\";\\r\\n  import Marque from \\"../components/Marquee/Marque.svelte\\";\\r\\n  import Press from \\"../components/press/Press.svelte\\";\\r\\n\\r\\n  import \\"../global.scss\\";\\r\\n  import Logo from \\"../images/Logo.svelte\\";\\r\\n\\r\\n  let windowThreshHold = false;\\r\\n\\r\\n  onMount(() => {});\\r\\n  onDestroy(() => {});\\r\\n<\/script>\\r\\n\\r\\n<div class=\\"container\\">\\r\\n  <Home />\\r\\n</div>\\r\\n\\r\\n<style lang=\\"scss\\">.container {\\n  background: #000;\\n  width: 100vw;\\n  height: 100vh;\\n}</style>\\r\\n"],"names":[],"mappings":"AAoBmB,UAAU,cAAC,CAAC,AAC7B,UAAU,CAAE,IAAI,CAChB,KAAK,CAAE,KAAK,CACZ,MAAM,CAAE,KAAK,AACf,CAAC"}'
+  code: ".container.svelte-ib4iq8{background:#000;width:100vw;height:100vh}",
+  map: '{"version":3,"file":"index.svelte","sources":["index.svelte"],"sourcesContent":["<script>\\r\\n  import gsap from \\"gsap\\";\\r\\n\\r\\n  import { onDestroy, onMount } from \\"svelte\\";\\r\\n  import About from \\"../components/About.svelte\\";\\r\\n  import Home from \\"../components/Home.svelte\\";\\r\\n  import Marque from \\"../components/Marquee/Marque.svelte\\";\\r\\n  import Press from \\"../components/press/Press.svelte\\";\\r\\n  import Logo from \\"../components/Bar/Logo.svelte\\";\\r\\n  import \\"../global.scss\\";\\r\\n\\r\\n  let windowThreshHold = false;\\r\\n\\r\\n  onMount(() => {});\\r\\n  onDestroy(() => {});\\r\\n<\/script>\\r\\n\\r\\n<div class=\\"container\\">\\r\\n  <Home />\\r\\n</div>\\r\\n\\r\\n<style lang=\\"scss\\">.page-transition-white {\\n  background-color: white;\\n  width: 100vw;\\n  position: absolute;\\n  bottom: 0;\\n  height: 0vh;\\n}\\n\\n.page-transition-black {\\n  background-color: black;\\n  width: 100vw;\\n  position: absolute;\\n  bottom: 0;\\n  height: 0vh;\\n}\\n\\n.container {\\n  background: #000;\\n  width: 100vw;\\n  height: 100vh;\\n}</style>\\r\\n"],"names":[],"mappings":"AAqCA,UAAU,cAAC,CAAC,AACV,UAAU,CAAE,IAAI,CAChB,KAAK,CAAE,KAAK,CACZ,MAAM,CAAE,KAAK,AACf,CAAC"}'
 };
 const Routes = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   onDestroy(() => {
   });
   $$result.css.add(css);
-  return `<div class="${"container svelte-ng7e6u"}">${validate_component(Home, "Home").$$render($$result, {}, {}, {})}
+  return `<div class="${"container svelte-ib4iq8"}">${validate_component(Home, "Home").$$render($$result, {}, {}, {})}
 </div>`;
 });
 var index = /* @__PURE__ */ Object.freeze({

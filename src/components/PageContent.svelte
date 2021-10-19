@@ -2,15 +2,43 @@
   import { createEventDispatcher, onMount } from "svelte";
   import { amp, browser, dev, mode, prerendering } from "$app/env";
   import gsap from "gsap";
+  import BgLogo from "./BgLogo.svelte";
   export let currNav;
   export let pagesArr;
+  export let index;
+
   let navOpen = false;
   let container;
+  let shouldPlayTransition = index === 17 || index === 23;
 
   onMount(() => {
-    gsap.to(container, {
-      translateY: -container.offsetTop,
-    });
+    let tl = gsap.timeline();
+
+    if (index === 3) {
+      gsap.to(container, {
+        translateY: -container.offsetTop,
+      });
+    } else if (shouldPlayTransition) {
+      tl.to(".page-transition-black", {
+        height: "100vh",
+        ease: "power3.in",
+
+        duration: "1",
+      })
+        .to(container, {
+          top: 0,
+        })
+        .to(
+          ".page-transition-black",
+          {
+            height: "0vh",
+            ease: "power3.in",
+
+            duration: "0.8",
+          },
+          "<"
+        );
+    }
   });
   $: {
     if (navOpen && browser) {
@@ -28,26 +56,35 @@
   const dispatch = createEventDispatcher();
 </script>
 
+{#if shouldPlayTransition}
+  <div class="page-transition-black" />
+{/if}
+<BgLogo text="Apel Design" />
 <div bind:this={container} class="main-page-container">
   <svelte:component this={currNav.component} />
 </div>
 
 <style lang="scss">
+  .page-transition-black {
+    background-color: black;
+    width: 100vw;
+    position: absolute;
+    bottom: 0;
+    height: 0vh;
+    z-index: 3;
+  }
   .main-page-container {
     padding: 20px;
-    display: flex;
-    overflow-y: auto;
+
     overflow-x: hidden;
-    height: 100%;
+
     gap: 25px;
     z-index: 4;
     position: absolute;
     width: 100vw;
-    height: 100vh;
+    height: 100%;
 
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    background-image: url("../../images/home/Background Photo.jpg");
   }
   .list-item-container {
     height: 0px;

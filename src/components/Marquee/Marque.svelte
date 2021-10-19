@@ -11,6 +11,11 @@
   import MalibuRebuild from "../MalibuRebuild.svelte";
   import MeetTheTeam from "../meetTheTeam/MeetTheTeam.svelte";
   import Press from "../press/Press.svelte";
+  import PrivateHomes from "../Private Homes/PrivateHomes.svelte";
+  import Sculpture from "../Sculpture/Sculpture.svelte";
+  import WhatWeDo from "../WhatWeDo/WhatWeDo.svelte";
+  export let categories;
+  export let index;
   let menu;
   let currNav = "meet amit apel";
   let pageContent = false;
@@ -27,6 +32,13 @@
     press: {
       component: Press,
     },
+    "private homes": {
+      component: PrivateHomes,
+    },
+    sculpture: {
+      component: Sculpture,
+    },
+    "what we do": { component: WhatWeDo },
   };
   const pagesArr = [
     {
@@ -36,12 +48,12 @@
     { title: "malibu rebuild", component: MalibuRebuild },
     { title: "meet the team", component: MeetTheTeam },
     { title: "press", component: Press },
+    { title: "what we do", component: WhatWeDo },
   ];
 </script>
 
 <div class="container">
   <div class="frame">
-    <BgLogo text="Apel Design" />
     <div class="top-nav-container">
       <div class="logo-container">
         <img class="logo" src={mainLogo} alt="" />
@@ -51,15 +63,15 @@
   </div>
   <div class="menu-wrap">
     <nav bind:this={menu} class="menu">
-      {#each menuItems as item, i}
+      {#each menuItems[index] as item, i}
         <MenuItem
           on:navChange={(e) => {
-            console.log("test");
             pageContent = true;
             if (pages[e.detail]) {
               currNav = pages[e.detail];
             }
           }}
+          {index}
           {currNav}
           {pageContent}
           title={item.title}
@@ -73,11 +85,12 @@
   <PageContent
     on:navChange={(e) => {
       pageContent = true;
-      console.log(e);
+
       if (pages[e.detail.title]) {
         currNav = pages[e.detail.title];
       }
     }}
+    {index}
     {pagesArr}
     {currNav}
   />

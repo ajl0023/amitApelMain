@@ -1,7 +1,7 @@
 <script>
   import { Motion } from "svelte-motion";
 
-  import Logo from "../images/Logo.svelte";
+  import Logo from "./Bar/Logo.svelte";
   import logoText from "../images/home/logo Text.png";
   import { createEventDispatcher, onMount } from "svelte";
   import video from "../images/Render.mp4";
