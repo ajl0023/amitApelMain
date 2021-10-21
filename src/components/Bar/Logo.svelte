@@ -1,4 +1,5 @@
 <script>
+  import { shouldAnimate } from "./../../animationController.js";
   import { onDestroy, onMount } from "svelte";
   import { Motion, useAnimation } from "svelte-motion";
   import { largeBarObj, largeBarsArr } from "./animationObj";
@@ -15,10 +16,12 @@
   let shouldPulse = false;
   let completed = false;
   onMount(() => {
-    // gsap.to(container, {
-    //   height: "40vh",
-    //   duration: 5,
-    // });
+    if (shouldAnimate) {
+      gsap.to(container, {
+        height: "40vh",
+        duration: 5,
+      });
+    }
   });
 </script>
 

@@ -1,4 +1,5 @@
 var cloudinary = require("cloudinary");
+const fs = require('fs');
 
 cloudinary.config({
   cloud_name: "dt4xntymn", // add your cloud_name
@@ -9,18 +10,23 @@ cloudinary.config({
 
 cloudinary.v2.search
   .expression(
-    "folder:mainSite/privateHomes/*" // add your folder
+    "16366*" // add your folder
   )
-  .sort_by("public_id", "desc")
-  .max_results(30)
+  .sort_by("filename", "desc")
+
+  .max_results(22)
   .execute()
+
   .then((result) => {
-   
+
+    // const urls = result.resources.map((item) => {
+    //   return {
+    //     img: item.url,
+    //     label: ""
+    //   };
+    // });
     const urls = result.resources.map((item) => {
-      return {
-        img: item.url,
-        label: ""
-      };
+      return item.url
     });
-    console.log(urls);
+    console.log(JSON.stringify(urls))
   });

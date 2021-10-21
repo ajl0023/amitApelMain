@@ -1,17 +1,21 @@
 <script>
+  import { shouldAnimate } from "./../../animationController.js";
   import gsap from "gsap";
   import { onMount } from "svelte";
   export let index;
   export let animations;
   export let shouldPulse;
+
   let bar;
 
   onMount(() => {
-    // gsap.to(bar, {
-    //   opacity: 1,
-    //   delay: 4.5,
-    //   duration: 5,
-    // });
+    if (shouldAnimate) {
+      gsap.to(bar, {
+        opacity: 1,
+        delay: 4.5,
+        duration: 5,
+      });
+    }
   });
 </script>
 

@@ -1,5 +1,13 @@
 <script>
+  import PrivateHomesGallery from "./PrivateHomesGallery.svelte";
   import { images } from "./images";
+  import privateHomes from "./privateHomeFinal.json";
+  let shouldShowGallery = false;
+  let selected = null;
+  const closeModal = () => {
+    selected = null;
+    shouldShowGallery = false;
+  };
 </script>
 
 <div class="container">
@@ -7,9 +15,15 @@
     <h5 class="main-text-header">Private Homes</h5>
     <div class="gallery-container">
       {#each images as img}
-        <div class="grid-item-container">
+        <div
+          on:click={() => {
+            selected = img.address;
+            shouldShowGallery = true;
+          }}
+          class="grid-item-container"
+        >
           <div class="image-container">
-            <img class="grid-image" src={img.img} alt="" />
+            <img loading="lazy" class="grid-image" src={img.img} alt="" />
           </div>
           <h5 class="label">{img.label}</h5>
         </div>
@@ -17,6 +31,12 @@
     </div>
   </div>
 </div>
+{#if shouldShowGallery && privateHomes[selected]}
+  <PrivateHomesGallery
+    on:closeModal={closeModal}
+    selected={privateHomes[selected]}
+  />
+{/if}
 
 <style lang="scss">
   .grid-item-container {
@@ -35,7 +55,7 @@
     }
     .image-container {
       width: 100%;
-     
+      cursor: pointer;
       height: 100%;
       .grid-image {
         object-fit: cover;

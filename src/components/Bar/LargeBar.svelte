@@ -1,4 +1,5 @@
 <script>
+  import { shouldAnimate } from "./../../animationController.js";
   import { browser } from "$app/env";
   import gsap from "gsap";
   import { createEventDispatcher, onMount } from "svelte";
@@ -17,33 +18,41 @@
   let maintl;
   onMount(async () => {
     console.log(index);
-    // maintl = gsap.timeline({ delay: barObj.delay });
+    if (shouldAnimate) {
+      maintl = gsap.timeline({ delay: barObj.delay });
 
-    // maintl
-    //   .to(bar, {
-    //     scale: 1,
-    //     duration: 5,
-    //     opacity: 1,
-    //     ...barObj.position,
-    //     ease: "power1.in",
-    //   })
+      maintl
+        .to(bar, {
+          scale: 1,
+          duration: 5,
+          opacity: 1,
+          ...barObj.position,
+          ease: "power1.in",
+        })
+        .to(
+          bar,
+          {
+            backgroundColor: "white",
+          },
+          ">-0.5"
+        )
+        .to(
+          img,
+          {
+            opacity: 0,
+          },
+          ">-0.5"
+        )
 
-    //   .to(
-    //     img,
-    //     {
-    //       opacity: 0,
-    //     },
-    //     ">-0.5"
-    //   )
+        .then(() => {
+          dispatch("complete");
+        });
 
-    //   .then(() => {
-    //     dispatch("complete");
-    //   });
-
-    // tl = gsap.timeline({
-    //   repeat: -1,
-    //   paused: true,
-    // });
+      tl = gsap.timeline({
+        repeat: -1,
+        paused: true,
+      });
+    }
   });
 
   $: {
@@ -123,7 +132,7 @@
       }}
     />
   {/if}
-  <img bind:this={img} src={barObj.img} class="cover-image" alt="" />
+  <video autoplay muted bind:this={img} class="cover-image" src={barObj.img} />
 </div>
 
 <style lang="scss">
@@ -144,8 +153,6 @@
     overflow: hidden;
     height: 100%;
     position: absolute;
-
-    background-color: white;
   }
   .opened {
     z-index: 3;

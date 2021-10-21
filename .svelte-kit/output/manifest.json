@@ -1,10 +1,10 @@
 {
   ".svelte-kit/build/runtime/internal/start.js": {
-    "file": "start-66713135.js",
+    "file": "start-48c5beae.js",
     "src": ".svelte-kit/build/runtime/internal/start.js",
     "isEntry": true,
     "imports": [
-      "_vendor-5f6e6023.js"
+      "_vendor-5b31feb5.js"
     ],
     "dynamicImports": [
       ".svelte-kit/build/components/layout.svelte",
@@ -16,40 +16,40 @@
     ]
   },
   ".svelte-kit/build/components/layout.svelte": {
-    "file": "layout.svelte-d1dc0dd4.js",
+    "file": "layout.svelte-82ddd2a1.js",
     "src": ".svelte-kit/build/components/layout.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_vendor-5f6e6023.js"
+      "_vendor-5b31feb5.js"
     ]
   },
   ".svelte-kit/build/components/error.svelte": {
-    "file": "error.svelte-48bd31df.js",
+    "file": "error.svelte-9e8143b8.js",
     "src": ".svelte-kit/build/components/error.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_vendor-5f6e6023.js"
+      "_vendor-5b31feb5.js"
     ]
   },
   "src/routes/index.svelte": {
-    "file": "pages/index.svelte-3d993514.js",
+    "file": "pages/index.svelte-36118fd3.js",
     "src": "src/routes/index.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_vendor-5f6e6023.js"
+      "_vendor-5b31feb5.js"
     ],
     "css": [
-      "assets/pages/index.svelte-ae4a10fc.css"
+      "assets/pages/index.svelte-b90537d1.css"
     ],
     "assets": [
       "assets/Logo Sideways-5b2a92a6.png",
-      "assets/1-52e24dec.png",
-      "assets/2-779b6b5c.png",
-      "assets/3-79f96e4f.jpg",
-      "assets/4-c6c03fae.png",
+      "assets/SD Bar 1-03e1c9ee.mp4",
+      "assets/SD Bar 2-71e00464.mp4",
+      "assets/SD Bar 3-b3cd371d.mp4",
+      "assets/SD Bar 4-fc01f970.mp4",
       "assets/AA-logo-black-mac (1)-2892f7ae.svg",
       "assets/dance-6f6e8192.mp4",
       "assets/logo Text-6620b85f.png",
@@ -61,7 +61,7 @@
       "assets/Capsuula-b76fd88c.ttf"
     ]
   },
-  "_vendor-5f6e6023.js": {
-    "file": "chunks/vendor-5f6e6023.js"
+  "_vendor-5b31feb5.js": {
+    "file": "chunks/vendor-5b31feb5.js"
   }
 }

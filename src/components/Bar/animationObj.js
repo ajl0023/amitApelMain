@@ -1,7 +1,7 @@
-import main1 from "../../images/home/1.png";
-import main2 from "../../images/home/2.png";
-import main3 from "../../images/home/3.jpg";
-import main4 from "../../images/home/4.png";
+import main1 from "./slideshows/SD Bar 1.mp4";
+import main2 from "./slideshows/SD Bar 2.mp4";
+import main3 from "./slideshows/SD Bar 3.mp4";
+import main4 from "./slideshows/SD Bar 4.mp4";
 
 export const largeBarObj = {
   3: {
