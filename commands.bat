@@ -1,2 +1,2 @@
-npm run build && git add . && git commit -m "added all photos and video intro" && git push origin main
+npm run build && git add . && git commit -m "orgnized photos: was not fun at all" && git push origin main
 

@@ -29,6 +29,7 @@
 		"cloudinary": "^1.27.1",
 		"gsap": "^3.8.0",
 		"node-sass": "^6.0.1",
+		"sharp": "^0.29.2",
 		"svelte-preprocess": "^4.9.2",
 		"vanilla-lazyload": "^17.4.0"
 	}

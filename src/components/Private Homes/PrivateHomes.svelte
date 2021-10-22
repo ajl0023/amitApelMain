@@ -23,7 +23,7 @@
           class="grid-item-container"
         >
           <div class="image-container">
-            <img loading="lazy" class="grid-image" src={img.img} alt="" />
+            <img loading="lazy" class="grid-image" src={img.thumb} alt="" />
           </div>
           <h5 class="label">{img.label}</h5>
         </div>

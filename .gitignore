@@ -4,5 +4,6 @@ client/src/images
 .DS_Store
 **bulma.prefixed.css
 cloudinary.js
+node
 # Local Netlify folder
 .netlify

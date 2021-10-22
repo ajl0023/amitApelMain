@@ -1,6 +1,6 @@
 {
   ".svelte-kit/build/runtime/internal/start.js": {
-    "file": "start-48c5beae.js",
+    "file": "start-e69a5635.js",
     "src": ".svelte-kit/build/runtime/internal/start.js",
     "isEntry": true,
     "imports": [
@@ -34,7 +34,7 @@
     ]
   },
   "src/routes/index.svelte": {
-    "file": "pages/index.svelte-36118fd3.js",
+    "file": "pages/index.svelte-5e20f6c1.js",
     "src": "src/routes/index.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
@@ -42,7 +42,7 @@
       "_vendor-5b31feb5.js"
     ],
     "css": [
-      "assets/pages/index.svelte-b90537d1.css"
+      "assets/pages/index.svelte-132f59b2.css"
     ],
     "assets": [
       "assets/Logo Sideways-5b2a92a6.png",
