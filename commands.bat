@@ -1,2 +1,2 @@
-npm run build && git add . && git commit -m "orgnized photos: was not fun at all" && git push origin main
+npm run build && git add . && git commit -m "fixed minor css errors" && git push origin main
 

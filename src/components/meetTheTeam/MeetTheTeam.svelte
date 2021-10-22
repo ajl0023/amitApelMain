@@ -85,11 +85,16 @@
     letter-spacing: 3px;
     text-align: center;
     color: #68208e;
-   
+
     position: relative;
     text-transform: uppercase;
   }
   .container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
   }
   .card-container {
     display: flex;
