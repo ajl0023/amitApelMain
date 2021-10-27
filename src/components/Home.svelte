@@ -3,39 +3,68 @@
 
   import Logo from "./Bar/Logo.svelte";
   import logoText from "../images/home/logo Text.png";
-  import { createEventDispatcher, onMount } from "svelte";
+  import { afterUpdate, createEventDispatcher, onMount } from "svelte";
   import video from "../images/Render.mp4";
+  import brushVid from "../images/brush.mp4";
   import gsap from "gsap";
 
+  let loading = true;
   onMount(() => {
-    gsap.to(".fade", {
-      opacity: 1,
-      delay: 5,
+    gsap.to(".video-stroke", {
+      opacity: 0,
+
+      delay: 3,
     });
+  });
+  afterUpdate(() => {
+    if (!loading) {
+      console.log("test");
+      gsap.to(".fade", {
+        opacity: 1,
+        delay: 5,
+      });
+    }
   });
 </script>
 
-<video autoplay muted loop id="myVideo">
-  <source src={video} type="video/mp4" />
-</video>
-<div class="container">
-  <h5 class="fade">connecting people</h5>
-
-  <Logo />
-
-  <div class="logo-text-container fade">
-    <img class="logo-text" src={logoText} alt="" />
-  </div>
-
-  <h5 class="fade">to the art of living</h5>
+<div class="video-stroke">
+  <video
+    on:ended={() => {
+      loading = false;
+    }}
+    class="video-bg"
+    autoplay
+    muted
+  >
+    <source class="brush" muted src={brushVid} type="video/mp4" />
+  </video>
 </div>
 
+{#if !loading}
+  <video class="video-bg" autoplay muted loop id="myVideo">
+    <source src={video} type="video/mp4" />
+  </video>
+  <div class="container">
+    <h5 class="fade">connecting people</h5>
+
+    <Logo />
+
+    <div class="logo-text-container fade">
+      <img class="logo-text" src={logoText} alt="" />
+    </div>
+
+    <h5 class="fade">to the art of living</h5>
+  </div>
+{/if}
+
 <style lang="scss">
-  #myVideo {
+  .video-bg {
     position: fixed;
     right: 0;
     bottom: 0;
-
+    top: 0;
+    bottom: 0;
+    margin: auto;
     min-width: 100%;
     min-height: 100%;
   }

@@ -1,6 +1,6 @@
 {
   ".svelte-kit/build/runtime/internal/start.js": {
-    "file": "start-2efa252a.js",
+    "file": "start-19a67228.js",
     "src": ".svelte-kit/build/runtime/internal/start.js",
     "isEntry": true,
     "imports": [
@@ -34,7 +34,7 @@
     ]
   },
   "src/routes/index.svelte": {
-    "file": "pages/index.svelte-3d8b5ad0.js",
+    "file": "pages/index.svelte-749afec3.js",
     "src": "src/routes/index.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
@@ -42,7 +42,7 @@
       "_vendor-5b31feb5.js"
     ],
     "css": [
-      "assets/pages/index.svelte-13b77712.css"
+      "assets/pages/index.svelte-69c3ba38.css"
     ],
     "assets": [
       "assets/Logo Sideways-5b2a92a6.png",
@@ -54,6 +54,7 @@
       "assets/dance-6f6e8192.mp4",
       "assets/logo Text-6620b85f.png",
       "assets/Render-4ed0516f.mp4",
+      "assets/brush-121e5538.mp4",
       "assets/amitapel4 (1)-07a16dc1.webp",
       "assets/Background Photo-112e1098.jpg",
       "assets/unisans-a2e7014c.otf",

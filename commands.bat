@@ -1,2 +1,2 @@
-npm run build && git add . && git commit -m "fixed minor css errors" && git push origin main
+npm run build && git add . && git commit -m "added brush stroke video" && git push origin main
 
