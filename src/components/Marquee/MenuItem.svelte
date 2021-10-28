@@ -6,9 +6,7 @@
   export let labels;
   export let title;
   export let pageContent;
-  export let item;
-  export let index;
-  export let currNav;
+
   let menuItem;
   let menuItemA;
   let marquee;
@@ -77,26 +75,6 @@
     border-radius: 5vw;
     background-size: cover;
     background-position: 50% 50%;
-  }
-  .unbutton {
-    background: none;
-    border: 0;
-    padding: 0;
-    margin: 0;
-    font: inherit;
-  }
-
-  .unbutton:focus {
-    outline: none;
-  }
-
-  .menu-wrap {
-    display: flex;
-    flex-direction: column;
-    width: 100vw;
-    height: calc(100vh - 13rem);
-    position: relative;
-    justify-content: center;
   }
 
   .menu__item {

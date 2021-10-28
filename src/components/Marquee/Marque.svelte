@@ -1,23 +1,20 @@
 <script>
-  import BgLogo from "./../BgLogo.svelte";
-  import Furniture from "./../Furniture/Furniture.svelte";
-  import MultiUnits from "./../MultiUnits/MultiUnits.svelte";
-  import { onMount } from "svelte";
-  import PageContent from "../PageContent.svelte";
-  import { store } from "./animationStore";
-  import MenuItem from "./MenuItem.svelte";
-  import { menuItems } from "./menuItems";
   import mainLogo from "../../images/home/AA-logo-black-mac (1).svg";
   import About from "../About.svelte";
-
+  import Art from "../Art/Art.svelte";
   import MalibuRebuild from "../MalibuRebuild.svelte";
   import MeetTheTeam from "../meetTheTeam/MeetTheTeam.svelte";
+  import PageContent from "../PageContent.svelte";
   import Press from "../press/Press.svelte";
   import PrivateHomes from "../Private Homes/PrivateHomes.svelte";
   import Sculpture from "../Sculpture/Sculpture.svelte";
   import WhatWeDo from "../WhatWeDo/WhatWeDo.svelte";
-  import Art from "../Art/Art.svelte";
-  export let categories;
+  import BgLogo from "./../BgLogo.svelte";
+  import Furniture from "./../Furniture/Furniture.svelte";
+  import MultiUnits from "./../MultiUnits/MultiUnits.svelte";
+  import MenuItem from "./MenuItem.svelte";
+  import { menuItems } from "./menuItems";
+
   export let index;
   let menu;
   let currNav = "meet amit apel";

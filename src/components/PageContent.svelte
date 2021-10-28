@@ -4,7 +4,6 @@
   import gsap from "gsap";
   import BgLogo from "./BgLogo.svelte";
   export let currNav;
-  export let pagesArr;
   export let index;
 
   let navOpen = false;
@@ -89,62 +88,5 @@
     height: 100%;
 
     background-image: url("../../images/home/Background Photo.jpg");
-  }
-  .list-item-container {
-    height: 0px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 10px;
-    font-size: 1.3em;
-    overflow: hidden;
-  }
-
-  .list-item {
-    top: 0;
-    z-index: 1;
-    cursor: pointer;
-    position: relative;
-    font-weight: 600;
-
-    text-transform: uppercase;
-  }
-  .categories-container {
-    position: fixed;
-    right: 0;
-    top: 30vh;
-    right: 20vw;
-    z-index: 3;
-    color: #68208e;
-
-    .categories-label {
-      font-size: 2em;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      cursor: pointer;
-      text-transform: uppercase;
-      .triangle-container {
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-      }
-    }
-    .t1 {
-      width: 0;
-      height: 0;
-      border-left: 5px solid transparent;
-      border-right: 5px solid transparent;
-
-      border-bottom: 5px solid #68208e;
-    }
-    .t2 {
-      width: 0;
-      height: 0;
-      border-left: 5px solid transparent;
-      border-right: 5px solid transparent;
-
-      border-top: 5px solid #68208e;
-    }
   }
 </style>

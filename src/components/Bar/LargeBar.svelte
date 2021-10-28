@@ -5,8 +5,7 @@
   import { createEventDispatcher, onMount } from "svelte";
   import Marque from "../Marquee/Marque.svelte";
 
-  export let index;
-  export let animations;
+
   export let shouldPulse;
   export let barObj;
   export let completed;
