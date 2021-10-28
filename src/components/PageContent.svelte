@@ -8,6 +8,7 @@
   export let index;
 
   let navOpen = false;
+  let shouldLoadImages = false;
   let container;
   let shouldPlayTransition = index === 17 || index === 23;
 
@@ -35,6 +36,9 @@
             ease: "power3.in",
 
             duration: "0.8",
+            onComplete: () => {
+              shouldLoadImages = true;
+            },
           },
           "<"
         );
@@ -59,9 +63,9 @@
 {#if shouldPlayTransition}
   <div class="page-transition-black" />
 {/if}
-<BgLogo text="Apel Design" />
+
 <div bind:this={container} class="main-page-container">
-  <svelte:component this={currNav.component} />
+  <svelte:component this={currNav.component} {shouldLoadImages} />
 </div>
 
 <style lang="scss">

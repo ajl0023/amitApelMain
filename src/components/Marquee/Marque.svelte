@@ -1,6 +1,8 @@
 <script>
+  import BgLogo from "./../BgLogo.svelte";
+  import Furniture from "./../Furniture/Furniture.svelte";
+  import MultiUnits from "./../MultiUnits/MultiUnits.svelte";
   import { onMount } from "svelte";
-  import BgLogo from "../BgLogo.svelte";
   import PageContent from "../PageContent.svelte";
   import { store } from "./animationStore";
   import MenuItem from "./MenuItem.svelte";
@@ -14,10 +16,12 @@
   import PrivateHomes from "../Private Homes/PrivateHomes.svelte";
   import Sculpture from "../Sculpture/Sculpture.svelte";
   import WhatWeDo from "../WhatWeDo/WhatWeDo.svelte";
+  import Art from "../Art/Art.svelte";
   export let categories;
   export let index;
   let menu;
   let currNav = "meet amit apel";
+  let currCategory = "";
   let pageContent = false;
   const pages = {
     "meet amit apel": {
@@ -35,10 +39,15 @@
     "private homes": {
       component: PrivateHomes,
     },
+    "multi units": {
+      component: MultiUnits,
+    },
     sculpture: {
       component: Sculpture,
     },
     "what we do": { component: WhatWeDo },
+    furniture: { component: Furniture },
+    art: { component: Art },
   };
   const pagesArr = [
     {
@@ -63,7 +72,7 @@
   </div>
   <div class="menu-wrap">
     <nav bind:this={menu} class="menu">
-      {#each menuItems[index] as item, i}
+      {#each menuItems[index].pages as item, i}
         <MenuItem
           on:navChange={(e) => {
             pageContent = true;
@@ -95,6 +104,7 @@
     {currNav}
   />
 {/if}
+<BgLogo text={menuItems[index].category} />
 
 <style lang="scss">
   .logo-container {

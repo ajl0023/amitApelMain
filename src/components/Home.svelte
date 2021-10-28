@@ -1,4 +1,5 @@
 <script>
+  import { shouldAnimate } from "./../animationController.js";
   import { Motion } from "svelte-motion";
 
   import Logo from "./Bar/Logo.svelte";
@@ -12,13 +13,11 @@
   onMount(() => {
     gsap.to(".video-stroke", {
       opacity: 0,
-
       delay: 3,
     });
   });
   afterUpdate(() => {
     if (!loading) {
-      console.log("test");
       gsap.to(".fade", {
         opacity: 1,
         delay: 5,
@@ -27,20 +26,22 @@
   });
 </script>
 
-<div class="video-stroke">
-  <video
-    on:ended={() => {
-      loading = false;
-    }}
-    class="video-bg"
-    autoplay
-    muted
-  >
-    <source class="brush" muted src={brushVid} type="video/mp4" />
-  </video>
-</div>
+{#if shouldAnimate}
+  <div class="video-stroke">
+    <video
+      on:ended={() => {
+        loading = false;
+      }}
+      class="video-bg"
+      autoplay
+      muted
+    >
+      <source class="brush" muted src={brushVid} type="video/mp4" />
+    </video>
+  </div>
+{/if}
 
-{#if !loading}
+{#if !loading || shouldAnimate === false}
   <video class="video-bg" autoplay muted loop id="myVideo">
     <source src={video} type="video/mp4" />
   </video>
@@ -60,13 +61,9 @@
 <style lang="scss">
   .video-bg {
     position: fixed;
-    right: 0;
-    bottom: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    min-width: 100%;
-    min-height: 100%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
   .logo-text-container {
     max-width: 500px;

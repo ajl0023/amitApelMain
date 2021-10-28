@@ -7,6 +7,7 @@
   import Marque from "../components/Marquee/Marque.svelte";
   import Press from "../components/press/Press.svelte";
   import Logo from "../components/Bar/Logo.svelte";
+  import img from "../components/Bar/slideshows/SD Bar 1.mp4";
   import "../global.scss";
 
   let windowThreshHold = false;

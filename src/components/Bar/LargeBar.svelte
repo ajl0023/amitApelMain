@@ -17,15 +17,18 @@
   let tl;
   let maintl;
   onMount(async () => {
-    console.log(index);
     if (shouldAnimate) {
       maintl = gsap.timeline({ delay: barObj.delay });
 
       maintl
         .to(bar, {
-          scale: 1,
-          duration: 5,
           opacity: 1,
+          duration: 3,
+        })
+        .to(bar, {
+          scale: 1,
+          duration: 3,
+
           ...barObj.position,
           ease: "power1.in",
         })
@@ -34,14 +37,14 @@
           {
             backgroundColor: "white",
           },
-          ">-0.5"
+          ">-0.8"
         )
         .to(
           img,
           {
             opacity: 0,
           },
-          ">-0.5"
+          ">-0.4"
         )
 
         .then(() => {
@@ -145,7 +148,8 @@
   }
 
   .bar-container {
-    opacity: 1;
+    opacity: 0;
+
     width: 20%;
     top: 0;
     z-index: 1;

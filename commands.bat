@@ -1,2 +1,2 @@
-npm run build && git add . && git commit -m "added brush stroke video" && git push origin main
+npm run build && git add . && git commit -m "edited animations/added multiples pages to art" && git push origin main
 

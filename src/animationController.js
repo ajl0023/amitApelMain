@@ -1,1 +1,1 @@
-export const shouldAnimate = true
+export const shouldAnimate = true;

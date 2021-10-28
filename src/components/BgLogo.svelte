@@ -33,7 +33,7 @@
     justify-content: center;
     width: 100%;
 
-    z-index: 2;
+    z-index: 3;
     img {
       object-fit: cover;
       height: auto;
