@@ -1,13 +1,14 @@
 <script>
   import gsap from "gsap";
   import { afterUpdate, onMount } from "svelte";
-  import brushVid from "../images/brush.mp4";
+  import brush1 from "../images/brush.mp4";
   import logoText from "../images/home/logo Text.png";
   import brush2 from "../images/Render.mp4";
   import { shouldAnimate } from "./../animationController.js";
   import Logo from "./Bar/Logo.svelte";
 
   let loading = true;
+  let loaded = false;
   onMount(() => {
     gsap.to(".video-stroke", {
       opacity: 0,
@@ -34,7 +35,7 @@
       autoplay
       muted
     >
-      <source class="brush" muted src={brushVid} type="video/mp4" />
+      <source class="brush" muted src={brush1} type="video/mp4" />
     </video>
   </div>
 {/if}
@@ -61,7 +62,13 @@
     position: fixed;
     left: 50%;
     top: 50%;
+
+    width: 100vw;
+
     transform: translate(-50%, -50%);
+  }
+  .video-stroke {
+    width: 100vw;
   }
   .logo-text-container {
     max-width: 500px;

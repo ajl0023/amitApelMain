@@ -1,19 +1,19 @@
 <script>
   import gsap from "gsap";
-  import { onDestroy, onMount } from "svelte";
+  import { onMount } from "svelte";
   import { shouldAnimate } from "./../../animationController.js";
   import { largeBarsArr } from "./animationObj";
   import Bar from "./Bar.svelte";
   import LargeBar from "./LargeBar.svelte";
 
-  onDestroy(() => {});
-
   const bars = Array.from(" ".repeat(27));
   const animations = [];
   let container;
+
   let shouldPulse = false;
   let completed = false;
   onMount(() => {
+   
     if (shouldAnimate) {
       gsap.to(container, {
         height: "40vh",

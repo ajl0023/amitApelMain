@@ -1,21 +1,24 @@
 <script>
+  import { loadedVideos } from "./store.js";
   import { browser } from "$app/env";
   import gsap from "gsap";
-  import { createEventDispatcher,onMount } from "svelte";
+  import { afterUpdate, createEventDispatcher, onMount } from "svelte";
   import Marque from "../Marquee/Marque.svelte";
   import { shouldAnimate } from "./../../animationController.js";
 
   export let shouldPulse;
   export let barObj;
   export let completed;
+
   let pageOpened = false;
   let bar;
   let img;
   const dispatch = createEventDispatcher();
   let tl;
   let maintl;
-  onMount(async () => {
-    if (shouldAnimate) {
+
+  afterUpdate(() => {
+    if (shouldAnimate && $loadedVideos.length === 4) {
       maintl = gsap.timeline({ delay: barObj.delay });
 
       maintl
@@ -133,7 +136,19 @@
       }}
     />
   {/if}
-  <video autoplay muted bind:this={img} class="cover-image" src={barObj.img} />
+  <video
+    on:loadeddata={() => {
+      loadedVideos.update((s) => {
+        s.push("");
+        return s;
+      });
+    }}
+    autoplay
+    muted
+    bind:this={img}
+    class="cover-image"
+    src={barObj.img}
+  />
 </div>
 
 <style lang="scss">
@@ -146,10 +161,9 @@
   }
 
   .bar-container {
-    opacity: 0;
-
     width: 20%;
     top: 0;
+    opacity: 0;
     z-index: 1;
     pointer-events: none;
     overflow: hidden;
