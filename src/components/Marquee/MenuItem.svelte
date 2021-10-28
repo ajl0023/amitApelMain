@@ -1,7 +1,7 @@
 <script>
+  import gsap from "gsap";
   import { createEventDispatcher, onMount } from "svelte";
   import { marqueeStore } from "./animationStore";
-  import gsap from "gsap";
 
   export let labels;
   export let title;
@@ -35,7 +35,7 @@
   bind:this={menuItem}
   class="menu__item"
 >
-  <a
+  <div
     bind:this={menuItemA}
     on:mouseenter={(e) => {
       store.mouseEnter(e);
@@ -44,12 +44,13 @@
       store.mouseLeave(e);
     }}
     class="menu__item-link"
-    href="#">{title}</a
   >
+    {title}
+  </div>
   <div bind:this={marquee} class="marquee">
     <div bind:this={marqueeInner} class="marquee__inner-wrap">
       <div class="marquee__inner" aria-hidden="true">
-        {#each labels as label, i}
+        {#each labels as label}
           <span>{label}</span>
           <div class="marquee__img" />
         {/each}
@@ -97,9 +98,7 @@
     color: black;
     text-decoration: none;
   }
-  a:active {
-    color: black;
-  }
+
   .marquee {
     position: absolute;
     top: 0;

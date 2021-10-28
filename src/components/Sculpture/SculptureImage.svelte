@@ -1,7 +1,6 @@
 <script>
   let imageEle;
   import gsap from "gsap";
-  import { onMount } from "svelte";
   export let shouldLoadImages;
   export let img;
 
@@ -32,7 +31,6 @@
 
 <style lang="scss">
   .item-container {
-    
     width: 100%;
     display: flex;
     .image-container {
@@ -50,7 +48,7 @@
   }
   .label {
     transform: rotate(-180deg);
-    padding-left: .3rem;
+    padding-left: 0.3rem;
     writing-mode: vertical-lr;
     text-align: right;
     font-size: 1em;
@@ -58,7 +56,7 @@
     font-weight: 900;
     letter-spacing: 3px;
     font-family: unisansB;
- 
+
     color: #68208e;
     text-transform: uppercase;
   }

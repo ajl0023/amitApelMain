@@ -1,10 +1,10 @@
 {
   ".svelte-kit/build/runtime/internal/start.js": {
-    "file": "start-7a809b8a.js",
+    "file": "start-741c5941.js",
     "src": ".svelte-kit/build/runtime/internal/start.js",
     "isEntry": true,
     "imports": [
-      "_vendor-62ec0fed.js"
+      "_vendor-83c9f258.js"
     ],
     "dynamicImports": [
       ".svelte-kit/build/components/layout.svelte",
@@ -16,45 +16,45 @@
     ]
   },
   ".svelte-kit/build/components/layout.svelte": {
-    "file": "layout.svelte-9c212717.js",
+    "file": "layout.svelte-47ce7aa4.js",
     "src": ".svelte-kit/build/components/layout.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_vendor-62ec0fed.js"
+      "_vendor-83c9f258.js"
     ]
   },
   ".svelte-kit/build/components/error.svelte": {
-    "file": "error.svelte-72d445cb.js",
+    "file": "error.svelte-6aff4f89.js",
     "src": ".svelte-kit/build/components/error.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_vendor-62ec0fed.js"
+      "_vendor-83c9f258.js"
     ]
   },
   "src/routes/index.svelte": {
-    "file": "pages/index.svelte-9b3438ae.js",
+    "file": "pages/index.svelte-3f49764a.js",
     "src": "src/routes/index.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_vendor-62ec0fed.js"
+      "_vendor-83c9f258.js"
     ],
     "css": [
-      "assets/pages/index.svelte-cf581f70.css"
+      "assets/pages/index.svelte-99e1c76b.css"
     ],
     "assets": [
-      "assets/Logo Sideways-5b2a92a6.png",
+      "assets/brush-121e5538.mp4",
+      "assets/logo Text-6620b85f.png",
+      "assets/Render-4ed0516f.mp4",
       "assets/SD Bar 1-f09397dd.mp4",
       "assets/SD Bar 2-ee39e0a9.mp4",
       "assets/SD Bar 3-6cd56706.mp4",
       "assets/SD Bar 4-01b269b3.mp4",
       "assets/AA-logo-black-mac (1)-2892f7ae.svg",
       "assets/dance-6f6e8192.mp4",
-      "assets/logo Text-6620b85f.png",
-      "assets/Render-4ed0516f.mp4",
-      "assets/brush-121e5538.mp4",
+      "assets/Logo Sideways-5b2a92a6.png",
       "assets/amitapel4 (1)-07a16dc1.webp",
       "assets/Background Photo-112e1098.jpg",
       "assets/unisans-a2e7014c.otf",
@@ -62,7 +62,7 @@
       "assets/Capsuula-b76fd88c.ttf"
     ]
   },
-  "_vendor-62ec0fed.js": {
-    "file": "chunks/vendor-62ec0fed.js"
+  "_vendor-83c9f258.js": {
+    "file": "chunks/vendor-83c9f258.js"
   }
 }

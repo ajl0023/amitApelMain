@@ -1,10 +1,9 @@
 <script>
-  import { shouldAnimate } from "./../../animationController.js";
   import { browser } from "$app/env";
   import gsap from "gsap";
-  import { createEventDispatcher, onMount } from "svelte";
+  import { createEventDispatcher,onMount } from "svelte";
   import Marque from "../Marquee/Marque.svelte";
-
+  import { shouldAnimate } from "./../../animationController.js";
 
   export let shouldPulse;
   export let barObj;
@@ -84,7 +83,7 @@
 </script>
 
 <div
-  on:mouseenter={(e) => {
+  on:mouseenter={() => {
     if (!pageOpened) {
       gsap.to(bar, {
         scale: 1.2,

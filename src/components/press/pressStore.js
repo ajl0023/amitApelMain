@@ -1,4 +1,4 @@
-import { derived, get, readable, writable } from "svelte/store";
+import { readable, writable } from "svelte/store";
 import { getRandomNumber, lerp, map } from "../../animationUtils";
 export const mousePos = readable(
   {

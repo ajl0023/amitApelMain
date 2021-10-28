@@ -1,6 +1,6 @@
 <script>
-  import FurnitureImage from "./FurnitureImage.svelte";
   import images from "./furniture.json";
+  import FurnitureImage from "./FurnitureImage.svelte";
   export let shouldLoadImages;
 </script>
 

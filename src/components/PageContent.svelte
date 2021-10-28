@@ -1,8 +1,7 @@
 <script>
-  import { createEventDispatcher, onMount } from "svelte";
-  import { amp, browser, dev, mode, prerendering } from "$app/env";
+  import { browser } from "$app/env";
   import gsap from "gsap";
-  import BgLogo from "./BgLogo.svelte";
+  import { onMount } from "svelte";
   export let currNav;
   export let index;
 
@@ -56,7 +55,6 @@
       });
     }
   }
-  const dispatch = createEventDispatcher();
 </script>
 
 {#if shouldPlayTransition}

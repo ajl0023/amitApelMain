@@ -69,7 +69,7 @@
   </div>
   <div class="menu-wrap">
     <nav bind:this={menu} class="menu">
-      {#each menuItems[index].pages as item, i}
+      {#each menuItems[index].pages as item}
         <MenuItem
           on:navChange={(e) => {
             pageContent = true;

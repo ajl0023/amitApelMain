@@ -1,12 +1,10 @@
 <script>
-  import { shouldAnimate } from "./../../animationController.js";
+  import gsap from "gsap";
   import { onDestroy, onMount } from "svelte";
-  import { Motion, useAnimation } from "svelte-motion";
-  import { largeBarObj, largeBarsArr } from "./animationObj";
+  import { shouldAnimate } from "./../../animationController.js";
+  import { largeBarsArr } from "./animationObj";
   import Bar from "./Bar.svelte";
   import LargeBar from "./LargeBar.svelte";
-
-  import gsap from "gsap";
 
   onDestroy(() => {});
 
@@ -27,7 +25,7 @@
 
 <div bind:this={container} class="bar-container">
   {#each bars as bar, i}
-    <Bar index={i} />
+    <Bar index={i} {bar} />
   {/each}
 
   {#each largeBarsArr as bar, i}

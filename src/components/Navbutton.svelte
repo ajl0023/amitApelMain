@@ -1,6 +1,4 @@
 <script>
-  import { afterUpdate, beforeUpdate } from "svelte";
-
   import { tweened } from "svelte/motion";
 
   export let nav;

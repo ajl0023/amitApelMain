@@ -1,5 +1,5 @@
 <script>
-  import video from "../../images/dance.mp4";
+  import dancingVideo from "../../images/dance.mp4";
 </script>
 
 <div class="container">
@@ -7,7 +7,7 @@
   <div class="content-container">
     <div class="video-container">
       <video class="video" autoplay muted loop id="myVideo">
-        <source src={video} type="video/mp4" />
+        <source src={dancingVideo} type="video/mp4" />
       </video>
     </div>
     <div class="text-container">

@@ -1,6 +1,5 @@
 <script>
   import gsap from "gsap";
-  import { onMount } from "svelte";
   export let shouldLoadImages;
   export let img;
   let imageEle;

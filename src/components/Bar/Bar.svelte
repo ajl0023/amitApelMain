@@ -1,10 +1,7 @@
 <script>
-  import { shouldAnimate } from "./../../animationController.js";
   import gsap from "gsap";
   import { onMount } from "svelte";
-  export let index;
-  export let animations;
-  export let shouldPulse;
+  import { shouldAnimate } from "./../../animationController.js";
 
   let bar;
 
@@ -22,14 +19,6 @@
 <div bind:this={bar} class="bar-container" />
 
 <style lang="scss">
-  .cover-image {
-    height: 100%;
-    object-position: center center;
-    width: 100%;
-
-    object-fit: cover;
-  }
-
   .bar-container {
     z-index: 1;
     opacity: 0;
@@ -105,8 +94,7 @@
 
       width: 1.9%;
     }
-    &:nth-child(12) {
-    }
+
     &:nth-child(13) {
       left: 46.6%;
       top: 0%;

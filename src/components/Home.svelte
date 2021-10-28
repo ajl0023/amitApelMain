@@ -1,13 +1,11 @@
 <script>
-  import { shouldAnimate } from "./../animationController.js";
-  import { Motion } from "svelte-motion";
-
-  import Logo from "./Bar/Logo.svelte";
-  import logoText from "../images/home/logo Text.png";
-  import { afterUpdate, createEventDispatcher, onMount } from "svelte";
-  import video from "../images/Render.mp4";
-  import brushVid from "../images/brush.mp4";
   import gsap from "gsap";
+  import { afterUpdate, onMount } from "svelte";
+  import brushVid from "../images/brush.mp4";
+  import logoText from "../images/home/logo Text.png";
+  import brush2 from "../images/Render.mp4";
+  import { shouldAnimate } from "./../animationController.js";
+  import Logo from "./Bar/Logo.svelte";
 
   let loading = true;
   onMount(() => {
@@ -43,7 +41,7 @@
 
 {#if !loading || shouldAnimate === false}
   <video class="video-bg" autoplay muted loop id="myVideo">
-    <source src={video} type="video/mp4" />
+    <source src={brush2} type="video/mp4" />
   </video>
   <div class="container">
     <h5 class="fade">connecting people</h5>
@@ -114,9 +112,5 @@
     font-size: 4em;
     position: relative;
     text-transform: uppercase;
-    &:nth-child(1) {
-    }
-    &:nth-child(4) {
-    }
   }
 </style>

@@ -1,12 +1,5 @@
 <script>
-  import MultiUnitsGallery from "./MultiUnitsGallery.svelte";
   import unitHomes from "./unitHomes.json";
-  let shouldShowGallery = false;
-  let selected = null;
-  const closeModal = () => {
-    selected = null;
-    shouldShowGallery = false;
-  };
 </script>
 
 <div class="container">
@@ -14,13 +7,7 @@
     <h5 class="main-text-header">Private Homes</h5>
     <div class="gallery-container">
       {#each unitHomes as img}
-        <div
-          on:click={() => {
-            selected = img.address;
-            shouldShowGallery = true;
-          }}
-          class="grid-item-container"
-        >
+        <div class="grid-item-container">
           <div class="image-container">
             <img loading="lazy" class="grid-image" src={img.url} alt="" />
           </div>

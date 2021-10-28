@@ -1,6 +1,4 @@
 <script>
-  import BgLogo from "./BgLogo.svelte";
-  import amitPhoto from "../images/home/amitapel4 (1).webp";
   let shouldGlitch = false;
 </script>
 
@@ -13,7 +11,7 @@
         shouldGlitch = false;
       }, 400);
     }}
-    on:mouseleave={(e) => {
+    on:mouseleave={() => {
       shouldGlitch = false;
     }}
     class="glitch-image-wrapper"

@@ -1,7 +1,7 @@
 <script>
   import { onMount } from "svelte";
   import { tweened } from "svelte/motion";
-  import { mousePos, pressCard } from "./pressStore";
+  import { mousePos,pressCard } from "./pressStore";
   export let img;
   export let link;
 

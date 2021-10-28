@@ -24,22 +24,19 @@
   });
 
   onMount(() => {
-    new DragGesture(
-      ele,
-      ({ down, direction, active, movement: [mx, my], velocity }) => {
-        if (down) {
-          cardTransform.set(mx);
-        } else {
-          cardTransform.set(0);
+    new DragGesture(ele, ({ down, direction, movement: [mx], velocity }) => {
+      if (down) {
+        cardTransform.set(mx);
+      } else {
+        cardTransform.set(0);
 
-          if (velocity[0] > 0.4) {
-            cardTransform.set(600 * direction[0]);
-            offScreen = true;
-            exited = true;
-          }
+        if (velocity[0] > 0.4) {
+          cardTransform.set(600 * direction[0]);
+          offScreen = true;
+          exited = true;
         }
       }
-    );
+    });
   });
   let rotationValue = tweened(180, {
     duration: 400,
@@ -86,7 +83,7 @@
   style={`transform: scale(${$scaleHover}) translateX(${$cardTransform}px) rotateY(${$rotationValue}deg) rotateZ(${$rotationValueZ}deg)`}
   bind:this={ele}
   class="card-container"
-  on:mouseenter={(e) => {
+  on:mouseenter={() => {
     if (4 - $cardStore.length === index && offScreen === false) {
       scaleHover.set(1.3);
       rotationValueZ.set(0);
@@ -151,22 +148,5 @@
     display: block;
     width: 100%;
     border-radius: 10px;
-  }
-  .card {
-    background-color: #fff;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    z-index: 10;
-    overflow: hidden;
-    border-radius: 10px;
-    background-repeat: no-repeat;
-    background-position: 50%;
-    width: 55vh;
-    max-width: 300px;
-    height: 85vh;
-
-    max-height: 500px;
-    will-change: transform;
   }
 </style>

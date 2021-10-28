@@ -1,7 +1,6 @@
 <script>
-  import ArtImage from "./ArtImage.svelte";
   import images from "./Art.json";
-  let imageEle;
+  import ArtImage from "./ArtImage.svelte";
 
   export let shouldLoadImages;
 </script>

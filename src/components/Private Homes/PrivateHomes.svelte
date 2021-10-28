@@ -1,7 +1,7 @@
 <script>
-  import PrivateHomesGallery from "./PrivateHomesGallery.svelte";
   import { images } from "./images";
   import privateHomes from "./privateHomeFinal.json";
+  import PrivateHomesGallery from "./PrivateHomesGallery.svelte";
   let shouldShowGallery = false;
   let selected = null;
   const closeModal = () => {

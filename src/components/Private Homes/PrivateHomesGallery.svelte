@@ -1,6 +1,5 @@
 <script>
   import { createEventDispatcher } from "svelte";
-  import privateHomes from "./privateHomeFinal.json";
   export let selected;
   const dispatch = createEventDispatcher();
 </script>

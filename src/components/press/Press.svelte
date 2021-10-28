@@ -1,8 +1,6 @@
 <script>
-  import { onDestroy, onMount } from "svelte";
-  import { tweened } from "svelte/motion";
+  import { onMount } from "svelte";
   import PressCard from "./PressCard.svelte";
-  import { mousePos } from "./pressStore";
   let windowHeight = 0,
     windowWidth = 0;
 
@@ -66,7 +64,7 @@
 <div class="container">
   <div class="content-container">
     <div class="text-image-wrapper">
-      {#each text as img, i}
+      {#each text as img}
         <div class="text-image-container">
           <img src={img} alt="" />
         </div>
@@ -78,8 +76,8 @@
         <PressCard
           {windowHeight}
           {windowWidth}
-          img={images[i].img}
-          link={images[i].link}
+          img={card.img}
+          link={card.link}
           index={i}
         />
       </div>
