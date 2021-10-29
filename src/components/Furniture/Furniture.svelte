@@ -38,7 +38,7 @@
     display: flex;
   }
   .main-text-header {
-    font-size: 3em;
+    font-size: 6em;
     line-height: 0.8em;
     font-weight: 900;
     letter-spacing: 3px;

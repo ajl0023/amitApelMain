@@ -1,4 +1,5 @@
 <script>
+  import { modalStore } from "./../Modal/store.js";
   import gsap from "gsap";
   export let shouldLoadImages;
   export let img;
@@ -14,7 +15,16 @@
   }
 </script>
 
-<div class="item-container">
+<div
+  on:click={() => {
+    modalStore.update((s) => {
+      s.content = img.url;
+      s.visible = true;
+      return s;
+    });
+  }}
+  class="item-container"
+>
   <h5 class="label">{img.label}</h5>
   <div class="image-container">
     <img
@@ -48,6 +58,7 @@
   .item-container {
     display: flex;
     width: 100%;
+    cursor: pointer;
     .image-container {
       width: 100%;
 

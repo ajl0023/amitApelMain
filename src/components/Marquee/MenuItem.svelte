@@ -83,6 +83,7 @@
     position: relative;
     overflow: hidden;
     z-index: 5;
+    font-family: unisansB;
     text-align: center;
     box-shadow: 0 -1px black;
   }

@@ -1,4 +1,5 @@
 <script>
+  import { modalStore } from "./../Modal/store.js";
   let imageEle;
   import gsap from "gsap";
   export let shouldLoadImages;
@@ -13,7 +14,16 @@
   }
 </script>
 
-<div class="item-container">
+<div
+  on:click={() => {
+    modalStore.update((s) => {
+      s.content = img.url;
+      s.visible = true;
+      return s;
+    });
+  }}
+  class="item-container"
+>
   <div class="image-container">
     <img
       bind:this={imageEle}
@@ -32,6 +42,7 @@
   .item-container {
     max-width: 400px;
     width: 100%;
+    cursor: pointer;
     .image-container {
       overflow: hidden;
       width: 100%;

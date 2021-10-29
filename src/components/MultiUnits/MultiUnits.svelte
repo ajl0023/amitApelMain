@@ -4,7 +4,7 @@
 
 <div class="container">
   <div class="content-container">
-    <h5 class="main-text-header">Private Homes</h5>
+    <h5 class="main-text-header">multi units</h5>
     <div class="gallery-container">
       {#each unitHomes as img}
         <div class="grid-item-container">

@@ -41,6 +41,7 @@
     font-weight: 900;
     letter-spacing: 3px;
     font-family: unisansB;
+    font-size: 6em;
     text-align: center;
     color: #68208e;
     text-transform: uppercase;

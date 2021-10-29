@@ -1,4 +1,6 @@
 <script>
+  import { modalStore } from "./Modal/store.js";
+  import Modal from "./Modal/Modal.svelte";
   import { browser } from "$app/env";
   import gsap from "gsap";
   import { onMount } from "svelte";
@@ -57,6 +59,9 @@
   }
 </script>
 
+{#if $modalStore.visible}
+  <Modal />
+{/if}
 {#if shouldPlayTransition}
   <div class="page-transition-black" />
 {/if}
