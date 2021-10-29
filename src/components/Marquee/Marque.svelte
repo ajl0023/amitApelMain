@@ -67,6 +67,7 @@
       <div class="header-nav-container" />
     </div>
   </div>
+  <BgLogo text={menuItems[index].category} />
   <div class="menu-wrap">
     <nav bind:this={menu} class="menu">
       {#each menuItems[index].pages as item}
@@ -101,7 +102,7 @@
     {currNav}
   />
 {/if}
-<BgLogo text={menuItems[index].category} />
+
 
 <style lang="scss">
   .logo-container {

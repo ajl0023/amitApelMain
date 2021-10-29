@@ -16,9 +16,10 @@
   const dispatch = createEventDispatcher();
   let tl;
   let maintl;
+  let animated = true;
 
   afterUpdate(() => {
-    if (shouldAnimate && $loadedVideos.length === 4) {
+    if (shouldAnimate && $loadedVideos.length === 4 && animated) {
       maintl = gsap.timeline({ delay: barObj.delay });
 
       maintl
@@ -50,6 +51,7 @@
 
         .then(() => {
           dispatch("complete");
+          animated = false;
         });
 
       tl = gsap.timeline({

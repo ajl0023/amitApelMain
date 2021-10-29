@@ -1,2 +1,2 @@
-npm run build && git add . && git commit -m "implemetnted delay to wait for videos to load before running anim" && git push origin main
+npm run build && git add . && git commit -m "fixed weird animation bug, have to implement a more permanent fix later" && git push origin main
 

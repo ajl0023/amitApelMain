@@ -82,7 +82,7 @@
     cursor: default;
     position: relative;
     overflow: hidden;
-    z-index: 4;
+    z-index: 5;
     text-align: center;
     box-shadow: 0 -1px black;
   }
