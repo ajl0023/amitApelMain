@@ -45,7 +45,7 @@
     <source src={brush2} type="video/mp4" />
   </video>
   <div class="container">
-    <h5 class="fade">connecting people</h5>
+    <h5 class="main-text fade">connecting people</h5>
 
     <Logo />
 
@@ -58,6 +58,9 @@
 {/if}
 
 <style lang="scss">
+  .main-text {
+    padding-bottom: 2.8rem;
+  }
   .video-bg {
     position: fixed;
     left: 50%;

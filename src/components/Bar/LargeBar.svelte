@@ -46,6 +46,7 @@
           img,
           {
             opacity: 0,
+            display: "none",
           },
           ">-0.4"
         )
