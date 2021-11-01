@@ -9,6 +9,7 @@ export const largeBarObj = {
     defaultPos: {
       left: "0px",
     },
+    label: "apel design",
     imagePos: {
       0: "0%",
       1: "0%",
@@ -23,6 +24,7 @@ export const largeBarObj = {
     },
   },
   17: {
+    label: "architecture",
     delay: 0.2,
     img: main2,
     imagePos: {
@@ -41,6 +43,7 @@ export const largeBarObj = {
     },
   },
   23: {
+    label: "design",
     delay: 0.3,
     img: main3,
     imagePos: {
@@ -58,6 +61,7 @@ export const largeBarObj = {
     },
   },
   28: {
+    label: "contact",
     delay: 0.4,
     img: main4,
     imagePos: {
@@ -76,7 +80,9 @@ export const largeBarObj = {
     },
   },
 };
-export const largeBarsArr = [{
+export const largeBarsArr = [
+  {
+    label: "apel design",
     delay: 0.1,
     defaultPos: {
       left: "0px",
@@ -94,10 +100,17 @@ export const largeBarsArr = [{
 
       width: "2.7%",
     },
-    categories: ['meet amit apel', "meet the team", "what we do", "malibu rebuild", "press"]
+    categories: [
+      "meet amit apel",
+      "meet the team",
+      "what we do",
+      "malibu rebuild",
+      "press",
+    ],
   },
 
   {
+    label: "architecture",
     index: 17,
     delay: 0.2,
     img: main2,
@@ -106,7 +119,7 @@ export const largeBarsArr = [{
       1: "20%",
     },
     defaultPos: {
-      left: "20vw"
+      left: "20vw",
     },
     position: {
       left: "34.6%",
@@ -114,10 +127,11 @@ export const largeBarsArr = [{
 
       width: "2.5%",
     },
-    categories: ['private homes', "multi units", "concept", "render videos"]
+    categories: ["private homes", "multi units", "concept", "render videos"],
   },
 
   {
+    label: "design",
     index: 23,
     delay: 0.3,
     img: main3,
@@ -135,10 +149,11 @@ export const largeBarsArr = [{
 
       width: "2.7%",
     },
-    categories: ['sculpture', "furniture", "art", "concept"]
+    categories: ["sculpture", "furniture", "art", "concept"],
   },
 
   {
+    label: "contact",
     index: 28,
     delay: 0.4,
     img: main4,
@@ -156,6 +171,6 @@ export const largeBarsArr = [{
 
       width: "2.9%",
     },
-    categories: ['private homes', "multi units", "concept", "render videos"]
+    categories: ["private homes", "multi units", "concept", "render videos"],
   },
 ];

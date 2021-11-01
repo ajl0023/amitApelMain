@@ -17,7 +17,8 @@
   let tl;
   let maintl;
   let animated = true;
-
+  let barInner;
+  let label;
   afterUpdate(() => {
     if (shouldAnimate && $loadedVideos.length === 4 && animated) {
       maintl = gsap.timeline({ delay: barObj.delay });
@@ -35,7 +36,7 @@
           ease: "power1.in",
         })
         .to(
-          bar,
+          barInner,
           {
             backgroundColor: "white",
           },
@@ -64,17 +65,18 @@
   $: {
     if (tl && completed) {
       if (shouldPulse && browser) {
-        tl.to(bar, {
+        console.log(tl, completed, shouldPulse);
+        tl.to(barInner, {
           opacity: 0,
           duration: 1,
-        }).to(bar, {
+        }).to(barInner, {
           opacity: 1,
           duration: 1,
         });
         tl.play();
       } else {
         tl.pause();
-        gsap.to(bar, {
+        gsap.to(barInner, {
           opacity: 1,
         });
       }
@@ -88,72 +90,101 @@
 </script>
 
 <div
-  on:mouseenter={() => {
-    if (!pageOpened) {
-      gsap.to(bar, {
-        scale: 1.2,
-      });
-    }
-  }}
-  on:mouseleave={() => {
-    if (!pageOpened) {
-      gsap.to(bar, {
-        scale: 1,
-      });
-    }
-  }}
-  on:click={() => {
-    pageOpened = true;
-    dispatch("stopPulse");
-
-    gsap.to(bar, {
-      left: -bar.offsetParent.offsetLeft,
-      width: "100vw",
-      height: "100vh",
-      duration: 0.5,
-      scale: 1,
-      top: -bar.offsetParent.offsetTop,
-    });
-  }}
   style="transform:scale(0.8)"
   bind:this={bar}
-  class="{pageOpened ? 'opened' : ''} bar-container bar-{barObj.index}"
+  class="bar-wrapper bar-{barObj.index} {pageOpened ? 'opened' : ''}"
 >
-  {#if pageOpened}
-    <Marque index={barObj.index} categories={barObj.categories} />
-    <div
-      class="close-main"
-      on:click={(e) => {
-        e.stopPropagation();
-        dispatch("startPulse");
-        pageOpened = false;
-        gsap.to(bar, {
-          height: "40vh",
-
-          left: barObj.position.left,
-          top: 0,
-
-          width: barObj.position.width,
+  <div bind:this={label} class="main-label-container">
+    <p>{barObj.label}</p>
+  </div>
+  <div
+    bind:this={barInner}
+    on:mouseenter={() => {
+      if (!pageOpened) {
+        gsap.to(label, {
+          opacity: 1,
         });
-      }}
-    />
-  {/if}
-  <video
-    on:loadeddata={() => {
-      loadedVideos.update((s) => {
-        s.push("");
-        return s;
+        gsap.to(bar, {
+          scale: 1.2,
+        });
+      }
+    }}
+    on:mouseleave={() => {
+      if (!pageOpened) {
+        gsap.to(bar, {
+          scale: 1,
+        });
+        gsap.to(label, {
+          opacity: 0,
+        });
+      }
+    }}
+    on:click={() => {
+      pageOpened = true;
+      dispatch("stopPulse");
+
+      gsap.to(bar, {
+        left: -bar.offsetParent.offsetLeft,
+        width: "100vw",
+        height: "100vh",
+        duration: 0.5,
+        scale: 1,
+        top: -bar.offsetParent.offsetTop,
       });
     }}
-    autoplay
-    muted
-    bind:this={img}
-    class="cover-image"
-    src={barObj.img}
-  />
+    class="bar-container"
+  >
+    {#if pageOpened}
+      <Marque index={barObj.index} categories={barObj.categories} />
+      <div
+        class="close-main"
+        on:click={(e) => {
+          e.stopPropagation();
+          dispatch("startPulse");
+          pageOpened = false;
+          gsap.to(bar, {
+            height: "40vh",
+
+            left: barObj.position.left,
+            top: 0,
+
+            width: barObj.position.width,
+          });
+        }}
+      />
+    {/if}
+    <video
+      on:loadeddata={() => {
+        loadedVideos.update((s) => {
+          s.push("");
+          return s;
+        });
+      }}
+      autoplay
+      muted
+      bind:this={img}
+      class="cover-image"
+      src={barObj.img}
+    />
+  </div>
 </div>
 
 <style lang="scss">
+  .bar-container {
+    width: 100%;
+
+    position: relative;
+    height: 100%;
+
+    overflow: hidden;
+  }
+  .main-label-container {
+    text-transform: uppercase;
+    position: absolute;
+    opacity: 0;
+    text-align: center;
+    top: 0;
+  }
   .cover-image {
     height: 100%;
     object-position: center center;
@@ -162,13 +193,16 @@
     object-fit: cover;
   }
 
-  .bar-container {
+  .bar-wrapper {
     width: 20%;
     top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     opacity: 0;
     z-index: 1;
     pointer-events: none;
-    overflow: hidden;
+    background-color: transparent;
     height: 100%;
     position: absolute;
   }
@@ -176,15 +210,27 @@
     z-index: 3;
   }
   .bar-3 {
+    .main-label-container {
+      top: -40px;
+    }
     left: 0;
   }
   .bar-17 {
     left: 20vw;
+    .main-label-container {
+      top: -25px;
+    }
   }
   .bar-23 {
     right: 20vw;
+    .main-label-container {
+      top: -25px;
+    }
   }
   .bar-28 {
     right: 0;
+    .main-label-container {
+      top: -25px;
+    }
   }
 </style>
