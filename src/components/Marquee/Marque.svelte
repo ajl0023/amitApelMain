@@ -146,7 +146,7 @@
       Helvetica, Arial, sans-serif;
     display: flex;
     background-size: cover;
-
+    z-index: 10;
     flex-direction: column;
     width: 100vw;
     height: 100vh;

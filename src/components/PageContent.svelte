@@ -16,8 +16,6 @@
   let shouldPlayTransition = index === 17 || index === 23;
   let tl = gsap.timeline();
   onMount(() => {
-
-
     if (index === 3) {
       gsap.to(container, {
         translateY: -container.offsetTop,
@@ -71,7 +69,9 @@
 
 <div bind:this={container} class="main-page-container">
   <LeftArrow {tl} />
-  <svelte:component this={currNav.component} {shouldLoadImages} />
+  {#if currNav}
+    <svelte:component this={currNav.component} {shouldLoadImages} />
+  {/if}
 </div>
 
 <style lang="scss">
