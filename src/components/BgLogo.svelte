@@ -1,6 +1,6 @@
 <script>
   import Logo from "../images/home/Logo Sideways.png";
-  export let text;
+  export let text = "apel design";
 </script>
 
 <div class="logo-container">

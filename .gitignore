@@ -3,7 +3,10 @@
 client/src/images
 .DS_Store
 **bulma.prefixed.css
-cloudinary.js
+cloudinary
+coords.json
 node
+compress
 # Local Netlify folder
 .netlify
+mapUtils

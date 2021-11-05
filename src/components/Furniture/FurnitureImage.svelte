@@ -6,7 +6,6 @@
   let imageEle;
 
   $: {
-    console.log(shouldLoadImages);
     if (shouldLoadImages && img) {
       gsap.to(imageEle, {
         opacity: 1,

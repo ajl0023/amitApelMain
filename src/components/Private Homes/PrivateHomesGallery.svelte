@@ -1,6 +1,7 @@
 <script>
   import { createEventDispatcher } from "svelte";
   export let selected;
+  import privateHomes from "./privateHomeFinal.json";
   const dispatch = createEventDispatcher();
 </script>
 
@@ -14,7 +15,7 @@
     <div class="gallery-container">
       {#each selected.images as img}
         <div class="image-container">
-          <img loading="lazy" class="gallery-img" src={img} alt="" />
+          <img class="gallery-img" src={img.url} alt="" />
         </div>
       {/each}
     </div>
@@ -44,6 +45,7 @@
   }
   .image-container {
     width: 100%;
+
     .gallery-img {
       width: 100%;
       object-fit: cover;

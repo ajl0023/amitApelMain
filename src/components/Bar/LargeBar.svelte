@@ -66,7 +66,6 @@
   $: {
     if (tl && completed) {
       if (shouldPulse && browser) {
-        console.log(tl, completed, shouldPulse);
         tl.to(barInner, {
           opacity: 0,
           duration: 1,
@@ -93,6 +92,7 @@
 <div
   style="transform:scale(0.8)"
   bind:this={bar}
+  class:should-animate={shouldAnimate}
   class="bar-wrapper bar-{barObj.index} {pageOpened ? 'opened' : ''}"
 >
   <div bind:this={label} class="main-label-container">
@@ -120,10 +120,10 @@
         });
       }
     }}
-    on:click={() => {
+    on:click={(e) => {
       pageOpened = true;
       dispatch("stopPulse");
-
+      e.stopPropagation();
       gsap.to(bar, {
         left: -bar.offsetParent.offsetLeft,
         width: "100vw",
@@ -136,23 +136,22 @@
     class="bar-container"
   >
     {#if pageOpened}
-      <Marque index={barObj.index} categories={barObj.categories} />
-      <div
-        class="close-main"
-        on:click={(e) => {
-          e.stopPropagation();
+      <Marque
+        on:closePageContent={(e) => {
           dispatch("startPulse");
           pageOpened = false;
           gsap.to(bar, {
             height: "40vh",
-
             left: barObj.position.left,
             top: 0,
-
             width: barObj.position.width,
           });
         }}
+        defaultPosition={barObj.position}
+        index={barObj.index}
+        categories={barObj.categories}
       />
+      <div />
     {/if}
     <video
       on:loadeddata={() => {
@@ -183,6 +182,7 @@
     text-transform: uppercase;
     position: absolute;
     opacity: 0;
+    font-size: 1.4em;
     text-align: center;
     top: 0;
   }
@@ -193,16 +193,19 @@
 
     object-fit: cover;
   }
-
+  .should-animate {
+    opacity: 0;
+    pointer-events: none;
+  }
   .bar-wrapper {
     width: 20%;
     top: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    opacity: 0;
+
     z-index: 1;
-    pointer-events: none;
+
     background-color: transparent;
     height: 100%;
     position: absolute;
@@ -212,7 +215,7 @@
   }
   .bar-3 {
     .main-label-container {
-      top: -40px;
+      top: -70px;
     }
     left: 0;
   }

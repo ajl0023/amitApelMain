@@ -1,14 +1,13 @@
-const imagesAll = require('./privateHomeFinal.json')
+const { createFile } = require("../../../cloudinary/utils.cjs");
+const imagesAll = require("./privateHomeFinal.json");
 
-const images = []
-
-
+const images = [];
 
 for (let img in imagesAll) {
-    images.push({
-        img: imagesAll[img].img,
-        label: imagesAll[img].label,
-        address: img
-    })
+  images.push({
+    thumb: imagesAll[img].thumb,
+    label: imagesAll[img].label,
+    key: img,
+  });
 }
-console.log(images)
+createFile("./thumbs.json", images);

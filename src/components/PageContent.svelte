@@ -1,19 +1,22 @@
 <script>
+  import LeftArrow from "./../images/LeftArrow.svelte";
   import { modalStore } from "./Modal/store.js";
   import Modal from "./Modal/Modal.svelte";
   import { browser } from "$app/env";
   import gsap from "gsap";
   import { onMount } from "svelte";
+
   export let currNav;
+
   export let index;
 
   let navOpen = false;
   let shouldLoadImages = false;
   let container;
   let shouldPlayTransition = index === 17 || index === 23;
-
+  let tl = gsap.timeline();
   onMount(() => {
-    let tl = gsap.timeline();
+
 
     if (index === 3) {
       gsap.to(container, {
@@ -67,6 +70,7 @@
 {/if}
 
 <div bind:this={container} class="main-page-container">
+  <LeftArrow {tl} />
   <svelte:component this={currNav.component} {shouldLoadImages} />
 </div>
 
@@ -89,7 +93,5 @@
     position: absolute;
     width: 100vw;
     height: 100%;
-
-    background-image: url("../../images/home/Background Photo.jpg");
   }
 </style>

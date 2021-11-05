@@ -1,5 +1,5 @@
 <script>
-  import { images } from "./images";
+  import thumbs from "./thumbs.json";
   import privateHomes from "./privateHomeFinal.json";
   import PrivateHomesGallery from "./PrivateHomesGallery.svelte";
   let shouldShowGallery = false;
@@ -14,16 +14,16 @@
   <div class="content-container">
     <h5 class="main-text-header">Private Homes</h5>
     <div class="gallery-container">
-      {#each images as img}
+      {#each thumbs as img}
         <div
           on:click={() => {
-            selected = img.address;
+            selected = img.key;
             shouldShowGallery = true;
           }}
           class="grid-item-container"
         >
           <div class="image-container">
-            <img loading="lazy" class="grid-image" src={img.thumb} alt="" />
+            <img loading="lazy" class="grid-image" src={img.thumb.url} alt="" />
           </div>
           <h5 class="label">{img.label}</h5>
         </div>
@@ -56,7 +56,7 @@
     .image-container {
       width: 100%;
       cursor: pointer;
-      height: 100%;
+      height: 300px;
       .grid-image {
         object-fit: cover;
         width: 100%;

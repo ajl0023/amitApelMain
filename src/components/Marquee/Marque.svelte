@@ -1,4 +1,7 @@
 <script>
+  import { createEventDispatcher, onDestroy } from "svelte";
+
+  import { marqueeContentStore } from "./store.js";
   import mainLogo from "../../images/home/AA-logo-black-mac (1).svg";
   import About from "../About.svelte";
   import Art from "../Art/Art.svelte";
@@ -16,9 +19,11 @@
   import { menuItems } from "./menuItems";
 
   export let index;
+
   let menu;
   let currNav = "meet amit apel";
   let currCategory = "";
+  const dispatch = createEventDispatcher();
   let pageContent = false;
   const pages = {
     "meet amit apel": {
@@ -56,58 +61,49 @@
     { title: "press", component: Press },
     { title: "what we do", component: WhatWeDo },
   ];
+  onDestroy(() => {
+    marqueeContentStore.reset();
+  });
 </script>
 
-<div class="container">
-  <div class="frame">
-    <div class="top-nav-container">
-      <div class="logo-container">
-        <img class="logo" src={mainLogo} alt="" />
-      </div>
-      <div class="header-nav-container" />
+<div class="page-wrapper">
+  <div class="top-nav-container">
+    <div
+      on:click={(e) => {
+        e.stopImmediatePropagation();
+        dispatch("closePageContent");
+      }}
+      class="logo-container"
+    >
+      <img class="logo" src={mainLogo} alt="" />
     </div>
   </div>
-  <BgLogo text={menuItems[index].category} />
-  <div class="menu-wrap">
-    <nav bind:this={menu} class="menu">
-      {#each menuItems[index].pages as item}
-        <MenuItem
-          on:navChange={(e) => {
-            pageContent = true;
-            if (pages[e.detail]) {
-              currNav = pages[e.detail];
-            }
-          }}
-          {index}
-          {currNav}
-          {pageContent}
-          title={item.title}
-          labels={item.labels}
-        />
-      {/each}
-    </nav>
+  <div class="container">
+    <div class="menu-wrap">
+      <nav bind:this={menu} class="menu">
+        {#each menuItems[index].pages as item}
+          <MenuItem {index} {currNav} title={item.title} labels={item.labels} />
+        {/each}
+      </nav>
+    </div>
+    <BgLogo text={menuItems[index].category} />
   </div>
+  {#if $marqueeContentStore.content}
+    <PageContent
+      {index}
+      {pagesArr}
+      currNav={pages[$marqueeContentStore.content]}
+    />
+  {/if}
 </div>
-{#if pageContent}
-  <PageContent
-    on:navChange={(e) => {
-      pageContent = true;
-
-      if (pages[e.detail.title]) {
-        currNav = pages[e.detail.title];
-      }
-    }}
-    {index}
-    {pagesArr}
-    {currNav}
-  />
-{/if}
-
 
 <style lang="scss">
   .logo-container {
+    cursor: pointer;
     max-width: 150px;
-
+    position: relative;
+    pointer-events: all;
+    z-index: 5;
     .logo {
       width: 100%;
     }
@@ -139,17 +135,18 @@
     --menu-focus: #775e41;
     z-index: 3;
     position: relative;
-    background-color: transparent;
+    background-color: white;
 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-image: url("../../images/home/Background Photo.jpg");
   }
   .menu-wrap {
     font-family: reason-new, -apple-system, BlinkMacSystemFont, Segoe UI,
       Helvetica, Arial, sans-serif;
     display: flex;
     background-size: cover;
-    background-image: url("../../images/home/Background Photo.jpg");
+
     flex-direction: column;
     width: 100vw;
     height: 100vh;
@@ -160,7 +157,8 @@
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 2;
+    z-index: 5;
+    pointer-events: none;
     right: 0;
     display: flex;
     padding-top: 10px;

@@ -4,7 +4,7 @@ import { set_paths, assets } from './runtime/paths.js';
 import { set_prerendering } from './runtime/env.js';
 import * as user_hooks from "./hooks.js";
 
-const template = ({ head, body }) => "<!DOCTYPE html>\r\n<html lang=\"en\">\r\n  <head>\r\n    <meta charset=\"utf-8\" />\r\n    <link rel=\"icon\" href=\"/logo.inline.svg\" />\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\r\n    " + head + "\r\n  </head>\r\n  <body>\r\n    <div id=\"svelte\">" + body + "</div>\r\n  </body>\r\n</html>\r\n";
+const template = ({ head, body }) => "<!DOCTYPE html>\r\n<html lang=\"en\">\r\n  <head>\r\n    <script\r\n      src=\"https://maps.googleapis.com/maps/api/js?key=AIzaSyCuQBbHnOXGEZ7ZtNlYQiaf3KnJx56abYY\"\r\n      async\r\n    ></script>\r\n    <meta charset=\"utf-8\" />\r\n    <link rel=\"icon\" href=\"/logo.inline.svg\" />\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\r\n    " + head + "\r\n  </head>\r\n  <body>\r\n    <div id=\"svelte\">" + body + "</div>\r\n  </body>\r\n</html>\r\n";
 
 let options = null;
 
@@ -22,9 +22,9 @@ export function init(settings = default_settings) {
 		amp: false,
 		dev: false,
 		entry: {
-			file: assets + "/_app/start-4bb0b0fe.js",
+			file: assets + "/_app/start-c752ad19.js",
 			css: [assets + "/_app/assets/start-61d1577b.css"],
-			js: [assets + "/_app/start-4bb0b0fe.js",assets + "/_app/chunks/vendor-36e62436.js"]
+			js: [assets + "/_app/start-c752ad19.js",assets + "/_app/chunks/vendor-c447d8e0.js"]
 		},
 		fetched: undefined,
 		floc: false,
@@ -97,7 +97,7 @@ const module_lookup = {
 	".svelte-kit/build/components/layout.svelte": () => import("./components\\layout.svelte"),".svelte-kit/build/components/error.svelte": () => import("./components\\error.svelte"),"src/routes/index.svelte": () => import("..\\..\\src\\routes\\index.svelte")
 };
 
-const metadata_lookup = {".svelte-kit/build/components/layout.svelte":{"entry":"layout.svelte-ba5cd315.js","css":[],"js":["layout.svelte-ba5cd315.js","chunks/vendor-36e62436.js"],"styles":[]},".svelte-kit/build/components/error.svelte":{"entry":"error.svelte-a8c7e51b.js","css":[],"js":["error.svelte-a8c7e51b.js","chunks/vendor-36e62436.js"],"styles":[]},"src/routes/index.svelte":{"entry":"pages/index.svelte-ba3dc0f3.js","css":["assets/pages/index.svelte-e78a4121.css"],"js":["pages/index.svelte-ba3dc0f3.js","chunks/vendor-36e62436.js"],"styles":[]}};
+const metadata_lookup = {".svelte-kit/build/components/layout.svelte":{"entry":"layout.svelte-a713ae11.js","css":[],"js":["layout.svelte-a713ae11.js","chunks/vendor-c447d8e0.js"],"styles":[]},".svelte-kit/build/components/error.svelte":{"entry":"error.svelte-0e42c158.js","css":[],"js":["error.svelte-0e42c158.js","chunks/vendor-c447d8e0.js"],"styles":[]},"src/routes/index.svelte":{"entry":"pages/index.svelte-a528f76d.js","css":["assets/pages/index.svelte-38afd093.css"],"js":["pages/index.svelte-a528f76d.js","chunks/vendor-c447d8e0.js"],"styles":[]}};
 
 async function load_component(file) {
 	const { entry, css, js, styles } = metadata_lookup[file];

@@ -1,11 +1,12 @@
 <script>
+  import { marqueeContentStore } from "./store.js";
+
   import gsap from "gsap";
-  import { createEventDispatcher, onMount } from "svelte";
+  import { onMount } from "svelte";
   import { marqueeStore } from "./animationStore";
 
   export let labels;
   export let title;
-  export let pageContent;
 
   let menuItem;
   let menuItemA;
@@ -17,20 +18,19 @@
     store = marqueeStore();
     store.init(menuItem, menuItemA, marquee, marqueeInner);
   });
-  const dispatch = createEventDispatcher();
+
   $: {
-    if (pageContent) {
-      gsap.to(menuItem, {
-        y: 1500,
-      });
+    if ($marqueeContentStore.content) {
     }
   }
 </script>
 
 <div
+
   on:click={(e) => {
     e.stopPropagation();
-    dispatch("navChange", title);
+    marqueeContentStore.open();
+    marqueeContentStore.setPage(title);
   }}
   bind:this={menuItem}
   class="menu__item"
