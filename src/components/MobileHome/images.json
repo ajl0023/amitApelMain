@@ -1,0 +1,52 @@
+[
+  {
+    "public_id": "mainSite/mobileHome/Apel_Design_Tab_omtcwl",
+    "url": "http://res.cloudinary.com/dt4xntymn/image/upload/v1636698849/mainSite/mobileHome/Apel_Design_Tab_omtcwl.webp",
+    "secure_url": "https://res.cloudinary.com/dt4xntymn/image/upload/v1636698849/mainSite/mobileHome/Apel_Design_Tab_omtcwl.webp",
+    "width": 200,
+    "height": 200,
+    "label": "apel design"
+  },
+  {
+    "public_id": "mainSite/mobileHome/Architecture_Tab_zm2pcq",
+    "url": "http://res.cloudinary.com/dt4xntymn/image/upload/v1636698852/mainSite/mobileHome/Architecture_Tab_zm2pcq.webp",
+    "secure_url": "https://res.cloudinary.com/dt4xntymn/image/upload/v1636698852/mainSite/mobileHome/Architecture_Tab_zm2pcq.webp",
+    "width": 200,
+    "height": 121,
+    "label": "architecture"
+  },
+
+  {
+    "public_id": "mainSite/mobileHome/Design_Tab_zila8a",
+    "label": "design",
+    "url": "http://res.cloudinary.com/dt4xntymn/image/upload/v1636698850/mainSite/mobileHome/Design_Tab_zila8a.webp",
+    "secure_url": "https://res.cloudinary.com/dt4xntymn/image/upload/v1636698850/mainSite/mobileHome/Design_Tab_zila8a.webp",
+    "width": 200,
+    "height": 200
+  },
+  {
+    "public_id": "mainSite/mobileHome/Developments_Tab_xypgha",
+    "url": "http://res.cloudinary.com/dt4xntymn/image/upload/v1636698853/mainSite/mobileHome/Developments_Tab_xypgha.webp",
+    "secure_url": "https://res.cloudinary.com/dt4xntymn/image/upload/v1636698853/mainSite/mobileHome/Developments_Tab_xypgha.webp",
+    "width": 200,
+    "label": "developments",
+
+    "height": 145
+  },
+  {
+    "public_id": "mainSite/mobileHome/Project_Map_Tab_bfjqfz",
+    "url": "http://res.cloudinary.com/dt4xntymn/image/upload/v1636698854/mainSite/mobileHome/Project_Map_Tab_bfjqfz.webp",
+    "secure_url": "https://res.cloudinary.com/dt4xntymn/image/upload/v1636698854/mainSite/mobileHome/Project_Map_Tab_bfjqfz.webp",
+    "width": 200,
+    "label": "project map",
+    "height": 138
+  },
+  {
+    "public_id": "mainSite/mobileHome/Contact_Tab_ybnemh",
+    "url": "http://res.cloudinary.com/dt4xntymn/image/upload/v1636698851/mainSite/mobileHome/Contact_Tab_ybnemh.webp",
+    "secure_url": "https://res.cloudinary.com/dt4xntymn/image/upload/v1636698851/mainSite/mobileHome/Contact_Tab_ybnemh.webp",
+    "width": 200,
+    "height": 200,
+    "label": "Contact"
+  }
+]

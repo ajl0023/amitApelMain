@@ -27,6 +27,7 @@
   "type": "module",
   "dependencies": {
     "@glidejs/glide": "^3.4.1",
+    "@googlemaps/markerclusterer": "^1.0.11",
     "@use-gesture/vanilla": "^10.0.2",
     "cloudinary": "^1.27.1",
     "exif-parser": "^0.1.12",

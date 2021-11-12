@@ -1,0 +1,109 @@
+[
+  {
+    "public_id": "mainSite/concept/01_ROBERTSON1_uzntbx",
+    "url": "http://res.cloudinary.com/dt4xntymn/image/upload/v1636591434/mainSite/concept/01_ROBERTSON1_uzntbx.webp",
+    "secure_url": "https://res.cloudinary.com/dt4xntymn/image/upload/v1636591434/mainSite/concept/01_ROBERTSON1_uzntbx.webp",
+    "width": 900,
+    "height": 506,
+    "label": "robertson",
+    "key": "robertson"
+  },
+  {
+    "public_id": "mainSite/concept/02_NURESTAURANT09_pntgg9",
+    "url": "http://res.cloudinary.com/dt4xntymn/image/upload/v1636591434/mainSite/concept/02_NURESTAURANT09_pntgg9.webp",
+    "secure_url": "https://res.cloudinary.com/dt4xntymn/image/upload/v1636591434/mainSite/concept/02_NURESTAURANT09_pntgg9.webp",
+    "width": 900,
+    "height": 675,
+    "label": "nu restaurant",
+    "key": "nu restaurant"
+  },
+  {
+    "public_id": "mainSite/concept/03_MOUNT_OLYMPUS1_fjuh5t",
+    "url": "http://res.cloudinary.com/dt4xntymn/image/upload/v1636591434/mainSite/concept/03_MOUNT_OLYMPUS1_fjuh5t.webp",
+    "secure_url": "https://res.cloudinary.com/dt4xntymn/image/upload/v1636591434/mainSite/concept/03_MOUNT_OLYMPUS1_fjuh5t.webp",
+    "width": 900,
+    "height": 655,
+    "label": "mount olympus",
+    "key": "mount olympus"
+  },
+  {
+    "public_id": "mainSite/concept/04_MELROSE1_gsduja",
+    "url": "http://res.cloudinary.com/dt4xntymn/image/upload/v1636591434/mainSite/concept/04_MELROSE1_gsduja.webp",
+    "secure_url": "https://res.cloudinary.com/dt4xntymn/image/upload/v1636591434/mainSite/concept/04_MELROSE1_gsduja.webp",
+    "width": 900,
+    "height": 675,
+    "label": "melrose",
+    "key": "melrose"
+  },
+  {
+    "public_id": "mainSite/concept/05_McCARTY1_wsdcps",
+    "url": "http://res.cloudinary.com/dt4xntymn/image/upload/v1636591434/mainSite/concept/05_McCARTY1_wsdcps.webp",
+    "secure_url": "https://res.cloudinary.com/dt4xntymn/image/upload/v1636591434/mainSite/concept/05_McCARTY1_wsdcps.webp",
+    "width": 900,
+    "height": 573,
+    "label": "mc carty",
+    "key": "mc carty"
+  },
+  {
+    "public_id": "mainSite/concept/06_ONSENKIOSK2_06_fqxly0",
+    "url": "http://res.cloudinary.com/dt4xntymn/image/upload/v1636591434/mainSite/concept/06_ONSENKIOSK2_06_fqxly0.webp",
+    "secure_url": "https://res.cloudinary.com/dt4xntymn/image/upload/v1636591434/mainSite/concept/06_ONSENKIOSK2_06_fqxly0.webp",
+    "width": 900,
+    "height": 900,
+    "label": "onsen kiosk",
+    "key": "onsen kiosk"
+  },
+  {
+    "public_id": "mainSite/concept/07_GARVEY2_woy1ap",
+    "url": "http://res.cloudinary.com/dt4xntymn/image/upload/v1636591434/mainSite/concept/07_GARVEY2_woy1ap.webp",
+    "secure_url": "https://res.cloudinary.com/dt4xntymn/image/upload/v1636591434/mainSite/concept/07_GARVEY2_woy1ap.webp",
+    "width": 900,
+    "height": 540,
+    "label": "garvey",
+    "key": "garvey"
+  },
+  {
+    "public_id": "mainSite/concept/07_GARVEY2_woy1ap",
+    "url": "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595480/mainSite/concept/raw/Hand%20Sketch/co30gnbyvriylmmzb064.webp",
+    "width": 900,
+    "height": 1235,
+    "label": "hand sketch",
+    "key": "hand sketch"
+  },
+  {
+    "public_id": "mainSite/concept/08_BROAEWAY5_ucduax",
+    "url": "http://res.cloudinary.com/dt4xntymn/image/upload/v1636591434/mainSite/concept/08_BROAEWAY5_ucduax.webp",
+    "secure_url": "https://res.cloudinary.com/dt4xntymn/image/upload/v1636591434/mainSite/concept/08_BROAEWAY5_ucduax.webp",
+    "width": 900,
+    "height": 675,
+    "label": "broadway",
+    "key": "broadway"
+  },
+  {
+    "public_id": "mainSite/concept/09_SERUMBOTTLE5_yo8lyx",
+    "url": "http://res.cloudinary.com/dt4xntymn/image/upload/v1636591434/mainSite/concept/09_SERUMBOTTLE5_yo8lyx.webp",
+    "secure_url": "https://res.cloudinary.com/dt4xntymn/image/upload/v1636591434/mainSite/concept/09_SERUMBOTTLE5_yo8lyx.webp",
+    "width": 900,
+    "height": 675,
+    "label": "serum bottle",
+    "key": "serum bottle"
+  },
+  {
+    "public_id": "mainSite/concept/10_BEAUTYBOXES3_tojz3g",
+    "url": "http://res.cloudinary.com/dt4xntymn/image/upload/v1636591434/mainSite/concept/10_BEAUTYBOXES3_tojz3g.webp",
+    "secure_url": "https://res.cloudinary.com/dt4xntymn/image/upload/v1636591434/mainSite/concept/10_BEAUTYBOXES3_tojz3g.webp",
+    "width": 900,
+    "height": 564,
+    "label": "beauty boxes",
+    "key": "beauty boxes"
+  },
+  {
+    "public_id": "mainSite/concept/Nu_Sanctuary_nmyxfp",
+    "url": "http://res.cloudinary.com/dt4xntymn/image/upload/v1636591434/mainSite/concept/Nu_Sanctuary_nmyxfp.webp",
+    "secure_url": "https://res.cloudinary.com/dt4xntymn/image/upload/v1636591434/mainSite/concept/Nu_Sanctuary_nmyxfp.webp",
+    "width": 900,
+    "height": 1355,
+    "label": "nu sanctuary",
+    "key": "nu sanctuary"
+  }
+]

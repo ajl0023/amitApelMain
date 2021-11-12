@@ -1,4 +1,5 @@
 <script>
+  import MobileHome from "./MobileHome/MobileHome.svelte";
   import gsap from "gsap";
   import { afterUpdate, onMount } from "svelte";
   import brush1 from "../images/brush.mp4";
@@ -9,7 +10,21 @@
 
   let loading = true;
   let loaded = false;
+  let mobile = false;
+  const handleResize = () => {
+    if (window.innerWidth <= 950) {
+      mobile = true;
+    } else {
+      mobile = false;
+    }
+  };
   onMount(() => {
+    window.addEventListener("resize", handleResize);
+    if (window.innerWidth <= 950) {
+      mobile = true;
+    } else {
+      mobile = false;
+    }
     gsap.to(".video-stroke", {
       opacity: 0,
       delay: 3,
@@ -25,6 +40,7 @@
   });
 </script>
 
+<!-- {#if !mobile} -->
 {#if shouldAnimate}
   <div class="video-stroke">
     <video
@@ -56,7 +72,10 @@
     <h5 class="fade">to the art of living</h5>
   </div>
 {/if}
+<!-- {:else}
+  <MobileHome /> -->
 
+<!-- {/if} -->
 <style lang="scss">
   .main-text {
     padding-bottom: 2.8rem;
@@ -65,13 +84,15 @@
     position: fixed;
     left: 50%;
     top: 50%;
-
+    object-fit: cover;
     width: 100vw;
-
+    height: 100vh;
     transform: translate(-50%, -50%);
   }
   .video-stroke {
     width: 100vw;
+
+    object-fit: cover;
   }
   .logo-text-container {
     max-width: 500px;
@@ -117,6 +138,7 @@
   h5 {
     z-index: 2;
     opacity: 0;
+    display: none;
     letter-spacing: 5px;
     font-weight: 100;
     font-size: 4em;

@@ -30,7 +30,7 @@ export const marqueeStore = () => {
         // find closest side to the mouse
 
         const edge = this.findClosestEdge(ev, s.ele);
- 
+
         gsap
           .timeline({ defaults: s.animationDefaults })
           .set(s.marquee, { y: edge === "top" ? "-101%" : "101%" }, 0)
@@ -68,3 +68,6 @@ export const marqueeStore = () => {
 };
 
 export const store = marqueeStore();
+export const animationScrollFinished = () => {
+  return writable(false);
+};

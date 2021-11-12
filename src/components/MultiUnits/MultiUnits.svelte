@@ -4,7 +4,7 @@
 
 <div class="container">
   <div class="content-container">
-    <h5 class="main-text-header">multi units</h5>
+
     <div class="gallery-container">
       {#each unitHomes as img}
         <div class="grid-item-container">
@@ -50,8 +50,12 @@
     align-items: center;
     width: 100%;
 
-    padding-top: 10rem;
+    padding-top: 6rem;
     justify-content: center;
+    .content-container {
+      width: 100%;
+      max-width: 1200px;
+    }
   }
   .gallery-container {
     margin-top: 5rem;
@@ -59,17 +63,7 @@
     max-width: 1300px;
     width: 100%;
     gap: 31px;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(calc(1300px / 4), 1fr));
   }
-  .main-text-header {
-    font-size: 6em;
-    line-height: 0.8em;
-    font-weight: 900;
-    letter-spacing: 3px;
-    font-family: unisansB;
-    text-align: center;
-    color: #68208e;
-    text-transform: uppercase;
-  }
+
 </style>

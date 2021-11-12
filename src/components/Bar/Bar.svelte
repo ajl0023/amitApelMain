@@ -21,13 +21,30 @@
 <style lang="scss">
   .bar-container {
     z-index: 1;
-    opacity: 0;
+    opacity: 1;
+
     pointer-events: none;
     overflow: hidden;
     height: 100%;
     position: absolute;
     background-color: white;
 
+    @media screen and (max-width: 1350px) {
+      &:nth-child(6) {
+        display: none;
+      }
+      &:nth-child(24) {
+        display: none;
+      }
+    }
+    @media screen and (max-width: 950px) {
+      &:nth-child(3n) {
+        display: none;
+      }
+    }
+    @media screen and (max-width: 590px) {
+      display: none;
+    }
     &:nth-child(1) {
       left: 2%;
       top: 0%;

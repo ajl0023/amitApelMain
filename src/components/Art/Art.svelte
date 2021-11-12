@@ -1,4 +1,5 @@
 <script>
+
   import images from "./Art.json";
   import ArtImage from "./ArtImage.svelte";
 
@@ -6,15 +7,13 @@
 </script>
 
 <div class="container">
-  <h5 class="main-text-header">art</h5>
+
 
   <div class="flex-container">
     {#each images as col}
-      <div class="flex-cm">
-        {#each col as img}
-          <ArtImage {img} {shouldLoadImages} />
-        {/each}
-      </div>
+      {#each col as img}
+        <ArtImage {img} {shouldLoadImages} />
+      {/each}
     {/each}
   </div>
 </div>
@@ -25,26 +24,16 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 6rem;
+
     width: 100%;
   }
   .flex-container {
     display: flex;
     gap: 10px;
+    flex-wrap: wrap;
     width: 100%;
-    margin-top: 3rem;
+
     max-width: 1700px;
-  }
-  .main-text-header {
-    font-size: 3em;
-    line-height: 0.8em;
-    font-weight: 900;
-    letter-spacing: 3px;
-    font-family: unisansB;
-    font-size: 6em;
-    text-align: center;
-    color: #68208e;
-    text-transform: uppercase;
   }
 
   .flex-cm {

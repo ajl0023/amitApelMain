@@ -23,3 +23,50 @@ html {
   font-family: Orator;
   overflow-x: hidden;
 }
+
+.close-x::before {
+  height: 2px;
+  width: 100%;
+}
+
+.close-x::after {
+  height: 100%;
+  width: 2px;
+}
+
+.close-x::after,
+.close-x::before {
+  background-color: white;
+  content: "";
+
+  display: block;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%) rotate(45deg);
+  transform-origin: center center;
+}
+.close-x {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+.black {
+  right: 15px;
+  top: 15px;
+  position: absolute;
+}
+.black::after,
+.black::before {
+  background-color: black;
+}
+.page-container {
+  display: flex;
+  justify-content: center;
+
+  width: 100%;
+  overflow: hidden;
+  padding: 15px;
+}

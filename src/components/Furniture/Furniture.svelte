@@ -5,15 +5,11 @@
 </script>
 
 <div class="container">
-  <h5 class="main-text-header">furniture</h5>
-
   <div class="flex-container">
     {#each images as col}
-      <div class="flex-column">
-        {#each col as img}
-          <FurnitureImage {shouldLoadImages} {img} />
-        {/each}
-      </div>
+      {#each col as img}
+        <FurnitureImage {shouldLoadImages} {img} />
+      {/each}
     {/each}
   </div>
 </div>
@@ -24,33 +20,39 @@
     flex-direction: column;
     display: flex;
     width: 100%;
+    height: fit-content;
+
+    @media screen and (max-width: 800px) {
+      flex: 49%;
+      gap: 0px;
+      max-width: 49%;
+    }
+    @media screen and (min-width: 800px) {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: calc(100% / 3);
+      width: 100%;
+    }
+    @media screen and (max-width: 600px) {
+      flex: 100%;
+      max-width: 100%;
+    }
   }
+
   .container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 6rem;
-    width: 100%;
-  }
-  .flex-container {
-    margin-top: 3rem;
-    display: flex;
-  }
-  .main-text-header {
-    font-size: 6em;
-    line-height: 0.8em;
-    font-weight: 900;
-    letter-spacing: 3px;
-    font-family: unisansB;
-    text-align: center;
-    color: #68208e;
-    text-transform: uppercase;
-  }
- 
 
+    width: 100%;
+  }
   .flex-container {
     width: 100%;
-    max-width: 1900px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    max-width: 1500px;
   }
 </style>

@@ -9,6 +9,7 @@
   export let shouldPulse;
   export let barObj;
   export let completed;
+  export let windowSizeObj;
 
   let pageOpened = false;
   let bar;
@@ -20,7 +21,22 @@
   let barInner;
   let label;
   afterUpdate(() => {
-    if (shouldAnimate && $loadedVideos.length === 4 && animated) {
+    if (
+      shouldAnimate &&
+      $loadedVideos.length === 4 &&
+      animated &&
+      windowSizeObj
+    ) {
+      const calculateWidth = () => {
+        if (windowSizeObj["sm"]) {
+          return "25%";
+        }
+        if (windowSizeObj["lg"]) {
+          return "6.5%";
+        } else {
+          return barObj.position.width;
+        }
+      };
       maintl = gsap.timeline({ delay: barObj.delay });
 
       maintl
@@ -28,13 +44,14 @@
           opacity: 1,
           duration: 3,
         })
-        .to(bar, {
-          scale: 1,
-          duration: 3,
-
-          ...barObj.position,
-          ease: "power1.in",
-        })
+        // .to(bar, {
+        //   scale: 1,
+        //   duration: 3,
+        //   width: calculateWidth(),
+        //   top: barObj.position.top,
+        //   left: barObj.position.left,
+        //   ease: "power1.in",
+        // })
         .to(
           barInner,
           {
@@ -64,23 +81,24 @@
   });
 
   $: {
-    if (tl && completed) {
-      if (shouldPulse && browser) {
-        tl.to(barInner, {
-          opacity: 0,
-          duration: 1,
-        }).to(barInner, {
-          opacity: 1,
-          duration: 1,
-        });
-        tl.play();
-      } else {
-        tl.pause();
-        gsap.to(barInner, {
-          opacity: 1,
-        });
-      }
-    }
+    // if (tl && completed) {
+    //   if (shouldPulse && browser) {
+    //     tl.to(barInner, {
+    //       opacity: 0,
+    //       duration: 1,
+    //     }).to(barInner, {
+    //       opacity: 1,
+    //       duration: 1,
+    //     });
+    //     tl.play();
+    //   } else {
+    //     tl.pause();
+    //
+    //   }
+    // }
+    gsap.to(barInner, {
+      opacity: 1,
+    });
   }
   $: {
     if (shouldPulse) {
@@ -141,7 +159,7 @@
           dispatch("startPulse");
           pageOpened = false;
           gsap.to(bar, {
-            height: "40vh",
+            height: "100%",
             left: barObj.position.left,
             top: 0,
             width: barObj.position.width,
@@ -200,6 +218,7 @@
   .bar-wrapper {
     width: 20%;
     top: 0;
+    position: absolute;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -208,14 +227,14 @@
 
     background-color: transparent;
     height: 100%;
-    position: absolute;
+    // position: absolute;
   }
   .opened {
     z-index: 3;
   }
   .bar-3 {
     .main-label-container {
-      top: -70px;
+      top: -50px;
     }
     left: 0;
   }

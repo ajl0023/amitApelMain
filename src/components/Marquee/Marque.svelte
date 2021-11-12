@@ -1,113 +1,148 @@
 <script>
-  import { createEventDispatcher, onDestroy } from "svelte";
+  import GalleryModal from "./../Bar-3-Gallery/GalleryModal.svelte";
+  import { privateHomesModal } from "./../Bar-3-Gallery/store.js";
+  import Navbar from "./../Navbar/Navbar.svelte";
+  import Map from "../Map/MapBar.svelte";
+  import Bar3Gallery from "./../Bar-3-Gallery/Bar3Gallery.svelte";
+
+  import Modal from "./../Modal/Modal.svelte";
+  import { modalStore } from "./../Modal/store.js";
+  import { createEventDispatcher, onDestroy, onMount } from "svelte";
 
   import { marqueeContentStore } from "./store.js";
-  import mainLogo from "../../images/home/AA-logo-black-mac (1).svg";
+
   import About from "../About.svelte";
   import Art from "../Art/Art.svelte";
   import MalibuRebuild from "../MalibuRebuild.svelte";
   import MeetTheTeam from "../meetTheTeam/MeetTheTeam.svelte";
   import PageContent from "../PageContent.svelte";
   import Press from "../press/Press.svelte";
-  import PrivateHomes from "../Private Homes/PrivateHomes.svelte";
   import Sculpture from "../Sculpture/Sculpture.svelte";
   import WhatWeDo from "../WhatWeDo/WhatWeDo.svelte";
   import BgLogo from "./../BgLogo.svelte";
   import Furniture from "./../Furniture/Furniture.svelte";
-  import MultiUnits from "./../MultiUnits/MultiUnits.svelte";
   import MenuItem from "./MenuItem.svelte";
   import { menuItems } from "./menuItems";
 
+  import MapWrapper from "../Map/MapWrapper.svelte";
+  import gsap from "gsap";
   export let index;
-
-  let menu;
+  let container;
   let currNav = "meet amit apel";
-  let currCategory = "";
+  function closePage() {}
+  let shouldLoadImages = false;
   const dispatch = createEventDispatcher();
-  let pageContent = false;
+
   const pages = {
     "meet amit apel": {
+      name: "meet amit apel",
       component: About,
     },
     "malibu rebuild": {
       component: MalibuRebuild,
+      name: "malibu rebuild",
     },
     "meet the team": {
       component: MeetTheTeam,
+      name: "meet the team",
     },
     press: {
       component: Press,
+      name: "press",
     },
     "private homes": {
-      component: PrivateHomes,
+      component: Bar3Gallery,
+      name: "private homes",
     },
     "multi units": {
-      component: MultiUnits,
+      component: Bar3Gallery,
+      name: "multi units",
     },
     sculpture: {
       component: Sculpture,
+      name: "sculpture",
     },
-    "what we do": { component: WhatWeDo },
-    furniture: { component: Furniture },
-    art: { component: Art },
+    concept: {
+      component: Bar3Gallery,
+      name: "concept",
+    },
+    "what we do": { component: WhatWeDo, name: "what we do" },
+    furniture: { component: Furniture, name: "furniture" },
+    art: { component: Art, name: "art" },
   };
-  const pagesArr = [
-    {
-      title: "meet amit apel",
-      component: About,
-    },
-    { title: "malibu rebuild", component: MalibuRebuild },
-    { title: "meet the team", component: MeetTheTeam },
-    { title: "press", component: Press },
-    { title: "what we do", component: WhatWeDo },
-  ];
+
   onDestroy(() => {
     marqueeContentStore.reset();
+  });
+  onMount(() => {
+    marqueeContentStore.init(container);
   });
 </script>
 
 <div class="page-wrapper">
-  <div class="top-nav-container">
-    <div
-      on:click={(e) => {
-        e.stopImmediatePropagation();
-        dispatch("closePageContent");
-      }}
-      class="logo-container"
-    >
-      <img class="logo" src={mainLogo} alt="" />
-    </div>
-  </div>
+  {#if $privateHomesModal.visible}
+    <GalleryModal />
+  {/if}
+  {#if $modalStore.visible}
+    <Modal />
+  {/if}
+  <Navbar
+    on:closePageContent={(e) => {
+      dispatch("closePageContent");
+    }}
+  />
   <div class="container">
     <div class="menu-wrap">
-      <nav bind:this={menu} class="menu">
+      <nav class="menu">
         {#each menuItems[index].pages as item}
-          <MenuItem {index} {currNav} title={item.title} labels={item.labels} />
+          <MenuItem
+            on:playAnimation={() => {
+              const container = document.querySelector(".main-page-container");
+            }}
+            {index}
+            {currNav}
+            title={item.title}
+            labels={item.labels}
+          />
         {/each}
       </nav>
     </div>
     <BgLogo text={menuItems[index].category} />
+    <div class="page-transition-black" />
+    <div bind:this={container} class="page-content-container">
+      <PageContent {index} currNav={pages[$marqueeContentStore.content]} />
+      {#if $marqueeContentStore.content}{/if}
+    </div>
   </div>
+
   {#if $marqueeContentStore.content}
-    <PageContent
-      {index}
-      {pagesArr}
-      currNav={pages[$marqueeContentStore.content]}
-    />
+    <MapWrapper />
   {/if}
 </div>
 
 <style lang="scss">
-  .logo-container {
-    cursor: pointer;
-    max-width: 150px;
-    position: relative;
-    pointer-events: all;
-    z-index: 5;
-    .logo {
-      width: 100%;
-    }
+  .page-content-container {
+    padding: 20px 20px 0 20px;
+
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    z-index: 10;
+    position: absolute;
+    width: 100vw;
+    height: 100%;
   }
+  .page-transition-black {
+    background-color: black;
+    width: 100vw;
+    position: absolute;
+    bottom: 0;
+    height: 0vh;
+    z-index: 3;
+  }
+
   .frame {
     position: fixed;
     text-align: left;
@@ -124,6 +159,7 @@
     pointer-events: none;
   }
   .container {
+    height: 100%;
     margin: 0;
     --color-text: #111;
     --color-bg: white;
@@ -133,12 +169,14 @@
     --marquee-bg: #000;
     --marquee-text: #fff;
     --menu-focus: #775e41;
-    z-index: 3;
+    z-index: 6;
     position: relative;
     background-color: white;
 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-repeat: no-repeat;
+    background-size: cover;
     background-image: url("../../images/home/Background Photo.jpg");
   }
   .menu-wrap {
@@ -149,23 +187,11 @@
     z-index: 10;
     flex-direction: column;
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     position: relative;
     justify-content: center;
   }
-  .top-nav-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 5;
-    pointer-events: none;
-    right: 0;
-    display: flex;
-    padding-top: 10px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
+
   .header-nav-container {
     display: flex;
 
@@ -175,5 +201,10 @@
     gap: 25px;
     padding-top: 20px;
     font-size: 1.5em;
+  }
+  .page-wrapper {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
   }
 </style>

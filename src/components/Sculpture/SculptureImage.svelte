@@ -1,11 +1,12 @@
 <script>
+  import { marqueeContentStore } from "./../Marquee/store.js";
   let imageEle;
   import gsap from "gsap";
-  export let shouldLoadImages;
+
   export let img;
 
   $: {
-    if (shouldLoadImages && img) {
+    if ($marqueeContentStore.shouldLoadImages && img) {
       gsap.to(imageEle, {
         opacity: 1,
       });
@@ -13,7 +14,7 @@
   }
 </script>
 
-<div class="item-container">
+<div class:expand-height={img.expand} class="item-container">
   <h5 class="label">{img.label}</h5>
   <div class="image-container">
     <img
@@ -30,13 +31,25 @@
 </div>
 
 <style lang="scss">
+  @media screen and (max-width: 800px) {
+    .expand-height {
+      height: 23.8%;
+      .image-container {
+        height: 100%;
+      }
+    }
+  }
+
   .item-container {
     width: 100%;
     display: flex;
+    @media screen and (max-width: 800px) {
+      flex-direction: column;
+    }
     .image-container {
       overflow: hidden;
       width: 100%;
-      height: auto;
+
       .image {
         height: 100%;
         width: 100%;
@@ -47,17 +60,21 @@
     }
   }
   .label {
-    transform: rotate(-180deg);
-    padding-left: 0.3rem;
-    writing-mode: vertical-lr;
-    text-align: right;
-    font-size: 1em;
-    line-height: 0.8em;
-    font-weight: 900;
-    letter-spacing: 3px;
-    font-family: unisansB;
-
     color: #68208e;
-    text-transform: uppercase;
+    font-family: unisansB;
+    font-size: 1em;
+    padding: 5px;
+    @media screen and (min-width: 800px) {
+      transform: rotate(-180deg);
+      padding-left: 0.3rem;
+      writing-mode: vertical-lr;
+      text-align: right;
+
+      line-height: 0.8em;
+      font-weight: 900;
+      letter-spacing: 3px;
+
+      text-transform: uppercase;
+    }
   }
 </style>

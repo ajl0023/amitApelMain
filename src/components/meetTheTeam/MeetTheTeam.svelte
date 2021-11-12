@@ -1,120 +1,85 @@
 <script>
+  import { cardImages } from "./cardStore.js";
   import { onMount } from "svelte";
-  import { Motion } from "svelte-motion";
+  import arrow from "./../../images/cardArrow.png";
   import Card from "./Card.svelte";
   import { cardStore } from "./cardStore";
-  const images = [
-    {
-      front:
-        "https://res.cloudinary.com/dt4xntymn/image/upload/v1633335279/mainSite/meet%20the%20team/Cards/front/Luke_Card_dgfcrg.jpg",
-      back:
-        "https://res.cloudinary.com/dt4xntymn/image/upload/v1633335260/mainSite/meet%20the%20team/Cards/back/Luke_Card_Back_j5zphk.jpg",
-    },
-    {
-      front:
-        "https://res.cloudinary.com/dt4xntymn/image/upload/v1633335279/mainSite/meet%20the%20team/Cards/front/Mike_Card_yyevct.jpg",
-      back:
-        "https://res.cloudinary.com/dt4xntymn/image/upload/v1633335260/mainSite/meet%20the%20team/Cards/back/Mike_Card_Back_pwet2v.jpg",
-    },
-    {
-      front:
-        "https://res.cloudinary.com/dt4xntymn/image/upload/v1633335279/mainSite/meet%20the%20team/Cards/front/Yak_Card_c55nzc.jpg",
-      back:
-        "https://res.cloudinary.com/dt4xntymn/image/upload/v1633335260/mainSite/meet%20the%20team/Cards/back/Yak_Card_Back_bsvk7b.jpg",
-    },
-    {
-      front:
-        "https://res.cloudinary.com/dt4xntymn/image/upload/v1633335279/mainSite/meet%20the%20team/Cards/front/Elchin_Card_hhfjc2.jpg",
-      back:
-        "https://res.cloudinary.com/dt4xntymn/image/upload/v1633335260/mainSite/meet%20the%20team/Cards/back/Elchin_Card_Back_ii2vul.jpg",
-    },
-    {
-      front:
-        "https://res.cloudinary.com/dt4xntymn/image/upload/v1633335279/mainSite/meet%20the%20team/Cards/front/Omar_Card_frdbxy.jpg",
-      back:
-        "https://res.cloudinary.com/dt4xntymn/image/upload/v1633335260/mainSite/meet%20the%20team/Cards/back/Omar_Card_Back_weik5s.jpg",
-    },
-  ];
-
-  const list = {
-    visible: {
-      transition: {
-        when: "afterChildren",
-        staggerChildren: 0.3,
-      },
-    },
-    hidden: {
-      border: "0px solid transparent",
-      transition: {
-        when: "beforeChildren",
-      },
-    },
-  };
-  const item = {
-    visible: { opacity: 1, x: 0 },
-  };
 
   const rotatedCards = [0, 3, 2, 4];
 
-  let exited = [];
-  cardStore.subscribe((v) => {
-    if (v.length === 5) {
-      cardStore.set([]);
-    }
-  });
-
   onMount(() => {
-    cardStore.set([]);
+    cardStore.init();
   });
+  $: {
+    if ($cardStore.exited.length === 6) {
+    }
+  }
 </script>
 
-<div class="container">
-  <h5 class="main-text-header">Meet The Team</h5>
-
-  <Motion initial="visible" animate={"visible"} variants={list} let:motion
-    ><ul class="card-container" use:motion>
-      {#each images as card, i}
-        <Card
-          shouldReturn={false}
-          variants={item}
-          index={i}
-          {exited}
-          image={{
-            front: card.front,
-            back: card.back,
-          }}
-          rotate={rotatedCards.includes(i) ? i * 2 : 0}
-        />
-      {/each}
-    </ul>
-  </Motion>
+<div class="page-container">
+  <div class="container">
+    <div class="card-layout-container">
+      <div class="card-outline" />
+      <div class="image-container">
+        <img src={arrow} alt="" />
+      </div>
+      <ul class="card-wrapper">
+        {#each cardImages as card, i}
+          <Card
+            shouldReturn={false}
+            index={i}
+            image={{
+              front: card.front,
+              back: card.back,
+            }}
+            rotate={rotatedCards.includes(i) ? i * 2 : 0}
+          />
+        {/each}
+      </ul>
+    </div>
+  </div>
 </div>
 
 <style lang="scss">
-  .main-text-header {
-    font-size: 6em;
-    font-family: unisansB;
-    font-weight: 900;
-    letter-spacing: 3px;
-    text-align: center;
-    color: #68208e;
+  .card-outline {
+    width: 300px;
+    height: 500px;
+    border-radius: 20px;
+    margin-right: 50px;
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='53' ry='53' stroke='white' stroke-width='4'  stroke-dasharray='36%2c 18%2c 28%2c 25' stroke-dashoffset='0' stroke-linecap='butt'/%3e%3c/svg%3e");
+    border-radius: 53px;
+  }
+  .card-layout-container {
+    display: flex;
+    width: 100%;
+    margin-bottom: 140px;
+    align-items: center;
+    justify-content: center;
+  }
+  .image-container {
+    width: 60px;
+    margin-right: 50px;
+    img {
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+  .page-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+  .card-wrapper {
+    width: 300px;
+    height: 500px;
 
-    position: relative;
-    text-transform: uppercase;
+    @media screen and (max-width: 510px) {
+      width: 200px;
+      height: 400px;
+    }
   }
   .container {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    height: 100%;
-  }
-  .card-container {
-    display: flex;
-    height: 55vh;
-    justify-content: center;
-    position: relative;
-    margin-top: 40px;
-    align-items: center;
+    max-width: 1600px;
+    width: 100%;
   }
 </style>

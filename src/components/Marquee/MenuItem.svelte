@@ -2,7 +2,7 @@
   import { marqueeContentStore } from "./store.js";
 
   import gsap from "gsap";
-  import { onMount } from "svelte";
+  import { onMount, createEventDispatcher } from "svelte";
   import { marqueeStore } from "./animationStore";
 
   export let labels;
@@ -13,7 +13,7 @@
   let marquee;
   let marqueeInner;
   let store;
-
+  const dispatch = createEventDispatcher();
   onMount(() => {
     store = marqueeStore();
     store.init(menuItem, menuItemA, marquee, marqueeInner);
@@ -26,11 +26,9 @@
 </script>
 
 <div
-
   on:click={(e) => {
-    e.stopPropagation();
-    marqueeContentStore.open();
-    marqueeContentStore.setPage(title);
+    marqueeContentStore.setPageAnimation(title);
+    // marqueeContentStore.open();
   }}
   bind:this={menuItem}
   class="menu__item"
@@ -142,6 +140,9 @@
     font-weight: 600;
     padding: 1vh 1vw 0;
     text-transform: uppercase;
+    @media screen and (max-width: 820px) {
+      font-size: 10vw;
+    }
   }
 
   .marquee span {

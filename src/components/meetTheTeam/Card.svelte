@@ -1,98 +1,115 @@
 <script>
+  import { cardStore } from "./cardStore.js";
   import { DragGesture } from "@use-gesture/vanilla";
   import { onMount } from "svelte";
   import { spring, tweened } from "svelte/motion";
-  import { cardStore } from "./cardStore";
-  export let index;
 
+  export let index;
+  export let rotate;
+  export let image;
   let ele;
 
   let exited;
-  export let rotate;
-  export let image;
-  let offScreen = false;
 
-  let rotationValueZ = tweened(rotate, {
+  let rotateZ = tweened(rotate, {
     duration: 150,
   });
-  const cardTransform = spring(0, {
-    duration: 400,
-    delay: 3,
+  let rotateY = tweened(rotate, {
+    duration: 150,
   });
+  const springCard = spring(0, {
+    duration: 400,
+    delay: 0,
+  });
+
   const scaleHover = tweened(1, {
     duration: 200,
   });
 
   onMount(() => {
-    new DragGesture(ele, ({ down, direction, movement: [mx], velocity }) => {
-      if (down) {
-        cardTransform.set(mx);
-      } else {
-        cardTransform.set(0);
+    new DragGesture(
+      ele,
+      ({
+        event,
+        down,
+        tap,
+        direction,
+        movement,
+        velocity,
+        offset,
+        active,
+        swipe,
+      }) => {
+        event.preventDefault();
 
-        if (velocity[0] > 0.4) {
-          cardTransform.set(600 * direction[0]);
-          offScreen = true;
-          exited = true;
+        springCard.set(movement[0]);
+        if (tap && !exited) {
+          rotateY.update((s) => {
+            if (s === 0) {
+              return 180;
+            } else {
+              return 0;
+            }
+          });
         }
+        if (exited && tap) {
+          cardStore.returnCard(index);
+        }
+        if (swipe[0] === -1 && direction[0] < 0) {
+          springCard.set(450 * direction[0]);
+          cardStore.exit(index);
+          scaleHover.set(1);
+          exited = true;
+        } else if (!active) {
+          springCard.set(0);
+          exited = false;
+        }
+      },
+      {
+        // bounds: { left: "-500", right: 20, top: 0, bottom: 0 },
+        eventOptions: { captsure: true, passive: false },
+        filterTaps: true,
+
+        // swipe: {
+        //   distance: 10,
+        //   velocity: 0.1,
+        // },
       }
-    });
+    );
   });
-  let rotationValue = tweened(180, {
-    duration: 400,
-  });
-  cardStore.subscribe((v) => {
-    if (v.length === 5) {
+
+  $: {
+    if ($cardStore.shouldReturn) {
       setTimeout(() => {
-        cardTransform.set(0);
-        exited = false;
-        offScreen = false;
+        springCard.set(0);
       }, 1000 + index * 100);
     }
-  });
-  $: {
-    if (exited) {
-      cardStore.update((v) => {
-        return [...v, index];
-      });
-      exited = false;
-    }
   }
+  cardStore.subscribe((v) => {});
 </script>
 
 <!-- svelte-ignore a11y-mouse-events-have-key-events -->
 <div
-  on:mousedown={() => {
-    if (offScreen && Math.abs($cardTransform) >= 150) {
-      cardStore.update((s) => {
-        s.pop();
-        return s;
-      });
-      offScreen = false;
+  style={`
+  transform:translateX(${$springCard}px) 
+  rotateY(${$rotateY}deg) 
+  rotateZ(${$rotateZ}deg)
+  scale(${$scaleHover}) 
+  ;
+
+ `}
+  on:mouseover={() => {
+    if (!exited) {
+      scaleHover.set(1.1);
     }
   }}
-  on:mouseup={() => {
-    if ($cardTransform === 0) {
-      if ($rotationValue === 180) {
-        rotationValue.set(0);
-      } else {
-        rotationValue.set(180);
-      }
+  on:mouseout={() => {
+    if (!exited) {
+      scaleHover.set(1);
     }
   }}
-  style={`transform: scale(${$scaleHover}) translateX(${$cardTransform}px) rotateY(${$rotationValue}deg) rotateZ(${$rotationValueZ}deg)`}
   bind:this={ele}
   class="card-container"
-  on:mouseenter={() => {
-    if (4 - $cardStore.length === index && offScreen === false) {
-      scaleHover.set(1.3);
-      rotationValueZ.set(0);
-    }
-  }}
-  on:mouseleave={() => {
-    scaleHover.set(1);
-    rotationValueZ.set(rotate);
-  }}
 >
   <div draggable="false" class="image-container">
     <img draggable="false" src={image["front"]} alt="" />
@@ -117,36 +134,44 @@
 
     will-change: transform;
     touch-action: none;
-    box-shadow: 0 12.5px 100px -10px rgb(50 50 73 / 40%),
-      0 10px 10px -10px rgb(50 50 73 / 30%);
+    box-shadow: 0 12.5px 100px -10px rgb(50 50 73 / 20%),
+      0 10px 10px -10px rgb(50 50 73 / 20%);
+    @media screen and (max-width: 510px) {
+      width: 200px;
+      height: 350px;
+    }
   }
   .image-container {
     overflow: hidden;
+    border-radius: 10px;
     transform: rotateY(-180deg);
-
-    img {
-      height: 100%;
-      width: 100%;
-      touch-action: none;
-      -webkit-touch-callout: none;
-      -webkit-user-select: none;
-      -khtml-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
+    height: 100%;
   }
-
+  img {
+    height: 100%;
+    width: 100%;
+    touch-action: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
   .back-container {
     content: "";
-    top: 0;
+
     z-index: -1;
     position: absolute;
 
     transform: rotateX(0deg) translate3d(0px, 0px, 1px);
-    height: 100%;
+
     display: block;
     width: 100%;
-    border-radius: 10px;
+
+    @media screen and (max-width: 510px) {
+      width: 200px;
+      height: 350px;
+    }
   }
 </style>

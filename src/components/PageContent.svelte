@@ -1,10 +1,12 @@
 <script>
+  import { marqueeContentStore } from "./Marquee/store.js";
+  import MainPageHeader from "./MainPageHeader.svelte";
   import LeftArrow from "./../images/LeftArrow.svelte";
   import { modalStore } from "./Modal/store.js";
   import Modal from "./Modal/Modal.svelte";
   import { browser } from "$app/env";
   import gsap from "gsap";
-  import { onMount } from "svelte";
+  import { onDestroy, onMount } from "svelte";
 
   export let currNav;
 
@@ -12,69 +14,46 @@
 
   let navOpen = false;
   let shouldLoadImages = false;
+
   let container;
-  let shouldPlayTransition = index === 17 || index === 23;
-  let tl = gsap.timeline();
-  onMount(() => {
-    if (index === 3) {
-      gsap.to(container, {
-        translateY: -container.offsetTop,
-      });
-    } else if (shouldPlayTransition) {
-      tl.to(".page-transition-black", {
-        height: "100vh",
-        ease: "power3.in",
+  function resizeMarquee() {
+    const menu = document.querySelector(".menu-wrap");
 
-        duration: "1",
-      })
-        .to(container, {
-          top: 0,
-        })
-        .to(
-          ".page-transition-black",
-          {
-            height: "0vh",
-            ease: "power3.in",
-
-            duration: "0.8",
-            onComplete: () => {
-              shouldLoadImages = true;
-            },
-          },
-          "<"
-        );
-    }
-  });
-  $: {
-    if (navOpen && browser) {
-      gsap.to(".list-item-container", {
-        height: "auto",
-        duration: 0.15,
-      });
-    } else {
-      gsap.to(".list-item-container", {
-        height: "0",
-        duration: 0.15,
-      });
+    if ($marqueeContentStore.active) {
+      menu.style.transform = `translate(0px,${window.innerHeight}px)`;
     }
   }
+  onMount(() => {
+    window.addEventListener("resize", resizeMarquee);
+  });
+  onDestroy(() => {
+    window.removeEventListener("resize", resizeMarquee);
+  });
 </script>
 
-{#if $modalStore.visible}
-  <Modal />
-{/if}
-{#if shouldPlayTransition}
-  <div class="page-transition-black" />
-{/if}
-
-<div bind:this={container} class="main-page-container">
-  <LeftArrow {tl} />
-  {#if currNav}
-    <svelte:component this={currNav.component} {shouldLoadImages} />
-  {/if}
+<div class="page-content-container">
+  <MainPageHeader currNav={currNav ? currNav.name : ""} />
+  <div bind:this={container} class="main-page-container">
+    {#if currNav}
+      <svelte:component this={currNav.component} {shouldLoadImages} />
+    {/if}
+  </div>
 </div>
 
 <style lang="scss">
+  .page-content-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @media screen and (max-width: 900px) {
+      font-size: 0.8rem;
+    }
+    @media screen and (max-width: 500px) {
+      font-size: 0.6rem;
+    }
+  }
   .page-transition-black {
     background-color: black;
     width: 100vw;
@@ -84,13 +63,8 @@
     z-index: 3;
   }
   .main-page-container {
-    padding: 20px;
+    overflow: auto;
 
-    overflow-x: hidden;
-
-    gap: 25px;
-    z-index: 4;
-    position: absolute;
     width: 100vw;
     height: 100%;
   }

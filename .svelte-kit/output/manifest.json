@@ -1,10 +1,10 @@
 {
   ".svelte-kit/build/runtime/internal/start.js": {
-    "file": "start-04239548.js",
+    "file": "start-1e761d54.js",
     "src": ".svelte-kit/build/runtime/internal/start.js",
     "isEntry": true,
     "imports": [
-      "_vendor-c447d8e0.js"
+      "_vendor-6710fca7.js"
     ],
     "dynamicImports": [
       ".svelte-kit/build/components/layout.svelte",
@@ -16,53 +16,54 @@
     ]
   },
   ".svelte-kit/build/components/layout.svelte": {
-    "file": "layout.svelte-a713ae11.js",
+    "file": "layout.svelte-736b531e.js",
     "src": ".svelte-kit/build/components/layout.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_vendor-c447d8e0.js"
+      "_vendor-6710fca7.js"
     ]
   },
   ".svelte-kit/build/components/error.svelte": {
-    "file": "error.svelte-0e42c158.js",
+    "file": "error.svelte-4bc74f01.js",
     "src": ".svelte-kit/build/components/error.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_vendor-c447d8e0.js"
+      "_vendor-6710fca7.js"
     ]
   },
   "src/routes/index.svelte": {
-    "file": "pages/index.svelte-d002a6b5.js",
+    "file": "pages/index.svelte-6a26ccbb.js",
     "src": "src/routes/index.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_vendor-c447d8e0.js"
+      "_vendor-6710fca7.js"
     ],
     "css": [
-      "assets/pages/index.svelte-550a4b45.css"
+      "assets/pages/index.svelte-f999f68d.css"
     ],
     "assets": [
-      "assets/brush-121e5538.mp4",
-      "assets/logo Text-6620b85f.png",
-      "assets/Render-6539680d.mp4",
       "assets/SD Bar 1-f09397dd.mp4",
       "assets/SD Bar 2-ee39e0a9.mp4",
       "assets/SD Bar 3-6cd56706.mp4",
       "assets/SD Bar 4-01b269b3.mp4",
-      "assets/AA-logo-black-mac (1)-2892f7ae.svg",
+      "assets/Render-6539680d.mp4",
+      "assets/brush-121e5538.mp4",
+      "assets/logo Text-6620b85f.png",
+      "assets/amitapel4 (1)-07a16dc1.webp",
+      "assets/cardArrow-ce1a5325.png",
       "assets/dance-6f6e8192.mp4",
       "assets/Logo Sideways-5b2a92a6.png",
-      "assets/amitapel4 (1)-07a16dc1.webp",
+      "assets/mapBar-b2060247.png",
       "assets/Background Photo-112e1098.jpg",
       "assets/unisans-a2e7014c.otf",
       "assets/unisansB-43ec5e8d.otf",
       "assets/Capsuula-b76fd88c.ttf"
     ]
   },
-  "_vendor-c447d8e0.js": {
-    "file": "chunks/vendor-c447d8e0.js"
+  "_vendor-6710fca7.js": {
+    "file": "chunks/vendor-6710fca7.js"
   }
 }

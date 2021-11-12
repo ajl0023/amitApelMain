@@ -1,49 +1,65 @@
 <script>
   let shouldGlitch = false;
+  import amit from "./../images/home/amitapel4 (1).webp";
 </script>
 
-<div class="container">
-  <h5 class="main-text-header">Meet Amit Apel</h5>
-  <div
-    on:mouseenter={() => {
-      shouldGlitch = true;
-      setTimeout(() => {
-        shouldGlitch = false;
-      }, 400);
-    }}
-    on:mouseleave={() => {
-      shouldGlitch = false;
-    }}
-    class="glitch-image-wrapper"
-  >
-    <div class="main-image-container">
-      <div class="image-main" />
+<div class="page-container">
+  <div class="container">
+    <div class="content-container">
+      <div
+        on:mouseenter={() => {
+          shouldGlitch = true;
+          setTimeout(() => {
+            shouldGlitch = false;
+          }, 400);
+        }}
+        on:mouseleave={() => {
+          shouldGlitch = false;
+        }}
+        class="glitch-image-wrapper"
+      >
+        <div class="main-image-container">
+          <div class="image-main">
+            <img class="image" src={amit} alt="" />
+          </div>
+        </div>
+        <div
+          class="content-image-container glitch-image-container {shouldGlitch
+            ? 'glitch-container'
+            : ''}"
+        >
+          {#each Array(5).fill("") as img}
+            <div class="glitch-image">
+              <img class="image" src={amit} alt="" />
+            </div>
+          {/each}
+        </div>
+      </div>
+      <div class="main-text-content">
+        <p>
+          As a gifted fifth-generation exterior and interior designer, Amit Apel
+          arrived on the sunny shores of Southern California in 1999 after
+          having been raised in Africa, Israel and throughout Europe. Upon his
+          arrival, Amit purchased a modest Honda Magnum motorcycle to travel
+          across the USA for three months. After his adventurous, cross-country
+          tour and with little means, he opened a humble, 100 sq. ft. art studio
+          within a locksmith shop on the beaches of Malibu, California and
+          instantly became a local, buzz-worthy artist. Amit’s acrylic and oil
+          paintings that were showcased in this very small shop quickly
+          catapulted into high demand by local, celebrity clients who still
+          treasure his paintings and collect his growing body of art design
+          works ranging from paintings, sculptures, jewelry, apparel and home
+          and outdoor décor and furnishings. With his savvy entrepreneurial
+          determination inspired by his passionate drive to design and produce
+          as a way of life, Amit founded Amit Apel Design, Inc.® in 2000. This
+          boutique, custom design firm now based in Malibu, California has a
+          well-established, stellar reputation that has been built over the
+          years on a vast array of award-winning commercial and residential and
+          interior designs that now span across Europe, Asia, South America as
+          well as across the US.
+        </p>
+      </div>
     </div>
-    <div
-      class="content-image-container glitch-image-container {shouldGlitch
-        ? 'glitch-container'
-        : ''}"
-    >
-      <div class="glitch-image" />
-      <div class="glitch-image" />
-      <div class="glitch-image" />
-      <div class="glitch-image" />
-      <div class="glitch-image" />
-    </div>
-  </div>
-  <div class="main-text-content">
-    <p>
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia, nulla.
-      Earum beatae perspiciatis quisquam ut, ipsam cum dolorem pariatur
-      praesentium accusamus, eum aspernatur. Iusto neque doloremque, assumenda
-      quod iure quae.
-    </p>
-    <p>
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia, nulla.
-      Earum beatae perspiciatis quisquam ut, ipsam cum dolorem pariatur
-      praesentium accusamus, eum aspernatur. Iusto neque doloremque, assumenda
-      quod iure quae.
-    </p>
   </div>
 </div>
 
@@ -51,54 +67,53 @@
   //credits https://tympanus.net/codrops/2017/12/21/css-glitch-effect/
   @use '../miscStyles/glitchVars' as *;
   @use '../miscStyles/glitchMain';
+  .container {
+    overflow-y: auto;
+    
+  }
+  .content-container {
+    display: flex;
+    gap: 40px;
 
+    flex-direction: column;
+    align-items: center;
+  }
   .main-text-content {
-    max-width: 500px;
     color: black;
+    font-family: "Open Sans", sans-serif;
     text-align: center;
+    font-size: 1.5em;
+    max-width: 1200px;
+
+    width: 100%;
+  }
+  .image {
+    width: 100%;
   }
   .glitch-image-wrapper {
     max-width: 568px;
     width: 100%;
-    height: 466px;
+    overflow: hidden;
     position: relative;
   }
   .main-image-container {
-    position: absolute;
-
     width: 100%;
     height: 100%;
     .image-main {
       background-position: 50% 50%;
       width: 100%;
       height: 100%;
-      background-size: cover;
-      background-image: url("../images/home/amitapel4 (1).webp");
+
+      background-image: url();
     }
   }
 
-  .main-text-header {
-    font-size: 6em;
-    line-height: 0.8em;
-    font-weight: 900;
-    letter-spacing: 3px;
-    font-family: unisansB;
-    text-align: center;
-    color: #68208e;
-    text-transform: uppercase;
-  }
   .content-image-container {
-    max-width: 600px;
     width: 100%;
     pointer-events: none;
   }
 
   .container {
     gap: 40px;
-    display: flex;
-    margin-top: 5rem;
-    flex-direction: column;
-
-    align-items: center;
   }
 </style>

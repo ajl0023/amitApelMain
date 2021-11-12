@@ -12,11 +12,15 @@
 
   let shouldPulse = false;
   let completed = false;
+
+  let windowSizeObj = {};
   onMount(() => {
-   
+    windowSizeObj["lg"] = window.matchMedia("(max-width: 1200px)");
+
+    windowSizeObj["sm"] = window.matchMedia("(max-width: 600px)");
     if (shouldAnimate) {
       gsap.to(container, {
-        height: "40vh",
+        height: "600px",
         duration: 5,
       });
     }
@@ -31,6 +35,7 @@
   {#each largeBarsArr as bar, i}
     <LargeBar
       index={i}
+      {windowSizeObj}
       on:stopPulse={() => {
         shouldPulse = false;
       }}
@@ -59,6 +64,7 @@
     display: flex;
     gap: 20px;
     width: 100%;
+    max-width: 1700px;
     align-items: center;
     justify-content: center;
 

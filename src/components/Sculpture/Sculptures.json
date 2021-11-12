@@ -60,6 +60,7 @@
       "img": "http://res.cloudinary.com/dt4xntymn/image/upload/v1634417528/mainSite/sculpture/MAINDUMDUMSERVER1_awzexm.jpg",
       "label": "Dum Dum Server",
       "width": 1742,
+      "expand": true,
       "height": 1795
     }
   ],

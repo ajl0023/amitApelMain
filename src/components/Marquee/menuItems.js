@@ -59,10 +59,6 @@ export const menuItems = {
         title: "art",
         labels: Array(8).fill("art"),
       },
-      {
-        title: "concept",
-        labels: Array(8).fill("concept"),
-      },
     ],
     category: "design",
   },
