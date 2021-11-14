@@ -86,14 +86,14 @@
 <style lang="scss">
   .text-image-wrapper {
     max-height: 700px;
-    grid-area: 6/ 1 / 26 /26;
+    grid-area: 3/1/26/26;
     display: grid;
     grid-template-columns: repeat(25, 4%);
     grid-template-rows: repeat(25, 4%);
     padding: 0 7vw;
     align-items: center;
     justify-content: center;
-    height: 100%;
+
     width: 100%;
     pointer-events: none;
     z-index: 4;
@@ -133,9 +133,11 @@
     display: grid;
     width: 100%;
 
-    height: 100%;
+    position: absolute;
+    top: 0;
   }
   .container {
+    overflow: hidden;
     position: relative;
     width: 100%;
     height: 100%;

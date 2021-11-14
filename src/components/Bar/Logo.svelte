@@ -12,12 +12,20 @@
 
   let shouldPulse = false;
   let completed = false;
-
+  let mobile = false;
   let windowSizeObj = {};
+  function handleResize() {
+    mobile = window.matchMedia("(max-width: 950px)").matches;
+  }
   onMount(() => {
+    mobile = window.matchMedia("(max-width: 950px)").matches;
     windowSizeObj["lg"] = window.matchMedia("(max-width: 1200px)");
 
     windowSizeObj["sm"] = window.matchMedia("(max-width: 600px)");
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
     if (shouldAnimate) {
       gsap.to(container, {
         height: "600px",
@@ -35,6 +43,7 @@
   {#each largeBarsArr as bar, i}
     <LargeBar
       index={i}
+      {mobile}
       {windowSizeObj}
       on:stopPulse={() => {
         shouldPulse = false;
@@ -69,5 +78,10 @@
     justify-content: center;
 
     position: relative;
+    @media screen and (max-width: 950px) {
+      justify-content: space-around;
+      position: relative;
+      height: 50vh;
+    }
   }
 </style>

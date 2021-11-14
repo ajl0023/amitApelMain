@@ -21,7 +21,7 @@
 <style lang="scss">
   .bar-container {
     z-index: 1;
-    opacity: 1;
+    opacity: 0;
 
     pointer-events: none;
     overflow: hidden;
@@ -38,9 +38,7 @@
       }
     }
     @media screen and (max-width: 950px) {
-      &:nth-child(3n) {
-        display: none;
-      }
+      display: none;
     }
     @media screen and (max-width: 590px) {
       display: none;

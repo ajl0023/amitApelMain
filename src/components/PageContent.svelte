@@ -33,7 +33,11 @@
 
 <div class="page-content-container">
   <MainPageHeader currNav={currNav ? currNav.name : ""} />
-  <div bind:this={container} class="main-page-container">
+  <div
+    bind:this={container}
+    class:meetPage={currNav === "meet the team"}
+    class="main-page-container"
+  >
     {#if currNav}
       <svelte:component this={currNav.component} {shouldLoadImages} />
     {/if}
@@ -67,5 +71,8 @@
 
     width: 100vw;
     height: 100%;
+  }
+  .meet-page {
+    overflow: unset;
   }
 </style>

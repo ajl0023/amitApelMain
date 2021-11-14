@@ -62,4 +62,13 @@ export const menuItems = {
     ],
     category: "design",
   },
+  28: {
+    pages: [
+      {
+        title: "contact us",
+        labels: Array(8).fill("contact us"),
+      },
+    ],
+    category: "contact us",
+  },
 };

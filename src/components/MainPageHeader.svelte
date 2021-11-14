@@ -3,9 +3,18 @@
   export let currNav;
 </script>
 
-<h5 class="main-text-header">{currNav}</h5>
+<h5
+  class:press={currNav === "press"}
+  class:sm={currNav === "meet the team"}
+  class="main-text-header"
+>
+  {currNav}
+</h5>
 
 <style lang="scss">
+  .press {
+    position: absolute;
+  }
   .main-text-header {
     font-size: 6em;
     line-height: 0.8em;
@@ -15,10 +24,11 @@
     white-space: nowrap;
     font-family: unisansB;
     text-align: center;
-
+    background-color: transparent;
     top: 5vh;
     right: 0;
     left: 0;
+    z-index: 10;
 
     padding: 20px;
     color: #68208e;
@@ -26,5 +36,8 @@
     @media screen and (max-width: 820px) {
       font-size: 10vw;
     }
+  }
+  .sm {
+    font-size: 3em;
   }
 </style>

@@ -16,5 +16,8 @@ const distMetric = (x, y, x2, y2) => {
   const yDiff = y - y2;
   return xDiff * xDiff + yDiff * yDiff;
 };
+const distance = (x, x2, y, y2) => {
+  return Math.sqrt(Math.pow(x2 - x, 2) + Math.pow(y2 - y, 2));
+};
 
-export { closestEdge, distMetric };
+export { closestEdge, distMetric, distance };

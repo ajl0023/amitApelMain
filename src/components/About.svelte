@@ -69,7 +69,7 @@
   @use '../miscStyles/glitchMain';
   .container {
     overflow-y: auto;
-    
+    color: #68208e;
   }
   .content-container {
     display: flex;
@@ -79,7 +79,6 @@
     align-items: center;
   }
   .main-text-content {
-    color: black;
     font-family: "Open Sans", sans-serif;
     text-align: center;
     font-size: 1.5em;
@@ -103,8 +102,6 @@
       background-position: 50% 50%;
       width: 100%;
       height: 100%;
-
-      background-image: url();
     }
   }
 

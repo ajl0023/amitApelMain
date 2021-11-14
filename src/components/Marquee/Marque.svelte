@@ -26,10 +26,14 @@
 
   import MapWrapper from "../Map/MapWrapper.svelte";
   import gsap from "gsap";
+  import { lgBarStore } from "../Bar/store";
+  import ContactUs from "../ContactUs/ContactUs.svelte";
   export let index;
+  export let mobile;
   let container;
   let currNav = "meet amit apel";
   function closePage() {}
+  export let windowSizeObj;
   let shouldLoadImages = false;
   const dispatch = createEventDispatcher();
 
@@ -66,6 +70,10 @@
       component: Bar3Gallery,
       name: "concept",
     },
+    "contact us": {
+      component: ContactUs,
+      name: "contact us",
+    },
     "what we do": { component: WhatWeDo, name: "what we do" },
     furniture: { component: Furniture, name: "furniture" },
     art: { component: Art, name: "art" },
@@ -76,10 +84,12 @@
   });
   onMount(() => {
     marqueeContentStore.init(container);
+    marqueeContentStore.initAnim();
   });
+
 </script>
 
-<div class="page-wrapper">
+<div class="marquee-animation-container page-wrapper">
   {#if $privateHomesModal.visible}
     <GalleryModal />
   {/if}
@@ -94,7 +104,7 @@
   <div class="container">
     <div class="menu-wrap">
       <nav class="menu">
-        {#each menuItems[index].pages as item}
+        {#each menuItems[$lgBarStore.currentIndex].pages as item}
           <MenuItem
             on:playAnimation={() => {
               const container = document.querySelector(".main-page-container");
@@ -107,7 +117,7 @@
         {/each}
       </nav>
     </div>
-    <BgLogo text={menuItems[index].category} />
+    <BgLogo text={menuItems[$lgBarStore.currentIndex].category} />
     <div class="page-transition-black" />
     <div bind:this={container} class="page-content-container">
       <PageContent {index} currNav={pages[$marqueeContentStore.content]} />
@@ -115,12 +125,17 @@
     </div>
   </div>
 
-  {#if $marqueeContentStore.content}
+  {#if !$marqueeContentStore.content}
     <MapWrapper />
   {/if}
 </div>
 
 <style lang="scss">
+  .page-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
   .page-content-container {
     padding: 20px 20px 0 20px;
 
@@ -201,10 +216,5 @@
     gap: 25px;
     padding-top: 20px;
     font-size: 1.5em;
-  }
-  .page-wrapper {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
   }
 </style>

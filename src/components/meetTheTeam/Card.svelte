@@ -1,12 +1,15 @@
 <script>
-  import { cardStore } from "./cardStore.js";
+  import { cardStore, cardImages } from "./cardStore.js";
   import { DragGesture } from "@use-gesture/vanilla";
-  import { onMount } from "svelte";
+  import { onMount, onDestroy } from "svelte";
   import { spring, tweened } from "svelte/motion";
-
+  import { distance, distMetric } from "../Marquee/utils.js";
   export let index;
+
   export let rotate;
   export let image;
+  export let stack;
+  export let outline;
   let ele;
 
   let exited;
@@ -14,7 +17,7 @@
   let rotateZ = tweened(rotate, {
     duration: 150,
   });
-  let rotateY = tweened(rotate, {
+  let rotateY = tweened(-180, {
     duration: 150,
   });
   const springCard = spring(0, {
@@ -25,8 +28,25 @@
   const scaleHover = tweened(1, {
     duration: 200,
   });
+  function exitCard() {
+    const outLinePosition = outline.getBoundingClientRect();
+    const stackPosition = stack.getBoundingClientRect();
+    const distanceRes = distance(
+      outLinePosition.x,
+      stackPosition.x,
+      outLinePosition.y,
+      stackPosition.y
+    );
 
+    springCard.set(-distanceRes);
+  }
+  function rePositionExited() {
+    if (exited) {
+      exitCard();
+    }
+  }
   onMount(() => {
+    window.addEventListener("resize", rePositionExited);
     new DragGesture(
       ele,
       ({
@@ -56,7 +76,7 @@
           cardStore.returnCard(index);
         }
         if (swipe[0] === -1 && direction[0] < 0) {
-          springCard.set(450 * direction[0]);
+          exitCard();
           cardStore.exit(index);
           scaleHover.set(1);
           exited = true;
@@ -77,12 +97,18 @@
       }
     );
   });
-
+  onDestroy(() => {});
+  let indexInStack;
   $: {
+    indexInStack = $cardStore.cards.findIndex((f) => {
+      return f === index;
+    });
+
     if ($cardStore.shouldReturn) {
       setTimeout(() => {
+        exited = false;
         springCard.set(0);
-      }, 1000 + index * 100);
+      }, 1000 + (5 - index) * 100);
     }
   }
   cardStore.subscribe((v) => {});
@@ -91,12 +117,24 @@
 <!-- svelte-ignore a11y-mouse-events-have-key-events -->
 <div
   style={`
+ 
   transform:translateX(${$springCard}px) 
   rotateY(${$rotateY}deg) 
   rotateZ(${$rotateZ}deg)
-  scale(${$scaleHover}) 
-  ;
-
+  scale(${$scaleHover});
+  z-index:${
+    exited &&
+    $cardStore.zIndex.findIndex((v) => {
+      return v === index;
+    }) >= 0
+      ? $cardStore.zIndex.findIndex((v) => {
+          return v === index;
+        })
+      : 5 -
+        $cardStore.cards.findIndex((v) => {
+          return v === index;
+        })
+  };
  `}
   on:mouseover={() => {
     if (!exited) {
@@ -129,8 +167,8 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    width: 300px;
-    height: 500px;
+    width: 100%;
+    height: 100%;
 
     will-change: transform;
     touch-action: none;

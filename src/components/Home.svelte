@@ -7,34 +7,30 @@
   import brush2 from "../images/Render.mp4";
   import { shouldAnimate } from "./../animationController.js";
   import Logo from "./Bar/Logo.svelte";
+  import { lgBarStore } from "./Bar/store";
+  import Marque from "./Marquee/Marque.svelte";
 
   let loading = true;
-  let loaded = false;
-  let mobile = false;
-  const handleResize = () => {
-    if (window.innerWidth <= 950) {
-      mobile = true;
-    } else {
-      mobile = false;
-    }
+  let marquee;
+  const mobileCheck = () => {
+    return window.innerWidth <= 950;
   };
+
   onMount(() => {
-    window.addEventListener("resize", handleResize);
-    if (window.innerWidth <= 950) {
-      mobile = true;
-    } else {
-      mobile = false;
-    }
     gsap.to(".video-stroke", {
       opacity: 0,
       delay: 3,
     });
+  });
+  onMount(() => {
+    // lgBarStore.init(index, animMobile, animDesktop);
   });
   afterUpdate(() => {
     if (!loading) {
       gsap.to(".fade", {
         opacity: 1,
         delay: 5,
+        display: "block",
       });
     }
   });
@@ -55,7 +51,20 @@
     </video>
   </div>
 {/if}
-
+<div
+  style="left:{$lgBarStore.centerPosition.x}px; top:{$lgBarStore.centerPosition
+    .y}px"
+  bind:this={marquee}
+  class="marquee-container-main"
+>
+  {#if $lgBarStore.pageContent}
+    <Marque
+      on:closePageContent={(e) => {
+        lgBarStore.closeMarquee(mobileCheck() ? "mobile" : "desktop");
+      }}
+    />
+  {/if}
+</div>
 {#if !loading || shouldAnimate === false}
   <video class="video-bg" autoplay muted loop id="myVideo">
     <source src={brush2} type="video/mp4" />
@@ -69,7 +78,7 @@
       <img class="logo-text" src={logoText} alt="" />
     </div>
 
-    <h5 class="fade">to the art of living</h5>
+    <h5 class="main-text fade">to the art of living</h5>
   </div>
 {/if}
 <!-- {:else}
@@ -77,8 +86,26 @@
 
 <!-- {/if} -->
 <style lang="scss">
+  .marquee-container-main {
+    overflow: hidden;
+    position: fixed;
+
+    height: 20px;
+    z-index: 5;
+    width: 20px;
+  }
   .main-text {
-    padding-bottom: 2.8rem;
+    text-align: center;
+    white-space: nowrap;
+
+    @media screen and (max-width: 950px) {
+      padding-bottom: 0px;
+      font-size: 2.5em;
+    }
+    @media screen and (max-width: 450px) {
+      padding-bottom: 0px;
+      font-size: 1.5em;
+    }
   }
   .video-bg {
     position: fixed;
@@ -100,7 +127,10 @@
     z-index: 2;
     opacity: 0;
     padding-top: 20px;
-
+    @media screen and (max-width: 950px) {
+      opacity: 1;
+      padding-top: 0px;
+    }
     .logo-text {
       height: auto;
 
@@ -134,15 +164,21 @@
       height: 100%;
       content: "";
     }
+    @media screen and (max-width: 950px) {
+      padding: 20px;
+    }
   }
   h5 {
     z-index: 2;
     opacity: 0;
-    display: none;
+
     letter-spacing: 5px;
     font-weight: 100;
     font-size: 4em;
     position: relative;
     text-transform: uppercase;
+    @media screen and (max-width: 950px) {
+      opacity: 1;
+    }
   }
 </style>

@@ -46,66 +46,62 @@
 
 <style lang="scss">
   .image-container {
-    opacity: 0;
+    opacity: 1;
     height: 100%;
     height: fit-content;
     filter: grayscale(1);
     &:nth-child(2) {
-      grid-area: 8/11/20/16;
-      opacity: 1;
+      grid-area: 4/11/18/15;
+
       width: 100%;
       @media screen and (max-width: 740px) {
         grid-area: 8/8/20/17;
       }
     }
     &:nth-child(3) {
-      grid-row-start: 22;
-      grid-row-end: 30;
+      grid-row-start: 15;
+      grid-row-end: 15;
       grid-column-start: 13;
       grid-column-end: 18;
-      opacity: 1;
+
       @media screen and (max-width: 740px) {
         grid-row-start: 22;
         grid-row-end: 30;
         grid-column-start: 15;
         grid-column-end: 24;
-        opacity: 1;
       }
     }
     &:nth-child(4) {
-      grid-row-start: 5;
-      grid-row-end: 14;
-      grid-column-start: 3;
-      grid-column-end: 7;
-      opacity: 1;
+      grid-row-start: 1;
+      grid-row-end: 7;
+      grid-column-start: 2;
+      grid-column-end: 5;
+
       @media screen and (max-width: 740px) {
         grid-row-start: 4;
         grid-row-end: 14;
         grid-column-start: 2;
         grid-column-end: 7;
-        opacity: 1;
       }
     }
     &:nth-child(5) {
-      grid-row-start: 18;
+      grid-row-start: 13;
       grid-row-end: 23;
       grid-column-start: 21;
       grid-column-end: 24;
-      opacity: 1;
+
       @media screen and (max-width: 740px) {
         grid-row-start: 16;
         grid-row-end: 23;
         grid-column-start: 17;
         grid-column-end: 25;
-        opacity: 1;
       }
     }
     &:nth-child(6) {
-      grid-row-start: 5;
-      grid-row-end: 16;
-      grid-column-start: 20;
+      grid-row-start: 3;
+      grid-row-end: 17;
+      grid-column-start: 21;
       grid-column-end: 25;
-      opacity: 1;
       z-index: 2;
     }
     &:nth-child(7) {
@@ -114,20 +110,17 @@
         grid-row-end: 21;
         grid-column-start: 1;
         grid-column-end: 9;
-        opacity: 1;
       }
-      grid-row-start: 18;
-      grid-row-end: 21;
-      grid-column-start: 4;
+      grid-row-start: 16;
+      grid-row-end: 18;
+      grid-column-start: 5;
       grid-column-end: 9;
-      opacity: 1;
     }
     &:nth-child(8) {
-      grid-row-start: 3;
+      grid-row-start: 1;
       grid-row-end: 6;
-      grid-column-start: 18;
-      grid-column-end: 22;
-      opacity: 1;
+      grid-column-start: 20;
+      grid-column-end: 23;
       z-index: 1;
     }
   }

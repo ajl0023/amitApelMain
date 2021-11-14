@@ -58,9 +58,10 @@
   }
   .container {
     position: absolute;
+    color: white;
     bottom: 0;
     background-color: white;
     width: 100%;
-    z-index: 3;
+    z-index: 6;
   }
 </style>
