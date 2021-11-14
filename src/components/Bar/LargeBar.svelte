@@ -169,18 +169,22 @@
           gsap.to(label, {
             opacity: 1,
           });
-          gsap.to(bar, {
+          pulseAnimation.pause();
+          gsap.to(barInner, {
             scale: 1.2,
+            opacity: 0,
           });
         }
       }}
       on:mouseleave={() => {
         if (!pageOpened) {
-          gsap.to(bar, {
-            scale: 1,
-          });
+          pulseAnimation.resume();
           gsap.to(label, {
             opacity: 0,
+          });
+          gsap.to(barInner, {
+            scale: 1,
+            opacity: 1,
           });
         }
       }}
@@ -297,8 +301,8 @@
     text-align: left;
 
     height: 100%;
-    opacity: 1;
-    position: relative;
+
+    position: absolute;
     font-size: 2em;
     font-family: unisansB;
     writing-mode: vertical-rl;

@@ -10,7 +10,10 @@ const store = () => {
     desktopAnimationSet: {},
     hide: false,
     pageContent: false,
-    centerPosition: {},
+    centerPosition: {
+      x: 0,
+      y: 0,
+    },
   };
   const { subscribe, set, update } = writable(state);
   const methods = {
@@ -34,7 +37,6 @@ const store = () => {
     },
 
     showMarquee(i, size, centerPosition) {
-   
       update((s) => {
         s.centerPosition = centerPosition;
         this.setPageContent(i);
@@ -69,7 +71,6 @@ const store = () => {
     },
     closeMarquee(size) {
       update((s) => {
-    
         if (size === "mobile") {
           s.mobileAnimationSet[s.currentIndex].reverse();
         } else {

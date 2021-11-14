@@ -1,6 +1,6 @@
 {
   ".svelte-kit/build/runtime/internal/start.js": {
-    "file": "start-1d3ce32c.js",
+    "file": "start-f4ea3e20.js",
     "src": ".svelte-kit/build/runtime/internal/start.js",
     "isEntry": true,
     "imports": [
@@ -34,7 +34,7 @@
     ]
   },
   "src/routes/index.svelte": {
-    "file": "pages/index.svelte-ba6cae3f.js",
+    "file": "pages/index.svelte-5fb7ec4b.js",
     "src": "src/routes/index.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
@@ -42,7 +42,7 @@
       "_vendor-c39b0a48.js"
     ],
     "css": [
-      "assets/pages/index.svelte-33d8ee19.css"
+      "assets/pages/index.svelte-59604e50.css"
     ],
     "assets": [
       "assets/SD Bar 1-f09397dd.mp4",
@@ -50,7 +50,6 @@
       "assets/SD Bar 3-6cd56706.mp4",
       "assets/SD Bar 4-01b269b3.mp4",
       "assets/Render-6539680d.mp4",
-      "assets/brush-121e5538.mp4",
       "assets/logo Text-6620b85f.png",
       "assets/amitapel4 (1)-07a16dc1.webp",
       "assets/cardArrow-ce1a5325.png",

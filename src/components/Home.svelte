@@ -12,6 +12,7 @@
 
   let loading = true;
   let marquee;
+  let video1;
   const mobileCheck = () => {
     return window.innerWidth <= 950;
   };
@@ -23,6 +24,8 @@
     });
   });
   onMount(() => {
+    video1.play();
+    console.log(video1);
     // lgBarStore.init(index, animMobile, animDesktop);
   });
   afterUpdate(() => {
@@ -40,8 +43,15 @@
 {#if shouldAnimate}
   <div class="video-stroke">
     <video
+      bind:this={video1}
       on:ended={() => {
         loading = false;
+      }}
+      on:click={() => {
+        video1.play();
+      }}
+      on:played={() => {
+        console.log("testiong");
       }}
       class="video-bg"
       autoplay
@@ -49,7 +59,11 @@
       muted
       playsinline
     >
-      <source class="brush" src={brush1} type="video/mp4" />
+      <source
+        class="brush"
+        src={"https://res.cloudinary.com/dt4xntymn/video/upload/v1636870696/mainSite/Brush_Stroke_1_orzxdf.mp4"}
+        type="video/mp4"
+      />
     </video>
   </div>
 {/if}
@@ -91,10 +105,7 @@
     <h5 class="main-text fade">to the art of living</h5>
   </div>
 {/if}
-<!-- {:else}
-  <MobileHome /> -->
 
-<!-- {/if} -->
 <style lang="scss">
   .marquee-container-main {
     overflow: hidden;
