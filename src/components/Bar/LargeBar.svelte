@@ -164,6 +164,16 @@
     </div>
     <div
       bind:this={barInner}
+      on:mouseenter={() => {
+        if (!pageOpened) {
+          gsap.to(label, {
+            opacity: 1,
+          });
+          gsap.to(bar, {
+            scale: 1.2,
+          });
+        }
+      }}
       on:mouseleave={() => {
         if (!pageOpened) {
           gsap.to(bar, {
@@ -281,12 +291,18 @@
 
   .main-label-container {
     text-transform: uppercase;
-    position: absolute;
+
     opacity: 0;
     font-size: 1.4em;
     text-align: left;
-    top: 0;
+
     height: 100%;
+    opacity: 1;
+    position: relative;
+    font-size: 2em;
+    font-family: unisansB;
+    writing-mode: vertical-rl;
+    text-orientation: sideways;
   }
   .cover-image {
     height: 100%;
@@ -304,9 +320,7 @@
     top: 0;
     position: absolute;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-
+    flex-direction: row-reverse;
     z-index: 1;
 
     background-color: transparent;
@@ -321,27 +335,15 @@
     z-index: 3;
   }
   .bar-3 {
-    .main-label-container {
-      top: -50px;
-    }
     left: 0;
   }
   .bar-17 {
     left: 20vw;
-    .main-label-container {
-      top: -25px;
-    }
   }
   .bar-23 {
     right: 20vw;
-    .main-label-container {
-      top: -25px;
-    }
   }
   .bar-28 {
     right: 0;
-    .main-label-container {
-      top: -25px;
-    }
   }
 </style>

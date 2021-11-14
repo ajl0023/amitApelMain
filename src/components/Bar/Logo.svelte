@@ -68,7 +68,7 @@
 
 <style lang="scss">
   .bar-container {
-    height: 70vh;
+    height: 600px;
     z-index: 3;
     display: flex;
     gap: 20px;
@@ -82,6 +82,11 @@
       justify-content: space-around;
       position: relative;
       height: 50vh;
+    }
+    @media screen and (max-width: 1078px) {
+      justify-content: space-around;
+      position: relative;
+      height: 450px;
     }
   }
 </style>

@@ -45,9 +45,11 @@
       }}
       class="video-bg"
       autoplay
+      autobuffer
       muted
+      playsinline
     >
-      <source class="brush" muted src={brush1} type="video/mp4" />
+      <source class="brush" src={brush1} type="video/mp4" />
     </video>
   </div>
 {/if}
@@ -66,7 +68,15 @@
   {/if}
 </div>
 {#if !loading || shouldAnimate === false}
-  <video class="video-bg" autoplay muted loop id="myVideo">
+  <video
+    class="video-bg"
+    autoplay
+    loop
+    autobuffer
+    muted
+    playsinline
+    id="myVideo"
+  >
     <source src={brush2} type="video/mp4" />
   </video>
   <div class="container">
