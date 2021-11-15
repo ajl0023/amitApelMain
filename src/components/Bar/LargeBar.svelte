@@ -209,7 +209,7 @@
         autoplay
         muted
         bind:this={img}
-        class="cover-image"
+        class="cover-video"
         src={barObj.img}
       />
     </div>
@@ -308,8 +308,13 @@
     writing-mode: vertical-rl;
     text-orientation: sideways;
   }
-  .cover-image {
+  .cover-video {
     height: 100%;
+    &::-webkit-media-controls-panel {
+      display: none !important;
+      -webkit-appearance: none;
+    }
+
     object-position: center center;
     width: 100%;
 

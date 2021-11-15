@@ -24,8 +24,6 @@
     });
   });
   onMount(() => {
-    video1.play();
-    console.log(video1);
     // lgBarStore.init(index, animMobile, animDesktop);
   });
   afterUpdate(() => {
@@ -49,9 +47,6 @@
       }}
       on:click={() => {
         video1.play();
-      }}
-      on:played={() => {
-        console.log("testiong");
       }}
       class="video-bg"
       autoplay
@@ -129,9 +124,13 @@
     }
   }
   .video-bg {
+    &::-webkit-media-controls-panel {
+      display: none !important;
+      -webkit-appearance: none;
+    }
+    top: 50%;
     position: fixed;
     left: 50%;
-    top: 50%;
     object-fit: cover;
     width: 100vw;
     height: 100vh;
