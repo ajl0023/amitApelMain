@@ -118,6 +118,9 @@
       width: 100vw;
       opacity: 1;
       object-fit: cover;
+      @media screen and (max-width: 780px) {
+        display: none;
+      }
     }
     .video-render {
       width: 100vw;
