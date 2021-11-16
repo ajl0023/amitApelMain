@@ -13,7 +13,6 @@
   onMount(() => {
     cardStore.init();
   });
- 
 </script>
 
 <div class="page-container">
@@ -41,7 +40,9 @@
       </ul>
       <div class="text-description-container">
         {#if $cardStore.cards.length > 0}
-          {cardImages[$cardStore.cards[0]].description}
+          <h5 class="card-name-header">
+            {cardImages[$cardStore.cards[0]].description}
+          </h5>
           <p class="descrip-container">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem
             esse eos harum, dicta nesciunt magnam numquam adipisci velit beatae
@@ -57,7 +58,12 @@
 <style lang="scss">
   $cardSizeWidth: 300px;
   $cardSizeHeight: 500px;
-
+  .card-name-header {
+    font-size: 1.5em;
+  }
+  .descrip-container {
+    font-size: 1.2em;
+  }
   @mixin styles($cardSizeWidth, $cardSizeHeight) {
     .text-description-container {
       width: $cardSizeWidth;

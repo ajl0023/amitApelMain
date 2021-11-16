@@ -1,15 +1,8 @@
 <script>
-  import { loadedVideos, lgBarStore } from "./store.js";
-  import { browser } from "$app/env";
   import gsap from "gsap";
-  import {
-    afterUpdate,
-    createEventDispatcher,
-    onMount,
-    onDestroy,
-  } from "svelte";
-  import Marque from "../Marquee/Marque.svelte";
+  import { afterUpdate, createEventDispatcher, onMount } from "svelte";
   import { shouldAnimate } from "./../../animationController.js";
+  import { lgBarStore, loadedVideos } from "./store.js";
 
   export let shouldPulse;
   export let barObj;
@@ -37,24 +30,12 @@
 
     lgBarStore.showMarquee(barObj.index, size, centerPosition);
   }
-  const getCenter = (ele) => {
-    let positions = {};
-    const elementPosition = ele.getBoundingClientRect();
-    const marqueePosition = marquee.getBoundingClientRect();
-
-    if (ele) {
-      positions["x"] =
-        (elementPosition.left + elementPosition.right) / 2 -
-        marqueePosition.width / 2;
-      positions["y"] =
-        (elementPosition.top + elementPosition.bottom) / 2 -
-        marqueePosition.width / 2;
-
-      return positions;
-    }
-  };
 
   onMount(() => {
+    gsap.to(mobileBar, {
+      opacity: 1,
+      delay: 1,
+    });
     marquee = document.querySelector(".marquee-container-main");
 
     pulseAnimation
@@ -66,28 +47,6 @@
         opacity: 1,
         duration: 1,
       });
-    let animMobile = gsap.timeline({
-      paused: true,
-    });
-    let animDesktop = gsap.timeline({
-      paused: true,
-    });
-    animMobile.to(marquee, {
-      width: "100vw",
-      top: 0,
-      duration: 0.4,
-      height: "100vh",
-      left: 0,
-    });
-
-    animDesktop.to(marquee, {
-      width: "100vw",
-      top: 0,
-      duration: 0.4,
-      height: "100vh",
-      left: 0,
-    });
-    lgBarStore.init(barObj.index, animMobile, animDesktop);
   });
 
   afterUpdate(() => {
@@ -148,46 +107,19 @@
   }
 </script>
 
-<div class="wrapper">
+<div bind:this={bar} class:should-animate={shouldAnimate} class="wrapper">
   <div
-    bind:this={bar}
-    class:should-animate={shouldAnimate}
-    class="bar-wrapper bar-{barObj.index} {pageOpened ? 'opened' : ''}"
+    class="bar-wrapper bar-{barObj.index}"
     class:mobile-bar={windowSizeObj["mobile"] && mobile}
   >
     <div
-      bind:this={label}
-      class:inactive={pageOpened}
-      class="main-label-container"
-    >
-      <p>{barObj.label}</p>
-    </div>
-    <div
       bind:this={barInner}
       on:mouseenter={() => {
-        if (!pageOpened) {
-          gsap.to(label, {
-            opacity: 1,
-          });
-          pulseAnimation.pause();
-          gsap.to(barInner, {
-            scale: 1.2,
-            opacity: 0,
-          });
-        }
+        // gsap.to(barInner, {
+        //   opacity: 0,
+        // });
       }}
-      on:mouseleave={() => {
-        if (!pageOpened) {
-          pulseAnimation.resume();
-          gsap.to(label, {
-            opacity: 0,
-          });
-          gsap.to(barInner, {
-            scale: 1,
-            opacity: 1,
-          });
-        }
-      }}
+      on:mouseleave={() => {}}
       on:click={(e) => {
         lgBarStore.setPageContent(barObj.index);
         expandMarquee(barInner, "desktop");
@@ -197,7 +129,7 @@
         dispatch("stopPulse");
         e.stopPropagation();
       }}
-      class="bar-container"
+      class="bar-container-lg"
     >
       <video
         on:loadeddata={() => {
@@ -213,20 +145,11 @@
         src={barObj.img}
       />
     </div>
+
+    <div />
   </div>
-  <div class="marquee-container" />
-  <div
-    on:click={(e) => {
-      expandMarquee(mobileBar, "mobile");
-      e.stopPropagation();
-    }}
-    class="mobile-container"
-  >
-    <div bind:this={mobileBar} class="mobile-bar-container" />
-    <div class="label-container">
-      <p>{barObj.label}</p>
-    </div>
-  </div>
+
+
 </div>
 
 <style lang="scss">
@@ -245,8 +168,24 @@
   .hidden {
     visibility: hidden;
   }
+  .bar-wrapper {
+    z-index: 1;
+
+    @media screen and (max-width: 950px) {
+      display: none;
+    }
+    // position: absolute;
+  }
 
   .wrapper {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 200px;
+    height: 100%;
+    top: 0;
+    cursor: pointer;
+    transform: scale(0.8);
+    background-color: white;
     @media screen and (max-width: 950px) {
       flex: 25%;
       height: 100%;
@@ -254,60 +193,19 @@
       position: relative;
     }
   }
-  .mobile-container {
-    display: none;
-    @media screen and (max-width: 950px) {
-      display: flex;
-      height: 100%;
-      width: 100%;
-
-      .mobile-bar-container {
-        height: 100%;
-        width: 100%;
-        position: relative;
-        background-color: white;
-      }
-      .label-container {
-        opacity: 1;
-        position: relative;
-        font-size: 2em;
-        font-family: unisansB;
-        writing-mode: vertical-rl;
-        text-orientation: sideways;
-        top: auto !important;
-        @media screen and (max-width: 550px) {
-          font-size: 1.5em;
-        }
-      }
-    }
-  }
+  
   .inactive {
     display: none;
   }
-  .bar-container {
+  .bar-container-lg {
     width: 100%;
-
+    opacity: 0;
     position: relative;
     height: 100%;
 
     overflow: hidden;
   }
 
-  .main-label-container {
-    text-transform: uppercase;
-
-    opacity: 0;
-    font-size: 1.4em;
-    text-align: left;
-
-    height: 100%;
-
-    position: absolute;
-    font-size: 2em;
-    font-family: unisansB;
-    writing-mode: vertical-rl;
-    text-orientation: sideways;
-  }
   .cover-video {
     height: 100%;
     &::-webkit-media-controls-panel {
@@ -324,25 +222,7 @@
     opacity: 0;
     pointer-events: none;
   }
-  .bar-wrapper {
-    width: 20%;
-    top: 0;
-    position: absolute;
-    display: flex;
-    flex-direction: row-reverse;
-    z-index: 1;
 
-    background-color: transparent;
-    height: 100%;
-    transform: scale(0.8);
-    @media screen and (max-width: 950px) {
-      display: none;
-    }
-    // position: absolute;
-  }
-  .opened {
-    z-index: 3;
-  }
   .bar-3 {
     left: 0;
   }

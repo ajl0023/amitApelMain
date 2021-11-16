@@ -5,7 +5,10 @@
   import brush1 from "../images/brush.mp4";
   import logoText from "../images/home/logo Text.png";
   import brush2 from "../images/Render.mp4";
-  import { shouldAnimate } from "./../animationController.js";
+  import {
+    introAnimationStore,
+    shouldAnimate,
+  } from "./../animationController.js";
   import Logo from "./Bar/Logo.svelte";
   import { lgBarStore } from "./Bar/store";
   import Marque from "./Marquee/Marque.svelte";
@@ -13,61 +16,18 @@
   let loading = true;
   let marquee;
   let video1;
+
   const mobileCheck = () => {
-    return window.innerWidth <= 950;
+    return window.innerWidth <= 780;
   };
 
   onMount(() => {
-    gsap.to(".video-stroke", {
-      opacity: 0,
-      delay: 3,
-    });
-  });
-  onMount(() => {
-    // lgBarStore.init(index, animMobile, animDesktop);
-  });
-  afterUpdate(() => {
-    if (!loading) {
-      gsap.to(".fade", {
-        opacity: 1,
-        delay: 5,
-        display: "block",
-      });
-    }
+    introAnimationStore.init(mobileCheck());
+    lgBarStore.initMarquee();
   });
 </script>
 
-<!-- {#if !mobile} -->
-{#if shouldAnimate}
-  <div class="video-stroke">
-    <video
-      bind:this={video1}
-      on:ended={() => {
-        loading = false;
-      }}
-      on:click={() => {
-        video1.play();
-      }}
-      class="video-bg"
-      autoplay
-      autobuffer
-      muted
-      playsinline
-    >
-      <source
-        class="brush"
-        src={"https://res.cloudinary.com/dt4xntymn/video/upload/v1636870696/mainSite/Brush_Stroke_1_orzxdf.mp4"}
-        type="video/mp4"
-      />
-    </video>
-  </div>
-{/if}
-<div
-  style="left:{$lgBarStore.centerPosition.x}px; top:{$lgBarStore.centerPosition
-    .y}px"
-  bind:this={marquee}
-  class="marquee-container-main"
->
+<div bind:this={marquee} class="marquee-container-main">
   {#if $lgBarStore.pageContent}
     <Marque
       on:closePageContent={(e) => {
@@ -76,9 +36,27 @@
     />
   {/if}
 </div>
-{#if !loading || shouldAnimate === false}
+<!-- {#if !mobile} -->
+
+<div class="video-bg">
   <video
-    class="video-bg"
+    bind:this={video1}
+    class="video-brush"
+    autoplay
+    autobuffer
+    muted
+    playsinline
+  >
+    <source
+      src={"https://res.cloudinary.com/dt4xntymn/video/upload/v1636870696/mainSite/Brush_Stroke_1_orzxdf.mp4"}
+      type="video/mp4"
+    />
+  </video>
+</div>
+
+<div class="video-bg">
+  <video
+    class="video-render"
     autoplay
     loop
     autobuffer
@@ -88,18 +66,18 @@
   >
     <source src={brush2} type="video/mp4" />
   </video>
-  <div class="container">
-    <h5 class="main-text fade">connecting people</h5>
+</div>
+<div class="container">
+  <h5 class="main-text fade">connecting people</h5>
 
-    <Logo />
+  <Logo />
 
-    <div class="logo-text-container fade">
-      <img class="logo-text" src={logoText} alt="" />
-    </div>
-
-    <h5 class="main-text fade">to the art of living</h5>
+  <div class="logo-text-container fade bar-sm">
+    <img class="logo-text" src={logoText} alt="" />
   </div>
-{/if}
+
+  <h5 class="main-text fade">to the art of living</h5>
+</div>
 
 <style lang="scss">
   .marquee-container-main {
@@ -114,7 +92,7 @@
     text-align: center;
     white-space: nowrap;
 
-    @media screen and (max-width: 950px) {
+    @media screen and (max-width: 780px) {
       padding-bottom: 0px;
       font-size: 2.5em;
     }
@@ -129,25 +107,32 @@
       -webkit-appearance: none;
     }
     top: 50%;
+
     position: fixed;
     left: 50%;
     object-fit: cover;
     width: 100vw;
     height: 100vh;
     transform: translate(-50%, -50%);
+    .video-brush {
+      width: 100vw;
+      opacity: 1;
+      object-fit: cover;
+    }
+    .video-render {
+      width: 100vw;
+      opacity: 0;
+      object-fit: cover;
+    }
   }
-  .video-stroke {
-    width: 100vw;
 
-    object-fit: cover;
-  }
   .logo-text-container {
     max-width: 500px;
     width: 100%;
     z-index: 2;
     opacity: 0;
     padding-top: 20px;
-    @media screen and (max-width: 950px) {
+    @media screen and (max-width: 780px) {
       opacity: 1;
       padding-top: 0px;
     }
@@ -184,7 +169,7 @@
       height: 100%;
       content: "";
     }
-    @media screen and (max-width: 950px) {
+    @media screen and (max-width: 780px) {
       padding: 20px;
     }
   }
@@ -197,7 +182,7 @@
     font-size: 4em;
     position: relative;
     text-transform: uppercase;
-    @media screen and (max-width: 950px) {
+    @media screen and (max-width: 780px) {
       opacity: 1;
     }
   }

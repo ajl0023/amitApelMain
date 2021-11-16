@@ -1,5 +1,5 @@
 export const menuItems = {
-  3: {
+  5: {
     pages: [
       {
         title: "meet amit apel",
@@ -24,7 +24,7 @@ export const menuItems = {
     ],
     category: "apel design",
   },
-  17: {
+  11: {
     pages: [
       {
         title: "private homes",
@@ -45,7 +45,7 @@ export const menuItems = {
     ],
     category: "architecture",
   },
-  23: {
+  17: {
     pages: [
       {
         title: "sculpture",
@@ -62,7 +62,7 @@ export const menuItems = {
     ],
     category: "design",
   },
-  28: {
+  23: {
     pages: [
       {
         title: "contact us",

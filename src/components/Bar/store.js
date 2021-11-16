@@ -1,4 +1,5 @@
 import { writable } from "svelte/store";
+import gsap from "gsap";
 
 export const loadedVideos = writable([]);
 
@@ -9,6 +10,7 @@ const store = () => {
     mobileAnimationSet: {},
     desktopAnimationSet: {},
     hide: false,
+    marqueeEle: null,
     pageContent: false,
     centerPosition: {
       x: 0,
@@ -17,36 +19,54 @@ const store = () => {
   };
   const { subscribe, set, update } = writable(state);
   const methods = {
-    attachReverseListener(anim) {
-      anim.eventCallback("onReverseComplete", () => {
-        update((s) => {
-          s.hide = false;
-          this.pageContentToggle(false);
-          return s;
-        });
+    attachReverseListener(anim) {},
+    initMarquee(anim) {
+      update((s) => {
+        s.marqueeEle = document.querySelector(".marquee-container-main");
+        return s;
       });
     },
     init(index, animMobile, animDesktop) {
       update((s) => {
         this.attachReverseListener(animMobile);
         this.attachReverseListener(animDesktop);
-        s.mobileAnimationSet[index] = animMobile;
-        s.desktopAnimationSet[index] = animDesktop;
+
         return s;
       });
     },
 
     showMarquee(i, size, centerPosition) {
       update((s) => {
-        s.centerPosition = centerPosition;
+        s.centerPosition = {
+          x: 0,
+          y: 0,
+        };
+        s.desktopAnimationSet[i] = gsap.timeline();
+        s.desktopAnimationSet[i].eventCallback("onReverseComplete", () => {
+          update((s) => {
+            s.hide = false;
+            s.currentIndex = false;
+            s.centerPosition = false;
+            this.pageContentToggle(false);
+            return s;
+          });
+        });
+        gsap.set(s.marqueeEle, {
+          left: centerPosition.x,
+          top: centerPosition.y,
+        });
+        s.desktopAnimationSet[i].to(s.marqueeEle, {
+          width: "100vw",
+          top: 0,
+          duration: 0.4,
+          height: "100vh",
+          left: 0,
+        });
+
         this.setPageContent(i);
-        if (size === "mobile") {
-          s.mobileAnimationSet[i].play();
-        } else {
-          s.desktopAnimationSet[i].play();
-        }
+
         this.pageContentToggle(true);
-        s.hide = true;
+
         return s;
       });
     },
@@ -71,11 +91,7 @@ const store = () => {
     },
     closeMarquee(size) {
       update((s) => {
-        if (size === "mobile") {
-          s.mobileAnimationSet[s.currentIndex].reverse();
-        } else {
-          s.desktopAnimationSet[s.currentIndex].reverse();
-        }
+        s.desktopAnimationSet[s.currentIndex].reverse();
 
         return s;
       });

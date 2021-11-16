@@ -82,7 +82,7 @@ export const cardImages = [
       "https://res.cloudinary.com/dt4xntymn/image/upload/v1633335279/mainSite/meet%20the%20team/Cards/front/Omar_Card_frdbxy.jpg",
     back:
       "https://res.cloudinary.com/dt4xntymn/image/upload/v1633335260/mainSite/meet%20the%20team/Cards/back/Omar_Card_Back_weik5s.jpg",
-    description: "Omar_Card",
+    description: "Omar",
   },
 
   {
@@ -111,7 +111,7 @@ export const cardImages = [
       "https://res.cloudinary.com/dt4xntymn/image/upload/v1633335279/mainSite/meet%20the%20team/Cards/front/Elchin_Card_hhfjc2.jpg",
     back:
       "https://res.cloudinary.com/dt4xntymn/image/upload/v1633335260/mainSite/meet%20the%20team/Cards/back/Elchin_Card_Back_ii2vul.jpg",
-    description: "Elchin_Card_Back_ii2vul",
+    description: "Elchin",
   },
   {
     front:
