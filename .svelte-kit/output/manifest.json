@@ -1,10 +1,10 @@
 {
   ".svelte-kit/build/runtime/internal/start.js": {
-    "file": "start-657e17f8.js",
+    "file": "start-60350380.js",
     "src": ".svelte-kit/build/runtime/internal/start.js",
     "isEntry": true,
     "imports": [
-      "_vendor-5cbe1366.js"
+      "_vendor-b603cfbc.js"
     ],
     "dynamicImports": [
       ".svelte-kit/build/components/layout.svelte",
@@ -16,33 +16,33 @@
     ]
   },
   ".svelte-kit/build/components/layout.svelte": {
-    "file": "layout.svelte-78447d04.js",
+    "file": "layout.svelte-904974d4.js",
     "src": ".svelte-kit/build/components/layout.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_vendor-5cbe1366.js"
+      "_vendor-b603cfbc.js"
     ]
   },
   ".svelte-kit/build/components/error.svelte": {
-    "file": "error.svelte-a8a4e3bf.js",
+    "file": "error.svelte-23ffb418.js",
     "src": ".svelte-kit/build/components/error.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_vendor-5cbe1366.js"
+      "_vendor-b603cfbc.js"
     ]
   },
   "src/routes/index.svelte": {
-    "file": "pages/index.svelte-8c0028fb.js",
+    "file": "pages/index.svelte-63eb0c2d.js",
     "src": "src/routes/index.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_vendor-5cbe1366.js"
+      "_vendor-b603cfbc.js"
     ],
     "css": [
-      "assets/pages/index.svelte-4b27dde8.css"
+      "assets/pages/index.svelte-8127311b.css"
     ],
     "assets": [
       "assets/SD Bar 1-f09397dd.mp4",
@@ -51,6 +51,7 @@
       "assets/SD Bar 4-01b269b3.mp4",
       "assets/Render-6539680d.mp4",
       "assets/logo Text-6620b85f.png",
+      "assets/logo-f49bb745.png",
       "assets/amitapel4 (1)-07a16dc1.webp",
       "assets/cardArrow-ce1a5325.png",
       "assets/dance-6f6e8192.mp4",
@@ -62,7 +63,7 @@
       "assets/Capsuula-b76fd88c.ttf"
     ]
   },
-  "_vendor-5cbe1366.js": {
-    "file": "chunks/vendor-5cbe1366.js"
+  "_vendor-b603cfbc.js": {
+    "file": "chunks/vendor-b603cfbc.js"
   }
 }

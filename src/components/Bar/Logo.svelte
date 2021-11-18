@@ -1,12 +1,14 @@
 <script>
   import gsap from "gsap";
   import { onMount } from "svelte";
-  import { shouldAnimate } from "./../../animationController.js";
+  import { shouldAnimate } from "./../../animationController";
   import { largeBarObj, largeBarsArr } from "./animationObj";
-  import Bar from "./SmBar.svelte";
+  import BarPage from "./BarPage.svelte";
   import LargeBar from "./LargeBar.svelte";
   import BarMask from "./BarMask.svelte";
-
+  import UpcReset from "./UpcReset.svelte";
+  import "./logo.scss";
+  import UpcDigit from "./UpcDigit.svelte";
   const bars = Array.from(" ".repeat(27));
   const targets = [
     {
@@ -46,83 +48,65 @@
       });
     }
   });
+
+  onMount(() => {
+    const containers = document.querySelectorAll(".upc-reset");
+  });
+  const upcDigits1 = [
+    { val: 0 },
+    { val: 0 },
+    { val: 1 },
+    { val: 3, index: 0 },
+    { val: 2 },
+    { val: 3, index: 1 },
+  ];
+  const upcDigits2 = [
+    { val: 1 },
+    { val: 3, index: 2 },
+    { val: 9 },
+    { val: 8 },
+    { val: 3, index: 3 },
+    { val: 0 },
+  ];
 </script>
 
-<div bind:this={container} class="bar-container">
-  {#each bars as bar, i}
-    <Bar
-      barInfo={largeBarObj[i]}
-      target={targets.find((idx) => {
-        return i === idx.index;
-      })}
-      index={i}
-      {bar}
-    />
-  {/each}
+<div class="container">
+  <div class="barcode">
+    <UpcReset />
 
-  {#each largeBarsArr as bar, i}
-    <!-- <LargeBar
-      index={i}
-      {mobile}
-      {windowSizeObj}
-      on:stopPulse={() => {
-        shouldPulse = false;
-      }}
-      on:startPulse={() => {
-        shouldPulse = true;
-      }}
-      on:complete={() => {
-        animations.push(i);
-        if (animations.length === 4) {
-          completed = true;
-          shouldPulse = true;
-        }
-      }}
-      {shouldPulse}
-      {completed}
-      custom={bar.index}
-      barObj={bar}
-    /> -->
+    {#each upcDigits1 as dig}
+      <UpcDigit data-val={dig.val} index={dig.index} target={dig.val === 3} />
+    {/each}
 
-    <BarMask barIndex={targets[i]} />
-  {/each}
+    <UpcReset />
+    {#each upcDigits2 as dig}
+      <UpcDigit data-val={dig.val} index={dig.index} target={dig.val === 3} />
+    {/each}
+
+    <UpcReset />
+  </div>
 </div>
+<BarMask index={0} />
+<BarMask index={1} />
+<BarMask index={2} />
+<BarMask index={3} />
 
 <style lang="scss">
-  .bar-container {
-    z-index: 3;
-    display: flex;
-    gap: 20px;
+  .container {
+    z-index: 1;
     width: 100%;
-
-    max-width: 1700px;
-    aspect-ratio: 1.4;
+    display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: space-around;
 
+    overflow: hidden;
     position: relative;
-    @media screen and (max-width: 950px) {
-      justify-content: space-around;
-      position: relative;
-      height: 50vh;
-    }
-    @media screen and (max-width: 1078px) {
-      justify-content: space-around;
-      position: relative;
-      height: 450px;
-    }
   }
-  .bar-mask-container {
-    display: flex;
-    gap: 40px;
-    align-items: center;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 30px;
-    position: fixed;
-
-    width: 100%;
+  .barcode {
+    @media screen and (max-width: 650px) {
+      display: flex;
+      justify-content: space-evenly;
+      gap: 20px;
+    }
   }
 </style>

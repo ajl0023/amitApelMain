@@ -3,7 +3,7 @@
   import { marqueeContentStore } from "./../Marquee/store.js";
   import LeftArrow from "./../../images/LeftArrow.svelte";
   import Logo from "./../../images/home/Logo.svelte";
-
+  import logo from "./../../images/home/logo.png";
   import { createEventDispatcher } from "svelte";
 
   const dispatch = createEventDispatcher();
@@ -17,7 +17,7 @@
     }}
     class="logo-container"
   >
-    <Logo />
+    <img src={logo} alt="" />
   </div>
   {#if $marqueeContentStore.content}
     <LeftArrow />
@@ -38,11 +38,14 @@
 
     .logo-container {
       cursor: pointer;
-      width: 350px;
+      width: 120px;
 
       position: relative;
       pointer-events: all;
       z-index: 5;
+      img {
+        width: 100%;
+      }
     }
   }
 </style>

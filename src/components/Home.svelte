@@ -18,7 +18,7 @@
   let video1;
 
   const mobileCheck = () => {
-    return window.innerWidth <= 780;
+    return window.innerWidth <= 650;
   };
 
   onMount(() => {
@@ -68,15 +68,16 @@
   </video>
 </div>
 <div class="container">
-  <h5 class="main-text fade">connecting people</h5>
+  <div class="main-text-container">
+    <h5 class="main-text fade">connecting people</h5>
+    <h5 class="main-text fade">to the art of living</h5>
+  </div>
 
   <Logo />
 
-  <div class="logo-text-container fade bar-sm">
+  <div class="logo-text-container fade">
     <img class="logo-text" src={logoText} alt="" />
   </div>
-
-  <h5 class="main-text fade">to the art of living</h5>
 </div>
 
 <style lang="scss">
@@ -88,17 +89,24 @@
     z-index: 5;
     width: 20px;
   }
-  .main-text {
-    text-align: center;
-    white-space: nowrap;
+  .main-text-container {
+    display: flex;
+    gap: 20px;
 
-    @media screen and (max-width: 780px) {
-      padding-bottom: 0px;
-      font-size: 2.5em;
+    .main-text {
+      text-align: center;
+      white-space: nowrap;
     }
-    @media screen and (max-width: 450px) {
-      padding-bottom: 0px;
-      font-size: 1.5em;
+    @media screen and (max-width: 1350px) {
+      font-size: 0.5em;
+    }
+    @media screen and (max-width: 900px) {
+      font-size: 0.3em;
+      flex-direction: column;
+      gap: 0px;
+    }
+    @media screen and (max-width: 550px) {
+      font-size: 0.2em;
     }
   }
   .video-bg {
@@ -118,7 +126,7 @@
       width: 100vw;
       opacity: 1;
       object-fit: cover;
-      @media screen and (max-width: 780px) {
+      @media screen and (max-width: 650px) {
         display: none;
       }
     }
@@ -126,6 +134,9 @@
       width: 100vw;
       opacity: 0;
       object-fit: cover;
+      @media screen and (max-width: 650px) {
+        opacity: 1;
+      }
     }
   }
 
@@ -135,9 +146,11 @@
     z-index: 2;
     opacity: 0;
     padding-top: 20px;
-    @media screen and (max-width: 780px) {
+    @media screen and (max-width: 650px) {
       opacity: 1;
       padding-top: 0px;
+      max-width: 300px;
+      width: 100%;
     }
     .logo-text {
       height: auto;
@@ -172,7 +185,7 @@
       height: 100%;
       content: "";
     }
-    @media screen and (max-width: 780px) {
+    @media screen and (max-width: 650px) {
       padding: 20px;
     }
   }
@@ -185,7 +198,7 @@
     font-size: 4em;
     position: relative;
     text-transform: uppercase;
-    @media screen and (max-width: 780px) {
+    @media screen and (max-width: 650px) {
       opacity: 1;
     }
   }

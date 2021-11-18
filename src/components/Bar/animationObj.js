@@ -4,7 +4,7 @@ import main3 from "./slideshows/SD Bar 3.mp4";
 import main4 from "./slideshows/SD Bar 4.mp4";
 
 export const largeBarObj = {
-  5: {
+  0: {
     delay: 0.1,
     defaultPos: {
       left: "0px",
@@ -23,7 +23,7 @@ export const largeBarObj = {
       width: "2.7%",
     },
   },
-  11: {
+  1: {
     label: "architecture",
     delay: 0.2,
     img: main2,
@@ -42,7 +42,7 @@ export const largeBarObj = {
       width: "1.1%",
     },
   },
-  17: {
+  2: {
     label: "design",
     delay: 0.3,
     img: main3,
@@ -60,7 +60,7 @@ export const largeBarObj = {
       width: "2.7%",
     },
   },
-  23: {
+  3: {
     label: "contact",
     delay: 0.4,
     img: main4,
@@ -91,7 +91,7 @@ export const largeBarsArr = [
       0: "0%",
       1: "0%",
     },
-    index: 5,
+    index: 0,
     img: main1,
     position: {
       left: "10.9%",
@@ -111,7 +111,7 @@ export const largeBarsArr = [
 
   {
     label: "architecture",
-    index: 11,
+    index: 1,
     delay: 0.2,
     img: main2,
     imagePos: {
@@ -132,7 +132,7 @@ export const largeBarsArr = [
 
   {
     label: "design",
-    index: 17,
+    index: 2,
     delay: 0.3,
     img: main3,
     imagePos: {
@@ -154,7 +154,7 @@ export const largeBarsArr = [
 
   {
     label: "contact",
-    index: 23,
+    index: 3,
     delay: 0.4,
     img: main4,
     imagePos: {

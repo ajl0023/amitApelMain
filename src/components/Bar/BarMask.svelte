@@ -8,7 +8,7 @@
   let bar;
 
   onMount(() => {
-    const ele = document.querySelector(`.target-${barIndex.index}`);
+    const ele = document.querySelector(`.target-${$$props.index}`);
 
     introAnimationStore.update((s) => {
       s.bars = [
@@ -16,7 +16,7 @@
         {
           ele: bar,
           parentEle: ele,
-          index: barIndex.index,
+          index: $$props.index,
         },
       ];
 
@@ -28,13 +28,13 @@
 <div
   style=""
   bind:this={bar}
-  class="target-bar container container-{barIndex.index}"
+  class="target-bar container container-{$$props.index}"
 >
   <video
     autoplay
     muted
     class="cover-video"
-    src={largeBarObj[barIndex.index].img}
+    src={largeBarObj[$$props.index].img}
   />
 </div>
 
@@ -45,30 +45,23 @@
     width: 15%;
     pointer-events: none;
     opacity: 0;
+    position: fixed;
 
     transform: translateY(50%);
-    @media screen and (max-width: 780px) {
+    @media screen and (max-width: 650px) {
       display: none;
     }
   }
-  .container-5 {
-    position: fixed;
-
+  .container-0 {
     left: 10%;
   }
-  .container-11 {
-    position: fixed;
-
+  .container-1 {
     left: 30%;
   }
-  .container-17 {
-    position: fixed;
-
+  .container-2 {
     right: 30%;
   }
-  .container-23 {
-    position: fixed;
-
+  .container-3 {
     right: 10%;
   }
   .cover-video {

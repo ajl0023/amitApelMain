@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "checkJs": false
+  },
+  "include": ["src/components", "src/**/*.svelte", "src"],
+  "exclude": ["node_modules", "**/node_modules/*", "misc"]
+}

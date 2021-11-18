@@ -62,7 +62,7 @@ const introAnimation = () => {
                 },
                 onComplete: () => {
                   gsap.set(ele.ele, { display: "none" });
-                  gsap.set(".target-sm", { pointerEvents: "auto" });
+                  gsap.set(".bar-wrapper", { pointerEvents: "auto" });
                 },
               },
               "lgBarAnim"
@@ -72,14 +72,14 @@ const introAnimation = () => {
         }
 
         s.timeline.add(
-          gsap.to(".target-sm", {
+          gsap.to(".target-cover", {
             opacity: 1,
           }),
           "lgBarAnim-=1"
         );
 
         s.timeline.add(
-          gsap.to([".bar-sm", ".main-text"], {
+          gsap.to([".bar-inactive", ".main-text", ".fade", ".bar-wrapper"], {
             opacity: 1,
             duration: 2,
           }),
@@ -87,7 +87,7 @@ const introAnimation = () => {
         );
         s.timeline.add(
           gsap.to(
-            ".target-sm",
+            ".target-cover",
             {
               opacity: 0,
               repeat: "-1",
@@ -101,9 +101,6 @@ const introAnimation = () => {
           s.timeline.play();
           window.addEventListener("resize", () => {
             s.timeline.invalidate();
-            if (s.timeline.isActive()) {
-              console.log("test");
-            }
 
             for (let i = 0; i < s.bars.length; i++) {
               const ele = s.bars[i];
@@ -111,7 +108,8 @@ const introAnimation = () => {
             }
           });
         } else {
-          s.timeline.progress(1);
+          s.timeline.seek("pulseAnimation");
+          s.timeline.play();
         }
 
         return s;
@@ -120,7 +118,7 @@ const introAnimation = () => {
     stopPulse: () => {
       update((s) => {
         s.timeline.addPause("pulseAnimation");
-        console.log(s.timeline);
+
         return s;
       });
     },
