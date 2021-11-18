@@ -27,6 +27,12 @@ const introAnimation = () => {
               opacity: 1,
               stagger: 0.1,
               duration: 5,
+              onStart: () => {
+                for (let i = 0; i < s.bars.length; i++) {
+                  const video = s.bars[i].video;
+                  video.play();
+                }
+              },
             },
             "initialFade"
           );

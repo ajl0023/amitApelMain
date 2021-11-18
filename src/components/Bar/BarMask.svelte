@@ -6,7 +6,7 @@
   export let barIndex;
 
   let bar;
-
+  let video;
   onMount(() => {
     const ele = document.querySelector(`.target-${$$props.index}`);
 
@@ -17,6 +17,7 @@
           ele: bar,
           parentEle: ele,
           index: $$props.index,
+          video: video,
         },
       ];
 
@@ -31,8 +32,8 @@
   class="target-bar container container-{$$props.index}"
 >
   <video
-    autoplay
     muted
+    bind:this={video}
     class="cover-video"
     src={largeBarObj[$$props.index].img}
   />

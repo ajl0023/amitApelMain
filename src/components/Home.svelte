@@ -114,14 +114,14 @@
       display: none !important;
       -webkit-appearance: none;
     }
-    top: 50%;
 
     position: fixed;
-    left: 50%;
+
     object-fit: cover;
     width: 100vw;
     height: 100vh;
-    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
     .video-brush {
       width: 100vw;
       opacity: 1;
