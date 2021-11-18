@@ -143,6 +143,9 @@
 
     cursor: pointer;
     pointer-events: none;
+    @media screen and (max-width: 650px) {
+      pointer-events: auto;
+    }
   }
   .inner-bar {
     width: 100%;

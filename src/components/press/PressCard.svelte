@@ -17,39 +17,39 @@
   });
 </script>
 
-<!-- <a
+<a
+  class="link-container"
+  on:mouseenter={() => {
+    grayscale.set(0);
+  }}
+  on:mouseleave={() => {
+    grayscale.set(1);
+  }}
   on:click={(e) => {
     e.preventDefault();
     window.open(link);
   }}
-  on:mouseenter={() => {
-    grayscale.set(0);
-  }}
-  on:mouseleave={() => {
-    grayscale.set(1);
-  }}
   href={""}
-  class="link-container"
-/> -->
-<div
-  on:mouseenter={() => {
-    grayscale.set(0);
-  }}
-  on:mouseleave={() => {
-    grayscale.set(1);
-  }}
-  style={`transform:translateX(${$store.tx}px) translateY(${$store.ty}px); filter:grayscale(${$grayscale})`}
-  class="image-container"
+  ><div
+    on:mouseenter={() => {
+      grayscale.set(0);
+    }}
+    on:mouseleave={() => {
+      grayscale.set(1);
+    }}
+    style={`transform:translateX(${$store.tx}px) translateY(${$store.ty}px); filter:grayscale(${$grayscale})`}
+    class="image-container"
+  >
+    <img class="image" bind:this={ele} src={img} alt="" />
+  </div></a
 >
-  <img class="image" bind:this={ele} src={img} alt="" />
-</div>
 
 <style lang="scss">
-  .image-container {
-    opacity: 1;
-    height: 100%;
+  .link-container {
+    width: 100%;
+    display: block;
+    position: relative;
     height: fit-content;
-    filter: grayscale(1);
     &:nth-child(2) {
       grid-area: 4/11/18/15;
 
@@ -124,23 +124,25 @@
       z-index: 1;
     }
   }
-  .link-container {
-    width: 100%;
-    display: block;
-    position: relative;
-  }
-  .image-mask {
-    position: absolute;
-    opacity: 90%;
-    width: 100%;
+  .image-container {
+    opacity: 1;
     height: 100%;
-  }
-  .image {
-    cursor: pointer;
-    width: 100%;
+    height: fit-content;
+    filter: grayscale(1);
 
-    object-position: center center;
+    .image-mask {
+      position: absolute;
+      opacity: 90%;
+      width: 100%;
+      height: 100%;
+    }
+    .image {
+      cursor: pointer;
+      width: 100%;
 
-    object-fit: cover;
+      object-position: center center;
+
+      object-fit: cover;
+    }
   }
 </style>
