@@ -4,6 +4,7 @@
   import { onMount, onDestroy } from "svelte";
   import { spring, tweened } from "svelte/motion";
   import { distance, distMetric } from "../Marquee/utils.js";
+  import gsap from "gsap";
   export let index;
 
   export let rotate;
@@ -19,6 +20,9 @@
   });
   let rotateY = tweened(-180, {
     duration: 150,
+  });
+  let test = gsap.timeline({
+    paused: true,
   });
   const springCard = spring(0, {
     duration: 400,
@@ -45,7 +49,12 @@
       exitCard();
     }
   }
+  let ele2;
   onMount(() => {
+    gsap.set(ele, {
+      rotateZ: $rotateZ,
+    });
+
     window.addEventListener("resize", rePositionExited);
     new DragGesture(
       ele,
@@ -63,6 +72,7 @@
         event.preventDefault();
 
         springCard.set(movement[0]);
+
         if (tap && !exited) {
           // rotateY.update((s) => {
           //   if (s === 0) {
@@ -82,12 +92,13 @@
           exited = true;
         } else if (!active) {
           springCard.set(0);
+
           exited = false;
         }
       },
       {
         // bounds: { left: "-500", right: 20, top: 0, bottom: 0 },
-        eventOptions: { captsure: true, passive: false },
+        eventOptions: { capture: false, passive: false },
         filterTaps: true,
 
         // swipe: {
@@ -97,6 +108,7 @@
       }
     );
   });
+
   onDestroy(() => {});
   let indexInStack;
   $: {
@@ -111,102 +123,121 @@
       }, 1000 + (5 - index) * 100);
     }
   }
-  cardStore.subscribe((v) => {});
+  springCard.subscribe((v) => {
+    gsap.set(ele, {
+      x: v,
+    });
+  });
+  let currentZ;
+  let cardStackPos;
+  $: {
+    currentZ = $cardStore.zIndex.findIndex((z) => {
+      return z === index;
+    });
+    cardStackPos = $cardStore.cards.findIndex((z) => {
+      return z === index;
+    });
+    if (exited && ele && currentZ >= 0) {
+      gsap.set(ele, { zIndex: currentZ });
+    } else {
+      gsap.set(ele, { zIndex: 5 - cardStackPos });
+    }
+  }
+  $: {
+    gsap.set(ele, { scale: $scaleHover });
+  }
 </script>
 
 <!-- svelte-ignore a11y-mouse-events-have-key-events -->
 <div
-  style={`
- 
-  transform:translateX(${$springCard}px) 
-  rotateY(${$rotateY}deg) 
-  rotateZ(${$rotateZ}deg)
-  scale(${$scaleHover});
-  z-index:${
-    exited &&
-    $cardStore.zIndex.findIndex((v) => {
-      return v === index;
-    }) >= 0
-      ? $cardStore.zIndex.findIndex((v) => {
-          return v === index;
-        })
-      : 5 -
-        $cardStore.cards.findIndex((v) => {
-          return v === index;
-        })
-  };
- `}
-  on:mouseover={() => {
+  on:mouseenter={(e) => {
     if (!exited) {
       scaleHover.set(1.1);
     }
   }}
   on:mouseout={() => {
-    if (!exited) {
-      scaleHover.set(1);
-    }
+    scaleHover.set(1);
   }}
   bind:this={ele}
+  draggable="false"
   class="card-container"
 >
-  <div draggable="false" class="image-container">
-    <img draggable="false" src={image["front"]} alt="" />
+  <div draggable="false" class="image-container front-container">
+    <img
+      draggable="false"
+      on:dragstart={(e) => {
+        e.preventDefault();
+      }}
+      src={image["front"]}
+      alt=""
+    />
   </div>
-  <div draggable="false" class="image-container back-container">
-    <img draggable="false" src={image["back"]} alt="" />
+  <div
+    bind:this={ele2}
+    draggable="false"
+    class="image-container back-container"
+  >
+    <img
+      on:dragstart={(e) => {
+        e.preventDefault();
+      }}
+      draggable="false"
+      src={image["back"]}
+      alt=""
+    />
   </div>
 </div>
 
 <style lang="scss">
+  .test {
+    display: none;
+  }
   .card-container {
-    transform: rotateX(0deg);
-
-    transform-style: preserve-3d;
-
     display: flex;
     justify-content: center;
     align-items: center;
     position: absolute;
     width: 100%;
     height: 100%;
-
+    transform-style: preserve-3d;
     will-change: transform;
     touch-action: none;
     box-shadow: 0 12.5px 100px -10px rgb(50 50 73 / 20%),
       0 10px 10px -10px rgb(50 50 73 / 20%);
-    @media screen and (max-width: 510px) {
-      width: 200px;
-      height: 350px;
-    }
-  }
-  .image-container {
-    overflow: hidden;
-    border-radius: 10px;
-    transform: rotateY(-180deg);
-    height: 100%;
-  }
-  img {
-    height: 100%;
-    width: 100%;
-    touch-action: none;
+
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+
+    @media screen and (max-width: 510px) {
+      width: 200px;
+      height: 350px;
+    }
+  }
+  .front-container {
+    position: absolute;
+  }
+  .image-container {
+    overflow: hidden;
+
+    border-radius: 10px;
+    backface-visibility: hidden;
+
+    height: 100%;
+  }
+  img {
+    height: 100%;
+    width: 100%;
   }
   .back-container {
     content: "";
-
-    z-index: -1;
     position: absolute;
-
-    transform: rotateX(0deg) translate3d(0px, 0px, 1px);
-
     display: block;
     width: 100%;
-
+    transform: rotateY(180deg);
     @media screen and (max-width: 510px) {
       width: 200px;
       height: 350px;

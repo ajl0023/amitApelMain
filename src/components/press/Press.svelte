@@ -90,9 +90,7 @@
     display: grid;
     height: 100%;
     grid-template-columns: repeat(25, minmax(4%, 250px));
-
-    grid-template-rows: repeat(25, minmax(0, 5%) 5%);
-
+    grid-template-rows: repeat(auto-fit, 39px);
     width: 100%;
     max-width: 1600px;
     min-height: 0; /* NEW */
