@@ -64,13 +64,13 @@
 
         springCard.set(movement[0]);
         if (tap && !exited) {
-          rotateY.update((s) => {
-            if (s === 0) {
-              return 180;
-            } else {
-              return 0;
-            }
-          });
+          // rotateY.update((s) => {
+          //   if (s === 0) {
+          //     return 180;
+          //   } else {
+          //     return 0;
+          //   }
+          // });
         }
         if (exited && tap) {
           cardStore.returnCard(index);
