@@ -59,6 +59,12 @@ html {
   top: 15px;
   position: absolute;
 }
+video {
+  &::-webkit-media-controls-panel {
+    display: none !important;
+    -webkit-appearance: none;
+  }
+}
 .black::after,
 .black::before {
   background-color: black;

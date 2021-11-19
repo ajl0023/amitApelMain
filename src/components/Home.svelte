@@ -55,15 +55,7 @@
 </div>
 
 <div class="video-bg">
-  <video
-    class="video-render"
-    autoplay
-    loop
-    autobuffer
-    muted
-    playsinline
-    id="myVideo"
-  >
+  <video class="video-render" autoplay loop autobuffer muted playsinline>
     <source src={brush2} type="video/mp4" />
   </video>
 </div>
@@ -109,7 +101,8 @@
       font-size: 0.2em;
     }
   }
-  .video-bg {
+  .video-bg,
+  video {
     &::-webkit-media-controls-panel {
       display: none !important;
       -webkit-appearance: none;
