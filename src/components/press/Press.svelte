@@ -86,11 +86,19 @@
 </div>
 
 <style lang="scss">
-  .press-container {
-    display: grid;
+  .container {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
     height: 100%;
-    grid-template-columns: repeat(25, minmax(4%, 250px));
-    grid-template-rows: repeat(auto-fit, 39px);
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+  }
+  .press-container {
+    height: 100%;
+    position: relative;
     width: 100%;
     max-width: 1600px;
     min-height: 0; /* NEW */
@@ -106,21 +114,24 @@
     align-items: center;
   }
   .text-image-wrapper {
-    max-height: 700px;
+    max-height: 42vh;
     grid-area: 3/1/26/26;
     display: grid;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
     grid-template-columns: repeat(25, 4%);
     grid-template-rows: repeat(25, 4%);
     padding: 0 7vw;
-    width: 100%;
+    width:100%;
+   
     align-items: center;
     pointer-events: none;
     position: absolute;
-    top: 26%; /* position the top  edge of the element at the middle of the parent */
-    left: 50%; /* position the left edge of the element at the middle of the parent */
 
-    transform: translate(-50%, -50%);
-    text-align: center;
+   
     img {
       height: 100%;
       width: 100%;
@@ -148,16 +159,5 @@
         grid-area: 1/3/2/11;
       }
     }
-  }
-
-  .container {
-    overflow: hidden;
-    position: relative;
-    width: 100%;
-
-    display: flex;
-
-    justify-content: center;
-    align-items: center;
   }
 </style>

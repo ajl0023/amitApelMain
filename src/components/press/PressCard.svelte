@@ -47,41 +47,58 @@
 <style lang="scss">
   .link-container {
     display: block;
-    position: relative;
+    width: 13vw;
+    min-width: 15vh;
     display: none;
+    position: absolute;
     &:nth-child(1) {
       display: block;
-      grid-area: 1/2/1/6;
+      left: 0;
     }
     &:nth-child(2) {
       display: block;
-      grid-area: 1/21/1/25;
+      right: 0;
     }
     &:nth-child(3) {
+      right: 0;
+      top: 50px;
+      right: 50px;
+      margin: auto;
       display: block;
-      grid-area: 3/23/4/27;
     }
     &:nth-child(4) {
+      left: 0;
+      top: 25vh;
+      right: 0;
+      width: 15vw;
+      margin: auto;
       display: block;
-      grid-area: 9/11/13/17;
     }
     &:nth-child(5) {
+      left: 150px;
+      right: 0;
+      top: 80vh;
+      margin: auto;
       display: block;
-      grid-area: 23/13/27/20;
     }
     &:nth-child(6) {
+      left: 0;
+
+      bottom: -50px;
+      margin: auto;
       display: block;
-      grid-area: 18/3/25/8;
     }
     &:nth-child(7) {
+      right: 0;
+
+      bottom: -20px;
+      margin: auto;
       display: block;
-      grid-area: 17/22/39/28;
     }
   }
   .image-container {
     opacity: 1;
     width: 100%;
- 
 
     .image-mask {
       position: absolute;
