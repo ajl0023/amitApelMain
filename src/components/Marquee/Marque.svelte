@@ -86,7 +86,6 @@
     marqueeContentStore.init(container);
     marqueeContentStore.initAnim();
   });
-
 </script>
 
 <div class="marquee-animation-container page-wrapper">
@@ -121,7 +120,6 @@
     <div class="page-transition-black" />
     <div bind:this={container} class="page-content-container">
       <PageContent {index} currNav={pages[$marqueeContentStore.content]} />
-      {#if $marqueeContentStore.content}{/if}
     </div>
   </div>
 
@@ -187,6 +185,7 @@
     z-index: 6;
     position: relative;
     background-color: white;
+
 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

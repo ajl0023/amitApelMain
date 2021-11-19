@@ -83,11 +83,10 @@
     z-index: 5;
     font-family: unisansB;
     text-align: center;
-    box-shadow: 0 -1px black;
-  }
-
-  .menu__item:last-child {
-    box-shadow: 0 1px black, 0 -1px black;
+    border-top: 2px solid black;
+    &:last-child {
+      border-bottom: 2px solid black;
+    }
   }
 
   .menu__item-link {

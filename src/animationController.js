@@ -114,8 +114,8 @@ const introAnimation = () => {
             }
           });
         } else {
-          s.timeline.seek("pulseAnimation");
           s.timeline.play();
+          s.timeline.seek("pulseAnimation-=2");
         }
 
         return s;

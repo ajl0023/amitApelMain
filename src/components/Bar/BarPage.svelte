@@ -110,6 +110,7 @@
   }
   .mobile-container {
     display: none;
+
     @media screen and (max-width: 650px) {
       display: flex;
       height: 100%;
@@ -143,6 +144,7 @@
 
     cursor: pointer;
     pointer-events: none;
+
     @media screen and (max-width: 650px) {
       pointer-events: auto;
     }
@@ -168,8 +170,9 @@
     writing-mode: vertical-rl;
     pointer-events: none;
     text-orientation: sideways;
+
     p {
-      font-size: 50px;
+      font-size: 2vw;
     }
   }
   .wrapper {

@@ -12,26 +12,9 @@
   const images = [
     {
       img:
-        "https://res.cloudinary.com/dt4xntymn/image/upload/v1633380455/mainSite/press/Press_2_uiz2po.jpg",
-      link:
-        "http://voyagela.com/interview/meet-amit-apel-apel-design-inc-malibu/",
-    },
-    {
-      img:
-        "https://res.cloudinary.com/dt4xntymn/image/upload/v1633380454/mainSite/press/Press_4_pl9uqy.jpg",
-      link: "https://www.gessi.com/it/project/design/93",
-    },
-    {
-      img:
         "https://res.cloudinary.com/dt4xntymn/image/upload/v1633380454/mainSite/press/Press_3_jrf0mt.jpg",
       link:
         "https://www.archiscene.net/interior-design/moment-hotel-amit-apel-design/",
-    },
-    {
-      img:
-        "https://res.cloudinary.com/dt4xntymn/image/upload/v1633380454/mainSite/press/Press_1_pt9bba.jpg",
-      link:
-        "http://voyagela.com/interview/meet-amit-apel-apel-design-inc-malibu/",
     },
     {
       img:
@@ -41,15 +24,33 @@
     },
     {
       img:
+        "https://res.cloudinary.com/dt4xntymn/image/upload/v1633380454/mainSite/press/Press_7_fqqhhs.jpg",
+      link:
+        "https://www.homebuilderdigest.com/the-15-best-residential-architects-in-malibu-california/",
+    },
+    {
+      img:
+        "https://res.cloudinary.com/dt4xntymn/image/upload/v1633380455/mainSite/press/Press_2_uiz2po.jpg",
+      link:
+        "http://voyagela.com/interview/meet-amit-apel-apel-design-inc-malibu/",
+    },
+    {
+      img:
+        "https://res.cloudinary.com/dt4xntymn/image/upload/v1633380454/mainSite/press/Press_4_pl9uqy.jpg",
+      link: "https://www.gessi.com/it/project/design/93",
+    },
+
+    {
+      img:
         "https://res.cloudinary.com/dt4xntymn/image/upload/v1633380454/mainSite/press/Press_5_e8oy37.jpg",
       link:
         "https://www.google.com/url?q=https://www.californiahomedesign.com/property/2015/03/27/open-house-obsession-little-holmby-looker-6495m/&sa=D&source=editors&ust=1633933659385000&usg=AOvVaw0XyO2cGSBqPsV15pNuMNcM",
     },
     {
       img:
-        "https://res.cloudinary.com/dt4xntymn/image/upload/v1633380454/mainSite/press/Press_7_fqqhhs.jpg",
+        "https://res.cloudinary.com/dt4xntymn/image/upload/v1633380454/mainSite/press/Press_1_pt9bba.jpg",
       link:
-        "https://www.homebuilderdigest.com/the-15-best-residential-architects-in-malibu-california/",
+        "http://voyagela.com/interview/meet-amit-apel-apel-design-inc-malibu/",
     },
   ];
   let text = [
@@ -63,6 +64,17 @@
 
 <div class="container">
   <div class="content-container">
+    <div class="press-container">
+      {#each images.slice(0, 8) as card, i}
+        <PressCard
+          {windowHeight}
+          {windowWidth}
+          img={card.img}
+          link={card.link}
+          index={i}
+        />
+      {/each}
+    </div>
     <div class="text-image-wrapper">
       {#each text as img}
         <div class="text-image-container">
@@ -70,20 +82,31 @@
         </div>
       {/each}
     </div>
-
-    {#each images as card, i}
-      <PressCard
-        {windowHeight}
-        {windowWidth}
-        img={card.img}
-        link={card.link}
-        index={i}
-      />
-    {/each}
   </div>
 </div>
 
 <style lang="scss">
+  .press-container {
+    display: grid;
+    height: 100%;
+    grid-template-columns: repeat(25, minmax(4%, 250px));
+
+    grid-template-rows: repeat(25, minmax(0, 5%) 5%);
+
+    width: 100%;
+    max-width: 1600px;
+    min-height: 0; /* NEW */
+    min-width: 0;
+  }
+  .content-container {
+    width: 100%;
+    position: relative;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   .text-image-wrapper {
     max-height: 700px;
     grid-area: 3/1/26/26;
@@ -91,12 +114,15 @@
     grid-template-columns: repeat(25, 4%);
     grid-template-rows: repeat(25, 4%);
     padding: 0 7vw;
-    align-items: center;
-    justify-content: center;
-
     width: 100%;
+    align-items: center;
     pointer-events: none;
-    z-index: 4;
+    position: absolute;
+    top: 26%; /* position the top  edge of the element at the middle of the parent */
+    left: 50%; /* position the left edge of the element at the middle of the parent */
+
+    transform: translate(-50%, -50%);
+    text-align: center;
     img {
       height: 100%;
       width: 100%;
@@ -105,42 +131,32 @@
 
     .text-image-container {
       &:nth-child(1) {
-        grid-area: 1/21/13/28;
+        grid-area: 1/21/6/28;
         transform: rotateZ(25.8deg);
       }
       &:nth-child(2) {
-        grid-area: 24/3/13/9;
+        grid-area: 22/3/32/9;
         transform: rotateZ(-7.7deg);
       }
       &:nth-child(3) {
-        grid-area: 26/15/13/28;
+        grid-area: 24/15/27/28;
         transform: rotateZ(7.7deg);
       }
       &:nth-child(4) {
-        grid-area: 11/3/16/24;
+        grid-area: 12/8/16/19;
       }
       &:nth-child(5) {
         transform: rotateZ(-10deg);
-        grid-area: 2/3/12/11;
+        grid-area: 1/3/2/11;
       }
     }
   }
 
-  .content-container {
-    grid-template-columns: repeat(25, 4%);
-    grid-template-rows: repeat(25, 4%);
-    max-width: 1788px;
-    display: grid;
-    width: 100%;
-
-    position: absolute;
-    top: 0;
-  }
   .container {
     overflow: hidden;
     position: relative;
     width: 100%;
-    height: 100%;
+
     display: flex;
 
     justify-content: center;

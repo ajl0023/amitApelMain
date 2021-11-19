@@ -1,2 +1,2 @@
-npm run build && git add . && git commit -m "rewrote how the intro animation works" && git push origin main
+npm run build && git add . && git commit -m "minor error fixes" && git push origin main
 

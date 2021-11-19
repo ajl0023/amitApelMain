@@ -22,6 +22,10 @@ export const largeBarObj = {
 
       width: "2.7%",
     },
+    mobile: {
+      img:
+        "https://res.cloudinary.com/dt4xntymn/image/upload/v1637276238/mainSite/mobileHome/Apel_Design_Tab_k8bkqp.webp",
+    },
   },
   1: {
     label: "architecture",
@@ -41,6 +45,10 @@ export const largeBarObj = {
 
       width: "1.1%",
     },
+    mobile: {
+      img:
+        "https://res.cloudinary.com/dt4xntymn/image/upload/v1637276241/mainSite/mobileHome/Architecture_Tab_shcpmr.webp",
+    },
   },
   2: {
     label: "design",
@@ -58,6 +66,10 @@ export const largeBarObj = {
       top: "0%",
 
       width: "2.7%",
+    },
+    mobile: {
+      img:
+        "https://res.cloudinary.com/dt4xntymn/image/upload/v1637276425/mainSite/mobileHome/Design_Tab_xlfgs6.webp",
     },
   },
   3: {
@@ -77,6 +89,10 @@ export const largeBarObj = {
       top: "0%",
 
       width: "2.9%",
+    },
+    mobile: {
+      img:
+        "https://res.cloudinary.com/dt4xntymn/image/upload/v1637276240/mainSite/mobileHome/Contact_Tab_rsccc9.webp",
     },
   },
 };

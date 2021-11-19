@@ -36,6 +36,7 @@
   <div
     bind:this={container}
     class:meetPage={currNav === "meet the team"}
+    class:press={currNav && currNav.name === "press"}
     class="main-page-container"
   >
     {#if currNav}
@@ -74,5 +75,8 @@
   }
   .meet-page {
     overflow: unset;
+  }
+  .press {
+    overflow: hidden;
   }
 </style>

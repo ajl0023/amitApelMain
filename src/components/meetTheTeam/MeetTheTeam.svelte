@@ -38,7 +38,7 @@
           />
         {/each}
       </ul>
-      <div class="text-description-container">
+      <!-- <div class="text-description-container">
         {#if $cardStore.cards.length > 0}
           <h5 class="card-name-header">
             {cardImages[$cardStore.cards[0]].description}
@@ -50,7 +50,7 @@
             exercitationem eum. Ratione, exercitationem doloremque.
           </p>
         {/if}
-      </div>
+      </div> -->
     </div>
   </div>
 </div>
