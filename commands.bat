@@ -1,2 +1,2 @@
-npm run build && git add . && git commit -m "made few changes in regards to firefox" && git push origin main
+npm run build && git add . && git commit -m "press page slight redesign" && git push origin main
 

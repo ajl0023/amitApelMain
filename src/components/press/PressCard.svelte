@@ -46,54 +46,59 @@
 
 <style lang="scss">
   .link-container {
-    display: block;
-    width: 13vw;
-    min-width: 15vh;
     display: none;
-    position: absolute;
+
     &:nth-child(1) {
       display: block;
-      left: 0;
+      grid-area: 1/2/5/5;
+      @media screen and (max-width: 750px) {
+        grid-area: 1/2/5/7;
+      }
     }
     &:nth-child(2) {
       display: block;
-      right: 0;
+      @media screen and (max-width: 750px) {
+        grid-area: 1/15/5/20;
+      }
+      grid-area: 1/16/5/20;
     }
     &:nth-child(3) {
-      right: 0;
-      top: 50px;
-      right: 50px;
-      margin: auto;
       display: block;
+      @media screen and (max-width: 750px) {
+        grid-area: 3/17/6/21;
+      }
+      grid-area: 3/18/6/21;
     }
     &:nth-child(4) {
-      left: 0;
-      top: 25vh;
-      right: 0;
-      width: 15vw;
-      margin: auto;
+      align-self: center;
+      justify-self: center;
       display: block;
+      grid-area: 9/8/13/15;
     }
     &:nth-child(5) {
-      left: 150px;
-      right: 0;
-      top: 80vh;
-      margin: auto;
       display: block;
+
+      grid-area: 17/11/19/15;
+      @media screen and (max-width: 750px) {
+        grid-area: 17/9/23/15;
+      }
     }
     &:nth-child(6) {
-      left: 0;
-
-      bottom: -50px;
-      margin: auto;
       display: block;
+      grid-area: 16/3/19/7;
+      @media screen and (max-width: 750px) {
+        grid-area: 18/2/21/8;
+      }
     }
     &:nth-child(7) {
       right: 0;
-
-      bottom: -20px;
-      margin: auto;
       display: block;
+      bottom: -20px;
+      grid-area: 14/17/20/20;
+      @media screen and (max-width: 750px) {
+        grid-area: 13/16/20/21;
+      }
+      margin: auto;
     }
   }
   .image-container {

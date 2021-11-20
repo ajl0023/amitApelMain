@@ -98,11 +98,13 @@
   }
   .press-container {
     height: 100%;
+    display: grid;
     position: relative;
     width: 100%;
+    grid-template-columns: repeat(20, minmax(10px, 1fr));
+    grid-template-rows: repeat(20, 1fr);
+
     max-width: 1600px;
-    min-height: 0; /* NEW */
-    min-width: 0;
   }
   .content-container {
     width: 100%;
@@ -125,13 +127,12 @@
     grid-template-columns: repeat(25, 4%);
     grid-template-rows: repeat(25, 4%);
     padding: 0 7vw;
-    width:100%;
-   
+    width: 100%;
+
     align-items: center;
     pointer-events: none;
     position: absolute;
 
-   
     img {
       height: 100%;
       width: 100%;
