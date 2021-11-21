@@ -16,10 +16,14 @@
 </div>
 
 <style lang="scss">
+  :global {
+    @import "../test.scss";
+  }
   .container {
     width: 100vw;
     height: 100vh;
     background-color: black;
+  
   }
   #map {
     width: 100%;

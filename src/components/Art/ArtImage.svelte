@@ -40,33 +40,21 @@
 </div>
 
 <style lang="scss">
-  .item-container {
-    flex: calc(100% / 6);
+  .image-container {
+    overflow: hidden;
     width: 100%;
-    cursor: pointer;
-    opacity: 0;
-    .image-container {
-      overflow: hidden;
+ 
+
+    .image {
       width: 100%;
       height: 100%;
 
-      .image {
-        width: 100%;
-        height: 100%;
-
-        object-fit: cover;
-        object-position: center center;
-      }
+      object-fit: cover;
+      object-position: center center;
     }
-    @media screen and (max-width: 900px) {
-      flex: calc(100% / 5);
-    }
-
-    @media screen and (max-width: 600px) {
-      flex: calc(100% / 3);
-    }
-    @media screen and (max-width: 480px) {
-      flex: calc(100% / 1);
-    }
+  }
+  .item-container {
+    width: 100%;
+    height: 100%;
   }
 </style>

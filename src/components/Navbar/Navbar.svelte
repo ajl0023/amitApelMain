@@ -45,6 +45,7 @@
       z-index: 5;
       img {
         width: 100%;
+        height: 100%;
       }
     }
   }

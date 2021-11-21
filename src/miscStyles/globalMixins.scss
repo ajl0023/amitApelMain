@@ -1,0 +1,20 @@
+@mixin flexGap($gap, $orient) {
+  &:nth-child(n) {
+    @if ($orient == h) {
+      margin-right: $gap * 0.5 * 1.5rem;
+      margin-left: $gap * 0.5 * 1.5rem;
+    } @else if ($orient == vh) {
+
+      margin-top: $gap * 0.5 * 1.5rem;
+      margin-right: $gap * 0.5 * 1.5rem;
+    } @else {
+      margin-bottom: calc($gap * 0.5) * 1.5rem;
+      &:last-child {
+        margin-bottom: 0px;
+      }
+      &:nth-child(1) {
+        padding-top: 0px;
+      }
+    }
+  }
+}

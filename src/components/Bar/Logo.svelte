@@ -71,19 +71,21 @@
 </script>
 
 <div class="container">
-  <div class="barcode">
-    <UpcReset />
+  <div class="logo-container">
+    <div class="barcode">
+      <UpcReset />
 
-    {#each upcDigits1 as dig}
-      <UpcDigit data-val={dig.val} index={dig.index} target={dig.val === 3} />
-    {/each}
+      {#each upcDigits1 as dig}
+        <UpcDigit data-val={dig.val} index={dig.index} target={dig.val === 3} />
+      {/each}
 
-    <UpcReset />
-    {#each upcDigits2 as dig}
-      <UpcDigit data-val={dig.val} index={dig.index} target={dig.val === 3} />
-    {/each}
+      <UpcReset />
+      {#each upcDigits2 as dig}
+        <UpcDigit data-val={dig.val} index={dig.index} target={dig.val === 3} />
+      {/each}
 
-    <UpcReset />
+      <UpcReset />
+    </div>
   </div>
 </div>
 <BarMask index={0} />
@@ -95,6 +97,7 @@
   .container {
     z-index: 1;
     width: 100%;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -102,11 +105,15 @@
     overflow: hidden;
     position: relative;
   }
-  .barcode {
+  .logo-container {
+    padding-top: (33% / 10) * 10;
+    width: 100%;
     @media screen and (max-width: 650px) {
       display: flex;
       justify-content: space-evenly;
-      gap: 20px;
+      padding-top: (85% / 10) * 10;
     }
+  }
+  .barcode {
   }
 </style>

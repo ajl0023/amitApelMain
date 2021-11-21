@@ -15,30 +15,34 @@
   }
 </script>
 
-<div
-  bind:this={imageEle}
-  on:click={() => {
-    modalStore.update((s) => {
-      s.content = img.url;
-      s.visible = true;
-      return s;
-    });
-  }}
-  class="item-container"
->
-  <h5 class="label">{img.label}</h5>
-  <div class="image-container">
-    <img
-      style="
+{#if img.url.length === 0}
+  <i class="item-container" aria-hidden="true" />
+{:else}
+  <div
+    bind:this={imageEle}
+    on:click={() => {
+      modalStore.update((s) => {
+        s.content = img.url;
+        s.visible = true;
+        return s;
+      });
+    }}
+    class="item-container"
+  >
+    <h5 class="label">{img.label}</h5>
+    <div class="image-container">
+      <img
+        style="
       aspect-ratio:{img.width / img.height}; 
      "
-      loading="lazy"
-      class="image"
-      src={img.url}
-      alt=""
-    />
+        loading="lazy"
+        class="image"
+        src={img.url}
+        alt=""
+      />
+    </div>
   </div>
-</div>
+{/if}
 
 <style lang="scss">
   .label {
@@ -50,7 +54,7 @@
     transform-origin: center center;
     letter-spacing: 3px;
     font-family: unisansB;
-    padding: 1.2rem;
+    padding: 1.2rem 1.2rem 0 0;
     float: left;
     color: #68208e;
     text-transform: uppercase;
@@ -63,9 +67,10 @@
     display: flex;
     flex: 32%;
     opacity: 0;
-    max-width: 32%;
-    cursor: pointer;
 
+    cursor: pointer;
+    @include globalMixins.flexGap(1, vh);
+    margin-right: 0px;
     .image-container {
       width: 100%;
       height: 100%;
@@ -80,12 +85,11 @@
       }
     }
     @media screen and (max-width: 800px) {
-      flex: 49%;
-      max-width: 49%;
+      flex: 48%;
     }
     @media screen and (max-width: 600px) {
       flex: 100%;
-      max-width: 100%;
+
       flex-direction: column-reverse;
     }
   }

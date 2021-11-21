@@ -19,9 +19,6 @@
   <div class="image-container">
     <img
       bind:this={imageEle}
-      style="
-      aspect-ratio:{img.width / img.height}; 
-     "
       loading="lazy"
       class="image"
       src={img.img}
@@ -31,21 +28,20 @@
 </div>
 
 <style lang="scss">
-  @media screen and (max-width: 800px) {
-    .expand-height {
-      height: 23.8%;
-      .image-container {
-        height: 100%;
-      }
+  .expand-height {
+    @media screen and (max-width: 900px) {
+      height: 100%;
     }
   }
-
   .item-container {
     width: 100%;
+
     display: flex;
-    @media screen and (max-width: 800px) {
-      flex-direction: column;
+    @media screen and (max-width: 550px) {
+      flex-direction: column-reverse;
     }
+    @include globalMixins.flexGap(1, v);
+
     .image-container {
       overflow: hidden;
       width: 100%;
@@ -62,19 +58,16 @@
   .label {
     color: #68208e;
     font-family: unisansB;
-    font-size: 1em;
-    padding: 5px;
-    @media screen and (min-width: 800px) {
-      transform: rotate(-180deg);
-      padding-left: 0.3rem;
-      writing-mode: vertical-lr;
-      text-align: right;
+    font-size: 1.5vh;
+    padding: 0px 0px 0 10px;
 
-      line-height: 0.8em;
-      font-weight: 900;
-      letter-spacing: 3px;
-
-      text-transform: uppercase;
+    transform: rotate(-180deg);
+    writing-mode: vertical-lr;
+    text-align: right;
+    @media screen and (max-width: 550px) {
+      writing-mode: horizontal-tb;
+      text-align: left;
+      transform: none;
     }
   }
 </style>

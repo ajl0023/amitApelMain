@@ -26,29 +26,35 @@
   });
 </script>
 
-<div
-  style=""
-  bind:this={bar}
-  class="target-bar container container-{$$props.index}"
->
-  <video
-    muted
-    bind:this={video}
-    class="cover-video"
-    src={largeBarObj[$$props.index].img}
-  />
+<div bind:this={bar} class="aspect-ratio-container  container-{$$props.index}">
+  <div style="" class="target-bar container">
+    <video
+      muted
+      bind:this={video}
+      class="cover-video"
+      src={largeBarObj[$$props.index].img}
+    />
+  </div>
 </div>
 
 <style lang="scss">
-  .container {
-    bottom: 50%;
-    aspect-ratio: 0.5;
+  .aspect-ratio-container {
     width: 15%;
-    pointer-events: none;
-    opacity: 0;
     position: fixed;
+    bottom: 50%;
 
     transform: translateY(50%);
+    pointer-events: none;
+    padding-top: 35%;
+  }
+
+  .container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
     @media screen and (max-width: 650px) {
       display: none;
     }

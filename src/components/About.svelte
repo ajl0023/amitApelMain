@@ -18,13 +18,13 @@
         }}
         class="glitch-image-wrapper"
       >
-        <div class="main-image-container">
+        <div class="main-image-container flex-item">
           <div class="image-main">
             <img class="image" src={amit} alt="" />
           </div>
         </div>
         <div
-          class="content-image-container glitch-image-container {shouldGlitch
+          class="flex-item content-image-container glitch-image-container {shouldGlitch
             ? 'glitch-container'
             : ''}"
         >
@@ -35,7 +35,7 @@
           {/each}
         </div>
       </div>
-      <div class="main-text-content">
+      <div class="flex-item main-text-content">
         <p>
           As a gifted fifth-generation exterior and interior designer, Amit Apel
           arrived on the sunny shores of Southern California in 1999 after
@@ -67,13 +67,14 @@
   //credits https://tympanus.net/codrops/2017/12/21/css-glitch-effect/
   @use '../miscStyles/glitchVars' as *;
   @use '../miscStyles/glitchMain';
+
   .container {
     overflow-y: auto;
     color: #68208e;
   }
+
   .content-container {
     display: flex;
-    gap: 40px;
 
     flex-direction: column;
     align-items: center;
@@ -83,7 +84,7 @@
     text-align: center;
     font-size: 1.5em;
     max-width: 1200px;
-
+    margin-top: 1.5rem;
     width: 100%;
   }
   .image {
@@ -108,9 +109,5 @@
   .content-image-container {
     width: 100%;
     pointer-events: none;
-  }
-
-  .container {
-    gap: 40px;
   }
 </style>

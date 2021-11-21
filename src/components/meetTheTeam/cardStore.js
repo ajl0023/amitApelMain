@@ -1,12 +1,15 @@
 import { writable } from "svelte/store";
 
 import gsap from "gsap";
+import { distance } from "../Marquee/utils";
 const store = () => {
   const state = {
     exited: [],
     shouldReturn: false,
     zIndex: [],
+    cardEles: [],
     zIndexNum: 1,
+    cardToExit: null,
     cards: [0, 1, 2, 3, 4, 5],
   };
   const { subscribe, set, update } = writable(state);
@@ -28,11 +31,18 @@ const store = () => {
         return s;
       });
     },
-    init() {
+    init(outline) {
       update((s) => {
         s.exited = [];
         s.zIndex = [];
+        s.outline = outline;
         s.shouldReturn = false;
+        return s;
+      });
+    },
+    initEles(ele) {
+      update((s) => {
+        s.cardEles = [...s.cardEles, ele];
         return s;
       });
     },
@@ -66,6 +76,27 @@ const store = () => {
 
         return s;
       });
+    },
+    manualExit() {
+      const indexToExit = state.cards[0];
+
+      update((s) => {
+        s.cardToExit = indexToExit;
+        return s;
+      });
+      const eleToExit = state.cardEles.find((v) => {
+        return v.index === indexToExit;
+      }).ele;
+      const outLinePosition = state.outline.getBoundingClientRect();
+      const stackPosition = eleToExit.getBoundingClientRect();
+      const distanceRes = distance(
+        outLinePosition.x,
+        stackPosition.x,
+        outLinePosition.y,
+        stackPosition.y
+      );
+
+      return distanceRes;
     },
   };
   return {

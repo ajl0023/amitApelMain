@@ -1,5 +1,4 @@
 <script>
-
   import images from "./Art.json";
   import ArtImage from "./ArtImage.svelte";
 
@@ -7,13 +6,11 @@
 </script>
 
 <div class="container">
-
-
   <div class="flex-container">
-    {#each images as col}
-      {#each col as img}
+    {#each images as img}
+      <div class="item-container">
         <ArtImage {img} {shouldLoadImages} />
-      {/each}
+      </div>
     {/each}
   </div>
 </div>
@@ -29,15 +26,29 @@
   }
   .flex-container {
     display: flex;
-    gap: 10px;
+
     flex-wrap: wrap;
     width: 100%;
 
     max-width: 1700px;
+    // margin-top: -1 * 0.5 * 1.5rem;
+    // margin-right: -1 * 0.5 * 1.5rem;
   }
-
-  .flex-cm {
-    gap: 10px;
+  .item-container {
+    flex: calc(100% / 6);
     width: 100%;
+    // @include globalMixins.flexGap(1, vh);
+    cursor: pointer;
+
+    @media screen and (max-width: 900px) {
+      flex: calc(100% / 5);
+    }
+
+    @media screen and (max-width: 600px) {
+      flex: calc(100% / 3);
+    }
+    @media screen and (max-width: 480px) {
+      flex: calc(100% / 1);
+    }
   }
 </style>

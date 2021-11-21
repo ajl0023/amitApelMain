@@ -10,7 +10,12 @@
       {#each images as col}
         <div class="flex-col">
           {#each col as img}
-            <SculptureImage {shouldLoadImages} {img} />
+            <div
+              class:expand-height={img.expand}
+              class="item-container flex-item "
+            >
+              <SculptureImage {shouldLoadImages} {img} />
+            </div>
           {/each}
         </div>
       {/each}
@@ -19,20 +24,33 @@
 </div>
 
 <style lang="scss">
+  .item-container {
+    overflow: hidden;
+    display: flex;
+  }
+  .flex-item {
+    @include globalMixins.flexGap(1, vh);
+  }
+  .flex-col {
+    display: flex;
+    flex-direction: column;
+    flex: (100%/4);
+
+    @media screen and (max-width: 900px) {
+      flex: (100%/2);
+      .expand-height {
+        flex-grow: 2;
+      }
+    }
+    @media screen and (max-width: 550px) {
+      flex: 100%;
+    }
+  }
   .flex-container {
     display: flex;
-    gap: 20px;
+    max-width: 1800px;
     width: 100%;
     flex-wrap: wrap;
-    max-width: 1700px;
-    @media screen and (max-width: 800px) {
-      gap: 10px;
-    }
-    @media screen and (max-width: 600px) {
-      -ms-flex: 100%;
-      flex: 100%;
-      max-width: 100%;
-    }
   }
   .container {
     display: flex;
@@ -41,27 +59,5 @@
     align-items: center;
 
     width: 100%;
-  }
-  .flex-col {
-    &:last-child {
-      justify-content: flex-start;
-    }
-
-    @media screen and (max-width: 800px) {
-      flex: 49%;
-      gap: 0px;
-      max-width: 49%;
-    }
-    @media screen and (min-width: 800px) {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      flex: calc(100% / 5);
-      width: 100%;
-    }
-    @media screen and (max-width: 600px) {
-      flex: 100%;
-      max-width: 100%;
-    }
   }
 </style>

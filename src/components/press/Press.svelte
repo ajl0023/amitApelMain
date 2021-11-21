@@ -63,7 +63,7 @@
 </script>
 
 <div class="container">
-  <div class="content-container">
+  <div class="content-container flex-item">
     <div class="press-container">
       {#each images.slice(0, 8) as card, i}
         <PressCard

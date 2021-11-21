@@ -13,7 +13,6 @@
       });
     }
   }
-
 </script>
 
 {#if img.url.length === 0}
@@ -39,10 +38,9 @@
     flex: calc(100% / 5);
     opacity: 0;
     flex-direction: column;
-  
+
     @media screen and (max-width: 975px) {
       flex: calc(100% / 3);
-      gap: 0px;
     }
     @media screen and (max-width: 600px) {
       flex: 100%;

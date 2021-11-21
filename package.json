@@ -32,6 +32,7 @@
     "@googlemaps/markerclusterer": "^1.0.11",
     "@use-gesture/vanilla": "^10.0.2",
     "exif-parser": "^0.1.12",
+    "flex-gap-polyfill": "^4.1.0",
     "gsap": "^3.8.0",
     "node-sass": "^6.0.1",
     "sharp": "^0.29.2",

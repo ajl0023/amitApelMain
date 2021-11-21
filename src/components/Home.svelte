@@ -60,34 +60,41 @@
   </video>
 </div>
 <div class="container">
-  <div class="main-text-container">
+  <div class="flex-item main-text-container">
     <h5 class="main-text fade">connecting people</h5>
     <h5 class="main-text fade">to the art of living</h5>
   </div>
+  <div class="flex-item logo-container">
+    <Logo />
+  </div>
 
-  <Logo />
-
-  <div class="logo-text-container fade">
+  <div class="flex-item logo-text-container fade">
     <img class="logo-text" src={logoText} alt="" />
   </div>
 </div>
 
 <style lang="scss">
+  .logo-container {
+    width: 100%;
+  }
   .marquee-container-main {
     overflow: hidden;
     position: fixed;
-
+    display: flex;
+    flex-direction: column;
     height: 20px;
     z-index: 5;
     width: 20px;
   }
+
   .main-text-container {
     display: flex;
-    gap: 20px;
 
     .main-text {
       text-align: center;
       white-space: nowrap;
+      line-height: 0.9;
+      @include globalMixins.flexGap(0.5, h);
     }
     @media screen and (max-width: 1350px) {
       font-size: 0.5em;
@@ -95,7 +102,7 @@
     @media screen and (max-width: 900px) {
       font-size: 0.3em;
       flex-direction: column;
-      gap: 0px;
+      @include globalMixins.flexGap(0, h);
     }
     @media screen and (max-width: 550px) {
       font-size: 0.2em;
@@ -138,7 +145,7 @@
     width: 100%;
     z-index: 2;
     opacity: 0;
-    padding-top: 20px;
+
     @media screen and (max-width: 650px) {
       opacity: 1;
       padding-top: 0px;
@@ -162,12 +169,15 @@
     display: flex;
     flex-direction: column;
     padding: 80px;
-    gap: 25px;
+
     justify-content: center;
     align-items: center;
     height: 100vh;
 
     overflow: hidden;
+    .flex-item {
+      @include globalMixins.flexGap(3.5, v);
+    }
     &::after {
       position: absolute;
       top: 0;

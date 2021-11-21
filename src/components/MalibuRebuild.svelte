@@ -17,8 +17,8 @@
       <p class="credit">-Amit Apel</p>
       <div class="bottom-text-container">
         <p>Feel free to contact me or any one of my staff so we can meet.</p>
-        <p>Email: apeldesign@apeldesign.com</p>
-        <p>Phone: 310.317.0500</p>
+        <p>- Email: apeldesign@apeldesign.com</p>
+        <p>- Phone: 310.317.0500</p>
         <p>
           Together we will heal and bring these cities back to life to create
           new memories.
@@ -31,6 +31,12 @@
 <style lang="scss">
   .bottom-text-container {
     font-size: 0.6em;
+    p:first-child {
+      margin-bottom: 1rem;
+    }
+    p:nth-child(3) {
+      margin-bottom: 1rem;
+    }
   }
   .container {
     font-family: unisans;
@@ -44,15 +50,15 @@
     font-weight: 900;
     font-size: 2em;
     text-align: center;
-    margin-bottom: 40px;
+
     font-family: "unisansB";
+    margin-bottom: 1.3rem;
   }
   .text-container {
     text-align: center;
     font-size: 2em;
     display: flex;
     flex-direction: column;
-    gap: 20px;
 
     max-width: 900px;
 
@@ -65,6 +71,10 @@
     }
     .credit p {
       font-size: 0.4em;
+    }
+    .credit {
+      margin-top: 1.5rem;
+      margin-bottom: 1.5rem;
     }
     @media screen and (max-width: 720px) {
       font-size: 1.5em;

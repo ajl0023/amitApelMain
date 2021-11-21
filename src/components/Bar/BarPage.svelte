@@ -79,9 +79,7 @@
         gsap.to(e.target, {
           background: "white",
         });
-        gsap.to(label, {
-          opacity: 0,
-        });
+       
       }}
     />
     <div bind:this={label} class="main-label-container">
@@ -160,7 +158,7 @@
   .main-label-container {
     text-transform: uppercase;
     position: absolute;
-    opacity: 0;
+    opacity: 1;
     left: 0;
     text-align: left;
     color: white;

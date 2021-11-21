@@ -88,6 +88,11 @@
   });
 </script>
 
+<Navbar
+  on:closePageContent={(e) => {
+    dispatch("closePageContent");
+  }}
+/>
 <div class="marquee-animation-container page-wrapper">
   {#if $privateHomesModal.visible}
     <GalleryModal />
@@ -95,12 +100,8 @@
   {#if $modalStore.visible}
     <Modal />
   {/if}
-  <Navbar
-    on:closePageContent={(e) => {
-      dispatch("closePageContent");
-    }}
-  />
-  <div class="container">
+
+  <div class="container flex-item">
     <div class="menu-wrap">
       <nav class="menu">
         {#each menuItems[$lgBarStore.currentIndex].pages as item}
@@ -131,8 +132,9 @@
 <style lang="scss">
   .page-wrapper {
     display: flex;
-    flex-direction: column;
+
     height: 100%;
+    position: relative;
   }
   .page-content-container {
     padding: 20px 20px 0 20px;
@@ -141,8 +143,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 25px;
-    z-index: 10;
+
+    transform: translate(0%, 100%);
+    z-index: 20;
     position: absolute;
     width: 100vw;
     height: 100%;
@@ -185,8 +188,8 @@
     z-index: 6;
     position: relative;
     background-color: white;
-
-
+    display: flex;
+    align-items: center;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-repeat: no-repeat;
@@ -198,10 +201,10 @@
       Helvetica, Arial, sans-serif;
     display: flex;
     background-size: cover;
-    z-index: 10;
+    z-index: 12;
     flex-direction: column;
     width: 100vw;
-    height: 100%;
+
     position: relative;
     justify-content: center;
   }
