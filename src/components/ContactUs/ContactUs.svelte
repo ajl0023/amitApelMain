@@ -2,22 +2,29 @@
 
 <div class="page-container">
   <div class="content-container">
-    <div class="misc-info-container">
-      <div class="info-container">
-        <h5>Hours</h5>
-        <p>Monday-Friday 9am-5pm</p>
+    <div class="misc-info-wrapper flex-item">
+      <div class="main-misc-container">
+        <div class="misc-info-container">
+          <div class="info-container">
+            <h5>Hours</h5>
+            <p>Monday-Friday 9am-5pm</p>
+          </div>
+        </div>
       </div>
-      <div class="info-container">
-        <h5>Address</h5>
-        <p>33202 1/4 mulholland hwy</p>
-        <p>malibu, ca 90265</p>
-        <p>apeldesign@apeldesign.com</p>
+      <div class="main-misc-container">
+        <div class="info-container">
+          <h5>Address</h5>
+          <p>33202 1/4 mulholland hwy</p>
+          <p>malibu, ca 90265</p>
+          <p>apeldesign@apeldesign.com</p>
+        </div>
       </div>
     </div>
-
-    <form name="emailForm" data-netlify="true" class="form-container">
-      <label for="" class="contact-label">Email</label>
-      <input class="contact-input" name="form-name" />
+    <form name="emailForm" data-netlify="true" class="form-container flex-item">
+      <div class="contact-field">
+        <label for="" class="contact-label">Email</label>
+        <input class="contact-input" name="form-name" />
+      </div>
 
       <div class="contact-field">
         <div class="contact-control">
@@ -98,14 +105,19 @@
 </div>
 
 <style lang="scss">
-  .misc-info-container {
+  .flex-item {
+    @include globalMixins.flexGap(1, h);
+  }
+  .contact-field {
+    @include globalMixins.flexGap(1, v);
+  }
+  .misc-info-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 20px;
   }
   .content-container {
     display: flex;
-    gap: 20px;
+
     height: 80%;
     justify-content: center;
 
@@ -153,7 +165,7 @@
     border-radius: 4px;
 
     flex-direction: column;
-    gap: 10px;
+
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
       Helvetica Neue, Ubuntu, sans-serif;
     @media screen and (max-width: 610px) {
@@ -173,6 +185,7 @@
     min-height: 44px;
     border: unset;
     border-radius: 4px;
+
     outline-color: rgb(84 105 212 / 0.5);
     background-color: rgb(255, 255, 255);
     box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
@@ -184,5 +197,8 @@
     font-size: 14px;
     font-weight: 600;
     display: block;
+  }
+  .main-misc-container {
+    @include globalMixins.flexGap(0.4, v);
   }
 </style>

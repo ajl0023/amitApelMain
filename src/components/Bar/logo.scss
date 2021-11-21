@@ -79,8 +79,19 @@ $reset1: calc(1 / 100%);
 .barcode {
   font-size: 0;
   width: 100%;
+
+  @media screen and (max-width: 650px) {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 20px;
+  }
+
+  position: absolute;
   height: 100%;
-  aspect-ratio: 3.3;
+  width: 100%;
+  top: 0;
+  left: 0;
+
   .upc-reset:nth-child(1),
   .upc-reset:nth-child(15) {
     height: 100%;
@@ -115,7 +126,7 @@ $reset1: calc(1 / 100%);
     display: flex;
     justify-content: space-evenly;
     gap: 20px;
-    aspect-ratio: 1.4;
+  
   }
 }
 

@@ -84,7 +84,7 @@ const marqueeContent = () => {
             duration: "1",
           })
           .to(s.container, {
-            yPercent: "-100",
+            y: "0%",
           })
 
           .to(

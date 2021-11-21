@@ -79,7 +79,6 @@
         gsap.to(e.target, {
           background: "white",
         });
-       
       }}
     />
     <div bind:this={label} class="main-label-container">

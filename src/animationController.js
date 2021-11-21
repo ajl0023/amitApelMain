@@ -1,17 +1,25 @@
 export const shouldAnimate = true;
-import { writable } from "svelte/store";
+import {
+  writable
+} from "svelte/store";
 import gsap from "gsap";
 const introAnimation = () => {
   const state = {
     timeline: null,
     bars: [],
   };
-  const { subscribe, set, update } = writable(state);
+  const {
+    subscribe,
+    set,
+    update
+  } = writable(state);
   const methods = {
     init(mobile) {
       const positionObj = {};
       update((s) => {
-        s.timeline = gsap.timeline({ paused: true });
+        s.timeline = gsap.timeline({
+          paused: true
+        });
         s.timeline
           .to(".video-brush", {
             opacity: 0,
@@ -22,8 +30,7 @@ const introAnimation = () => {
             duration: 1,
           })
           .to(
-            ".target-bar",
-            {
+            ".target-bar", {
               opacity: 1,
               stagger: 0.1,
               duration: 5,
@@ -43,8 +50,7 @@ const introAnimation = () => {
           positionObj[ele.index] = s.bars[i].parentEle.getBoundingClientRect();
           s.timeline.add(
             gsap.to(
-              ele.ele,
-              {
+              ele.ele, {
                 left: () => {
                   return positionObj[ele.index].left;
                 },
@@ -66,9 +72,16 @@ const introAnimation = () => {
                 width: () => {
                   return positionObj[ele.index].width;
                 },
+                paddingTop: () => {
+                  return "0%"
+                },
                 onComplete: () => {
-                  gsap.set(ele.ele, { display: "none" });
-                  gsap.set(".bar-wrapper", { pointerEvents: "auto" });
+                  gsap.set(ele.ele, {
+                    display: "none"
+                  });
+                  gsap.set(".bar-wrapper", {
+                    pointerEvents: "auto"
+                  });
                 },
               },
               "lgBarAnim"
@@ -93,8 +106,7 @@ const introAnimation = () => {
         );
         s.timeline.add(
           gsap.to(
-            ".target-cover",
-            {
+            ".target-cover", {
               opacity: 0,
               repeat: "-1",
               duration: 1,

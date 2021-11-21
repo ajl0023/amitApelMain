@@ -63,7 +63,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    @include globalMixins.flexGap(0.4, v);
   }
   .image-container {
     width: 100%;
