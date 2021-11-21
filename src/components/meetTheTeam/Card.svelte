@@ -18,12 +18,7 @@
   let rotateZ = tweened(rotate, {
     duration: 150,
   });
-  let rotateY = tweened(-180, {
-    duration: 150,
-  });
-  let test = gsap.timeline({
-    paused: true,
-  });
+
   const springCard = spring(0, {
     duration: 400,
     delay: 0,
@@ -49,23 +44,23 @@
       exitCard();
     }
   }
-  let ele2;
+
   onMount(() => {
     gsap.set(ele, {
       rotateZ: $rotateZ,
     });
+    cardStore.initEles({ ele, index });
 
     window.addEventListener("resize", rePositionExited);
     new DragGesture(
       ele,
       ({
         event,
-        down,
+
         tap,
         direction,
         movement,
-        velocity,
-        offset,
+
         active,
         swipe,
       }) => {
@@ -109,13 +104,7 @@
     );
   });
 
-  onDestroy(() => {});
-  let indexInStack;
   $: {
-    indexInStack = $cardStore.cards.findIndex((f) => {
-      return f === index;
-    });
-
     if ($cardStore.shouldReturn) {
       setTimeout(() => {
         exited = false;
@@ -172,11 +161,7 @@
       alt=""
     />
   </div>
-  <div
-    bind:this={ele2}
-    draggable="false"
-    class="image-container back-container"
-  >
+  <div draggable="false" class="image-container back-container">
     <img
       on:dragstart={(e) => {
         e.preventDefault();

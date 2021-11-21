@@ -11,7 +11,7 @@
   let stack;
   let dropPosition;
   onMount(() => {
-    cardStore.init();
+    cardStore.init(outline);
   });
 </script>
 
@@ -19,7 +19,12 @@
   <div class="container">
     <div class="card-layout-container">
       <div bind:this={outline} class="card-outline" />
-      <div class="arrow-image-container">
+      <div
+        on:click={() => {
+          cardStore.manualExit();
+        }}
+        class="arrow-image-container"
+      >
         <img src={arrow} alt="" />
       </div>
       <ul bind:this={stack} class="card-wrapper">
