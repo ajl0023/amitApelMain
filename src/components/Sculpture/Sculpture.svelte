@@ -24,6 +24,7 @@
 </div>
 
 <style lang="scss">
+  @use "sass:math";
   .item-container {
     overflow: hidden;
     display: flex;
@@ -34,10 +35,10 @@
   .flex-col {
     display: flex;
     flex-direction: column;
-    flex: (100%/4);
+    flex: math.div(100%, 4);
 
     @media screen and (max-width: 900px) {
-      flex: (100%/2);
+      flex: math.div(100%, 2);
       .expand-height {
         flex-grow: 2;
       }

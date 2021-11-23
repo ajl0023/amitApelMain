@@ -46,6 +46,8 @@
 <BarMask index={3} />
 
 <style lang="scss">
+  @use "sass:math";
+
   .container {
     z-index: 1;
     width: 100%;
@@ -58,12 +60,12 @@
     position: relative;
   }
   .logo-container {
-    padding-top: (33% / 10) * 10;
+    padding-top: math.div(33%, 10) * 10;
     width: 100%;
     @media screen and (max-width: 650px) {
       display: flex;
       justify-content: space-evenly;
-      padding-top: (85% / 10) * 10;
+      padding-top: math.div(85%, 10) * 10;
     }
   }
 </style>

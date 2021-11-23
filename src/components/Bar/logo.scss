@@ -1,3 +1,4 @@
+@use "sass:math";
 $upc_patterns: (
   (3, 2, 1),
   (2, 2, 2),
@@ -35,7 +36,7 @@ $reset1: calc(1 / 100%);
 
 .upc-digit {
   height: 100%;
-  width: (7.5% / 100) * 100;
+  width: math.div(7.5%, 100) * 100;
 
   .bar:nth-child(even) {
     background-color: white;
@@ -96,7 +97,7 @@ $reset1: calc(1 / 100%);
   .upc-reset:nth-child(15) {
     height: 100%;
 
-    width: (2% / 100) * 100;
+    width: math.div(2%, 100) * 100;
     .bar {
       width: 33%;
     }
@@ -111,7 +112,7 @@ $reset1: calc(1 / 100%);
 
   .upc-reset:nth-child(8) {
     height: 100%;
-    width: (6% / 100) * 100;
+    width: math.div(6%, 100) * 100;
 
     & :nth-child(n) {
       height: 100%;
@@ -126,7 +127,6 @@ $reset1: calc(1 / 100%);
     display: flex;
     justify-content: space-evenly;
     gap: 20px;
-  
   }
 }
 
