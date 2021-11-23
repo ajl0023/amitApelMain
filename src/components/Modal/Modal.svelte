@@ -1,5 +1,4 @@
 <script>
-  import { cardStore } from "./../meetTheTeam/cardStore.js";
   import { modalStore } from "./store.js";
 </script>
 

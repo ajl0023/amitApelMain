@@ -1,18 +1,27 @@
 <script>
-  import { marqueeContentStore } from "./../Marquee/store.js";
-  import { cardImages } from "./cardStore.js";
-  import { onMount } from "svelte";
+  import { onDestroy, onMount } from "svelte";
   import arrow from "./../../images/cardArrow.png";
   import Card from "./Card.svelte";
   import { cardStore } from "./cardStore";
+  import { cardImages } from "./cardStore.js";
 
   const rotatedCards = [0, 3, 2, 4];
   let outline;
   let stack;
   let dropPosition;
+  let stackLength;
+  $: ({ currentStack } = $cardStore);
+  $: stackLength = currentStack.length;
   onMount(() => {
     cardStore.init(outline);
+    cardStore.introAnim();
   });
+  onDestroy(() => {
+    cardStore.init(outline);
+  });
+  $: if (stackLength === 0) {
+    cardStore.reset();
+  }
 </script>
 
 <div class="page-container">
@@ -63,22 +72,17 @@
 <style lang="scss">
   $cardSizeWidth: 300px;
   $cardSizeHeight: 500px;
-  .card-name-header {
-    font-size: 1.5em;
-  }
-  .descrip-container {
-    font-size: 1.2em;
-  }
+
   @mixin styles($cardSizeWidth, $cardSizeHeight) {
-    .text-description-container {
-      width: $cardSizeWidth;
-      height: $cardSizeHeight;
-      margin-left: 30px;
-      aspect-ratio: 0.6;
-      @media screen and (max-width: 850px) {
-        display: none;
-      }
-    }
+    // .text-description-container {
+    //   width: $cardSizeWidth;
+    //   height: $cardSizeHeight;
+    //   margin-left: 30px;
+    //   aspect-ratio: 0.6;
+    //   @media screen and (max-width: 850px) {
+    //     display: none;
+    //   }
+    // }
     .card-outline {
       width: $cardSizeWidth;
       height: $cardSizeHeight;
@@ -101,7 +105,8 @@
       justify-content: center;
     }
     .arrow-image-container {
-      width: 60px;
+      width: 50px;
+
       margin-right: 50px;
       img {
         width: 100%;
@@ -118,12 +123,18 @@
       height: $cardSizeHeight;
       position: relative;
       aspect-ratio: 0.6;
+      perspective: 1500px;
+      transform-style: preserve-3d;
     }
     .container {
       max-width: 1600px;
       width: 100%;
       z-index: 20;
     }
+  }
+  .arrow-image-container {
+    z-index: 10;
+    position: relative;
   }
   @include styles(300px, 500px);
   @media screen and (max-width: 1150px) {

@@ -1,40 +1,32 @@
 <script>
-  import GalleryModal from "./../Bar-3-Gallery/GalleryModal.svelte";
-  import { privateHomesModal } from "./../Bar-3-Gallery/store.js";
-  import Navbar from "./../Navbar/Navbar.svelte";
-  import Map from "../Map/MapBar.svelte";
-  import Bar3Gallery from "./../Bar-3-Gallery/Bar3Gallery.svelte";
-
-  import Modal from "./../Modal/Modal.svelte";
-  import { modalStore } from "./../Modal/store.js";
   import { createEventDispatcher, onDestroy, onMount } from "svelte";
-
-  import { marqueeContentStore } from "./store.js";
-
   import About from "../About.svelte";
   import Art from "../Art/Art.svelte";
+  import { lgBarStore } from "../Bar/store";
+  import ContactUs from "../ContactUs/ContactUs.svelte";
   import MalibuRebuild from "../MalibuRebuild.svelte";
+  import MapWrapper from "../Map/MapWrapper.svelte";
   import MeetTheTeam from "../meetTheTeam/MeetTheTeam.svelte";
   import PageContent from "../PageContent.svelte";
   import Press from "../press/Press.svelte";
   import Sculpture from "../Sculpture/Sculpture.svelte";
   import WhatWeDo from "../WhatWeDo/WhatWeDo.svelte";
+  import Bar3Gallery from "./../Bar-3-Gallery/Bar3Gallery.svelte";
+  import GalleryModal from "./../Bar-3-Gallery/GalleryModal.svelte";
+  import { privateHomesModal } from "./../Bar-3-Gallery/store.js";
   import BgLogo from "./../BgLogo.svelte";
   import Furniture from "./../Furniture/Furniture.svelte";
+  import Modal from "./../Modal/Modal.svelte";
+  import { modalStore } from "./../Modal/store.js";
+  import Navbar from "./../Navbar/Navbar.svelte";
   import MenuItem from "./MenuItem.svelte";
   import { menuItems } from "./menuItems";
-
-  import MapWrapper from "../Map/MapWrapper.svelte";
-  import gsap from "gsap";
-  import { lgBarStore } from "../Bar/store";
-  import ContactUs from "../ContactUs/ContactUs.svelte";
+  import { marqueeContentStore } from "./store.js";
   export let index;
-  export let mobile;
+
   let container;
   let currNav = "meet amit apel";
-  function closePage() {}
-  export let windowSizeObj;
-  let shouldLoadImages = false;
+
   const dispatch = createEventDispatcher();
 
   const pages = {
@@ -89,7 +81,7 @@
 </script>
 
 <Navbar
-  on:closePageContent={(e) => {
+  on:closePageContent={() => {
     dispatch("closePageContent");
   }}
 />
@@ -105,15 +97,7 @@
     <div class="menu-wrap">
       <nav class="menu">
         {#each menuItems[$lgBarStore.currentIndex].pages as item}
-          <MenuItem
-            on:playAnimation={() => {
-              const container = document.querySelector(".main-page-container");
-            }}
-            {index}
-            {currNav}
-            title={item.title}
-            labels={item.labels}
-          />
+          <MenuItem {index} {currNav} title={item.title} labels={item.labels} />
         {/each}
       </nav>
     </div>
@@ -159,21 +143,6 @@
     z-index: 3;
   }
 
-  .frame {
-    position: fixed;
-    text-align: left;
-    z-index: 3;
-    top: 0;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    max-width: none;
-
-    height: 100vh;
-    padding: 1.5rem 2rem 1rem;
-    pointer-events: none;
-  }
   .container {
     height: 100%;
     margin: 0;
@@ -207,16 +176,5 @@
 
     position: relative;
     justify-content: center;
-  }
-
-  .header-nav-container {
-    display: flex;
-
-    list-style: none;
-    color: black;
-    text-transform: uppercase;
-    gap: 25px;
-    padding-top: 20px;
-    font-size: 1.5em;
   }
 </style>

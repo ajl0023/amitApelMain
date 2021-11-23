@@ -3,7 +3,6 @@
   import { privateHomesModal } from "./store.js";
   import gsap from "gsap";
   export let img;
-  export let componentPH;
 
   let imageEle;
   $: {
@@ -36,7 +35,7 @@
   .grid-item-container {
     display: flex;
     flex: calc(100% / 5);
-    opacity: 0;
+    opacity: 1;
     flex-direction: column;
 
     @media screen and (max-width: 975px) {

@@ -11,7 +11,6 @@ const marqueeContent = () => {
   };
   const { subscribe, set, update } = writable(state);
   const methods = {
-    
     reset() {
       update((s) => {
         s.content = null;
@@ -101,6 +100,8 @@ const marqueeContent = () => {
         s.animation.eventCallback("onReverseComplete", () => {
           update((s) => {
             s.content = null;
+            s.active = false;
+
             return s;
           });
         });

@@ -5,90 +5,107 @@ import { distance } from "../Marquee/utils";
 const store = () => {
   const state = {
     exited: [],
+    exiting: false,
     shouldReturn: false,
     zIndex: [],
-    cardEles: [],
+
     zIndexNum: 1,
+    returnedCards: [],
     cardToExit: null,
-    cards: [0, 1, 2, 3, 4, 5],
+    currentStack: [5, 4, 3, 2, 1, 0],
   };
   const { subscribe, set, update } = writable(state);
   const methods = {
+    init(outline) {
+      console.log(outline);
+
+      set({
+        outline,
+        exited: [],
+        shouldReturn: false,
+        zIndex: [],
+
+        zIndexNum: 1,
+        cardToExit: null,
+        returnedCards: [],
+
+        currentStack: [5, 4, 3, 2, 1, 0],
+      });
+    },
     exit(i) {
       update((s) => {
-        s.zIndex.push(i);
         s.exited.push(i);
-        s.cards = s.cards.filter((f) => {
+        s.currentStack = s.currentStack.filter((f) => {
           return f !== i;
         });
-        if (s.exited.length === 6) {
-          this.reset();
-          setTimeout(() => {
-            s.shouldReturn = false;
-          });
-        }
 
         return s;
       });
     },
-    init(outline) {
-      update((s) => {
-        s.exited = [];
-        s.zIndex = [];
-        s.outline = outline;
-        s.shouldReturn = false;
-        return s;
-      });
-    },
-    initEles(ele) {
-      update((s) => {
-        s.cardEles = [...s.cardEles, ele];
-        return s;
-      });
-    },
-    returnCard(i) {
-      update((s) => {
-        s.exited = s.exited.filter((t) => {
-          return t !== i;
-        });
-        s.zIndex = s.zIndex.filter((t) => {
-          return t !== i;
-        });
-        s.cards = [i, ...s.cards];
-        return s;
-      });
-    },
-    clearZindex() {
-      setTimeout(() => {
-        update((s) => {
-          s.zIndex = [];
-          s.cards = [0, 1, 2, 3, 4, 5];
-          return s;
-        });
-      }, 1000 + 5 * 100);
-    },
+
     reset() {
-      this.clearZindex();
       update((s) => {
         s.shouldReturn = true;
+
         s.exited = [];
-        s.cards = [0, 1, 2, 3, 4, 5];
+        s.currentStack = [5, 4, 3, 2, 1, 0];
+        s.cardToExit = null;
 
         return s;
       });
     },
-    manualExit() {
-      const indexToExit = state.cards[0];
-
+    introAnim() {
+      gsap.to(".meet-the-team-card", {
+        y: 0,
+        delay: 1.2,
+        stagger: -0.2,
+        duration: 0.5,
+      });
+    },
+    reenable(i) {
+      console.count();
       update((s) => {
-        s.cardToExit = indexToExit;
+        const copy = {
+          ...s,
+        };
+        copy.returnedCards.push(i);
+
+        if (copy.returnedCards.length === 6) {
+          copy.shouldReturn = false;
+          copy.returnedCards = [];
+        }
+
+        return copy;
+      });
+    },
+
+    returnCard(i) {
+      update((s) => {
+        s.exited = s.exited.filter((f) => {
+          return f !== i;
+        });
+
+        s.currentStack = [...s.currentStack, i];
+        s.cardToExit = null;
+
         return s;
       });
-      const eleToExit = state.cardEles.find((v) => {
-        return v.index === indexToExit;
-      }).ele;
+    },
+
+    resetStore() {},
+
+    manualExit() {
+      update((s) => {
+        if (!s.shouldReturn) {
+          const indexToExit = s.currentStack[s.currentStack.length - 1];
+          s.cardToExit = indexToExit;
+        }
+        return s;
+      });
+    },
+    getExitLocation(ele, index) {
       const outLinePosition = state.outline.getBoundingClientRect();
-      const stackPosition = eleToExit.getBoundingClientRect();
+      const stackPosition = ele.getBoundingClientRect();
       const distanceRes = distance(
         outLinePosition.x,
         stackPosition.x,

@@ -1,20 +1,11 @@
 <script>
-  import { layout } from "./layout.js";
-  import Bar3GalleryImage from "./Bar3GalleryImage.svelte";
-
   import { marqueeContentStore } from "./../Marquee/store.js";
+  import Bar3GalleryImage from "./Bar3GalleryImage.svelte";
+  import { layout } from "./layout.js";
 
   export let shouldLoadImages;
-  let shouldShowGallery = false;
-  let selected = null;
 
   const componentPH = $marqueeContentStore.content === "private homes";
-  const closeModal = (e) => {
-    selected = null;
-    shouldShowGallery = false;
-  };
-
- 
 </script>
 
 <div class="container">

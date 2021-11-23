@@ -2,19 +2,17 @@
   import { marqueeContentStore } from "./../Marquee/store.js";
   import { layout } from "./layout.js";
   import { privateHomesModal } from "./store.js";
-  import { createEventDispatcher } from "svelte";
   const images = layout[$marqueeContentStore.content].images;
-
 </script>
 
 <div
-  on:click={(e) => {
+  on:click={() => {
     privateHomesModal.closeModal();
   }}
   class="modal-container"
 >
   <div
-    on:click={(e) => {
+    on:click={() => {
       privateHomesModal.closeModal();
     }}
     class="close-x close-main"

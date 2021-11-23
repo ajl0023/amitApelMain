@@ -1,16 +1,13 @@
 import sveltePreprocess from "svelte-preprocess";
 import adapter from "@sveltejs/adapter-static";
-import path, {
-  dirname
-} from 'path'
+import path, { dirname } from "path";
 
-import flexGapPolyfill from 'flex-gap-polyfill'
-import {
-  fileURLToPath
-} from 'url'
-const filePath = dirname(fileURLToPath(
-  import.meta.url))
-const sassPath = `${filePath}/src/miscStyles/`
+import { fileURLToPath, pathToFileURL } from "url";
+const filename = fileURLToPath(import.meta.url);
+
+const sassPath = pathToFileURL(
+  path.resolve(`${dirname(filename)}/src/miscStyles/globalMixins.scss`)
+);
 
 export default {
   kit: {
@@ -27,22 +24,10 @@ export default {
     sourceMap: false,
 
     scss: {
-      prependData: `@use '${sassPath}globalMixins.scss';`
-
-
-
-
+      prependData: `@use '${sassPath.pathname}';`,
     },
     postcss: {
-      plugins: function (x, mu) {
-
-
-
-
-
-
-
-      }
-    }
+      plugins: function (x, mu) {},
+    },
   }),
 };

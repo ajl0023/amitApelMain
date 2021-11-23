@@ -1,10 +1,8 @@
 <script>
-  import { lgBarStore } from "./../Bar/store.js";
-  import { marqueeContentStore } from "./../Marquee/store.js";
-  import LeftArrow from "./../../images/LeftArrow.svelte";
-  import Logo from "./../../images/home/Logo.svelte";
-  import logo from "./../../images/home/logo.png";
   import { createEventDispatcher } from "svelte";
+  import logo from "./../../images/home/logo.png";
+  import LeftArrow from "./../../images/LeftArrow.svelte";
+  import { marqueeContentStore } from "./../Marquee/store.js";
 
   const dispatch = createEventDispatcher();
 </script>

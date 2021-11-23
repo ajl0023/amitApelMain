@@ -1,24 +1,18 @@
-export const shouldAnimate = true;
-import {
-  writable
-} from "svelte/store";
+export const shouldAnimate = false;
+import { writable } from "svelte/store";
 import gsap from "gsap";
 const introAnimation = () => {
   const state = {
     timeline: null,
     bars: [],
   };
-  const {
-    subscribe,
-    set,
-    update
-  } = writable(state);
+  const { subscribe, set, update } = writable(state);
   const methods = {
     init(mobile) {
       const positionObj = {};
       update((s) => {
         s.timeline = gsap.timeline({
-          paused: true
+          paused: true,
         });
         s.timeline
           .to(".video-brush", {
@@ -30,7 +24,8 @@ const introAnimation = () => {
             duration: 1,
           })
           .to(
-            ".target-bar", {
+            ".target-bar",
+            {
               opacity: 1,
               stagger: 0.1,
               duration: 5,
@@ -50,7 +45,8 @@ const introAnimation = () => {
           positionObj[ele.index] = s.bars[i].parentEle.getBoundingClientRect();
           s.timeline.add(
             gsap.to(
-              ele.ele, {
+              ele.ele,
+              {
                 left: () => {
                   return positionObj[ele.index].left;
                 },
@@ -73,14 +69,14 @@ const introAnimation = () => {
                   return positionObj[ele.index].width;
                 },
                 paddingTop: () => {
-                  return "0%"
+                  return "0%";
                 },
                 onComplete: () => {
                   gsap.set(ele.ele, {
-                    display: "none"
+                    display: "none",
                   });
                   gsap.set(".bar-wrapper", {
-                    pointerEvents: "auto"
+                    pointerEvents: "auto",
                   });
                 },
               },
@@ -106,7 +102,8 @@ const introAnimation = () => {
         );
         s.timeline.add(
           gsap.to(
-            ".target-cover", {
+            ".target-cover",
+            {
               opacity: 0,
               repeat: "-1",
               duration: 1,
@@ -115,8 +112,14 @@ const introAnimation = () => {
             "pulseAnimation"
           )
         );
+        if (shouldAnimate === false) {
+          s.timeline.seek("pulseAnimation+=10");
+          gsap.set(".bar-wrapper", {
+            pointerEvents: "auto",
+          });
+        }
         if (!mobile) {
-          s.timeline.play();
+          // s.timeline.play();
           window.addEventListener("resize", () => {
             s.timeline.invalidate();
 

@@ -2,8 +2,6 @@
   import gsap from "gsap";
   import { onMount } from "svelte";
   import { largeBarObj } from "./animationObj";
-
-  import BarMask from "./BarMask.svelte";
   import { lgBarStore } from "./store";
   let marquee;
   const getCenter = (ele) => {

@@ -3,7 +3,6 @@
 
   import { largeBarObj } from "./animationObj";
   import { introAnimationStore } from "../../animationController";
-  export let barIndex;
 
   let bar;
   let video;

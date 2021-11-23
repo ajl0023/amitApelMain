@@ -1,21 +1,11 @@
 <script>
-  import MobileHome from "./MobileHome/MobileHome.svelte";
-  import gsap from "gsap";
-  import { afterUpdate, onMount } from "svelte";
-  import brush1 from "../images/brush.mp4";
+  import { onMount } from "svelte";
   import logoText from "../images/home/logo Text.png";
   import brush2 from "../images/Render.mp4";
-  import {
-    introAnimationStore,
-    shouldAnimate,
-  } from "./../animationController.js";
+  import { introAnimationStore } from "./../animationController.js";
   import Logo from "./Bar/Logo.svelte";
   import { lgBarStore } from "./Bar/store";
   import Marque from "./Marquee/Marque.svelte";
-
-  let loading = true;
-  let marquee;
-  let video1;
 
   const mobileCheck = () => {
     return window.innerWidth <= 650;
@@ -27,10 +17,10 @@
   });
 </script>
 
-<div bind:this={marquee} class="marquee-container-main">
+<div class="marquee-container-main">
   {#if $lgBarStore.pageContent}
     <Marque
-      on:closePageContent={(e) => {
+      on:closePageContent={() => {
         lgBarStore.closeMarquee(mobileCheck() ? "mobile" : "desktop");
       }}
     />
@@ -39,14 +29,7 @@
 <!-- {#if !mobile} -->
 
 <div class="video-bg">
-  <video
-    bind:this={video1}
-    class="video-brush"
-    autoplay
-    autobuffer
-    muted
-    playsinline
-  >
+  <video class="video-brush" autoplay autobuffer muted playsinline>
     <source
       src={"https://res.cloudinary.com/dt4xntymn/video/upload/v1636870696/mainSite/Brush_Stroke_1_orzxdf.mp4"}
       type="video/mp4"
@@ -122,22 +105,6 @@
     height: 100vh;
     display: flex;
     align-items: center;
-    .video-brush {
-      width: 100vw;
-      opacity: 1;
-      object-fit: cover;
-      @media screen and (max-width: 650px) {
-        display: none;
-      }
-    }
-    .video-render {
-      width: 100vw;
-      opacity: 0;
-      object-fit: cover;
-      @media screen and (max-width: 650px) {
-        opacity: 1;
-      }
-    }
   }
 
   .logo-text-container {

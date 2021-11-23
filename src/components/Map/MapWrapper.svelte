@@ -39,7 +39,7 @@
         class="close-x close-main black"
       />
       <Map
-        on:renderMap={(e) => {
+        on:renderMap={() => {
           showMap = true;
         }}
         on:handleMap={(e) => {

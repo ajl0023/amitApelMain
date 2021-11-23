@@ -1,8 +1,7 @@
 <script>
-  import { largeBarsArr } from "./../Bar/animationObj.js";
   import Logo from "../../images/home/Logo.svelte";
-  import images from "./images.json";
   import brush1 from "../../images/Render.mp4";
+  import images from "./images.json";
 </script>
 
 <div class="container">

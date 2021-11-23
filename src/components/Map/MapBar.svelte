@@ -1,16 +1,6 @@
 <script>
-  import { onMount, createEventDispatcher } from "svelte";
-
-  import mapJson from "./coordsFormatted.json";
-  import gsap from "gsap";
-  import { MarkerClusterer } from "@googlemaps/markerclusterer";
+  import { createEventDispatcher } from "svelte";
   import MapArrow from "./MapArrow.svelte";
-
-  let markers = [];
-
-  let container;
-
-  function deleteMap() {}
 
   const dispatch = createEventDispatcher();
 </script>
@@ -29,8 +19,6 @@
 
 <style lang="scss">
   .container {
-  
-
     z-index: 3;
     font-family: unisansB;
     .bottom-bar-container {

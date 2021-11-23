@@ -1,9 +1,7 @@
 <script>
-  import { marqueeContentStore } from "./store.js";
-
-  import gsap from "gsap";
-  import { onMount, createEventDispatcher } from "svelte";
+  import { onMount } from "svelte";
   import { marqueeStore } from "./animationStore";
+  import { marqueeContentStore } from "./store.js";
 
   export let labels;
   export let title;
@@ -13,7 +11,7 @@
   let marquee;
   let marqueeInner;
   let store;
-  const dispatch = createEventDispatcher();
+
   onMount(() => {
     store = marqueeStore();
     store.init(menuItem, menuItemA, marquee, marqueeInner);
@@ -26,7 +24,7 @@
 </script>
 
 <div
-  on:click={(e) => {
+  on:click={() => {
     marqueeContentStore.setPageAnimation(title);
     // marqueeContentStore.open();
   }}

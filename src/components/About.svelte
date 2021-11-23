@@ -30,7 +30,7 @@
         >
           {#each Array(5).fill("") as img}
             <div class="glitch-image">
-              <img class="image" src={amit} alt="" />
+              <img class="image" src={amit} {img} alt="" />
             </div>
           {/each}
         </div>

@@ -1,11 +1,8 @@
 <script>
-  import { onMount, createEventDispatcher } from "svelte";
-
+  import { onMount } from "svelte";
   import mapJson from "./coordsFormatted.json";
   export let showMap;
-  export let visible;
-  let container;
-  const dispatch = createEventDispatcher();
+
   function generateMap() {
     const malibu = { lat: 34.0692667, lng: -118.3729251 };
     const map = new google.maps.Map(document.getElementById("map"), {
@@ -46,7 +43,7 @@
   });
 </script>
 
-<div bind:this={container} class="container">
+<div class="container">
   <div class:inactive={showMap === false} id="map" />
 </div>
 

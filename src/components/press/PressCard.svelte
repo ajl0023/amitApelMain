@@ -105,12 +105,6 @@
     opacity: 1;
     width: 100%;
 
-    .image-mask {
-      position: absolute;
-      opacity: 90%;
-      width: 100%;
-      height: 100%;
-    }
     .image {
       cursor: pointer;
       width: 100%;

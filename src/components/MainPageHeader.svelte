@@ -1,5 +1,4 @@
 <script>
-  import { marqueeContentStore } from "./Marquee/store.js";
   export let currNav;
 </script>
 
