@@ -28,6 +28,7 @@
   },
   "type": "module",
   "dependencies": {
+    "@cloudfour/simple-svg-placeholder": "^1.0.2",
     "@glidejs/glide": "^3.4.1",
     "@googlemaps/markerclusterer": "^1.0.11",
     "@use-gesture/vanilla": "^10.0.2",

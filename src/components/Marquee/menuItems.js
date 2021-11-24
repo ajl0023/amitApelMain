@@ -21,6 +21,10 @@ export const menuItems = {
         title: "press",
         labels: Array(8).fill("press"),
       },
+      {
+        title: "contact us",
+        labels: Array(8).fill("contact us"),
+      },
     ],
     category: "apel design",
   },
@@ -65,10 +69,14 @@ export const menuItems = {
   3: {
     pages: [
       {
-        title: "contact us",
-        labels: Array(8).fill("contact us"),
+        title: "maliview",
+        labels: Array(8).fill("maliview"),
+      },
+      {
+        title: "aviator",
+        labels: Array(8).fill("aviator"),
       },
     ],
-    category: "contact us",
+    category: "developments",
   },
 };

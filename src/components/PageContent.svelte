@@ -9,7 +9,7 @@
 <div class="page-content-container">
   <MainPageHeader currNav={currNav ? currNav.name : ""} />
   <div
-    class:meetPage={currNav === "meet the team"}
+    class:meetPage={currNav && currNav.name === "meet the team"}
     class:press={currNav && currNav.name === "press"}
     class="main-page-container"
   >
@@ -24,6 +24,7 @@
     width: 100%;
     height: 100%;
     display: flex;
+
     flex-direction: column;
     align-items: center;
     @media screen and (max-width: 900px) {

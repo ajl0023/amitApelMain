@@ -1,14 +1,30 @@
 import { writable } from "svelte/store";
 import gsap from "gsap";
+import { dev } from "$app/env";
+import { testing } from "../../storeController";
+
 const marqueeContent = () => {
-  const state = {
-    content: null,
-    active: false,
-    container: null,
-    animation: null,
-    reversedAnimation: null,
-    shouldLoadImages: false,
-  };
+  let state;
+  if (!testing || !dev) {
+    state = {
+      content: null,
+      active: false,
+      container: null,
+      animation: null,
+      reversedAnimation: null,
+      shouldLoadImages: false,
+    };
+  } else
+    state = {
+      content: null,
+      testing: true,
+      active: false,
+      container: null,
+      animation: null,
+      reversedAnimation: null,
+      shouldLoadImages: false,
+    };
+
   const { subscribe, set, update } = writable(state);
   const methods = {
     reset() {
@@ -23,11 +39,17 @@ const marqueeContent = () => {
       update((s) => {
         s.active = true;
         s.content = page;
-
-        gsap.to(".menu-wrap", {
-          y: "100vh",
-        });
-        s.animation.play();
+        if (!dev || !testing) {
+          gsap.to(".menu-wrap", {
+            y: "100vh",
+          });
+          s.animation.play();
+        } else {
+          gsap.set(".menu-wrap", {
+            y: "100vh",
+          });
+          s.animation.seek(10000);
+        }
         return s;
       });
     },
@@ -121,7 +143,6 @@ const marqueeContent = () => {
       });
       this.initAnim(ele);
     },
-    open() {},
   };
   return {
     subscribe,
@@ -131,3 +152,4 @@ const marqueeContent = () => {
   };
 };
 export const marqueeContentStore = marqueeContent();
+

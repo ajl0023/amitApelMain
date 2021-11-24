@@ -1,13 +1,16 @@
 <script>
-  export let currNav;
+  import { marqueeContentStore } from "./Marquee/store";
+
+  const hideNav = new Set(["maliview", "aviator"]);
 </script>
 
 <h5
-  class:press={currNav === "press"}
-  class:sm={currNav === "meet the team"}
+  class:inactive={hideNav.has($marqueeContentStore.content)}
+  class:press={$marqueeContentStore.content === "press"}
+  class:sm={$marqueeContentStore.content === "meet the team"}
   class="main-text-header"
 >
-  {currNav}
+  {$marqueeContentStore.content}
 </h5>
 
 <style lang="scss">
@@ -38,5 +41,8 @@
   }
   .sm {
     font-size: 3em;
+  }
+  .inactive {
+    display: none;
   }
 </style>

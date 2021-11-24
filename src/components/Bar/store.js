@@ -1,10 +1,12 @@
 import { writable } from "svelte/store";
 import gsap from "gsap";
+import { dev } from "$app/env";
+import { testing } from "../../storeController";
 
 export const loadedVideos = writable([]);
 
 const store = () => {
-  const state = {
+  let state = {
     exited: [],
     currentIndex: null,
     mobileAnimationSet: {},
@@ -17,6 +19,22 @@ const store = () => {
       y: 0,
     },
   };
+  if (dev && testing) {
+    state = {
+      exited: [],
+      currentIndex: 3,
+      mobileAnimationSet: {},
+      desktopAnimationSet: {},
+      hide: false,
+      marqueeEle: null,
+      testing: true,
+      pageContent: true,
+      centerPosition: {
+        x: 0,
+        y: 0,
+      },
+    };
+  }
   const { subscribe, set, update } = writable(state);
   const methods = {
     attachReverseListener(anim) {},

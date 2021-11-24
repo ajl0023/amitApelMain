@@ -73,7 +73,7 @@ export const largeBarObj = {
     },
   },
   3: {
-    label: "contact",
+    label: "developments",
     delay: 0.4,
     img: main4,
     imagePos: {

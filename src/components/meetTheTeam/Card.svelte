@@ -179,10 +179,6 @@
     -ms-user-select: none;
     user-select: none;
     z-index: 1;
-    @media screen and (max-width: 510px) {
-      width: 200px;
-      height: 350px;
-    }
   }
   .front-container {
     position: absolute;
@@ -205,9 +201,5 @@
     display: block;
     width: 100%;
     transform: rotateY(180deg);
-    @media screen and (max-width: 510px) {
-      width: 200px;
-      height: 350px;
-    }
   }
 </style>

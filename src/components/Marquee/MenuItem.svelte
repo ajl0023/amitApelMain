@@ -16,11 +16,6 @@
     store = marqueeStore();
     store.init(menuItem, menuItemA, marquee, marqueeInner);
   });
-
-  $: {
-    if ($marqueeContentStore.content) {
-    }
-  }
 </script>
 
 <div
@@ -132,7 +127,7 @@
   .menu__item-link,
   .marquee span {
     white-space: nowrap;
-    font-size: 6vw;
+    font-size: 4vw;
     line-height: 1.2;
     font-weight: 600;
     padding: 1vh 1vw 0;

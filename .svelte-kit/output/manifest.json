@@ -1,10 +1,10 @@
 {
   ".svelte-kit/build/runtime/internal/start.js": {
-    "file": "start-1c1eaa74.js",
+    "file": "start-6290562f.js",
     "src": ".svelte-kit/build/runtime/internal/start.js",
     "isEntry": true,
     "imports": [
-      "_vendor-89afcdfd.js"
+      "_vendor-00620fbc.js"
     ],
     "dynamicImports": [
       ".svelte-kit/build/components/layout.svelte",
@@ -16,33 +16,33 @@
     ]
   },
   ".svelte-kit/build/components/layout.svelte": {
-    "file": "layout.svelte-910743e1.js",
+    "file": "layout.svelte-46df6a58.js",
     "src": ".svelte-kit/build/components/layout.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_vendor-89afcdfd.js"
+      "_vendor-00620fbc.js"
     ]
   },
   ".svelte-kit/build/components/error.svelte": {
-    "file": "error.svelte-43821457.js",
+    "file": "error.svelte-fcef7046.js",
     "src": ".svelte-kit/build/components/error.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_vendor-89afcdfd.js"
+      "_vendor-00620fbc.js"
     ]
   },
   "src/routes/index.svelte": {
-    "file": "pages/index.svelte-f354610b.js",
+    "file": "pages/index.svelte-b71cf2d7.js",
     "src": "src/routes/index.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_vendor-89afcdfd.js"
+      "_vendor-00620fbc.js"
     ],
     "css": [
-      "assets/pages/index.svelte-c2217a37.css"
+      "assets/pages/index.svelte-8d057dce.css"
     ],
     "assets": [
       "assets/logo Text-6620b85f.png",
@@ -51,11 +51,11 @@
       "assets/SD Bar 2-ee39e0a9.mp4",
       "assets/SD Bar 3-6cd56706.mp4",
       "assets/SD Bar 4-01b269b3.mp4",
+      "assets/Logo Sideways-5b2a92a6.png",
+      "assets/logo-f49bb745.png",
       "assets/amitapel4 (1)-07a16dc1.webp",
       "assets/cardArrow-ce1a5325.png",
       "assets/dance-6f6e8192.mp4",
-      "assets/Logo Sideways-5b2a92a6.png",
-      "assets/logo-f49bb745.png",
       "assets/unisans-a2e7014c.otf",
       "assets/unisansB-43ec5e8d.otf",
       "assets/Capsuula-b76fd88c.ttf",
@@ -63,7 +63,7 @@
       "assets/Background Photo-112e1098.jpg"
     ]
   },
-  "_vendor-89afcdfd.js": {
-    "file": "chunks/vendor-89afcdfd.js"
+  "_vendor-00620fbc.js": {
+    "file": "chunks/vendor-00620fbc.js"
   }
 }

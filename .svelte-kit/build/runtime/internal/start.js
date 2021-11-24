@@ -13,12 +13,14 @@ function scroll_state() {
 }
 
 /**
- * @param {Node | null} node
- * @returns {HTMLAnchorElement | SVGAElement | null}
+ * @param {Event} event
+ * @returns {HTMLAnchorElement | SVGAElement | undefined}
  */
-function find_anchor(node) {
-	while (node && node.nodeName.toUpperCase() !== 'A') node = node.parentNode; // SVG <a> elements have a lowercase name
-	return /** @type {HTMLAnchorElement | SVGAElement} */ (node);
+function find_anchor(event) {
+	const node = event
+		.composedPath()
+		.find((e) => e instanceof Node && e.nodeName.toUpperCase() === 'A'); // SVG <a> elements have a lowercase name
+	return /** @type {HTMLAnchorElement | SVGAElement | undefined} */ (node);
 }
 
 /**
@@ -44,6 +46,8 @@ class Router {
 		this.base = base;
 		this.routes = routes;
 		this.trailing_slash = trailing_slash;
+		/** Keeps tracks of multiple navigations caused by redirects during rendering */
+		this.navigating = 0;
 
 		/** @type {import('./renderer').Renderer} */
 		this.renderer = renderer;
@@ -91,12 +95,13 @@ class Router {
 					'sveltekit:scroll': scroll_state()
 				};
 				history.replaceState(new_state, document.title, window.location.href);
-			}, 50);
+				// iOS scroll event intervals happen between 30-150ms, sometimes around 200ms
+			}, 200);
 		});
 
 		/** @param {MouseEvent|TouchEvent} event */
 		const trigger_prefetch = (event) => {
-			const a = find_anchor(/** @type {Node} */ (event.target));
+			const a = find_anchor(event);
 			if (a && a.href && a.hasAttribute('sveltekit:prefetch')) {
 				this.prefetch(get_href(a));
 			}
@@ -126,13 +131,14 @@ class Router {
 			if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
 			if (event.defaultPrevented) return;
 
-			const a = find_anchor(/** @type {Node} */ (event.target));
+			const a = find_anchor(event);
 			if (!a) return;
 
 			if (!a.href) return;
 
 			const url = get_href(a);
-			if (url.toString() === location.href) {
+			const url_string = url.toString();
+			if (url_string === location.href) {
 				if (!location.hash) event.preventDefault();
 				return;
 			}
@@ -153,7 +159,14 @@ class Router {
 
 			const noscroll = a.hasAttribute('sveltekit:noscroll');
 
+			const i1 = url_string.indexOf('#');
+			const i2 = location.href.indexOf('#');
+			const u1 = i1 >= 0 ? url_string.substring(0, i1) : url_string;
+			const u2 = i2 >= 0 ? location.href.substring(0, i2) : location.href;
 			history.pushState({}, '', url.href);
+			if (u1 === u2) {
+				window.dispatchEvent(new HashChangeEvent('hashchange'));
+			}
 			this._navigate(url, noscroll ? scroll_state() : null, false, [], url.hash);
 			event.preventDefault();
 		});
@@ -250,6 +263,11 @@ class Router {
 			throw new Error('Attempted to navigate to a URL that does not belong to this app');
 		}
 
+		if (!this.navigating) {
+			dispatchEvent(new CustomEvent('sveltekit:navigation-start'));
+		}
+		this.navigating++;
+
 		// remove trailing slashes
 		if (info.path !== '/') {
 			const has_trailing_slash = info.path.endsWith('/');
@@ -266,27 +284,11 @@ class Router {
 			}
 		}
 
-		this.renderer.notify({
-			path: info.path,
-			query: info.query
-		});
+		await this.renderer.handle_navigation(info, chain, false, { hash, scroll, keepfocus });
 
-		await this.renderer.update(info, chain, false);
-
-		if (!keepfocus) {
-			document.body.focus();
-		}
-
-		const deep_linked = hash && document.getElementById(hash.slice(1));
-		if (scroll) {
-			scrollTo(scroll.x, scroll.y);
-		} else if (deep_linked) {
-			// Here we use `scrollIntoView` on the element instead of `scrollTo`
-			// because it natively supports the `scroll-margin` and `scroll-behavior`
-			// CSS properties.
-			deep_linked.scrollIntoView();
-		} else {
-			scrollTo(0, 0);
+		this.navigating--;
+		if (!this.navigating) {
+			dispatchEvent(new CustomEvent('sveltekit:navigation-end'));
 		}
 	}
 }
@@ -428,7 +430,7 @@ function page_store(value) {
 function initial_fetch(resource, opts) {
 	const url = typeof resource === 'string' ? resource : resource.url;
 
-	let selector = `script[data-type="svelte-data"][data-url="${url}"]`;
+	let selector = `script[data-type="svelte-data"][data-url=${JSON.stringify(url)}]`;
 
 	if (opts && typeof opts.body === 'string') {
 		selector += `[data-body="${hash(opts.body)}"]`;
@@ -444,13 +446,15 @@ function initial_fetch(resource, opts) {
 }
 
 class Renderer {
-	/** @param {{
+	/**
+	 * @param {{
 	 *   Root: CSRComponent;
 	 *   fallback: [CSRComponent, CSRComponent];
 	 *   target: Node;
 	 *   session: any;
 	 *   host: string;
-	 * }} opts */
+	 * }} opts
+	 */
 	constructor({ Root, fallback, target, session, host }) {
 		this.Root = Root;
 		this.fallback = fallback;
@@ -583,10 +587,13 @@ class Renderer {
 		this._init(result);
 	}
 
-	/** @param {{ path: string, query: URLSearchParams }} destination */
-	notify({ path, query }) {
-		dispatchEvent(new CustomEvent('sveltekit:navigation-start'));
-
+	/**
+	 * @param {import('./types').NavigationInfo} info
+	 * @param {string[]} chain
+	 * @param {boolean} no_cache
+	 * @param {{hash?: string, scroll: { x: number, y: number } | null, keepfocus: boolean}} [opts]
+	 */
+	async handle_navigation(info, chain, no_cache, opts) {
 		if (this.started) {
 			this.stores.navigating.set({
 				from: {
@@ -594,19 +601,22 @@ class Renderer {
 					query: this.current.page.query
 				},
 				to: {
-					path,
-					query
+					path: info.path,
+					query: info.query
 				}
 			});
 		}
+
+		await this.update(info, chain, no_cache, opts);
 	}
 
 	/**
 	 * @param {import('./types').NavigationInfo} info
 	 * @param {string[]} chain
 	 * @param {boolean} no_cache
+	 * @param {{hash?: string, scroll: { x: number, y: number } | null, keepfocus: boolean}} [opts]
 	 */
-	async update(info, chain, no_cache) {
+	async update(info, chain, no_cache, opts) {
 		const token = (this.token = {});
 		let navigation_result = await this._get_navigation_result(info, no_cache);
 
@@ -644,17 +654,61 @@ class Renderer {
 
 			this.root.$set(navigation_result.props);
 			this.stores.navigating.set(null);
-
-			await 0;
 		} else {
 			this._init(navigation_result);
 		}
 
-		dispatchEvent(new CustomEvent('sveltekit:navigation-end'));
+		// opts must be passed if we're navigating...
+		if (opts) {
+			const { hash, scroll, keepfocus } = opts;
+
+			if (!keepfocus) {
+				getSelection()?.removeAllRanges();
+				document.body.focus();
+			}
+
+			const old_page_y_offset = Math.round(pageYOffset);
+			const old_max_page_y_offset = document.documentElement.scrollHeight - innerHeight;
+
+			await 0;
+
+			const new_page_y_offset = Math.round(pageYOffset);
+			const new_max_page_y_offset = document.documentElement.scrollHeight - innerHeight;
+
+			// After `await 0`, the `onMount()` function in the component executed.
+			// Check if no scrolling happened on mount.
+			const no_scroll_happened =
+				// In most cases, we can compare whether `pageYOffset` changed between navigation
+				new_page_y_offset === Math.min(old_page_y_offset, new_max_page_y_offset) ||
+				// But if the page is scrolled to/near the bottom, the browser would also scroll
+				// to/near the bottom of the new page on navigation. Since we can't detect when this
+				// behaviour happens, we naively compare by the y offset from the bottom of the page.
+				old_max_page_y_offset - old_page_y_offset === new_max_page_y_offset - new_page_y_offset;
+
+			// If there was no scrolling, we run on our custom scroll handling
+			if (no_scroll_happened) {
+				const deep_linked = hash && document.getElementById(hash.slice(1));
+				if (scroll) {
+					scrollTo(scroll.x, scroll.y);
+				} else if (deep_linked) {
+					// Here we use `scrollIntoView` on the element instead of `scrollTo`
+					// because it natively supports the `scroll-margin` and `scroll-behavior`
+					// CSS properties.
+					deep_linked.scrollIntoView();
+				} else {
+					scrollTo(0, 0);
+				}
+			}
+		} else {
+			// ...they will not be supplied if we're simply invalidating
+			await 0;
+		}
+
 		this.loading.promise = null;
 		this.loading.id = null;
 
 		if (!this.router) return;
+
 		const leaf_node = navigation_result.state.branch[navigation_result.state.branch.length - 1];
 		if (leaf_node && leaf_node.module.router === false) {
 			this.router.disable();
@@ -722,21 +776,13 @@ class Renderer {
 		for (let i = 0; i < info.routes.length; i += 1) {
 			const route = info.routes[i];
 
-			// check if endpoint route
-			if (route.length === 1) {
-				return { reload: true, props: {}, state: this.current };
-			}
-
 			// load code for subsequent routes immediately, if they are as
 			// likely to match the current path/query as the current one
 			let j = i + 1;
 			while (j < info.routes.length) {
 				const next = info.routes[j];
 				if (next[0].toString() === route[0].toString()) {
-					// if it's a page route
-					if (next.length !== 1) {
-						next[1].forEach((loader) => loader());
-					}
+					next[1].forEach((loader) => loader());
 					j += 1;
 				} else {
 					break;
@@ -770,9 +816,11 @@ class Renderer {
 	 */
 	async _get_navigation_result_from_branch({ page, branch }) {
 		const filtered = /** @type {import('./types').BranchNode[] } */ (branch.filter(Boolean));
+		const redirect = filtered.find((f) => f.loaded && f.loaded.redirect);
 
 		/** @type {import('./types').NavigationResult} */
 		const result = {
+			redirect: redirect && redirect.loaded ? redirect.loaded.redirect : undefined,
 			state: {
 				page,
 				branch,
@@ -1112,9 +1160,10 @@ class Renderer {
 	}
 }
 
-// @ts-expect-error - value will be replaced on build step
+// @ts-expect-error - doesn't exist yet. generated by Rollup
 
-/** @param {{
+/**
+ * @param {{
  *   paths: {
  *     assets: string;
  *     base: string;
@@ -1131,7 +1180,8 @@ class Renderer {
  *     nodes: Array<Promise<import('types/internal').CSRComponent>>;
  *     page: import('types/page').Page;
  *   };
- * }} opts */
+ * }} opts
+ */
 async function start({ paths, target, session, host, route, spa, trailing_slash, hydrate }) {
 	if (import.meta.env.DEV && !target) {
 		throw new Error('Missing target element. See https://kit.svelte.dev/docs#configuration-target');

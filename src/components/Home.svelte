@@ -17,7 +17,7 @@
   });
 </script>
 
-<div class="marquee-container-main">
+<div class:testing={$lgBarStore.testing} class="marquee-container-main">
   {#if $lgBarStore.pageContent}
     <Marque
       on:closePageContent={() => {
@@ -171,5 +171,9 @@
     @media screen and (max-width: 650px) {
       opacity: 1;
     }
+  }
+  .testing {
+    width: 100vw;
+    height: 100vh;
   }
 </style>

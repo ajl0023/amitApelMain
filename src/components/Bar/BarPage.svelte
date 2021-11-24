@@ -4,9 +4,8 @@
   import { largeBarObj } from "./animationObj";
   import { lgBarStore } from "./store";
   let marquee;
+  const positions = {};
   const getCenter = (ele) => {
-    let positions = {};
-
     const elementPosition = ele.getBoundingClientRect();
     const marqueePosition = marquee.getBoundingClientRect();
 
@@ -59,38 +58,38 @@
   <div class="inner-bar">
     <div
       class="target-{$$props.index} target-cover"
-      on:click={(e) => {
+      on:click="{(e) => {
         lgBarStore.setPageContent($$props.index);
 
         lgBarStore.pageContentToggle(true);
-        expandMarquee(e.target, "desktop");
-      }}
-      on:mouseenter={(e) => {
+        expandMarquee(e.target, 'desktop');
+      }}"
+      on:mouseenter="{(e) => {
         gsap.to(e.target, {
-          background: "transparent",
+          background: 'transparent',
         });
         gsap.to(label, {
           opacity: 1,
         });
-      }}
-      on:mouseleave={(e) => {
+      }}"
+      on:mouseleave="{(e) => {
         gsap.to(e.target, {
-          background: "white",
+          background: 'white',
         });
-      }}
-    />
-    <div bind:this={label} class="main-label-container">
+      }}"
+    ></div>
+    <div bind:this="{label}" class="main-label-container">
       <p>{barInfo.label}</p>
     </div>
   </div>
   <div
-    on:click={(e) => {
-      expandMarquee(e.target, "mobile");
+    on:click="{(e) => {
+      expandMarquee(e.target, 'mobile');
       e.stopPropagation();
-    }}
+    }}"
     class="mobile-container"
   >
-    <div class="mobile-bar-container" />
+    <div class="mobile-bar-container"></div>
     <div class="label-container">
       <p>{barInfo.label}</p>
     </div>

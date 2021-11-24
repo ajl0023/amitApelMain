@@ -1,7 +1,8 @@
 <script>
   import { marqueeContentStore } from "./../Marquee/store.js";
-  import { privateHomesModal } from "./store.js";
+
   import gsap from "gsap";
+  import { galleryModal } from "../GalleryModal/store.js";
   export let img;
 
   let imageEle;
@@ -12,20 +13,28 @@
       });
     }
   }
+  console.log(imageEle);
 </script>
 
 {#if img.url.length === 0}
-  <i class="grid-item-container" aria-hidden="true" />
+  <i class="grid-item-container" aria-hidden="true"></i>
 {:else}
   <div
-    on:click={() => {
-      privateHomesModal.openModal(img.key);
-    }}
-    bind:this={imageEle}
+    on:click="{() => {
+      galleryModal.openModal(img, $marqueeContentStore.content);
+    }}"
+    bind:this="{imageEle}"
     class="grid-item-container"
   >
     <div class="image-container">
-      <img loading="lazy" class="grid-image" src={img.url} alt="" />
+      <img
+        height="{img.height}"
+        width="{img.width}"
+        loading="lazy"
+        class="grid-image"
+        src="{img.url}"
+        alt=""
+      />
     </div>
     <h5 class="label">{img.label}</h5>
   </div>

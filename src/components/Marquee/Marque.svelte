@@ -1,27 +1,20 @@
 <script>
   import { createEventDispatcher, onDestroy, onMount } from "svelte";
-  import About from "../About.svelte";
-  import Art from "../Art/Art.svelte";
+  import { currentPage } from "../../storeController";
   import { lgBarStore } from "../Bar/store";
-  import ContactUs from "../ContactUs/ContactUs.svelte";
-  import MalibuRebuild from "../MalibuRebuild.svelte";
+  import GalleryModal from "../GalleryModal/GalleryModal.svelte";
+  import { galleryModal } from "../GalleryModal/store";
   import MapWrapper from "../Map/MapWrapper.svelte";
-  import MeetTheTeam from "../meetTheTeam/MeetTheTeam.svelte";
   import PageContent from "../PageContent.svelte";
-  import Press from "../press/Press.svelte";
-  import Sculpture from "../Sculpture/Sculpture.svelte";
-  import WhatWeDo from "../WhatWeDo/WhatWeDo.svelte";
-  import Bar3Gallery from "./../Bar-3-Gallery/Bar3Gallery.svelte";
-  import GalleryModal from "./../Bar-3-Gallery/GalleryModal.svelte";
-  import { privateHomesModal } from "./../Bar-3-Gallery/store.js";
+
   import BgLogo from "./../BgLogo.svelte";
-  import Furniture from "./../Furniture/Furniture.svelte";
   import Modal from "./../Modal/Modal.svelte";
-  import { modalStore } from "./../Modal/store.js";
+  import { modalStore } from "./../Modal/store";
   import Navbar from "./../Navbar/Navbar.svelte";
+  import { pages } from "./marqueePages";
   import MenuItem from "./MenuItem.svelte";
   import { menuItems } from "./menuItems";
-  import { marqueeContentStore } from "./store.js";
+  import { marqueeContentStore } from "./store";
   export let index;
 
   let container;
@@ -29,64 +22,26 @@
 
   const dispatch = createEventDispatcher();
 
-  const pages = {
-    "meet amit apel": {
-      name: "meet amit apel",
-      component: About,
-    },
-    "malibu rebuild": {
-      component: MalibuRebuild,
-      name: "malibu rebuild",
-    },
-    "meet the team": {
-      component: MeetTheTeam,
-      name: "meet the team",
-    },
-    press: {
-      component: Press,
-      name: "press",
-    },
-    "private homes": {
-      component: Bar3Gallery,
-      name: "private homes",
-    },
-    "multi units": {
-      component: Bar3Gallery,
-      name: "multi units",
-    },
-    sculpture: {
-      component: Sculpture,
-      name: "sculpture",
-    },
-    concept: {
-      component: Bar3Gallery,
-      name: "concept",
-    },
-    "contact us": {
-      component: ContactUs,
-      name: "contact us",
-    },
-    "what we do": { component: WhatWeDo, name: "what we do" },
-    furniture: { component: Furniture, name: "furniture" },
-    art: { component: Art, name: "art" },
-  };
-
   onDestroy(() => {
     marqueeContentStore.reset();
   });
   onMount(() => {
     marqueeContentStore.init(container);
     marqueeContentStore.initAnim();
+
+    if ($marqueeContentStore.testing) {
+      marqueeContentStore.setPageAnimation(currentPage);
+    }
   });
 </script>
 
 <Navbar
-  on:closePageContent={() => {
-    dispatch("closePageContent");
-  }}
+  on:closePageContent="{() => {
+    dispatch('closePageContent');
+  }}"
 />
 <div class="marquee-animation-container page-wrapper">
-  {#if $privateHomesModal.visible}
+  {#if $galleryModal.visible}
     <GalleryModal />
   {/if}
   {#if $modalStore.visible}
@@ -97,14 +52,22 @@
     <div class="menu-wrap">
       <nav class="menu">
         {#each menuItems[$lgBarStore.currentIndex].pages as item}
-          <MenuItem {index} {currNav} title={item.title} labels={item.labels} />
+          <MenuItem
+            index="{index}"
+            currNav="{currNav}"
+            title="{item.title}"
+            labels="{item.labels}"
+          />
         {/each}
       </nav>
     </div>
-    <BgLogo text={menuItems[$lgBarStore.currentIndex].category} />
-    <div class="page-transition-black" />
-    <div bind:this={container} class="page-content-container">
-      <PageContent {index} currNav={pages[$marqueeContentStore.content]} />
+    <BgLogo text="{menuItems[$lgBarStore.currentIndex].category}" />
+    <div class="page-transition-black"></div>
+    <div bind:this="{container}" class="page-content-container">
+      <PageContent
+        index="{index}"
+        currNav="{pages[$marqueeContentStore.content]}"
+      />
     </div>
   </div>
 
@@ -121,8 +84,6 @@
     position: relative;
   }
   .page-content-container {
-    padding: 20px 20px 0 20px;
-
     overflow: hidden;
     display: flex;
     justify-content: center;
