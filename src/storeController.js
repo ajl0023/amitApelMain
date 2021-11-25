@@ -1,2 +1,3 @@
-export const testing = true;
-export const currentPage = "sculptures";
+export const testing = false;
+export const shouldAnimate = false
+export const currentPage = "concept";

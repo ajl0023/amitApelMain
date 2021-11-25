@@ -17,12 +17,12 @@
   });
 </script>
 
-<div class:testing={$lgBarStore.testing} class="marquee-container-main">
+<div class="marquee-container-main">
   {#if $lgBarStore.pageContent}
     <Marque
-      on:closePageContent={() => {
-        lgBarStore.closeMarquee(mobileCheck() ? "mobile" : "desktop");
-      }}
+      on:closePageContent="{() => {
+        lgBarStore.closeMarquee(mobileCheck() ? 'mobile' : 'desktop');
+      }}"
     />
   {/if}
 </div>
@@ -31,7 +31,7 @@
 <div class="video-bg">
   <video class="video-brush" autoplay autobuffer muted playsinline>
     <source
-      src={"https://res.cloudinary.com/dt4xntymn/video/upload/v1636870696/mainSite/Brush_Stroke_1_orzxdf.mp4"}
+      src="{'https://res.cloudinary.com/dt4xntymn/video/upload/v1636870696/mainSite/Brush_Stroke_1_orzxdf.mp4'}"
       type="video/mp4"
     />
   </video>
@@ -39,7 +39,7 @@
 
 <div class="video-bg">
   <video class="video-render" autoplay loop autobuffer muted playsinline>
-    <source src={brush2} type="video/mp4" />
+    <source src="{brush2}" type="video/mp4" />
   </video>
 </div>
 <div class="container">
@@ -52,7 +52,7 @@
   </div>
 
   <div class="flex-item logo-text-container fade">
-    <img class="logo-text" src={logoText} alt="" />
+    <img class="logo-text" src="{logoText}" alt="" />
   </div>
 </div>
 
@@ -68,6 +68,12 @@
     height: 20px;
     z-index: 5;
     width: 20px;
+  }
+  .video-brush {
+    opacity: 1;
+  }
+  .video-render {
+    opacity: 0;
   }
 
   .main-text-container {
@@ -171,9 +177,5 @@
     @media screen and (max-width: 650px) {
       opacity: 1;
     }
-  }
-  .testing {
-    width: 100vw;
-    height: 100vh;
   }
 </style>

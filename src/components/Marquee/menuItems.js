@@ -52,8 +52,8 @@ export const menuItems = {
   2: {
     pages: [
       {
-        title: "sculpture",
-        labels: Array(8).fill("sculpture"),
+        title: "sculptures",
+        labels: Array(8).fill("sculptures"),
       },
       {
         title: "furniture",

@@ -1,6 +1,6 @@
-export const shouldAnimate = false;
 import { writable } from "svelte/store";
 import gsap from "gsap";
+import { shouldAnimate, testing } from "./storeController";
 const introAnimation = () => {
   const state = {
     timeline: null,
@@ -117,9 +117,8 @@ const introAnimation = () => {
           gsap.set(".bar-wrapper", {
             pointerEvents: "auto",
           });
-        }
-        if (!mobile) {
-          // s.timeline.play();
+        } else if (!mobile) {
+          s.timeline.play();
           window.addEventListener("resize", () => {
             s.timeline.invalidate();
 

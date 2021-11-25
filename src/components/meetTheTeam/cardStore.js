@@ -1,7 +1,11 @@
-import { writable } from "svelte/store";
+import {
+  writable
+} from "svelte/store";
 
 import gsap from "gsap";
-import { distance } from "../Marquee/utils";
+import {
+  distance
+} from "../Marquee/utils";
 const store = () => {
   const state = {
     exited: [],
@@ -14,7 +18,11 @@ const store = () => {
     cardToExit: null,
     currentStack: [5, 4, 3, 2, 1, 0],
   };
-  const { subscribe, set, update } = writable(state);
+  const {
+    subscribe,
+    set,
+    update
+  } = writable(state);
   const methods = {
     init(outline) {
       console.log(outline);
@@ -124,48 +132,35 @@ const store = () => {
   };
 };
 export const cardStore = store();
-export const cardImages = [
-  {
-    front:
-      "https://res.cloudinary.com/dt4xntymn/image/upload/v1633335279/mainSite/meet%20the%20team/Cards/front/Omar_Card_frdbxy.jpg",
-    back:
-      "https://res.cloudinary.com/dt4xntymn/image/upload/v1633335260/mainSite/meet%20the%20team/Cards/back/Omar_Card_Back_weik5s.jpg",
+export const cardImages = [{
+    front: "https://res.cloudinary.com/dt4xntymn/image/upload/v1633335279/mainSite/meet%20the%20team/Cards/front/Omar_Card_frdbxy.jpg",
+    back: "https://res.cloudinary.com/dt4xntymn/image/upload/v1633335260/mainSite/meet%20the%20team/Cards/back/Omar_Card_Back_weik5s.jpg",
     description: "Omar",
   },
 
   {
-    front:
-      "https://res.cloudinary.com/dt4xntymn/image/upload/v1633335279/mainSite/meet%20the%20team/Cards/front/Luke_Card_dgfcrg.jpg",
-    back:
-      "https://res.cloudinary.com/dt4xntymn/image/upload/v1633335260/mainSite/meet%20the%20team/Cards/back/Luke_Card_Back_j5zphk.jpg",
+    front: "https://res.cloudinary.com/dt4xntymn/image/upload/v1633335279/mainSite/meet%20the%20team/Cards/front/Luke_Card_dgfcrg.jpg",
+    back: "https://res.cloudinary.com/dt4xntymn/image/upload/v1633335260/mainSite/meet%20the%20team/Cards/back/Luke_Card_Back_j5zphk.jpg",
     description: "LUKE",
   },
   {
-    front:
-      "https://res.cloudinary.com/dt4xntymn/image/upload/v1633335279/mainSite/meet%20the%20team/Cards/front/Mike_Card_yyevct.jpg",
-    back:
-      "https://res.cloudinary.com/dt4xntymn/image/upload/v1633335260/mainSite/meet%20the%20team/Cards/back/Mike_Card_Back_pwet2v.jpg",
+    front: "https://res.cloudinary.com/dt4xntymn/image/upload/v1633335279/mainSite/meet%20the%20team/Cards/front/Mike_Card_yyevct.jpg",
+    back: "https://res.cloudinary.com/dt4xntymn/image/upload/v1633335260/mainSite/meet%20the%20team/Cards/back/Mike_Card_Back_pwet2v.jpg",
     description: "MIKE",
   },
   {
-    front:
-      "https://res.cloudinary.com/dt4xntymn/image/upload/v1633335279/mainSite/meet%20the%20team/Cards/front/Yak_Card_c55nzc.jpg",
-    back:
-      "https://res.cloudinary.com/dt4xntymn/image/upload/v1633335260/mainSite/meet%20the%20team/Cards/back/Yak_Card_Back_bsvk7b.jpg",
+    front: "https://res.cloudinary.com/dt4xntymn/image/upload/v1633335279/mainSite/meet%20the%20team/Cards/front/Yak_Card_c55nzc.jpg",
+    back: "https://res.cloudinary.com/dt4xntymn/image/upload/v1633335260/mainSite/meet%20the%20team/Cards/back/Yak_Card_Back_bsvk7b.jpg",
     description: "YAK",
   },
   {
-    front:
-      "https://res.cloudinary.com/dt4xntymn/image/upload/v1633335279/mainSite/meet%20the%20team/Cards/front/Elchin_Card_hhfjc2.jpg",
-    back:
-      "https://res.cloudinary.com/dt4xntymn/image/upload/v1633335260/mainSite/meet%20the%20team/Cards/back/Elchin_Card_Back_ii2vul.jpg",
+    front: "https://res.cloudinary.com/dt4xntymn/image/upload/v1633335279/mainSite/meet%20the%20team/Cards/front/Elchin_Card_hhfjc2.jpg",
+    back: "https://res.cloudinary.com/dt4xntymn/image/upload/v1633335260/mainSite/meet%20the%20team/Cards/back/Elchin_Card_Back_ii2vul.jpg",
     description: "Elchin",
   },
   {
-    front:
-      "https://res.cloudinary.com/dt4xntymn/image/upload/v1636680546/mainSite/meet%20the%20team/Cards/front/Joker_Card_rtojgt.webp",
-    back:
-      "https://res.cloudinary.com/dt4xntymn/image/upload/v1636680555/mainSite/meet%20the%20team/Cards/back/Joker_Card_Back_pzxtsy.webp",
+    front: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637784455/mainSite/meet%20the%20team/Cards/front/Joker_Card_pwqclu.jpg",
+    back: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637784449/mainSite/meet%20the%20team/Cards/back/Joker_Card_Back_x8eonc.jpg",
     description: "JOKER",
   },
 ];

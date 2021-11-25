@@ -1,10 +1,10 @@
 {
   ".svelte-kit/build/runtime/internal/start.js": {
-    "file": "start-6290562f.js",
+    "file": "start-e86d5fb8.js",
     "src": ".svelte-kit/build/runtime/internal/start.js",
     "isEntry": true,
     "imports": [
-      "_vendor-00620fbc.js"
+      "_vendor-2dd0020b.js"
     ],
     "dynamicImports": [
       ".svelte-kit/build/components/layout.svelte",
@@ -16,33 +16,33 @@
     ]
   },
   ".svelte-kit/build/components/layout.svelte": {
-    "file": "layout.svelte-46df6a58.js",
+    "file": "layout.svelte-9af32d3e.js",
     "src": ".svelte-kit/build/components/layout.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_vendor-00620fbc.js"
+      "_vendor-2dd0020b.js"
     ]
   },
   ".svelte-kit/build/components/error.svelte": {
-    "file": "error.svelte-fcef7046.js",
+    "file": "error.svelte-15227d25.js",
     "src": ".svelte-kit/build/components/error.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_vendor-00620fbc.js"
+      "_vendor-2dd0020b.js"
     ]
   },
   "src/routes/index.svelte": {
-    "file": "pages/index.svelte-b71cf2d7.js",
+    "file": "pages/index.svelte-33a5daa8.js",
     "src": "src/routes/index.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_vendor-00620fbc.js"
+      "_vendor-2dd0020b.js"
     ],
     "css": [
-      "assets/pages/index.svelte-8d057dce.css"
+      "assets/pages/index.svelte-78623e9b.css"
     ],
     "assets": [
       "assets/logo Text-6620b85f.png",
@@ -53,17 +53,17 @@
       "assets/SD Bar 4-01b269b3.mp4",
       "assets/Logo Sideways-5b2a92a6.png",
       "assets/logo-f49bb745.png",
-      "assets/amitapel4 (1)-07a16dc1.webp",
       "assets/cardArrow-ce1a5325.png",
       "assets/dance-6f6e8192.mp4",
       "assets/unisans-a2e7014c.otf",
       "assets/unisansB-43ec5e8d.otf",
       "assets/Capsuula-b76fd88c.ttf",
       "assets/mapBar-b2060247.png",
+      "assets/amitapel4 (1)-07a16dc1.webp",
       "assets/Background Photo-112e1098.jpg"
     ]
   },
-  "_vendor-00620fbc.js": {
-    "file": "chunks/vendor-00620fbc.js"
+  "_vendor-2dd0020b.js": {
+    "file": "chunks/vendor-2dd0020b.js"
   }
 }

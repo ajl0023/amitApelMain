@@ -1,5 +1,5 @@
 <script>
-  import { onMount } from "svelte";
+  import { afterUpdate, beforeUpdate, onDestroy, onMount } from "svelte";
 
   import { marqueeContentStore } from "../Marquee/store";
   import { layout } from "./layout";
@@ -7,52 +7,17 @@
   import MasonryImage from "./MasonryImage.svelte";
 
   export let shouldLoadImages;
-  const images = layout[$marqueeContentStore.content];
-  console.log($marqueeContentStore.content);
-  onMount(() => {
-    const masonrySettings = {
-      sm: { width: 430, columns: 1 },
-      md: { width: 768, columns: 2 },
-      lg: { width: 992, columns: 3 },
-      xl: { width: 1500, columns: 4 },
-    };
-
-    //Set child item in columnes, and find highest column
-    //param: number of columns
-
-    function masonary(col) {
-      const container = document.getElementById("masonry");
-
-      //get number of child elements
-      const panels = document.querySelectorAll(".masonry-panel");
-      const COL_COUNT = col;
-
-      //create array that stores the total height of each 'column'
-      let col_heights = [];
-      for (let j = 0; j <= COL_COUNT; j++) {
-        col_heights.push(0);
-      }
-
-      // set css 'order' property for each element
-      for (let i = 0; i < panels.length; i++) {
-        let order = (i + 1) % COL_COUNT || COL_COUNT; // Example: 10 % 3 = 1
-
-        panels[i].style.order = order; // add div css property: order. Together with Flexbox, this property will define which column the element is listed in.
-
-        //get element height
-        let height = panels[i].offsetHeight;
-
-        //Choose the belongin column, add the height of each child to array that stores column height value
-        col_heights[order] += parseFloat(height);
-      }
-      console.log(col_heights);
-      //Set the height of masonry container to the heightest column
-      const highest = Math.max.apply(Math, col_heights);
-      container.style.maxHeight = highest + 10 + "px";
-    }
-
-    //set layout depending of window width
-    function setlayout() {
+  let images = layout[$marqueeContentStore.content];
+  let container;
+  $: images = layout[$marqueeContentStore.content];
+  function setlayout() {
+    if (container) {
+      const masonrySettings = {
+        sm: { width: 430, columns: 1 },
+        md: { width: 768, columns: 2 },
+        lg: { width: 992, columns: 3 },
+        xl: { width: 1500, columns: 4 },
+      };
       const window_width =
         window.innerWidth ||
         document.documentElement.clientHeight ||
@@ -68,25 +33,70 @@
         masonary(masonrySettings.xl.columns);
       }
     }
-    //initiate layout on page load;
-    setlayout();
+  }
+  function masonary(col) {
+    const container = document.getElementById("masonry");
 
-    //listen for window resize, and change number of columns accordingly
-    window.onresize = setlayout;
+    //get number of child elements
+    const panels = document.querySelectorAll(".masonry-panel");
+
+    const COL_COUNT = col;
+
+    //create array that stores the total height of each 'column'
+    let col_heights = [];
+    for (let j = 0; j <= COL_COUNT; j++) {
+      col_heights.push(0);
+    }
+
+    // set css 'order' property for each element
+    for (let i = 0; i < panels.length; i++) {
+      let order = (i + 1) % COL_COUNT || COL_COUNT; // Example: 10 % 3 = 1
+
+      panels[i].style.order = order; // add div css property: order. Together with Flexbox, this property will define which column the element is listed in.
+
+      //get element height
+      let height = panels[i].offsetHeight;
+
+      //Choose the belongin column, add the height of each child to array that stores column height value
+      col_heights[order] += parseFloat(height);
+    }
+
+    //Set the height of masonry container to the heightest column
+    const highest = Math.max.apply(Math, col_heights);
+    container.style.maxHeight = highest + 10 + "px";
+  }
+
+  onMount(() => {
+    window.addEventListener("resize", setlayout);
   });
+  onDestroy(() => {
+    window.removeEventListener("resize", setlayout);
+  });
+  afterUpdate(() => {
+    setlayout();
+  });
+  let test;
+  $: {
+    test = $marqueeContentStore.content;
+  }
+  $: {
+    test, container, setlayout();
+  }
 </script>
 
-<div class="container">
+<div bind:this="{container}" class="container">
   <div id="masonry" class="flex-container {$marqueeContentStore.content}">
-    {#each images.thumbs as img}
-      <div class="item-container masonry-panel">
-        <MasonryImage
-          img="{img}"
-          images="{images}"
-          shouldLoadImages="{shouldLoadImages}"
-        />
-      </div>
-    {/each}
+    {#if images}
+      {#each layout[$marqueeContentStore.content].thumbs as img}
+        <div class="item-container masonry-panel">
+          <MasonryImage
+            img="{img}"
+            images="{images}"
+            shouldLoadImages="{shouldLoadImages}"
+          />
+        </div>
+      {/each}
+    {/if}
   </div>
 </div>
 

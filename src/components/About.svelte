@@ -1,26 +1,29 @@
 <script>
   let shouldGlitch = false;
-  import amit from "./../images/home/amitapel4 (1).webp";
 </script>
 
 <div class="page-container">
   <div class="container">
     <div class="content-container">
       <div
-        on:mouseenter={() => {
+        on:mouseenter="{() => {
           shouldGlitch = true;
           setTimeout(() => {
             shouldGlitch = false;
           }, 400);
-        }}
-        on:mouseleave={() => {
+        }}"
+        on:mouseleave="{() => {
           shouldGlitch = false;
-        }}
+        }}"
         class="glitch-image-wrapper"
       >
         <div class="main-image-container flex-item">
           <div class="image-main">
-            <img class="image" src={amit} alt="" />
+            <img
+              class="image"
+              src="https://res.cloudinary.com/dt4xntymn/image/upload/v1637785016/mainSite/meet%20amit%20apel/amitapel4_bf4uwx.jpg"
+              alt=""
+            />
           </div>
         </div>
         <div
@@ -30,7 +33,12 @@
         >
           {#each Array(5).fill("") as img}
             <div class="glitch-image">
-              <img class="image" src={amit} {img} alt="" />
+              <img
+                class="image"
+                src="https://res.cloudinary.com/dt4xntymn/image/upload/v1637785016/mainSite/meet%20amit%20apel/amitapel4_bf4uwx.jpg"
+                img="{img}"
+                alt=""
+              />
             </div>
           {/each}
         </div>

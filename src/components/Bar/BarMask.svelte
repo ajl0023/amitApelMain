@@ -25,18 +25,24 @@
   });
 </script>
 
-<div bind:this={bar} class="aspect-ratio-container  container-{$$props.index}">
+<div
+  bind:this="{bar}"
+  class="aspect-ratio-container  container-{$$props.index}"
+>
+  <div class="aspect-ratio"></div>
   <div style="" class="target-bar container">
     <video
       muted
-      bind:this={video}
+      bind:this="{video}"
       class="cover-video"
-      src={largeBarObj[$$props.index].img}
-    />
+      src="{largeBarObj[$$props.index].img}"></video>
   </div>
 </div>
 
 <style lang="scss">
+  .aspect-ratio {
+    padding-top: 225%;
+  }
   .aspect-ratio-container {
     width: 15%;
     position: fixed;
@@ -44,7 +50,6 @@
 
     transform: translateY(50%);
     pointer-events: none;
-    padding-top: 35%;
   }
 
   .container {

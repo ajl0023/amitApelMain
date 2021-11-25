@@ -1,4 +1,4 @@
-import { n as noop, s as safe_not_equal, a as subscribe, r as run_all, i as is_function, c as create_ssr_component, e as escape, b as add_attribute, v as validate_component, d as each, f as createEventDispatcher, m as missing_component, g as assign, h as now, l as loop, j as identity, o as onDestroy } from "./app-5444eb94.js";
+import { n as noop, s as safe_not_equal, a as subscribe, r as run_all, i as is_function, c as create_ssr_component, e as escape, b as add_attribute, v as validate_component, d as each, f as createEventDispatcher, m as missing_component, o as onDestroy, g as assign, h as now, l as loop, j as identity } from "./app-bf90c09a.js";
 import gsap from "gsap";
 import "@use-gesture/vanilla";
 var global = "";
@@ -178,14 +178,15 @@ const largeBarObj = {
 };
 var BarMask_svelte_svelte_type_style_lang = "";
 const css$u = {
-  code: ".aspect-ratio-container.svelte-81w0u7{width:15%;position:fixed;bottom:50%;transform:translateY(50%);pointer-events:none;padding-top:35%}.container.svelte-81w0u7{width:100%;height:100%;position:absolute;top:0;left:0;opacity:0}@media screen and (max-width: 650px){.container.svelte-81w0u7{display:none}}.container-0.svelte-81w0u7{left:10%}.container-1.svelte-81w0u7{left:30%}.container-2.svelte-81w0u7{right:30%}.container-3.svelte-81w0u7{right:10%}.cover-video.svelte-81w0u7{height:100%;object-position:center center;width:100%;object-fit:cover}.cover-video.svelte-81w0u7::-webkit-media-controls-panel{display:none !important;-webkit-appearance:none}",
+  code: ".aspect-ratio.svelte-aejr1q{padding-top:225%}.aspect-ratio-container.svelte-aejr1q{width:15%;position:fixed;bottom:50%;transform:translateY(50%);pointer-events:none}.container.svelte-aejr1q{width:100%;height:100%;position:absolute;top:0;left:0;opacity:0}@media screen and (max-width: 650px){.container.svelte-aejr1q{display:none}}.container-0.svelte-aejr1q{left:10%}.container-1.svelte-aejr1q{left:30%}.container-2.svelte-aejr1q{right:30%}.container-3.svelte-aejr1q{right:10%}.cover-video.svelte-aejr1q{height:100%;object-position:center center;width:100%;object-fit:cover}.cover-video.svelte-aejr1q::-webkit-media-controls-panel{display:none !important;-webkit-appearance:none}",
   map: null
 };
 const BarMask = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let bar;
   let video;
   $$result.css.add(css$u);
-  return `<div class="${"aspect-ratio-container container-" + escape($$props.index) + " svelte-81w0u7"}"${add_attribute("this", bar, 0)}><div style="${""}" class="${"target-bar container svelte-81w0u7"}"><video muted class="${"cover-video svelte-81w0u7"}"${add_attribute("src", largeBarObj[$$props.index].img, 0)}${add_attribute("this", video, 0)}></video></div>
+  return `<div class="${"aspect-ratio-container container-" + escape($$props.index) + " svelte-aejr1q"}"${add_attribute("this", bar, 0)}><div class="${"aspect-ratio svelte-aejr1q"}"></div>
+  <div style="${""}" class="${"target-bar container svelte-aejr1q"}"><video muted class="${"cover-video svelte-aejr1q"}"${add_attribute("src", largeBarObj[$$props.index].img, 0)}${add_attribute("this", video, 0)}></video></div>
 </div>`;
 });
 var logo$1 = "";
@@ -441,12 +442,14 @@ const marqueeContent = () => {
         }, "<");
         s.animation.eventCallback("onReverseComplete", () => {
           update((s2) => {
+            console.log("reversed");
             s2.content = null;
             s2.active = false;
             return s2;
           });
         });
         s.animation.eventCallback("onComplete", () => {
+          console.log("complete");
           update((s2) => {
             s2.shouldLoadImages = true;
             return s2;
@@ -471,965 +474,1159 @@ const marqueeContent = () => {
   };
 };
 const marqueeContentStore = marqueeContent();
-const broadway = {
+const ONSENKIOSK1 = {
   images: [
     {
-      asset_id: "0fb50ea7da28e3b1b7c3b8bdfd56bc2d",
-      public_id: "mainSite/concept/raw/BROADWAY/airr6f19mxxytn0plwwy",
-      format: "webp",
-      version: 1636595473,
+      asset_id: "e42b1b631dca8c6a10e99a644407c0bc",
+      public_id: "mainSite/concepts/compressed/ONSENKIOSK1/cwome4fk1qvpkwdi6qow",
+      format: "jpg",
+      version: 1637789783,
       resource_type: "image",
       type: "upload",
-      created_at: "2021-11-11T01:51:13Z",
-      bytes: 34794,
-      width: 900,
-      height: 720,
-      url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595473/mainSite/concept/raw/BROADWAY/airr6f19mxxytn0plwwy.webp",
-      secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595473/mainSite/concept/raw/BROADWAY/airr6f19mxxytn0plwwy.webp"
-    },
-    {
-      asset_id: "f59ebb6d20ea05ec40e592537fd270c4",
-      public_id: "mainSite/concept/raw/BROADWAY/bjzvi3q1jlmomrtpzpam",
-      format: "webp",
-      version: 1636595473,
-      resource_type: "image",
-      type: "upload",
-      created_at: "2021-11-11T01:51:13Z",
-      bytes: 29638,
-      width: 900,
-      height: 720,
-      url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595473/mainSite/concept/raw/BROADWAY/bjzvi3q1jlmomrtpzpam.webp",
-      secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595473/mainSite/concept/raw/BROADWAY/bjzvi3q1jlmomrtpzpam.webp"
-    },
-    {
-      asset_id: "0d03699d39d283fee17c92347bee2428",
-      public_id: "mainSite/concept/raw/BROADWAY/fvc9bgljjcfukudzykb9",
-      format: "webp",
-      version: 1636595474,
-      resource_type: "image",
-      type: "upload",
-      created_at: "2021-11-11T01:51:14Z",
-      bytes: 16856,
-      width: 900,
-      height: 652,
-      url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595474/mainSite/concept/raw/BROADWAY/fvc9bgljjcfukudzykb9.webp",
-      secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595474/mainSite/concept/raw/BROADWAY/fvc9bgljjcfukudzykb9.webp"
-    },
-    {
-      asset_id: "67d2128250de145d6d7cfcef6db5c69f",
-      public_id: "mainSite/concept/raw/BROADWAY/jmxhgiqgkjxr2t7vusfv",
-      format: "webp",
-      version: 1636595474,
-      resource_type: "image",
-      type: "upload",
-      created_at: "2021-11-11T01:51:14Z",
-      bytes: 24704,
-      width: 900,
-      height: 720,
-      url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595474/mainSite/concept/raw/BROADWAY/jmxhgiqgkjxr2t7vusfv.webp",
-      secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595474/mainSite/concept/raw/BROADWAY/jmxhgiqgkjxr2t7vusfv.webp"
-    },
-    {
-      asset_id: "ba869a483e799180f3c2f0f422c5601d",
-      public_id: "mainSite/concept/raw/BROADWAY/m39gqdvrygnzlluyfywc",
-      format: "webp",
-      version: 1636595476,
-      resource_type: "image",
-      type: "upload",
-      created_at: "2021-11-11T01:51:16Z",
-      bytes: 39010,
+      created_at: "2021-11-24T21:36:23Z",
+      bytes: 36917,
       width: 900,
       height: 675,
-      url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595476/mainSite/concept/raw/BROADWAY/m39gqdvrygnzlluyfywc.webp",
-      secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595476/mainSite/concept/raw/BROADWAY/m39gqdvrygnzlluyfywc.webp"
+      url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789783/mainSite/concepts/compressed/ONSENKIOSK1/cwome4fk1qvpkwdi6qow.jpg",
+      secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789783/mainSite/concepts/compressed/ONSENKIOSK1/cwome4fk1qvpkwdi6qow.jpg",
+      tags: [],
+      key: "ONSENKIOSK1",
+      label: "ONSENKIOSK"
     },
     {
-      asset_id: "1c08f4d4364dd74037ea47bacec5a934",
-      public_id: "mainSite/concept/raw/BROADWAY/rzbhxmxjsqsxdyil1v9e",
-      format: "webp",
-      version: 1636595475,
+      asset_id: "7fb8bc65c2bcfeea62793d71fd5061f2",
+      public_id: "mainSite/concepts/compressed/ONSENKIOSK1/gjaktefzol7klnfqqats",
+      format: "jpg",
+      version: 1637789784,
       resource_type: "image",
       type: "upload",
-      created_at: "2021-11-11T01:51:15Z",
-      bytes: 55996,
+      created_at: "2021-11-24T21:36:24Z",
+      bytes: 32528,
+      width: 900,
+      height: 610,
+      url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789784/mainSite/concepts/compressed/ONSENKIOSK1/gjaktefzol7klnfqqats.jpg",
+      secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789784/mainSite/concepts/compressed/ONSENKIOSK1/gjaktefzol7klnfqqats.jpg",
+      tags: [],
+      key: "ONSENKIOSK1",
+      label: "ONSENKIOSK"
+    },
+    {
+      asset_id: "552cad79995a5ec32106d43581d5fad1",
+      public_id: "mainSite/concepts/compressed/ONSENKIOSK1/h23c2ucemv8z7svmoybc",
+      format: "jpg",
+      version: 1637789782,
+      resource_type: "image",
+      type: "upload",
+      created_at: "2021-11-24T21:36:22Z",
+      bytes: 28459,
+      width: 900,
+      height: 599,
+      url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789782/mainSite/concepts/compressed/ONSENKIOSK1/h23c2ucemv8z7svmoybc.jpg",
+      secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789782/mainSite/concepts/compressed/ONSENKIOSK1/h23c2ucemv8z7svmoybc.jpg",
+      tags: [],
+      key: "ONSENKIOSK1",
+      label: "ONSENKIOSK"
+    },
+    {
+      asset_id: "9a582b31c0dd130c589791dd042e71e2",
+      public_id: "mainSite/concepts/compressed/ONSENKIOSK1/idqjbvpiq89ccngkgtfe",
+      format: "jpg",
+      version: 1637789781,
+      resource_type: "image",
+      type: "upload",
+      created_at: "2021-11-24T21:36:21Z",
+      bytes: 39597,
       width: 900,
       height: 675,
-      url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595475/mainSite/concept/raw/BROADWAY/rzbhxmxjsqsxdyil1v9e.webp",
-      secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595475/mainSite/concept/raw/BROADWAY/rzbhxmxjsqsxdyil1v9e.webp"
+      url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789781/mainSite/concepts/compressed/ONSENKIOSK1/idqjbvpiq89ccngkgtfe.jpg",
+      secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789781/mainSite/concepts/compressed/ONSENKIOSK1/idqjbvpiq89ccngkgtfe.jpg",
+      tags: [
+        "MAIN"
+      ],
+      key: "ONSENKIOSK1",
+      label: "ONSENKIOSK"
+    },
+    {
+      asset_id: "0bd645ebf60537853c29bf755af60676",
+      public_id: "mainSite/concepts/compressed/ONSENKIOSK1/zkix2bekshr9caqy9rty",
+      format: "jpg",
+      version: 1637789783,
+      resource_type: "image",
+      type: "upload",
+      created_at: "2021-11-24T21:36:23Z",
+      bytes: 28089,
+      width: 900,
+      height: 675,
+      url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789783/mainSite/concepts/compressed/ONSENKIOSK1/zkix2bekshr9caqy9rty.jpg",
+      secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789783/mainSite/concepts/compressed/ONSENKIOSK1/zkix2bekshr9caqy9rty.jpg",
+      tags: [],
+      key: "ONSENKIOSK1",
+      label: "ONSENKIOSK"
     }
-  ],
-  label: "BROADWAY",
-  key: "BROADWAY"
+  ]
 };
-const garvey = {
+const ONSENKIOSK2 = {
   images: [
     {
-      asset_id: "26fa81dd0b63f47db039926aa5ffc2e1",
-      public_id: "mainSite/concept/raw/GARVEY/gri4htxnqorhoclil1lw",
-      format: "webp",
-      version: 1636595477,
+      asset_id: "7a086aa24ca5553938a23ab49ad8e384",
+      public_id: "mainSite/concepts/compressed/ONSENKIOSK2/ah9hhjamtor3pqmsqxck",
+      format: "jpg",
+      version: 1637789785,
       resource_type: "image",
       type: "upload",
-      created_at: "2021-11-11T01:51:17Z",
-      bytes: 80134,
+      created_at: "2021-11-24T21:36:25Z",
+      bytes: 28621,
       width: 900,
-      height: 540,
-      url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595477/mainSite/concept/raw/GARVEY/gri4htxnqorhoclil1lw.webp",
-      secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595477/mainSite/concept/raw/GARVEY/gri4htxnqorhoclil1lw.webp"
+      height: 744,
+      url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789785/mainSite/concepts/compressed/ONSENKIOSK2/ah9hhjamtor3pqmsqxck.jpg",
+      secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789785/mainSite/concepts/compressed/ONSENKIOSK2/ah9hhjamtor3pqmsqxck.jpg",
+      tags: [
+        "MAIN"
+      ],
+      key: "ONSENKIOSK2",
+      label: "ONSENKIOSK"
     },
     {
-      asset_id: "f165b0293479728b61eea8ffd74563ee",
-      public_id: "mainSite/concept/raw/GARVEY/pxpy47xajjtg8n8cddjf",
-      format: "webp",
-      version: 1636595477,
+      asset_id: "ed19c508f1ac576fe4a55b1a1795ffcd",
+      public_id: "mainSite/concepts/compressed/ONSENKIOSK2/ak3ieiaow38bs1gafxyu",
+      format: "jpg",
+      version: 1637789787,
       resource_type: "image",
       type: "upload",
-      created_at: "2021-11-11T01:51:17Z",
-      bytes: 94478,
+      created_at: "2021-11-24T21:36:27Z",
+      bytes: 32347,
       width: 900,
-      height: 540,
-      url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595477/mainSite/concept/raw/GARVEY/pxpy47xajjtg8n8cddjf.webp",
-      secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595477/mainSite/concept/raw/GARVEY/pxpy47xajjtg8n8cddjf.webp"
+      height: 956,
+      url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789787/mainSite/concepts/compressed/ONSENKIOSK2/ak3ieiaow38bs1gafxyu.jpg",
+      secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789787/mainSite/concepts/compressed/ONSENKIOSK2/ak3ieiaow38bs1gafxyu.jpg",
+      tags: [],
+      key: "ONSENKIOSK2",
+      label: "ONSENKIOSK"
     },
     {
-      asset_id: "6968136c6352742e54719037ee76e1a1",
-      public_id: "mainSite/concept/raw/GARVEY/taqhugkwfm2kj5cvfceo",
-      format: "webp",
-      version: 1636595478,
+      asset_id: "b6232fd8e731db1d6132b7f7f9e65497",
+      public_id: "mainSite/concepts/compressed/ONSENKIOSK2/cxieyk3wh8g8qgrh0ikh",
+      format: "jpg",
+      version: 1637789788,
       resource_type: "image",
       type: "upload",
-      created_at: "2021-11-11T01:51:18Z",
-      bytes: 68874,
+      created_at: "2021-11-24T21:36:28Z",
+      bytes: 33103,
       width: 900,
-      height: 540,
-      url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595478/mainSite/concept/raw/GARVEY/taqhugkwfm2kj5cvfceo.webp",
-      secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595478/mainSite/concept/raw/GARVEY/taqhugkwfm2kj5cvfceo.webp"
+      height: 900,
+      url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789788/mainSite/concepts/compressed/ONSENKIOSK2/cxieyk3wh8g8qgrh0ikh.jpg",
+      secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789788/mainSite/concepts/compressed/ONSENKIOSK2/cxieyk3wh8g8qgrh0ikh.jpg",
+      tags: [],
+      key: "ONSENKIOSK2",
+      label: "ONSENKIOSK"
+    },
+    {
+      asset_id: "abcdf6bcf112ae4b2b980f2181240330",
+      public_id: "mainSite/concepts/compressed/ONSENKIOSK2/fe3tzvu22ydwydrjsqji",
+      format: "jpg",
+      version: 1637789786,
+      resource_type: "image",
+      type: "upload",
+      created_at: "2021-11-24T21:36:26Z",
+      bytes: 33878,
+      width: 900,
+      height: 902,
+      url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789786/mainSite/concepts/compressed/ONSENKIOSK2/fe3tzvu22ydwydrjsqji.jpg",
+      secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789786/mainSite/concepts/compressed/ONSENKIOSK2/fe3tzvu22ydwydrjsqji.jpg",
+      tags: [],
+      key: "ONSENKIOSK2",
+      label: "ONSENKIOSK"
+    },
+    {
+      asset_id: "0c5cef824f91642b67c265b9a920e9fa",
+      public_id: "mainSite/concepts/compressed/ONSENKIOSK2/gvnrcc65av3slx8fongi",
+      format: "jpg",
+      version: 1637789787,
+      resource_type: "image",
+      type: "upload",
+      created_at: "2021-11-24T21:36:27Z",
+      bytes: 32027,
+      width: 900,
+      height: 872,
+      url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789787/mainSite/concepts/compressed/ONSENKIOSK2/gvnrcc65av3slx8fongi.jpg",
+      secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789787/mainSite/concepts/compressed/ONSENKIOSK2/gvnrcc65av3slx8fongi.jpg",
+      tags: [],
+      key: "ONSENKIOSK2",
+      label: "ONSENKIOSK"
+    },
+    {
+      asset_id: "815486054e7704eac2e422ca26e5b029",
+      public_id: "mainSite/concepts/compressed/ONSENKIOSK2/redcuhfe91dyrd4p9qso",
+      format: "jpg",
+      version: 1637789789,
+      resource_type: "image",
+      type: "upload",
+      created_at: "2021-11-24T21:36:29Z",
+      bytes: 36083,
+      width: 900,
+      height: 900,
+      url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789789/mainSite/concepts/compressed/ONSENKIOSK2/redcuhfe91dyrd4p9qso.jpg",
+      secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789789/mainSite/concepts/compressed/ONSENKIOSK2/redcuhfe91dyrd4p9qso.jpg",
+      tags: [],
+      key: "ONSENKIOSK2",
+      label: "ONSENKIOSK"
     }
-  ],
-  label: "GARVEY",
-  key: "GARVEY"
+  ]
 };
-const melrose = {
+const ROBERTSON = {
   images: [
     {
-      asset_id: "48a29b2712f46140df4450a81db0d826",
-      public_id: "mainSite/concept/raw/MELROSE (ESSENSUAL SALON)/i61wamgyxuppss7rhfti",
-      format: "webp",
-      version: 1636595491,
+      asset_id: "5bbd5f4b0641453953f08d5deabdf72e",
+      public_id: "mainSite/concepts/compressed/ROBERTSON/oj0znoy32zsdky8mux3z",
+      format: "jpg",
+      version: 1637789791,
       resource_type: "image",
       type: "upload",
-      created_at: "2021-11-11T01:51:31Z",
-      bytes: 34084,
-      width: 900,
-      height: 675,
-      url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595491/mainSite/concept/raw/MELROSE%20%28ESSENSUAL%20SALON%29/i61wamgyxuppss7rhfti.webp",
-      secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595491/mainSite/concept/raw/MELROSE%20%28ESSENSUAL%20SALON%29/i61wamgyxuppss7rhfti.webp"
-    },
-    {
-      asset_id: "b0d59e45860e7b69f1fed101fb60de52",
-      public_id: "mainSite/concept/raw/MELROSE (ESSENSUAL SALON)/pdsgksho7mjsnkzypirx",
-      format: "webp",
-      version: 1636595490,
-      resource_type: "image",
-      type: "upload",
-      created_at: "2021-11-11T01:51:30Z",
-      bytes: 36332,
-      width: 900,
-      height: 675,
-      url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595490/mainSite/concept/raw/MELROSE%20%28ESSENSUAL%20SALON%29/pdsgksho7mjsnkzypirx.webp",
-      secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595490/mainSite/concept/raw/MELROSE%20%28ESSENSUAL%20SALON%29/pdsgksho7mjsnkzypirx.webp"
-    }
-  ],
-  label: "MELROSE (ESSENSUAL SALON)",
-  key: "MELROSE"
-};
-const robertson = {
-  images: [
-    {
-      asset_id: "0adbe46c1995bf45d1832211e136412d",
-      public_id: "mainSite/concept/raw/ROBERTSON/hz1zvnpbwyzar97twypa",
-      format: "webp",
-      version: 1636595507,
-      resource_type: "image",
-      type: "upload",
-      created_at: "2021-11-11T01:51:47Z",
-      bytes: 60146,
+      created_at: "2021-11-24T21:36:31Z",
+      bytes: 56891,
       width: 900,
       height: 506,
-      url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595507/mainSite/concept/raw/ROBERTSON/hz1zvnpbwyzar97twypa.webp",
-      secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595507/mainSite/concept/raw/ROBERTSON/hz1zvnpbwyzar97twypa.webp"
+      url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789791/mainSite/concepts/compressed/ROBERTSON/oj0znoy32zsdky8mux3z.jpg",
+      secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789791/mainSite/concepts/compressed/ROBERTSON/oj0znoy32zsdky8mux3z.jpg",
+      tags: [],
+      key: "ROBERTSON",
+      label: "ROBERTSON"
     },
     {
-      asset_id: "846084fd2c6ae96b48e6e138401e4dce",
-      public_id: "mainSite/concept/raw/ROBERTSON/ianilhyzgvaxd36dhwbo",
-      format: "webp",
-      version: 1636595508,
+      asset_id: "4d3a48737cfa4991e57cfc67b5d8c11a",
+      public_id: "mainSite/concepts/compressed/ROBERTSON/tlwb6eepyw04j8debbkx",
+      format: "jpg",
+      version: 1637789792,
       resource_type: "image",
       type: "upload",
-      created_at: "2021-11-11T01:51:48Z",
-      bytes: 61400,
+      created_at: "2021-11-24T21:36:32Z",
+      bytes: 54602,
       width: 900,
       height: 506,
-      url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595508/mainSite/concept/raw/ROBERTSON/ianilhyzgvaxd36dhwbo.webp",
-      secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595508/mainSite/concept/raw/ROBERTSON/ianilhyzgvaxd36dhwbo.webp"
+      url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789792/mainSite/concepts/compressed/ROBERTSON/tlwb6eepyw04j8debbkx.jpg",
+      secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789792/mainSite/concepts/compressed/ROBERTSON/tlwb6eepyw04j8debbkx.jpg",
+      tags: [],
+      key: "ROBERTSON",
+      label: "ROBERTSON"
     },
     {
-      asset_id: "b77516607ce4b35bc44d44c631a77ea4",
-      public_id: "mainSite/concept/raw/ROBERTSON/jipmkvxxpzbsrltvcqbf",
-      format: "webp",
-      version: 1636595508,
+      asset_id: "5b950d2811dbf321089e74a79909d8ab",
+      public_id: "mainSite/concepts/compressed/ROBERTSON/yini4vbgdggrg14cwdue",
+      format: "jpg",
+      version: 1637789790,
       resource_type: "image",
       type: "upload",
-      created_at: "2021-11-11T01:51:48Z",
-      bytes: 61026,
+      created_at: "2021-11-24T21:36:30Z",
+      bytes: 57896,
       width: 900,
       height: 506,
-      url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595508/mainSite/concept/raw/ROBERTSON/jipmkvxxpzbsrltvcqbf.webp",
-      secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595508/mainSite/concept/raw/ROBERTSON/jipmkvxxpzbsrltvcqbf.webp"
+      url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789790/mainSite/concepts/compressed/ROBERTSON/yini4vbgdggrg14cwdue.jpg",
+      secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789790/mainSite/concepts/compressed/ROBERTSON/yini4vbgdggrg14cwdue.jpg",
+      tags: [
+        "MAIN"
+      ],
+      key: "ROBERTSON",
+      label: "ROBERTSON"
     }
-  ],
-  label: "ROBERTSON",
-  key: "ROBERTSON"
+  ]
 };
 var conceptImages = {
-  "beauty boxes": {
+  "02_NU RESTAURANT": {
     images: [
       {
-        asset_id: "a17d66e9414d3ee30fa610019e6e7fd0",
-        public_id: "mainSite/concept/raw/BEAUTYBOXES/gahftijtg46f1ticcj9h",
-        format: "webp",
-        version: 1636595472,
+        asset_id: "3dc1bc4733d55691845bfd2178f350ec",
+        public_id: "mainSite/concepts/compressed/02_NU RESTAURANT/d5ifypntkufohds1qpuz",
+        format: "jpg",
+        version: 1637789745,
         resource_type: "image",
         type: "upload",
-        created_at: "2021-11-11T01:51:12Z",
-        bytes: 32856,
-        width: 900,
-        height: 502,
-        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595472/mainSite/concept/raw/BEAUTYBOXES/gahftijtg46f1ticcj9h.webp",
-        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595472/mainSite/concept/raw/BEAUTYBOXES/gahftijtg46f1ticcj9h.webp"
-      },
-      {
-        asset_id: "2a4749a2682b97bbea93060a4b9175d8",
-        public_id: "mainSite/concept/raw/BEAUTYBOXES/n22fhhprdbpp9kf91gwc",
-        format: "webp",
-        version: 1636595470,
-        resource_type: "image",
-        type: "upload",
-        created_at: "2021-11-11T01:51:10Z",
-        bytes: 36618,
-        width: 900,
-        height: 502,
-        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595470/mainSite/concept/raw/BEAUTYBOXES/n22fhhprdbpp9kf91gwc.webp",
-        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595470/mainSite/concept/raw/BEAUTYBOXES/n22fhhprdbpp9kf91gwc.webp"
-      },
-      {
-        asset_id: "2f389f63939b4c30e8a06a90f552a571",
-        public_id: "mainSite/concept/raw/BEAUTYBOXES/pnz48mqoajghcumz2omg",
-        format: "webp",
-        version: 1636595471,
-        resource_type: "image",
-        type: "upload",
-        created_at: "2021-11-11T01:51:11Z",
-        bytes: 32884,
-        width: 900,
-        height: 502,
-        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595471/mainSite/concept/raw/BEAUTYBOXES/pnz48mqoajghcumz2omg.webp",
-        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595471/mainSite/concept/raw/BEAUTYBOXES/pnz48mqoajghcumz2omg.webp"
-      },
-      {
-        asset_id: "36d96ae7f651711bf0ef4e1492f9ad99",
-        public_id: "mainSite/concept/raw/BEAUTYBOXES/wbrwv1vxxcztkfezkxzd",
-        format: "webp",
-        version: 1636595471,
-        resource_type: "image",
-        type: "upload",
-        created_at: "2021-11-11T01:51:11Z",
-        bytes: 26094,
-        width: 900,
-        height: 582,
-        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595471/mainSite/concept/raw/BEAUTYBOXES/wbrwv1vxxcztkfezkxzd.webp",
-        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595471/mainSite/concept/raw/BEAUTYBOXES/wbrwv1vxxcztkfezkxzd.webp"
-      },
-      {
-        asset_id: "9024faed2b2d4f3c8b53b4f365df613b",
-        public_id: "mainSite/concept/raw/BEAUTYBOXES/xgktfxtiulx2cdmavvsa",
-        format: "webp",
-        version: 1636595469,
-        resource_type: "image",
-        type: "upload",
-        created_at: "2021-11-11T01:51:09Z",
-        bytes: 49130,
-        width: 900,
-        height: 567,
-        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595469/mainSite/concept/raw/BEAUTYBOXES/xgktfxtiulx2cdmavvsa.webp",
-        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595469/mainSite/concept/raw/BEAUTYBOXES/xgktfxtiulx2cdmavvsa.webp"
-      },
-      {
-        asset_id: "a8159ce407e0cf7a2d090e7735cec6d6",
-        public_id: "mainSite/concept/raw/BEAUTYBOXES/z3z9hbn75idekpdijbhs",
-        format: "webp",
-        version: 1636595470,
-        resource_type: "image",
-        type: "upload",
-        created_at: "2021-11-11T01:51:10Z",
-        bytes: 21604,
-        width: 900,
-        height: 564,
-        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595470/mainSite/concept/raw/BEAUTYBOXES/z3z9hbn75idekpdijbhs.webp",
-        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595470/mainSite/concept/raw/BEAUTYBOXES/z3z9hbn75idekpdijbhs.webp"
-      }
-    ],
-    label: "BEAUTYBOXES",
-    key: "BEAUTYBOXES"
-  },
-  broadway,
-  garvey,
-  "hand sketch": {
-    images: [
-      {
-        asset_id: "25d0bb9b414f54f5f5aa5794bbe476f3",
-        public_id: "mainSite/concept/raw/Hand Sketch/co30gnbyvriylmmzb064",
-        format: "webp",
-        version: 1636595480,
-        resource_type: "image",
-        type: "upload",
-        created_at: "2021-11-11T01:51:20Z",
-        bytes: 163948,
-        width: 900,
-        height: 1235,
-        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595480/mainSite/concept/raw/Hand%20Sketch/co30gnbyvriylmmzb064.webp",
-        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595480/mainSite/concept/raw/Hand%20Sketch/co30gnbyvriylmmzb064.webp"
-      },
-      {
-        asset_id: "1d22ca997dd699f3f44fc730c84abb7f",
-        public_id: "mainSite/concept/raw/Hand Sketch/joqv9xw8w7rztv4t7kfp",
-        format: "webp",
-        version: 1636595481,
-        resource_type: "image",
-        type: "upload",
-        created_at: "2021-11-11T01:51:21Z",
-        bytes: 166138,
-        width: 900,
-        height: 999,
-        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595481/mainSite/concept/raw/Hand%20Sketch/joqv9xw8w7rztv4t7kfp.webp",
-        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595481/mainSite/concept/raw/Hand%20Sketch/joqv9xw8w7rztv4t7kfp.webp"
-      },
-      {
-        asset_id: "1775f8a97ab82e575d4c75e13716739c",
-        public_id: "mainSite/concept/raw/Hand Sketch/jyb2tbzdj3caqc19ewcl",
-        format: "webp",
-        version: 1636595479,
-        resource_type: "image",
-        type: "upload",
-        created_at: "2021-11-11T01:51:19Z",
-        bytes: 167570,
-        width: 900,
-        height: 983,
-        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595479/mainSite/concept/raw/Hand%20Sketch/jyb2tbzdj3caqc19ewcl.webp",
-        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595479/mainSite/concept/raw/Hand%20Sketch/jyb2tbzdj3caqc19ewcl.webp"
-      }
-    ],
-    label: "Hand Sketch",
-    key: "Hand Sketch"
-  },
-  "onsen kiosk": {
-    images: [
-      {
-        asset_id: "9481674f46ce7aca4466f9334ead2e36",
-        public_id: "mainSite/concept/raw/KIOSK AND STORE DESIGN/j1emqmzcjuyzid8p4vvd",
-        format: "webp",
-        version: 1636595483,
-        resource_type: "image",
-        type: "upload",
-        created_at: "2021-11-11T01:51:23Z",
-        bytes: 24502,
+        created_at: "2021-11-24T21:35:45Z",
+        bytes: 26325,
         width: 900,
         height: 675,
-        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595483/mainSite/concept/raw/KIOSK%20AND%20STORE%20DESIGN/j1emqmzcjuyzid8p4vvd.webp",
-        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595483/mainSite/concept/raw/KIOSK%20AND%20STORE%20DESIGN/j1emqmzcjuyzid8p4vvd.webp"
+        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789745/mainSite/concepts/compressed/02_NU%20RESTAURANT/d5ifypntkufohds1qpuz.jpg",
+        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789745/mainSite/concepts/compressed/02_NU%20RESTAURANT/d5ifypntkufohds1qpuz.jpg",
+        tags: [],
+        key: "02_NU RESTAURANT",
+        label: "NU RESTAURANT"
       },
       {
-        asset_id: "896d228699aa5087ba20f5b2a9eb3d3d",
-        public_id: "mainSite/concept/raw/KIOSK AND STORE DESIGN/jcuy4lwipn44en07yxyv",
-        format: "webp",
-        version: 1636595484,
+        asset_id: "3bd0f56ded4246d071ced357f8eed7b2",
+        public_id: "mainSite/concepts/compressed/02_NU RESTAURANT/fpmed8wvffamxrncicsj",
+        format: "jpg",
+        version: 1637789744,
         resource_type: "image",
         type: "upload",
-        created_at: "2021-11-11T01:51:24Z",
-        bytes: 29728,
-        width: 900,
-        height: 610,
-        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595484/mainSite/concept/raw/KIOSK%20AND%20STORE%20DESIGN/jcuy4lwipn44en07yxyv.webp",
-        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595484/mainSite/concept/raw/KIOSK%20AND%20STORE%20DESIGN/jcuy4lwipn44en07yxyv.webp"
-      },
-      {
-        asset_id: "29524cc5f30306cb08fd8d04a70586c7",
-        public_id: "mainSite/concept/raw/KIOSK AND STORE DESIGN/odm2rzxgmrxjeptkkoni",
-        format: "webp",
-        version: 1636595482,
-        resource_type: "image",
-        type: "upload",
-        created_at: "2021-11-11T01:51:22Z",
-        bytes: 24156,
-        width: 900,
-        height: 599,
-        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595482/mainSite/concept/raw/KIOSK%20AND%20STORE%20DESIGN/odm2rzxgmrxjeptkkoni.webp",
-        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595482/mainSite/concept/raw/KIOSK%20AND%20STORE%20DESIGN/odm2rzxgmrxjeptkkoni.webp"
-      },
-      {
-        asset_id: "0283375924db3c7e3fb59a3c78e786b2",
-        public_id: "mainSite/concept/raw/KIOSK AND STORE DESIGN/sjuwbymnwgocr7uzafmv",
-        format: "webp",
-        version: 1636595488,
-        resource_type: "image",
-        type: "upload",
-        created_at: "2021-11-11T01:51:28Z",
-        bytes: 24306,
-        width: 900,
-        height: 900,
-        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595488/mainSite/concept/raw/KIOSK%20AND%20STORE%20DESIGN/sjuwbymnwgocr7uzafmv.webp",
-        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595488/mainSite/concept/raw/KIOSK%20AND%20STORE%20DESIGN/sjuwbymnwgocr7uzafmv.webp"
-      },
-      {
-        asset_id: "3a80f3a4f98b63fcfda578204edbd246",
-        public_id: "mainSite/concept/raw/KIOSK AND STORE DESIGN/tkhk01hmjoroncneyofg",
-        format: "webp",
-        version: 1636595486,
-        resource_type: "image",
-        type: "upload",
-        created_at: "2021-11-11T01:51:26Z",
-        bytes: 19656,
-        width: 900,
-        height: 744,
-        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595486/mainSite/concept/raw/KIOSK%20AND%20STORE%20DESIGN/tkhk01hmjoroncneyofg.webp",
-        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595486/mainSite/concept/raw/KIOSK%20AND%20STORE%20DESIGN/tkhk01hmjoroncneyofg.webp"
-      },
-      {
-        asset_id: "a6dbac9a7a7bf9fee5b0a42135b89237",
-        public_id: "mainSite/concept/raw/KIOSK AND STORE DESIGN/uefg2h6wt9qxtdt652l5",
-        format: "webp",
-        version: 1636595489,
-        resource_type: "image",
-        type: "upload",
-        created_at: "2021-11-11T01:51:29Z",
-        bytes: 26896,
-        width: 900,
-        height: 900,
-        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595489/mainSite/concept/raw/KIOSK%20AND%20STORE%20DESIGN/uefg2h6wt9qxtdt652l5.webp",
-        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595489/mainSite/concept/raw/KIOSK%20AND%20STORE%20DESIGN/uefg2h6wt9qxtdt652l5.webp"
-      },
-      {
-        asset_id: "5b26acff8e9ac5b5fb88c24e5e975e20",
-        public_id: "mainSite/concept/raw/KIOSK AND STORE DESIGN/vh1ju2hfedyzawp0j4u9",
-        format: "webp",
-        version: 1636595483,
-        resource_type: "image",
-        type: "upload",
-        created_at: "2021-11-11T01:51:23Z",
-        bytes: 36404,
+        created_at: "2021-11-24T21:35:44Z",
+        bytes: 27838,
         width: 900,
         height: 675,
-        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595483/mainSite/concept/raw/KIOSK%20AND%20STORE%20DESIGN/vh1ju2hfedyzawp0j4u9.webp",
-        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595483/mainSite/concept/raw/KIOSK%20AND%20STORE%20DESIGN/vh1ju2hfedyzawp0j4u9.webp"
+        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789744/mainSite/concepts/compressed/02_NU%20RESTAURANT/fpmed8wvffamxrncicsj.jpg",
+        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789744/mainSite/concepts/compressed/02_NU%20RESTAURANT/fpmed8wvffamxrncicsj.jpg",
+        tags: [],
+        key: "02_NU RESTAURANT",
+        label: "NU RESTAURANT"
       },
       {
-        asset_id: "649dc73766aa4f7af30e256486f57429",
-        public_id: "mainSite/concept/raw/KIOSK AND STORE DESIGN/wbbw1dnmxdkietypyylf",
-        format: "webp",
-        version: 1636595487,
+        asset_id: "a922465eecaead2cce664bba4c697ef8",
+        public_id: "mainSite/concepts/compressed/02_NU RESTAURANT/h325iflpiwe4yxy3hf7j",
+        format: "jpg",
+        version: 1637789742,
         resource_type: "image",
         type: "upload",
-        created_at: "2021-11-11T01:51:27Z",
-        bytes: 22728,
-        width: 900,
-        height: 956,
-        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595487/mainSite/concept/raw/KIOSK%20AND%20STORE%20DESIGN/wbbw1dnmxdkietypyylf.webp",
-        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595487/mainSite/concept/raw/KIOSK%20AND%20STORE%20DESIGN/wbbw1dnmxdkietypyylf.webp"
-      },
-      {
-        asset_id: "b0fd18727c6f370b9a2bcadbbf37c020",
-        public_id: "mainSite/concept/raw/KIOSK AND STORE DESIGN/xmpcpm6wjsup7utshxz5",
-        format: "webp",
-        version: 1636595487,
-        resource_type: "image",
-        type: "upload",
-        created_at: "2021-11-11T01:51:27Z",
-        bytes: 22774,
-        width: 900,
-        height: 872,
-        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595487/mainSite/concept/raw/KIOSK%20AND%20STORE%20DESIGN/xmpcpm6wjsup7utshxz5.webp",
-        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595487/mainSite/concept/raw/KIOSK%20AND%20STORE%20DESIGN/xmpcpm6wjsup7utshxz5.webp"
-      },
-      {
-        asset_id: "a2d354aa811b8912fcfae6641c2115af",
-        public_id: "mainSite/concept/raw/KIOSK AND STORE DESIGN/xofbb5cqnwqh8d5sabyr",
-        format: "webp",
-        version: 1636595485,
-        resource_type: "image",
-        type: "upload",
-        created_at: "2021-11-11T01:51:25Z",
-        bytes: 22972,
-        width: 900,
-        height: 902,
-        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595485/mainSite/concept/raw/KIOSK%20AND%20STORE%20DESIGN/xofbb5cqnwqh8d5sabyr.webp",
-        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595485/mainSite/concept/raw/KIOSK%20AND%20STORE%20DESIGN/xofbb5cqnwqh8d5sabyr.webp"
-      },
-      {
-        asset_id: "1d2f3adb33eb8c5726973320211c3659",
-        public_id: "mainSite/concept/raw/KIOSK AND STORE DESIGN/yhcozqp37al3jc5cgxlv",
-        format: "webp",
-        version: 1636595484,
-        resource_type: "image",
-        type: "upload",
-        created_at: "2021-11-11T01:51:24Z",
-        bytes: 33192,
+        created_at: "2021-11-24T21:35:42Z",
+        bytes: 24480,
         width: 900,
         height: 675,
-        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595484/mainSite/concept/raw/KIOSK%20AND%20STORE%20DESIGN/yhcozqp37al3jc5cgxlv.webp",
-        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595484/mainSite/concept/raw/KIOSK%20AND%20STORE%20DESIGN/yhcozqp37al3jc5cgxlv.webp"
-      }
-    ],
-    label: "KIOSK AND STORE DESIGN",
-    key: "onsen kiosk"
-  },
-  "mc carty": {
-    images: [
-      {
-        asset_id: "3c3ba6e9f6a80f5de72e457ea452c22f",
-        public_id: "mainSite/concept/raw/McCARTY/jdgyu96rp5ev4ih1jbsl",
-        format: "webp",
-        version: 1636595490,
-        resource_type: "image",
-        type: "upload",
-        created_at: "2021-11-11T01:51:30Z",
-        bytes: 61444,
-        width: 900,
-        height: 573,
-        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595490/mainSite/concept/raw/McCARTY/jdgyu96rp5ev4ih1jbsl.webp",
-        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595490/mainSite/concept/raw/McCARTY/jdgyu96rp5ev4ih1jbsl.webp"
-      }
-    ],
-    label: "McCARTY",
-    key: "McCARTY"
-  },
-  melrose,
-  "mount olympus": {
-    images: [
-      {
-        asset_id: "f8e9a9a480b7bcd5ef61bcea44a569d3",
-        public_id: "mainSite/concept/raw/MOUNT OLYMPUS/exevjscd4nptxohi16ts",
-        format: "webp",
-        version: 1636595491,
-        resource_type: "image",
-        type: "upload",
-        created_at: "2021-11-11T01:51:31Z",
-        bytes: 32400,
-        width: 900,
-        height: 655,
-        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595491/mainSite/concept/raw/MOUNT%20OLYMPUS/exevjscd4nptxohi16ts.webp",
-        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595491/mainSite/concept/raw/MOUNT%20OLYMPUS/exevjscd4nptxohi16ts.webp"
-      }
-    ],
-    label: "MOUNT OLYMPUS",
-    key: "MOUNT OLYMPUS"
-  },
-  "nu restaurant": {
-    images: [
-      {
-        asset_id: "e712787640eb5086e42f8c6f9d75acf2",
-        public_id: "mainSite/concept/raw/NU RESTAURANT/l7q8r0hgsr9phdworu0t",
-        format: "webp",
-        version: 1636595497,
-        resource_type: "image",
-        type: "upload",
-        created_at: "2021-11-11T01:51:37Z",
-        bytes: 22960,
-        width: 900,
-        height: 675,
-        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595497/mainSite/concept/raw/NU%20RESTAURANT/l7q8r0hgsr9phdworu0t.webp",
-        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595497/mainSite/concept/raw/NU%20RESTAURANT/l7q8r0hgsr9phdworu0t.webp"
+        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789742/mainSite/concepts/compressed/02_NU%20RESTAURANT/h325iflpiwe4yxy3hf7j.jpg",
+        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789742/mainSite/concepts/compressed/02_NU%20RESTAURANT/h325iflpiwe4yxy3hf7j.jpg",
+        tags: [],
+        key: "02_NU RESTAURANT",
+        label: "NU RESTAURANT"
       },
       {
-        asset_id: "7953af8f5a521a8f71cadf5a389e587c",
-        public_id: "mainSite/concept/raw/NU RESTAURANT/m4biij8ihsqp3e8vmzot",
-        format: "webp",
-        version: 1636595493,
+        asset_id: "fb71fef3186cb07eb1879d5e4d3edac9",
+        public_id: "mainSite/concepts/compressed/02_NU RESTAURANT/ivbmfhislu1ee7tielow",
+        format: "jpg",
+        version: 1637789743,
         resource_type: "image",
         type: "upload",
-        created_at: "2021-11-11T01:51:33Z",
-        bytes: 10648,
-        width: 900,
-        height: 675,
-        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595493/mainSite/concept/raw/NU%20RESTAURANT/m4biij8ihsqp3e8vmzot.webp",
-        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595493/mainSite/concept/raw/NU%20RESTAURANT/m4biij8ihsqp3e8vmzot.webp"
-      },
-      {
-        asset_id: "4c0bbccc96020a26c08c9a7a8c4fbb3d",
-        public_id: "mainSite/concept/raw/NU RESTAURANT/oeam7yxikkofgn2ab4aw",
-        format: "webp",
-        version: 1636595498,
-        resource_type: "image",
-        type: "upload",
-        created_at: "2021-11-11T01:51:38Z",
-        bytes: 42504,
-        width: 900,
-        height: 675,
-        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595498/mainSite/concept/raw/NU%20RESTAURANT/oeam7yxikkofgn2ab4aw.webp",
-        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595498/mainSite/concept/raw/NU%20RESTAURANT/oeam7yxikkofgn2ab4aw.webp"
-      },
-      {
-        asset_id: "dc5f8ad974e98b3e59a3d86c278361ca",
-        public_id: "mainSite/concept/raw/NU RESTAURANT/q74ioyjqspc1ektmsrsb",
-        format: "webp",
-        version: 1636595496,
-        resource_type: "image",
-        type: "upload",
-        created_at: "2021-11-11T01:51:36Z",
-        bytes: 21598,
-        width: 900,
-        height: 675,
-        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595496/mainSite/concept/raw/NU%20RESTAURANT/q74ioyjqspc1ektmsrsb.webp",
-        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595496/mainSite/concept/raw/NU%20RESTAURANT/q74ioyjqspc1ektmsrsb.webp"
-      },
-      {
-        asset_id: "6b24a2717806b481a1ced16d29266fea",
-        public_id: "mainSite/concept/raw/NU RESTAURANT/rtxrhueschvhbhetej2r",
-        format: "webp",
-        version: 1636595494,
-        resource_type: "image",
-        type: "upload",
-        created_at: "2021-11-11T01:51:34Z",
-        bytes: 11772,
-        width: 900,
-        height: 675,
-        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595494/mainSite/concept/raw/NU%20RESTAURANT/rtxrhueschvhbhetej2r.webp",
-        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595494/mainSite/concept/raw/NU%20RESTAURANT/rtxrhueschvhbhetej2r.webp"
-      },
-      {
-        asset_id: "82e90c8159cc7773d09bc70d73ab6ba7",
-        public_id: "mainSite/concept/raw/NU RESTAURANT/s02qwmqwq7llvsho958c",
-        format: "webp",
-        version: 1636595496,
-        resource_type: "image",
-        type: "upload",
-        created_at: "2021-11-11T01:51:36Z",
-        bytes: 59948,
+        created_at: "2021-11-24T21:35:43Z",
+        bytes: 64626,
         width: 900,
         height: 1196,
-        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595496/mainSite/concept/raw/NU%20RESTAURANT/s02qwmqwq7llvsho958c.webp",
-        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595496/mainSite/concept/raw/NU%20RESTAURANT/s02qwmqwq7llvsho958c.webp"
+        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789743/mainSite/concepts/compressed/02_NU%20RESTAURANT/ivbmfhislu1ee7tielow.jpg",
+        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789743/mainSite/concepts/compressed/02_NU%20RESTAURANT/ivbmfhislu1ee7tielow.jpg",
+        tags: [],
+        key: "02_NU RESTAURANT",
+        label: "NU RESTAURANT"
       },
       {
-        asset_id: "27bc5f112ae2a10853ae332ee895b572",
-        public_id: "mainSite/concept/raw/NU RESTAURANT/sshxyeib9qf1zmmdbcjc",
-        format: "webp",
-        version: 1636595492,
+        asset_id: "022e158dbef74d4f725d87ad84f83611",
+        public_id: "mainSite/concepts/compressed/02_NU RESTAURANT/jbwroxxyxklos43tuqbn",
+        format: "jpg",
+        version: 1637789737,
         resource_type: "image",
         type: "upload",
-        created_at: "2021-11-11T01:51:32Z",
-        bytes: 13974,
+        created_at: "2021-11-24T21:35:37Z",
+        bytes: 21581,
         width: 900,
         height: 675,
-        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595492/mainSite/concept/raw/NU%20RESTAURANT/sshxyeib9qf1zmmdbcjc.webp",
-        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595492/mainSite/concept/raw/NU%20RESTAURANT/sshxyeib9qf1zmmdbcjc.webp"
+        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789737/mainSite/concepts/compressed/02_NU%20RESTAURANT/jbwroxxyxklos43tuqbn.jpg",
+        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789737/mainSite/concepts/compressed/02_NU%20RESTAURANT/jbwroxxyxklos43tuqbn.jpg",
+        tags: [
+          "MAIN"
+        ],
+        key: "02_NU RESTAURANT",
+        label: "NU RESTAURANT"
       },
       {
-        asset_id: "a41899830d9ced3b1124dedfda92160d",
-        public_id: "mainSite/concept/raw/NU RESTAURANT/t1xa8r560bddpkbf9yds",
-        format: "webp",
-        version: 1636595495,
+        asset_id: "5edf4cda68a04bb8e0a1ebb4c5dbd493",
+        public_id: "mainSite/concepts/compressed/02_NU RESTAURANT/p7ssldrtz2qrjdywudzr",
+        format: "jpg",
+        version: 1637789741,
         resource_type: "image",
         type: "upload",
-        created_at: "2021-11-11T01:51:35Z",
-        bytes: 19272,
+        created_at: "2021-11-24T21:35:41Z",
+        bytes: 23828,
         width: 900,
         height: 675,
-        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595495/mainSite/concept/raw/NU%20RESTAURANT/t1xa8r560bddpkbf9yds.webp",
-        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595495/mainSite/concept/raw/NU%20RESTAURANT/t1xa8r560bddpkbf9yds.webp"
+        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789741/mainSite/concepts/compressed/02_NU%20RESTAURANT/p7ssldrtz2qrjdywudzr.jpg",
+        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789741/mainSite/concepts/compressed/02_NU%20RESTAURANT/p7ssldrtz2qrjdywudzr.jpg",
+        tags: [],
+        key: "02_NU RESTAURANT",
+        label: "NU RESTAURANT"
       },
       {
-        asset_id: "b2749aa45fadaadb6c090be9d288db4c",
-        public_id: "mainSite/concept/raw/NU RESTAURANT/tkkatgy5b0brrc0ubaxh",
-        format: "webp",
-        version: 1636595493,
+        asset_id: "6857433c9b3b75cd816311878f3256a6",
+        public_id: "mainSite/concepts/compressed/02_NU RESTAURANT/pv5ngrqktkzkjs9hd6bx",
+        format: "jpg",
+        version: 1637789739,
         resource_type: "image",
         type: "upload",
-        created_at: "2021-11-11T01:51:33Z",
-        bytes: 12066,
+        created_at: "2021-11-24T21:35:39Z",
+        bytes: 17717,
         width: 900,
         height: 675,
-        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595493/mainSite/concept/raw/NU%20RESTAURANT/tkkatgy5b0brrc0ubaxh.webp",
-        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595493/mainSite/concept/raw/NU%20RESTAURANT/tkkatgy5b0brrc0ubaxh.webp"
+        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789739/mainSite/concepts/compressed/02_NU%20RESTAURANT/pv5ngrqktkzkjs9hd6bx.jpg",
+        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789739/mainSite/concepts/compressed/02_NU%20RESTAURANT/pv5ngrqktkzkjs9hd6bx.jpg",
+        tags: [],
+        key: "02_NU RESTAURANT",
+        label: "NU RESTAURANT"
       },
       {
-        asset_id: "df7010c748b8b4166dea8e8f0c5e8345",
-        public_id: "mainSite/concept/raw/NU RESTAURANT/va0gr4mz396f2dykomks",
-        format: "webp",
-        version: 1636595499,
+        asset_id: "a278967f2f2584a6fa300e6430b08703",
+        public_id: "mainSite/concepts/compressed/02_NU RESTAURANT/tnlqmpfriruff4bwsjyt",
+        format: "jpg",
+        version: 1637789741,
         resource_type: "image",
         type: "upload",
-        created_at: "2021-11-11T01:51:39Z",
-        bytes: 19722,
+        created_at: "2021-11-24T21:35:41Z",
+        bytes: 21989,
         width: 900,
         height: 675,
-        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595499/mainSite/concept/raw/NU%20RESTAURANT/va0gr4mz396f2dykomks.webp",
-        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595499/mainSite/concept/raw/NU%20RESTAURANT/va0gr4mz396f2dykomks.webp"
+        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789741/mainSite/concepts/compressed/02_NU%20RESTAURANT/tnlqmpfriruff4bwsjyt.jpg",
+        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789741/mainSite/concepts/compressed/02_NU%20RESTAURANT/tnlqmpfriruff4bwsjyt.jpg",
+        tags: [],
+        key: "02_NU RESTAURANT",
+        label: "NU RESTAURANT"
       },
       {
-        asset_id: "fa9e767ed21df39b328fc93dd3d60b98",
-        public_id: "mainSite/concept/raw/NU RESTAURANT/x5avl7z1u9ch8rjsjpvc",
-        format: "webp",
-        version: 1636595494,
+        asset_id: "3ad5fb4577c881b24eb57a27ea692b14",
+        public_id: "mainSite/concepts/compressed/02_NU RESTAURANT/wgudvhvf7uol63i4uhum",
+        format: "jpg",
+        version: 1637789745,
         resource_type: "image",
         type: "upload",
-        created_at: "2021-11-11T01:51:34Z",
-        bytes: 14370,
+        created_at: "2021-11-24T21:35:45Z",
+        bytes: 41759,
         width: 900,
         height: 675,
-        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595494/mainSite/concept/raw/NU%20RESTAURANT/x5avl7z1u9ch8rjsjpvc.webp",
-        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595494/mainSite/concept/raw/NU%20RESTAURANT/x5avl7z1u9ch8rjsjpvc.webp"
+        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789745/mainSite/concepts/compressed/02_NU%20RESTAURANT/wgudvhvf7uol63i4uhum.jpg",
+        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789745/mainSite/concepts/compressed/02_NU%20RESTAURANT/wgudvhvf7uol63i4uhum.jpg",
+        tags: [],
+        key: "02_NU RESTAURANT",
+        label: "NU RESTAURANT"
+      },
+      {
+        asset_id: "84124571fb79e2685953e17f62ddee28",
+        public_id: "mainSite/concepts/compressed/02_NU RESTAURANT/xdrsdiil3hzif5kalvej",
+        format: "jpg",
+        version: 1637789740,
+        resource_type: "image",
+        type: "upload",
+        created_at: "2021-11-24T21:35:40Z",
+        bytes: 18502,
+        width: 900,
+        height: 675,
+        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789740/mainSite/concepts/compressed/02_NU%20RESTAURANT/xdrsdiil3hzif5kalvej.jpg",
+        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789740/mainSite/concepts/compressed/02_NU%20RESTAURANT/xdrsdiil3hzif5kalvej.jpg",
+        tags: [],
+        key: "02_NU RESTAURANT",
+        label: "NU RESTAURANT"
+      },
+      {
+        asset_id: "6c14c1363a9bb83420d179f38f9488f5",
+        public_id: "mainSite/concepts/compressed/02_NU RESTAURANT/zti2dyihn8enp5gb4noa",
+        format: "jpg",
+        version: 1637789738,
+        resource_type: "image",
+        type: "upload",
+        created_at: "2021-11-24T21:35:38Z",
+        bytes: 20820,
+        width: 900,
+        height: 675,
+        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789738/mainSite/concepts/compressed/02_NU%20RESTAURANT/zti2dyihn8enp5gb4noa.jpg",
+        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789738/mainSite/concepts/compressed/02_NU%20RESTAURANT/zti2dyihn8enp5gb4noa.jpg",
+        tags: [],
+        key: "02_NU RESTAURANT",
+        label: "NU RESTAURANT"
       }
-    ],
-    label: "NU RESTAURANT",
-    key: "NU RESTAURANT"
+    ]
   },
-  "nu sanctuary": {
+  "03_MOUNT OLYMPUS": {
     images: [
       {
-        asset_id: "d13efff198bd434e5c8a2683645e540a",
-        public_id: "mainSite/concept/raw/Nu Sanctuary/bid4j8cqw9v9cnjxbol3",
-        format: "webp",
-        version: 1636595502,
+        asset_id: "79119468270d42fb2433c55fa16eef37",
+        public_id: "mainSite/concepts/compressed/03_MOUNT OLYMPUS/nalpbfcom0m440ddudgt",
+        format: "jpg",
+        version: 1637789746,
         resource_type: "image",
         type: "upload",
-        created_at: "2021-11-11T01:51:42Z",
-        bytes: 83164,
+        created_at: "2021-11-24T21:35:46Z",
+        bytes: 38140,
         width: 900,
-        height: 598,
-        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595502/mainSite/concept/raw/Nu%20Sanctuary/bid4j8cqw9v9cnjxbol3.webp",
-        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595502/mainSite/concept/raw/Nu%20Sanctuary/bid4j8cqw9v9cnjxbol3.webp"
-      },
-      {
-        asset_id: "457f3bdf977e50b51d7e7481dc7beb82",
-        public_id: "mainSite/concept/raw/Nu Sanctuary/bjuamxo7paeftvlt5say",
-        format: "webp",
-        version: 1636595503,
-        resource_type: "image",
-        type: "upload",
-        created_at: "2021-11-11T01:51:43Z",
-        bytes: 113254,
-        width: 900,
-        height: 1355,
-        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595503/mainSite/concept/raw/Nu%20Sanctuary/bjuamxo7paeftvlt5say.webp",
-        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595503/mainSite/concept/raw/Nu%20Sanctuary/bjuamxo7paeftvlt5say.webp"
-      },
-      {
-        asset_id: "a1fd1d46da6e39df5eca9b6c82f1db55",
-        public_id: "mainSite/concept/raw/Nu Sanctuary/dsjh8q5u1zfojlut3rru",
-        format: "webp",
-        version: 1636595506,
-        resource_type: "image",
-        type: "upload",
-        created_at: "2021-11-11T01:51:46Z",
-        bytes: 96150,
-        width: 900,
-        height: 598,
-        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595506/mainSite/concept/raw/Nu%20Sanctuary/dsjh8q5u1zfojlut3rru.webp",
-        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595506/mainSite/concept/raw/Nu%20Sanctuary/dsjh8q5u1zfojlut3rru.webp"
-      },
-      {
-        asset_id: "2558bc9c3ade152287240f5cbbb659f3",
-        public_id: "mainSite/concept/raw/Nu Sanctuary/im1ctts4xozglxyn1rgq",
-        format: "webp",
-        version: 1636595499,
-        resource_type: "image",
-        type: "upload",
-        created_at: "2021-11-11T01:51:39Z",
-        bytes: 80522,
-        width: 900,
-        height: 1355,
-        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595499/mainSite/concept/raw/Nu%20Sanctuary/im1ctts4xozglxyn1rgq.webp",
-        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595499/mainSite/concept/raw/Nu%20Sanctuary/im1ctts4xozglxyn1rgq.webp"
-      },
-      {
-        asset_id: "17a27e6c1ce578679647483bd1007d86",
-        public_id: "mainSite/concept/raw/Nu Sanctuary/iul1bwtxljxlttnm5twu",
-        format: "webp",
-        version: 1636595501,
-        resource_type: "image",
-        type: "upload",
-        created_at: "2021-11-11T01:51:41Z",
-        bytes: 108222,
-        width: 900,
-        height: 1355,
-        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595501/mainSite/concept/raw/Nu%20Sanctuary/iul1bwtxljxlttnm5twu.webp",
-        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595501/mainSite/concept/raw/Nu%20Sanctuary/iul1bwtxljxlttnm5twu.webp"
-      },
-      {
-        asset_id: "89b945803d0b104c100c3317906d6eb9",
-        public_id: "mainSite/concept/raw/Nu Sanctuary/jvotwonwkhezej8o8bwp",
-        format: "webp",
-        version: 1636595505,
-        resource_type: "image",
-        type: "upload",
-        created_at: "2021-11-11T01:51:45Z",
-        bytes: 182654,
-        width: 900,
-        height: 1355,
-        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595505/mainSite/concept/raw/Nu%20Sanctuary/jvotwonwkhezej8o8bwp.webp",
-        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595505/mainSite/concept/raw/Nu%20Sanctuary/jvotwonwkhezej8o8bwp.webp"
-      },
-      {
-        asset_id: "86460a05dcb8f64a535cd00c551a2be8",
-        public_id: "mainSite/concept/raw/Nu Sanctuary/ntlstrbbncfvf7pnhjhe",
-        format: "webp",
-        version: 1636595504,
-        resource_type: "image",
-        type: "upload",
-        created_at: "2021-11-11T01:51:44Z",
-        bytes: 219478,
-        width: 900,
-        height: 1355,
-        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595504/mainSite/concept/raw/Nu%20Sanctuary/ntlstrbbncfvf7pnhjhe.webp",
-        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595504/mainSite/concept/raw/Nu%20Sanctuary/ntlstrbbncfvf7pnhjhe.webp"
-      },
-      {
-        asset_id: "52d8711f1444d81806d2d9fa906b480a",
-        public_id: "mainSite/concept/raw/Nu Sanctuary/puaxnyucapbybggjtwqw",
-        format: "webp",
-        version: 1636595500,
-        resource_type: "image",
-        type: "upload",
-        created_at: "2021-11-11T01:51:40Z",
-        bytes: 78890,
-        width: 900,
-        height: 1355,
-        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595500/mainSite/concept/raw/Nu%20Sanctuary/puaxnyucapbybggjtwqw.webp",
-        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595500/mainSite/concept/raw/Nu%20Sanctuary/puaxnyucapbybggjtwqw.webp"
-      },
-      {
-        asset_id: "7de0b13a11c1aeca39c18a6d748c8238",
-        public_id: "mainSite/concept/raw/Nu Sanctuary/vcrxaj6ycebht44clmy4",
-        format: "webp",
-        version: 1636595503,
-        resource_type: "image",
-        type: "upload",
-        created_at: "2021-11-11T01:51:43Z",
-        bytes: 128228,
-        width: 900,
-        height: 1355,
-        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595503/mainSite/concept/raw/Nu%20Sanctuary/vcrxaj6ycebht44clmy4.webp",
-        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595503/mainSite/concept/raw/Nu%20Sanctuary/vcrxaj6ycebht44clmy4.webp"
+        height: 655,
+        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789746/mainSite/concepts/compressed/03_MOUNT%20OLYMPUS/nalpbfcom0m440ddudgt.jpg",
+        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789746/mainSite/concepts/compressed/03_MOUNT%20OLYMPUS/nalpbfcom0m440ddudgt.jpg",
+        tags: [
+          "MAIN"
+        ],
+        key: "03_MOUNT OLYMPUS",
+        label: "MOUNT OLYMPUS"
       }
-    ],
-    label: "Nu Sanctuary",
-    key: "Nu Sanctuary"
+    ]
   },
-  robertson,
-  "serum bottle": {
+  "04_MELROSE (ESSENSUAL SALON)": {
     images: [
       {
-        asset_id: "bdc097cc6a4317fbba25346555af82a0",
-        public_id: "mainSite/concept/raw/SERUMBOTTLE/bhg3mwgyrboelc0ov6pw",
-        format: "webp",
-        version: 1636595512,
+        asset_id: "1f949f122002fd400ee53f080860301b",
+        public_id: "mainSite/concepts/compressed/04_MELROSE (ESSENSUAL SALON)/hz3qidx4grig9qy3djl6",
+        format: "jpg",
+        version: 1637789747,
         resource_type: "image",
         type: "upload",
-        created_at: "2021-11-11T01:51:52Z",
-        bytes: 25634,
+        created_at: "2021-11-24T21:35:47Z",
+        bytes: 40999,
         width: 900,
         height: 675,
-        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595512/mainSite/concept/raw/SERUMBOTTLE/bhg3mwgyrboelc0ov6pw.webp",
-        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595512/mainSite/concept/raw/SERUMBOTTLE/bhg3mwgyrboelc0ov6pw.webp"
+        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789747/mainSite/concepts/compressed/04_MELROSE%20%28ESSENSUAL%20SALON%29/hz3qidx4grig9qy3djl6.jpg",
+        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789747/mainSite/concepts/compressed/04_MELROSE%20%28ESSENSUAL%20SALON%29/hz3qidx4grig9qy3djl6.jpg",
+        tags: [
+          "MAIN"
+        ],
+        key: "04_MELROSE (ESSENSUAL SALON)",
+        label: "MELROSE ESSENSUAL SALON"
       },
       {
-        asset_id: "91fcf827650b5cfe74474a4d3c6fd229",
-        public_id: "mainSite/concept/raw/SERUMBOTTLE/f5cx4gid3bjrv0urkh4p",
-        format: "webp",
-        version: 1636595513,
+        asset_id: "4526832e56ca61942c695c3411338dab",
+        public_id: "mainSite/concepts/compressed/04_MELROSE (ESSENSUAL SALON)/osd75oknx4t4nmun8e8u",
+        format: "jpg",
+        version: 1637789748,
         resource_type: "image",
         type: "upload",
-        created_at: "2021-11-11T01:51:53Z",
-        bytes: 36482,
-        width: 900,
-        height: 768,
-        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595513/mainSite/concept/raw/SERUMBOTTLE/f5cx4gid3bjrv0urkh4p.webp",
-        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595513/mainSite/concept/raw/SERUMBOTTLE/f5cx4gid3bjrv0urkh4p.webp"
-      },
-      {
-        asset_id: "324ac65de8304f1d38524ce24c025ff3",
-        public_id: "mainSite/concept/raw/SERUMBOTTLE/g5ur4qni3r5auah7yupx",
-        format: "webp",
-        version: 1636595510,
-        resource_type: "image",
-        type: "upload",
-        created_at: "2021-11-11T01:51:50Z",
-        bytes: 18028,
+        created_at: "2021-11-24T21:35:48Z",
+        bytes: 30460,
         width: 900,
         height: 675,
-        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595510/mainSite/concept/raw/SERUMBOTTLE/g5ur4qni3r5auah7yupx.webp",
-        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595510/mainSite/concept/raw/SERUMBOTTLE/g5ur4qni3r5auah7yupx.webp"
-      },
+        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789748/mainSite/concepts/compressed/04_MELROSE%20%28ESSENSUAL%20SALON%29/osd75oknx4t4nmun8e8u.jpg",
+        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789748/mainSite/concepts/compressed/04_MELROSE%20%28ESSENSUAL%20SALON%29/osd75oknx4t4nmun8e8u.jpg",
+        tags: [],
+        key: "04_MELROSE (ESSENSUAL SALON)",
+        label: "MELROSE ESSENSUAL SALON"
+      }
+    ]
+  },
+  "05_McCARTY": {
+    images: [
       {
-        asset_id: "986b82b873abc8952a7c510a5a974996",
-        public_id: "mainSite/concept/raw/SERUMBOTTLE/l6kgz0r7jdtnjwpkif8d",
-        format: "webp",
-        version: 1636595513,
+        asset_id: "45dce0544bdc00a022e7efd91f2c6a37",
+        public_id: "mainSite/concepts/compressed/05_McCARTY/mmthiwotidpqnqjfd0sc",
+        format: "jpg",
+        version: 1637789749,
         resource_type: "image",
         type: "upload",
-        created_at: "2021-11-11T01:51:53Z",
-        bytes: 71014,
+        created_at: "2021-11-24T21:35:49Z",
+        bytes: 55249,
+        width: 900,
+        height: 573,
+        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789749/mainSite/concepts/compressed/05_McCARTY/mmthiwotidpqnqjfd0sc.jpg",
+        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789749/mainSite/concepts/compressed/05_McCARTY/mmthiwotidpqnqjfd0sc.jpg",
+        tags: [
+          "MAIN"
+        ],
+        key: "05_McCARTY",
+        label: "McCARTY"
+      }
+    ]
+  },
+  "07_GARVEY": {
+    images: [
+      {
+        asset_id: "1b7e6c386af0fdb4e97a856c9edb7da1",
+        public_id: "mainSite/concepts/compressed/07_GARVEY/dmblzvvlwcfvflonxzoq",
+        format: "jpg",
+        version: 1637789751,
+        resource_type: "image",
+        type: "upload",
+        created_at: "2021-11-24T21:35:51Z",
+        bytes: 59189,
+        width: 900,
+        height: 540,
+        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789751/mainSite/concepts/compressed/07_GARVEY/dmblzvvlwcfvflonxzoq.jpg",
+        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789751/mainSite/concepts/compressed/07_GARVEY/dmblzvvlwcfvflonxzoq.jpg",
+        tags: [],
+        key: "07_GARVEY",
+        label: "GARVEY"
+      },
+      {
+        asset_id: "ccc66f45213607c87bd572d89fff0054",
+        public_id: "mainSite/concepts/compressed/07_GARVEY/gr2voc2r0fnatuszbadg",
+        format: "jpg",
+        version: 1637789750,
+        resource_type: "image",
+        type: "upload",
+        created_at: "2021-11-24T21:35:50Z",
+        bytes: 73792,
+        width: 900,
+        height: 540,
+        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789750/mainSite/concepts/compressed/07_GARVEY/gr2voc2r0fnatuszbadg.jpg",
+        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789750/mainSite/concepts/compressed/07_GARVEY/gr2voc2r0fnatuszbadg.jpg",
+        tags: [],
+        key: "07_GARVEY",
+        label: "GARVEY"
+      },
+      {
+        asset_id: "eb3579a7a42617b932d269889e2da38c",
+        public_id: "mainSite/concepts/compressed/07_GARVEY/kf9c5tfn28cczyodbdqf",
+        format: "jpg",
+        version: 1637789751,
+        resource_type: "image",
+        type: "upload",
+        created_at: "2021-11-24T21:35:51Z",
+        bytes: 66821,
+        width: 900,
+        height: 540,
+        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789751/mainSite/concepts/compressed/07_GARVEY/kf9c5tfn28cczyodbdqf.jpg",
+        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789751/mainSite/concepts/compressed/07_GARVEY/kf9c5tfn28cczyodbdqf.jpg",
+        tags: [
+          "MAIN"
+        ],
+        key: "07_GARVEY",
+        label: "GARVEY"
+      }
+    ]
+  },
+  "08_BROADWAY": {
+    images: [
+      {
+        asset_id: "73c18443d103c22a2bd16d1d8012cfd1",
+        public_id: "mainSite/concepts/compressed/08_BROADWAY/ca9hfjdj3a83kjosi89t",
+        format: "jpg",
+        version: 1637789755,
+        resource_type: "image",
+        type: "upload",
+        created_at: "2021-11-24T21:35:55Z",
+        bytes: 63218,
+        width: 900,
+        height: 675,
+        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789755/mainSite/concepts/compressed/08_BROADWAY/ca9hfjdj3a83kjosi89t.jpg",
+        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789755/mainSite/concepts/compressed/08_BROADWAY/ca9hfjdj3a83kjosi89t.jpg",
+        tags: [],
+        key: "08_BROADWAY",
+        label: "BROADWAY"
+      },
+      {
+        asset_id: "d77319346fcc7e5256508676e1b61cb2",
+        public_id: "mainSite/concepts/compressed/08_BROADWAY/icwl2bdcxh8irkdabdvm",
+        format: "jpg",
+        version: 1637789757,
+        resource_type: "image",
+        type: "upload",
+        created_at: "2021-11-24T21:35:57Z",
+        bytes: 44808,
+        width: 900,
+        height: 720,
+        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789757/mainSite/concepts/compressed/08_BROADWAY/icwl2bdcxh8irkdabdvm.jpg",
+        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789757/mainSite/concepts/compressed/08_BROADWAY/icwl2bdcxh8irkdabdvm.jpg",
+        tags: [
+          "MAIN"
+        ],
+        key: "08_BROADWAY",
+        label: "BROADWAY"
+      },
+      {
+        asset_id: "3166045173cc04d194682e0f2778fb06",
+        public_id: "mainSite/concepts/compressed/08_BROADWAY/mhogp0uiu6ksaiqekgdc",
+        format: "jpg",
+        version: 1637789754,
+        resource_type: "image",
+        type: "upload",
+        created_at: "2021-11-24T21:35:54Z",
+        bytes: 32316,
+        width: 900,
+        height: 652,
+        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789754/mainSite/concepts/compressed/08_BROADWAY/mhogp0uiu6ksaiqekgdc.jpg",
+        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789754/mainSite/concepts/compressed/08_BROADWAY/mhogp0uiu6ksaiqekgdc.jpg",
+        tags: [],
+        key: "08_BROADWAY",
+        label: "BROADWAY"
+      },
+      {
+        asset_id: "991908ba42d2533c70ec2148cc144471",
+        public_id: "mainSite/concepts/compressed/08_BROADWAY/mzoatcmzrwbzvzpbnqz5",
+        format: "jpg",
+        version: 1637789756,
+        resource_type: "image",
+        type: "upload",
+        created_at: "2021-11-24T21:35:56Z",
+        bytes: 48037,
+        width: 900,
+        height: 675,
+        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789756/mainSite/concepts/compressed/08_BROADWAY/mzoatcmzrwbzvzpbnqz5.jpg",
+        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789756/mainSite/concepts/compressed/08_BROADWAY/mzoatcmzrwbzvzpbnqz5.jpg",
+        tags: [],
+        key: "08_BROADWAY",
+        label: "BROADWAY"
+      },
+      {
+        asset_id: "7924f9b4acc0c7a8741d964110519150",
+        public_id: "mainSite/concepts/compressed/08_BROADWAY/pybwel8qvg81b3qly5zg",
+        format: "jpg",
+        version: 1637789753,
+        resource_type: "image",
+        type: "upload",
+        created_at: "2021-11-24T21:35:53Z",
+        bytes: 34141,
+        width: 900,
+        height: 720,
+        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789753/mainSite/concepts/compressed/08_BROADWAY/pybwel8qvg81b3qly5zg.jpg",
+        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789753/mainSite/concepts/compressed/08_BROADWAY/pybwel8qvg81b3qly5zg.jpg",
+        tags: [],
+        key: "08_BROADWAY",
+        label: "BROADWAY"
+      },
+      {
+        asset_id: "36e06b6fae41d5df475ddd7096c428a1",
+        public_id: "mainSite/concepts/compressed/08_BROADWAY/tvt3fgl4dxrcyvfwpu8f",
+        format: "jpg",
+        version: 1637789752,
+        resource_type: "image",
+        type: "upload",
+        created_at: "2021-11-24T21:35:52Z",
+        bytes: 39993,
+        width: 900,
+        height: 720,
+        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789752/mainSite/concepts/compressed/08_BROADWAY/tvt3fgl4dxrcyvfwpu8f.jpg",
+        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789752/mainSite/concepts/compressed/08_BROADWAY/tvt3fgl4dxrcyvfwpu8f.jpg",
+        tags: [],
+        key: "08_BROADWAY",
+        label: "BROADWAY"
+      }
+    ]
+  },
+  "09_SERUM BOTTLE": {
+    images: [
+      {
+        asset_id: "c113f86746e1eef351d4e70881564351",
+        public_id: "mainSite/concepts/compressed/09_SERUM BOTTLE/dr7c7vekvjgsviwjkmvz",
+        format: "jpg",
+        version: 1637789761,
+        resource_type: "image",
+        type: "upload",
+        created_at: "2021-11-24T21:36:01Z",
+        bytes: 24979,
+        width: 900,
+        height: 675,
+        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789761/mainSite/concepts/compressed/09_SERUM%20BOTTLE/dr7c7vekvjgsviwjkmvz.jpg",
+        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789761/mainSite/concepts/compressed/09_SERUM%20BOTTLE/dr7c7vekvjgsviwjkmvz.jpg",
+        tags: [],
+        key: "09_SERUM BOTTLE",
+        label: "SERUM BOTTLE"
+      },
+      {
+        asset_id: "023eb796c4cfeddb4f9aaadf842985d3",
+        public_id: "mainSite/concepts/compressed/09_SERUM BOTTLE/flqtw1rmdq56eilsqufw",
+        format: "jpg",
+        version: 1637789762,
+        resource_type: "image",
+        type: "upload",
+        created_at: "2021-11-24T21:36:02Z",
+        bytes: 26711,
+        width: 900,
+        height: 675,
+        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789762/mainSite/concepts/compressed/09_SERUM%20BOTTLE/flqtw1rmdq56eilsqufw.jpg",
+        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789762/mainSite/concepts/compressed/09_SERUM%20BOTTLE/flqtw1rmdq56eilsqufw.jpg",
+        tags: [],
+        key: "09_SERUM BOTTLE",
+        label: "SERUM BOTTLE"
+      },
+      {
+        asset_id: "e12213a3db51d7c5f31a51813f6c7eed",
+        public_id: "mainSite/concepts/compressed/09_SERUM BOTTLE/q3soqi9aeic7or7f64cv",
+        format: "jpg",
+        version: 1637789763,
+        resource_type: "image",
+        type: "upload",
+        created_at: "2021-11-24T21:36:03Z",
+        bytes: 35424,
         width: 900,
         height: 670,
-        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595513/mainSite/concept/raw/SERUMBOTTLE/l6kgz0r7jdtnjwpkif8d.webp",
-        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595513/mainSite/concept/raw/SERUMBOTTLE/l6kgz0r7jdtnjwpkif8d.webp"
+        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789763/mainSite/concepts/compressed/09_SERUM%20BOTTLE/q3soqi9aeic7or7f64cv.jpg",
+        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789763/mainSite/concepts/compressed/09_SERUM%20BOTTLE/q3soqi9aeic7or7f64cv.jpg",
+        tags: [],
+        key: "09_SERUM BOTTLE",
+        label: "SERUM BOTTLE"
       },
       {
-        asset_id: "118f68e301368896ba9d4b44e479ecf9",
-        public_id: "mainSite/concept/raw/SERUMBOTTLE/obhqqzzdryh5ghrhfal0",
-        format: "webp",
-        version: 1636595511,
+        asset_id: "fd2624ef783006deb9575385569cd4c9",
+        public_id: "mainSite/concepts/compressed/09_SERUM BOTTLE/tguewdlrthuig56mj6ug",
+        format: "jpg",
+        version: 1637789759,
         resource_type: "image",
         type: "upload",
-        created_at: "2021-11-11T01:51:51Z",
-        bytes: 20106,
-        width: 900,
-        height: 675,
-        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595511/mainSite/concept/raw/SERUMBOTTLE/obhqqzzdryh5ghrhfal0.webp",
-        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595511/mainSite/concept/raw/SERUMBOTTLE/obhqqzzdryh5ghrhfal0.webp"
-      },
-      {
-        asset_id: "33d85bf56918c4b0c7ff05ceb2703e41",
-        public_id: "mainSite/concept/raw/SERUMBOTTLE/oinvcnolujz3mp5uskap",
-        format: "webp",
-        version: 1636595509,
-        resource_type: "image",
-        type: "upload",
-        created_at: "2021-11-11T01:51:49Z",
-        bytes: 50222,
+        created_at: "2021-11-24T21:35:59Z",
+        bytes: 61109,
         width: 900,
         height: 1252,
-        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595509/mainSite/concept/raw/SERUMBOTTLE/oinvcnolujz3mp5uskap.webp",
-        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595509/mainSite/concept/raw/SERUMBOTTLE/oinvcnolujz3mp5uskap.webp"
+        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789759/mainSite/concepts/compressed/09_SERUM%20BOTTLE/tguewdlrthuig56mj6ug.jpg",
+        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789759/mainSite/concepts/compressed/09_SERUM%20BOTTLE/tguewdlrthuig56mj6ug.jpg",
+        tags: [],
+        key: "09_SERUM BOTTLE",
+        label: "SERUM BOTTLE"
       },
       {
-        asset_id: "749400163c384f6e592f445b5bdc22b9",
-        public_id: "mainSite/concept/raw/SERUMBOTTLE/rketkyj3uvvywaymanrl",
-        format: "webp",
-        version: 1636595511,
+        asset_id: "48121082bd2d66fbcebac483abf0e7a3",
+        public_id: "mainSite/concepts/compressed/09_SERUM BOTTLE/utww1t8abmpq2s3lmlvw",
+        format: "jpg",
+        version: 1637789760,
         resource_type: "image",
         type: "upload",
-        created_at: "2021-11-11T01:51:51Z",
-        bytes: 21520,
+        created_at: "2021-11-24T21:36:00Z",
+        bytes: 22460,
         width: 900,
         height: 675,
-        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595511/mainSite/concept/raw/SERUMBOTTLE/rketkyj3uvvywaymanrl.webp",
-        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636595511/mainSite/concept/raw/SERUMBOTTLE/rketkyj3uvvywaymanrl.webp"
+        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789760/mainSite/concepts/compressed/09_SERUM%20BOTTLE/utww1t8abmpq2s3lmlvw.jpg",
+        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789760/mainSite/concepts/compressed/09_SERUM%20BOTTLE/utww1t8abmpq2s3lmlvw.jpg",
+        tags: [],
+        key: "09_SERUM BOTTLE",
+        label: "SERUM BOTTLE"
+      },
+      {
+        asset_id: "db11f72f06d5c09a349ea133ddce29e9",
+        public_id: "mainSite/concepts/compressed/09_SERUM BOTTLE/wegzxth7j6uegloondri",
+        format: "jpg",
+        version: 1637789762,
+        resource_type: "image",
+        type: "upload",
+        created_at: "2021-11-24T21:36:02Z",
+        bytes: 42324,
+        width: 900,
+        height: 768,
+        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789762/mainSite/concepts/compressed/09_SERUM%20BOTTLE/wegzxth7j6uegloondri.jpg",
+        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789762/mainSite/concepts/compressed/09_SERUM%20BOTTLE/wegzxth7j6uegloondri.jpg",
+        tags: [],
+        key: "09_SERUM BOTTLE",
+        label: "SERUM BOTTLE"
+      },
+      {
+        asset_id: "03022c3ef7538977f92ee237158b7679",
+        public_id: "mainSite/concepts/compressed/09_SERUM BOTTLE/yuoo7deu6q8jwqx9sygd",
+        format: "jpg",
+        version: 1637789758,
+        resource_type: "image",
+        type: "upload",
+        created_at: "2021-11-24T21:35:58Z",
+        bytes: 30759,
+        width: 900,
+        height: 675,
+        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789758/mainSite/concepts/compressed/09_SERUM%20BOTTLE/yuoo7deu6q8jwqx9sygd.jpg",
+        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789758/mainSite/concepts/compressed/09_SERUM%20BOTTLE/yuoo7deu6q8jwqx9sygd.jpg",
+        tags: [
+          "MAIN"
+        ],
+        key: "09_SERUM BOTTLE",
+        label: "SERUM BOTTLE"
       }
-    ],
-    label: "SERUMBOTTLE",
-    key: "SERUMBOTTLE"
-  }
+    ]
+  },
+  "10_BEAUTY BOXES": {
+    images: [
+      {
+        asset_id: "5f60ee9d67cf979fdb1774743a776f7f",
+        public_id: "mainSite/concepts/compressed/10_BEAUTY BOXES/cyhjd7xl0svcjihsykcz",
+        format: "jpg",
+        version: 1637789767,
+        resource_type: "image",
+        type: "upload",
+        created_at: "2021-11-24T21:36:07Z",
+        bytes: 40627,
+        width: 900,
+        height: 502,
+        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789767/mainSite/concepts/compressed/10_BEAUTY%20BOXES/cyhjd7xl0svcjihsykcz.jpg",
+        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789767/mainSite/concepts/compressed/10_BEAUTY%20BOXES/cyhjd7xl0svcjihsykcz.jpg",
+        tags: [
+          "MAIN"
+        ],
+        key: "10_BEAUTY BOXES",
+        label: "BEAUTY BOXES"
+      },
+      {
+        asset_id: "97f39e5386de2e06cb2bdb06c8bb71fd",
+        public_id: "mainSite/concepts/compressed/10_BEAUTY BOXES/nidj1odmtpg1btsqbkjb",
+        format: "jpg",
+        version: 1637789764,
+        resource_type: "image",
+        type: "upload",
+        created_at: "2021-11-24T21:36:04Z",
+        bytes: 56727,
+        width: 900,
+        height: 567,
+        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789764/mainSite/concepts/compressed/10_BEAUTY%20BOXES/nidj1odmtpg1btsqbkjb.jpg",
+        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789764/mainSite/concepts/compressed/10_BEAUTY%20BOXES/nidj1odmtpg1btsqbkjb.jpg",
+        tags: [],
+        key: "10_BEAUTY BOXES",
+        label: "BEAUTY BOXES"
+      },
+      {
+        asset_id: "21157e4b09c108c9392bbad927b2c399",
+        public_id: "mainSite/concepts/compressed/10_BEAUTY BOXES/vgmwyqquanpbubbil4bt",
+        format: "jpg",
+        version: 1637789766,
+        resource_type: "image",
+        type: "upload",
+        created_at: "2021-11-24T21:36:06Z",
+        bytes: 37607,
+        width: 900,
+        height: 502,
+        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789766/mainSite/concepts/compressed/10_BEAUTY%20BOXES/vgmwyqquanpbubbil4bt.jpg",
+        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789766/mainSite/concepts/compressed/10_BEAUTY%20BOXES/vgmwyqquanpbubbil4bt.jpg",
+        tags: [],
+        key: "10_BEAUTY BOXES",
+        label: "BEAUTY BOXES"
+      },
+      {
+        asset_id: "0f529d174e855401b482b3d3eb337c23",
+        public_id: "mainSite/concepts/compressed/10_BEAUTY BOXES/vq7tdjh9wg9plgt30zvf",
+        format: "jpg",
+        version: 1637789765,
+        resource_type: "image",
+        type: "upload",
+        created_at: "2021-11-24T21:36:05Z",
+        bytes: 31174,
+        width: 900,
+        height: 564,
+        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789765/mainSite/concepts/compressed/10_BEAUTY%20BOXES/vq7tdjh9wg9plgt30zvf.jpg",
+        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789765/mainSite/concepts/compressed/10_BEAUTY%20BOXES/vq7tdjh9wg9plgt30zvf.jpg",
+        tags: [],
+        key: "10_BEAUTY BOXES",
+        label: "BEAUTY BOXES"
+      },
+      {
+        asset_id: "1cfe0629b335cb72fed20fdcf29048ae",
+        public_id: "mainSite/concepts/compressed/10_BEAUTY BOXES/xqsr99uveyrsagq8twhd",
+        format: "jpg",
+        version: 1637789767,
+        resource_type: "image",
+        type: "upload",
+        created_at: "2021-11-24T21:36:07Z",
+        bytes: 37744,
+        width: 900,
+        height: 582,
+        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789767/mainSite/concepts/compressed/10_BEAUTY%20BOXES/xqsr99uveyrsagq8twhd.jpg",
+        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789767/mainSite/concepts/compressed/10_BEAUTY%20BOXES/xqsr99uveyrsagq8twhd.jpg",
+        tags: [],
+        key: "10_BEAUTY BOXES",
+        label: "BEAUTY BOXES"
+      }
+    ]
+  },
+  "Hand Sketch": {
+    images: [
+      {
+        asset_id: "de850cee25190a1123f02081e1b291ec",
+        public_id: "mainSite/concepts/compressed/Hand Sketch/fmfhfvbrtyburtbyn9yb",
+        format: "jpg",
+        version: 1637789770,
+        resource_type: "image",
+        type: "upload",
+        created_at: "2021-11-24T21:36:10Z",
+        bytes: 26223,
+        width: 350,
+        height: 351,
+        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789770/mainSite/concepts/compressed/Hand%20Sketch/fmfhfvbrtyburtbyn9yb.jpg",
+        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789770/mainSite/concepts/compressed/Hand%20Sketch/fmfhfvbrtyburtbyn9yb.jpg",
+        tags: [],
+        key: "Hand Sketch",
+        label: "Hand Sketch"
+      },
+      {
+        asset_id: "0c27df0fecb8aed189cd171ccc008b07",
+        public_id: "mainSite/concepts/compressed/Hand Sketch/n3a9bw9rhqwugiv99ccf",
+        format: "jpg",
+        version: 1637789769,
+        resource_type: "image",
+        type: "upload",
+        created_at: "2021-11-24T21:36:09Z",
+        bytes: 156260,
+        width: 900,
+        height: 1235,
+        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789769/mainSite/concepts/compressed/Hand%20Sketch/n3a9bw9rhqwugiv99ccf.jpg",
+        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789769/mainSite/concepts/compressed/Hand%20Sketch/n3a9bw9rhqwugiv99ccf.jpg",
+        tags: [],
+        key: "Hand Sketch",
+        label: "Hand Sketch"
+      },
+      {
+        asset_id: "46dadf988545d4d970da2e9d1260e53b",
+        public_id: "mainSite/concepts/compressed/Hand Sketch/pcuvryudmgaazlnsd7yl",
+        format: "jpg",
+        version: 1637789768,
+        resource_type: "image",
+        type: "upload",
+        created_at: "2021-11-24T21:36:08Z",
+        bytes: 150030,
+        width: 900,
+        height: 983,
+        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789768/mainSite/concepts/compressed/Hand%20Sketch/pcuvryudmgaazlnsd7yl.jpg",
+        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789768/mainSite/concepts/compressed/Hand%20Sketch/pcuvryudmgaazlnsd7yl.jpg",
+        tags: [],
+        key: "Hand Sketch",
+        label: "Hand Sketch"
+      },
+      {
+        asset_id: "59815dcaab7d5d3ce13f24e61914aa13",
+        public_id: "mainSite/concepts/compressed/Hand Sketch/sgldousu54m20buu3sfo",
+        format: "jpg",
+        version: 1637789771,
+        resource_type: "image",
+        type: "upload",
+        created_at: "2021-11-24T21:36:11Z",
+        bytes: 150653,
+        width: 900,
+        height: 999,
+        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789771/mainSite/concepts/compressed/Hand%20Sketch/sgldousu54m20buu3sfo.jpg",
+        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789771/mainSite/concepts/compressed/Hand%20Sketch/sgldousu54m20buu3sfo.jpg",
+        tags: [
+          "MAIN"
+        ],
+        key: "Hand Sketch",
+        label: "Hand Sketch"
+      }
+    ]
+  },
+  "Nu Sanctuary": {
+    images: [
+      {
+        asset_id: "a97acd3c0a09bb792be5b18f5fff5a17",
+        public_id: "mainSite/concepts/compressed/Nu Sanctuary/bmjhjwfhwt5z0nrdup1m",
+        format: "jpg",
+        version: 1637789779,
+        resource_type: "image",
+        type: "upload",
+        created_at: "2021-11-24T21:36:19Z",
+        bytes: 154383,
+        width: 900,
+        height: 1355,
+        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789779/mainSite/concepts/compressed/Nu%20Sanctuary/bmjhjwfhwt5z0nrdup1m.jpg",
+        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789779/mainSite/concepts/compressed/Nu%20Sanctuary/bmjhjwfhwt5z0nrdup1m.jpg",
+        tags: [],
+        key: "Nu Sanctuary",
+        label: "Nu Sanctuary"
+      },
+      {
+        asset_id: "613ac2c8fd65ebd1f0ff0c088233c7a1",
+        public_id: "mainSite/concepts/compressed/Nu Sanctuary/ejj7gtjyj1l7hfklbcvz",
+        format: "jpg",
+        version: 1637789772,
+        resource_type: "image",
+        type: "upload",
+        created_at: "2021-11-24T21:36:12Z",
+        bytes: 85148,
+        width: 900,
+        height: 1355,
+        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789772/mainSite/concepts/compressed/Nu%20Sanctuary/ejj7gtjyj1l7hfklbcvz.jpg",
+        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789772/mainSite/concepts/compressed/Nu%20Sanctuary/ejj7gtjyj1l7hfklbcvz.jpg",
+        tags: [
+          "MAIN"
+        ],
+        key: "Nu Sanctuary",
+        label: "Nu Sanctuary"
+      },
+      {
+        asset_id: "29370fda2ccf0e09f65f7c7165a7c9f4",
+        public_id: "mainSite/concepts/compressed/Nu Sanctuary/f2yiq1ry0qwrvx6gmdkj",
+        format: "jpg",
+        version: 1637789773,
+        resource_type: "image",
+        type: "upload",
+        created_at: "2021-11-24T21:36:13Z",
+        bytes: 83747,
+        width: 900,
+        height: 1355,
+        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789773/mainSite/concepts/compressed/Nu%20Sanctuary/f2yiq1ry0qwrvx6gmdkj.jpg",
+        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789773/mainSite/concepts/compressed/Nu%20Sanctuary/f2yiq1ry0qwrvx6gmdkj.jpg",
+        tags: [],
+        key: "Nu Sanctuary",
+        label: "Nu Sanctuary"
+      },
+      {
+        asset_id: "c39364989c35dee04bf56d9384684945",
+        public_id: "mainSite/concepts/compressed/Nu Sanctuary/g28x320mld62lvqmns20",
+        format: "jpg",
+        version: 1637789778,
+        resource_type: "image",
+        type: "upload",
+        created_at: "2021-11-24T21:36:18Z",
+        bytes: 176509,
+        width: 900,
+        height: 1355,
+        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789778/mainSite/concepts/compressed/Nu%20Sanctuary/g28x320mld62lvqmns20.jpg",
+        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789778/mainSite/concepts/compressed/Nu%20Sanctuary/g28x320mld62lvqmns20.jpg",
+        tags: [],
+        key: "Nu Sanctuary",
+        label: "Nu Sanctuary"
+      },
+      {
+        asset_id: "a307c10da51c9bcb634b7c847f6bd0ec",
+        public_id: "mainSite/concepts/compressed/Nu Sanctuary/hycga4bsck9zythkqqw9",
+        format: "jpg",
+        version: 1637789780,
+        resource_type: "image",
+        type: "upload",
+        created_at: "2021-11-24T21:36:20Z",
+        bytes: 74709,
+        width: 900,
+        height: 598,
+        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789780/mainSite/concepts/compressed/Nu%20Sanctuary/hycga4bsck9zythkqqw9.jpg",
+        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789780/mainSite/concepts/compressed/Nu%20Sanctuary/hycga4bsck9zythkqqw9.jpg",
+        tags: [],
+        key: "Nu Sanctuary",
+        label: "Nu Sanctuary"
+      },
+      {
+        asset_id: "80936fcdf2087251c5eb2bde7e0950a3",
+        public_id: "mainSite/concepts/compressed/Nu Sanctuary/qp1dnjklcrutqicmomsy",
+        format: "jpg",
+        version: 1637789776,
+        resource_type: "image",
+        type: "upload",
+        created_at: "2021-11-24T21:36:16Z",
+        bytes: 108826,
+        width: 900,
+        height: 1355,
+        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789776/mainSite/concepts/compressed/Nu%20Sanctuary/qp1dnjklcrutqicmomsy.jpg",
+        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789776/mainSite/concepts/compressed/Nu%20Sanctuary/qp1dnjklcrutqicmomsy.jpg",
+        tags: [],
+        key: "Nu Sanctuary",
+        label: "Nu Sanctuary"
+      },
+      {
+        asset_id: "13e0e4a667fa7aa7c129da7b419ee776",
+        public_id: "mainSite/concepts/compressed/Nu Sanctuary/s5rtuak0qjq6wej9k636",
+        format: "jpg",
+        version: 1637789775,
+        resource_type: "image",
+        type: "upload",
+        created_at: "2021-11-24T21:36:15Z",
+        bytes: 70099,
+        width: 900,
+        height: 598,
+        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789775/mainSite/concepts/compressed/Nu%20Sanctuary/s5rtuak0qjq6wej9k636.jpg",
+        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789775/mainSite/concepts/compressed/Nu%20Sanctuary/s5rtuak0qjq6wej9k636.jpg",
+        tags: [],
+        key: "Nu Sanctuary",
+        label: "Nu Sanctuary"
+      },
+      {
+        asset_id: "f30c09db4b6d2fde2e4e3d0170fca8df",
+        public_id: "mainSite/concepts/compressed/Nu Sanctuary/tvu0zdxuud8nxyfeakco",
+        format: "jpg",
+        version: 1637789777,
+        resource_type: "image",
+        type: "upload",
+        created_at: "2021-11-24T21:36:17Z",
+        bytes: 120368,
+        width: 900,
+        height: 1355,
+        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789777/mainSite/concepts/compressed/Nu%20Sanctuary/tvu0zdxuud8nxyfeakco.jpg",
+        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789777/mainSite/concepts/compressed/Nu%20Sanctuary/tvu0zdxuud8nxyfeakco.jpg",
+        tags: [],
+        key: "Nu Sanctuary",
+        label: "Nu Sanctuary"
+      },
+      {
+        asset_id: "40126864c466ba1df149556ef5e8a28a",
+        public_id: "mainSite/concepts/compressed/Nu Sanctuary/wz1mcjpb0kh9tig8pbsr",
+        format: "jpg",
+        version: 1637789774,
+        resource_type: "image",
+        type: "upload",
+        created_at: "2021-11-24T21:36:14Z",
+        bytes: 104005,
+        width: 900,
+        height: 1355,
+        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789774/mainSite/concepts/compressed/Nu%20Sanctuary/wz1mcjpb0kh9tig8pbsr.jpg",
+        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789774/mainSite/concepts/compressed/Nu%20Sanctuary/wz1mcjpb0kh9tig8pbsr.jpg",
+        tags: [],
+        key: "Nu Sanctuary",
+        label: "Nu Sanctuary"
+      }
+    ]
+  },
+  ONSENKIOSK1,
+  ONSENKIOSK2,
+  ROBERTSON
 };
 var privateHomesImages = {
   "1-Shoreham": {
@@ -75221,14 +75418,14 @@ const MapArrow = create_ssr_component(($$result, $$props, $$bindings, slots) => 
 });
 var MapBar_svelte_svelte_type_style_lang = "";
 const css$o = {
-  code: '.container.svelte-1xeecl0.svelte-1xeecl0{z-index:3;font-family:unisansB}.container.svelte-1xeecl0 .bottom-bar-container.svelte-1xeecl0{text-transform:uppercase;font-size:2em;padding:5px;cursor:pointer;letter-spacing:0.1em;background-image:url("./mapBar.png");text-align:center}',
+  code: '.container.svelte-uwau16.svelte-uwau16{z-index:3;font-family:unisansB}.container.svelte-uwau16 .bottom-bar-container.svelte-uwau16{text-transform:uppercase;font-size:2em;padding:10px;cursor:pointer;letter-spacing:0.1em;background-image:url("./mapBar.png");text-align:center}h5.svelte-uwau16.svelte-uwau16{margin-bottom:-10px}',
   map: null
 };
 const MapBar = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   createEventDispatcher();
   $$result.css.add(css$o);
-  return `<div class="${"container svelte-1xeecl0"}"><div class="${"bottom-bar-container svelte-1xeecl0"}">${validate_component(MapArrow, "MapArrow").$$render($$result, {}, {}, {})}
-    <h5>project map</h5></div>
+  return `<div class="${"container svelte-uwau16"}"><div class="${"bottom-bar-container svelte-uwau16"}">${validate_component(MapArrow, "MapArrow").$$render($$result, {}, {}, {})}
+    <h5 class="${"svelte-uwau16"}">project map</h5></div>
 </div>`;
 });
 var MapWrapper_svelte_svelte_type_style_lang = "";
@@ -75365,7 +75562,6 @@ const Navbar = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   ${$marqueeContentStore.content ? `${validate_component(LeftArrow, "LeftArrow").$$render($$result, {}, {}, {})}` : ``}
 </div>`;
 });
-var amit = "/_app/assets/amitapel4 (1)-07a16dc1.webp";
 var About_svelte_svelte_type_style_lang = "";
 const css$g = {
   code: '.glitch-image-container.svelte-1do7w48.svelte-1do7w48{position:absolute;top:0;left:0;width:100%;height:100%}.glitch-image-container.svelte-1do7w48.svelte-1do7w48:hover{opacity:1}.glitch-image-container.svelte-1do7w48 .glitch-image.svelte-1do7w48{pointer-events:none;background-size:cover;background-position:50% 50%;position:absolute;top:0;left:0;width:100%;height:100%;transform:translate3d(0, 0, 0);background-image:url("../images/home/amitapel4 (1).webp")}.glitch-image-container.svelte-1do7w48 .glitch-image.svelte-1do7w48:nth-child(n+2){opacity:0;top:calc(-1 * 2px);left:calc(-1 * 10px);width:calc(100% + 10px * 2);height:calc(100% + 2px * 2)}.glitch-container.svelte-1do7w48 .glitch-image.svelte-1do7w48{opacity:1 !important}.glitch-container.svelte-1do7w48 .glitch-image.svelte-1do7w48:nth-child(2){transform:translate3d(10px, 0, 0);animation:svelte-1do7w48-glitch-anim-1 2s linear alternate}.glitch-container.svelte-1do7w48 .glitch-image.svelte-1do7w48:nth-child(3){transform:translate3d(calc(-1 * 10px), 0, 0);animation:svelte-1do7w48-glitch-anim-2 2s linear alternate}.glitch-container.svelte-1do7w48 .glitch-image.svelte-1do7w48:nth-child(4){transform:translate3d(0, calc(-1 * 2px), 0) scale3d(-1, -1, 1);animation:svelte-1do7w48-glitch-anim-3 2s linear alternate}.glitch-container.svelte-1do7w48 .glitch-image.svelte-1do7w48:nth-child(5){animation:svelte-1do7w48-glitch-anim-flash 0.5s steps(1, end)}@keyframes svelte-1do7w48-glitch-anim-flash{0%{opacity:0.2;transform:translate3d(var(--gap), var(--gap-vertical), 0)}33%,100%{opacity:0;transform:translate3d(0, 0, 0)}}@keyframes svelte-1do7w48-glitch-anim-1{0%{-webkit-clip-path:polygon(0 2%, 100% 2%, 100% 5%, 0 5%);clip-path:polygon(0 2%, 100% 2%, 100% 5%, 0 5%)}10%{-webkit-clip-path:polygon(0 15%, 100% 15%, 100% 15%, 0 15%);clip-path:polygon(0 15%, 100% 15%, 100% 15%, 0 15%)}20%{-webkit-clip-path:polygon(0 10%, 100% 10%, 100% 20%, 0 20%);clip-path:polygon(0 10%, 100% 10%, 100% 20%, 0 20%)}30%{-webkit-clip-path:polygon(0 1%, 100% 1%, 100% 2%, 0 2%);clip-path:polygon(0 1%, 100% 1%, 100% 2%, 0 2%)}40%{-webkit-clip-path:polygon(0 33%, 100% 33%, 100% 33%, 0 33%);clip-path:polygon(0 33%, 100% 33%, 100% 33%, 0 33%)}50%{-webkit-clip-path:polygon(0 44%, 100% 44%, 100% 44%, 0 44%);clip-path:polygon(0 44%, 100% 44%, 100% 44%, 0 44%)}60%{-webkit-clip-path:polygon(0 50%, 100% 50%, 100% 20%, 0 20%);clip-path:polygon(0 50%, 100% 50%, 100% 20%, 0 20%)}70%{-webkit-clip-path:polygon(0 70%, 100% 70%, 100% 70%, 0 70%);clip-path:polygon(0 70%, 100% 70%, 100% 70%, 0 70%)}80%{-webkit-clip-path:polygon(0 80%, 100% 80%, 100% 80%, 0 80%);clip-path:polygon(0 80%, 100% 80%, 100% 80%, 0 80%)}90%{-webkit-clip-path:polygon(0 50%, 100% 50%, 100% 55%, 0 55%);clip-path:polygon(0 50%, 100% 50%, 100% 55%, 0 55%)}100%{-webkit-clip-path:polygon(0 70%, 100% 70%, 100% 80%, 0 80%);clip-path:polygon(0 70%, 100% 70%, 100% 80%, 0 80%)}}@keyframes svelte-1do7w48-glitch-anim-2{0%{-webkit-clip-path:polygon(0 25%, 100% 25%, 100% 30%, 0 30%);clip-path:polygon(0 25%, 100% 25%, 100% 30%, 0 30%)}15%{-webkit-clip-path:polygon(0 3%, 100% 3%, 100% 3%, 0 3%);clip-path:polygon(0 3%, 100% 3%, 100% 3%, 0 3%)}22%{-webkit-clip-path:polygon(0 5%, 100% 5%, 100% 20%, 0 20%);clip-path:polygon(0 5%, 100% 5%, 100% 20%, 0 20%)}31%{-webkit-clip-path:polygon(0 20%, 100% 20%, 100% 20%, 0 20%);clip-path:polygon(0 20%, 100% 20%, 100% 20%, 0 20%)}45%{-webkit-clip-path:polygon(0 40%, 100% 40%, 100% 40%, 0 40%);clip-path:polygon(0 40%, 100% 40%, 100% 40%, 0 40%)}51%{-webkit-clip-path:polygon(0 52%, 100% 52%, 100% 59%, 0 59%);clip-path:polygon(0 52%, 100% 52%, 100% 59%, 0 59%)}63%{-webkit-clip-path:polygon(0 60%, 100% 60%, 100% 60%, 0 60%);clip-path:polygon(0 60%, 100% 60%, 100% 60%, 0 60%)}76%{-webkit-clip-path:polygon(0 75%, 100% 75%, 100% 75%, 0 75%);clip-path:polygon(0 75%, 100% 75%, 100% 75%, 0 75%)}81%{-webkit-clip-path:polygon(0 65%, 100% 65%, 100% 40%, 0 40%);clip-path:polygon(0 65%, 100% 65%, 100% 40%, 0 40%)}94%{-webkit-clip-path:polygon(0 45%, 100% 45%, 100% 50%, 0 50%);clip-path:polygon(0 45%, 100% 45%, 100% 50%, 0 50%)}100%{-webkit-clip-path:polygon(0 14%, 100% 14%, 100% 33%, 0 33%);clip-path:polygon(0 14%, 100% 14%, 100% 33%, 0 33%)}}@keyframes svelte-1do7w48-glitch-anim-3{0%{-webkit-clip-path:polygon(0 1%, 100% 1%, 100% 3%, 0 3%);clip-path:polygon(0 1%, 100% 1%, 100% 3%, 0 3%)}5%{-webkit-clip-path:polygon(0 10%, 100% 10%, 100% 9%, 0 9%);clip-path:polygon(0 10%, 100% 10%, 100% 9%, 0 9%)}10%{-webkit-clip-path:polygon(0 5%, 100% 5%, 100% 6%, 0 6%);clip-path:polygon(0 5%, 100% 5%, 100% 6%, 0 6%)}25%{-webkit-clip-path:polygon(0 20%, 100% 20%, 100% 20%, 0 20%);clip-path:polygon(0 20%, 100% 20%, 100% 20%, 0 20%)}27%{-webkit-clip-path:polygon(0 10%, 100% 10%, 100% 10%, 0 10%);clip-path:polygon(0 10%, 100% 10%, 100% 10%, 0 10%)}30%{-webkit-clip-path:polygon(0 30%, 100% 30%, 100% 25%, 0 25%);clip-path:polygon(0 30%, 100% 30%, 100% 25%, 0 25%)}33%{-webkit-clip-path:polygon(0 15%, 100% 15%, 100% 16%, 0 16%);clip-path:polygon(0 15%, 100% 15%, 100% 16%, 0 16%)}37%{-webkit-clip-path:polygon(0 40%, 100% 40%, 100% 39%, 0 39%);clip-path:polygon(0 40%, 100% 40%, 100% 39%, 0 39%)}40%{-webkit-clip-path:polygon(0 20%, 100% 20%, 100% 21%, 0 21%);clip-path:polygon(0 20%, 100% 20%, 100% 21%, 0 21%)}45%{-webkit-clip-path:polygon(0 60%, 100% 60%, 100% 55%, 0 55%);clip-path:polygon(0 60%, 100% 60%, 100% 55%, 0 55%)}50%{-webkit-clip-path:polygon(0 30%, 100% 30%, 100% 31%, 0 31%);clip-path:polygon(0 30%, 100% 30%, 100% 31%, 0 31%)}53%{-webkit-clip-path:polygon(0 70%, 100% 70%, 100% 69%, 0 69%);clip-path:polygon(0 70%, 100% 70%, 100% 69%, 0 69%)}57%{-webkit-clip-path:polygon(0 40%, 100% 40%, 100% 41%, 0 41%);clip-path:polygon(0 40%, 100% 40%, 100% 41%, 0 41%)}60%{-webkit-clip-path:polygon(0 80%, 100% 80%, 100% 75%, 0 75%);clip-path:polygon(0 80%, 100% 80%, 100% 75%, 0 75%)}65%{-webkit-clip-path:polygon(0 50%, 100% 50%, 100% 51%, 0 51%);clip-path:polygon(0 50%, 100% 50%, 100% 51%, 0 51%)}70%{-webkit-clip-path:polygon(0 90%, 100% 90%, 100% 90%, 0 90%);clip-path:polygon(0 90%, 100% 90%, 100% 90%, 0 90%)}73%{-webkit-clip-path:polygon(0 60%, 100% 60%, 100% 60%, 0 60%);clip-path:polygon(0 60%, 100% 60%, 100% 60%, 0 60%)}80%{-webkit-clip-path:polygon(0 100%, 100% 100%, 100% 99%, 0 99%);clip-path:polygon(0 100%, 100% 100%, 100% 99%, 0 99%)}100%{-webkit-clip-path:polygon(0 70%, 100% 70%, 100% 71%, 0 71%);clip-path:polygon(0 70%, 100% 70%, 100% 71%, 0 71%)}}.container.svelte-1do7w48.svelte-1do7w48{overflow-y:auto;color:#68208e}.content-container.svelte-1do7w48.svelte-1do7w48{display:flex;flex-direction:column;align-items:center}.main-text-content.svelte-1do7w48.svelte-1do7w48{font-family:"Open Sans", sans-serif;text-align:center;font-size:1.5em;max-width:1200px;margin-top:1.5rem;width:100%}.image.svelte-1do7w48.svelte-1do7w48{width:100%}.glitch-image-wrapper.svelte-1do7w48.svelte-1do7w48{max-width:568px;width:100%;overflow:hidden;position:relative}.main-image-container.svelte-1do7w48.svelte-1do7w48{width:100%;height:100%}.main-image-container.svelte-1do7w48 .image-main.svelte-1do7w48{background-position:50% 50%;width:100%;height:100%}.content-image-container.svelte-1do7w48.svelte-1do7w48{width:100%;pointer-events:none}',
@@ -75373,8 +75569,8 @@ const css$g = {
 };
 const About = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   $$result.css.add(css$g);
-  return `<div class="${"page-container"}"><div class="${"container svelte-1do7w48"}"><div class="${"content-container svelte-1do7w48"}"><div class="${"glitch-image-wrapper svelte-1do7w48"}"><div class="${"main-image-container flex-item svelte-1do7w48"}"><div class="${"image-main svelte-1do7w48"}"><img class="${"image svelte-1do7w48"}"${add_attribute("src", amit, 0)} alt="${""}"></div></div>
-        <div class="${"flex-item content-image-container glitch-image-container " + escape("") + " svelte-1do7w48"}">${each(Array(5).fill(""), (img) => `<div class="${"glitch-image svelte-1do7w48"}"><img class="${"image svelte-1do7w48"}"${add_attribute("src", amit, 0)}${add_attribute("img", img, 0)} alt="${""}">
+  return `<div class="${"page-container"}"><div class="${"container svelte-1do7w48"}"><div class="${"content-container svelte-1do7w48"}"><div class="${"glitch-image-wrapper svelte-1do7w48"}"><div class="${"main-image-container flex-item svelte-1do7w48"}"><div class="${"image-main svelte-1do7w48"}"><img class="${"image svelte-1do7w48"}" src="${"https://res.cloudinary.com/dt4xntymn/image/upload/v1637785016/mainSite/meet%20amit%20apel/amitapel4_bf4uwx.jpg"}" alt="${""}"></div></div>
+        <div class="${"flex-item content-image-container glitch-image-container " + escape("") + " svelte-1do7w48"}">${each(Array(5).fill(""), (img) => `<div class="${"glitch-image svelte-1do7w48"}"><img class="${"image svelte-1do7w48"}" src="${"https://res.cloudinary.com/dt4xntymn/image/upload/v1637785016/mainSite/meet%20amit%20apel/amitapel4_bf4uwx.jpg"}"${add_attribute("img", img, 0)} alt="${""}">
             </div>`)}</div></div>
       <div class="${"flex-item main-text-content svelte-1do7w48"}"><p>As a gifted fifth-generation exterior and interior designer, Amit Apel
           arrived on the sunny shores of Southern California in 1999 after
@@ -76943,20 +77139,13 @@ const css$c = {
   map: null
 };
 const MasonryImage = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  let $marqueeContentStore, $$unsubscribe_marqueeContentStore;
-  $$unsubscribe_marqueeContentStore = subscribe(marqueeContentStore, (value) => $marqueeContentStore = value);
+  let $$unsubscribe_marqueeContentStore;
+  $$unsubscribe_marqueeContentStore = subscribe(marqueeContentStore, (value) => value);
   let imageEle;
   let { img } = $$props;
   if ($$props.img === void 0 && $$bindings.img && img !== void 0)
     $$bindings.img(img);
   $$result.css.add(css$c);
-  {
-    {
-      if ($marqueeContentStore.shouldLoadImages && img) {
-        gsap.to(imageEle, { opacity: 1 });
-      }
-    }
-  }
   $$unsubscribe_marqueeContentStore();
   return `<div class="${"item-container svelte-11kagnj"}"${add_attribute("this", imageEle, 0)}>${img.label ? `<div class="${"hover-element-container svelte-11kagnj"}"><h5 class="${"hover-label"}">${escape(img.label)}</h5></div>` : ``}
   <div class="${"image-container svelte-11kagnj"}"><img${add_attribute("width", img.width, 0)}${add_attribute("height", img.height, 0)} loading="${"lazy"}" class="${"image svelte-11kagnj"}"${add_attribute("src", img.url, 0)} alt="${""}"></div>
@@ -76971,14 +77160,20 @@ const Masonry = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let $marqueeContentStore, $$unsubscribe_marqueeContentStore;
   $$unsubscribe_marqueeContentStore = subscribe(marqueeContentStore, (value) => $marqueeContentStore = value);
   let { shouldLoadImages: shouldLoadImages2 } = $$props;
-  const images = layout$1[$marqueeContentStore.content];
-  console.log($marqueeContentStore.content);
+  let images = layout$1[$marqueeContentStore.content];
+  let container;
+  function setlayout() {
+  }
+  onDestroy(() => {
+    window.removeEventListener("resize", setlayout);
+  });
   if ($$props.shouldLoadImages === void 0 && $$bindings.shouldLoadImages && shouldLoadImages2 !== void 0)
     $$bindings.shouldLoadImages(shouldLoadImages2);
   $$result.css.add(css$b);
+  images = layout$1[$marqueeContentStore.content];
   $$unsubscribe_marqueeContentStore();
-  return `<div class="${"container svelte-4szmm5"}"><div id="${"masonry"}" class="${"flex-container " + escape($marqueeContentStore.content) + " svelte-4szmm5"}">${each(images.thumbs, (img) => `<div class="${"item-container masonry-panel svelte-4szmm5"}">${validate_component(MasonryImage, "MasonryImage").$$render($$result, { img, images, shouldLoadImages: shouldLoadImages2 }, {}, {})}
-      </div>`)}</div>
+  return `<div class="${"container svelte-4szmm5"}"${add_attribute("this", container, 0)}><div id="${"masonry"}" class="${"flex-container " + escape($marqueeContentStore.content) + " svelte-4szmm5"}">${images ? `${each(layout$1[$marqueeContentStore.content].thumbs, (img) => `<div class="${"item-container masonry-panel svelte-4szmm5"}">${validate_component(MasonryImage, "MasonryImage").$$render($$result, { img, images, shouldLoadImages: shouldLoadImages2 }, {}, {})}
+        </div>`)}` : ``}</div>
 </div>`;
 });
 var arrow = "/_app/assets/cardArrow-ce1a5325.png";
@@ -77186,7 +77381,11 @@ const store = () => {
     cardToExit: null,
     currentStack: [5, 4, 3, 2, 1, 0]
   };
-  const { subscribe: subscribe2, set, update } = writable(state);
+  const {
+    subscribe: subscribe2,
+    set,
+    update
+  } = writable(state);
   const methods = {
     init(outline) {
       console.log(outline);
@@ -77304,8 +77503,8 @@ const cardImages = [
     description: "Elchin"
   },
   {
-    front: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636680546/mainSite/meet%20the%20team/Cards/front/Joker_Card_rtojgt.webp",
-    back: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636680555/mainSite/meet%20the%20team/Cards/back/Joker_Card_Back_pzxtsy.webp",
+    front: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637784455/mainSite/meet%20the%20team/Cards/front/Joker_Card_pwqclu.jpg",
+    back: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637784449/mainSite/meet%20the%20team/Cards/back/Joker_Card_Back_x8eonc.jpg",
     description: "JOKER"
   }
 ];
@@ -77631,111 +77830,281 @@ const Bar3GalleryImage = create_ssr_component(($$result, $$props, $$bindings, sl
 });
 var conceptThumbs = [
   {
-    public_id: "mainSite/concept/01_ROBERTSON1_uzntbx",
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636591434/mainSite/concept/01_ROBERTSON1_uzntbx.webp",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636591434/mainSite/concept/01_ROBERTSON1_uzntbx.webp",
-    width: 900,
-    height: 506,
-    label: "robertson",
-    key: "robertson"
-  },
-  {
-    public_id: "mainSite/concept/02_NURESTAURANT09_pntgg9",
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636591434/mainSite/concept/02_NURESTAURANT09_pntgg9.webp",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636591434/mainSite/concept/02_NURESTAURANT09_pntgg9.webp",
+    asset_id: "022e158dbef74d4f725d87ad84f83611",
+    public_id: "mainSite/concepts/compressed/02_NU RESTAURANT/jbwroxxyxklos43tuqbn",
+    format: "jpg",
+    version: 1637789737,
+    resource_type: "image",
+    type: "upload",
+    created_at: "2021-11-24T21:35:37Z",
+    bytes: 21581,
     width: 900,
     height: 675,
-    label: "nu restaurant",
-    key: "nu restaurant"
+    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789737/mainSite/concepts/compressed/02_NU%20RESTAURANT/jbwroxxyxklos43tuqbn.jpg",
+    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789737/mainSite/concepts/compressed/02_NU%20RESTAURANT/jbwroxxyxklos43tuqbn.jpg",
+    tags: [
+      "MAIN"
+    ],
+    key: "02_NU RESTAURANT",
+    label: "NU RESTAURANT"
   },
   {
-    public_id: "mainSite/concept/03_MOUNT_OLYMPUS1_fjuh5t",
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636591434/mainSite/concept/03_MOUNT_OLYMPUS1_fjuh5t.webp",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636591434/mainSite/concept/03_MOUNT_OLYMPUS1_fjuh5t.webp",
+    asset_id: "79119468270d42fb2433c55fa16eef37",
+    public_id: "mainSite/concepts/compressed/03_MOUNT OLYMPUS/nalpbfcom0m440ddudgt",
+    format: "jpg",
+    version: 1637789746,
+    resource_type: "image",
+    type: "upload",
+    created_at: "2021-11-24T21:35:46Z",
+    bytes: 38140,
     width: 900,
     height: 655,
-    label: "mount olympus",
-    key: "mount olympus"
+    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789746/mainSite/concepts/compressed/03_MOUNT%20OLYMPUS/nalpbfcom0m440ddudgt.jpg",
+    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789746/mainSite/concepts/compressed/03_MOUNT%20OLYMPUS/nalpbfcom0m440ddudgt.jpg",
+    tags: [
+      "MAIN"
+    ],
+    key: "03_MOUNT OLYMPUS",
+    label: "MOUNT OLYMPUS"
   },
   {
-    public_id: "mainSite/concept/04_MELROSE1_gsduja",
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636591434/mainSite/concept/04_MELROSE1_gsduja.webp",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636591434/mainSite/concept/04_MELROSE1_gsduja.webp",
+    asset_id: "1f949f122002fd400ee53f080860301b",
+    public_id: "mainSite/concepts/compressed/04_MELROSE (ESSENSUAL SALON)/hz3qidx4grig9qy3djl6",
+    format: "jpg",
+    version: 1637789747,
+    resource_type: "image",
+    type: "upload",
+    created_at: "2021-11-24T21:35:47Z",
+    bytes: 40999,
     width: 900,
     height: 675,
-    label: "melrose",
-    key: "melrose"
+    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789747/mainSite/concepts/compressed/04_MELROSE%20%28ESSENSUAL%20SALON%29/hz3qidx4grig9qy3djl6.jpg",
+    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789747/mainSite/concepts/compressed/04_MELROSE%20%28ESSENSUAL%20SALON%29/hz3qidx4grig9qy3djl6.jpg",
+    tags: [
+      "MAIN"
+    ],
+    key: "04_MELROSE (ESSENSUAL SALON)",
+    label: "MELROSE SALON"
   },
   {
-    public_id: "mainSite/concept/05_McCARTY1_wsdcps",
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636591434/mainSite/concept/05_McCARTY1_wsdcps.webp",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636591434/mainSite/concept/05_McCARTY1_wsdcps.webp",
+    asset_id: "45dce0544bdc00a022e7efd91f2c6a37",
+    public_id: "mainSite/concepts/compressed/05_McCARTY/mmthiwotidpqnqjfd0sc",
+    format: "jpg",
+    version: 1637789749,
+    resource_type: "image",
+    type: "upload",
+    created_at: "2021-11-24T21:35:49Z",
+    bytes: 55249,
     width: 900,
     height: 573,
-    label: "mc carty",
-    key: "mc carty"
+    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789749/mainSite/concepts/compressed/05_McCARTY/mmthiwotidpqnqjfd0sc.jpg",
+    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789749/mainSite/concepts/compressed/05_McCARTY/mmthiwotidpqnqjfd0sc.jpg",
+    tags: [
+      "MAIN"
+    ],
+    key: "05_McCARTY",
+    label: "McCARTY"
   },
   {
-    public_id: "mainSite/concept/06_ONSENKIOSK2_06_fqxly0",
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636591434/mainSite/concept/06_ONSENKIOSK2_06_fqxly0.webp",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636591434/mainSite/concept/06_ONSENKIOSK2_06_fqxly0.webp",
-    width: 900,
-    height: 900,
-    label: "onsen kiosk",
-    key: "onsen kiosk"
-  },
-  {
-    public_id: "mainSite/concept/07_GARVEY2_woy1ap",
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636591434/mainSite/concept/07_GARVEY2_woy1ap.webp",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636591434/mainSite/concept/07_GARVEY2_woy1ap.webp",
+    asset_id: "eb3579a7a42617b932d269889e2da38c",
+    public_id: "mainSite/concepts/compressed/07_GARVEY/kf9c5tfn28cczyodbdqf",
+    format: "jpg",
+    version: 1637789751,
+    resource_type: "image",
+    type: "upload",
+    created_at: "2021-11-24T21:35:51Z",
+    bytes: 66821,
     width: 900,
     height: 540,
-    label: "garvey",
-    key: "garvey"
+    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789751/mainSite/concepts/compressed/07_GARVEY/kf9c5tfn28cczyodbdqf.jpg",
+    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789751/mainSite/concepts/compressed/07_GARVEY/kf9c5tfn28cczyodbdqf.jpg",
+    tags: [
+      "MAIN"
+    ],
+    key: "07_GARVEY",
+    label: "GARVEY"
   },
   {
-    public_id: "mainSite/concept/07_GARVEY2_woy1ap",
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636595480/mainSite/concept/raw/Hand%20Sketch/co30gnbyvriylmmzb064.webp",
+    asset_id: "d77319346fcc7e5256508676e1b61cb2",
+    public_id: "mainSite/concepts/compressed/08_BROADWAY/icwl2bdcxh8irkdabdvm",
+    format: "jpg",
+    version: 1637789757,
+    resource_type: "image",
+    type: "upload",
+    created_at: "2021-11-24T21:35:57Z",
+    bytes: 44808,
     width: 900,
-    height: 1235,
-    label: "hand sketch",
-    key: "hand sketch"
+    height: 720,
+    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789757/mainSite/concepts/compressed/08_BROADWAY/icwl2bdcxh8irkdabdvm.jpg",
+    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789757/mainSite/concepts/compressed/08_BROADWAY/icwl2bdcxh8irkdabdvm.jpg",
+    tags: [
+      "MAIN"
+    ],
+    key: "08_BROADWAY",
+    label: "BROADWAY"
   },
   {
-    public_id: "mainSite/concept/08_BROAEWAY5_ucduax",
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636591434/mainSite/concept/08_BROAEWAY5_ucduax.webp",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636591434/mainSite/concept/08_BROAEWAY5_ucduax.webp",
+    asset_id: "03022c3ef7538977f92ee237158b7679",
+    public_id: "mainSite/concepts/compressed/09_SERUM BOTTLE/yuoo7deu6q8jwqx9sygd",
+    format: "jpg",
+    version: 1637789758,
+    resource_type: "image",
+    type: "upload",
+    created_at: "2021-11-24T21:35:58Z",
+    bytes: 30759,
     width: 900,
     height: 675,
-    label: "broadway",
-    key: "broadway"
+    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789758/mainSite/concepts/compressed/09_SERUM%20BOTTLE/yuoo7deu6q8jwqx9sygd.jpg",
+    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789758/mainSite/concepts/compressed/09_SERUM%20BOTTLE/yuoo7deu6q8jwqx9sygd.jpg",
+    tags: [
+      "MAIN"
+    ],
+    key: "09_SERUM BOTTLE",
+    label: "SERUM BOTTLE"
   },
   {
-    public_id: "mainSite/concept/09_SERUMBOTTLE5_yo8lyx",
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636591434/mainSite/concept/09_SERUMBOTTLE5_yo8lyx.webp",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636591434/mainSite/concept/09_SERUMBOTTLE5_yo8lyx.webp",
+    asset_id: "5f60ee9d67cf979fdb1774743a776f7f",
+    public_id: "mainSite/concepts/compressed/10_BEAUTY BOXES/cyhjd7xl0svcjihsykcz",
+    format: "jpg",
+    version: 1637789767,
+    resource_type: "image",
+    type: "upload",
+    created_at: "2021-11-24T21:36:07Z",
+    bytes: 40627,
     width: 900,
-    height: 675,
-    label: "serum bottle",
-    key: "serum bottle"
+    height: 502,
+    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789767/mainSite/concepts/compressed/10_BEAUTY%20BOXES/cyhjd7xl0svcjihsykcz.jpg",
+    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789767/mainSite/concepts/compressed/10_BEAUTY%20BOXES/cyhjd7xl0svcjihsykcz.jpg",
+    tags: [
+      "MAIN"
+    ],
+    key: "10_BEAUTY BOXES",
+    label: "BEAUTY BOXES"
   },
   {
-    public_id: "mainSite/concept/10_BEAUTYBOXES3_tojz3g",
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636591434/mainSite/concept/10_BEAUTYBOXES3_tojz3g.webp",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636591434/mainSite/concept/10_BEAUTYBOXES3_tojz3g.webp",
+    asset_id: "59815dcaab7d5d3ce13f24e61914aa13",
+    public_id: "mainSite/concepts/compressed/Hand Sketch/sgldousu54m20buu3sfo",
+    format: "jpg",
+    version: 1637789771,
+    resource_type: "image",
+    type: "upload",
+    created_at: "2021-11-24T21:36:11Z",
+    bytes: 150653,
     width: 900,
-    height: 564,
-    label: "beauty boxes",
-    key: "beauty boxes"
+    height: 999,
+    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789771/mainSite/concepts/compressed/Hand%20Sketch/sgldousu54m20buu3sfo.jpg",
+    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789771/mainSite/concepts/compressed/Hand%20Sketch/sgldousu54m20buu3sfo.jpg",
+    tags: [
+      "MAIN"
+    ],
+    key: "Hand Sketch",
+    label: "Hand Sketch"
   },
   {
-    public_id: "mainSite/concept/Nu_Sanctuary_nmyxfp",
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1636591434/mainSite/concept/Nu_Sanctuary_nmyxfp.webp",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1636591434/mainSite/concept/Nu_Sanctuary_nmyxfp.webp",
+    asset_id: "613ac2c8fd65ebd1f0ff0c088233c7a1",
+    public_id: "mainSite/concepts/compressed/Nu Sanctuary/ejj7gtjyj1l7hfklbcvz",
+    format: "jpg",
+    version: 1637789772,
+    resource_type: "image",
+    type: "upload",
+    created_at: "2021-11-24T21:36:12Z",
+    bytes: 85148,
     width: 900,
     height: 1355,
-    label: "nu sanctuary",
-    key: "nu sanctuary"
+    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789772/mainSite/concepts/compressed/Nu%20Sanctuary/ejj7gtjyj1l7hfklbcvz.jpg",
+    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789772/mainSite/concepts/compressed/Nu%20Sanctuary/ejj7gtjyj1l7hfklbcvz.jpg",
+    tags: [
+      "MAIN"
+    ],
+    key: "Nu Sanctuary",
+    label: "Nu Sanctuary"
+  },
+  {
+    asset_id: "9a582b31c0dd130c589791dd042e71e2",
+    public_id: "mainSite/concepts/compressed/ONSENKIOSK1/idqjbvpiq89ccngkgtfe",
+    format: "jpg",
+    version: 1637789781,
+    resource_type: "image",
+    type: "upload",
+    created_at: "2021-11-24T21:36:21Z",
+    bytes: 39597,
+    width: 900,
+    height: 675,
+    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789781/mainSite/concepts/compressed/ONSENKIOSK1/idqjbvpiq89ccngkgtfe.jpg",
+    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789781/mainSite/concepts/compressed/ONSENKIOSK1/idqjbvpiq89ccngkgtfe.jpg",
+    tags: [
+      "MAIN"
+    ],
+    key: "ONSENKIOSK1",
+    label: "ONSEN KIOSK 1"
+  },
+  {
+    asset_id: "7a086aa24ca5553938a23ab49ad8e384",
+    public_id: "mainSite/concepts/compressed/ONSENKIOSK2/ah9hhjamtor3pqmsqxck",
+    format: "jpg",
+    version: 1637789785,
+    resource_type: "image",
+    type: "upload",
+    created_at: "2021-11-24T21:36:25Z",
+    bytes: 28621,
+    width: 900,
+    height: 744,
+    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789785/mainSite/concepts/compressed/ONSENKIOSK2/ah9hhjamtor3pqmsqxck.jpg",
+    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789785/mainSite/concepts/compressed/ONSENKIOSK2/ah9hhjamtor3pqmsqxck.jpg",
+    tags: [
+      "MAIN"
+    ],
+    key: "ONSENKIOSK2",
+    label: "ONSEN KIOSK 2"
+  },
+  {
+    asset_id: "5b950d2811dbf321089e74a79909d8ab",
+    public_id: "mainSite/concepts/compressed/ROBERTSON/yini4vbgdggrg14cwdue",
+    format: "jpg",
+    version: 1637789790,
+    resource_type: "image",
+    type: "upload",
+    created_at: "2021-11-24T21:36:30Z",
+    bytes: 57896,
+    width: 900,
+    height: 506,
+    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637789790/mainSite/concepts/compressed/ROBERTSON/yini4vbgdggrg14cwdue.jpg",
+    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637789790/mainSite/concepts/compressed/ROBERTSON/yini4vbgdggrg14cwdue.jpg",
+    tags: [
+      "MAIN"
+    ],
+    key: "ROBERTSON",
+    label: "ROBERTSON"
+  },
+  {
+    width: 900,
+    height: 506,
+    url: "",
+    tags: [
+      "MAIN"
+    ],
+    key: "ROBERTSON",
+    label: "ROBERTSON"
+  },
+  {
+    width: 900,
+    height: 506,
+    url: "",
+    tags: [
+      "MAIN"
+    ],
+    key: "ROBERTSON",
+    label: "ROBERTSON"
+  },
+  {
+    width: 900,
+    height: 506,
+    url: "",
+    tags: [
+      "MAIN"
+    ],
+    key: "ROBERTSON",
+    label: "ROBERTSON"
   }
 ];
 var privateHomesThumbs = [
@@ -80480,8 +80849,8 @@ const menuItems = {
   2: {
     pages: [
       {
-        title: "sculpture",
-        labels: Array(8).fill("sculpture")
+        title: "sculptures",
+        labels: Array(8).fill("sculptures")
       },
       {
         title: "furniture",
@@ -80560,7 +80929,7 @@ const Marque = create_ssr_component(($$result, $$props, $$bindings, slots) => {
 });
 var Home_svelte_svelte_type_style_lang = "";
 const css$1 = {
-  code: '.logo-container.svelte-1g2rnh1.svelte-1g2rnh1{width:100%}.marquee-container-main.svelte-1g2rnh1.svelte-1g2rnh1{overflow:hidden;position:fixed;display:flex;flex-direction:column;height:20px;z-index:5;width:20px}.main-text-container.svelte-1g2rnh1.svelte-1g2rnh1{display:flex}.main-text-container.svelte-1g2rnh1 .main-text.svelte-1g2rnh1{text-align:center;white-space:nowrap;line-height:0.9}.main-text-container.svelte-1g2rnh1 .main-text.svelte-1g2rnh1:nth-child(n){margin-right:0.375rem;margin-left:0.375rem}@media screen and (max-width: 1350px){.main-text-container.svelte-1g2rnh1.svelte-1g2rnh1{font-size:0.5em}}@media screen and (max-width: 900px){.main-text-container.svelte-1g2rnh1.svelte-1g2rnh1{font-size:0.3em;flex-direction:column}.main-text-container.svelte-1g2rnh1.svelte-1g2rnh1:nth-child(n){margin-right:0rem;margin-left:0rem}}@media screen and (max-width: 550px){.main-text-container.svelte-1g2rnh1.svelte-1g2rnh1{font-size:0.2em}}.video-bg.svelte-1g2rnh1.svelte-1g2rnh1,video.svelte-1g2rnh1.svelte-1g2rnh1{position:fixed;object-fit:cover;width:100vw;height:100vh;display:flex;align-items:center}.video-bg.svelte-1g2rnh1.svelte-1g2rnh1::-webkit-media-controls-panel,video.svelte-1g2rnh1.svelte-1g2rnh1::-webkit-media-controls-panel{display:none !important;-webkit-appearance:none}.logo-text-container.svelte-1g2rnh1.svelte-1g2rnh1{max-width:500px;width:100%;z-index:2;opacity:0}@media screen and (max-width: 650px){.logo-text-container.svelte-1g2rnh1.svelte-1g2rnh1{opacity:1;padding-top:0px;max-width:300px;width:100%}}.logo-text-container.svelte-1g2rnh1 .logo-text.svelte-1g2rnh1{height:auto;object-fit:cover;width:100%}.container.svelte-1g2rnh1.svelte-1g2rnh1{background-repeat:no-repeat;font-family:Orator;color:white;background-size:cover;display:flex;flex-direction:column;padding:80px;justify-content:center;align-items:center;height:100vh;overflow:hidden}.container.svelte-1g2rnh1 .flex-item.svelte-1g2rnh1:nth-child(n){margin-bottom:2.625rem}.container.svelte-1g2rnh1 .flex-item.svelte-1g2rnh1:nth-child(n):last-child{margin-bottom:0px}.container.svelte-1g2rnh1 .flex-item.svelte-1g2rnh1:nth-child(n):nth-child(1){padding-top:0px}.container.svelte-1g2rnh1.svelte-1g2rnh1::after{position:absolute;top:0;bottom:0;left:0;right:0;width:100%;height:100%;content:""}@media screen and (max-width: 650px){.container.svelte-1g2rnh1.svelte-1g2rnh1{padding:20px}}h5.svelte-1g2rnh1.svelte-1g2rnh1{z-index:2;opacity:0;letter-spacing:5px;font-weight:100;font-size:4em;position:relative;text-transform:uppercase}@media screen and (max-width: 650px){h5.svelte-1g2rnh1.svelte-1g2rnh1{opacity:1}}.testing.svelte-1g2rnh1.svelte-1g2rnh1{width:100vw;height:100vh}',
+  code: '.logo-container.svelte-hsof7c.svelte-hsof7c{width:100%}.marquee-container-main.svelte-hsof7c.svelte-hsof7c{overflow:hidden;position:fixed;display:flex;flex-direction:column;height:20px;z-index:5;width:20px}.video-brush.svelte-hsof7c.svelte-hsof7c{opacity:1}.video-render.svelte-hsof7c.svelte-hsof7c{opacity:0}.main-text-container.svelte-hsof7c.svelte-hsof7c{display:flex}.main-text-container.svelte-hsof7c .main-text.svelte-hsof7c{text-align:center;white-space:nowrap;line-height:0.9}.main-text-container.svelte-hsof7c .main-text.svelte-hsof7c:nth-child(n){margin-right:0.375rem;margin-left:0.375rem}@media screen and (max-width: 1350px){.main-text-container.svelte-hsof7c.svelte-hsof7c{font-size:0.5em}}@media screen and (max-width: 900px){.main-text-container.svelte-hsof7c.svelte-hsof7c{font-size:0.3em;flex-direction:column}.main-text-container.svelte-hsof7c.svelte-hsof7c:nth-child(n){margin-right:0rem;margin-left:0rem}}@media screen and (max-width: 550px){.main-text-container.svelte-hsof7c.svelte-hsof7c{font-size:0.2em}}.video-bg.svelte-hsof7c.svelte-hsof7c,video.svelte-hsof7c.svelte-hsof7c{position:fixed;object-fit:cover;width:100vw;height:100vh;display:flex;align-items:center}.video-bg.svelte-hsof7c.svelte-hsof7c::-webkit-media-controls-panel,video.svelte-hsof7c.svelte-hsof7c::-webkit-media-controls-panel{display:none !important;-webkit-appearance:none}.logo-text-container.svelte-hsof7c.svelte-hsof7c{max-width:500px;width:100%;z-index:2;opacity:0}@media screen and (max-width: 650px){.logo-text-container.svelte-hsof7c.svelte-hsof7c{opacity:1;padding-top:0px;max-width:300px;width:100%}}.logo-text-container.svelte-hsof7c .logo-text.svelte-hsof7c{height:auto;object-fit:cover;width:100%}.container.svelte-hsof7c.svelte-hsof7c{background-repeat:no-repeat;font-family:Orator;color:white;background-size:cover;display:flex;flex-direction:column;padding:80px;justify-content:center;align-items:center;height:100vh;overflow:hidden}.container.svelte-hsof7c .flex-item.svelte-hsof7c:nth-child(n){margin-bottom:2.625rem}.container.svelte-hsof7c .flex-item.svelte-hsof7c:nth-child(n):last-child{margin-bottom:0px}.container.svelte-hsof7c .flex-item.svelte-hsof7c:nth-child(n):nth-child(1){padding-top:0px}.container.svelte-hsof7c.svelte-hsof7c::after{position:absolute;top:0;bottom:0;left:0;right:0;width:100%;height:100%;content:""}@media screen and (max-width: 650px){.container.svelte-hsof7c.svelte-hsof7c{padding:20px}}h5.svelte-hsof7c.svelte-hsof7c{z-index:2;opacity:0;letter-spacing:5px;font-weight:100;font-size:4em;position:relative;text-transform:uppercase}@media screen and (max-width: 650px){h5.svelte-hsof7c.svelte-hsof7c{opacity:1}}',
   map: null
 };
 const Home = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -80568,17 +80937,17 @@ const Home = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   $$unsubscribe_lgBarStore = subscribe(lgBarStore, (value) => $lgBarStore = value);
   $$result.css.add(css$1);
   $$unsubscribe_lgBarStore();
-  return `<div class="${["marquee-container-main svelte-1g2rnh1", $lgBarStore.testing ? "testing" : ""].join(" ").trim()}">${$lgBarStore.pageContent ? `${validate_component(Marque, "Marque").$$render($$result, {}, {}, {})}` : ``}</div>
+  return `<div class="${"marquee-container-main svelte-hsof7c"}">${$lgBarStore.pageContent ? `${validate_component(Marque, "Marque").$$render($$result, {}, {}, {})}` : ``}</div>
 
 
-<div class="${"video-bg svelte-1g2rnh1"}"><video class="${"video-brush svelte-1g2rnh1"}" autoplay autobuffer muted playsinline><source${add_attribute("src", "https://res.cloudinary.com/dt4xntymn/video/upload/v1636870696/mainSite/Brush_Stroke_1_orzxdf.mp4", 0)} type="${"video/mp4"}"></video></div>
+<div class="${"video-bg svelte-hsof7c"}"><video class="${"video-brush svelte-hsof7c"}" autoplay autobuffer muted playsinline><source${add_attribute("src", "https://res.cloudinary.com/dt4xntymn/video/upload/v1636870696/mainSite/Brush_Stroke_1_orzxdf.mp4", 0)} type="${"video/mp4"}"></video></div>
 
-<div class="${"video-bg svelte-1g2rnh1"}"><video class="${"video-render svelte-1g2rnh1"}" autoplay loop autobuffer muted playsinline><source${add_attribute("src", brush2, 0)} type="${"video/mp4"}"></video></div>
-<div class="${"container svelte-1g2rnh1"}"><div class="${"flex-item main-text-container svelte-1g2rnh1"}"><h5 class="${"main-text fade svelte-1g2rnh1"}">connecting people</h5>
-    <h5 class="${"main-text fade svelte-1g2rnh1"}">to the art of living</h5></div>
-  <div class="${"flex-item logo-container svelte-1g2rnh1"}">${validate_component(Logo$1, "Logo").$$render($$result, {}, {}, {})}</div>
+<div class="${"video-bg svelte-hsof7c"}"><video class="${"video-render svelte-hsof7c"}" autoplay loop autobuffer muted playsinline><source${add_attribute("src", brush2, 0)} type="${"video/mp4"}"></video></div>
+<div class="${"container svelte-hsof7c"}"><div class="${"flex-item main-text-container svelte-hsof7c"}"><h5 class="${"main-text fade svelte-hsof7c"}">connecting people</h5>
+    <h5 class="${"main-text fade svelte-hsof7c"}">to the art of living</h5></div>
+  <div class="${"flex-item logo-container svelte-hsof7c"}">${validate_component(Logo$1, "Logo").$$render($$result, {}, {}, {})}</div>
 
-  <div class="${"flex-item logo-text-container fade svelte-1g2rnh1"}"><img class="${"logo-text svelte-1g2rnh1"}"${add_attribute("src", logoText, 0)} alt="${""}"></div>
+  <div class="${"flex-item logo-text-container fade svelte-hsof7c"}"><img class="${"logo-text svelte-hsof7c"}"${add_attribute("src", logoText, 0)} alt="${""}"></div>
 </div>`;
 });
 var index_svelte_svelte_type_style_lang = "";

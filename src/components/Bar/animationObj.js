@@ -165,7 +165,7 @@ export const largeBarsArr = [
 
       width: "2.7%",
     },
-    categories: ["sculpture", "furniture", "art", "concept"],
+    categories: ["sculptures", "furniture", "art", "concept"],
   },
 
   {

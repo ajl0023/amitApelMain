@@ -24,12 +24,15 @@
     .bottom-bar-container {
       text-transform: uppercase;
       font-size: 2em;
-      padding: 5px;
-
+      
+      padding: 10px;
       cursor: pointer;
       letter-spacing: 0.1em;
       background-image: url("./mapBar.png");
       text-align: center;
     }
+  }
+  h5{
+   margin-bottom: -10px;
   }
 </style>

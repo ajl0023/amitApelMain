@@ -6,13 +6,13 @@
 
   export let img;
 
-  $: {
-    if ($marqueeContentStore.shouldLoadImages && img) {
-      gsap.to(imageEle, {
-        opacity: 1,
-      });
-    }
-  }
+  // $: {
+  //   if ($marqueeContentStore.shouldLoadImages && img) {
+  //     gsap.to(imageEle, {
+  //       opacity: 1,
+  //     });
+  //   }
+  // }
 </script>
 
 <div
@@ -81,6 +81,7 @@
   }
   .item-container {
     width: 100%;
+
     position: relative;
     height: 100%;
     @media screen and (max-width: 430px) {

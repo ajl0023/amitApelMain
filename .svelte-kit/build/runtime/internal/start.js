@@ -13,14 +13,12 @@ function scroll_state() {
 }
 
 /**
- * @param {Event} event
- * @returns {HTMLAnchorElement | SVGAElement | undefined}
+ * @param {Node | null} node
+ * @returns {HTMLAnchorElement | SVGAElement | null}
  */
-function find_anchor(event) {
-	const node = event
-		.composedPath()
-		.find((e) => e instanceof Node && e.nodeName.toUpperCase() === 'A'); // SVG <a> elements have a lowercase name
-	return /** @type {HTMLAnchorElement | SVGAElement | undefined} */ (node);
+function find_anchor(node) {
+	while (node && node.nodeName.toUpperCase() !== 'A') node = node.parentNode; // SVG <a> elements have a lowercase name
+	return /** @type {HTMLAnchorElement | SVGAElement} */ (node);
 }
 
 /**
@@ -101,7 +99,7 @@ class Router {
 
 		/** @param {MouseEvent|TouchEvent} event */
 		const trigger_prefetch = (event) => {
-			const a = find_anchor(event);
+			const a = find_anchor(/** @type {Node} */ (event.target));
 			if (a && a.href && a.hasAttribute('sveltekit:prefetch')) {
 				this.prefetch(get_href(a));
 			}
@@ -131,7 +129,7 @@ class Router {
 			if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
 			if (event.defaultPrevented) return;
 
-			const a = find_anchor(event);
+			const a = find_anchor(/** @type {Node} */ (event.target));
 			if (!a) return;
 
 			if (!a.href) return;
@@ -658,12 +656,14 @@ class Renderer {
 			this._init(navigation_result);
 		}
 
-		// opts must be passed if we're navigating...
-		if (opts) {
+		getSelection()?.removeAllRanges();
+
+		if (!opts) {
+			await 0;
+		} else {
 			const { hash, scroll, keepfocus } = opts;
 
 			if (!keepfocus) {
-				getSelection()?.removeAllRanges();
 				document.body.focus();
 			}
 
@@ -699,9 +699,6 @@ class Renderer {
 					scrollTo(0, 0);
 				}
 			}
-		} else {
-			// ...they will not be supplied if we're simply invalidating
-			await 0;
 		}
 
 		this.loading.promise = null;
