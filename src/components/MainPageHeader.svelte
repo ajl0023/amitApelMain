@@ -1,13 +1,15 @@
 <script>
+  import { onMount } from "svelte";
+
   import { marqueeContentStore } from "./Marquee/store";
 
   const hideNav = new Set(["maliview", "aviator"]);
 </script>
 
 <h5
-  class:inactive={hideNav.has($marqueeContentStore.content)}
-  class:press={$marqueeContentStore.content === "press"}
-  class:sm={$marqueeContentStore.content === "meet the team"}
+  class:inactive="{hideNav.has($marqueeContentStore.content)}"
+  class:press="{$marqueeContentStore.content === 'press'}"
+  class:sm="{$marqueeContentStore.content === 'meet the team'}"
   class="main-text-header"
 >
   {$marqueeContentStore.content}

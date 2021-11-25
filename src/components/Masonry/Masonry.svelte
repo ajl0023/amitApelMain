@@ -1,5 +1,5 @@
 <script>
-  import { afterUpdate, beforeUpdate, onDestroy, onMount } from "svelte";
+  import { afterUpdate, beforeUpdate, onDestroy, onMount, tick } from "svelte";
 
   import { marqueeContentStore } from "../Marquee/store";
   import { layout } from "./layout";
@@ -7,34 +7,48 @@
   import MasonryImage from "./MasonryImage.svelte";
 
   export let shouldLoadImages;
-  let images = layout[$marqueeContentStore.content];
+  let images;
   let container;
-  $: images = layout[$marqueeContentStore.content];
-  function setlayout() {
-    if (container) {
-      const masonrySettings = {
-        sm: { width: 430, columns: 1 },
-        md: { width: 768, columns: 2 },
-        lg: { width: 992, columns: 3 },
-        xl: { width: 1500, columns: 4 },
-      };
-      const window_width =
-        window.innerWidth ||
-        document.documentElement.clientHeight ||
-        document.body.clientHeight;
+  let height;
+  let orderStyle = [];
+  let loaded = false;
+  $: ({ content } = $marqueeContentStore);
 
-      if (window_width <= masonrySettings.sm.width) {
-        masonary(masonrySettings.sm.columns);
-      } else if (window_width <= masonrySettings.md.width) {
-        masonary(masonrySettings.md.columns);
-      } else if (window_width <= masonrySettings.lg.width) {
-        masonary(masonrySettings.lg.columns);
-      } else {
-        masonary(masonrySettings.xl.columns);
-      }
+  async function runLayout() {
+    if (container) {
+      orderStyle = [];
+      loaded = false;
+      images = layout[content].thumbs;
+      await tick();
+      setlayout().then(() => {});
+      loaded = true;
     }
   }
-  function masonary(col) {
+  $: content, container, runLayout();
+  async function setlayout() {
+    const masonrySettings = {
+      sm: { width: 430, columns: 1 },
+      md: { width: 768, columns: 2 },
+      lg: { width: 992, columns: 3 },
+      xl: { width: 1500, columns: 4 },
+    };
+    const window_width =
+      window.innerWidth ||
+      document.documentElement.clientHeight ||
+      document.body.clientHeight;
+
+    if (window_width <= masonrySettings.sm.width) {
+      masonary(masonrySettings.sm.columns);
+    } else if (window_width <= masonrySettings.md.width) {
+      masonary(masonrySettings.md.columns);
+    } else if (window_width <= masonrySettings.lg.width) {
+      masonary(masonrySettings.lg.columns);
+    } else {
+      masonary(masonrySettings.xl.columns);
+    }
+  }
+
+  async function masonary(col) {
     const container = document.getElementById("masonry");
 
     //get number of child elements
@@ -51,8 +65,8 @@
     // set css 'order' property for each element
     for (let i = 0; i < panels.length; i++) {
       let order = (i + 1) % COL_COUNT || COL_COUNT; // Example: 10 % 3 = 1
-
-      panels[i].style.order = order; // add div css property: order. Together with Flexbox, this property will define which column the element is listed in.
+      orderStyle = [...orderStyle, order];
+      // add div css property: order. Together with Flexbox, this property will define which column the element is listed in.
 
       //get element height
       let height = panels[i].offsetHeight;
@@ -60,10 +74,10 @@
       //Choose the belongin column, add the height of each child to array that stores column height value
       col_heights[order] += parseFloat(height);
     }
-
     //Set the height of masonry container to the heightest column
     const highest = Math.max.apply(Math, col_heights);
-    container.style.maxHeight = highest + 10 + "px";
+
+    height = highest + 10 + "px";
   }
 
   onMount(() => {
@@ -72,26 +86,22 @@
   onDestroy(() => {
     window.removeEventListener("resize", setlayout);
   });
-  afterUpdate(() => {
-    setlayout();
-  });
-  let test;
-  $: {
-    test = $marqueeContentStore.content;
-  }
-  $: {
-    test, container, setlayout();
-  }
 </script>
 
-<div bind:this="{container}" class="container">
-  <div id="masonry" class="flex-container {$marqueeContentStore.content}">
+<div bind:this="{container}" class="container {$marqueeContentStore.content}">
+  <div
+    style="max-height:{height};"
+    id="masonry"
+    class="flex-container {$marqueeContentStore.content}"
+  >
     {#if images}
-      {#each layout[$marqueeContentStore.content].thumbs as img}
-        <div class="item-container masonry-panel">
+      {#each images as img, i}
+        <div style="order:{orderStyle[i]}" class="item-container masonry-panel">
           <MasonryImage
+            index="{i}"
             img="{img}"
-            images="{images}"
+            loaded="{loaded}"
+            order="{1}"
             shouldLoadImages="{shouldLoadImages}"
           />
         </div>

@@ -489,6 +489,7 @@ async function render_response({
 		<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style>
 		<noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
 		<script async src="https://cdn.ampproject.org/v0.js"><\/script>`;
+    init2 += options2.service_worker ? '<script async custom-element="amp-install-serviceworker" src="https://cdn.ampproject.org/v0/amp-install-serviceworker-0.1.js"><\/script>' : "";
   } else if (include_js) {
     init2 = `<script type="module">
 			import { start } from ${s$1(options2.entry.file)};
@@ -523,7 +524,7 @@ async function render_response({
 		<\/script>`;
   }
   if (options2.service_worker) {
-    init2 += `<script>
+    init2 += options2.amp ? `<amp-install-serviceworker src="${options2.service_worker}" layout="nodisplay"></amp-install-serviceworker>` : `<script>
 			if ('serviceWorker' in navigator) {
 				navigator.serviceWorker.register('${options2.service_worker}');
 			}
@@ -1252,8 +1253,12 @@ async function respond(incoming, options2, state = {}) {
             if (response.status === 200) {
               const cache_control = get_single_valued_header(response.headers, "cache-control");
               if (!cache_control || !/(no-store|immutable)/.test(cache_control)) {
+                let if_none_match_value = request2.headers["if-none-match"];
+                if (if_none_match_value?.startsWith('W/"')) {
+                  if_none_match_value = if_none_match_value.substring(2);
+                }
                 const etag = `"${hash(response.body || "")}"`;
-                if (request2.headers["if-none-match"] === etag) {
+                if (if_none_match_value === etag) {
                   return {
                     status: 304,
                     headers: {}
@@ -1510,9 +1515,9 @@ function init(settings = default_settings) {
     amp: false,
     dev: false,
     entry: {
-      file: assets + "/_app/start-e86d5fb8.js",
+      file: assets + "/_app/start-bcb206ed.js",
       css: [assets + "/_app/assets/start-fcddce2f.css"],
-      js: [assets + "/_app/start-e86d5fb8.js", assets + "/_app/chunks/vendor-2dd0020b.js"]
+      js: [assets + "/_app/start-bcb206ed.js", assets + "/_app/chunks/vendor-893e135c.js"]
     },
     fetched: void 0,
     floc: false,
@@ -1541,7 +1546,7 @@ function init(settings = default_settings) {
 }
 const empty = () => ({});
 const manifest = {
-  assets: [{ "file": "_headers.txt", "size": 35, "type": "text/plain" }, { "file": "logo.inline.svg", "size": 37735, "type": "image/svg+xml" }],
+  assets: [{ "file": "logo.inline.svg", "size": 37735, "type": "image/svg+xml" }, { "file": "_headers.txt", "size": 35, "type": "text/plain" }],
   layout: ".svelte-kit/build/components/layout.svelte",
   error: ".svelte-kit/build/components/error.svelte",
   routes: [
@@ -1561,11 +1566,11 @@ const get_hooks = (hooks) => ({
   externalFetch: hooks.externalFetch || fetch
 });
 const module_lookup = {
-  ".svelte-kit/build/components/layout.svelte": () => import("./layout-65933b99.js"),
-  ".svelte-kit/build/components/error.svelte": () => import("./error-4eb134db.js"),
-  "src/routes/index.svelte": () => import("./index-a570d7e9.js")
+  ".svelte-kit/build/components/layout.svelte": () => import("./layout-38ed09e5.js"),
+  ".svelte-kit/build/components/error.svelte": () => import("./error-bc0327bb.js"),
+  "src/routes/index.svelte": () => import("./index-691a06c1.js")
 };
-const metadata_lookup = { ".svelte-kit/build/components/layout.svelte": { "entry": "layout.svelte-9af32d3e.js", "css": [], "js": ["layout.svelte-9af32d3e.js", "chunks/vendor-2dd0020b.js"], "styles": [] }, ".svelte-kit/build/components/error.svelte": { "entry": "error.svelte-15227d25.js", "css": [], "js": ["error.svelte-15227d25.js", "chunks/vendor-2dd0020b.js"], "styles": [] }, "src/routes/index.svelte": { "entry": "pages/index.svelte-33a5daa8.js", "css": ["assets/pages/index.svelte-78623e9b.css"], "js": ["pages/index.svelte-33a5daa8.js", "chunks/vendor-2dd0020b.js"], "styles": [] } };
+const metadata_lookup = { ".svelte-kit/build/components/layout.svelte": { "entry": "layout.svelte-279bf89d.js", "css": [], "js": ["layout.svelte-279bf89d.js", "chunks/vendor-893e135c.js"], "styles": [] }, ".svelte-kit/build/components/error.svelte": { "entry": "error.svelte-d52270a1.js", "css": [], "js": ["error.svelte-d52270a1.js", "chunks/vendor-893e135c.js"], "styles": [] }, "src/routes/index.svelte": { "entry": "pages/index.svelte-23dc914b.js", "css": ["assets/pages/index.svelte-2f4a32df.css"], "js": ["pages/index.svelte-23dc914b.js", "chunks/vendor-893e135c.js"], "styles": [] } };
 async function load_component(file) {
   const { entry, css: css2, js, styles } = metadata_lookup[file];
   return {

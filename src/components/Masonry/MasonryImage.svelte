@@ -5,14 +5,13 @@
   import { galleryModal } from "../GalleryModal/store.js";
 
   export let img;
-
-  // $: {
-  //   if ($marqueeContentStore.shouldLoadImages && img) {
-  //     gsap.to(imageEle, {
-  //       opacity: 1,
-  //     });
-  //   }
-  // }
+  $: {
+    if ($marqueeContentStore.shouldLoadImages && img) {
+      gsap.to(imageEle, {
+        opacity: 1,
+      });
+    }
+  }
 </script>
 
 <div
@@ -29,13 +28,13 @@
       </h5>
     </div>
   {/if}
-  <div class="image-container">
+  <div class="image-container m">
     <img
       width="{img.width}"
       height="{img.height}"
       loading="lazy"
       class="image"
-      src="{img.url}"
+      src="{$$props.loaded ? img.url : ''}"
       alt=""
     />
   </div>
@@ -69,20 +68,23 @@
   .image-container {
     overflow: hidden;
     width: 100%;
+    height: 100%;
     position: relative;
 
     .image {
+      opacity: 1;
       width: 100%;
       height: 100%;
-
+      display: block;
       object-fit: cover;
       object-position: center center;
     }
   }
   .item-container {
     width: 100%;
-
+    overflow: hidden;
     position: relative;
+    opacity: 0;
     height: 100%;
     @media screen and (max-width: 430px) {
       display: flex;

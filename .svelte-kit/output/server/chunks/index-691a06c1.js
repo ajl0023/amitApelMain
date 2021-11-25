@@ -1,4 +1,4 @@
-import { n as noop, s as safe_not_equal, a as subscribe, r as run_all, i as is_function, c as create_ssr_component, e as escape, b as add_attribute, v as validate_component, d as each, f as createEventDispatcher, m as missing_component, o as onDestroy, g as assign, h as now, l as loop, j as identity } from "./app-bf90c09a.js";
+import { n as noop, s as safe_not_equal, a as subscribe, r as run_all, i as is_function, c as create_ssr_component, e as escape, b as add_attribute, v as validate_component, d as each, f as createEventDispatcher, m as missing_component, o as onDestroy, g as assign, h as now, l as loop, j as identity } from "./app-7e6589de.js";
 import gsap from "gsap";
 import "@use-gesture/vanilla";
 var global = "";
@@ -177,14 +177,14 @@ const largeBarObj = {
   }
 };
 var BarMask_svelte_svelte_type_style_lang = "";
-const css$u = {
+const css$t = {
   code: ".aspect-ratio.svelte-aejr1q{padding-top:225%}.aspect-ratio-container.svelte-aejr1q{width:15%;position:fixed;bottom:50%;transform:translateY(50%);pointer-events:none}.container.svelte-aejr1q{width:100%;height:100%;position:absolute;top:0;left:0;opacity:0}@media screen and (max-width: 650px){.container.svelte-aejr1q{display:none}}.container-0.svelte-aejr1q{left:10%}.container-1.svelte-aejr1q{left:30%}.container-2.svelte-aejr1q{right:30%}.container-3.svelte-aejr1q{right:10%}.cover-video.svelte-aejr1q{height:100%;object-position:center center;width:100%;object-fit:cover}.cover-video.svelte-aejr1q::-webkit-media-controls-panel{display:none !important;-webkit-appearance:none}",
   map: null
 };
 const BarMask = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let bar;
   let video;
-  $$result.css.add(css$u);
+  $$result.css.add(css$t);
   return `<div class="${"aspect-ratio-container container-" + escape($$props.index) + " svelte-aejr1q"}"${add_attribute("this", bar, 0)}><div class="${"aspect-ratio svelte-aejr1q"}"></div>
   <div style="${""}" class="${"target-bar container svelte-aejr1q"}"><video muted class="${"cover-video svelte-aejr1q"}"${add_attribute("src", largeBarObj[$$props.index].img, 0)}${add_attribute("this", video, 0)}></video></div>
 </div>`;
@@ -287,14 +287,14 @@ const store$3 = () => {
 };
 const lgBarStore = store$3();
 var BarPage_svelte_svelte_type_style_lang = "";
-const css$t = {
+const css$s = {
   code: ".target-cover.svelte-1l5gg22.svelte-1l5gg22{width:100%;height:100%;background-color:white}.mobile-container.svelte-1l5gg22.svelte-1l5gg22{display:none}@media screen and (max-width: 650px){.mobile-container.svelte-1l5gg22.svelte-1l5gg22{display:flex;height:100%;width:100%}.mobile-container.svelte-1l5gg22 .mobile-bar-container.svelte-1l5gg22{height:100%;width:100%;position:relative;opacity:1;background-color:white}.mobile-container.svelte-1l5gg22 .label-container.svelte-1l5gg22{opacity:1;position:relative;color:white;font-family:unisansB;writing-mode:vertical-rl;text-orientation:sideways;top:auto !important}.mobile-container.svelte-1l5gg22 .label-container p.svelte-1l5gg22{font-size:20px}}.bar-wrapper.svelte-1l5gg22.svelte-1l5gg22{height:100%;width:100%;cursor:pointer;pointer-events:none}@media screen and (max-width: 650px){.bar-wrapper.svelte-1l5gg22.svelte-1l5gg22{pointer-events:auto}}.inner-bar.svelte-1l5gg22.svelte-1l5gg22{width:100%;height:100%}@media screen and (max-width: 650px){.inner-bar.svelte-1l5gg22.svelte-1l5gg22{display:none}}.main-label-container.svelte-1l5gg22.svelte-1l5gg22{text-transform:uppercase;position:absolute;opacity:1;left:0;text-align:left;color:white;top:0;color:white;font-family:unisansB;writing-mode:vertical-rl;pointer-events:none;text-orientation:sideways}.main-label-container.svelte-1l5gg22 p.svelte-1l5gg22{font-size:2vw}.wrapper.svelte-1l5gg22.svelte-1l5gg22{width:100%;height:100%}",
   map: null
 };
 const BarPage = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let label;
   const barInfo = largeBarObj[$$props.index];
-  $$result.css.add(css$t);
+  $$result.css.add(css$s);
   return `<div class="${"bar bar-wrapper  svelte-1l5gg22"}"><div class="${"inner-bar svelte-1l5gg22"}"><div class="${"target-" + escape($$props.index) + " target-cover svelte-1l5gg22"}"></div>
     <div class="${"main-label-container svelte-1l5gg22"}"${add_attribute("this", label, 0)}><p class="${"svelte-1l5gg22"}">${escape(barInfo.label)}</p></div></div>
   <div class="${"mobile-container svelte-1l5gg22"}"><div class="${"mobile-bar-container svelte-1l5gg22"}"></div>
@@ -302,12 +302,12 @@ const BarPage = create_ssr_component(($$result, $$props, $$bindings, slots) => {
 </div>`;
 });
 var UpcDigit_svelte_svelte_type_style_lang = "";
-const css$s = {
+const css$r = {
   code: '@media screen and (max-width: 650px){.upc-digit[data-val="0"].svelte-cn93cy{display:none}}@media screen and (max-width: 650px){.upc-digit[data-val="1"].svelte-cn93cy{display:none}}@media screen and (max-width: 650px){.upc-digit[data-val="2"].svelte-cn93cy{display:none}}@media screen and (max-width: 650px){.upc-digit[data-val="3"].svelte-cn93cy{width:100%}}@media screen and (max-width: 650px){.upc-digit[data-val="4"].svelte-cn93cy{display:none}}@media screen and (max-width: 650px){.upc-digit[data-val="5"].svelte-cn93cy{display:none}}@media screen and (max-width: 650px){.upc-digit[data-val="6"].svelte-cn93cy{display:none}}@media screen and (max-width: 650px){.upc-digit[data-val="7"].svelte-cn93cy{display:none}}@media screen and (max-width: 650px){.upc-digit[data-val="8"].svelte-cn93cy{display:none}}@media screen and (max-width: 650px){.upc-digit[data-val="9"].svelte-cn93cy{display:none}}',
   map: null
 };
 const UpcDigit = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  $$result.css.add(css$s);
+  $$result.css.add(css$r);
   return `<div class="${"upc-digit svelte-cn93cy"}"${add_attribute("data-val", $$props["data-val"], 0)}><div class="${"bar bar-inactive"}"></div>
   ${$$props.target ? `${validate_component(BarPage, "BarPage").$$render($$result, { index: $$props.index }, {}, {})}` : `<div class="${"bar bar-inactive"}"></div>`}
 
@@ -322,7 +322,7 @@ const UpcReset = create_ssr_component(($$result, $$props, $$bindings, slots) => 
 </div>`;
 });
 var Logo_svelte_svelte_type_style_lang = "";
-const css$r = {
+const css$q = {
   code: ".container.svelte-1tq61b4{z-index:1;width:100%;display:flex;justify-content:center;align-items:center;overflow:hidden;position:relative}.logo-container.svelte-1tq61b4{padding-top:33%;width:100%}@media screen and (max-width: 650px){.logo-container.svelte-1tq61b4{display:flex;justify-content:space-evenly;padding-top:85%}}",
   map: null
 };
@@ -343,7 +343,7 @@ const Logo$1 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     { val: 3, index: 3 },
     { val: 0 }
   ];
-  $$result.css.add(css$r);
+  $$result.css.add(css$q);
   return `<div class="${"container svelte-1tq61b4"}"><div class="${"logo-container svelte-1tq61b4"}"><div class="${"barcode"}">${validate_component(UpcReset, "UpcReset").$$render($$result, {}, {}, {})}
 
       ${each(upcDigits1, (dig) => `${validate_component(UpcDigit, "UpcDigit").$$render($$result, {
@@ -442,14 +442,12 @@ const marqueeContent = () => {
         }, "<");
         s.animation.eventCallback("onReverseComplete", () => {
           update((s2) => {
-            console.log("reversed");
             s2.content = null;
             s2.active = false;
             return s2;
           });
         });
         s.animation.eventCallback("onComplete", () => {
-          console.log("complete");
           update((s2) => {
             s2.shouldLoadImages = true;
             return s2;
@@ -72002,7 +72000,7 @@ const TIMEGGTABLE = {
     }
   ]
 };
-var furniture$1 = {
+var furniture = {
   BRIDGETABLE,
   COCO,
   DEAUVILLE,
@@ -75340,7 +75338,7 @@ var sculptures = {
     ]
   }
 };
-const layout$2 = {
+const layout$1 = {
   concept: {
     images: conceptImages
   },
@@ -75351,7 +75349,7 @@ const layout$2 = {
     images: multiUnitsImages
   },
   furniture: {
-    images: furniture$1
+    images: furniture
   },
   sculptures: {
     images: sculptures
@@ -75370,7 +75368,7 @@ const store$2 = () => {
         console.log(category);
         s.selected = content;
         s.visible = true;
-        s.images = layout$2[category] ? layout$2[category]["images"][content.key].images : null;
+        s.images = layout$1[category] ? layout$1[category]["images"][content.key].images : null;
         return s;
       });
     },
@@ -75391,7 +75389,7 @@ const store$2 = () => {
 };
 const galleryModal = store$2();
 var GalleryModal_svelte_svelte_type_style_lang = "";
-const css$q = {
+const css$p = {
   code: ".modal-container.svelte-1chfrco.svelte-1chfrco{z-index:10;position:fixed;height:100vh;width:100vw;overflow-y:auto;top:0;padding:20px;right:0;background-color:rgba(10, 10, 10, 0.705)}.gallery-container-flex.svelte-1chfrco.svelte-1chfrco{display:flex;flex-direction:column;justify-content:center;align-items:center;width:100%}.image-container.svelte-1chfrco.svelte-1chfrco{max-width:900px;width:100%}.image-container.svelte-1chfrco .gallery-img.svelte-1chfrco{width:100%;object-fit:cover;height:auto;object-position:center center}.single-image-container.svelte-1chfrco.svelte-1chfrco{position:absolute;right:0;left:0;bottom:0;width:fit-content;height:fit-content;top:0;margin:auto}.single-image-container.svelte-1chfrco .gallery-img.svelte-1chfrco{object-fit:cover;max-width:40vw;max-height:70vh}",
   map: null
 };
@@ -75399,7 +75397,7 @@ const GalleryModal = create_ssr_component(($$result, $$props, $$bindings, slots)
   let $galleryModal, $$unsubscribe_galleryModal;
   $$unsubscribe_galleryModal = subscribe(galleryModal, (value) => $galleryModal = value);
   const images = $galleryModal.images;
-  $$result.css.add(css$q);
+  $$result.css.add(css$p);
   $$unsubscribe_galleryModal();
   return `<div class="${"modal-container svelte-1chfrco"}"><div class="${"close-x close-main"}"></div>
   ${images && images.length > 1 ? `<div class="${"gallery-container-flex svelte-1chfrco"}">${each(images, (img) => `<div class="${"image-container svelte-1chfrco"}"><img${add_attribute("height", img.height, 0)}${add_attribute("width", img.width, 0)} loading="${"lazy"}" class="${"gallery-img svelte-1chfrco"}"${add_attribute("src", img.url, 0)} alt="${""}">
@@ -75408,34 +75406,34 @@ const GalleryModal = create_ssr_component(($$result, $$props, $$bindings, slots)
 });
 var Map_svelte_svelte_type_style_lang = "";
 var MapArrow_svelte_svelte_type_style_lang = "";
-const css$p = {
+const css$o = {
   code: ".icon.svelte-mytkhd{width:35px;top:-25px;left:0;right:0;margin:auto;position:absolute}",
   map: null
 };
 const MapArrow = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  $$result.css.add(css$p);
+  $$result.css.add(css$o);
   return `<svg xmlns="${"http://www.w3.org/2000/svg"}" height="${"24px"}" viewBox="${"0 0 24 24"}" class="${"icon svelte-mytkhd"}" fill="${"#68208e"}"><path d="${"M0 0h24v24H0V0z"}" fill="${"none"}"></path><path d="${"M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14l-6-6z"}"></path></svg>`;
 });
 var MapBar_svelte_svelte_type_style_lang = "";
-const css$o = {
+const css$n = {
   code: '.container.svelte-uwau16.svelte-uwau16{z-index:3;font-family:unisansB}.container.svelte-uwau16 .bottom-bar-container.svelte-uwau16{text-transform:uppercase;font-size:2em;padding:10px;cursor:pointer;letter-spacing:0.1em;background-image:url("./mapBar.png");text-align:center}h5.svelte-uwau16.svelte-uwau16{margin-bottom:-10px}',
   map: null
 };
 const MapBar = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   createEventDispatcher();
-  $$result.css.add(css$o);
+  $$result.css.add(css$n);
   return `<div class="${"container svelte-uwau16"}"><div class="${"bottom-bar-container svelte-uwau16"}">${validate_component(MapArrow, "MapArrow").$$render($$result, {}, {}, {})}
     <h5 class="${"svelte-uwau16"}">project map</h5></div>
 </div>`;
 });
 var MapWrapper_svelte_svelte_type_style_lang = "";
-const css$n = {
+const css$m = {
   code: ".map-container.svelte-4380e3{position:relative}.container.svelte-4380e3{position:absolute;color:white;bottom:0;background-color:white;width:100%;z-index:6}",
   map: null
 };
 const MapWrapper = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let container;
-  $$result.css.add(css$n);
+  $$result.css.add(css$m);
   {
     {
       {
@@ -75448,7 +75446,7 @@ const MapWrapper = create_ssr_component(($$result, $$props, $$bindings, slots) =
 </div>`;
 });
 var MainPageHeader_svelte_svelte_type_style_lang = "";
-const css$m = {
+const css$l = {
   code: ".press.svelte-elbnye{position:absolute}.main-text-header.svelte-elbnye{font-size:6em;line-height:0.8em;font-weight:900;letter-spacing:3px;white-space:nowrap;font-family:unisansB;text-align:center;background-color:transparent;top:5vh;right:0;left:0;z-index:10;padding:20px;color:#68208e;text-transform:uppercase}@media screen and (max-width: 820px){.main-text-header.svelte-elbnye{font-size:10vw}}.sm.svelte-elbnye{font-size:3em}.inactive.svelte-elbnye{display:none}",
   map: null
 };
@@ -75456,7 +75454,7 @@ const MainPageHeader = create_ssr_component(($$result, $$props, $$bindings, slot
   let $marqueeContentStore, $$unsubscribe_marqueeContentStore;
   $$unsubscribe_marqueeContentStore = subscribe(marqueeContentStore, (value) => $marqueeContentStore = value);
   const hideNav = new Set(["maliview", "aviator"]);
-  $$result.css.add(css$m);
+  $$result.css.add(css$l);
   $$unsubscribe_marqueeContentStore();
   return `<h5 class="${[
     "main-text-header svelte-elbnye",
@@ -75465,7 +75463,7 @@ const MainPageHeader = create_ssr_component(($$result, $$props, $$bindings, slot
 </h5>`;
 });
 var PageContent_svelte_svelte_type_style_lang = "";
-const css$l = {
+const css$k = {
   code: ".page-content-container.svelte-1h4e4fz{width:100%;height:100%;display:flex;flex-direction:column;align-items:center}@media screen and (max-width: 900px){.page-content-container.svelte-1h4e4fz{font-size:0.8rem}}@media screen and (max-width: 500px){.page-content-container.svelte-1h4e4fz{font-size:0.6rem}}.main-page-container.svelte-1h4e4fz{overflow:auto;width:100vw;height:100%}.meetPage.svelte-1h4e4fz{overflow:unset}.press.svelte-1h4e4fz{overflow:hidden}",
   map: null
 };
@@ -75474,7 +75472,7 @@ const PageContent = create_ssr_component(($$result, $$props, $$bindings, slots) 
   let { currNav: currNav2 } = $$props;
   if ($$props.currNav === void 0 && $$bindings.currNav && currNav2 !== void 0)
     $$bindings.currNav(currNav2);
-  $$result.css.add(css$l);
+  $$result.css.add(css$k);
   return `<div class="${"page-content-container svelte-1h4e4fz"}">${validate_component(MainPageHeader, "MainPageHeader").$$render($$result, { currNav: currNav2 ? currNav2.name : "" }, {}, {})}
   <div class="${[
     "main-page-container svelte-1h4e4fz",
@@ -75484,7 +75482,7 @@ const PageContent = create_ssr_component(($$result, $$props, $$bindings, slots) 
 });
 var Logo = "/_app/assets/Logo Sideways-5b2a92a6.png";
 var BgLogo_svelte_svelte_type_style_lang = "";
-const css$k = {
+const css$j = {
   code: ".logo-wrapper.svelte-ryi4qq.svelte-ryi4qq{position:absolute;left:0;top:0;width:200px;transform:translateY(20%)}.aspect-ratio.svelte-ryi4qq.svelte-ryi4qq{padding-bottom:236%}.logo-caption.svelte-ryi4qq.svelte-ryi4qq{display:block;height:fit-content;font-family:unisansB;white-space:nowrap;color:#a5a5a5;font-weight:900;transform:rotate(180deg);font-size:3em;writing-mode:vertical-lr;text-transform:uppercase}.logo-container.svelte-ryi4qq.svelte-ryi4qq{display:flex;width:100%;justify-content:center;top:0;bottom:0;left:0;right:0;position:absolute;z-index:3}.logo-container.svelte-ryi4qq img.svelte-ryi4qq{object-fit:fill;height:auto;height:100%;width:100%}",
   map: null
 };
@@ -75492,7 +75490,7 @@ const BgLogo = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { text = "apel design" } = $$props;
   if ($$props.text === void 0 && $$bindings.text && text !== void 0)
     $$bindings.text(text);
-  $$result.css.add(css$k);
+  $$result.css.add(css$j);
   return `<div class="${"logo-wrapper svelte-ryi4qq"}"><div class="${"aspect-ratio svelte-ryi4qq"}"></div>
   <div class="${"logo-container svelte-ryi4qq"}"><img${add_attribute("src", Logo, 0)} alt="${""}" class="${"svelte-ryi4qq"}">
     <h1 class="${"logo-caption svelte-ryi4qq"}">${escape(text)}</h1></div>
@@ -75522,21 +75520,21 @@ const store$1 = () => {
 };
 const modalStore = store$1();
 var Modal_svelte_svelte_type_style_lang = "";
-const css$j = {
+const css$i = {
   code: ".container.svelte-sha4yt.svelte-sha4yt{position:fixed;height:100vh;width:100vw;overflow-y:auto;top:0;display:flex;align-items:center;justify-content:center;right:0;z-index:20;background-color:rgba(10, 10, 10, 0.705)}.container.svelte-sha4yt .image-container .image.svelte-sha4yt{max-height:80vh;max-width:60vw;height:auto;width:auto;object-fit:cover;object-position:center center}",
   map: null
 };
 const Modal = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let $modalStore, $$unsubscribe_modalStore;
   $$unsubscribe_modalStore = subscribe(modalStore, (value) => $modalStore = value);
-  $$result.css.add(css$j);
+  $$result.css.add(css$i);
   $$unsubscribe_modalStore();
   return `<div class="${"container svelte-sha4yt"}"><div class="${"image-container"}"><img${add_attribute("src", $modalStore.content, 0)} alt="${""}" class="${"image svelte-sha4yt"}"></div>
 </div>`;
 });
 var logo = "/_app/assets/logo-f49bb745.png";
 var LeftArrow_svelte_svelte_type_style_lang = "";
-const css$i = {
+const css$h = {
   code: ".close-main.svelte-ljenvb{display:block;cursor:pointer;width:20px;position:absolute;right:30px;height:20px}",
   map: null
 };
@@ -75544,11 +75542,11 @@ const LeftArrow = create_ssr_component(($$result, $$props, $$bindings, slots) =>
   let { tl } = $$props;
   if ($$props.tl === void 0 && $$bindings.tl && tl !== void 0)
     $$bindings.tl(tl);
-  $$result.css.add(css$i);
+  $$result.css.add(css$h);
   return `<svg class="${"close-main svelte-ljenvb"}" xmlns="${"http://www.w3.org/2000/svg"}" height="${"24px"}" viewBox="${"0 0 24 24"}" width="${"24px"}" fill="${"white"}"><path d="${"M0 0h24v24H0V0z"}" fill="${"none"}"></path><path d="${"M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"}"></path></svg>`;
 });
 var Navbar_svelte_svelte_type_style_lang = "";
-const css$h = {
+const css$g = {
   code: ".top-nav-container.svelte-royc6g.svelte-royc6g{width:100%;background-color:#6f3f8a;padding:10px;display:flex;justify-content:center;align-items:center}.top-nav-container.svelte-royc6g .logo-container.svelte-royc6g{cursor:pointer;width:120px;position:relative;pointer-events:all;z-index:5}.top-nav-container.svelte-royc6g .logo-container img.svelte-royc6g{width:100%;height:100%}",
   map: null
 };
@@ -75556,19 +75554,19 @@ const Navbar = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let $marqueeContentStore, $$unsubscribe_marqueeContentStore;
   $$unsubscribe_marqueeContentStore = subscribe(marqueeContentStore, (value) => $marqueeContentStore = value);
   createEventDispatcher();
-  $$result.css.add(css$h);
+  $$result.css.add(css$g);
   $$unsubscribe_marqueeContentStore();
   return `<div class="${"top-nav-container svelte-royc6g"}"><div class="${"logo-container svelte-royc6g"}"><img${add_attribute("src", logo, 0)} alt="${""}" class="${"svelte-royc6g"}"></div>
   ${$marqueeContentStore.content ? `${validate_component(LeftArrow, "LeftArrow").$$render($$result, {}, {}, {})}` : ``}
 </div>`;
 });
 var About_svelte_svelte_type_style_lang = "";
-const css$g = {
+const css$f = {
   code: '.glitch-image-container.svelte-1do7w48.svelte-1do7w48{position:absolute;top:0;left:0;width:100%;height:100%}.glitch-image-container.svelte-1do7w48.svelte-1do7w48:hover{opacity:1}.glitch-image-container.svelte-1do7w48 .glitch-image.svelte-1do7w48{pointer-events:none;background-size:cover;background-position:50% 50%;position:absolute;top:0;left:0;width:100%;height:100%;transform:translate3d(0, 0, 0);background-image:url("../images/home/amitapel4 (1).webp")}.glitch-image-container.svelte-1do7w48 .glitch-image.svelte-1do7w48:nth-child(n+2){opacity:0;top:calc(-1 * 2px);left:calc(-1 * 10px);width:calc(100% + 10px * 2);height:calc(100% + 2px * 2)}.glitch-container.svelte-1do7w48 .glitch-image.svelte-1do7w48{opacity:1 !important}.glitch-container.svelte-1do7w48 .glitch-image.svelte-1do7w48:nth-child(2){transform:translate3d(10px, 0, 0);animation:svelte-1do7w48-glitch-anim-1 2s linear alternate}.glitch-container.svelte-1do7w48 .glitch-image.svelte-1do7w48:nth-child(3){transform:translate3d(calc(-1 * 10px), 0, 0);animation:svelte-1do7w48-glitch-anim-2 2s linear alternate}.glitch-container.svelte-1do7w48 .glitch-image.svelte-1do7w48:nth-child(4){transform:translate3d(0, calc(-1 * 2px), 0) scale3d(-1, -1, 1);animation:svelte-1do7w48-glitch-anim-3 2s linear alternate}.glitch-container.svelte-1do7w48 .glitch-image.svelte-1do7w48:nth-child(5){animation:svelte-1do7w48-glitch-anim-flash 0.5s steps(1, end)}@keyframes svelte-1do7w48-glitch-anim-flash{0%{opacity:0.2;transform:translate3d(var(--gap), var(--gap-vertical), 0)}33%,100%{opacity:0;transform:translate3d(0, 0, 0)}}@keyframes svelte-1do7w48-glitch-anim-1{0%{-webkit-clip-path:polygon(0 2%, 100% 2%, 100% 5%, 0 5%);clip-path:polygon(0 2%, 100% 2%, 100% 5%, 0 5%)}10%{-webkit-clip-path:polygon(0 15%, 100% 15%, 100% 15%, 0 15%);clip-path:polygon(0 15%, 100% 15%, 100% 15%, 0 15%)}20%{-webkit-clip-path:polygon(0 10%, 100% 10%, 100% 20%, 0 20%);clip-path:polygon(0 10%, 100% 10%, 100% 20%, 0 20%)}30%{-webkit-clip-path:polygon(0 1%, 100% 1%, 100% 2%, 0 2%);clip-path:polygon(0 1%, 100% 1%, 100% 2%, 0 2%)}40%{-webkit-clip-path:polygon(0 33%, 100% 33%, 100% 33%, 0 33%);clip-path:polygon(0 33%, 100% 33%, 100% 33%, 0 33%)}50%{-webkit-clip-path:polygon(0 44%, 100% 44%, 100% 44%, 0 44%);clip-path:polygon(0 44%, 100% 44%, 100% 44%, 0 44%)}60%{-webkit-clip-path:polygon(0 50%, 100% 50%, 100% 20%, 0 20%);clip-path:polygon(0 50%, 100% 50%, 100% 20%, 0 20%)}70%{-webkit-clip-path:polygon(0 70%, 100% 70%, 100% 70%, 0 70%);clip-path:polygon(0 70%, 100% 70%, 100% 70%, 0 70%)}80%{-webkit-clip-path:polygon(0 80%, 100% 80%, 100% 80%, 0 80%);clip-path:polygon(0 80%, 100% 80%, 100% 80%, 0 80%)}90%{-webkit-clip-path:polygon(0 50%, 100% 50%, 100% 55%, 0 55%);clip-path:polygon(0 50%, 100% 50%, 100% 55%, 0 55%)}100%{-webkit-clip-path:polygon(0 70%, 100% 70%, 100% 80%, 0 80%);clip-path:polygon(0 70%, 100% 70%, 100% 80%, 0 80%)}}@keyframes svelte-1do7w48-glitch-anim-2{0%{-webkit-clip-path:polygon(0 25%, 100% 25%, 100% 30%, 0 30%);clip-path:polygon(0 25%, 100% 25%, 100% 30%, 0 30%)}15%{-webkit-clip-path:polygon(0 3%, 100% 3%, 100% 3%, 0 3%);clip-path:polygon(0 3%, 100% 3%, 100% 3%, 0 3%)}22%{-webkit-clip-path:polygon(0 5%, 100% 5%, 100% 20%, 0 20%);clip-path:polygon(0 5%, 100% 5%, 100% 20%, 0 20%)}31%{-webkit-clip-path:polygon(0 20%, 100% 20%, 100% 20%, 0 20%);clip-path:polygon(0 20%, 100% 20%, 100% 20%, 0 20%)}45%{-webkit-clip-path:polygon(0 40%, 100% 40%, 100% 40%, 0 40%);clip-path:polygon(0 40%, 100% 40%, 100% 40%, 0 40%)}51%{-webkit-clip-path:polygon(0 52%, 100% 52%, 100% 59%, 0 59%);clip-path:polygon(0 52%, 100% 52%, 100% 59%, 0 59%)}63%{-webkit-clip-path:polygon(0 60%, 100% 60%, 100% 60%, 0 60%);clip-path:polygon(0 60%, 100% 60%, 100% 60%, 0 60%)}76%{-webkit-clip-path:polygon(0 75%, 100% 75%, 100% 75%, 0 75%);clip-path:polygon(0 75%, 100% 75%, 100% 75%, 0 75%)}81%{-webkit-clip-path:polygon(0 65%, 100% 65%, 100% 40%, 0 40%);clip-path:polygon(0 65%, 100% 65%, 100% 40%, 0 40%)}94%{-webkit-clip-path:polygon(0 45%, 100% 45%, 100% 50%, 0 50%);clip-path:polygon(0 45%, 100% 45%, 100% 50%, 0 50%)}100%{-webkit-clip-path:polygon(0 14%, 100% 14%, 100% 33%, 0 33%);clip-path:polygon(0 14%, 100% 14%, 100% 33%, 0 33%)}}@keyframes svelte-1do7w48-glitch-anim-3{0%{-webkit-clip-path:polygon(0 1%, 100% 1%, 100% 3%, 0 3%);clip-path:polygon(0 1%, 100% 1%, 100% 3%, 0 3%)}5%{-webkit-clip-path:polygon(0 10%, 100% 10%, 100% 9%, 0 9%);clip-path:polygon(0 10%, 100% 10%, 100% 9%, 0 9%)}10%{-webkit-clip-path:polygon(0 5%, 100% 5%, 100% 6%, 0 6%);clip-path:polygon(0 5%, 100% 5%, 100% 6%, 0 6%)}25%{-webkit-clip-path:polygon(0 20%, 100% 20%, 100% 20%, 0 20%);clip-path:polygon(0 20%, 100% 20%, 100% 20%, 0 20%)}27%{-webkit-clip-path:polygon(0 10%, 100% 10%, 100% 10%, 0 10%);clip-path:polygon(0 10%, 100% 10%, 100% 10%, 0 10%)}30%{-webkit-clip-path:polygon(0 30%, 100% 30%, 100% 25%, 0 25%);clip-path:polygon(0 30%, 100% 30%, 100% 25%, 0 25%)}33%{-webkit-clip-path:polygon(0 15%, 100% 15%, 100% 16%, 0 16%);clip-path:polygon(0 15%, 100% 15%, 100% 16%, 0 16%)}37%{-webkit-clip-path:polygon(0 40%, 100% 40%, 100% 39%, 0 39%);clip-path:polygon(0 40%, 100% 40%, 100% 39%, 0 39%)}40%{-webkit-clip-path:polygon(0 20%, 100% 20%, 100% 21%, 0 21%);clip-path:polygon(0 20%, 100% 20%, 100% 21%, 0 21%)}45%{-webkit-clip-path:polygon(0 60%, 100% 60%, 100% 55%, 0 55%);clip-path:polygon(0 60%, 100% 60%, 100% 55%, 0 55%)}50%{-webkit-clip-path:polygon(0 30%, 100% 30%, 100% 31%, 0 31%);clip-path:polygon(0 30%, 100% 30%, 100% 31%, 0 31%)}53%{-webkit-clip-path:polygon(0 70%, 100% 70%, 100% 69%, 0 69%);clip-path:polygon(0 70%, 100% 70%, 100% 69%, 0 69%)}57%{-webkit-clip-path:polygon(0 40%, 100% 40%, 100% 41%, 0 41%);clip-path:polygon(0 40%, 100% 40%, 100% 41%, 0 41%)}60%{-webkit-clip-path:polygon(0 80%, 100% 80%, 100% 75%, 0 75%);clip-path:polygon(0 80%, 100% 80%, 100% 75%, 0 75%)}65%{-webkit-clip-path:polygon(0 50%, 100% 50%, 100% 51%, 0 51%);clip-path:polygon(0 50%, 100% 50%, 100% 51%, 0 51%)}70%{-webkit-clip-path:polygon(0 90%, 100% 90%, 100% 90%, 0 90%);clip-path:polygon(0 90%, 100% 90%, 100% 90%, 0 90%)}73%{-webkit-clip-path:polygon(0 60%, 100% 60%, 100% 60%, 0 60%);clip-path:polygon(0 60%, 100% 60%, 100% 60%, 0 60%)}80%{-webkit-clip-path:polygon(0 100%, 100% 100%, 100% 99%, 0 99%);clip-path:polygon(0 100%, 100% 100%, 100% 99%, 0 99%)}100%{-webkit-clip-path:polygon(0 70%, 100% 70%, 100% 71%, 0 71%);clip-path:polygon(0 70%, 100% 70%, 100% 71%, 0 71%)}}.container.svelte-1do7w48.svelte-1do7w48{overflow-y:auto;color:#68208e}.content-container.svelte-1do7w48.svelte-1do7w48{display:flex;flex-direction:column;align-items:center}.main-text-content.svelte-1do7w48.svelte-1do7w48{font-family:"Open Sans", sans-serif;text-align:center;font-size:1.5em;max-width:1200px;margin-top:1.5rem;width:100%}.image.svelte-1do7w48.svelte-1do7w48{width:100%}.glitch-image-wrapper.svelte-1do7w48.svelte-1do7w48{max-width:568px;width:100%;overflow:hidden;position:relative}.main-image-container.svelte-1do7w48.svelte-1do7w48{width:100%;height:100%}.main-image-container.svelte-1do7w48 .image-main.svelte-1do7w48{background-position:50% 50%;width:100%;height:100%}.content-image-container.svelte-1do7w48.svelte-1do7w48{width:100%;pointer-events:none}',
   map: null
 };
 const About = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  $$result.css.add(css$g);
+  $$result.css.add(css$f);
   return `<div class="${"page-container"}"><div class="${"container svelte-1do7w48"}"><div class="${"content-container svelte-1do7w48"}"><div class="${"glitch-image-wrapper svelte-1do7w48"}"><div class="${"main-image-container flex-item svelte-1do7w48"}"><div class="${"image-main svelte-1do7w48"}"><img class="${"image svelte-1do7w48"}" src="${"https://res.cloudinary.com/dt4xntymn/image/upload/v1637785016/mainSite/meet%20amit%20apel/amitapel4_bf4uwx.jpg"}" alt="${""}"></div></div>
         <div class="${"flex-item content-image-container glitch-image-container " + escape("") + " svelte-1do7w48"}">${each(Array(5).fill(""), (img) => `<div class="${"glitch-image svelte-1do7w48"}"><img class="${"image svelte-1do7w48"}" src="${"https://res.cloudinary.com/dt4xntymn/image/upload/v1637785016/mainSite/meet%20amit%20apel/amitapel4_bf4uwx.jpg"}"${add_attribute("img", img, 0)} alt="${""}">
             </div>`)}</div></div>
@@ -75596,12 +75594,12 @@ const About = create_ssr_component(($$result, $$props, $$bindings, slots) => {
 </div>`;
 });
 var ContactUs_svelte_svelte_type_style_lang = "";
-const css$f = {
+const css$e = {
   code: ".flex-item.svelte-pvmbl4.svelte-pvmbl4:nth-child(n){margin-right:0.75rem;margin-left:0.75rem}.contact-field.svelte-pvmbl4.svelte-pvmbl4:nth-child(n){margin-bottom:0.75rem}.contact-field.svelte-pvmbl4.svelte-pvmbl4:nth-child(n):last-child{margin-bottom:0px}.contact-field.svelte-pvmbl4.svelte-pvmbl4:nth-child(n):nth-child(1){padding-top:0px}.misc-info-wrapper.svelte-pvmbl4.svelte-pvmbl4{display:flex;flex-direction:column}.content-container.svelte-pvmbl4.svelte-pvmbl4{display:flex;height:80%;justify-content:center;width:100%}@media screen and (max-width: 610px){.content-container.svelte-pvmbl4.svelte-pvmbl4{flex-direction:column-reverse}}.content-container.svelte-pvmbl4 input[type=submit].svelte-pvmbl4{background-color:#68208e;color:#fff;font-weight:600;cursor:pointer}.info-container.svelte-pvmbl4.svelte-pvmbl4{font-family:-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Ubuntu, sans-serif;text-align:center;background-color:white;box-shadow:rgba(60, 66, 87, 0.12) 0px 7px 14px 0px, rgba(0, 0, 0, 0.12) 0px 3px 6px 0px;padding:48px;text-transform:uppercase;border-radius:4px}.info-container.svelte-pvmbl4 h5.svelte-pvmbl4{color:#68208e}.info-container.svelte-pvmbl4 p.svelte-pvmbl4{font-size:0.8em}.form-container.svelte-pvmbl4.svelte-pvmbl4{display:flex;color:#1a1f36;background-color:white;box-shadow:rgba(60, 66, 87, 0.12) 0px 7px 14px 0px, rgba(0, 0, 0, 0.12) 0px 3px 6px 0px;padding:48px;width:100%;max-width:448px;background:white;border-radius:4px;flex-direction:column;font-family:-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Ubuntu, sans-serif}@media screen and (max-width: 610px){.form-container.svelte-pvmbl4.svelte-pvmbl4{max-width:100%}}@media screen and (max-width: 650px){.form-container.svelte-pvmbl4.svelte-pvmbl4{padding:25px}}.contact-input.svelte-pvmbl4.svelte-pvmbl4{width:100%;font-size:16px;line-height:28px;padding:8px 16px;width:100%;min-height:44px;border:unset;border-radius:4px;outline-color:rgba(84, 105, 212, 0.5);background-color:white;box-shadow:rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(60, 66, 87, 0.16) 0px 0px 0px 1px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px}label.svelte-pvmbl4.svelte-pvmbl4{font-size:14px;font-weight:600;display:block}.main-misc-container.svelte-pvmbl4.svelte-pvmbl4:nth-child(n){margin-bottom:0.3rem}.main-misc-container.svelte-pvmbl4.svelte-pvmbl4:nth-child(n):last-child{margin-bottom:0px}.main-misc-container.svelte-pvmbl4.svelte-pvmbl4:nth-child(n):nth-child(1){padding-top:0px}",
   map: null
 };
 const ContactUs = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  $$result.css.add(css$f);
+  $$result.css.add(css$e);
   return `<div class="${"page-container"}"><div class="${"content-container svelte-pvmbl4"}"><div class="${"misc-info-wrapper flex-item svelte-pvmbl4"}"><div class="${"main-misc-container svelte-pvmbl4"}"><div class="${"misc-info-container"}"><div class="${"info-container svelte-pvmbl4"}"><h5 class="${"svelte-pvmbl4"}">Hours</h5>
             <p class="${"svelte-pvmbl4"}">Monday-Friday 9am-5pm</p></div></div></div>
       <div class="${"main-misc-container svelte-pvmbl4"}"><div class="${"info-container svelte-pvmbl4"}"><h5 class="${"svelte-pvmbl4"}">Address</h5>
@@ -75645,14 +75643,14 @@ const data = {
   }
 };
 var Development_svelte_svelte_type_style_lang = "";
-const css$e = {
+const css$d = {
   code: '.property-header.svelte-1qxkx6f.svelte-1qxkx6f{color:#5d1089;font-weight:900;font-family:unisansB}.redirect-button.svelte-1qxkx6f.svelte-1qxkx6f{text-transform:uppercase;font-family:unisans;font-weight:800;background:#5d1089;border:none;color:white;cursor:pointer;margin-top:1rem;padding:5px 15px}.text-wrapper.svelte-1qxkx6f.svelte-1qxkx6f{height:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;width:50vw;padding:8vw}@media screen and (max-width: 955px){.text-wrapper.svelte-1qxkx6f.svelte-1qxkx6f{width:100%;height:50vh;padding:8vw 8vw 8vw 8vw}}.text-content-container.svelte-1qxkx6f.svelte-1qxkx6f{text-align:left}.text-content-container.svelte-1qxkx6f .main-header.svelte-1qxkx6f{font-family:unisans;margin-bottom:1rem;font-size:2em}.text-content-container.svelte-1qxkx6f .sub-header.svelte-1qxkx6f{color:#5d1089;font-family:unisansB;font-size:0.8em;margin-bottom:2rem;text-transform:uppercase}.text-content-container.svelte-1qxkx6f .description.svelte-1qxkx6f{font-family:unisans;font-weight:700;font-size:0.8em}@media screen and (max-width: 955px){.text-content-container.svelte-1qxkx6f .description.svelte-1qxkx6f{width:100%;font-size:1.1em}}.aspect-ratio.svelte-1qxkx6f.svelte-1qxkx6f{padding-bottom:75%}.sub-image-container.svelte-1qxkx6f.svelte-1qxkx6f{position:absolute;width:25vw;border-radius:4px;overflow:hidden;top:50%;min-width:400px;transform:translate(-20%, -80%);box-shadow:2px 6px 40px -3px #000000}.sub-image-container.svelte-1qxkx6f .sub.svelte-1qxkx6f{top:0;position:absolute}@media screen and (max-width: 955px){.sub-image-container.svelte-1qxkx6f.svelte-1qxkx6f{top:50%;min-width:auto;width:60vw;left:50%;transform:translate(-50%, -50%)}}.container.svelte-1qxkx6f.svelte-1qxkx6f{display:flex;width:100%;height:100%;overflow:hidden}@media screen and (max-width: 955px){.container.svelte-1qxkx6f.svelte-1qxkx6f{flex-direction:column}}.main-image-container.svelte-1qxkx6f.svelte-1qxkx6f{height:100%;width:50vw;position:relative}.main-image-container.svelte-1qxkx6f.svelte-1qxkx6f::before{width:100%;height:100%;position:absolute;content:"";background:linear-gradient(0deg, rgba(0, 0, 0, 0.9192051821) 21%, rgba(255, 255, 255, 0.01) 100%);display:block}.main-image-container.svelte-1qxkx6f .main-image.svelte-1qxkx6f{object-fit:cover;width:100%;height:100%}@media screen and (max-width: 955px){.main-image-container.svelte-1qxkx6f.svelte-1qxkx6f{width:100vw;height:50vh}}',
   map: null
 };
 const Development = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let $marqueeContentStore, $$unsubscribe_marqueeContentStore;
   $$unsubscribe_marqueeContentStore = subscribe(marqueeContentStore, (value) => $marqueeContentStore = value);
-  $$result.css.add(css$e);
+  $$result.css.add(css$d);
   $$unsubscribe_marqueeContentStore();
   return `<div class="${"page-container"}"></div>
 <div class="${"container svelte-1qxkx6f"}"><div class="${"text-wrapper svelte-1qxkx6f"}"><div class="${"text-content-container svelte-1qxkx6f"}"><p class="${"sub-header svelte-1qxkx6f"}">take a peek into our current</p>
@@ -75666,12 +75664,12 @@ const Development = create_ssr_component(($$result, $$props, $$bindings, slots) 
 </div>`;
 });
 var MalibuRebuild_svelte_svelte_type_style_lang = "";
-const css$d = {
+const css$c = {
   code: '.bottom-text-container.svelte-my5kgz.svelte-my5kgz{font-size:0.6em}.bottom-text-container.svelte-my5kgz p.svelte-my5kgz:first-child{margin-bottom:1rem}.bottom-text-container.svelte-my5kgz p.svelte-my5kgz:nth-child(3){margin-bottom:1rem}.container.svelte-my5kgz.svelte-my5kgz{font-family:unisans;display:flex;align-items:center;justify-content:center;flex-direction:column;color:#68208e}h3.svelte-my5kgz.svelte-my5kgz{font-weight:900;font-size:2em;text-align:center;font-family:"unisansB";margin-bottom:1.3rem}.text-container.svelte-my5kgz.svelte-my5kgz{text-align:center;font-size:2em;display:flex;flex-direction:column;max-width:900px}.text-container.svelte-my5kgz p.svelte-my5kgz{font-size:0.8em;font-weight:700}.text-container.svelte-my5kgz p.svelte-my5kgz:last-child{font-size:0.6em}.text-container.svelte-my5kgz .credit p.svelte-my5kgz{font-size:0.4em}.text-container.svelte-my5kgz .credit.svelte-my5kgz{margin-top:1.5rem;margin-bottom:1.5rem}@media screen and (max-width: 720px){.text-container.svelte-my5kgz.svelte-my5kgz{font-size:1.5em}}',
   map: null
 };
 const MalibuRebuild = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  $$result.css.add(css$d);
+  $$result.css.add(css$c);
   return `<div class="${"page-container"}"><div class="${"container svelte-my5kgz"}"><h3 class="${"svelte-my5kgz"}">Dear Friends and Neighbors,</h3>
     <div class="${"text-container svelte-my5kgz"}"><p class="${"svelte-my5kgz"}">If you&#39;re like me and my neighbors that have had your homes damaged or
         completely burnt from the wildfires, I want to extend my hand to you and
@@ -75693,1464 +75691,7 @@ const MalibuRebuild = create_ssr_component(($$result, $$props, $$bindings, slots
         </p></div></div></div>
 </div>`;
 });
-var art = [
-  {
-    asset_id: "014f64d415c8df383608f12453537a7c",
-    public_id: "mainSite/art/63w_fbu67b",
-    format: "jpg",
-    version: 1637728427,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T04:33:47Z",
-    bytes: 12395,
-    width: 350,
-    height: 351,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637728427/mainSite/art/63w_fbu67b.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637728427/mainSite/art/63w_fbu67b.jpg",
-    tags: []
-  },
-  {
-    asset_id: "2bcf882d6934fee48a286e09afb4a4f5",
-    public_id: "mainSite/art/64w_fqqk09",
-    format: "jpg",
-    version: 1637728427,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T04:33:47Z",
-    bytes: 45538,
-    width: 350,
-    height: 351,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637728427/mainSite/art/64w_fqqk09.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637728427/mainSite/art/64w_fqqk09.jpg",
-    tags: []
-  },
-  {
-    asset_id: "9905062997e5742d508e33b6ef4704dd",
-    public_id: "mainSite/art/65w_sfyddt",
-    format: "jpg",
-    version: 1637728426,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T04:33:46Z",
-    bytes: 11122,
-    width: 350,
-    height: 351,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637728426/mainSite/art/65w_sfyddt.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637728426/mainSite/art/65w_sfyddt.jpg",
-    tags: []
-  },
-  {
-    asset_id: "9b0b7cbfc7344bfb88b47e8bfcef293b",
-    public_id: "mainSite/art/66w_kposwz",
-    format: "jpg",
-    version: 1637728427,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T04:33:47Z",
-    bytes: 12967,
-    width: 350,
-    height: 351,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637728427/mainSite/art/66w_kposwz.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637728427/mainSite/art/66w_kposwz.jpg",
-    tags: []
-  },
-  {
-    asset_id: "9375071c12df8eabd10197d8c3a5f6c8",
-    public_id: "mainSite/art/67w_pxkyku",
-    format: "jpg",
-    version: 1637728427,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T04:33:47Z",
-    bytes: 18485,
-    width: 350,
-    height: 351,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637728427/mainSite/art/67w_pxkyku.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637728427/mainSite/art/67w_pxkyku.jpg",
-    tags: []
-  },
-  {
-    asset_id: "c3c903eb3035fcbab1c636d0f71b6765",
-    public_id: "mainSite/art/68w_ul13wl",
-    format: "jpg",
-    version: 1637728427,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T04:33:47Z",
-    bytes: 12616,
-    width: 350,
-    height: 351,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637728427/mainSite/art/68w_ul13wl.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637728427/mainSite/art/68w_ul13wl.jpg",
-    tags: []
-  },
-  {
-    asset_id: "aae01372314b2bb40b2dbf2219dad905",
-    public_id: "mainSite/art/6w_qcz6z1",
-    format: "jpg",
-    version: 1637728429,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T04:33:49Z",
-    bytes: 7472,
-    width: 350,
-    height: 351,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637728429/mainSite/art/6w_qcz6z1.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637728429/mainSite/art/6w_qcz6z1.jpg",
-    tags: []
-  },
-  {
-    asset_id: "3bb087a8c9f9037e7d2bc135d26bde8e",
-    public_id: "mainSite/art/7w_ns4ah3",
-    format: "jpg",
-    version: 1637728429,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T04:33:49Z",
-    bytes: 12823,
-    width: 350,
-    height: 351,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637728429/mainSite/art/7w_ns4ah3.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637728429/mainSite/art/7w_ns4ah3.jpg",
-    tags: []
-  },
-  {
-    asset_id: "8f93409944c8191c1a398c28ce1a0fa1",
-    public_id: "mainSite/art/8w_wqbyvl",
-    format: "jpg",
-    version: 1637728429,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T04:33:49Z",
-    bytes: 4688,
-    width: 350,
-    height: 351,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637728429/mainSite/art/8w_wqbyvl.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637728429/mainSite/art/8w_wqbyvl.jpg",
-    tags: []
-  },
-  {
-    asset_id: "2f1bd39e1719774986873ae42434e3d1",
-    public_id: "mainSite/art/ARTPIECE1_jsnz2t",
-    format: "jpg",
-    version: 1637728427,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T04:33:47Z",
-    bytes: 256260,
-    width: 1100,
-    height: 1648,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637728427/mainSite/art/ARTPIECE1_jsnz2t.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637728427/mainSite/art/ARTPIECE1_jsnz2t.jpg",
-    tags: []
-  },
-  {
-    asset_id: "0fdbd42bf6e8a5e7d25fb148a9037e29",
-    public_id: "mainSite/art/ARTPIECE10_layzdq",
-    format: "jpg",
-    version: 1637728428,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T04:33:48Z",
-    bytes: 177803,
-    width: 1100,
-    height: 1652,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637728428/mainSite/art/ARTPIECE10_layzdq.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637728428/mainSite/art/ARTPIECE10_layzdq.jpg",
-    tags: []
-  },
-  {
-    asset_id: "3c6145da3482bbb4985373986e569f18",
-    public_id: "mainSite/art/ARTPIECE11_mvgwmw",
-    format: "jpg",
-    version: 1637728428,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T04:33:48Z",
-    bytes: 270467,
-    width: 1100,
-    height: 1643,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637728428/mainSite/art/ARTPIECE11_mvgwmw.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637728428/mainSite/art/ARTPIECE11_mvgwmw.jpg",
-    tags: []
-  },
-  {
-    asset_id: "10e2e0a264d8fc570f73360c912975a4",
-    public_id: "mainSite/art/ARTPIECE12_vlpfpx",
-    format: "jpg",
-    version: 1637728429,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T04:33:49Z",
-    bytes: 355096,
-    width: 1100,
-    height: 1643,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637728429/mainSite/art/ARTPIECE12_vlpfpx.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637728429/mainSite/art/ARTPIECE12_vlpfpx.jpg",
-    tags: []
-  },
-  {
-    asset_id: "a350238c5758814cf6785d5a9b2a8c4c",
-    public_id: "mainSite/art/ARTPIECE13_1_c4htta",
-    format: "jpg",
-    version: 1637728428,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T04:33:48Z",
-    bytes: 179032,
-    width: 1100,
-    height: 736,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637728428/mainSite/art/ARTPIECE13_1_c4htta.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637728428/mainSite/art/ARTPIECE13_1_c4htta.jpg",
-    tags: []
-  },
-  {
-    asset_id: "e4bd8ef9b9d0678d7171c4de6efc0fed",
-    public_id: "mainSite/art/ARTPIECE13_a0sgkl",
-    format: "jpg",
-    version: 1637728428,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T04:33:48Z",
-    bytes: 179032,
-    width: 1100,
-    height: 736,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637728428/mainSite/art/ARTPIECE13_a0sgkl.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637728428/mainSite/art/ARTPIECE13_a0sgkl.jpg",
-    tags: []
-  },
-  {
-    asset_id: "ec86dcc91670d386137f551156da4c99",
-    public_id: "mainSite/art/ARTPIECE14TREEOFLIFE_jxcj6l",
-    format: "jpg",
-    version: 1637728429,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T04:33:49Z",
-    bytes: 65534,
-    width: 391,
-    height: 576,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637728429/mainSite/art/ARTPIECE14TREEOFLIFE_jxcj6l.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637728429/mainSite/art/ARTPIECE14TREEOFLIFE_jxcj6l.jpg",
-    tags: []
-  },
-  {
-    asset_id: "0d4bcb413e300ce123a3a8afead9a68a",
-    public_id: "mainSite/art/ARTPIECE15WALKING_pt61hu",
-    format: "jpg",
-    version: 1637728429,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T04:33:49Z",
-    bytes: 92214,
-    width: 1100,
-    height: 734,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637728429/mainSite/art/ARTPIECE15WALKING_pt61hu.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637728429/mainSite/art/ARTPIECE15WALKING_pt61hu.jpg",
-    tags: []
-  },
-  {
-    asset_id: "aa3f503c7a5cee2bb49cc8d610ed6655",
-    public_id: "mainSite/art/ARTPIECE2_p3q4bg",
-    format: "jpg",
-    version: 1637728427,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T04:33:47Z",
-    bytes: 144236,
-    width: 1100,
-    height: 734,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637728427/mainSite/art/ARTPIECE2_p3q4bg.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637728427/mainSite/art/ARTPIECE2_p3q4bg.jpg",
-    tags: []
-  },
-  {
-    asset_id: "4df896d7f6a5fac558ab3ef306874bb5",
-    public_id: "mainSite/art/ARTPIECE3_cxudih",
-    format: "jpg",
-    version: 1637728427,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T04:33:47Z",
-    bytes: 160110,
-    width: 1100,
-    height: 1648,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637728427/mainSite/art/ARTPIECE3_cxudih.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637728427/mainSite/art/ARTPIECE3_cxudih.jpg",
-    tags: []
-  },
-  {
-    asset_id: "8fe9d753eff0de618df5e37f2a9dba51",
-    public_id: "mainSite/art/ARTPIECE4_gpupnb",
-    format: "jpg",
-    version: 1637728427,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T04:33:47Z",
-    bytes: 139088,
-    width: 1100,
-    height: 734,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637728427/mainSite/art/ARTPIECE4_gpupnb.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637728427/mainSite/art/ARTPIECE4_gpupnb.jpg",
-    tags: []
-  },
-  {
-    asset_id: "3bde9c3d07ace937caf0416f32e46b24",
-    public_id: "mainSite/art/ARTPIECE5_qu5x20",
-    format: "jpg",
-    version: 1637728427,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T04:33:47Z",
-    bytes: 157681,
-    width: 1100,
-    height: 734,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637728427/mainSite/art/ARTPIECE5_qu5x20.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637728427/mainSite/art/ARTPIECE5_qu5x20.jpg",
-    tags: []
-  },
-  {
-    asset_id: "901418d627af652879588b3a976f6774",
-    public_id: "mainSite/art/ARTPIECE6_kqxp3h",
-    format: "jpg",
-    version: 1637728428,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T04:33:48Z",
-    bytes: 104773,
-    width: 1100,
-    height: 734,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637728428/mainSite/art/ARTPIECE6_kqxp3h.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637728428/mainSite/art/ARTPIECE6_kqxp3h.jpg",
-    tags: []
-  },
-  {
-    asset_id: "e95cb519e0bfe7f8c4a1f8eae601d41d",
-    public_id: "mainSite/art/ARTPIECE7_y3tg5u",
-    format: "jpg",
-    version: 1637728427,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T04:33:47Z",
-    bytes: 131921,
-    width: 1100,
-    height: 734,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637728427/mainSite/art/ARTPIECE7_y3tg5u.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637728427/mainSite/art/ARTPIECE7_y3tg5u.jpg",
-    tags: []
-  },
-  {
-    asset_id: "115709cac6e1a18217fbf8cb7c18596a",
-    public_id: "mainSite/art/ARTPIECE8_abk42i",
-    format: "jpg",
-    version: 1637728428,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T04:33:48Z",
-    bytes: 293198,
-    width: 1100,
-    height: 1648,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637728428/mainSite/art/ARTPIECE8_abk42i.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637728428/mainSite/art/ARTPIECE8_abk42i.jpg",
-    tags: []
-  },
-  {
-    asset_id: "53d372506f3e4cafd1266120a3e551c9",
-    public_id: "mainSite/art/ARTPIECE9_bysqfc",
-    format: "jpg",
-    version: 1637728428,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T04:33:48Z",
-    bytes: 229710,
-    width: 1100,
-    height: 1648,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637728428/mainSite/art/ARTPIECE9_bysqfc.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637728428/mainSite/art/ARTPIECE9_bysqfc.jpg",
-    tags: []
-  },
-  {
-    asset_id: "7b6e6b39696a968ef4a393820f8edbcc",
-    public_id: "mainSite/art/10w_ob3ymm",
-    format: "jpg",
-    version: 1637728429,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T04:33:49Z",
-    bytes: 16142,
-    width: 350,
-    height: 351,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637728429/mainSite/art/10w_ob3ymm.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637728429/mainSite/art/10w_ob3ymm.jpg",
-    tags: []
-  },
-  {
-    asset_id: "103d80bed6bc26b98367ab82edb75afd",
-    public_id: "mainSite/art/11w_cfcfbp",
-    format: "jpg",
-    version: 1637728429,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T04:33:49Z",
-    bytes: 18075,
-    width: 350,
-    height: 351,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637728429/mainSite/art/11w_cfcfbp.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637728429/mainSite/art/11w_cfcfbp.jpg",
-    tags: []
-  },
-  {
-    asset_id: "7bad02b2a5725e8f47e6ebd5d170e863",
-    public_id: "mainSite/art/12w_ybbojg",
-    format: "jpg",
-    version: 1637728429,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T04:33:49Z",
-    bytes: 17057,
-    width: 350,
-    height: 351,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637728429/mainSite/art/12w_ybbojg.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637728429/mainSite/art/12w_ybbojg.jpg",
-    tags: []
-  },
-  {
-    asset_id: "0cce9384ce4fef4a07a37bac6e3a015c",
-    public_id: "mainSite/art/13w_uaawfq",
-    format: "jpg",
-    version: 1637728430,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T04:33:50Z",
-    bytes: 8879,
-    width: 350,
-    height: 351,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637728430/mainSite/art/13w_uaawfq.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637728430/mainSite/art/13w_uaawfq.jpg",
-    tags: []
-  },
-  {
-    asset_id: "2398d3f67da10684bdbf74f912b7c2c3",
-    public_id: "mainSite/art/14w_drzh3k",
-    format: "jpg",
-    version: 1637728429,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T04:33:49Z",
-    bytes: 13115,
-    width: 350,
-    height: 351,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637728429/mainSite/art/14w_drzh3k.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637728429/mainSite/art/14w_drzh3k.jpg",
-    tags: []
-  },
-  {
-    asset_id: "ca0c2c5e94b3b67543884a0bcd6f9558",
-    public_id: "mainSite/art/15w_x4xrvg",
-    format: "jpg",
-    version: 1637728430,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T04:33:50Z",
-    bytes: 11665,
-    width: 350,
-    height: 351,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637728430/mainSite/art/15w_x4xrvg.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637728430/mainSite/art/15w_x4xrvg.jpg",
-    tags: []
-  },
-  {
-    asset_id: "e2edc64fa24fb7c5f5c2ffa7fb715a66",
-    public_id: "mainSite/art/16w_z4cnbt",
-    format: "jpg",
-    version: 1637728430,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T04:33:50Z",
-    bytes: 23371,
-    width: 350,
-    height: 351,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637728430/mainSite/art/16w_z4cnbt.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637728430/mainSite/art/16w_z4cnbt.jpg",
-    tags: []
-  },
-  {
-    asset_id: "ac6598da9f3f239b72957700b000e43c",
-    public_id: "mainSite/art/17w_jil9k0",
-    format: "jpg",
-    version: 1637728426,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T04:33:46Z",
-    bytes: 10432,
-    width: 350,
-    height: 351,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637728426/mainSite/art/17w_jil9k0.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637728426/mainSite/art/17w_jil9k0.jpg",
-    tags: []
-  },
-  {
-    asset_id: "4fe6771599f71915d5427d134479d52b",
-    public_id: "mainSite/art/19w_tgdg5b",
-    format: "jpg",
-    version: 1637728426,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T04:33:46Z",
-    bytes: 16064,
-    width: 350,
-    height: 351,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637728426/mainSite/art/19w_tgdg5b.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637728426/mainSite/art/19w_tgdg5b.jpg",
-    tags: []
-  },
-  {
-    asset_id: "1ef7466d93cb18e140de20c218ecde07",
-    public_id: "mainSite/art/1w_uhr8zy",
-    format: "jpg",
-    version: 1637728428,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T04:33:48Z",
-    bytes: 15429,
-    width: 350,
-    height: 351,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637728428/mainSite/art/1w_uhr8zy.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637728428/mainSite/art/1w_uhr8zy.jpg",
-    tags: []
-  },
-  {
-    asset_id: "58b38be38e8ef7bd0cb8316e4cc0b73e",
-    public_id: "mainSite/art/29w_mz6qfb",
-    format: "jpg",
-    version: 1637728426,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T04:33:46Z",
-    bytes: 11035,
-    width: 350,
-    height: 351,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637728426/mainSite/art/29w_mz6qfb.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637728426/mainSite/art/29w_mz6qfb.jpg",
-    tags: []
-  },
-  {
-    asset_id: "c7b4dc5e7d4ad5b7d1dc7c5b91c554de",
-    public_id: "mainSite/art/2w_hxe6l8",
-    format: "jpg",
-    version: 1637728429,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T04:33:49Z",
-    bytes: 15717,
-    width: 350,
-    height: 351,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637728429/mainSite/art/2w_hxe6l8.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637728429/mainSite/art/2w_hxe6l8.jpg",
-    tags: []
-  },
-  {
-    asset_id: "10a26c1540758bd87bf3d5727198c24b",
-    public_id: "mainSite/art/30w_pwkpjm",
-    format: "jpg",
-    version: 1637728426,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T04:33:46Z",
-    bytes: 11545,
-    width: 350,
-    height: 351,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637728426/mainSite/art/30w_pwkpjm.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637728426/mainSite/art/30w_pwkpjm.jpg",
-    tags: []
-  },
-  {
-    asset_id: "2c2794429ef233fd2398504d97ebc839",
-    public_id: "mainSite/art/32w_m01p9a",
-    format: "jpg",
-    version: 1637728426,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T04:33:46Z",
-    bytes: 10768,
-    width: 350,
-    height: 351,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637728426/mainSite/art/32w_m01p9a.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637728426/mainSite/art/32w_m01p9a.jpg",
-    tags: []
-  },
-  {
-    asset_id: "10d3e8259fcdc8684965893f859e6063",
-    public_id: "mainSite/art/36w_ulcinm",
-    format: "jpg",
-    version: 1637728426,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T04:33:46Z",
-    bytes: 9836,
-    width: 350,
-    height: 351,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637728426/mainSite/art/36w_ulcinm.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637728426/mainSite/art/36w_ulcinm.jpg",
-    tags: []
-  },
-  {
-    asset_id: "feeeea7d31c2cd39f2e70583e7629032",
-    public_id: "mainSite/art/37w_ycxqgt",
-    format: "jpg",
-    version: 1637728426,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T04:33:46Z",
-    bytes: 7350,
-    width: 350,
-    height: 351,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637728426/mainSite/art/37w_ycxqgt.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637728426/mainSite/art/37w_ycxqgt.jpg",
-    tags: []
-  },
-  {
-    asset_id: "767d1326d56e483a68415ace1c2c1fa3",
-    public_id: "mainSite/art/3w_xip3st",
-    format: "jpg",
-    version: 1637728429,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T04:33:49Z",
-    bytes: 18796,
-    width: 350,
-    height: 351,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637728429/mainSite/art/3w_xip3st.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637728429/mainSite/art/3w_xip3st.jpg",
-    tags: []
-  },
-  {
-    asset_id: "fa53d2cfea864fbcde9391468c28647b",
-    public_id: "mainSite/art/42w_es6kbs",
-    format: "jpg",
-    version: 1637728426,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T04:33:46Z",
-    bytes: 7409,
-    width: 350,
-    height: 351,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637728426/mainSite/art/42w_es6kbs.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637728426/mainSite/art/42w_es6kbs.jpg",
-    tags: []
-  },
-  {
-    asset_id: "0bafc119a4bc98223734c8b805885271",
-    public_id: "mainSite/art/4w_xggol2",
-    format: "jpg",
-    version: 1637728429,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T04:33:49Z",
-    bytes: 11469,
-    width: 350,
-    height: 351,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637728429/mainSite/art/4w_xggol2.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637728429/mainSite/art/4w_xggol2.jpg",
-    tags: []
-  },
-  {
-    asset_id: "f5ea2afe6af9a1fd0f1717a606136282",
-    public_id: "mainSite/art/52w_xsk2vy",
-    format: "jpg",
-    version: 1637728426,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T04:33:46Z",
-    bytes: 8095,
-    width: 350,
-    height: 351,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637728426/mainSite/art/52w_xsk2vy.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637728426/mainSite/art/52w_xsk2vy.jpg",
-    tags: []
-  },
-  {
-    asset_id: "dc10c5042ca1758d12ebe6dd8886164e",
-    public_id: "mainSite/art/55w_le6aov",
-    format: "jpg",
-    version: 1637728426,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T04:33:46Z",
-    bytes: 11930,
-    width: 350,
-    height: 351,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637728426/mainSite/art/55w_le6aov.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637728426/mainSite/art/55w_le6aov.jpg",
-    tags: []
-  },
-  {
-    asset_id: "9bc7acecb74c117d81ec6f50b3ce105a",
-    public_id: "mainSite/art/5w_zpa9dc",
-    format: "jpg",
-    version: 1637728429,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T04:33:49Z",
-    bytes: 19895,
-    width: 350,
-    height: 351,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637728429/mainSite/art/5w_zpa9dc.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637728429/mainSite/art/5w_zpa9dc.jpg",
-    tags: []
-  },
-  {
-    asset_id: "02cad7fc89195724ddcebf7bb011c72b",
-    public_id: "mainSite/art/62w_kxyrro",
-    format: "jpg",
-    version: 1637728426,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T04:33:46Z",
-    bytes: 9413,
-    width: 350,
-    height: 351,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637728426/mainSite/art/62w_kxyrro.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637728426/mainSite/art/62w_kxyrro.jpg",
-    tags: []
-  }
-];
-var furniture = [
-  {
-    asset_id: "b9ae261c7334c11189b11bf031e95537",
-    public_id: "mainSite/furniture/BRIDGETABLE/Main_y5ul5e",
-    format: "jpg",
-    version: 1637731784,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T05:29:44Z",
-    bytes: 62879,
-    width: 750,
-    height: 500,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637731784/mainSite/furniture/BRIDGETABLE/Main_y5ul5e.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637731784/mainSite/furniture/BRIDGETABLE/Main_y5ul5e.jpg",
-    tags: [
-      "MAIN"
-    ],
-    key: "BRIDGETABLE",
-    label: "BRIDGE TABLE"
-  },
-  {
-    asset_id: "034518dcb4a63c08d25d139f25c449e1",
-    public_id: "mainSite/furniture/COCO/Main_pisnie",
-    format: "jpg",
-    version: 1637731770,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T05:29:30Z",
-    bytes: 97446,
-    width: 1100,
-    height: 1064,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637731770/mainSite/furniture/COCO/Main_pisnie.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637731770/mainSite/furniture/COCO/Main_pisnie.jpg",
-    tags: [
-      "MAIN"
-    ],
-    key: "COCO",
-    label: "COCO"
-  },
-  {
-    asset_id: "0374db65a52cd9458d89c9456e96bb41",
-    public_id: "mainSite/furniture/DEAUVILLE/Main_glik2l",
-    format: "jpg",
-    version: 1637731772,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T05:29:32Z",
-    bytes: 71674,
-    width: 1100,
-    height: 734,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637731772/mainSite/furniture/DEAUVILLE/Main_glik2l.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637731772/mainSite/furniture/DEAUVILLE/Main_glik2l.jpg",
-    tags: [
-      "MAIN"
-    ],
-    key: "DEAUVILLE",
-    label: "DEAUVILLE"
-  },
-  {
-    asset_id: "0525085d7b806ca670407e272ffc5ebe",
-    public_id: "mainSite/furniture/GRANDCANYON/Main_maq0dh",
-    format: "jpg",
-    version: 1637731772,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T05:29:32Z",
-    bytes: 40503,
-    width: 1100,
-    height: 734,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637731772/mainSite/furniture/GRANDCANYON/Main_maq0dh.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637731772/mainSite/furniture/GRANDCANYON/Main_maq0dh.jpg",
-    tags: [
-      "MAIN"
-    ],
-    key: "GRANDCANYON",
-    label: "GRAND CANYON"
-  },
-  {
-    asset_id: "d9dbf5fdf43b779a42c4cc758cdbadb5",
-    public_id: "mainSite/furniture/JAZZTABLE/Main_mbbxtd",
-    format: "jpg",
-    version: 1637731773,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T05:29:33Z",
-    bytes: 155701,
-    width: 1100,
-    height: 1650,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637731773/mainSite/furniture/JAZZTABLE/Main_mbbxtd.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637731773/mainSite/furniture/JAZZTABLE/Main_mbbxtd.jpg",
-    tags: [
-      "MAIN"
-    ],
-    key: "JAZZTABLE",
-    label: "JAZZ TABLE"
-  },
-  {
-    asset_id: "331cc0ffbc41c7a6b80db08b887cb677",
-    public_id: "mainSite/furniture/MALIBUTABLE/main_gjn994",
-    format: "jpg",
-    version: 1637731773,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T05:29:33Z",
-    bytes: 165891,
-    width: 1100,
-    height: 1650,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637731773/mainSite/furniture/MALIBUTABLE/main_gjn994.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637731773/mainSite/furniture/MALIBUTABLE/main_gjn994.jpg",
-    tags: [
-      "MAIN"
-    ],
-    key: "MALIBUTABLE",
-    label: "MALIBU TABLE"
-  },
-  {
-    asset_id: "cd9582ad68cf56106d298b920eb3da59",
-    public_id: "mainSite/furniture/POOFCHAIR/main_gghutm",
-    format: "jpg",
-    version: 1637731774,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T05:29:34Z",
-    bytes: 140403,
-    width: 1100,
-    height: 1130,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637731774/mainSite/furniture/POOFCHAIR/main_gghutm.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637731774/mainSite/furniture/POOFCHAIR/main_gghutm.jpg",
-    tags: [
-      "MAIN"
-    ],
-    key: "POOFCHAIR",
-    label: "POOF CHAIR"
-  },
-  {
-    asset_id: "cd17e71d323c462b14bf30d8fe0e37a5",
-    public_id: "mainSite/furniture/PROMISETABLE/MAINPROMISETABLE50_osusnx",
-    format: "jpg",
-    version: 1637731774,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T05:29:34Z",
-    bytes: 119930,
-    width: 1100,
-    height: 731,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637731774/mainSite/furniture/PROMISETABLE/MAINPROMISETABLE50_osusnx.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637731774/mainSite/furniture/PROMISETABLE/MAINPROMISETABLE50_osusnx.jpg",
-    tags: [
-      "MAIN"
-    ],
-    key: "PROMISETABLE",
-    label: "PROMISE TABLE"
-  },
-  {
-    asset_id: "1a86e4fc260852b86ac52480c286a626",
-    public_id: "mainSite/furniture/PUZZLETABLE/main_kzxjuq",
-    format: "jpg",
-    version: 1637731781,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T05:29:41Z",
-    bytes: 40533,
-    width: 1100,
-    height: 788,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637731781/mainSite/furniture/PUZZLETABLE/main_kzxjuq.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637731781/mainSite/furniture/PUZZLETABLE/main_kzxjuq.jpg",
-    tags: [
-      "MAIN"
-    ],
-    key: "PUZZLETABLE",
-    label: "PUZZLE TABLE"
-  },
-  {
-    asset_id: "6a6bcc45b34b2750e125cfbc8cbd5ebe",
-    public_id: "mainSite/furniture/TIMEGGTABLE/main_jen5yx",
-    format: "jpg",
-    version: 1637731783,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T05:29:43Z",
-    bytes: 101915,
-    width: 1100,
-    height: 734,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637731783/mainSite/furniture/TIMEGGTABLE/main_jen5yx.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637731783/mainSite/furniture/TIMEGGTABLE/main_jen5yx.jpg",
-    tags: [
-      "MAIN"
-    ],
-    key: "TIMEGGTABLE",
-    label: "TIM EGG TABLE"
-  }
-];
-var sculpture = [
-  {
-    asset_id: "e7d7c2ceb208aa56384cc8885d0f76ac",
-    public_id: "mainSite/sculptures/compressed/01_SPIRIT/cplubskdtrql2we5clof",
-    format: "jpg",
-    version: 1637741392,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T08:09:52Z",
-    bytes: 65745,
-    width: 1100,
-    height: 1100,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637741392/mainSite/sculptures/compressed/01_SPIRIT/cplubskdtrql2we5clof.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637741392/mainSite/sculptures/compressed/01_SPIRIT/cplubskdtrql2we5clof.jpg",
-    tags: [
-      "MAIN"
-    ],
-    key: "01_SPIRIT",
-    label: "SPIRIT"
-  },
-  {
-    asset_id: "52cc788a24d536b51e8c4e6b777ca8f9",
-    public_id: "mainSite/sculptures/compressed/02_QUARTET/uf7uk3lvmet9wkiryjru",
-    format: "jpg",
-    version: 1637741396,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T08:09:56Z",
-    bytes: 116824,
-    width: 1100,
-    height: 1650,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637741396/mainSite/sculptures/compressed/02_QUARTET/uf7uk3lvmet9wkiryjru.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637741396/mainSite/sculptures/compressed/02_QUARTET/uf7uk3lvmet9wkiryjru.jpg",
-    tags: [
-      "MAIN"
-    ],
-    key: "02_QUARTET",
-    label: "QUARTET"
-  },
-  {
-    asset_id: "ebbb9f24e2c17103eee08fd19232dd83",
-    public_id: "mainSite/sculptures/compressed/03_MARLEYONTHEROCKS/fogq8kzpjjn0hq7e8erv",
-    format: "jpg",
-    version: 1637741408,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T08:10:08Z",
-    bytes: 67262,
-    width: 1100,
-    height: 1134,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637741408/mainSite/sculptures/compressed/03_MARLEYONTHEROCKS/fogq8kzpjjn0hq7e8erv.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637741408/mainSite/sculptures/compressed/03_MARLEYONTHEROCKS/fogq8kzpjjn0hq7e8erv.jpg",
-    tags: [
-      "MAIN"
-    ],
-    key: "03_MARLEYONTHEROCKS",
-    label: "MARLEY ON THE ROCKS"
-  },
-  {
-    asset_id: "f76af4f8ff4a4c4d39f7d6297f6cc265",
-    public_id: "mainSite/sculptures/compressed/04_MARLEY/nwuewf3596nizlcdlcza",
-    format: "jpg",
-    version: 1637741416,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T08:10:16Z",
-    bytes: 66368,
-    width: 1100,
-    height: 1134,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637741416/mainSite/sculptures/compressed/04_MARLEY/nwuewf3596nizlcdlcza.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637741416/mainSite/sculptures/compressed/04_MARLEY/nwuewf3596nizlcdlcza.jpg",
-    tags: [
-      "MAIN"
-    ],
-    key: "04_MARLEY",
-    label: "MARLEY"
-  },
-  {
-    asset_id: "9d2d593cf1e904faf22b8f3f7cdc9d50",
-    public_id: "mainSite/sculptures/compressed/05_LORETTA/bo9y5gq5xffhhelvqstz",
-    format: "jpg",
-    version: 1637741425,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T08:10:25Z",
-    bytes: 42600,
-    width: 1100,
-    height: 1134,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637741425/mainSite/sculptures/compressed/05_LORETTA/bo9y5gq5xffhhelvqstz.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637741425/mainSite/sculptures/compressed/05_LORETTA/bo9y5gq5xffhhelvqstz.jpg",
-    tags: [
-      "MAIN"
-    ],
-    key: "05_LORETTA",
-    label: "LORETTA"
-  },
-  {
-    asset_id: "15f309aaef3cf351f79bedc7e2ee3c1c",
-    public_id: "mainSite/sculptures/compressed/06_JOB/nskpwhvagyruzxkecv02",
-    format: "jpg",
-    version: 1637741428,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T08:10:28Z",
-    bytes: 12861,
-    width: 500,
-    height: 332,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637741428/mainSite/sculptures/compressed/06_JOB/nskpwhvagyruzxkecv02.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637741428/mainSite/sculptures/compressed/06_JOB/nskpwhvagyruzxkecv02.jpg",
-    tags: [
-      "MAIN"
-    ],
-    key: "06_JOB",
-    label: "JOB"
-  },
-  {
-    asset_id: "b3747456ea00462dd3250bc74046d858",
-    public_id: "mainSite/sculptures/compressed/07_GENESISHANGINGOUT/vq7otaizqxgzgxadoast",
-    format: "jpg",
-    version: 1637741437,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T08:10:37Z",
-    bytes: 30461,
-    width: 1100,
-    height: 1134,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637741437/mainSite/sculptures/compressed/07_GENESISHANGINGOUT/vq7otaizqxgzgxadoast.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637741437/mainSite/sculptures/compressed/07_GENESISHANGINGOUT/vq7otaizqxgzgxadoast.jpg",
-    tags: [
-      "MAIN"
-    ],
-    key: "07_GENESISHANGINGOUT",
-    label: "GENESIS HANGING OUT"
-  },
-  {
-    asset_id: "bd1a09002d37d13ab138eeb996820e14",
-    public_id: "mainSite/sculptures/compressed/08_GENESIS/ioeydv4hul0jjpzrjjln",
-    format: "jpg",
-    version: 1637741439,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T08:10:39Z",
-    bytes: 50218,
-    width: 1100,
-    height: 1134,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637741439/mainSite/sculptures/compressed/08_GENESIS/ioeydv4hul0jjpzrjjln.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637741439/mainSite/sculptures/compressed/08_GENESIS/ioeydv4hul0jjpzrjjln.jpg",
-    tags: [
-      "MAIN"
-    ],
-    key: "08_GENESIS",
-    label: "GENESIS"
-  },
-  {
-    asset_id: "89f0dd42de7b605a7c9d562af5d9c365",
-    public_id: "mainSite/sculptures/compressed/09_DUMDUMSERVER/kyun9bupcphhgnaesuva",
-    format: "jpg",
-    version: 1637741452,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T08:10:52Z",
-    bytes: 51719,
-    width: 1100,
-    height: 1134,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637741452/mainSite/sculptures/compressed/09_DUMDUMSERVER/kyun9bupcphhgnaesuva.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637741452/mainSite/sculptures/compressed/09_DUMDUMSERVER/kyun9bupcphhgnaesuva.jpg",
-    tags: [
-      "MAIN"
-    ],
-    key: "09_DUMDUMSERVER",
-    label: "DUMDUM SERVER"
-  },
-  {
-    asset_id: "cd5284ff6a3ba3a8e262c9bd1f275554",
-    public_id: "mainSite/sculptures/compressed/10_DUMDUMSABA/qgtsgtwqk2k01lfhzvjm",
-    format: "jpg",
-    version: 1637741456,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T08:10:56Z",
-    bytes: 33332,
-    width: 640,
-    height: 798,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637741456/mainSite/sculptures/compressed/10_DUMDUMSABA/qgtsgtwqk2k01lfhzvjm.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637741456/mainSite/sculptures/compressed/10_DUMDUMSABA/qgtsgtwqk2k01lfhzvjm.jpg",
-    tags: [
-      "MAIN"
-    ],
-    key: "10_DUMDUMSABA",
-    label: "DUMDUM SABA"
-  },
-  {
-    asset_id: "3b5317225d807bff7d07227d684b29cc",
-    public_id: "mainSite/sculptures/compressed/11_DUMDUMROMEO/fa8zhdldokpptwnuydfs",
-    format: "jpg",
-    version: 1637741458,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T08:10:58Z",
-    bytes: 33804,
-    width: 640,
-    height: 798,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637741458/mainSite/sculptures/compressed/11_DUMDUMROMEO/fa8zhdldokpptwnuydfs.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637741458/mainSite/sculptures/compressed/11_DUMDUMROMEO/fa8zhdldokpptwnuydfs.jpg",
-    tags: [
-      "MAIN"
-    ],
-    key: "11_DUMDUMROMEO",
-    label: "DUMDUM ROMEO"
-  },
-  {
-    asset_id: "997a54f9a6ca3c8fd64b681ffb5ce38d",
-    public_id: "mainSite/sculptures/compressed/12_DUMDUMMESSENGER/ocw84gltdqrcrvsluxbo",
-    format: "jpg",
-    version: 1637741461,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T08:11:01Z",
-    bytes: 34213,
-    width: 640,
-    height: 798,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637741461/mainSite/sculptures/compressed/12_DUMDUMMESSENGER/ocw84gltdqrcrvsluxbo.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637741461/mainSite/sculptures/compressed/12_DUMDUMMESSENGER/ocw84gltdqrcrvsluxbo.jpg",
-    tags: [
-      "MAIN"
-    ],
-    key: "12_DUMDUMMESSENGER",
-    label: "DUMDUM MESSENGER"
-  },
-  {
-    asset_id: "176a1b7a9c20420c19daf11f48a4d5da",
-    public_id: "mainSite/sculptures/compressed/13_DUMDUMLOVER/f3hncmithpcczqe6ccuv",
-    format: "jpg",
-    version: 1637741464,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T08:11:04Z",
-    bytes: 30621,
-    width: 640,
-    height: 798,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637741464/mainSite/sculptures/compressed/13_DUMDUMLOVER/f3hncmithpcczqe6ccuv.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637741464/mainSite/sculptures/compressed/13_DUMDUMLOVER/f3hncmithpcczqe6ccuv.jpg",
-    tags: [
-      "MAIN"
-    ],
-    key: "13_DUMDUMLOVER",
-    label: "DUMDUM LOVER"
-  },
-  {
-    asset_id: "80b990ae923e313d71d6ab016071fe9f",
-    public_id: "mainSite/sculptures/compressed/14_DUMDUMCANDLESPHERE/sbsoqvlz5ruguqjw4u8i",
-    format: "jpg",
-    version: 1637741468,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T08:11:08Z",
-    bytes: 47385,
-    width: 1100,
-    height: 1134,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637741468/mainSite/sculptures/compressed/14_DUMDUMCANDLESPHERE/sbsoqvlz5ruguqjw4u8i.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637741468/mainSite/sculptures/compressed/14_DUMDUMCANDLESPHERE/sbsoqvlz5ruguqjw4u8i.jpg",
-    tags: [
-      "MAIN"
-    ],
-    key: "14_DUMDUMCANDLESPHERE",
-    label: "DUMDUM CANDLE SPHERE"
-  },
-  {
-    asset_id: "fae2d82b166905ddc9dfcd7cff93fe45",
-    public_id: "mainSite/sculptures/compressed/15_CANDLESPHERE/bmql24mpbeoaa6uuexru",
-    format: "jpg",
-    version: 1637741476,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T08:11:16Z",
-    bytes: 24989,
-    width: 1100,
-    height: 816,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637741476/mainSite/sculptures/compressed/15_CANDLESPHERE/bmql24mpbeoaa6uuexru.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637741476/mainSite/sculptures/compressed/15_CANDLESPHERE/bmql24mpbeoaa6uuexru.jpg",
-    tags: [
-      "MAIN"
-    ],
-    key: "15_CANDLESPHERE",
-    label: "CANDLE SPHERE"
-  },
-  {
-    asset_id: "5179b2dd40a873bf94f1ccad0ad9cff7",
-    public_id: "mainSite/sculptures/compressed/16_BOTTLECORK/qgaul6weedfzrjjn07nh",
-    format: "jpg",
-    version: 1637741477,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T08:11:17Z",
-    bytes: 95194,
-    width: 1100,
-    height: 823,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637741477/mainSite/sculptures/compressed/16_BOTTLECORK/qgaul6weedfzrjjn07nh.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637741477/mainSite/sculptures/compressed/16_BOTTLECORK/qgaul6weedfzrjjn07nh.jpg",
-    tags: [
-      "MAIN"
-    ],
-    key: "16_BOTTLECORK",
-    label: "BOTTLE CORK"
-  },
-  {
-    asset_id: "c344c447c057ae5b403d87b8f44996c7",
-    public_id: "mainSite/sculptures/compressed/17_ATLAS/zgata4mzbsvw0swkbfcm",
-    format: "jpg",
-    version: 1637741484,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T08:11:24Z",
-    bytes: 76918,
-    width: 1100,
-    height: 1650,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637741484/mainSite/sculptures/compressed/17_ATLAS/zgata4mzbsvw0swkbfcm.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637741484/mainSite/sculptures/compressed/17_ATLAS/zgata4mzbsvw0swkbfcm.jpg",
-    tags: [
-      "MAIN"
-    ],
-    key: "17_ATLAS",
-    label: "ATLAS"
-  },
-  {
-    asset_id: "b2b13fdcc470f2ad64e19a1c142fc1d4",
-    public_id: "mainSite/sculptures/compressed/18_ARCHIMEDES/fmwzivvpa5cjwpfdjjof",
-    format: "jpg",
-    version: 1637741488,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T08:11:28Z",
-    bytes: 44513,
-    width: 1100,
-    height: 1134,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637741488/mainSite/sculptures/compressed/18_ARCHIMEDES/fmwzivvpa5cjwpfdjjof.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637741488/mainSite/sculptures/compressed/18_ARCHIMEDES/fmwzivvpa5cjwpfdjjof.jpg",
-    tags: [
-      "MAIN"
-    ],
-    key: "18_ARCHIMEDES",
-    label: "ARCHIMEDES"
-  },
-  {
-    asset_id: "06d1dd323e9aa1b5d4ccc0e76ba86101",
-    public_id: "mainSite/sculptures/compressed/19_GOLD DUMDUM/cjqfuxxfyhq9whkbei89",
-    format: "jpg",
-    version: 1637741492,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T08:11:32Z",
-    bytes: 28924,
-    width: 800,
-    height: 600,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637741492/mainSite/sculptures/compressed/19_GOLD%20DUMDUM/cjqfuxxfyhq9whkbei89.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637741492/mainSite/sculptures/compressed/19_GOLD%20DUMDUM/cjqfuxxfyhq9whkbei89.jpg",
-    tags: [
-      "MAIN"
-    ],
-    key: "19_GOLD DUMDUM",
-    label: "GOLD DUMDUM"
-  },
-  {
-    asset_id: "7cf7db3a7d735e6f44c69536d75f22a6",
-    public_id: "mainSite/sculptures/compressed/20_THIRTY/yrt1ndj8z9alqqm0dgyh",
-    format: "jpg",
-    version: 1637741493,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T08:11:33Z",
-    bytes: 193735,
-    width: 1100,
-    height: 1650,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637741493/mainSite/sculptures/compressed/20_THIRTY/yrt1ndj8z9alqqm0dgyh.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637741493/mainSite/sculptures/compressed/20_THIRTY/yrt1ndj8z9alqqm0dgyh.jpg",
-    tags: [
-      "MAIN"
-    ],
-    key: "20_THIRTY",
-    label: "THIRTY"
-  },
-  {
-    asset_id: "44f4420c5e9892d7aa19407a66c31e33",
-    public_id: "mainSite/sculptures/compressed/21_BUTTERFLY EFFECT/p2qs1ic461ll3tlfokiq",
-    format: "jpg",
-    version: 1637741501,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T08:11:41Z",
-    bytes: 92378,
-    width: 1100,
-    height: 593,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637741501/mainSite/sculptures/compressed/21_BUTTERFLY%20EFFECT/p2qs1ic461ll3tlfokiq.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637741501/mainSite/sculptures/compressed/21_BUTTERFLY%20EFFECT/p2qs1ic461ll3tlfokiq.jpg",
-    tags: [
-      "MAIN"
-    ],
-    key: "21_BUTTERFLY EFFECT",
-    label: "BUTTERFLY EFFECT"
-  },
-  {
-    asset_id: "03a80ff162a516aa738d9f8d01d4d987",
-    public_id: "mainSite/sculptures/compressed/22_FIREPLACE (SISTERS)/tb1fbrlqutl0mynht8tf",
-    format: "jpg",
-    version: 1637741503,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T08:11:43Z",
-    bytes: 86001,
-    width: 800,
-    height: 1200,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637741503/mainSite/sculptures/compressed/22_FIREPLACE%20%28SISTERS%29/tb1fbrlqutl0mynht8tf.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637741503/mainSite/sculptures/compressed/22_FIREPLACE%20%28SISTERS%29/tb1fbrlqutl0mynht8tf.jpg",
-    tags: [
-      "MAIN"
-    ],
-    key: "22_FIREPLACE (SISTERS)",
-    label: "FIREPLACE SISTERS"
-  },
-  {
-    asset_id: "e74d84956f4b371f877ea2b9560b83d2",
-    public_id: "mainSite/sculptures/compressed/23_NATURAL CURRENT/rytayzq9iotfwdjhqcrv",
-    format: "jpg",
-    version: 1637741504,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T08:11:44Z",
-    bytes: 77921,
-    width: 714,
-    height: 1200,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637741504/mainSite/sculptures/compressed/23_NATURAL%20CURRENT/rytayzq9iotfwdjhqcrv.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637741504/mainSite/sculptures/compressed/23_NATURAL%20CURRENT/rytayzq9iotfwdjhqcrv.jpg",
-    tags: [
-      "MAIN"
-    ],
-    key: "23_NATURAL CURRENT",
-    label: "NATURAL CURRENT"
-  },
-  {
-    asset_id: "42cdcdf16a2a6283e5557e56fdc471c5",
-    public_id: "mainSite/sculptures/compressed/24_MAJOR FIREPLACE/vkd4kgdibvkrsub4oyxn",
-    format: "jpg",
-    version: 1637741505,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T08:11:45Z",
-    bytes: 78025,
-    width: 1100,
-    height: 593,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637741505/mainSite/sculptures/compressed/24_MAJOR%20FIREPLACE/vkd4kgdibvkrsub4oyxn.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637741505/mainSite/sculptures/compressed/24_MAJOR%20FIREPLACE/vkd4kgdibvkrsub4oyxn.jpg",
-    tags: [
-      "MAIN"
-    ],
-    key: "24_MAJOR FIREPLACE",
-    label: "MAJOR FIREPLACE"
-  },
-  {
-    asset_id: "40972264ab1d42dc6549a3c8c7f78732",
-    public_id: "mainSite/sculptures/compressed/25_FILM/iqsccrow1mknb8tra47h",
-    format: "jpg",
-    version: 1637741506,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T08:11:46Z",
-    bytes: 209349,
-    width: 800,
-    height: 1200,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637741506/mainSite/sculptures/compressed/25_FILM/iqsccrow1mknb8tra47h.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637741506/mainSite/sculptures/compressed/25_FILM/iqsccrow1mknb8tra47h.jpg",
-    tags: [
-      "MAIN"
-    ],
-    key: "25_FILM",
-    label: "FILM"
-  },
-  {
-    asset_id: "4eb477d39d6193ccbc4d6fdc8b8c241d",
-    public_id: "mainSite/sculptures/compressed/26_SHELLBEE/nkopzrbvxoh90y7ivkd0",
-    format: "jpg",
-    version: 1637741509,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T08:11:49Z",
-    bytes: 113734,
-    width: 640,
-    height: 798,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637741509/mainSite/sculptures/compressed/26_SHELLBEE/nkopzrbvxoh90y7ivkd0.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637741509/mainSite/sculptures/compressed/26_SHELLBEE/nkopzrbvxoh90y7ivkd0.jpg",
-    tags: [
-      "MAIN"
-    ],
-    key: "26_SHELLBEE",
-    label: "SHELLBEE"
-  },
-  {
-    asset_id: "4e963337dc070eb0b0a5a352a207f54f",
-    public_id: "mainSite/sculptures/compressed/NOT USED_GREENCHAIR/rrpq29iyzbnsdrlnuwig",
-    format: "jpg",
-    version: 1637741533,
-    resource_type: "image",
-    type: "upload",
-    created_at: "2021-11-24T08:12:13Z",
-    bytes: 124644,
-    width: 1100,
-    height: 1653,
-    url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637741533/mainSite/sculptures/compressed/NOT%20USED_GREENCHAIR/rrpq29iyzbnsdrlnuwig.jpg",
-    secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637741533/mainSite/sculptures/compressed/NOT%20USED_GREENCHAIR/rrpq29iyzbnsdrlnuwig.jpg",
-    tags: [
-      "MAIN"
-    ],
-    key: "NOT USED_GREENCHAIR",
-    label: "GREEN CHAIR"
-  }
-];
-const layout$1 = {
-  art: {
-    thumbs: art
-  },
-  furniture: {
-    thumbs: furniture
-  },
-  sculptures: {
-    thumbs: sculpture
-  }
-};
 var MasonryImage_svelte_svelte_type_style_lang = "";
-const css$c = {
-  code: ".hover-element-container.svelte-11kagnj.svelte-11kagnj{font-size:2em;text-transform:uppercase;font-family:unisansB;color:#68208e}@media screen and (min-width: 430px){.hover-element-container.svelte-11kagnj.svelte-11kagnj{position:absolute;top:0;bottom:0;left:0;right:0;z-index:2;background-color:rgba(0, 0, 0, 0.5);opacity:0;display:flex;justify-content:center;align-items:center;color:white;font-size:2em}.hover-element-container.svelte-11kagnj.svelte-11kagnj:hover{opacity:1}}.image-container.svelte-11kagnj.svelte-11kagnj{overflow:hidden;width:100%;position:relative}.image-container.svelte-11kagnj .image.svelte-11kagnj{width:100%;height:100%;object-fit:cover;object-position:center center}.item-container.svelte-11kagnj.svelte-11kagnj{width:100%;position:relative;height:100%}@media screen and (max-width: 430px){.item-container.svelte-11kagnj.svelte-11kagnj{display:flex;flex-direction:column-reverse}}",
-  map: null
-};
-const MasonryImage = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  let $$unsubscribe_marqueeContentStore;
-  $$unsubscribe_marqueeContentStore = subscribe(marqueeContentStore, (value) => value);
-  let imageEle;
-  let { img } = $$props;
-  if ($$props.img === void 0 && $$bindings.img && img !== void 0)
-    $$bindings.img(img);
-  $$result.css.add(css$c);
-  $$unsubscribe_marqueeContentStore();
-  return `<div class="${"item-container svelte-11kagnj"}"${add_attribute("this", imageEle, 0)}>${img.label ? `<div class="${"hover-element-container svelte-11kagnj"}"><h5 class="${"hover-label"}">${escape(img.label)}</h5></div>` : ``}
-  <div class="${"image-container svelte-11kagnj"}"><img${add_attribute("width", img.width, 0)}${add_attribute("height", img.height, 0)} loading="${"lazy"}" class="${"image svelte-11kagnj"}"${add_attribute("src", img.url, 0)} alt="${""}"></div>
-</div>`;
-});
 var Masonry_svelte_svelte_type_style_lang = "";
 const css$b = {
   code: ".container.svelte-4szmm5.svelte-4szmm5{width:100%}.item-container.svelte-4szmm5.svelte-4szmm5{cursor:pointer}@media screen and (max-width: 900px){.item-container.svelte-4szmm5.svelte-4szmm5{flex:20%}}@media screen and (max-width: 600px){.item-container.svelte-4szmm5.svelte-4szmm5{flex:33.3333333333%}}@media screen and (max-width: 480px){.item-container.svelte-4szmm5.svelte-4szmm5{flex:100%}}#masonry.svelte-4szmm5.svelte-4szmm5{display:flex;width:100%;flex-flow:column wrap}.masonry-panel.svelte-4szmm5.svelte-4szmm5{flex:2 0 auto;padding:5px;min-width:100px}.masonry-content.svelte-4szmm5.svelte-4szmm5{text-align:center;display:flex;justify-content:center;align-items:center;font-size:20px;max-width:100%;height:auto;border-radius:5px;overflow:hidden;background-color:rgba(255, 255, 255, 0.2)}.art.svelte-4szmm5 .masonry-panel.svelte-4szmm5,.sculptures.svelte-4szmm5 .masonry-panel.svelte-4szmm5{width:25%}@media screen and (min-width: 769px) and (max-width: 992px){.art.svelte-4szmm5 .masonry-panel.svelte-4szmm5,.sculptures.svelte-4szmm5 .masonry-panel.svelte-4szmm5{width:33%}}@media screen and (min-width: 430px) and (max-width: 768px){.art.svelte-4szmm5 .masonry-panel.svelte-4szmm5,.sculptures.svelte-4szmm5 .masonry-panel.svelte-4szmm5{width:50%}}@media screen and (max-width: 430px){.art.svelte-4szmm5 .masonry-panel.svelte-4szmm5,.sculptures.svelte-4szmm5 .masonry-panel.svelte-4szmm5{width:100%}}.furniture.svelte-4szmm5 .masonry-panel.svelte-4szmm5{width:33.3333333333%}@media screen and (min-width: 769px) and (max-width: 992px){.furniture.svelte-4szmm5 .masonry-panel.svelte-4szmm5{width:33%}}@media screen and (min-width: 430px) and (max-width: 768px){.furniture.svelte-4szmm5 .masonry-panel.svelte-4szmm5{width:50%}}@media screen and (max-width: 430px){.furniture.svelte-4szmm5 .masonry-panel.svelte-4szmm5{width:100%}}",
@@ -77160,9 +75701,45 @@ const Masonry = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let $marqueeContentStore, $$unsubscribe_marqueeContentStore;
   $$unsubscribe_marqueeContentStore = subscribe(marqueeContentStore, (value) => $marqueeContentStore = value);
   let { shouldLoadImages: shouldLoadImages2 } = $$props;
-  let images = layout$1[$marqueeContentStore.content];
   let container;
-  function setlayout() {
+  let height;
+  let orderStyle = [];
+  async function runLayout() {
+  }
+  async function setlayout() {
+    const masonrySettings = {
+      sm: { width: 430, columns: 1 },
+      md: { width: 768, columns: 2 },
+      lg: { width: 992, columns: 3 },
+      xl: { width: 1500, columns: 4 }
+    };
+    const window_width = window.innerWidth || document.documentElement.clientHeight || document.body.clientHeight;
+    if (window_width <= masonrySettings.sm.width) {
+      masonary(masonrySettings.sm.columns);
+    } else if (window_width <= masonrySettings.md.width) {
+      masonary(masonrySettings.md.columns);
+    } else if (window_width <= masonrySettings.lg.width) {
+      masonary(masonrySettings.lg.columns);
+    } else {
+      masonary(masonrySettings.xl.columns);
+    }
+  }
+  async function masonary(col) {
+    document.getElementById("masonry");
+    const panels = document.querySelectorAll(".masonry-panel");
+    const COL_COUNT = col;
+    let col_heights = [];
+    for (let j = 0; j <= COL_COUNT; j++) {
+      col_heights.push(0);
+    }
+    for (let i = 0; i < panels.length; i++) {
+      let order = (i + 1) % COL_COUNT || COL_COUNT;
+      orderStyle = [...orderStyle, order];
+      let height2 = panels[i].offsetHeight;
+      col_heights[order] += parseFloat(height2);
+    }
+    const highest = Math.max.apply(Math, col_heights);
+    height = highest + 10 + "px";
   }
   onDestroy(() => {
     window.removeEventListener("resize", setlayout);
@@ -77170,10 +75747,11 @@ const Masonry = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   if ($$props.shouldLoadImages === void 0 && $$bindings.shouldLoadImages && shouldLoadImages2 !== void 0)
     $$bindings.shouldLoadImages(shouldLoadImages2);
   $$result.css.add(css$b);
-  images = layout$1[$marqueeContentStore.content];
+  {
+    runLayout();
+  }
   $$unsubscribe_marqueeContentStore();
-  return `<div class="${"container svelte-4szmm5"}"${add_attribute("this", container, 0)}><div id="${"masonry"}" class="${"flex-container " + escape($marqueeContentStore.content) + " svelte-4szmm5"}">${images ? `${each(layout$1[$marqueeContentStore.content].thumbs, (img) => `<div class="${"item-container masonry-panel svelte-4szmm5"}">${validate_component(MasonryImage, "MasonryImage").$$render($$result, { img, images, shouldLoadImages: shouldLoadImages2 }, {}, {})}
-        </div>`)}` : ``}</div>
+  return `<div class="${"container " + escape($marqueeContentStore.content) + " svelte-4szmm5"}"${add_attribute("this", container, 0)}><div style="${"max-height:" + escape(height) + ";"}" id="${"masonry"}" class="${"flex-container " + escape($marqueeContentStore.content) + " svelte-4szmm5"}">${``}</div>
 </div>`;
 });
 var arrow = "/_app/assets/cardArrow-ce1a5325.png";

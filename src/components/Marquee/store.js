@@ -121,7 +121,6 @@ const marqueeContent = () => {
 
         s.animation.eventCallback("onReverseComplete", () => {
           update((s) => {
-            console.log("reversed");
             s.content = null;
             s.active = false;
 
@@ -129,7 +128,6 @@ const marqueeContent = () => {
           });
         });
         s.animation.eventCallback("onComplete", () => {
-          console.log("complete");
           update((s) => {
             s.shouldLoadImages = true;
             return s;
