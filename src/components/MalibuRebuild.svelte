@@ -59,7 +59,8 @@
     font-size: 2em;
     display: flex;
     flex-direction: column;
-
+    font-family: "Roboto Mono", monospace;
+    font-weight: 400;
     max-width: 900px;
 
     p {

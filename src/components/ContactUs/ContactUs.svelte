@@ -81,8 +81,7 @@
             id="message-input"
             class="contact-textarea contact-input"
             type="text"
-            name="message"
-          />
+            name="message"></textarea>
         </div>
       </div>
       <div class="contact-field">
@@ -113,6 +112,7 @@
   }
   .misc-info-wrapper {
     display: flex;
+    font-family: "Roboto Mono", monospace;
     flex-direction: column;
   }
   .content-container {
@@ -134,8 +134,7 @@
     }
   }
   .info-container {
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-      Helvetica Neue, Ubuntu, sans-serif;
+
     text-align: center;
     background-color: white;
     box-shadow: rgba(60, 66, 87, 0.12) 0px 7px 14px 0px,
@@ -195,8 +194,10 @@
   }
   label {
     font-size: 14px;
-    font-weight: 600;
+
     display: block;
+    font-family: "Roboto Mono", monospace;
+    font-weight: 400;
   }
   .main-misc-container {
     @include globalMixins.flexGap(0.4, v);

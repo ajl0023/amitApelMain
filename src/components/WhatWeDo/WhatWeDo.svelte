@@ -37,7 +37,8 @@
     font-size: 1.4em;
     color: #68208e;
     text-align: center;
-    font-weight: 700;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 400;
     .video-container {
       margin: 1rem 0rem;
       .video {

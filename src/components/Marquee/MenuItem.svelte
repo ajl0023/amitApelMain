@@ -19,31 +19,32 @@
 </script>
 
 <div
-  on:click={() => {
+  on:click="{() => {
+    console.log(title);
     marqueeContentStore.setPageAnimation(title);
     // marqueeContentStore.open();
-  }}
-  bind:this={menuItem}
+  }}"
+  bind:this="{menuItem}"
   class="menu__item"
 >
   <div
-    bind:this={menuItemA}
-    on:mouseenter={(e) => {
+    bind:this="{menuItemA}"
+    on:mouseenter="{(e) => {
       store.mouseEnter(e);
-    }}
-    on:mouseleave={(e) => {
+    }}"
+    on:mouseleave="{(e) => {
       store.mouseLeave(e);
-    }}
+    }}"
     class="menu__item-link"
   >
     {title}
   </div>
-  <div bind:this={marquee} class="marquee">
-    <div bind:this={marqueeInner} class="marquee__inner-wrap">
+  <div bind:this="{marquee}" class="marquee">
+    <div bind:this="{marqueeInner}" class="marquee__inner-wrap">
       <div class="marquee__inner" aria-hidden="true">
         {#each labels as label}
           <span>{label}</span>
-          <div class="marquee__img" />
+          <div class="marquee__img"></div>
         {/each}
       </div>
     </div>

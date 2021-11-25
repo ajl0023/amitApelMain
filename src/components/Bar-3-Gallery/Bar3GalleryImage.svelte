@@ -6,14 +6,20 @@
   export let img;
 
   let imageEle;
+
   $: {
-    if ($marqueeContentStore.shouldLoadImages && img) {
-      gsap.to(imageEle, {
-        opacity: 1,
-      });
+    if (img) {
+      if ($marqueeContentStore.shouldLoadImages) {
+        gsap.to(imageEle, {
+          opacity: 1,
+        });
+      } else if (!$marqueeContentStore.shouldLoadImages) {
+        gsap.to(imageEle, {
+          opacity: 0,
+        });
+      }
     }
   }
-  console.log(imageEle);
 </script>
 
 {#if img.url.length === 0}
@@ -44,7 +50,7 @@
   .grid-item-container {
     display: flex;
     flex: calc(100% / 5);
-    opacity: 1;
+    opacity: 0;
     flex-direction: column;
 
     @media screen and (max-width: 975px) {
@@ -58,9 +64,10 @@
       text-align: left;
       font-size: 1em;
       line-height: 0.8em;
-      font-weight: 900;
+
       letter-spacing: 3px;
-      font-family: unisansB;
+      font-family: "Roboto Mono", monospace;
+      font-weight: 600;
       padding: 1.2rem;
       color: #68208e;
       text-transform: uppercase;

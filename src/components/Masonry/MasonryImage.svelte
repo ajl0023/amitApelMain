@@ -6,10 +6,16 @@
 
   export let img;
   $: {
-    if ($marqueeContentStore.shouldLoadImages && img) {
-      gsap.to(imageEle, {
-        opacity: 1,
-      });
+    if (img) {
+      if ($marqueeContentStore.shouldLoadImages) {
+        gsap.to(imageEle, {
+          opacity: 1,
+        });
+      } else if (!$marqueeContentStore.shouldLoadImages) {
+        gsap.to(imageEle, {
+          opacity: 0,
+        });
+      }
     }
   }
 </script>

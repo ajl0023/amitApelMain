@@ -17,8 +17,9 @@
   let ele;
 
   let exited;
-  let scaleHover = tweened(1, {
-    duration: 150,
+  let scaleHover = spring(1, {
+    stiffness: 0.1,
+    damping: 0.5,
   });
   const rotateZ = tweened(rotate, {
     duration: 150,
@@ -77,8 +78,6 @@
     new DragGesture(
       ele,
       ({ event, tap, direction, movement, active, swipe }) => {
-        event.preventDefault();
-
         if (!shouldReturn) {
           if (!exited) {
             springCard.set(movement[0]);
@@ -113,6 +112,7 @@
   });
 
   derivedS.subscribe((v) => {
+    console.log(v.scale);
     gsap.set(ele, {
       x: v.x,
       z: v.z,
@@ -123,35 +123,35 @@
 
 <!-- svelte-ignore a11y-mouse-events-have-key-events -->
 <div
-  on:mouseenter={() => {
+  on:mouseover="{() => {
     if (!exited && !shouldReturn) {
-      scaleHover.set(1.1);
+      scaleHover.set(1.15);
     }
-  }}
-  on:mouseout={() => {
+  }}"
+  on:mouseout="{() => {
     scaleHover.set(1);
-  }}
-  bind:this={ele}
+  }}"
+  bind:this="{ele}"
   draggable="false"
   class="card-container meet-the-team-card"
 >
   <div draggable="false" class="image-container front-container">
     <img
       draggable="false"
-      on:dragstart={(e) => {
+      on:dragstart="{(e) => {
         e.preventDefault();
-      }}
-      src={image["front"]}
+      }}"
+      src="{image['front']}"
       alt=""
     />
   </div>
   <div draggable="false" class="image-container back-container">
     <img
-      on:dragstart={(e) => {
+      on:dragstart="{(e) => {
         e.preventDefault();
-      }}
+      }}"
       draggable="false"
-      src={image["back"]}
+      src="{image['back']}"
       alt=""
     />
   </div>
@@ -160,7 +160,7 @@
 <style lang="scss">
   .card-container {
     display: flex;
-
+    pointer-events: all;
     justify-content: center;
     align-items: center;
     position: absolute;
@@ -178,7 +178,6 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    z-index: 1;
   }
   .front-container {
     position: absolute;

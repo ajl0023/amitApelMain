@@ -33,6 +33,9 @@
       marqueeContentStore.setPageAnimation(currentPage);
     }
   });
+  $: {
+    console.log($marqueeContentStore.active);
+  }
 </script>
 
 <Navbar
@@ -63,11 +66,14 @@
     </div>
     <BgLogo text="{menuItems[$lgBarStore.currentIndex].category}" />
     <div class="page-transition-black"></div>
+
     <div bind:this="{container}" class="page-content-container">
-      <PageContent
-        index="{index}"
-        currNav="{pages[$marqueeContentStore.content]}"
-      />
+      {#if $marqueeContentStore.active}
+        <PageContent
+          index="{index}"
+          currNav="{pages[$marqueeContentStore.content]}"
+        />
+      {/if}
     </div>
   </div>
 
@@ -101,7 +107,7 @@
     position: absolute;
     bottom: 0;
     height: 0vh;
-    z-index: 3;
+    z-index: 25;
   }
 
   .container {

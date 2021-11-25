@@ -2,7 +2,7 @@ import { writable } from "svelte/store";
 import gsap from "gsap";
 import { dev } from "$app/env";
 import { testing } from "../../storeController";
-
+import { createEventDispatcher, tick } from "svelte";
 const marqueeContent = () => {
   let state;
   if (!testing || !dev) {
@@ -38,7 +38,9 @@ const marqueeContent = () => {
     setPageAnimation(page) {
       update((s) => {
         s.active = true;
+
         s.content = page;
+        console.log(s);
         if (!dev || !testing) {
           gsap.to(".menu-wrap", {
             y: "100vh",
@@ -55,13 +57,12 @@ const marqueeContent = () => {
     },
     close(tl) {
       update((s) => {
-        s.active = false;
+        s.shouldLoadImages = false;
+
         s.animation.reverse();
         gsap.to(".menu-wrap", {
           y: 0,
         });
-
-        s.shouldLoadImages = false;
 
         return s;
       });
@@ -118,17 +119,23 @@ const marqueeContent = () => {
             },
             "<"
           );
+        s.animation.eventCallback("onReverseStart", () => {
+          update((s) => {
+            s.shouldLoadImages = false;
 
+            return s;
+          });
+        });
         s.animation.eventCallback("onReverseComplete", () => {
           update((s) => {
-            s.content = null;
             s.active = false;
-
+            s.content = null;
             return s;
           });
         });
         s.animation.eventCallback("onComplete", () => {
           update((s) => {
+            console.log("completed");
             s.shouldLoadImages = true;
             return s;
           });

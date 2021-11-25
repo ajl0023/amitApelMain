@@ -8,39 +8,42 @@
   }
 </script>
 
-<div class="page-container"></div>
-<div class="container">
-  <div class="text-wrapper">
-    <div class="text-content-container">
-      <p class="sub-header">take a peek into our current</p>
-      <h5 class="main-header">
-        Project, <span class="property-header"
-          >{data[$marqueeContentStore.content].title}</span
-        >
-      </h5>
+{#if $marqueeContentStore.content}
+  <div class="page-container"></div>
+  <div class="container">
+    <div class="text-wrapper">
+      <div class="text-content-container">
+        <p class="sub-header">take a peek into our current</p>
+        <h5 class="main-header">
+          Project, <span class="property-header"
+            >{data[$marqueeContentStore.content].title}</span
+          >
+        </h5>
 
-      <p class="description">
-        {data[$marqueeContentStore.content].description}
-      </p>
-      <button on:click="{reDirect}" class="redirect-button">visit site</button>
+        <p class="description">
+          {data[$marqueeContentStore.content].description}
+        </p>
+        <button on:click="{reDirect}" class="redirect-button">visit site</button
+        >
+      </div>
     </div>
-  </div>
-  <div class="main-image-container">
-    <div class="sub-image-container">
-      <div class="aspect-ratio"></div>
+    <div class="main-image-container">
+      <div class="sub-image-container">
+        <div class="aspect-ratio"></div>
+        <img
+          class="main-image sub"
+          src="{data[$marqueeContentStore.content].img}"
+          alt=""
+        />
+      </div>
       <img
-        class="main-image sub"
+        class="main-image"
         src="{data[$marqueeContentStore.content].img}"
         alt=""
       />
     </div>
-    <img
-      class="main-image"
-      src="{data[$marqueeContentStore.content].img}"
-      alt=""
-    />
   </div>
-</div>
+{/if}
 
 <style lang="scss">
   .property-header {

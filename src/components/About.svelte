@@ -35,7 +35,8 @@
             <div class="glitch-image">
               <img
                 class="image"
-                src="https://res.cloudinary.com/dt4xntymn/image/upload/v1637785016/mainSite/meet%20amit%20apel/amitapel4_bf4uwx.jpg"
+                src="https://res.cloudinary.com
+                /dt4xntymn/image/upload/v1637785016/mainSite/meet%20amit%20apel/amitapel4_bf4uwx.jpg"
                 img="{img}"
                 alt=""
               />
@@ -88,12 +89,13 @@
     align-items: center;
   }
   .main-text-content {
-    font-family: "Open Sans", sans-serif;
+    font-family: "Roboto Mono", monospace;
     text-align: center;
     font-size: 1.5em;
     max-width: 1200px;
     margin-top: 1.5rem;
     width: 100%;
+    font-weight: 400;
   }
   .image {
     width: 100%;

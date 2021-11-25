@@ -28,35 +28,35 @@
   <div class="container">
     <div class="card-layout-container">
       <div class="card-outline aspect-ratio">
-        <div class="three-by-two aspect-ratio" />
-        <div bind:this={outline} class="card-outline" />
+        <div class="three-by-two aspect-ratio"></div>
+        <div bind:this="{outline}" class="card-outline"></div>
       </div>
       <div
-        on:click={() => {
+        on:click="{() => {
           cardStore.manualExit();
-        }}
+        }}"
         class="arrow-image-container"
       >
-        <img src={arrow} alt="" />
+        <img src="{arrow}" alt="" />
       </div>
-      <div class="aspect-ratio">
-        <div class="three-by-two aspect-ratio" />
-        <ul bind:this={stack} class="card-wrapper">
+      <div draggable="false" class="aspect-ratio">
+        <ul bind:this="{stack}" class="card-wrapper">
           {#each cardImages as card, i}
             <Card
-              {stack}
-              {outline}
-              {dropPosition}
-              shouldReturn={false}
-              index={i}
-              image={{
+              stack="{stack}"
+              outline="{outline}"
+              dropPosition="{dropPosition}"
+              shouldReturn="{false}"
+              index="{i}"
+              image="{{
                 front: card.front,
                 back: card.back,
-              }}
-              rotate={rotatedCards.includes(i) ? i * 2 : 0}
+              }}"
+              rotate="{rotatedCards.includes(i) ? i * 2 : 0}"
             />
           {/each}
         </ul>
+        <div class="three-by-two aspect-ratio"></div>
       </div>
     </div>
   </div>
@@ -83,11 +83,14 @@
   .aspect-ratio {
     max-width: 300px;
     width: 100%;
+    z-index: 2;
     position: relative;
+    pointer-events: none;
     .card-wrapper {
       width: 100%;
       height: 100%;
       top: 0;
+
       left: 0;
       position: absolute;
 
@@ -109,8 +112,10 @@
   }
   .arrow-image-container {
     width: 50px;
+    z-index: 1;
     margin-left: 50px;
     margin-right: 50px;
+    cursor: pointer;
     img {
       width: 100%;
       object-fit: cover;
@@ -129,7 +134,6 @@
   }
 
   .arrow-image-container {
-    z-index: 10;
     position: relative;
   }
 </style>

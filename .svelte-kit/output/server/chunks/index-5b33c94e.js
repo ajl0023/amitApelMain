@@ -1,4 +1,4 @@
-import { n as noop, s as safe_not_equal, a as subscribe, r as run_all, i as is_function, c as create_ssr_component, e as escape, b as add_attribute, v as validate_component, d as each, f as createEventDispatcher, m as missing_component, o as onDestroy, g as assign, h as now, l as loop, j as identity } from "./app-7e6589de.js";
+import { n as noop, s as safe_not_equal, a as subscribe, r as run_all, i as is_function, c as create_ssr_component, e as escape, b as add_attribute, v as validate_component, d as each, f as createEventDispatcher, m as missing_component, o as onDestroy, g as assign, h as now, l as loop, j as identity } from "./app-1a86ed48.js";
 import gsap from "gsap";
 import "@use-gesture/vanilla";
 var global = "";
@@ -390,6 +390,7 @@ const marqueeContent = () => {
       update((s) => {
         s.active = true;
         s.content = page;
+        console.log(s);
         {
           gsap.to(".menu-wrap", {
             y: "100vh"
@@ -401,12 +402,11 @@ const marqueeContent = () => {
     },
     close(tl) {
       update((s) => {
-        s.active = false;
+        s.shouldLoadImages = false;
         s.animation.reverse();
         gsap.to(".menu-wrap", {
           y: 0
         });
-        s.shouldLoadImages = false;
         return s;
       });
     },
@@ -440,15 +440,22 @@ const marqueeContent = () => {
           ease: "power3.in",
           duration: "0.8"
         }, "<");
+        s.animation.eventCallback("onReverseStart", () => {
+          update((s2) => {
+            s2.shouldLoadImages = false;
+            return s2;
+          });
+        });
         s.animation.eventCallback("onReverseComplete", () => {
           update((s2) => {
-            s2.content = null;
             s2.active = false;
+            s2.content = null;
             return s2;
           });
         });
         s.animation.eventCallback("onComplete", () => {
           update((s2) => {
+            console.log("completed");
             s2.shouldLoadImages = true;
             return s2;
           });
@@ -72419,23 +72426,6 @@ var sculptures = {
   "03_MARLEYONTHEROCKS": {
     images: [
       {
-        asset_id: "d35b484816386f95473ec6e20ede181a",
-        public_id: "mainSite/sculptures/compressed/03_MARLEYONTHEROCKS/dmmdcfg1dhhb0spegrlu",
-        format: "jpg",
-        version: 1637741414,
-        resource_type: "image",
-        type: "upload",
-        created_at: "2021-11-24T08:10:14Z",
-        bytes: 14451,
-        width: 480,
-        height: 560,
-        url: "http://res.cloudinary.com/dt4xntymn/image/upload/v1637741414/mainSite/sculptures/compressed/03_MARLEYONTHEROCKS/dmmdcfg1dhhb0spegrlu.jpg",
-        secure_url: "https://res.cloudinary.com/dt4xntymn/image/upload/v1637741414/mainSite/sculptures/compressed/03_MARLEYONTHEROCKS/dmmdcfg1dhhb0spegrlu.jpg",
-        tags: [],
-        key: "03_MARLEYONTHEROCKS",
-        label: "MARLEYONTHEROCKS"
-      },
-      {
         asset_id: "ebbb9f24e2c17103eee08fd19232dd83",
         public_id: "mainSite/sculptures/compressed/03_MARLEYONTHEROCKS/fogq8kzpjjn0hq7e8erv",
         format: "jpg",
@@ -75562,15 +75552,15 @@ const Navbar = create_ssr_component(($$result, $$props, $$bindings, slots) => {
 });
 var About_svelte_svelte_type_style_lang = "";
 const css$f = {
-  code: '.glitch-image-container.svelte-1do7w48.svelte-1do7w48{position:absolute;top:0;left:0;width:100%;height:100%}.glitch-image-container.svelte-1do7w48.svelte-1do7w48:hover{opacity:1}.glitch-image-container.svelte-1do7w48 .glitch-image.svelte-1do7w48{pointer-events:none;background-size:cover;background-position:50% 50%;position:absolute;top:0;left:0;width:100%;height:100%;transform:translate3d(0, 0, 0);background-image:url("../images/home/amitapel4 (1).webp")}.glitch-image-container.svelte-1do7w48 .glitch-image.svelte-1do7w48:nth-child(n+2){opacity:0;top:calc(-1 * 2px);left:calc(-1 * 10px);width:calc(100% + 10px * 2);height:calc(100% + 2px * 2)}.glitch-container.svelte-1do7w48 .glitch-image.svelte-1do7w48{opacity:1 !important}.glitch-container.svelte-1do7w48 .glitch-image.svelte-1do7w48:nth-child(2){transform:translate3d(10px, 0, 0);animation:svelte-1do7w48-glitch-anim-1 2s linear alternate}.glitch-container.svelte-1do7w48 .glitch-image.svelte-1do7w48:nth-child(3){transform:translate3d(calc(-1 * 10px), 0, 0);animation:svelte-1do7w48-glitch-anim-2 2s linear alternate}.glitch-container.svelte-1do7w48 .glitch-image.svelte-1do7w48:nth-child(4){transform:translate3d(0, calc(-1 * 2px), 0) scale3d(-1, -1, 1);animation:svelte-1do7w48-glitch-anim-3 2s linear alternate}.glitch-container.svelte-1do7w48 .glitch-image.svelte-1do7w48:nth-child(5){animation:svelte-1do7w48-glitch-anim-flash 0.5s steps(1, end)}@keyframes svelte-1do7w48-glitch-anim-flash{0%{opacity:0.2;transform:translate3d(var(--gap), var(--gap-vertical), 0)}33%,100%{opacity:0;transform:translate3d(0, 0, 0)}}@keyframes svelte-1do7w48-glitch-anim-1{0%{-webkit-clip-path:polygon(0 2%, 100% 2%, 100% 5%, 0 5%);clip-path:polygon(0 2%, 100% 2%, 100% 5%, 0 5%)}10%{-webkit-clip-path:polygon(0 15%, 100% 15%, 100% 15%, 0 15%);clip-path:polygon(0 15%, 100% 15%, 100% 15%, 0 15%)}20%{-webkit-clip-path:polygon(0 10%, 100% 10%, 100% 20%, 0 20%);clip-path:polygon(0 10%, 100% 10%, 100% 20%, 0 20%)}30%{-webkit-clip-path:polygon(0 1%, 100% 1%, 100% 2%, 0 2%);clip-path:polygon(0 1%, 100% 1%, 100% 2%, 0 2%)}40%{-webkit-clip-path:polygon(0 33%, 100% 33%, 100% 33%, 0 33%);clip-path:polygon(0 33%, 100% 33%, 100% 33%, 0 33%)}50%{-webkit-clip-path:polygon(0 44%, 100% 44%, 100% 44%, 0 44%);clip-path:polygon(0 44%, 100% 44%, 100% 44%, 0 44%)}60%{-webkit-clip-path:polygon(0 50%, 100% 50%, 100% 20%, 0 20%);clip-path:polygon(0 50%, 100% 50%, 100% 20%, 0 20%)}70%{-webkit-clip-path:polygon(0 70%, 100% 70%, 100% 70%, 0 70%);clip-path:polygon(0 70%, 100% 70%, 100% 70%, 0 70%)}80%{-webkit-clip-path:polygon(0 80%, 100% 80%, 100% 80%, 0 80%);clip-path:polygon(0 80%, 100% 80%, 100% 80%, 0 80%)}90%{-webkit-clip-path:polygon(0 50%, 100% 50%, 100% 55%, 0 55%);clip-path:polygon(0 50%, 100% 50%, 100% 55%, 0 55%)}100%{-webkit-clip-path:polygon(0 70%, 100% 70%, 100% 80%, 0 80%);clip-path:polygon(0 70%, 100% 70%, 100% 80%, 0 80%)}}@keyframes svelte-1do7w48-glitch-anim-2{0%{-webkit-clip-path:polygon(0 25%, 100% 25%, 100% 30%, 0 30%);clip-path:polygon(0 25%, 100% 25%, 100% 30%, 0 30%)}15%{-webkit-clip-path:polygon(0 3%, 100% 3%, 100% 3%, 0 3%);clip-path:polygon(0 3%, 100% 3%, 100% 3%, 0 3%)}22%{-webkit-clip-path:polygon(0 5%, 100% 5%, 100% 20%, 0 20%);clip-path:polygon(0 5%, 100% 5%, 100% 20%, 0 20%)}31%{-webkit-clip-path:polygon(0 20%, 100% 20%, 100% 20%, 0 20%);clip-path:polygon(0 20%, 100% 20%, 100% 20%, 0 20%)}45%{-webkit-clip-path:polygon(0 40%, 100% 40%, 100% 40%, 0 40%);clip-path:polygon(0 40%, 100% 40%, 100% 40%, 0 40%)}51%{-webkit-clip-path:polygon(0 52%, 100% 52%, 100% 59%, 0 59%);clip-path:polygon(0 52%, 100% 52%, 100% 59%, 0 59%)}63%{-webkit-clip-path:polygon(0 60%, 100% 60%, 100% 60%, 0 60%);clip-path:polygon(0 60%, 100% 60%, 100% 60%, 0 60%)}76%{-webkit-clip-path:polygon(0 75%, 100% 75%, 100% 75%, 0 75%);clip-path:polygon(0 75%, 100% 75%, 100% 75%, 0 75%)}81%{-webkit-clip-path:polygon(0 65%, 100% 65%, 100% 40%, 0 40%);clip-path:polygon(0 65%, 100% 65%, 100% 40%, 0 40%)}94%{-webkit-clip-path:polygon(0 45%, 100% 45%, 100% 50%, 0 50%);clip-path:polygon(0 45%, 100% 45%, 100% 50%, 0 50%)}100%{-webkit-clip-path:polygon(0 14%, 100% 14%, 100% 33%, 0 33%);clip-path:polygon(0 14%, 100% 14%, 100% 33%, 0 33%)}}@keyframes svelte-1do7w48-glitch-anim-3{0%{-webkit-clip-path:polygon(0 1%, 100% 1%, 100% 3%, 0 3%);clip-path:polygon(0 1%, 100% 1%, 100% 3%, 0 3%)}5%{-webkit-clip-path:polygon(0 10%, 100% 10%, 100% 9%, 0 9%);clip-path:polygon(0 10%, 100% 10%, 100% 9%, 0 9%)}10%{-webkit-clip-path:polygon(0 5%, 100% 5%, 100% 6%, 0 6%);clip-path:polygon(0 5%, 100% 5%, 100% 6%, 0 6%)}25%{-webkit-clip-path:polygon(0 20%, 100% 20%, 100% 20%, 0 20%);clip-path:polygon(0 20%, 100% 20%, 100% 20%, 0 20%)}27%{-webkit-clip-path:polygon(0 10%, 100% 10%, 100% 10%, 0 10%);clip-path:polygon(0 10%, 100% 10%, 100% 10%, 0 10%)}30%{-webkit-clip-path:polygon(0 30%, 100% 30%, 100% 25%, 0 25%);clip-path:polygon(0 30%, 100% 30%, 100% 25%, 0 25%)}33%{-webkit-clip-path:polygon(0 15%, 100% 15%, 100% 16%, 0 16%);clip-path:polygon(0 15%, 100% 15%, 100% 16%, 0 16%)}37%{-webkit-clip-path:polygon(0 40%, 100% 40%, 100% 39%, 0 39%);clip-path:polygon(0 40%, 100% 40%, 100% 39%, 0 39%)}40%{-webkit-clip-path:polygon(0 20%, 100% 20%, 100% 21%, 0 21%);clip-path:polygon(0 20%, 100% 20%, 100% 21%, 0 21%)}45%{-webkit-clip-path:polygon(0 60%, 100% 60%, 100% 55%, 0 55%);clip-path:polygon(0 60%, 100% 60%, 100% 55%, 0 55%)}50%{-webkit-clip-path:polygon(0 30%, 100% 30%, 100% 31%, 0 31%);clip-path:polygon(0 30%, 100% 30%, 100% 31%, 0 31%)}53%{-webkit-clip-path:polygon(0 70%, 100% 70%, 100% 69%, 0 69%);clip-path:polygon(0 70%, 100% 70%, 100% 69%, 0 69%)}57%{-webkit-clip-path:polygon(0 40%, 100% 40%, 100% 41%, 0 41%);clip-path:polygon(0 40%, 100% 40%, 100% 41%, 0 41%)}60%{-webkit-clip-path:polygon(0 80%, 100% 80%, 100% 75%, 0 75%);clip-path:polygon(0 80%, 100% 80%, 100% 75%, 0 75%)}65%{-webkit-clip-path:polygon(0 50%, 100% 50%, 100% 51%, 0 51%);clip-path:polygon(0 50%, 100% 50%, 100% 51%, 0 51%)}70%{-webkit-clip-path:polygon(0 90%, 100% 90%, 100% 90%, 0 90%);clip-path:polygon(0 90%, 100% 90%, 100% 90%, 0 90%)}73%{-webkit-clip-path:polygon(0 60%, 100% 60%, 100% 60%, 0 60%);clip-path:polygon(0 60%, 100% 60%, 100% 60%, 0 60%)}80%{-webkit-clip-path:polygon(0 100%, 100% 100%, 100% 99%, 0 99%);clip-path:polygon(0 100%, 100% 100%, 100% 99%, 0 99%)}100%{-webkit-clip-path:polygon(0 70%, 100% 70%, 100% 71%, 0 71%);clip-path:polygon(0 70%, 100% 70%, 100% 71%, 0 71%)}}.container.svelte-1do7w48.svelte-1do7w48{overflow-y:auto;color:#68208e}.content-container.svelte-1do7w48.svelte-1do7w48{display:flex;flex-direction:column;align-items:center}.main-text-content.svelte-1do7w48.svelte-1do7w48{font-family:"Open Sans", sans-serif;text-align:center;font-size:1.5em;max-width:1200px;margin-top:1.5rem;width:100%}.image.svelte-1do7w48.svelte-1do7w48{width:100%}.glitch-image-wrapper.svelte-1do7w48.svelte-1do7w48{max-width:568px;width:100%;overflow:hidden;position:relative}.main-image-container.svelte-1do7w48.svelte-1do7w48{width:100%;height:100%}.main-image-container.svelte-1do7w48 .image-main.svelte-1do7w48{background-position:50% 50%;width:100%;height:100%}.content-image-container.svelte-1do7w48.svelte-1do7w48{width:100%;pointer-events:none}',
+  code: '.glitch-image-container.svelte-kl4u28.svelte-kl4u28{position:absolute;top:0;left:0;width:100%;height:100%}.glitch-image-container.svelte-kl4u28.svelte-kl4u28:hover{opacity:1}.glitch-image-container.svelte-kl4u28 .glitch-image.svelte-kl4u28{pointer-events:none;background-size:cover;background-position:50% 50%;position:absolute;top:0;left:0;width:100%;height:100%;transform:translate3d(0, 0, 0);background-image:url("../images/home/amitapel4 (1).webp")}.glitch-image-container.svelte-kl4u28 .glitch-image.svelte-kl4u28:nth-child(n+2){opacity:0;top:calc(-1 * 2px);left:calc(-1 * 10px);width:calc(100% + 10px * 2);height:calc(100% + 2px * 2)}.glitch-container.svelte-kl4u28 .glitch-image.svelte-kl4u28{opacity:1 !important}.glitch-container.svelte-kl4u28 .glitch-image.svelte-kl4u28:nth-child(2){transform:translate3d(10px, 0, 0);animation:svelte-kl4u28-glitch-anim-1 2s linear alternate}.glitch-container.svelte-kl4u28 .glitch-image.svelte-kl4u28:nth-child(3){transform:translate3d(calc(-1 * 10px), 0, 0);animation:svelte-kl4u28-glitch-anim-2 2s linear alternate}.glitch-container.svelte-kl4u28 .glitch-image.svelte-kl4u28:nth-child(4){transform:translate3d(0, calc(-1 * 2px), 0) scale3d(-1, -1, 1);animation:svelte-kl4u28-glitch-anim-3 2s linear alternate}.glitch-container.svelte-kl4u28 .glitch-image.svelte-kl4u28:nth-child(5){animation:svelte-kl4u28-glitch-anim-flash 0.5s steps(1, end)}@keyframes svelte-kl4u28-glitch-anim-flash{0%{opacity:0.2;transform:translate3d(var(--gap), var(--gap-vertical), 0)}33%,100%{opacity:0;transform:translate3d(0, 0, 0)}}@keyframes svelte-kl4u28-glitch-anim-1{0%{-webkit-clip-path:polygon(0 2%, 100% 2%, 100% 5%, 0 5%);clip-path:polygon(0 2%, 100% 2%, 100% 5%, 0 5%)}10%{-webkit-clip-path:polygon(0 15%, 100% 15%, 100% 15%, 0 15%);clip-path:polygon(0 15%, 100% 15%, 100% 15%, 0 15%)}20%{-webkit-clip-path:polygon(0 10%, 100% 10%, 100% 20%, 0 20%);clip-path:polygon(0 10%, 100% 10%, 100% 20%, 0 20%)}30%{-webkit-clip-path:polygon(0 1%, 100% 1%, 100% 2%, 0 2%);clip-path:polygon(0 1%, 100% 1%, 100% 2%, 0 2%)}40%{-webkit-clip-path:polygon(0 33%, 100% 33%, 100% 33%, 0 33%);clip-path:polygon(0 33%, 100% 33%, 100% 33%, 0 33%)}50%{-webkit-clip-path:polygon(0 44%, 100% 44%, 100% 44%, 0 44%);clip-path:polygon(0 44%, 100% 44%, 100% 44%, 0 44%)}60%{-webkit-clip-path:polygon(0 50%, 100% 50%, 100% 20%, 0 20%);clip-path:polygon(0 50%, 100% 50%, 100% 20%, 0 20%)}70%{-webkit-clip-path:polygon(0 70%, 100% 70%, 100% 70%, 0 70%);clip-path:polygon(0 70%, 100% 70%, 100% 70%, 0 70%)}80%{-webkit-clip-path:polygon(0 80%, 100% 80%, 100% 80%, 0 80%);clip-path:polygon(0 80%, 100% 80%, 100% 80%, 0 80%)}90%{-webkit-clip-path:polygon(0 50%, 100% 50%, 100% 55%, 0 55%);clip-path:polygon(0 50%, 100% 50%, 100% 55%, 0 55%)}100%{-webkit-clip-path:polygon(0 70%, 100% 70%, 100% 80%, 0 80%);clip-path:polygon(0 70%, 100% 70%, 100% 80%, 0 80%)}}@keyframes svelte-kl4u28-glitch-anim-2{0%{-webkit-clip-path:polygon(0 25%, 100% 25%, 100% 30%, 0 30%);clip-path:polygon(0 25%, 100% 25%, 100% 30%, 0 30%)}15%{-webkit-clip-path:polygon(0 3%, 100% 3%, 100% 3%, 0 3%);clip-path:polygon(0 3%, 100% 3%, 100% 3%, 0 3%)}22%{-webkit-clip-path:polygon(0 5%, 100% 5%, 100% 20%, 0 20%);clip-path:polygon(0 5%, 100% 5%, 100% 20%, 0 20%)}31%{-webkit-clip-path:polygon(0 20%, 100% 20%, 100% 20%, 0 20%);clip-path:polygon(0 20%, 100% 20%, 100% 20%, 0 20%)}45%{-webkit-clip-path:polygon(0 40%, 100% 40%, 100% 40%, 0 40%);clip-path:polygon(0 40%, 100% 40%, 100% 40%, 0 40%)}51%{-webkit-clip-path:polygon(0 52%, 100% 52%, 100% 59%, 0 59%);clip-path:polygon(0 52%, 100% 52%, 100% 59%, 0 59%)}63%{-webkit-clip-path:polygon(0 60%, 100% 60%, 100% 60%, 0 60%);clip-path:polygon(0 60%, 100% 60%, 100% 60%, 0 60%)}76%{-webkit-clip-path:polygon(0 75%, 100% 75%, 100% 75%, 0 75%);clip-path:polygon(0 75%, 100% 75%, 100% 75%, 0 75%)}81%{-webkit-clip-path:polygon(0 65%, 100% 65%, 100% 40%, 0 40%);clip-path:polygon(0 65%, 100% 65%, 100% 40%, 0 40%)}94%{-webkit-clip-path:polygon(0 45%, 100% 45%, 100% 50%, 0 50%);clip-path:polygon(0 45%, 100% 45%, 100% 50%, 0 50%)}100%{-webkit-clip-path:polygon(0 14%, 100% 14%, 100% 33%, 0 33%);clip-path:polygon(0 14%, 100% 14%, 100% 33%, 0 33%)}}@keyframes svelte-kl4u28-glitch-anim-3{0%{-webkit-clip-path:polygon(0 1%, 100% 1%, 100% 3%, 0 3%);clip-path:polygon(0 1%, 100% 1%, 100% 3%, 0 3%)}5%{-webkit-clip-path:polygon(0 10%, 100% 10%, 100% 9%, 0 9%);clip-path:polygon(0 10%, 100% 10%, 100% 9%, 0 9%)}10%{-webkit-clip-path:polygon(0 5%, 100% 5%, 100% 6%, 0 6%);clip-path:polygon(0 5%, 100% 5%, 100% 6%, 0 6%)}25%{-webkit-clip-path:polygon(0 20%, 100% 20%, 100% 20%, 0 20%);clip-path:polygon(0 20%, 100% 20%, 100% 20%, 0 20%)}27%{-webkit-clip-path:polygon(0 10%, 100% 10%, 100% 10%, 0 10%);clip-path:polygon(0 10%, 100% 10%, 100% 10%, 0 10%)}30%{-webkit-clip-path:polygon(0 30%, 100% 30%, 100% 25%, 0 25%);clip-path:polygon(0 30%, 100% 30%, 100% 25%, 0 25%)}33%{-webkit-clip-path:polygon(0 15%, 100% 15%, 100% 16%, 0 16%);clip-path:polygon(0 15%, 100% 15%, 100% 16%, 0 16%)}37%{-webkit-clip-path:polygon(0 40%, 100% 40%, 100% 39%, 0 39%);clip-path:polygon(0 40%, 100% 40%, 100% 39%, 0 39%)}40%{-webkit-clip-path:polygon(0 20%, 100% 20%, 100% 21%, 0 21%);clip-path:polygon(0 20%, 100% 20%, 100% 21%, 0 21%)}45%{-webkit-clip-path:polygon(0 60%, 100% 60%, 100% 55%, 0 55%);clip-path:polygon(0 60%, 100% 60%, 100% 55%, 0 55%)}50%{-webkit-clip-path:polygon(0 30%, 100% 30%, 100% 31%, 0 31%);clip-path:polygon(0 30%, 100% 30%, 100% 31%, 0 31%)}53%{-webkit-clip-path:polygon(0 70%, 100% 70%, 100% 69%, 0 69%);clip-path:polygon(0 70%, 100% 70%, 100% 69%, 0 69%)}57%{-webkit-clip-path:polygon(0 40%, 100% 40%, 100% 41%, 0 41%);clip-path:polygon(0 40%, 100% 40%, 100% 41%, 0 41%)}60%{-webkit-clip-path:polygon(0 80%, 100% 80%, 100% 75%, 0 75%);clip-path:polygon(0 80%, 100% 80%, 100% 75%, 0 75%)}65%{-webkit-clip-path:polygon(0 50%, 100% 50%, 100% 51%, 0 51%);clip-path:polygon(0 50%, 100% 50%, 100% 51%, 0 51%)}70%{-webkit-clip-path:polygon(0 90%, 100% 90%, 100% 90%, 0 90%);clip-path:polygon(0 90%, 100% 90%, 100% 90%, 0 90%)}73%{-webkit-clip-path:polygon(0 60%, 100% 60%, 100% 60%, 0 60%);clip-path:polygon(0 60%, 100% 60%, 100% 60%, 0 60%)}80%{-webkit-clip-path:polygon(0 100%, 100% 100%, 100% 99%, 0 99%);clip-path:polygon(0 100%, 100% 100%, 100% 99%, 0 99%)}100%{-webkit-clip-path:polygon(0 70%, 100% 70%, 100% 71%, 0 71%);clip-path:polygon(0 70%, 100% 70%, 100% 71%, 0 71%)}}.container.svelte-kl4u28.svelte-kl4u28{overflow-y:auto;color:#68208e}.content-container.svelte-kl4u28.svelte-kl4u28{display:flex;flex-direction:column;align-items:center}.main-text-content.svelte-kl4u28.svelte-kl4u28{font-family:"Roboto Mono", monospace;text-align:center;font-size:1.5em;max-width:1200px;margin-top:1.5rem;width:100%;font-weight:400}.image.svelte-kl4u28.svelte-kl4u28{width:100%}.glitch-image-wrapper.svelte-kl4u28.svelte-kl4u28{max-width:568px;width:100%;overflow:hidden;position:relative}.main-image-container.svelte-kl4u28.svelte-kl4u28{width:100%;height:100%}.main-image-container.svelte-kl4u28 .image-main.svelte-kl4u28{background-position:50% 50%;width:100%;height:100%}.content-image-container.svelte-kl4u28.svelte-kl4u28{width:100%;pointer-events:none}',
   map: null
 };
 const About = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   $$result.css.add(css$f);
-  return `<div class="${"page-container"}"><div class="${"container svelte-1do7w48"}"><div class="${"content-container svelte-1do7w48"}"><div class="${"glitch-image-wrapper svelte-1do7w48"}"><div class="${"main-image-container flex-item svelte-1do7w48"}"><div class="${"image-main svelte-1do7w48"}"><img class="${"image svelte-1do7w48"}" src="${"https://res.cloudinary.com/dt4xntymn/image/upload/v1637785016/mainSite/meet%20amit%20apel/amitapel4_bf4uwx.jpg"}" alt="${""}"></div></div>
-        <div class="${"flex-item content-image-container glitch-image-container " + escape("") + " svelte-1do7w48"}">${each(Array(5).fill(""), (img) => `<div class="${"glitch-image svelte-1do7w48"}"><img class="${"image svelte-1do7w48"}" src="${"https://res.cloudinary.com/dt4xntymn/image/upload/v1637785016/mainSite/meet%20amit%20apel/amitapel4_bf4uwx.jpg"}"${add_attribute("img", img, 0)} alt="${""}">
+  return `<div class="${"page-container"}"><div class="${"container svelte-kl4u28"}"><div class="${"content-container svelte-kl4u28"}"><div class="${"glitch-image-wrapper svelte-kl4u28"}"><div class="${"main-image-container flex-item svelte-kl4u28"}"><div class="${"image-main svelte-kl4u28"}"><img class="${"image svelte-kl4u28"}" src="${"https://res.cloudinary.com/dt4xntymn/image/upload/v1637785016/mainSite/meet%20amit%20apel/amitapel4_bf4uwx.jpg"}" alt="${""}"></div></div>
+        <div class="${"flex-item content-image-container glitch-image-container " + escape("") + " svelte-kl4u28"}">${each(Array(5).fill(""), (img) => `<div class="${"glitch-image svelte-kl4u28"}"><img class="${"image svelte-kl4u28"}" src="${"https://res.cloudinary.com\r\n                /dt4xntymn/image/upload/v1637785016/mainSite/meet%20amit%20apel/amitapel4_bf4uwx.jpg"}"${add_attribute("img", img, 0)} alt="${""}">
             </div>`)}</div></div>
-      <div class="${"flex-item main-text-content svelte-1do7w48"}"><p>As a gifted fifth-generation exterior and interior designer, Amit Apel
+      <div class="${"flex-item main-text-content svelte-kl4u28"}"><p>As a gifted fifth-generation exterior and interior designer, Amit Apel
           arrived on the sunny shores of Southern California in 1999 after
           having been raised in Africa, Israel and throughout Europe. Upon his
           arrival, Amit purchased a modest Honda Magnum motorcycle to travel
@@ -75595,37 +75585,37 @@ const About = create_ssr_component(($$result, $$props, $$bindings, slots) => {
 });
 var ContactUs_svelte_svelte_type_style_lang = "";
 const css$e = {
-  code: ".flex-item.svelte-pvmbl4.svelte-pvmbl4:nth-child(n){margin-right:0.75rem;margin-left:0.75rem}.contact-field.svelte-pvmbl4.svelte-pvmbl4:nth-child(n){margin-bottom:0.75rem}.contact-field.svelte-pvmbl4.svelte-pvmbl4:nth-child(n):last-child{margin-bottom:0px}.contact-field.svelte-pvmbl4.svelte-pvmbl4:nth-child(n):nth-child(1){padding-top:0px}.misc-info-wrapper.svelte-pvmbl4.svelte-pvmbl4{display:flex;flex-direction:column}.content-container.svelte-pvmbl4.svelte-pvmbl4{display:flex;height:80%;justify-content:center;width:100%}@media screen and (max-width: 610px){.content-container.svelte-pvmbl4.svelte-pvmbl4{flex-direction:column-reverse}}.content-container.svelte-pvmbl4 input[type=submit].svelte-pvmbl4{background-color:#68208e;color:#fff;font-weight:600;cursor:pointer}.info-container.svelte-pvmbl4.svelte-pvmbl4{font-family:-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Ubuntu, sans-serif;text-align:center;background-color:white;box-shadow:rgba(60, 66, 87, 0.12) 0px 7px 14px 0px, rgba(0, 0, 0, 0.12) 0px 3px 6px 0px;padding:48px;text-transform:uppercase;border-radius:4px}.info-container.svelte-pvmbl4 h5.svelte-pvmbl4{color:#68208e}.info-container.svelte-pvmbl4 p.svelte-pvmbl4{font-size:0.8em}.form-container.svelte-pvmbl4.svelte-pvmbl4{display:flex;color:#1a1f36;background-color:white;box-shadow:rgba(60, 66, 87, 0.12) 0px 7px 14px 0px, rgba(0, 0, 0, 0.12) 0px 3px 6px 0px;padding:48px;width:100%;max-width:448px;background:white;border-radius:4px;flex-direction:column;font-family:-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Ubuntu, sans-serif}@media screen and (max-width: 610px){.form-container.svelte-pvmbl4.svelte-pvmbl4{max-width:100%}}@media screen and (max-width: 650px){.form-container.svelte-pvmbl4.svelte-pvmbl4{padding:25px}}.contact-input.svelte-pvmbl4.svelte-pvmbl4{width:100%;font-size:16px;line-height:28px;padding:8px 16px;width:100%;min-height:44px;border:unset;border-radius:4px;outline-color:rgba(84, 105, 212, 0.5);background-color:white;box-shadow:rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(60, 66, 87, 0.16) 0px 0px 0px 1px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px}label.svelte-pvmbl4.svelte-pvmbl4{font-size:14px;font-weight:600;display:block}.main-misc-container.svelte-pvmbl4.svelte-pvmbl4:nth-child(n){margin-bottom:0.3rem}.main-misc-container.svelte-pvmbl4.svelte-pvmbl4:nth-child(n):last-child{margin-bottom:0px}.main-misc-container.svelte-pvmbl4.svelte-pvmbl4:nth-child(n):nth-child(1){padding-top:0px}",
+  code: '.flex-item.svelte-evunh5.svelte-evunh5:nth-child(n){margin-right:0.75rem;margin-left:0.75rem}.contact-field.svelte-evunh5.svelte-evunh5:nth-child(n){margin-bottom:0.75rem}.contact-field.svelte-evunh5.svelte-evunh5:nth-child(n):last-child{margin-bottom:0px}.contact-field.svelte-evunh5.svelte-evunh5:nth-child(n):nth-child(1){padding-top:0px}.misc-info-wrapper.svelte-evunh5.svelte-evunh5{display:flex;font-family:"Roboto Mono", monospace;flex-direction:column}.content-container.svelte-evunh5.svelte-evunh5{display:flex;height:80%;justify-content:center;width:100%}@media screen and (max-width: 610px){.content-container.svelte-evunh5.svelte-evunh5{flex-direction:column-reverse}}.content-container.svelte-evunh5 input[type=submit].svelte-evunh5{background-color:#68208e;color:#fff;font-weight:600;cursor:pointer}.info-container.svelte-evunh5.svelte-evunh5{text-align:center;background-color:white;box-shadow:rgba(60, 66, 87, 0.12) 0px 7px 14px 0px, rgba(0, 0, 0, 0.12) 0px 3px 6px 0px;padding:48px;text-transform:uppercase;border-radius:4px}.info-container.svelte-evunh5 h5.svelte-evunh5{color:#68208e}.info-container.svelte-evunh5 p.svelte-evunh5{font-size:0.8em}.form-container.svelte-evunh5.svelte-evunh5{display:flex;color:#1a1f36;background-color:white;box-shadow:rgba(60, 66, 87, 0.12) 0px 7px 14px 0px, rgba(0, 0, 0, 0.12) 0px 3px 6px 0px;padding:48px;width:100%;max-width:448px;background:white;border-radius:4px;flex-direction:column;font-family:-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Ubuntu, sans-serif}@media screen and (max-width: 610px){.form-container.svelte-evunh5.svelte-evunh5{max-width:100%}}@media screen and (max-width: 650px){.form-container.svelte-evunh5.svelte-evunh5{padding:25px}}.contact-input.svelte-evunh5.svelte-evunh5{width:100%;font-size:16px;line-height:28px;padding:8px 16px;width:100%;min-height:44px;border:unset;border-radius:4px;outline-color:rgba(84, 105, 212, 0.5);background-color:white;box-shadow:rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(60, 66, 87, 0.16) 0px 0px 0px 1px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px}label.svelte-evunh5.svelte-evunh5{font-size:14px;display:block;font-family:"Roboto Mono", monospace;font-weight:400}.main-misc-container.svelte-evunh5.svelte-evunh5:nth-child(n){margin-bottom:0.3rem}.main-misc-container.svelte-evunh5.svelte-evunh5:nth-child(n):last-child{margin-bottom:0px}.main-misc-container.svelte-evunh5.svelte-evunh5:nth-child(n):nth-child(1){padding-top:0px}',
   map: null
 };
 const ContactUs = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   $$result.css.add(css$e);
-  return `<div class="${"page-container"}"><div class="${"content-container svelte-pvmbl4"}"><div class="${"misc-info-wrapper flex-item svelte-pvmbl4"}"><div class="${"main-misc-container svelte-pvmbl4"}"><div class="${"misc-info-container"}"><div class="${"info-container svelte-pvmbl4"}"><h5 class="${"svelte-pvmbl4"}">Hours</h5>
-            <p class="${"svelte-pvmbl4"}">Monday-Friday 9am-5pm</p></div></div></div>
-      <div class="${"main-misc-container svelte-pvmbl4"}"><div class="${"info-container svelte-pvmbl4"}"><h5 class="${"svelte-pvmbl4"}">Address</h5>
-          <p class="${"svelte-pvmbl4"}">33202 1/4 mulholland hwy</p>
-          <p class="${"svelte-pvmbl4"}">malibu, ca 90265</p>
-          <p class="${"svelte-pvmbl4"}">apeldesign@apeldesign.com</p></div></div></div>
-    <form name="${"emailForm"}" data-netlify="${"true"}" class="${"form-container flex-item svelte-pvmbl4"}"><div class="${"contact-field svelte-pvmbl4"}"><label for="${""}" class="${"contact-label svelte-pvmbl4"}">Email</label>
-        <input class="${"contact-input svelte-pvmbl4"}" name="${"form-name"}"></div>
+  return `<div class="${"page-container"}"><div class="${"content-container svelte-evunh5"}"><div class="${"misc-info-wrapper flex-item svelte-evunh5"}"><div class="${"main-misc-container svelte-evunh5"}"><div class="${"misc-info-container"}"><div class="${"info-container svelte-evunh5"}"><h5 class="${"svelte-evunh5"}">Hours</h5>
+            <p class="${"svelte-evunh5"}">Monday-Friday 9am-5pm</p></div></div></div>
+      <div class="${"main-misc-container svelte-evunh5"}"><div class="${"info-container svelte-evunh5"}"><h5 class="${"svelte-evunh5"}">Address</h5>
+          <p class="${"svelte-evunh5"}">33202 1/4 mulholland hwy</p>
+          <p class="${"svelte-evunh5"}">malibu, ca 90265</p>
+          <p class="${"svelte-evunh5"}">apeldesign@apeldesign.com</p></div></div></div>
+    <form name="${"emailForm"}" data-netlify="${"true"}" class="${"form-container flex-item svelte-evunh5"}"><div class="${"contact-field svelte-evunh5"}"><label for="${""}" class="${"contact-label svelte-evunh5"}">Email</label>
+        <input class="${"contact-input svelte-evunh5"}" name="${"form-name"}"></div>
 
-      <div class="${"contact-field svelte-pvmbl4"}"><div class="${"contact-control"}"><label for="${""}" class="${"contact-label svelte-pvmbl4"}">Name</label>
+      <div class="${"contact-field svelte-evunh5"}"><div class="${"contact-control"}"><label for="${""}" class="${"contact-label svelte-evunh5"}">Name</label>
 
-          <input id="${"name-input"}" class="${"contact-input svelte-pvmbl4"}" type="${"text"}" name="${"name"}"></div></div>
-      <div class="${"contact-field svelte-pvmbl4"}"><div class="${"contact-control"}"><label for="${""}" class="${"contact-label svelte-pvmbl4"}">Message</label>
+          <input id="${"name-input"}" class="${"contact-input svelte-evunh5"}" type="${"text"}" name="${"name"}"></div></div>
+      <div class="${"contact-field svelte-evunh5"}"><div class="${"contact-control"}"><label for="${""}" class="${"contact-label svelte-evunh5"}">Message</label>
 
-          <input id="${"email-input"}" class="${"contact-input svelte-pvmbl4"}" type="${"email"}" name="${"email"}"></div></div>
-      <div class="${"contact-field svelte-pvmbl4"}"><div class="${"contact-control"}"><label for="${""}" class="${"contact-label svelte-pvmbl4"}">Country</label>
+          <input id="${"email-input"}" class="${"contact-input svelte-evunh5"}" type="${"email"}" name="${"email"}"></div></div>
+      <div class="${"contact-field svelte-evunh5"}"><div class="${"contact-control"}"><label for="${""}" class="${"contact-label svelte-evunh5"}">Country</label>
 
-          <input id="${"country-input"}" class="${"contact-input svelte-pvmbl4"}" type="${"text"}" name="${"country"}"></div></div>
-      <div class="${"contact-field svelte-pvmbl4"}"><div class="${"contact-control"}"><label for="${""}" class="${"contact-label svelte-pvmbl4"}">Phone</label>
+          <input id="${"country-input"}" class="${"contact-input svelte-evunh5"}" type="${"text"}" name="${"country"}"></div></div>
+      <div class="${"contact-field svelte-evunh5"}"><div class="${"contact-control"}"><label for="${""}" class="${"contact-label svelte-evunh5"}">Phone</label>
 
-          <input id="${"phone-input"}" class="${"contact-input svelte-pvmbl4"}" type="${"phone"}" name="${"phone"}"></div></div>
-      <div class="${"contact-field svelte-pvmbl4"}"><div class="${"contact-control"}"><label for="${""}" class="${"contact-label svelte-pvmbl4"}">Message</label>
-          <textarea id="${"message-input"}" class="${"contact-textarea contact-input svelte-pvmbl4"}" type="${"text"}" name="${"message"}"></textarea></div></div>
-      <div class="${"contact-field svelte-pvmbl4"}"><div class="${"contact-control"}"><label for="${"checkbox"}" class="${"svelte-pvmbl4"}"><input type="${"checkbox"}" name="${"checkbox"}"> Subscribe to our newsletter
+          <input id="${"phone-input"}" class="${"contact-input svelte-evunh5"}" type="${"phone"}" name="${"phone"}"></div></div>
+      <div class="${"contact-field svelte-evunh5"}"><div class="${"contact-control"}"><label for="${""}" class="${"contact-label svelte-evunh5"}">Message</label>
+          <textarea id="${"message-input"}" class="${"contact-textarea contact-input svelte-evunh5"}" type="${"text"}" name="${"message"}"></textarea></div></div>
+      <div class="${"contact-field svelte-evunh5"}"><div class="${"contact-control"}"><label for="${"checkbox"}" class="${"svelte-evunh5"}"><input type="${"checkbox"}" name="${"checkbox"}"> Subscribe to our newsletter
           </label></div></div>
-      <div class="${"contact-field svelte-pvmbl4"}"><div class="${"contact-control"}"><input type="${"submit"}" class="${"contact-button contact-input contact-is-link contact-is-fullwidth svelte-pvmbl4"}"></div></div></form></div>
+      <div class="${"contact-field svelte-evunh5"}"><div class="${"contact-control"}"><input type="${"submit"}" class="${"contact-button contact-input contact-is-link contact-is-fullwidth svelte-evunh5"}"></div></div></form></div>
 </div>`;
 });
 const data = {
@@ -75652,26 +75642,25 @@ const Development = create_ssr_component(($$result, $$props, $$bindings, slots) 
   $$unsubscribe_marqueeContentStore = subscribe(marqueeContentStore, (value) => $marqueeContentStore = value);
   $$result.css.add(css$d);
   $$unsubscribe_marqueeContentStore();
-  return `<div class="${"page-container"}"></div>
-<div class="${"container svelte-1qxkx6f"}"><div class="${"text-wrapper svelte-1qxkx6f"}"><div class="${"text-content-container svelte-1qxkx6f"}"><p class="${"sub-header svelte-1qxkx6f"}">take a peek into our current</p>
-      <h5 class="${"main-header svelte-1qxkx6f"}">Project, <span class="${"property-header svelte-1qxkx6f"}">${escape(data[$marqueeContentStore.content].title)}</span></h5>
+  return `${$marqueeContentStore.content ? `<div class="${"page-container"}"></div>
+  <div class="${"container svelte-1qxkx6f"}"><div class="${"text-wrapper svelte-1qxkx6f"}"><div class="${"text-content-container svelte-1qxkx6f"}"><p class="${"sub-header svelte-1qxkx6f"}">take a peek into our current</p>
+        <h5 class="${"main-header svelte-1qxkx6f"}">Project, <span class="${"property-header svelte-1qxkx6f"}">${escape(data[$marqueeContentStore.content].title)}</span></h5>
 
-      <p class="${"description svelte-1qxkx6f"}">${escape(data[$marqueeContentStore.content].description)}</p>
-      <button class="${"redirect-button svelte-1qxkx6f"}">visit site</button></div></div>
-  <div class="${"main-image-container svelte-1qxkx6f"}"><div class="${"sub-image-container svelte-1qxkx6f"}"><div class="${"aspect-ratio svelte-1qxkx6f"}"></div>
-      <img class="${"main-image sub svelte-1qxkx6f"}"${add_attribute("src", data[$marqueeContentStore.content].img, 0)} alt="${""}"></div>
-    <img class="${"main-image svelte-1qxkx6f"}"${add_attribute("src", data[$marqueeContentStore.content].img, 0)} alt="${""}"></div>
-</div>`;
+        <p class="${"description svelte-1qxkx6f"}">${escape(data[$marqueeContentStore.content].description)}</p>
+        <button class="${"redirect-button svelte-1qxkx6f"}">visit site</button></div></div>
+    <div class="${"main-image-container svelte-1qxkx6f"}"><div class="${"sub-image-container svelte-1qxkx6f"}"><div class="${"aspect-ratio svelte-1qxkx6f"}"></div>
+        <img class="${"main-image sub svelte-1qxkx6f"}"${add_attribute("src", data[$marqueeContentStore.content].img, 0)} alt="${""}"></div>
+      <img class="${"main-image svelte-1qxkx6f"}"${add_attribute("src", data[$marqueeContentStore.content].img, 0)} alt="${""}"></div></div>` : ``}`;
 });
 var MalibuRebuild_svelte_svelte_type_style_lang = "";
 const css$c = {
-  code: '.bottom-text-container.svelte-my5kgz.svelte-my5kgz{font-size:0.6em}.bottom-text-container.svelte-my5kgz p.svelte-my5kgz:first-child{margin-bottom:1rem}.bottom-text-container.svelte-my5kgz p.svelte-my5kgz:nth-child(3){margin-bottom:1rem}.container.svelte-my5kgz.svelte-my5kgz{font-family:unisans;display:flex;align-items:center;justify-content:center;flex-direction:column;color:#68208e}h3.svelte-my5kgz.svelte-my5kgz{font-weight:900;font-size:2em;text-align:center;font-family:"unisansB";margin-bottom:1.3rem}.text-container.svelte-my5kgz.svelte-my5kgz{text-align:center;font-size:2em;display:flex;flex-direction:column;max-width:900px}.text-container.svelte-my5kgz p.svelte-my5kgz{font-size:0.8em;font-weight:700}.text-container.svelte-my5kgz p.svelte-my5kgz:last-child{font-size:0.6em}.text-container.svelte-my5kgz .credit p.svelte-my5kgz{font-size:0.4em}.text-container.svelte-my5kgz .credit.svelte-my5kgz{margin-top:1.5rem;margin-bottom:1.5rem}@media screen and (max-width: 720px){.text-container.svelte-my5kgz.svelte-my5kgz{font-size:1.5em}}',
+  code: '.bottom-text-container.svelte-17g56ty.svelte-17g56ty{font-size:0.6em}.bottom-text-container.svelte-17g56ty p.svelte-17g56ty:first-child{margin-bottom:1rem}.bottom-text-container.svelte-17g56ty p.svelte-17g56ty:nth-child(3){margin-bottom:1rem}.container.svelte-17g56ty.svelte-17g56ty{font-family:unisans;display:flex;align-items:center;justify-content:center;flex-direction:column;color:#68208e}h3.svelte-17g56ty.svelte-17g56ty{font-weight:900;font-size:2em;text-align:center;font-family:"unisansB";margin-bottom:1.3rem}.text-container.svelte-17g56ty.svelte-17g56ty{text-align:center;font-size:2em;display:flex;flex-direction:column;font-family:"Roboto Mono", monospace;font-weight:400;max-width:900px}.text-container.svelte-17g56ty p.svelte-17g56ty{font-size:0.8em;font-weight:700}.text-container.svelte-17g56ty p.svelte-17g56ty:last-child{font-size:0.6em}.text-container.svelte-17g56ty .credit p.svelte-17g56ty{font-size:0.4em}.text-container.svelte-17g56ty .credit.svelte-17g56ty{margin-top:1.5rem;margin-bottom:1.5rem}@media screen and (max-width: 720px){.text-container.svelte-17g56ty.svelte-17g56ty{font-size:1.5em}}',
   map: null
 };
 const MalibuRebuild = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   $$result.css.add(css$c);
-  return `<div class="${"page-container"}"><div class="${"container svelte-my5kgz"}"><h3 class="${"svelte-my5kgz"}">Dear Friends and Neighbors,</h3>
-    <div class="${"text-container svelte-my5kgz"}"><p class="${"svelte-my5kgz"}">If you&#39;re like me and my neighbors that have had your homes damaged or
+  return `<div class="${"page-container"}"><div class="${"container svelte-17g56ty"}"><h3 class="${"svelte-17g56ty"}">Dear Friends and Neighbors,</h3>
+    <div class="${"text-container svelte-17g56ty"}"><p class="${"svelte-17g56ty"}">If you&#39;re like me and my neighbors that have had your homes damaged or
         completely burnt from the wildfires, I want to extend my hand to you and
         support you as much as I can. While rebuilding my own personal loss,
         I&#39;ve brought my team together to be here as a help and guide to work
@@ -75682,11 +75671,11 @@ const MalibuRebuild = create_ssr_component(($$result, $$props, $$bindings, slots
         this on as a community, we&#39;ll be able to overcome these obstacles more
         accurately and promptly.
       </p>
-      <p class="${"credit svelte-my5kgz"}">-Amit Apel</p>
-      <div class="${"bottom-text-container svelte-my5kgz"}"><p class="${"svelte-my5kgz"}">Feel free to contact me or any one of my staff so we can meet.</p>
-        <p class="${"svelte-my5kgz"}">- Email: apeldesign@apeldesign.com</p>
-        <p class="${"svelte-my5kgz"}">- Phone: 310.317.0500</p>
-        <p class="${"svelte-my5kgz"}">Together we will heal and bring these cities back to life to create
+      <p class="${"credit svelte-17g56ty"}">-Amit Apel</p>
+      <div class="${"bottom-text-container svelte-17g56ty"}"><p class="${"svelte-17g56ty"}">Feel free to contact me or any one of my staff so we can meet.</p>
+        <p class="${"svelte-17g56ty"}">- Email: apeldesign@apeldesign.com</p>
+        <p class="${"svelte-17g56ty"}">- Phone: 310.317.0500</p>
+        <p class="${"svelte-17g56ty"}">Together we will heal and bring these cities back to life to create
           new memories.
         </p></div></div></div>
 </div>`;
@@ -76088,7 +76077,7 @@ const cardImages = [
 ];
 var Card_svelte_svelte_type_style_lang = "";
 const css$a = {
-  code: '.card-container.svelte-19km0g3{display:flex;justify-content:center;align-items:center;position:absolute;width:100%;height:100%;transform-style:preserve-3d;will-change:transform;touch-action:none;box-shadow:0 12.5px 100px -10px rgba(50, 50, 73, 0.2), 0 10px 10px -10px rgba(50, 50, 73, 0.2);-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;z-index:1}.front-container.svelte-19km0g3{position:absolute}.image-container.svelte-19km0g3{overflow:hidden;border-radius:10px;backface-visibility:hidden;height:100%}img.svelte-19km0g3{height:100%;width:100%}.back-container.svelte-19km0g3{content:"";position:absolute;display:block;width:100%;transform:rotateY(180deg)}',
+  code: '.card-container.svelte-1309k95{display:flex;pointer-events:all;justify-content:center;align-items:center;position:absolute;width:100%;height:100%;transform-style:preserve-3d;will-change:transform;touch-action:none;box-shadow:0 12.5px 100px -10px rgba(50, 50, 73, 0.2), 0 10px 10px -10px rgba(50, 50, 73, 0.2);-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.front-container.svelte-1309k95{position:absolute}.image-container.svelte-1309k95{overflow:hidden;border-radius:10px;backface-visibility:hidden;height:100%}img.svelte-1309k95{height:100%;width:100%}.back-container.svelte-1309k95{content:"";position:absolute;display:block;width:100%;transform:rotateY(180deg)}',
   map: null
 };
 const Card = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -76104,7 +76093,7 @@ const Card = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { stack } = $$props;
   let { outline } = $$props;
   let ele;
-  let scaleHover = tweened(1, { duration: 150 });
+  let scaleHover = spring(1, { stiffness: 0.1, damping: 0.5 });
   const rotateZ = tweened(rotate, { duration: 150 });
   $$unsubscribe_rotateZ = subscribe(rotateZ, (value) => value);
   const zAxis = tweened((5 - index) * 20, { duration: 300 });
@@ -76134,6 +76123,7 @@ const Card = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     zAxis.set(0);
   }
   derivedS.subscribe((v) => {
+    console.log(v.scale);
     gsap.set(ele, { x: v.x, z: v.z, scale: v.scale });
   });
   if ($$props.index === void 0 && $$bindings.index && index !== void 0)
@@ -76164,13 +76154,13 @@ const Card = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   $$unsubscribe_zAxis();
   $$unsubscribe_cardStore();
   return `
-<div draggable="${"false"}" class="${"card-container meet-the-team-card svelte-19km0g3"}"${add_attribute("this", ele, 0)}><div draggable="${"false"}" class="${"image-container front-container svelte-19km0g3"}"><img draggable="${"false"}"${add_attribute("src", image["front"], 0)} alt="${""}" class="${"svelte-19km0g3"}"></div>
-  <div draggable="${"false"}" class="${"image-container back-container svelte-19km0g3"}"><img draggable="${"false"}"${add_attribute("src", image["back"], 0)} alt="${""}" class="${"svelte-19km0g3"}"></div>
+<div draggable="${"false"}" class="${"card-container meet-the-team-card svelte-1309k95"}"${add_attribute("this", ele, 0)}><div draggable="${"false"}" class="${"image-container front-container svelte-1309k95"}"><img draggable="${"false"}"${add_attribute("src", image["front"], 0)} alt="${""}" class="${"svelte-1309k95"}"></div>
+  <div draggable="${"false"}" class="${"image-container back-container svelte-1309k95"}"><img draggable="${"false"}"${add_attribute("src", image["back"], 0)} alt="${""}" class="${"svelte-1309k95"}"></div>
 </div>`;
 });
 var MeetTheTeam_svelte_svelte_type_style_lang = "";
 const css$9 = {
-  code: `.three-by-two.aspect-ratio.svelte-1k2lq2z.svelte-1k2lq2z{padding-bottom:156.666%}.card-outline.svelte-1k2lq2z.svelte-1k2lq2z{background-image:url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='53' ry='53' stroke='white' stroke-width='4'  stroke-dasharray='36%2c 18%2c 28%2c 25' stroke-dashoffset='0' stroke-linecap='butt'/%3e%3c/svg%3e");border-radius:53px;position:absolute;top:0;left:0;right:0;bottom:0;width:100%;height:100%}@media screen and (max-width: 550px){.card-outline.svelte-1k2lq2z.svelte-1k2lq2z{display:none}}.aspect-ratio.svelte-1k2lq2z.svelte-1k2lq2z{max-width:300px;width:100%;position:relative}.aspect-ratio.svelte-1k2lq2z .card-wrapper.svelte-1k2lq2z{width:100%;height:100%;top:0;left:0;position:absolute;perspective:1500px;transform-style:preserve-3d}.card-layout-container.svelte-1k2lq2z.svelte-1k2lq2z{display:flex;width:100%;margin-top:40px;margin-bottom:140px;align-items:center;justify-content:center}.arrow-image-container.svelte-1k2lq2z.svelte-1k2lq2z{width:50px;margin-left:50px;margin-right:50px}.arrow-image-container.svelte-1k2lq2z img.svelte-1k2lq2z{width:100%;object-fit:cover}.page-container.svelte-1k2lq2z.svelte-1k2lq2z{height:100%;display:flex;align-items:center}.container.svelte-1k2lq2z.svelte-1k2lq2z{max-width:1600px;width:100%;z-index:20}.arrow-image-container.svelte-1k2lq2z.svelte-1k2lq2z{z-index:10;position:relative}`,
+  code: `.three-by-two.aspect-ratio.svelte-5cndkr.svelte-5cndkr{padding-bottom:156.666%}.card-outline.svelte-5cndkr.svelte-5cndkr{background-image:url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='53' ry='53' stroke='white' stroke-width='4'  stroke-dasharray='36%2c 18%2c 28%2c 25' stroke-dashoffset='0' stroke-linecap='butt'/%3e%3c/svg%3e");border-radius:53px;position:absolute;top:0;left:0;right:0;bottom:0;width:100%;height:100%}@media screen and (max-width: 550px){.card-outline.svelte-5cndkr.svelte-5cndkr{display:none}}.aspect-ratio.svelte-5cndkr.svelte-5cndkr{max-width:300px;width:100%;z-index:2;position:relative;pointer-events:none}.aspect-ratio.svelte-5cndkr .card-wrapper.svelte-5cndkr{width:100%;height:100%;top:0;left:0;position:absolute;perspective:1500px;transform-style:preserve-3d}.card-layout-container.svelte-5cndkr.svelte-5cndkr{display:flex;width:100%;margin-top:40px;margin-bottom:140px;align-items:center;justify-content:center}.arrow-image-container.svelte-5cndkr.svelte-5cndkr{width:50px;z-index:1;margin-left:50px;margin-right:50px;cursor:pointer}.arrow-image-container.svelte-5cndkr img.svelte-5cndkr{width:100%;object-fit:cover}.page-container.svelte-5cndkr.svelte-5cndkr{height:100%;display:flex;align-items:center}.container.svelte-5cndkr.svelte-5cndkr{max-width:1600px;width:100%;z-index:20}.arrow-image-container.svelte-5cndkr.svelte-5cndkr{position:relative}`,
   map: null
 };
 const MeetTheTeam = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -76194,11 +76184,10 @@ const MeetTheTeam = create_ssr_component(($$result, $$props, $$bindings, slots) 
     }
   }
   $$unsubscribe_cardStore();
-  return `<div class="${"page-container svelte-1k2lq2z"}"><div class="${"container svelte-1k2lq2z"}"><div class="${"card-layout-container svelte-1k2lq2z"}"><div class="${"card-outline aspect-ratio svelte-1k2lq2z"}"><div class="${"three-by-two aspect-ratio svelte-1k2lq2z"}"></div>
-        <div class="${"card-outline svelte-1k2lq2z"}"${add_attribute("this", outline, 0)}></div></div>
-      <div class="${"arrow-image-container svelte-1k2lq2z"}"><img${add_attribute("src", arrow, 0)} alt="${""}" class="${"svelte-1k2lq2z"}"></div>
-      <div class="${"aspect-ratio svelte-1k2lq2z"}"><div class="${"three-by-two aspect-ratio svelte-1k2lq2z"}"></div>
-        <ul class="${"card-wrapper svelte-1k2lq2z"}"${add_attribute("this", stack, 0)}>${each(cardImages, (card, i) => `${validate_component(Card, "Card").$$render($$result, {
+  return `<div class="${"page-container svelte-5cndkr"}"><div class="${"container svelte-5cndkr"}"><div class="${"card-layout-container svelte-5cndkr"}"><div class="${"card-outline aspect-ratio svelte-5cndkr"}"><div class="${"three-by-two aspect-ratio svelte-5cndkr"}"></div>
+        <div class="${"card-outline svelte-5cndkr"}"${add_attribute("this", outline, 0)}></div></div>
+      <div class="${"arrow-image-container svelte-5cndkr"}"><img${add_attribute("src", arrow, 0)} alt="${""}" class="${"svelte-5cndkr"}"></div>
+      <div draggable="${"false"}" class="${"aspect-ratio svelte-5cndkr"}"><ul class="${"card-wrapper svelte-5cndkr"}"${add_attribute("this", stack, 0)}>${each(cardImages, (card, i) => `${validate_component(Card, "Card").$$render($$result, {
     stack,
     outline,
     dropPosition,
@@ -76206,7 +76195,8 @@ const MeetTheTeam = create_ssr_component(($$result, $$props, $$bindings, slots) 
     index: i,
     image: { front: card.front, back: card.back },
     rotate: rotatedCards.includes(i) ? i * 2 : 0
-  }, {}, {})}`)}</ul></div></div></div>
+  }, {}, {})}`)}</ul>
+        <div class="${"three-by-two aspect-ratio svelte-5cndkr"}"></div></div></div></div>
 </div>`;
 });
 const map = (x, a, b, c, d) => (x - a) * (d - c) / (b - a) + c;
@@ -76359,12 +76349,12 @@ const Press = create_ssr_component(($$result, $$props, $$bindings, slots) => {
 var dancingVideo = "/_app/assets/dance-6f6e8192.mp4";
 var WhatWeDo_svelte_svelte_type_style_lang = "";
 const css$6 = {
-  code: ".content-container.svelte-10yexgh.svelte-10yexgh{max-width:900px;font-size:1.4em;color:#68208e;text-align:center;font-weight:700}.content-container.svelte-10yexgh .video-container.svelte-10yexgh{margin:1rem 0rem}.content-container.svelte-10yexgh .video-container .video.svelte-10yexgh{width:100%}.container.svelte-10yexgh.svelte-10yexgh{display:flex;flex-direction:column;justify-content:center;align-items:center;width:100%}",
+  code: '.content-container.svelte-1omg1qw.svelte-1omg1qw{max-width:900px;font-size:1.4em;color:#68208e;text-align:center;font-family:"Roboto Mono", monospace;font-weight:400}.content-container.svelte-1omg1qw .video-container.svelte-1omg1qw{margin:1rem 0rem}.content-container.svelte-1omg1qw .video-container .video.svelte-1omg1qw{width:100%}.container.svelte-1omg1qw.svelte-1omg1qw{display:flex;flex-direction:column;justify-content:center;align-items:center;width:100%}',
   map: null
 };
 const WhatWeDo = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   $$result.css.add(css$6);
-  return `<div class="${"page-container"}"><div class="${"container svelte-10yexgh"}"><div class="${"content-container svelte-10yexgh"}"><div class="${"video-container svelte-10yexgh"}"><video class="${"video svelte-10yexgh"}" autoplay muted loop id="${"myVideo"}"><source${add_attribute("src", dancingVideo, 0)} type="${"video/mp4"}"></video></div>
+  return `<div class="${"page-container"}"><div class="${"container svelte-1omg1qw"}"><div class="${"content-container svelte-1omg1qw"}"><div class="${"video-container svelte-1omg1qw"}"><video class="${"video svelte-1omg1qw"}" autoplay muted loop id="${"myVideo"}"><source${add_attribute("src", dancingVideo, 0)} type="${"video/mp4"}"></video></div>
       <div class="${"text-container"}"><p>We are an award-winning, multi-disciplinary design and development
           studio focused on bespoke architectural creations. Specializing in new
           development, private residences, specialty concepts, and hospitality
@@ -76383,7 +76373,7 @@ const WhatWeDo = create_ssr_component(($$result, $$props, $$bindings, slots) => 
 });
 var Bar3GalleryImage_svelte_svelte_type_style_lang = "";
 const css$5 = {
-  code: ".grid-item-container.svelte-3abgbz.svelte-3abgbz{display:flex;flex:20%;opacity:1;flex-direction:column}@media screen and (max-width: 975px){.grid-item-container.svelte-3abgbz.svelte-3abgbz{flex:33.3333333333%}}@media screen and (max-width: 600px){.grid-item-container.svelte-3abgbz.svelte-3abgbz{flex:100%;max-width:100%}}.grid-item-container.svelte-3abgbz .label.svelte-3abgbz{text-align:left;font-size:1em;line-height:0.8em;font-weight:900;letter-spacing:3px;font-family:unisansB;padding:1.2rem;color:#68208e;text-transform:uppercase}.grid-item-container.svelte-3abgbz .image-container.svelte-3abgbz{cursor:pointer;height:300px;width:100%;overflow:hidden}@media screen and (max-width: 600px){.grid-item-container.svelte-3abgbz .image-container.svelte-3abgbz{height:auto;width:100%}}.grid-item-container.svelte-3abgbz .image-container .grid-image.svelte-3abgbz{object-fit:cover;width:100%;height:100%;object-position:center center}",
+  code: '.grid-item-container.svelte-n2gb0l.svelte-n2gb0l{display:flex;flex:20%;opacity:0;flex-direction:column}@media screen and (max-width: 975px){.grid-item-container.svelte-n2gb0l.svelte-n2gb0l{flex:33.3333333333%}}@media screen and (max-width: 600px){.grid-item-container.svelte-n2gb0l.svelte-n2gb0l{flex:100%;max-width:100%}}.grid-item-container.svelte-n2gb0l .label.svelte-n2gb0l{text-align:left;font-size:1em;line-height:0.8em;letter-spacing:3px;font-family:"Roboto Mono", monospace;font-weight:600;padding:1.2rem;color:#68208e;text-transform:uppercase}.grid-item-container.svelte-n2gb0l .image-container.svelte-n2gb0l{cursor:pointer;height:300px;width:100%;overflow:hidden}@media screen and (max-width: 600px){.grid-item-container.svelte-n2gb0l .image-container.svelte-n2gb0l{height:auto;width:100%}}.grid-item-container.svelte-n2gb0l .image-container .grid-image.svelte-n2gb0l{object-fit:cover;width:100%;height:100%;object-position:center center}',
   map: null
 };
 const Bar3GalleryImage = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -76391,20 +76381,23 @@ const Bar3GalleryImage = create_ssr_component(($$result, $$props, $$bindings, sl
   $$unsubscribe_marqueeContentStore = subscribe(marqueeContentStore, (value) => $marqueeContentStore = value);
   let { img } = $$props;
   let imageEle;
-  console.log(imageEle);
   if ($$props.img === void 0 && $$bindings.img && img !== void 0)
     $$bindings.img(img);
   $$result.css.add(css$5);
   {
     {
-      if ($marqueeContentStore.shouldLoadImages && img) {
-        gsap.to(imageEle, { opacity: 1 });
+      if (img) {
+        if ($marqueeContentStore.shouldLoadImages) {
+          gsap.to(imageEle, { opacity: 1 });
+        } else if (!$marqueeContentStore.shouldLoadImages) {
+          gsap.to(imageEle, { opacity: 0 });
+        }
       }
     }
   }
   $$unsubscribe_marqueeContentStore();
-  return `${img.url.length === 0 ? `<i class="${"grid-item-container svelte-3abgbz"}" aria-hidden="${"true"}"></i>` : `<div class="${"grid-item-container svelte-3abgbz"}"${add_attribute("this", imageEle, 0)}><div class="${"image-container svelte-3abgbz"}"><img${add_attribute("height", img.height, 0)}${add_attribute("width", img.width, 0)} loading="${"lazy"}" class="${"grid-image svelte-3abgbz"}"${add_attribute("src", img.url, 0)} alt="${""}"></div>
-    <h5 class="${"label svelte-3abgbz"}">${escape(img.label)}</h5></div>`}`;
+  return `${img.url.length === 0 ? `<i class="${"grid-item-container svelte-n2gb0l"}" aria-hidden="${"true"}"></i>` : `<div class="${"grid-item-container svelte-n2gb0l"}"${add_attribute("this", imageEle, 0)}><div class="${"image-container svelte-n2gb0l"}"><img${add_attribute("height", img.height, 0)}${add_attribute("width", img.width, 0)} loading="${"lazy"}" class="${"grid-image svelte-n2gb0l"}"${add_attribute("src", img.url, 0)} alt="${""}"></div>
+    <h5 class="${"label svelte-n2gb0l"}">${escape(img.label)}</h5></div>`}`;
 });
 var conceptThumbs = [
   {
@@ -79457,7 +79450,7 @@ const menuItems = {
 };
 var Marque_svelte_svelte_type_style_lang = "";
 const css$2 = {
-  code: '.page-wrapper.svelte-1bv0z78{display:flex;height:100%;position:relative}.page-content-container.svelte-1bv0z78{overflow:hidden;display:flex;justify-content:center;align-items:center;transform:translate(0%, 100%);z-index:20;position:absolute;width:100vw;height:100%}.page-transition-black.svelte-1bv0z78{background-color:black;width:100vw;position:absolute;bottom:0;height:0vh;z-index:3}.container.svelte-1bv0z78{height:100%;margin:0;--color-text:#111;--color-bg:white;--color-link:#000;--color-link-hover:#000;--color-border:#a7927b;--marquee-bg:#000;--marquee-text:#fff;--menu-focus:#775e41;z-index:6;position:relative;background-color:white;display:flex;align-items:center;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;background-repeat:no-repeat;background-size:cover;background-image:url("../../images/home/Background Photo.jpg")}.menu-wrap.svelte-1bv0z78{font-family:reason-new, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;display:flex;background-size:cover;z-index:12;flex-direction:column;width:100vw;position:relative;justify-content:center}',
+  code: '.page-wrapper.svelte-pc45e6{display:flex;height:100%;position:relative}.page-content-container.svelte-pc45e6{overflow:hidden;display:flex;justify-content:center;align-items:center;transform:translate(0%, 100%);z-index:20;position:absolute;width:100vw;height:100%}.page-transition-black.svelte-pc45e6{background-color:black;width:100vw;position:absolute;bottom:0;height:0vh;z-index:25}.container.svelte-pc45e6{height:100%;margin:0;--color-text:#111;--color-bg:white;--color-link:#000;--color-link-hover:#000;--color-border:#a7927b;--marquee-bg:#000;--marquee-text:#fff;--menu-focus:#775e41;z-index:6;position:relative;background-color:white;display:flex;align-items:center;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;background-repeat:no-repeat;background-size:cover;background-image:url("../../images/home/Background Photo.jpg")}.menu-wrap.svelte-pc45e6{font-family:reason-new, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;display:flex;background-size:cover;z-index:12;flex-direction:column;width:100vw;position:relative;justify-content:center}',
   map: null
 };
 let currNav = "meet amit apel";
@@ -79479,15 +79472,20 @@ const Marque = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   if ($$props.index === void 0 && $$bindings.index && index !== void 0)
     $$bindings.index(index);
   $$result.css.add(css$2);
+  {
+    {
+      console.log($marqueeContentStore.active);
+    }
+  }
   $$unsubscribe_marqueeContentStore();
   $$unsubscribe_galleryModal();
   $$unsubscribe_modalStore();
   $$unsubscribe_lgBarStore();
   return `${validate_component(Navbar, "Navbar").$$render($$result, {}, {}, {})}
-<div class="${"marquee-animation-container page-wrapper svelte-1bv0z78"}">${$galleryModal.visible ? `${validate_component(GalleryModal, "GalleryModal").$$render($$result, {}, {}, {})}` : ``}
+<div class="${"marquee-animation-container page-wrapper svelte-pc45e6"}">${$galleryModal.visible ? `${validate_component(GalleryModal, "GalleryModal").$$render($$result, {}, {}, {})}` : ``}
   ${$modalStore.visible ? `${validate_component(Modal, "Modal").$$render($$result, {}, {}, {})}` : ``}
 
-  <div class="${"container flex-item svelte-1bv0z78"}"><div class="${"menu-wrap svelte-1bv0z78"}"><nav class="${"menu"}">${each(menuItems[$lgBarStore.currentIndex].pages, (item) => `${validate_component(MenuItem, "MenuItem").$$render($$result, {
+  <div class="${"container flex-item svelte-pc45e6"}"><div class="${"menu-wrap svelte-pc45e6"}"><nav class="${"menu"}">${each(menuItems[$lgBarStore.currentIndex].pages, (item) => `${validate_component(MenuItem, "MenuItem").$$render($$result, {
     index,
     currNav,
     title: item.title,
@@ -79496,11 +79494,12 @@ const Marque = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     ${validate_component(BgLogo, "BgLogo").$$render($$result, {
     text: menuItems[$lgBarStore.currentIndex].category
   }, {}, {})}
-    <div class="${"page-transition-black svelte-1bv0z78"}"></div>
-    <div class="${"page-content-container svelte-1bv0z78"}"${add_attribute("this", container, 0)}>${validate_component(PageContent, "PageContent").$$render($$result, {
+    <div class="${"page-transition-black svelte-pc45e6"}"></div>
+
+    <div class="${"page-content-container svelte-pc45e6"}"${add_attribute("this", container, 0)}>${$marqueeContentStore.active ? `${validate_component(PageContent, "PageContent").$$render($$result, {
     index,
     currNav: pages[$marqueeContentStore.content]
-  }, {}, {})}</div></div>
+  }, {}, {})}` : ``}</div></div>
 
   ${!$marqueeContentStore.content ? `${validate_component(MapWrapper, "MapWrapper").$$render($$result, {}, {}, {})}` : ``}
 </div>`;

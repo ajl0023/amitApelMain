@@ -20,7 +20,7 @@
       loaded = false;
       images = layout[content].thumbs;
       await tick();
-      setlayout().then(() => {});
+      setlayout();
       loaded = true;
     }
   }

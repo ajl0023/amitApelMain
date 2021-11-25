@@ -401,23 +401,6 @@
   "03_MARLEYONTHEROCKS": {
     "images": [
       {
-        "asset_id": "d35b484816386f95473ec6e20ede181a",
-        "public_id": "mainSite/sculptures/compressed/03_MARLEYONTHEROCKS/dmmdcfg1dhhb0spegrlu",
-        "format": "jpg",
-        "version": 1637741414,
-        "resource_type": "image",
-        "type": "upload",
-        "created_at": "2021-11-24T08:10:14Z",
-        "bytes": 14451,
-        "width": 480,
-        "height": 560,
-        "url": "http://res.cloudinary.com/dt4xntymn/image/upload/v1637741414/mainSite/sculptures/compressed/03_MARLEYONTHEROCKS/dmmdcfg1dhhb0spegrlu.jpg",
-        "secure_url": "https://res.cloudinary.com/dt4xntymn/image/upload/v1637741414/mainSite/sculptures/compressed/03_MARLEYONTHEROCKS/dmmdcfg1dhhb0spegrlu.jpg",
-        "tags": [],
-        "key": "03_MARLEYONTHEROCKS",
-        "label": "MARLEYONTHEROCKS"
-      },
-      {
         "asset_id": "ebbb9f24e2c17103eee08fd19232dd83",
         "public_id": "mainSite/sculptures/compressed/03_MARLEYONTHEROCKS/fogq8kzpjjn0hq7e8erv",
         "format": "jpg",

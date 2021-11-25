@@ -7,14 +7,17 @@
 </script>
 
 <div class="page-content-container">
-  <MainPageHeader currNav={currNav ? currNav.name : ""} />
+  <MainPageHeader currNav="{currNav ? currNav.name : ''}" />
   <div
-    class:meetPage={currNav && currNav.name === "meet the team"}
-    class:press={currNav && currNav.name === "press"}
+    class:meetPage="{currNav && currNav.name === 'meet the team'}"
+    class:press="{currNav && currNav.name === 'press'}"
     class="main-page-container"
   >
     {#if currNav}
-      <svelte:component this={currNav.component} {shouldLoadImages} />
+      <svelte:component
+        this="{currNav.component}"
+        shouldLoadImages="{shouldLoadImages}"
+      />
     {/if}
   </div>
 </div>
