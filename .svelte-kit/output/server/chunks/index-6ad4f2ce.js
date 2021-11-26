@@ -1,4 +1,4 @@
-import { n as noop, s as safe_not_equal, a as subscribe, r as run_all, i as is_function, c as create_ssr_component, e as escape, b as add_attribute, v as validate_component, d as each, f as createEventDispatcher, m as missing_component, o as onDestroy, g as assign, h as now, l as loop, j as identity } from "./app-da3faac7.js";
+import { n as noop, s as safe_not_equal, a as subscribe, r as run_all, i as is_function, c as create_ssr_component, e as escape, b as add_attribute, v as validate_component, d as each, f as createEventDispatcher, m as missing_component, o as onDestroy, g as assign, h as now, l as loop, j as identity } from "./app-964af041.js";
 import gsap from "gsap";
 import "@use-gesture/vanilla";
 var global = "";
@@ -79523,7 +79523,7 @@ const Home = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   $$unsubscribe_lgBarStore = subscribe(lgBarStore, (value) => $lgBarStore = value);
   $$result.css.add(css$1);
   $$unsubscribe_lgBarStore();
-  return `<div class="${["marquee-container-main svelte-uszufg", "testing"].join(" ").trim()}">${$lgBarStore.pageContent ? `${validate_component(Marque, "Marque").$$render($$result, {}, {}, {})}` : ``}</div>
+  return `<div class="${["marquee-container-main svelte-uszufg", ""].join(" ").trim()}">${$lgBarStore.pageContent ? `${validate_component(Marque, "Marque").$$render($$result, {}, {}, {})}` : ``}</div>
 
 
 <div class="${"video-bg svelte-uszufg"}"><video class="${"video-brush svelte-uszufg"}" autoplay autobuffer muted playsinline><source${add_attribute("src", "https://res.cloudinary.com/dt4xntymn/video/upload/v1636870696/mainSite/Brush_Stroke_1_orzxdf.mp4", 0)} type="${"video/mp4"}"></video></div>
