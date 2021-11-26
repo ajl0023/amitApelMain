@@ -1,2 +1,2 @@
-npm run build && git add . && git commit -m "working on form implementation" && git push origin main
+npm run build && git add . && git commit -m "everything on netlify mostly working, uploading redesign of gmap" && git push origin main
 
