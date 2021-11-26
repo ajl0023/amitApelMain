@@ -1,4 +1,17 @@
-<script></script>
+<script>
+  let form;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    let formData = new FormData(form);
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(formData).toString(),
+    })
+      .then(() => {})
+      .catch((error) => alert(error));
+  };
+</script>
 
 <div class="page-container">
   <div class="content-container">
@@ -21,6 +34,7 @@
       </div>
     </div>
     <form
+      bind:this="{form}"
       name="emailForm"
       data-netlify="true"
       class="form-container flex-item"
@@ -99,6 +113,7 @@
       <div class="contact-field">
         <div class="contact-control">
           <input
+            on:click="{handleSubmit}"
             type="submit"
             class="contact-button contact-input contact-is-link contact-is-fullwidth"
           />
