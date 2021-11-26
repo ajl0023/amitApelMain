@@ -1,4 +1,4 @@
-import { n as noop, s as safe_not_equal, a as subscribe, r as run_all, i as is_function, c as create_ssr_component, e as escape, b as add_attribute, v as validate_component, d as each, f as createEventDispatcher, m as missing_component, o as onDestroy, g as assign, h as now, l as loop, j as identity } from "./app-6da0166c.js";
+import { n as noop, s as safe_not_equal, a as subscribe, r as run_all, i as is_function, c as create_ssr_component, e as escape, b as add_attribute, v as validate_component, d as each, f as createEventDispatcher, m as missing_component, o as onDestroy, g as assign, h as now, l as loop, j as identity } from "./app-4b730c7b.js";
 import gsap from "gsap";
 import "@use-gesture/vanilla";
 var global = "";
@@ -75604,7 +75604,7 @@ const ContactUs = create_ssr_component(($$result, $$props, $$bindings, slots) =>
           <p class="${"svelte-kzmtz7"}">33202 1/4 mulholland hwy</p>
           <p class="${"svelte-kzmtz7"}">malibu, ca 90265</p>
           <p class="${"svelte-kzmtz7"}">apeldesign@apeldesign.com</p></div></div></div>
-    <form name="${"emailForm"}" data-netlify="${"true"}" class="${"form-container flex-item svelte-kzmtz7"}"><div class="${"contact-field svelte-kzmtz7"}"><label for="${""}" class="${"contact-label svelte-kzmtz7"}">Email</label>
+    <form name="${"emailForm"}" data-netlify="${"true"}" class="${"form-container flex-item svelte-kzmtz7"}" netlify><div class="${"contact-field svelte-kzmtz7"}"><label for="${""}" class="${"contact-label svelte-kzmtz7"}">Email</label>
         <input class="${"contact-input svelte-kzmtz7"}" name="${"form-name"}"></div>
 
       <div class="${"contact-field svelte-kzmtz7"}"><div class="${"contact-control"}"><label for="${""}" class="${"contact-label svelte-kzmtz7"}">Name</label>

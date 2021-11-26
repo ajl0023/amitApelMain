@@ -20,7 +20,12 @@
         </div>
       </div>
     </div>
-    <form name="emailForm" data-netlify="true" class="form-container flex-item">
+    <form
+      name="emailForm"
+      data-netlify="true"
+      class="form-container flex-item"
+      netlify
+    >
       <div class="contact-field">
         <label for="" class="contact-label">Email</label>
         <input class="contact-input" name="form-name" />
