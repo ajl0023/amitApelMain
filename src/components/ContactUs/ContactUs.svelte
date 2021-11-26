@@ -40,6 +40,8 @@
       class="form-container flex-item"
       netlify
     >
+      <input type="hidden" name="form-name" value="emailForm" />
+
       <div class="contact-field">
         <label for="" class="contact-label">Email</label>
         <input class="contact-input" name="form-name" />
@@ -110,7 +112,6 @@
           </label>
         </div>
       </div>
-      <input type="hidden" name="form-name" value="name_of_my_form" />
 
       <div class="contact-field">
         <div class="contact-control">

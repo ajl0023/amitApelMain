@@ -1,4 +1,4 @@
-import { n as noop, s as safe_not_equal, a as subscribe, r as run_all, i as is_function, c as create_ssr_component, e as escape, b as add_attribute, v as validate_component, d as each, f as createEventDispatcher, m as missing_component, o as onDestroy, g as assign, h as now, l as loop, j as identity } from "./app-964af041.js";
+import { n as noop, s as safe_not_equal, a as subscribe, r as run_all, i as is_function, c as create_ssr_component, e as escape, b as add_attribute, v as validate_component, d as each, f as createEventDispatcher, m as missing_component, o as onDestroy, g as assign, h as now, l as loop, j as identity } from "./app-83446344.js";
 import gsap from "gsap";
 import "@use-gesture/vanilla";
 var global = "";
@@ -75605,7 +75605,9 @@ const ContactUs = create_ssr_component(($$result, $$props, $$bindings, slots) =>
           <p class="${"svelte-kzmtz7"}">33202 1/4 mulholland hwy</p>
           <p class="${"svelte-kzmtz7"}">malibu, ca 90265</p>
           <p class="${"svelte-kzmtz7"}">apeldesign@apeldesign.com</p></div></div></div>
-    <form name="${"emailForm"}" data-netlify="${"true"}" class="${"form-container flex-item svelte-kzmtz7"}" netlify${add_attribute("this", form, 0)}><div class="${"contact-field svelte-kzmtz7"}"><label for="${""}" class="${"contact-label svelte-kzmtz7"}">Email</label>
+    <form name="${"emailForm"}" data-netlify="${"true"}" class="${"form-container flex-item svelte-kzmtz7"}" netlify${add_attribute("this", form, 0)}><input type="${"hidden"}" name="${"form-name"}" value="${"emailForm"}">
+
+      <div class="${"contact-field svelte-kzmtz7"}"><label for="${""}" class="${"contact-label svelte-kzmtz7"}">Email</label>
         <input class="${"contact-input svelte-kzmtz7"}" name="${"form-name"}"></div>
 
       <div class="${"contact-field svelte-kzmtz7"}"><div class="${"contact-control"}"><label for="${""}" class="${"contact-label svelte-kzmtz7"}">Name</label>
@@ -75624,7 +75626,6 @@ const ContactUs = create_ssr_component(($$result, $$props, $$bindings, slots) =>
           <textarea id="${"message-input"}" class="${"contact-textarea contact-input svelte-kzmtz7"}" type="${"text"}" name="${"message"}"></textarea></div></div>
       <div class="${"contact-field svelte-kzmtz7"}"><div class="${"contact-control"}"><label for="${"checkbox"}" class="${"svelte-kzmtz7"}"><input type="${"checkbox"}" name="${"checkbox"}"> Subscribe to our newsletter
           </label></div></div>
-      <input type="${"hidden"}" name="${"form-name"}" value="${"name_of_my_form"}">
 
       <div class="${"contact-field svelte-kzmtz7"}"><div class="${"contact-control"}"><input type="${"submit"}" class="${"contact-button contact-input contact-is-link contact-is-fullwidth svelte-kzmtz7"}"></div></div></form></div>
 </div>`;
