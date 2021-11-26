@@ -44,7 +44,7 @@
 
       <div class="contact-field">
         <label for="" class="contact-label">Email</label>
-        <input class="contact-input" name="form-name" />
+        <input class="contact-input" name="email" />
       </div>
 
       <div class="contact-field">
