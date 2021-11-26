@@ -1,6 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <form
+      name="emailForm"
+      data-netlify="true"
+      class="form-container flex-item"
+      netlify
+    >
+      <input type="hidden" name="form-name" value="emailForm" />
+
+      <div class="contact-field">
+        <label for="" class="contact-label">Email</label>
+        <input class="contact-input" name="email" />
+      </div>
+
+      <div class="contact-field">
+        <div class="contact-control">
+          <label for="" class="contact-label">Name</label>
+
+          <input
+            id="name-input"
+            class="contact-input"
+            type="text"
+            name="name"
+          />
+        </div>
+      </div>
+
+      <div class="contact-field">
+        <div class="contact-control">
+          <label for="" class="contact-label">Country</label>
+
+          <input
+            id="country-input"
+            class="contact-input"
+            type="text"
+            name="country"
+          />
+        </div>
+      </div>
+      <div class="contact-field">
+        <div class="contact-control">
+          <label for="" class="contact-label">Phone</label>
+
+          <input
+            id="phone-input"
+            class="contact-input"
+            type="phone"
+            name="phone"
+          />
+        </div>
+      </div>
+      <div class="contact-field">
+        <div class="contact-control">
+          <label for="" class="contact-label">Message</label>
+          <textarea
+            id="message-input"
+            class="contact-textarea contact-input"
+            type="text"
+            name="message"
+          ></textarea>
+        </div>
+      </div>
+      <div class="contact-field">
+        <div class="contact-control">
+          <!-- <label for="checkbox">
+            <input type="checkbox" name="checkbox" /> Subscribe to our newsletter
+          </label> -->
+        </div>
+      </div>
+
+      <div class="contact-field">
+        <div class="contact-control">
+          <input
+            type="submit"
+            class="contact-button contact-input contact-is-link contact-is-fullwidth"
+          />
+        </div>
+      </div>
+    </form>
     <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.5.0/dist/lazyload.min.js"></script>
 
     <script
