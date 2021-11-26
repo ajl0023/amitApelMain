@@ -1,10 +1,12 @@
 <script>
-  import { onMount } from "svelte";
+  import { onMount, tick } from "svelte";
   import logoText from "../images/home/logo Text.png";
   import brush2 from "../images/Render.mp4";
+  import { testing } from "../storeController";
   import { introAnimationStore } from "./../animationController.js";
   import Logo from "./Bar/Logo.svelte";
   import { lgBarStore } from "./Bar/store";
+
   import Marque from "./Marquee/Marque.svelte";
 
   const mobileCheck = () => {
@@ -12,12 +14,18 @@
   };
 
   onMount(() => {
+    if (!document.lazyLoadInstance) {
+      document.lazyLoadInstance = new LazyLoad({
+        callback_loaded: async function () {},
+      });
+    }
+
     introAnimationStore.init(mobileCheck());
     lgBarStore.initMarquee();
   });
 </script>
 
-<div class="marquee-container-main">
+<div class:testing="{testing}" class="marquee-container-main">
   {#if $lgBarStore.pageContent}
     <Marque
       on:closePageContent="{() => {
@@ -57,6 +65,10 @@
 </div>
 
 <style lang="scss">
+  .testing {
+    width: 100vw !important;
+    height: 100vh !important;
+  }
   .logo-container {
     width: 100%;
   }

@@ -56,6 +56,7 @@ $reset1: calc(1 / 100%);
       @if $i==3 {
         @media screen and (max-width: 650px) {
           .bar:nth-child(n) {
+           
             width: 100%;
             opacity: 1;
           }
@@ -69,6 +70,7 @@ $reset1: calc(1 / 100%);
         @media screen and (max-width: 650px) {
           .bar:nth-child(n) {
             width: 100%;
+           
             opacity: 1;
           }
         }
@@ -126,7 +128,6 @@ $reset1: calc(1 / 100%);
   @media screen and (max-width: 650px) {
     display: flex;
     justify-content: space-evenly;
-    gap: 20px;
   }
 }
 

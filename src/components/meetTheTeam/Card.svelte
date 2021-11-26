@@ -15,7 +15,7 @@
   $: ({ shouldReturn, cardToExit } = $cardStore);
 
   let ele;
-
+  let flipped = false;
   let exited;
   let scaleHover = spring(1, {
     stiffness: 0.1,
@@ -24,17 +24,22 @@
   const rotateZ = tweened(rotate, {
     duration: 150,
   });
-  const zAxis = tweened((5 - index) * 20, {
+  let zAxis = index;
+  const rotateY = tweened(0, {
     duration: 300,
   });
-
   const springCard = spring(0, {
     stiffness: 0.1,
     damping: 0.5,
   });
 
-  const derivedS = derived([springCard, scaleHover, zAxis], ($store) => {
-    return { x: $store[0], z: $store[2], scale: $store[1] };
+  const derivedS = derived([springCard, scaleHover, rotateY], ($store) => {
+    return {
+      x: $store[0],
+
+      scale: $store[1],
+      rotateY: $store[2],
+    };
   });
   $: if (cardToExit === index && !shouldReturn) {
     exitCard();
@@ -48,7 +53,9 @@
     springCard.set(0).then(() => {
       cardStore.reenable(index);
     });
-    zAxis.set((5 - index) * 20);
+    gsap.set(ele, {
+      zIndex: 6 - index,
+    });
   }
   $: if (shouldReturn) {
     setTimeout(() => {
@@ -71,7 +78,12 @@
     );
 
     springCard.set(-distanceRes);
-    zAxis.set(0);
+    let newZ = $cardStore.exited.indexOf(index);
+    setTimeout(() => {
+      gsap.set(ele, {
+        zIndex: newZ,
+      });
+    }, 60);
   }
 
   onMount(() => {
@@ -86,16 +98,16 @@
             } else if (!active) {
               springCard.set(0);
             }
+            if (tap) {
+              flipped = !flipped;
+
+              flipped ? rotateY.set(180) : rotateY.set(0);
+            }
           } else if (exited && tap) {
             exited = false;
             cardStore.returnCard(index);
-            zAxis
-              .set((5 - index) * 20, {
-                duration: 10,
-              })
-              .then(() => {
-                springCard.set(0);
-              });
+
+            springCard.set(0);
           }
         }
       },
@@ -104,18 +116,20 @@
         filterTaps: true,
       }
     );
+
     gsap.set(ele, {
-      z: $zAxis,
+      zIndex: 6 - index,
+
       rotateZ: $rotateZ,
       y: "-100vh",
     });
   });
 
   derivedS.subscribe((v) => {
-    console.log(v.scale);
     gsap.set(ele, {
       x: v.x,
-      z: v.z,
+
+      rotateY: v.rotateY,
       scale: v.scale,
     });
   });

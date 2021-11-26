@@ -9,17 +9,16 @@
 
 <div class="top-nav-container">
   <div
-    on:click={(e) => {
+    on:click="{(e) => {
       e.stopImmediatePropagation();
-      dispatch("closePageContent");
-    }}
+      dispatch('closePageContent');
+    }}"
     class="logo-container"
   >
-    <img src={logo} alt="" />
+    <img src="{logo}" alt="" />
   </div>
-  {#if $marqueeContentStore.content}
-    <LeftArrow />
-  {/if}
+
+  <LeftArrow />
 </div>
 
 <style lang="scss">
@@ -33,7 +32,7 @@
 
     justify-content: center;
     align-items: center;
-
+    position: relative;
     .logo-container {
       cursor: pointer;
       width: 120px;

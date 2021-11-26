@@ -33,9 +33,6 @@
       marqueeContentStore.setPageAnimation(currentPage);
     }
   });
-  $: {
-    console.log($marqueeContentStore.active);
-  }
 </script>
 
 <Navbar

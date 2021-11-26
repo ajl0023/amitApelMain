@@ -31,13 +31,15 @@
     "@cloudfour/simple-svg-placeholder": "^1.0.2",
     "@glidejs/glide": "^3.4.1",
     "@googlemaps/markerclusterer": "^1.0.11",
+    "@sveltejs/svelte-virtual-list": "^3.0.1",
     "@use-gesture/vanilla": "^10.0.2",
     "exif-parser": "^0.1.12",
     "flex-gap-polyfill": "^4.1.0",
     "gsap": "^3.8.0",
     "node-sass": "^6.0.1",
     "sharp": "^0.29.2",
+    "svelte-lazy": "^1.0.12",
     "svelte-preprocess": "^4.9.2",
-    "vanilla-lazyload": "^17.4.0"
+    "vanilla-lazyload": "^17.5.0"
   }
 }

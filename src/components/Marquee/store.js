@@ -13,6 +13,7 @@ const marqueeContent = () => {
       animation: null,
       reversedAnimation: null,
       shouldLoadImages: false,
+      activeCheckImmediate: false,
     };
   } else
     state = {
@@ -28,19 +29,22 @@ const marqueeContent = () => {
   const { subscribe, set, update } = writable(state);
   const methods = {
     reset() {
-      update((s) => {
-        s.content = null;
-        s.shouldLoadImages = false;
-
-        return s;
+      set({
+        content: null,
+        active: false,
+        container: null,
+        animation: null,
+        reversedAnimation: null,
+        shouldLoadImages: false,
+        activeCheckImmediate: false,
       });
     },
     setPageAnimation(page) {
       update((s) => {
         s.active = true;
-
+        s.activeCheckImmediate = true;
         s.content = page;
-        console.log(s);
+
         if (!dev || !testing) {
           gsap.to(".menu-wrap", {
             y: "100vh",
@@ -57,6 +61,7 @@ const marqueeContent = () => {
     },
     close(tl) {
       update((s) => {
+        s.activeCheckImmediate = false;
         s.shouldLoadImages = false;
 
         s.animation.reverse();
@@ -135,7 +140,6 @@ const marqueeContent = () => {
         });
         s.animation.eventCallback("onComplete", () => {
           update((s) => {
-            console.log("completed");
             s.shouldLoadImages = true;
             return s;
           });

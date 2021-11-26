@@ -1,10 +1,13 @@
 <script>
-  import { marqueeContentStore } from "./../Marquee/store.js";
+  import { marqueeContentStore } from "./../Marquee/store";
   let imageEle;
   import gsap from "gsap";
-  import { galleryModal } from "../GalleryModal/store.js";
+  import { galleryModal } from "../GalleryModal/store";
+  import Image from "../../Image.svelte";
+  import { lazy } from "../lazy";
 
   export let img;
+
   $: {
     if (img) {
       if ($marqueeContentStore.shouldLoadImages) {
@@ -34,19 +37,31 @@
       </h5>
     </div>
   {/if}
-  <div class="image-container m">
-    <img
-      width="{img.width}"
-      height="{img.height}"
-      loading="lazy"
-      class="image"
-      src="{$$props.loaded ? img.url : ''}"
-      alt=""
-    />
+
+  <div
+    style="padding-top: {(img.height / img.width) * 100}%;"
+    class="aspect-ratio-box"
+  >
+    <div class="image-container">
+      <img
+        width="{img.width}"
+        height="{img.height}"
+        class="image lazy"
+        data-src="{img.url}"
+        alt=""
+        use:lazy="{img.url}"
+      />
+    </div>
   </div>
 </div>
 
 <style lang="scss">
+  .aspect-ratio-box {
+    height: 0;
+    overflow: hidden;
+
+    position: relative;
+  }
   .hover-element-container {
     font-size: 2em;
     text-transform: uppercase;
@@ -64,6 +79,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      text-align: center;
       color: white;
       font-size: 2em;
       &:hover {
@@ -75,13 +91,18 @@
     overflow: hidden;
     width: 100%;
     height: 100%;
-    position: relative;
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 
     .image {
       opacity: 1;
       width: 100%;
       height: 100%;
-      display: block;
+      display: flex;
       object-fit: cover;
       object-position: center center;
     }
@@ -89,6 +110,7 @@
   .item-container {
     width: 100%;
     overflow: hidden;
+
     position: relative;
     opacity: 0;
     height: 100%;

@@ -11,21 +11,23 @@
 {#if $marqueeContentStore.content}
   <div class="page-container"></div>
   <div class="container">
-    <div class="text-wrapper">
-      <div class="text-content-container">
+    <div class="left-page">
+      <div class="header-container">
         <p class="sub-header">take a peek into our current</p>
         <h5 class="main-header">
           Project, <span class="property-header"
             >{data[$marqueeContentStore.content].title}</span
           >
         </h5>
-
-        <p class="description">
-          {data[$marqueeContentStore.content].description}
-        </p>
-        <button on:click="{reDirect}" class="redirect-button">visit site</button
-        >
       </div>
+      <div class="text-wrapper">
+        <div class="text-content-container">
+          <p class="description">
+            {data[$marqueeContentStore.content].description}
+          </p>
+        </div>
+      </div>
+      <button on:click="{reDirect}" class="redirect-button">visit site</button>
     </div>
     <div class="main-image-container">
       <div class="sub-image-container">
@@ -46,57 +48,79 @@
 {/if}
 
 <style lang="scss">
-  .property-header {
-    color: #5d1089;
-    font-weight: 900;
-    font-family: unisansB;
+  .left-page {
+    display: flex;
+    flex-direction: column;
+
+    width: 50vw;
+    justify-content: center;
+    padding: 5vw;
+    height: 100%;
+    @media screen and (max-width: 955px) {
+      width: 100%;
+      height: auto;
+      padding: 2vw;
+    }
+    @media screen and (max-width: 420px) {
+      align-items: center;
+    }
   }
+
   .redirect-button {
     text-transform: uppercase;
-    font-family: unisans;
+    font-family: "Roboto Mono", monospace;
     font-weight: 800;
     background: #5d1089;
     border: none;
     color: white;
     cursor: pointer;
     margin-top: 1rem;
+    text-align: center;
+
+    border-radius: 4px;
+    max-width: 200px;
     padding: 5px 15px;
-  }
-  .text-wrapper {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    width: 50vw;
-    padding: 8vw;
-    @media screen and (max-width: 955px) {
+    @media screen and (max-width: 420px) {
       width: 100%;
-      height: 50vh;
-      padding: 8vw 8vw 8vw 8vw;
+      max-width: 100%;
     }
   }
-  .text-content-container {
-    text-align: left;
-
+  .text-wrapper {
+    max-width: 500px;
+    @media screen and (max-width: 955px) {
+      width: 100%;
+    }
+  }
+  .header-container {
     .main-header {
-      font-family: unisans;
+      font-family: "Roboto Mono", monospace;
+      text-transform: uppercase;
       margin-bottom: 1rem;
       font-size: 2em;
     }
     .sub-header {
       color: #5d1089;
-      font-family: unisansB;
+
       font-size: 0.8em;
-      margin-bottom: 2rem;
+      font-family: "Roboto Mono", monospace;
       text-transform: uppercase;
     }
+    .property-header {
+      color: #5d1089;
+      font-weight: 900;
+      font-family: unisansB;
+    }
+  }
+  .text-content-container {
+    text-align: left;
+
     .description {
-      font-family: unisans;
-      font-weight: 700;
+      font-family: "Roboto Mono", monospace;
+
       font-size: 0.8em;
       @media screen and (max-width: 955px) {
         width: 100%;
+
         font-size: 1.1em;
       }
     }
@@ -105,47 +129,60 @@
     padding-bottom: 75%;
   }
   .sub-image-container {
-    position: absolute;
     width: 25vw;
     border-radius: 4px;
     overflow: hidden;
-    top: 50%;
+
+    z-index: 2;
     min-width: 400px;
-    transform: translate(-20%, -80%);
+
     box-shadow: 2px 6px 40px -3px #000000;
+    position: relative;
 
     .sub {
+      width: 100%;
+      height: 100%;
       top: 0;
       position: absolute;
     }
+
+    @media screen and (min-width: 1500px) {
+      transform: translateX(-300px);
+    }
     @media screen and (max-width: 955px) {
-      top: 50%;
+      transform: none;
       min-width: auto;
-      width: 60vw;
-      left: 50%;
-      transform: translate(-50%, -50%);
     }
   }
 
   .container {
     display: flex;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     overflow: hidden;
     @media screen and (max-width: 955px) {
       flex-direction: column;
+      align-items: center;
+      padding: 10px;
+      overflow-x: hidden;
+      overflow-y: auto;
+      height: auto;
+      justify-content: space-around;
     }
   }
   .main-image-container {
     height: 100%;
     width: 50vw;
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
 
     &::before {
       width: 100%;
       height: 100%;
       position: absolute;
+      z-index: 2;
       content: "";
       background: linear-gradient(
         0deg,
@@ -158,11 +195,18 @@
     .main-image {
       object-fit: cover;
       width: 100%;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      position: absolute;
       height: 100%;
     }
     @media screen and (max-width: 955px) {
-      width: 100vw;
-      height: 50vh;
+
+      width: 100%;
+      height: 400px;
     }
   }
 </style>

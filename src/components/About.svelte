@@ -80,6 +80,7 @@
   .container {
     overflow-y: auto;
     color: #68208e;
+    padding: 1rem;
   }
 
   .content-container {

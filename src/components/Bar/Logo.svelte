@@ -28,22 +28,30 @@
       <UpcReset />
 
       {#each upcDigits1 as dig}
-        <UpcDigit data-val={dig.val} index={dig.index} target={dig.val === 3} />
+        <UpcDigit
+          data-val="{dig.val}"
+          index="{dig.index}"
+          target="{dig.val === 3}"
+        />
       {/each}
 
       <UpcReset />
       {#each upcDigits2 as dig}
-        <UpcDigit data-val={dig.val} index={dig.index} target={dig.val === 3} />
+        <UpcDigit
+          data-val="{dig.val}"
+          index="{dig.index}"
+          target="{dig.val === 3}"
+        />
       {/each}
 
       <UpcReset />
     </div>
   </div>
 </div>
-<BarMask index={0} />
-<BarMask index={1} />
-<BarMask index={2} />
-<BarMask index={3} />
+<BarMask index="{0}" />
+<BarMask index="{1}" />
+<BarMask index="{2}" />
+<BarMask index="{3}" />
 
 <style lang="scss">
   @use "sass:math";
@@ -58,6 +66,9 @@
 
     overflow: hidden;
     position: relative;
+    @media screen and (max-width: 650px) {
+      margin-right: -1.5rem;
+    }
   }
   .logo-container {
     padding-top: math.div(33%, 10) * 10;
@@ -65,6 +76,7 @@
     @media screen and (max-width: 650px) {
       display: flex;
       justify-content: space-evenly;
+
       padding-top: math.div(85%, 10) * 10;
     }
   }

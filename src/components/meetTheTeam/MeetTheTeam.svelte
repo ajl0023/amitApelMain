@@ -93,9 +93,6 @@
 
       left: 0;
       position: absolute;
-
-      perspective: 1500px;
-      transform-style: preserve-3d;
     }
   }
   $cardSizeWidth: 300px;

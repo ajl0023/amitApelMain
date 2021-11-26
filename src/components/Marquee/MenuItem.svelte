@@ -20,7 +20,7 @@
 
 <div
   on:click="{() => {
-    console.log(title);
+
     marqueeContentStore.setPageAnimation(title);
     // marqueeContentStore.open();
   }}"
@@ -133,9 +133,7 @@
     font-weight: 600;
     padding: 1vh 1vw 0;
     text-transform: uppercase;
-    @media screen and (max-width: 820px) {
-      font-size: 10vw;
-    }
+   
   }
 
   .marquee span {

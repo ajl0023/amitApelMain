@@ -4,19 +4,20 @@
   import { layout } from "./layout.js";
 
   export let shouldLoadImages;
-
-  const componentPH = $marqueeContentStore.content === "private homes";
+  $: ({ content } = $marqueeContentStore);
 </script>
 
 <div class="container">
-  <div class="content-container">
-    <div class="gallery-container">
-      {#if $marqueeContentStore.content}
-        {#each layout[$marqueeContentStore.content].thumbs as img}
-          <Bar3GalleryImage {shouldLoadImages} {img} {componentPH} />
-        {/each}
-      {/if}
-    </div>
+  <div class="gallery-container flex-gap-not-supported">
+    {#if content}
+      {#each layout[content].thumbs as img}
+        <Bar3GalleryImage
+          content="{content}"
+          shouldLoadImages="{shouldLoadImages}"
+          img="{img}"
+        />
+      {/each}
+    {/if}
   </div>
 </div>
 
@@ -28,18 +29,16 @@
     width: 100%;
     overflow: hidden;
     justify-content: center;
-    .content-container {
-      width: 100%;
-      max-width: 1200px;
-    }
   }
   .gallery-container {
-    display: grid;
-    gap: 10px;
+    // margin-top: -10px;
+    // margin-left: -10px;
+    // margin-right: -10px;
+
     overflow-y: auto;
 
     max-width: 1300px;
-
+    justify-content: space-around;
     width: 100%;
     display: flex;
     flex-wrap: wrap;

@@ -10,7 +10,6 @@ const store = () => {
   const methods = {
     openModal(content, category) {
       update((s) => {
-        console.log(category);
         s.selected = content;
         s.visible = true;
         s.images = layout[category]

@@ -52,7 +52,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
+    padding: 1rem;
     width: 100%;
   }
 </style>

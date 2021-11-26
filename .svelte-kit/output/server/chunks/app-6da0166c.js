@@ -30,6 +30,34 @@ function get_single_valued_header(headers, key) {
   }
   return value;
 }
+const absolute = /^([a-z]+:)?\/?\//;
+const scheme = /^[a-z]+:/;
+function resolve(base2, path) {
+  if (scheme.test(path))
+    return path;
+  const base_match = absolute.exec(base2);
+  const path_match = absolute.exec(path);
+  if (!base_match) {
+    throw new Error(`bad base path: "${base2}"`);
+  }
+  const baseparts = path_match ? [] : base2.slice(base_match[0].length).split("/");
+  const pathparts = path_match ? path.slice(path_match[0].length).split("/") : path.split("/");
+  baseparts.pop();
+  for (let i = 0; i < pathparts.length; i += 1) {
+    const part = pathparts[i];
+    if (part === ".")
+      continue;
+    else if (part === "..")
+      baseparts.pop();
+    else
+      baseparts.push(part);
+  }
+  const prefix = path_match && path_match[0] || base_match && base_match[0] || "";
+  return `${prefix}${baseparts.join("/")}`;
+}
+function is_root_relative(path) {
+  return path[0] === "/" && path[1] !== "/";
+}
 function coalesce_to_error(err) {
   return err instanceof Error || err && err.name && err.message ? err : new Error(JSON.stringify(err));
 }
@@ -689,7 +717,7 @@ async function load_node({
           response = options2.read ? new Response(options2.read(asset.file), {
             headers: asset.type ? { "content-type": asset.type } : {}
           }) : await fetch(`http://${page.host}/${asset.file}`, opts);
-        } else if (resolved.startsWith("/") && !resolved.startsWith("//")) {
+        } else if (is_root_relative(resolved)) {
           const relative = resolved;
           const headers = {
             ...opts.headers
@@ -805,28 +833,6 @@ async function load_node({
     set_cookie_headers,
     uses_credentials
   };
-}
-const absolute = /^([a-z]+:)?\/?\//;
-function resolve(base2, path) {
-  const base_match = absolute.exec(base2);
-  const path_match = absolute.exec(path);
-  if (!base_match) {
-    throw new Error(`bad base path: "${base2}"`);
-  }
-  const baseparts = path_match ? [] : base2.slice(base_match[0].length).split("/");
-  const pathparts = path_match ? path.slice(path_match[0].length).split("/") : path.split("/");
-  baseparts.pop();
-  for (let i = 0; i < pathparts.length; i += 1) {
-    const part = pathparts[i];
-    if (part === ".")
-      continue;
-    else if (part === "..")
-      baseparts.pop();
-    else
-      baseparts.push(part);
-  }
-  const prefix = path_match && path_match[0] || base_match && base_match[0] || "";
-  return `${prefix}${baseparts.join("/")}`;
 }
 async function respond_with_error({ request, options: options2, state, $session, status, error: error2 }) {
   const default_layout = await options2.load_component(options2.manifest.layout);
@@ -1453,7 +1459,7 @@ function afterUpdate() {
 }
 var root_svelte_svelte_type_style_lang = "";
 const css = {
-  code: "#svelte-announcer.svelte-1x3qdwd{position:absolute;left:0;top:0;clip:rect(0 0 0 0);clip-path:inset(50%);overflow:hidden;white-space:nowrap;width:1px;height:1px}",
+  code: "#svelte-announcer.svelte-1j55zn5{position:absolute;left:0;top:0;clip:rect(0 0 0 0);clip-path:inset(50%);overflow:hidden;white-space:nowrap;width:1px;height:1px}",
   map: null
 };
 const Root = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -1504,7 +1510,7 @@ var user_hooks = /* @__PURE__ */ Object.freeze({
   __proto__: null,
   [Symbol.toStringTag]: "Module"
 });
-const template = ({ head, body }) => '<!DOCTYPE html>\r\n<html lang="en">\r\n  <head>\r\n    <script\r\n      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCuQBbHnOXGEZ7ZtNlYQiaf3KnJx56abYY"\r\n      async\r\n    ><\/script>\r\n    <link rel="preconnect" href="https://fonts.googleapis.com" />\r\n    <link rel="preconnect" href="https://fonts.googleapis.com" />\r\n    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />\r\n    <link\r\n      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500;1,700&display=swap"\r\n      rel="stylesheet"\r\n    />\r\n    <meta charset="utf-8" />\r\n    <link rel="icon" href="/logo.inline.svg" />\r\n    <meta name="viewport" content="width=device-width, initial-scale=1" />\r\n    ' + head + '\r\n  </head>\r\n  <body>\r\n    <div id="svelte">' + body + "</div>\r\n  </body>\r\n</html>\r\n";
+const template = ({ head, body }) => '<!DOCTYPE html>\r\n<html lang="en">\r\n  <head>\r\n    <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.5.0/dist/lazyload.min.js"><\/script>\r\n\r\n    <script\r\n      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCuQBbHnOXGEZ7ZtNlYQiaf3KnJx56abYY"\r\n      async\r\n    ><\/script>\r\n    <link rel="preconnect" href="https://fonts.googleapis.com" />\r\n    <link rel="preconnect" href="https://fonts.googleapis.com" />\r\n    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />\r\n    <link\r\n      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500;1,700&display=swap"\r\n      rel="stylesheet"\r\n    />\r\n    <meta charset="utf-8" />\r\n    <link rel="icon" href="/logo.inline.svg" />\r\n    <meta name="viewport" content="width=device-width, initial-scale=1" />\r\n    ' + head + '\r\n  </head>\r\n  <body>\r\n    <div id="svelte">' + body + "</div>\r\n  </body>\r\n</html>\r\n";
 let options = null;
 const default_settings = { paths: { "base": "", "assets": "" } };
 function init(settings = default_settings) {
@@ -1515,9 +1521,9 @@ function init(settings = default_settings) {
     amp: false,
     dev: false,
     entry: {
-      file: assets + "/_app/start-0a4573e4.js",
-      css: [assets + "/_app/assets/start-fcddce2f.css"],
-      js: [assets + "/_app/start-0a4573e4.js", assets + "/_app/chunks/vendor-e5c64a13.js"]
+      file: assets + "/_app/start-f3039411.js",
+      css: [assets + "/_app/assets/start-61d1577b.css"],
+      js: [assets + "/_app/start-f3039411.js", assets + "/_app/chunks/vendor-3f843ac9.js"]
     },
     fetched: void 0,
     floc: false,
@@ -1546,7 +1552,7 @@ function init(settings = default_settings) {
 }
 const empty = () => ({});
 const manifest = {
-  assets: [{ "file": "logo.inline.svg", "size": 37735, "type": "image/svg+xml" }, { "file": "_headers.txt", "size": 35, "type": "text/plain" }],
+  assets: [{ "file": "_headers.txt", "size": 35, "type": "text/plain" }, { "file": "logo.inline.svg", "size": 37735, "type": "image/svg+xml" }],
   layout: ".svelte-kit/build/components/layout.svelte",
   error: ".svelte-kit/build/components/error.svelte",
   routes: [
@@ -1566,11 +1572,11 @@ const get_hooks = (hooks) => ({
   externalFetch: hooks.externalFetch || fetch
 });
 const module_lookup = {
-  ".svelte-kit/build/components/layout.svelte": () => import("./layout-aeca2e29.js"),
-  ".svelte-kit/build/components/error.svelte": () => import("./error-11db7c6f.js"),
-  "src/routes/index.svelte": () => import("./index-5b33c94e.js")
+  ".svelte-kit/build/components/layout.svelte": () => import("./layout-c2955189.js"),
+  ".svelte-kit/build/components/error.svelte": () => import("./error-30eb5903.js"),
+  "src/routes/index.svelte": () => import("./index-32f213b6.js")
 };
-const metadata_lookup = { ".svelte-kit/build/components/layout.svelte": { "entry": "layout.svelte-8083bd2f.js", "css": [], "js": ["layout.svelte-8083bd2f.js", "chunks/vendor-e5c64a13.js"], "styles": [] }, ".svelte-kit/build/components/error.svelte": { "entry": "error.svelte-b72f775c.js", "css": [], "js": ["error.svelte-b72f775c.js", "chunks/vendor-e5c64a13.js"], "styles": [] }, "src/routes/index.svelte": { "entry": "pages/index.svelte-5549d9e5.js", "css": ["assets/pages/index.svelte-6d5ea49d.css"], "js": ["pages/index.svelte-5549d9e5.js", "chunks/vendor-e5c64a13.js"], "styles": [] } };
+const metadata_lookup = { ".svelte-kit/build/components/layout.svelte": { "entry": "layout.svelte-623204da.js", "css": [], "js": ["layout.svelte-623204da.js", "chunks/vendor-3f843ac9.js"], "styles": [] }, ".svelte-kit/build/components/error.svelte": { "entry": "error.svelte-9ed7b14d.js", "css": [], "js": ["error.svelte-9ed7b14d.js", "chunks/vendor-3f843ac9.js"], "styles": [] }, "src/routes/index.svelte": { "entry": "pages/index.svelte-a05b0da6.js", "css": ["assets/pages/index.svelte-ffbf3b6f.css"], "js": ["pages/index.svelte-a05b0da6.js", "chunks/vendor-3f843ac9.js"], "styles": [] } };
 async function load_component(file) {
   const { entry, css: css2, js, styles } = metadata_lookup[file];
   return {

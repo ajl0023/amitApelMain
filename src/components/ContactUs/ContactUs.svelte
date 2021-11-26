@@ -104,20 +104,21 @@
 </div>
 
 <style lang="scss">
-  .flex-item {
-    @include globalMixins.flexGap(1, h);
-  }
   .contact-field {
     @include globalMixins.flexGap(1, v);
   }
   .misc-info-wrapper {
     display: flex;
+    margin-right: 1rem;
     font-family: "Roboto Mono", monospace;
     flex-direction: column;
+    @media screen and (max-width: 610px) {
+      margin-right: 0rem;
+    }
   }
   .content-container {
     display: flex;
-
+    padding: 1rem;
     height: 80%;
     justify-content: center;
 
@@ -134,7 +135,6 @@
     }
   }
   .info-container {
-
     text-align: center;
     background-color: white;
     box-shadow: rgba(60, 66, 87, 0.12) 0px 7px 14px 0px,
@@ -168,6 +168,7 @@
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
       Helvetica Neue, Ubuntu, sans-serif;
     @media screen and (max-width: 610px) {
+      margin-bottom: 1.5rem;
       max-width: 100%;
     }
     @media screen and (max-width: 650px) {

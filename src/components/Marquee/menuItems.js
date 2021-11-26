@@ -42,10 +42,6 @@ export const menuItems = {
         title: "concept",
         labels: Array(8).fill("concept"),
       },
-      {
-        title: "render videos",
-        labels: Array(8).fill("render videos"),
-      },
     ],
     category: "architecture",
   },

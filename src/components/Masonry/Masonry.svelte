@@ -20,7 +20,9 @@
       loaded = false;
       images = layout[content].thumbs;
       await tick();
+
       setlayout();
+
       loaded = true;
     }
   }
@@ -119,7 +121,7 @@
   .item-container {
     // @include globalMixins.flexGap(1, vh);
     cursor: pointer;
-
+    display: flex;
     @media screen and (max-width: 900px) {
       flex: calc(100% / 5);
     }

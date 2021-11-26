@@ -45,6 +45,7 @@
     justify-content: center;
     flex-direction: column;
     color: #68208e;
+    padding: 1rem;
   }
   h3 {
     font-weight: 900;

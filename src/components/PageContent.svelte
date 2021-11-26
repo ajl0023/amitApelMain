@@ -1,9 +1,34 @@
 <script>
+  import { onMount } from "svelte";
+
   import MainPageHeader from "./MainPageHeader.svelte";
+  import { marqueeContentStore } from "./Marquee/store";
 
   export let currNav;
 
   let shouldLoadImages = false;
+  onMount(() => {
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "z") {
+        marqueeContentStore.update((v) => {
+          v.content = "sculptures";
+          return v;
+        });
+      }
+      if (e.key === "x") {
+        marqueeContentStore.update((v) => {
+          v.content = "art";
+          return v;
+        });
+      }
+      if (e.key === "c") {
+        marqueeContentStore.update((v) => {
+          v.content = "furniture";
+          return v;
+        });
+      }
+    });
+  });
 </script>
 
 <div class="page-content-container">
