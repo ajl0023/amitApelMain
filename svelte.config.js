@@ -1,7 +1,6 @@
 import sveltePreprocess from "svelte-preprocess";
 import adapter from "@sveltejs/adapter-static";
 import path, { dirname } from "path";
-import flexGapPolyfill from "flex-gap-polyfill";
 
 import { fileURLToPath, pathToFileURL } from "url";
 const filename = fileURLToPath(import.meta.url);
@@ -27,6 +26,5 @@ export default {
     scss: {
       prependData: `@use '${sassPath.pathname}';`,
     },
-    postcss: {},
   }),
 };
