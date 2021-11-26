@@ -110,6 +110,8 @@
           </label>
         </div>
       </div>
+      <input type="hidden" name="form-name" value="name_of_my_form" />
+
       <div class="contact-field">
         <div class="contact-control">
           <input

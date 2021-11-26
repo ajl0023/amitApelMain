@@ -1,3 +1,3 @@
-export const testing = false;
-export const shouldAnimate = true;
-export const currentPage = "meet the team";
+export const testing = true;
+export const shouldAnimate = false;
+export const currentPage = "contact us";

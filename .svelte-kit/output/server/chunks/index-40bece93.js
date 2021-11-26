@@ -1,4 +1,4 @@
-import { n as noop, s as safe_not_equal, a as subscribe, r as run_all, i as is_function, c as create_ssr_component, e as escape, b as add_attribute, v as validate_component, d as each, f as createEventDispatcher, m as missing_component, o as onDestroy, g as assign, h as now, l as loop, j as identity } from "./app-316aab47.js";
+import { n as noop, s as safe_not_equal, a as subscribe, r as run_all, i as is_function, c as create_ssr_component, e as escape, b as add_attribute, v as validate_component, d as each, f as createEventDispatcher, m as missing_component, o as onDestroy, g as assign, h as now, l as loop, j as identity } from "./app-f3054379.js";
 import gsap from "gsap";
 import "@use-gesture/vanilla";
 var global = "";
@@ -75624,6 +75624,8 @@ const ContactUs = create_ssr_component(($$result, $$props, $$bindings, slots) =>
           <textarea id="${"message-input"}" class="${"contact-textarea contact-input svelte-kzmtz7"}" type="${"text"}" name="${"message"}"></textarea></div></div>
       <div class="${"contact-field svelte-kzmtz7"}"><div class="${"contact-control"}"><label for="${"checkbox"}" class="${"svelte-kzmtz7"}"><input type="${"checkbox"}" name="${"checkbox"}"> Subscribe to our newsletter
           </label></div></div>
+      <input type="${"hidden"}" name="${"form-name"}" value="${"name_of_my_form"}">
+
       <div class="${"contact-field svelte-kzmtz7"}"><div class="${"contact-control"}"><input type="${"submit"}" class="${"contact-button contact-input contact-is-link contact-is-fullwidth svelte-kzmtz7"}"></div></div></form></div>
 </div>`;
 });
@@ -79521,7 +79523,7 @@ const Home = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   $$unsubscribe_lgBarStore = subscribe(lgBarStore, (value) => $lgBarStore = value);
   $$result.css.add(css$1);
   $$unsubscribe_lgBarStore();
-  return `<div class="${["marquee-container-main svelte-uszufg", ""].join(" ").trim()}">${$lgBarStore.pageContent ? `${validate_component(Marque, "Marque").$$render($$result, {}, {}, {})}` : ``}</div>
+  return `<div class="${["marquee-container-main svelte-uszufg", "testing"].join(" ").trim()}">${$lgBarStore.pageContent ? `${validate_component(Marque, "Marque").$$render($$result, {}, {}, {})}` : ``}</div>
 
 
 <div class="${"video-bg svelte-uszufg"}"><video class="${"video-brush svelte-uszufg"}" autoplay autobuffer muted playsinline><source${add_attribute("src", "https://res.cloudinary.com/dt4xntymn/video/upload/v1636870696/mainSite/Brush_Stroke_1_orzxdf.mp4", 0)} type="${"video/mp4"}"></video></div>
