@@ -59,18 +59,7 @@
           />
         </div>
       </div>
-      <div class="contact-field">
-        <div class="contact-control">
-          <label for="" class="contact-label">Message</label>
 
-          <input
-            id="email-input"
-            class="contact-input"
-            type="email"
-            name="email"
-          />
-        </div>
-      </div>
       <div class="contact-field">
         <div class="contact-control">
           <label for="" class="contact-label">Country</label>
@@ -107,9 +96,9 @@
       </div>
       <div class="contact-field">
         <div class="contact-control">
-          <label for="checkbox">
+          <!-- <label for="checkbox">
             <input type="checkbox" name="checkbox" /> Subscribe to our newsletter
-          </label>
+          </label> -->
         </div>
       </div>
 

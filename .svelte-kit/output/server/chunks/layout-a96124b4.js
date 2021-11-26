@@ -1,4 +1,4 @@
-import { c as create_ssr_component } from "./app-992697c2.js";
+import { c as create_ssr_component } from "./app-2f83fcde.js";
 const Layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   return `${slots.default ? slots.default({}) : ``}`;
 });

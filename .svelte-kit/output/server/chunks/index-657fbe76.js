@@ -1,4 +1,4 @@
-import { n as noop, s as safe_not_equal, a as subscribe, r as run_all, i as is_function, c as create_ssr_component, e as escape, b as add_attribute, v as validate_component, d as each, f as createEventDispatcher, m as missing_component, o as onDestroy, g as assign, h as now, l as loop, j as identity } from "./app-992697c2.js";
+import { n as noop, s as safe_not_equal, a as subscribe, r as run_all, i as is_function, c as create_ssr_component, e as escape, b as add_attribute, v as validate_component, d as each, f as createEventDispatcher, m as missing_component, o as onDestroy, g as assign, h as now, l as loop, j as identity } from "./app-2f83fcde.js";
 import gsap from "gsap";
 import "@use-gesture/vanilla";
 var global = "";
@@ -75613,9 +75613,7 @@ const ContactUs = create_ssr_component(($$result, $$props, $$bindings, slots) =>
       <div class="${"contact-field svelte-kzmtz7"}"><div class="${"contact-control"}"><label for="${""}" class="${"contact-label svelte-kzmtz7"}">Name</label>
 
           <input id="${"name-input"}" class="${"contact-input svelte-kzmtz7"}" type="${"text"}" name="${"name"}"></div></div>
-      <div class="${"contact-field svelte-kzmtz7"}"><div class="${"contact-control"}"><label for="${""}" class="${"contact-label svelte-kzmtz7"}">Message</label>
 
-          <input id="${"email-input"}" class="${"contact-input svelte-kzmtz7"}" type="${"email"}" name="${"email"}"></div></div>
       <div class="${"contact-field svelte-kzmtz7"}"><div class="${"contact-control"}"><label for="${""}" class="${"contact-label svelte-kzmtz7"}">Country</label>
 
           <input id="${"country-input"}" class="${"contact-input svelte-kzmtz7"}" type="${"text"}" name="${"country"}"></div></div>
@@ -75624,8 +75622,7 @@ const ContactUs = create_ssr_component(($$result, $$props, $$bindings, slots) =>
           <input id="${"phone-input"}" class="${"contact-input svelte-kzmtz7"}" type="${"phone"}" name="${"phone"}"></div></div>
       <div class="${"contact-field svelte-kzmtz7"}"><div class="${"contact-control"}"><label for="${""}" class="${"contact-label svelte-kzmtz7"}">Message</label>
           <textarea id="${"message-input"}" class="${"contact-textarea contact-input svelte-kzmtz7"}" type="${"text"}" name="${"message"}"></textarea></div></div>
-      <div class="${"contact-field svelte-kzmtz7"}"><div class="${"contact-control"}"><label for="${"checkbox"}" class="${"svelte-kzmtz7"}"><input type="${"checkbox"}" name="${"checkbox"}"> Subscribe to our newsletter
-          </label></div></div>
+      <div class="${"contact-field svelte-kzmtz7"}"><div class="${"contact-control"}"></div></div>
 
       <div class="${"contact-field svelte-kzmtz7"}"><div class="${"contact-control"}"><input type="${"submit"}" class="${"contact-button contact-input contact-is-link contact-is-fullwidth svelte-kzmtz7"}"></div></div></form></div>
 </div>`;
