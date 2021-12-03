@@ -25,28 +25,30 @@
 
 <div class="container">
   <MapBar
-    on:handleMap={(e) => {
+    on:handleMap="{(e) => {
       visible = e.detail;
-    }}
+    }}"
   />
-  <div bind:this={container} class="map-container">
+  <div bind:this="{container}" class="map-container">
     {#if showMap}
-      <div
-        on:click={() => {
-          visible = false;
-          showMap = false;
-        }}
-        class="close-x close-main black"
-      />
+      <div class="x-container">
+        <div
+          on:click="{() => {
+            visible = false;
+            showMap = false;
+          }}"
+          class="close-x close-main white"
+        ></div>
+      </div>
       <Map
-        on:renderMap={() => {
+        on:renderMap="{() => {
           showMap = true;
-        }}
-        on:handleMap={(e) => {
+        }}"
+        on:handleMap="{(e) => {
           visible = e.detail;
-        }}
-        {showMap}
-        {visible}
+        }}"
+        showMap="{showMap}"
+        visible="{visible}"
       />
     {/if}
   </div>
@@ -55,6 +57,31 @@
 <style lang="scss">
   .map-container {
     position: relative;
+  }
+  .x-container {
+    background-color: white;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 5;
+    padding: 5px;
+
+    .close-x {
+      width: 100%;
+      height: 100%;
+      right: auto;
+
+      position: relative;
+      &::before {
+        background-color: black;
+      }
+      &::after {
+        background-color: black;
+      }
+    }
   }
   .container {
     position: absolute;

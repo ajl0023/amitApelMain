@@ -35,7 +35,7 @@
     position: relative;
     .logo-container {
       cursor: pointer;
-      width: 120px;
+      width: 170px;
 
       position: relative;
       pointer-events: all;

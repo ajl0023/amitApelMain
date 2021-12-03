@@ -1,4 +1,4 @@
-import { n as noop, s as safe_not_equal, a as subscribe, r as run_all, i as is_function, c as create_ssr_component, e as escape, b as add_attribute, v as validate_component, d as each, f as createEventDispatcher, m as missing_component, o as onDestroy, g as assign, h as now, l as loop, j as identity } from "./app-b5c9a992.js";
+import { n as noop, s as safe_not_equal, a as subscribe, r as run_all, i as is_function, c as create_ssr_component, e as escape, b as add_attribute, v as validate_component, d as each, f as createEventDispatcher, m as missing_component, o as onDestroy, g as assign, h as now, l as loop, j as identity } from "./app-b008bd9f.js";
 import gsap from "gsap";
 import "@use-gesture/vanilla";
 var global = "";
@@ -75422,7 +75422,7 @@ const MapBar = create_ssr_component(($$result, $$props, $$bindings, slots) => {
 });
 var MapWrapper_svelte_svelte_type_style_lang = "";
 const css$m = {
-  code: ".map-container.svelte-4380e3{position:relative}.container.svelte-4380e3{position:absolute;color:white;bottom:0;background-color:white;width:100%;z-index:6}",
+  code: ".map-container.svelte-tkgelb.svelte-tkgelb{position:relative}.x-container.svelte-tkgelb.svelte-tkgelb{background-color:white;border-radius:50%;width:25px;height:25px;position:absolute;top:20px;right:20px;z-index:5;padding:5px}.x-container.svelte-tkgelb .close-x.svelte-tkgelb{width:100%;height:100%;right:auto;position:relative}.x-container.svelte-tkgelb .close-x.svelte-tkgelb::before{background-color:black}.x-container.svelte-tkgelb .close-x.svelte-tkgelb::after{background-color:black}.container.svelte-tkgelb.svelte-tkgelb{position:absolute;color:white;bottom:0;background-color:white;width:100%;z-index:6}",
   map: null
 };
 const MapWrapper = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -75435,8 +75435,8 @@ const MapWrapper = create_ssr_component(($$result, $$props, $$bindings, slots) =
       }
     }
   }
-  return `<div class="${"container svelte-4380e3"}">${validate_component(MapBar, "MapBar").$$render($$result, {}, {}, {})}
-  <div class="${"map-container svelte-4380e3"}"${add_attribute("this", container, 0)}>${``}</div>
+  return `<div class="${"container svelte-tkgelb"}">${validate_component(MapBar, "MapBar").$$render($$result, {}, {}, {})}
+  <div class="${"map-container svelte-tkgelb"}"${add_attribute("this", container, 0)}>${``}</div>
 </div>`;
 });
 var MainPageHeader_svelte_svelte_type_style_lang = "";
@@ -75547,13 +75547,13 @@ const LeftArrow = create_ssr_component(($$result, $$props, $$bindings, slots) =>
 });
 var Navbar_svelte_svelte_type_style_lang = "";
 const css$g = {
-  code: ".top-nav-container.svelte-zsez64.svelte-zsez64{width:100%;background-color:#6f3f8a;padding:10px;display:flex;justify-content:center;align-items:center;position:relative}.top-nav-container.svelte-zsez64 .logo-container.svelte-zsez64{cursor:pointer;width:120px;position:relative;pointer-events:all;z-index:5}.top-nav-container.svelte-zsez64 .logo-container img.svelte-zsez64{width:100%;height:100%}",
+  code: ".top-nav-container.svelte-jkjemz.svelte-jkjemz{width:100%;background-color:#6f3f8a;padding:10px;display:flex;justify-content:center;align-items:center;position:relative}.top-nav-container.svelte-jkjemz .logo-container.svelte-jkjemz{cursor:pointer;width:170px;position:relative;pointer-events:all;z-index:5}.top-nav-container.svelte-jkjemz .logo-container img.svelte-jkjemz{width:100%;height:100%}",
   map: null
 };
 const Navbar = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   createEventDispatcher();
   $$result.css.add(css$g);
-  return `<div class="${"top-nav-container svelte-zsez64"}"><div class="${"logo-container svelte-zsez64"}"><img${add_attribute("src", logo, 0)} alt="${""}" class="${"svelte-zsez64"}"></div>
+  return `<div class="${"top-nav-container svelte-jkjemz"}"><div class="${"logo-container svelte-jkjemz"}"><img${add_attribute("src", logo, 0)} alt="${""}" class="${"svelte-jkjemz"}"></div>
 
   ${validate_component(LeftArrow, "LeftArrow").$$render($$result, {}, {}, {})}
 </div>`;
@@ -79398,16 +79398,16 @@ const menuItems = {
         labels: Array(8).fill("what we do")
       },
       {
-        title: "malibu rebuild",
-        labels: Array(8).fill("malibu rebuild")
-      },
-      {
         title: "press",
         labels: Array(8).fill("press")
       },
       {
         title: "contact us",
         labels: Array(8).fill("contact us")
+      },
+      {
+        title: "malibu rebuild",
+        labels: Array(8).fill("malibu rebuild")
       }
     ],
     category: "apel design"

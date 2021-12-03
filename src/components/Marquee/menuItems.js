@@ -13,10 +13,7 @@ export const menuItems = {
         title: "what we do",
         labels: Array(8).fill("what we do"),
       },
-      {
-        title: "malibu rebuild",
-        labels: Array(8).fill("malibu rebuild"),
-      },
+
       {
         title: "press",
         labels: Array(8).fill("press"),
@@ -24,6 +21,10 @@ export const menuItems = {
       {
         title: "contact us",
         labels: Array(8).fill("contact us"),
+      },
+      {
+        title: "malibu rebuild",
+        labels: Array(8).fill("malibu rebuild"),
       },
     ],
     category: "apel design",
